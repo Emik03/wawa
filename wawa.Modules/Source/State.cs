@@ -1,0 +1,98 @@
+﻿// <copyright file="State.cs" company="Emik">
+// Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// </copyright>
+namespace Wawa.Modules;
+
+/// <summary>Encapsulation of status conditions for a <see cref="ModdedModule"/>.</summary>
+[PublicAPI]
+public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<State>
+{
+    [NotNull]
+    const string Prefix = "id: ";
+
+    [NotNull]
+    static readonly Dictionary<string, int> s_ids = new(StringComparer.Ordinal);
+
+    [NotNull]
+    readonly string _name;
+
+    /// <summary>Initializes a new instance of the <see cref="State"/> class.</summary>
+    /// <param name="name">
+    /// The <see cref="string"/> containing the module id which is used to assign <see cref="Id"/>.
+    /// </param>
+#pragma warning disable CA1854
+    internal State([NotNull] string name) => Id = s_ids.ContainsKey(_name = name) ? ++s_ids[name] : s_ids[name] = 1;
+#pragma warning restore CA1854
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the module has ever called <see cref="ModdedModule.Strike"/>.
+    /// </summary>
+    public bool HasStruck { [Pure] get; set; }
+
+    /// <summary>Gets a value indicating whether the module is solved.</summary>
+    public bool IsSolved { [Pure] get; internal set; }
+
+    /// <summary>Gets the unique module id of this module type, primarily used in logging.</summary>
+    public int Id { [Pure] get; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the module has thrown an unhandled <see cref="Exception"/>.
+    /// </summary>
+    internal bool HasException { [Pure] get; set; }
+
+    /// <summary>Gets or sets the amount of times <see cref="ModdedModule.Strike"/> was called.</summary>
+    internal int Strikes { [Pure] get; set; }
+
+    /// <summary>Determines whether both instances contain the same values.</summary>
+    /// <param name="left">The left-hand side.</param>
+    /// <param name="right">The right-hand side.</param>
+    /// <returns>
+    /// The value <see langword="true"/> if both instances contain the same values, otherwise <see langword="false"/>.
+    /// </returns>
+    [Pure]
+    public static bool operator ==([CanBeNull] State left, [CanBeNull] State right) =>
+        left is null
+            ? right is null
+            : right is not null &&
+            left.HasStruck == right.HasStruck &&
+            left.IsSolved == right.IsSolved &&
+            left.Id == right.Id;
+
+    /// <summary>Determines whether both instances do not contain the same values.</summary>
+    /// <param name="left">The left-hand side.</param>
+    /// <param name="right">The right-hand side.</param>
+    /// <returns>
+    /// The value <see langword="true"/> if both instances do not contain the same values,
+    /// otherwise <see langword="false"/>.
+    /// </returns>
+    [Pure]
+    public static bool operator !=([CanBeNull] State left, [CanBeNull] State right) => !(left == right);
+
+    /// <inheritdoc/>
+    [Pure]
+    public bool Equals(State other) => this == other;
+
+    /// <inheritdoc/>
+    [Pure]
+    public bool Equals(State x, State y) => x == y;
+
+    /// <inheritdoc/>
+    [Pure]
+    public int GetHashCode([CanBeNull] State obj) => obj?.GetHashCode() ?? 0;
+
+    /// <inheritdoc/>
+    [Pure]
+    public object Clone() => new State(_name);
+
+    /// <inheritdoc/>
+    [Pure]
+    public override bool Equals(object obj) => Equals(obj as State);
+
+    /// <inheritdoc/>
+    [Pure]
+    public override int GetHashCode() => Id;
+
+    /// <inheritdoc/>
+    [Pure]
+    public override string ToString() => $@"{Prefix}{Id}";
+}

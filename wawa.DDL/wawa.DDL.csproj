@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <FileVersion>1</FileVersion>
+        <Nullable>annotations</Nullable>
+        <TargetFramework>net35</TargetFramework>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Remove="Theraot.Core" />
+        <PackageReference Remove="Emik.Net20Records" />
+        <PackageReference Remove="GlobalUsingsAnalyzer" />
+        <Compile Remove="$(SharedPath)Emik.Morsels/Source/Type.cs" />
+        <Compile Remove="$(SharedPath)Emik.Morsels/Source/Indexers.cs" />
+        <ProjectReference Include="..\Emik.Optionals\Emik.Optionals.csproj" />
+        <Compile Remove="$(SharedPath)Emik.Morsels/Source/RuntimeHelpers.cs" />
+        <Compile Include="../Polyfills/MoreIReadOnly.cs" Link="Source/References/System/Collections/MoreIReadOnly.cs" />
+        <Compile Include="../Polyfills/MoreAttributes.cs" Link="Source/References/System/Diagnostics/MoreAttributes.cs" />
+        <Reference Include="UnityEngine.CoreModule" Private="false" HintPath="$(Unity)/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll" Aliases="core" />
+    </ItemGroup>
+</Project>
