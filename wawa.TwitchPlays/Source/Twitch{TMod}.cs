@@ -379,7 +379,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
 
         object Field() =>
             type.GetFields(FieldBindings).Where(IsValid).ToArray() is { Length: > 0 } arr
-                ? arr.FirstOrDefault(MatchesName) is { } info
+                ? Array.Find(arr, MatchesName) is { } info
                     ? info.GetValue(null)
                     : ParseError.Field
                 : ParseError.Unserializable;
@@ -472,7 +472,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     IEnumerable<Instruction> ProcessCommand([NotNull] CommandInfo query, [NotNull] string message)
     {
         static bool IsParams(ICustomAttributeProvider x) =>
-            x.GetCustomAttributes(typeof(ParamArrayAttribute), false).Any();
+            x.GetCustomAttributes(typeof(ParamArrayAttribute), false).Length > 0;
 
         var method = query.Method;
 
