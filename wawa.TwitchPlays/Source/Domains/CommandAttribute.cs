@@ -18,7 +18,7 @@ public sealed class CommandAttribute : Attribute,
     /// <summary>Initializes a new instance of the <see cref="CommandAttribute"/> class.</summary>
     /// <param name="prefix">The prefix of this command.</param>
     /// <param name="priority">The priority of the command. A higher value means it will be evaluated sooner.</param>
-    public CommandAttribute([CanBeNull] string prefix = null, int priority = 0)
+    public CommandAttribute([AllowNull, CanBeNull] string prefix = null, int priority = 0)
     {
         Prefix = prefix;
         Priority = priority;
@@ -37,7 +37,7 @@ public sealed class CommandAttribute : Attribute,
     /// The value <see langword="true"/> if both of them contain the same values,
     /// otherwise <see langword="false"/>.</returns>
     [Pure]
-    public static bool operator ==([CanBeNull] CommandAttribute left, [CanBeNull] CommandAttribute right) =>
+    public static bool operator ==([AllowNull, CanBeNull] CommandAttribute left, [AllowNull, CanBeNull] CommandAttribute right) =>
         left?.Prefix == right?.Prefix && left?.Priority == right?.Priority;
 
     /// <summary>Determines whether both do not have the same values.</summary>
@@ -48,7 +48,7 @@ public sealed class CommandAttribute : Attribute,
     /// otherwise <see langword="false"/>.
     /// </returns>
     [Pure]
-    public static bool operator !=([CanBeNull] CommandAttribute left, [CanBeNull] CommandAttribute right) =>
+    public static bool operator !=([AllowNull, CanBeNull] CommandAttribute left, [AllowNull, CanBeNull] CommandAttribute right) =>
         !(left == right);
 
     /// <inheritdoc/>
@@ -61,7 +61,7 @@ public sealed class CommandAttribute : Attribute,
 
     /// <inheritdoc/>
     [Pure]
-    public int GetHashCode([CanBeNull] CommandAttribute obj) => obj?.GetHashCode() ?? 0;
+    public int GetHashCode([AllowNull, CanBeNull] CommandAttribute obj) => obj?.GetHashCode() ?? 0;
 
     /// <inheritdoc/>
     [Pure]

@@ -60,7 +60,7 @@ public sealed partial class Sound : ICloneable, IEquatable<Sound>, IEqualityComp
     /// The value <see langword="true"/> if both instances contain the same values, otherwise <see langword="false"/>.
     /// </returns>
     [Pure]
-    public static bool operator ==([CanBeNull] Sound left, [CanBeNull] Sound right) =>
+    public static bool operator ==([AllowNull, CanBeNull] Sound left, [AllowNull, CanBeNull] Sound right) =>
         left is null
             ? right is null
             : right is not null &&
@@ -75,7 +75,8 @@ public sealed partial class Sound : ICloneable, IEquatable<Sound>, IEqualityComp
     /// otherwise <see langword="false"/>.
     /// </returns>
     [Pure]
-    public static bool operator !=([CanBeNull] Sound left, [CanBeNull] Sound right) => !(left == right);
+    public static bool operator !=([AllowNull, CanBeNull] Sound left, [AllowNull, CanBeNull] Sound right) =>
+        !(left == right);
 
     /// <summary>Converts the <see cref="string"/> to a <see langword="new"/> <see cref="Sound"/>.</summary>
     /// <param name="sound">The <see cref="string"/> instance to convert.</param>
@@ -105,7 +106,7 @@ public sealed partial class Sound : ICloneable, IEquatable<Sound>, IEqualityComp
 
     /// <inheritdoc/>
     [Pure]
-    public int GetHashCode([CanBeNull] Sound obj) => obj?.GetHashCode() ?? 0;
+    public int GetHashCode([AllowNull, CanBeNull] Sound obj) => obj?.GetHashCode() ?? 0;
 
     /// <inheritdoc/>
     [Pure]

@@ -34,7 +34,7 @@ sealed class CommandInfo : ICloneable, IEquatable<CommandInfo>, IEqualityCompare
     /// <returns>
     /// The value <see langword="true"/> if both of them contain the same values,
     /// otherwise <see langword="false"/>.</returns>
-    public static bool operator ==([CanBeNull] CommandInfo left, [CanBeNull] CommandInfo right) =>
+    public static bool operator ==([AllowNull, CanBeNull] CommandInfo left, [AllowNull, CanBeNull] CommandInfo right) =>
         left is null ? right is null : right is not null && left.Method == right.Method;
 
     /// <summary>Determines whether both do not have the same values.</summary>
@@ -45,7 +45,8 @@ sealed class CommandInfo : ICloneable, IEquatable<CommandInfo>, IEqualityCompare
     /// otherwise <see langword="false"/>.
     /// </returns>
     [Pure]
-    public static bool operator !=([CanBeNull] CommandInfo left, [CanBeNull] CommandInfo right) => !(left == right);
+    public static bool operator !=([AllowNull, CanBeNull] CommandInfo left, [AllowNull, CanBeNull] CommandInfo right) =>
+        !(left == right);
 
     /// <inheritdoc />
     [Pure]
@@ -82,6 +83,7 @@ sealed class CommandInfo : ICloneable, IEquatable<CommandInfo>, IEqualityCompare
     /// appropriate return type, otherwise <see langword="null"/>.
     /// </returns>
     [CanBeNull]
+    [return: AllowNull]
     internal static CommandInfo TryFrom(MethodInfo method) =>
         method.ReturnType == typeof(IEnumerable<Instruction>) &&
         Attribute.GetCustomAttribute(method, typeof(CommandAttribute)) is CommandAttribute command

@@ -45,7 +45,7 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
     /// <param name="right">The right-hand side.</param>
     /// <returns>The value <see langword="true"/> if both instances contain the same values.</returns>
     [Pure]
-    public static bool operator ==([CanBeNull] ModInfo left, [CanBeNull] ModInfo right) =>
+    public static bool operator ==([AllowNull, CanBeNull] ModInfo left, [AllowNull, CanBeNull] ModInfo right) =>
         left is null
             ? right is null
             : right is not null &&
@@ -61,7 +61,7 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
     /// <param name="right">The right-hand side.</param>
     /// <returns>The value <see langword="true"/> if both instances do not contain the same values.</returns>
     [Pure]
-    public static bool operator !=([CanBeNull] ModInfo left, [CanBeNull] ModInfo right) => !(left == right);
+    public static bool operator !=([AllowNull, CanBeNull] ModInfo left, [AllowNull, CanBeNull] ModInfo right) => !(left == right);
 
     /// <summary>Tries to deserialize the parameter as <see cref="ModInfo"/>.</summary>
     /// <param name="contents">The contents to a modInfo.json.</param>
@@ -70,7 +70,7 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
     /// of <see cref="ModInfo"/> which has the information of the file if the serialization is successful,
     /// or no value if the file couldn't be read/located.
     /// </returns>
-    public static Maybe<ModInfo> Deserialize([CanBeNull] string contents) =>
+    public static Maybe<ModInfo> Deserialize([AllowNull, CanBeNull] string contents) =>
         contents?.SuppressIO(JsonConvert.DeserializeObject<ModInfo>, true);
 
     /// <summary>
@@ -82,7 +82,7 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
     /// of <see cref="ModInfo"/> which has the information of the file if the serialization is successful,
     /// or no value if the file couldn't be read/located.
     /// </returns>
-    public static Maybe<ModInfo> ReadThenDeserialize([CanBeNull] string path) =>
+    public static Maybe<ModInfo> ReadThenDeserialize([AllowNull, CanBeNull] string path) =>
         File.Exists(path)
             ? path?.SuppressIO(File.ReadAllText, true)?.SuppressIO(JsonConvert.DeserializeObject<ModInfo>, true)
             : default;
@@ -97,7 +97,7 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
 
     /// <inheritdoc/>
     [Pure]
-    public int GetHashCode([CanBeNull] ModInfo obj) => obj?.GetHashCode() ?? 0;
+    public int GetHashCode([AllowNull, CanBeNull] ModInfo obj) => obj?.GetHashCode() ?? 0;
 
     /// <inheritdoc/>
     [Pure]

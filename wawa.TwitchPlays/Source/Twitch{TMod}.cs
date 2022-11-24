@@ -363,6 +363,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     }
 
     [CanBeNull]
+    [return: AllowNull]
     static object Parse([NotNull] string value, [NotNull] Type type)
     {
         bool? MatchesAlias(FieldInfo x) =>
@@ -455,6 +456,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     }
 
     [CanBeNull]
+    [return: AllowNull]
     IEnumerable<Instruction> Match([NotNull] string command)
     {
         var trimmed = command.Trim();
@@ -466,6 +468,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     }
 
     [CanBeNull]
+    [return: AllowNull]
     IEnumerable<Instruction> ProcessCommand([NotNull] CommandInfo query, [NotNull] string message)
     {
         static bool IsParams(ICustomAttributeProvider x) =>
@@ -502,6 +505,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         }
 
         [CanBeNull]
+        [return: AllowNull]
         object Selector([NotNull] ParameterInfo x, int i) =>
             IsParams(x) ?
                 Params(i) :

@@ -222,6 +222,7 @@ static class Scaffolder
         string.IsNullOrEmpty(path = isSolvable.SaveFilePanel() ?? "");
 
     [CanBeNull]
+    [return: AllowNull]
     static string SaveFilePanel([InstantHandle] this bool isSolvable) =>
         EditorUtility.SaveFilePanel(
             Title,
@@ -343,9 +344,12 @@ public sealed class {name}{FileTwitch} : Twitch<{name}>
     }
 
     [CanBeNull]
+    [return: AllowNull]
     static T Load<T>([NotNull] this string pattern)
         where T : Object =>
+#pragma warning disable RCS1077
         AssetDatabase.GetAllAssetPaths().FirstOrDefault(x => x.EndsWith(pattern, Ordinal)) is { } path
+#pragma warning restore RCS1077
             ? AssetDatabase.LoadAssetAtPath<T>(path)
             : null;
 }

@@ -18,7 +18,7 @@ public static class InstructionCore
         that.GetEnumerator().Recursive();
 
     [NotNull, Pure]
-    static IEnumerator<object?> Recursive([CanBeNull] this IEnumerator<Instruction> that)
+    static IEnumerator<object?> Recursive([AllowNull, CanBeNull] this IEnumerator<Instruction> that)
     {
         if (that is null)
             yield break;

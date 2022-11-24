@@ -18,7 +18,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <remarks><para>Detonates the bomb when yielded.</para></remarks>
     /// <param name="reason">The optional reason for the explosion.</param>
     /// <param name="moduleName">The override of the module name that caused the explosion.</param>
-    public Instruction([CanBeNull] string reason = null, [CanBeNull] string moduleName = null) =>
+    public Instruction([AllowNull, CanBeNull] string reason = null, [AllowNull, CanBeNull] string moduleName = null) =>
         Value = reason is null ? new[] { Detonate } :
             moduleName is null ? new[] { Detonate, reason } : new[] { Detonate, reason, moduleName };
 
@@ -51,7 +51,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
 
     /// <summary>Gets the value that can be yielded to wait for the next frame.</summary>
     /// <remarks><para>This value is always null. Do not dereference.</para></remarks>
-    [CanBeNull]
+    [AllowNull, CanBeNull]
     public static Instruction FrameAdvance
     {
         [Pure] get => null;
@@ -105,7 +105,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <param name="right">The right-hand side.</param>
     /// <returns>The value <see langword="true"/> if both instances contain the same values.</returns>
     [Pure]
-    public static bool operator ==([CanBeNull] Instruction left, [CanBeNull] Instruction right) =>
+    public static bool operator ==([AllowNull, CanBeNull] Instruction left, [AllowNull, CanBeNull] Instruction right) =>
         left is null ? right is null : right is not null && left.Value == right.Value;
 
     /// <summary>Determines whether both instances do not contain the same values.</summary>
@@ -113,7 +113,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <param name="right">The right-hand side.</param>
     /// <returns>The value <see langword="true"/> if both instances do not contain the same values.</returns>
     [Pure]
-    public static bool operator !=([CanBeNull] Instruction left, [CanBeNull] Instruction right) => !(left == right);
+    public static bool operator !=([AllowNull, CanBeNull] Instruction left, [AllowNull, CanBeNull] Instruction right) => !(left == right);
 
     /// <summary>
     /// Converts the <see cref="CustomYieldInstruction"/> to a <see langword="new"/> <see cref="Instruction"/>.
@@ -220,7 +220,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
 
     /// <inheritdoc/>
     [Pure]
-    public int GetHashCode([CanBeNull] Instruction obj) => obj?.GetHashCode() ?? 0;
+    public int GetHashCode([AllowNull, CanBeNull] Instruction obj) => obj?.GetHashCode() ?? 0;
 
     /// <inheritdoc/>
     [Pure]

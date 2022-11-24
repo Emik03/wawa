@@ -44,7 +44,8 @@ static class Globals
     /// <param name="right">The right-hand side.</param>
     /// <returns>Whether the two values are the same based on <see cref="StringComparison.Ordinal"/>.</returns>
     [Pure]
-    internal static bool OrdinalEquals([CanBeNull] this string left, [CanBeNull] in string right) =>
+    internal static bool
+        OrdinalEquals([AllowNull, CanBeNull] this string left, [AllowNull, CanBeNull] in string right) =>
         string.Equals(left, right, Ordinal);
 
     /// <summary>Computes an expensive computation, then caches it in subsequent calls.</summary>
@@ -55,10 +56,11 @@ static class Globals
     /// <param name="editorFactory">The expensive callback exclusive to the editor.</param>
     /// <returns>The value from the first time <paramref name="factory" /> was invoked.</returns>
     [CanBeNull]
+    [return: AllowNull]
     internal static TResult Get<T, TResult>(
         [NotNull] this T key,
         [InstantHandle, NotNull] in Func<T, TResult> factory,
-        [CanBeNull, InstantHandle] in Func<T, TResult> editorFactory = null
+        [AllowNull, CanBeNull, InstantHandle] in Func<T, TResult> editorFactory = null
     )
         where T : class
         where TResult : class
@@ -98,6 +100,7 @@ static class Globals
     /// in the event of an <see cref="Exception" /> related to files.
     /// </returns>
     [CanBeNull]
+    [return: AllowNull]
     internal static TResult SuppressIO<T, TResult>(
         [NotNull] this T item,
         [InstantHandle, NotNull] in Func<T, TResult> func,

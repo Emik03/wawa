@@ -37,7 +37,7 @@ public sealed class AliasAttribute : Attribute,
     /// The value <see langword="true"/> if both of them contain the same values,
     /// otherwise <see langword="false"/>.</returns>
     [Pure]
-    public static bool operator ==([CanBeNull] AliasAttribute left, [CanBeNull] AliasAttribute right) =>
+    public static bool operator ==([AllowNull, CanBeNull] AliasAttribute left, [AllowNull, CanBeNull] AliasAttribute right) =>
         left is null
             ? right is null
             : right is not null && left.Aliases.SequenceEqual(right.Aliases, StringComparer.OrdinalIgnoreCase);
@@ -50,7 +50,7 @@ public sealed class AliasAttribute : Attribute,
     /// otherwise <see langword="false"/>.
     /// </returns>
     [Pure]
-    public static bool operator !=([CanBeNull] AliasAttribute left, [CanBeNull] AliasAttribute right) =>
+    public static bool operator !=([AllowNull, CanBeNull] AliasAttribute left, [AllowNull, CanBeNull] AliasAttribute right) =>
         !(left == right);
 
     /// <summary>Gets a <see langword="string"/> representation showing every alias.</summary>
@@ -70,7 +70,7 @@ public sealed class AliasAttribute : Attribute,
 
     /// <inheritdoc/>
     [Pure]
-    public int GetHashCode([CanBeNull] AliasAttribute obj) => obj?.GetHashCode() ?? 0;
+    public int GetHashCode([AllowNull, CanBeNull] AliasAttribute obj) => obj?.GetHashCode() ?? 0;
 
     /// <inheritdoc/>
     [Pure]
@@ -96,5 +96,5 @@ public sealed class AliasAttribute : Attribute,
     public string ToString([NotNull] string x) => Enumerable.Repeat(x, 1).Concat(Aliases).Conjoin('/');
 
     /// <inheritdoc />
-    public string ToString([NotNull] string format, [CanBeNull] IFormatProvider formatProvider) => ToString(format);
+    public string ToString([NotNull] string format, [AllowNull, CanBeNull] IFormatProvider formatProvider) => ToString(format);
 }

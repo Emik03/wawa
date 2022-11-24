@@ -68,7 +68,7 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
     /// otherwise <see langword="false"/>.
     /// </returns>
     [Pure]
-    public static bool operator ==([CanBeNull] Config<T> left, [CanBeNull] Config<T> right) =>
+    public static bool operator ==([AllowNull, CanBeNull] Config<T> left, [AllowNull, CanBeNull] Config<T> right) =>
         (left?.FilePath).OrdinalEquals(right?.FilePath);
 
     /// <summary>Determines whether both instances are one of <see langword="null"/> and the other instanced.</summary>
@@ -79,7 +79,7 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
     /// otherwise <see langword="false"/>.
     /// </returns>
     [Pure]
-    public static bool operator !=([CanBeNull] Config<T> left, [CanBeNull] Config<T> right) => !(left == right);
+    public static bool operator !=([AllowNull, CanBeNull] Config<T> left, [AllowNull, CanBeNull] Config<T> right) => !(left == right);
 
     /// <inheritdoc/>
     [Pure]
@@ -91,7 +91,7 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
 
     /// <inheritdoc/>
     [Pure]
-    public int GetHashCode([CanBeNull] Config<T> obj) => obj?.GetHashCode() ?? 0;
+    public int GetHashCode([AllowNull, CanBeNull] Config<T> obj) => obj?.GetHashCode() ?? 0;
 
     /// <inheritdoc/>
     [Pure]

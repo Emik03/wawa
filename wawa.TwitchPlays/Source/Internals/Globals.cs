@@ -66,7 +66,7 @@ static class Globals
     internal static string Show([InstantHandle, NotNull] this IEnumerable<ParameterInfo> parameters)
     {
         [NotNull]
-        static string Display([CanBeNull] Type x) =>
+        static string Display([AllowNull, CanBeNull] Type x) =>
             x switch
             {
                 null => Null,

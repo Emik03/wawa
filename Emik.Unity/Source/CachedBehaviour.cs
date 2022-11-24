@@ -142,7 +142,7 @@ public abstract class CachedBehaviour : MonoBehaviour
     static Type Element<T>() => typeof(T).IsArray ? typeof(T).GetElementType() ?? throw new() : typeof(T);
 
     [NotNull]
-    T Assert<T>([CanBeNull] in object o)
+    T Assert<T>([AllowNull, CanBeNull] in object o)
         where T : class =>
         o as T ?? throw new MissingComponentException($@"Could not find {Element<T>().Name} in {this}.");
 

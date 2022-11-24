@@ -51,8 +51,8 @@ public static class KMExtensions
     [NotNull, PublicAPI]
     public static KMBombInfo Add(
         [NotNull] this KMBombInfo info,
-        [CanBeNull] Action onBombExploded = null,
-        [CanBeNull] Action onBombSolved = null
+        [AllowNull, CanBeNull] Action onBombExploded = null,
+        [AllowNull, CanBeNull] Action onBombSolved = null
     )
     {
         onBombExploded?.Add(ref info.OnBombExploded);
@@ -69,8 +69,8 @@ public static class KMExtensions
     [NotNull, PublicAPI]
     public static KMBombInfo Set(
         [NotNull] this KMBombInfo info,
-        [CanBeNull] Action onBombExploded = null,
-        [CanBeNull] Action onBombSolved = null
+        [AllowNull, CanBeNull] Action onBombExploded = null,
+        [AllowNull, CanBeNull] Action onBombSolved = null
     )
     {
         onBombExploded?.Set(out info.OnBombExploded);
@@ -88,9 +88,9 @@ public static class KMExtensions
     [NotNull, PublicAPI]
     public static KMBombModule Add(
         [NotNull] this KMBombModule module,
-        [CanBeNull] Action onActivate = null,
-        [CanBeNull] Action onPass = null,
-        [CanBeNull] Action onStrike = null
+        [AllowNull, CanBeNull] Action onActivate = null,
+        [AllowNull, CanBeNull] Action onPass = null,
+        [AllowNull, CanBeNull] Action onStrike = null
     )
     {
         onActivate?.Add(ref module.OnActivate);
@@ -110,9 +110,9 @@ public static class KMExtensions
     [NotNull, PublicAPI]
     public static KMBombModule Set(
         [NotNull] this KMBombModule module,
-        [CanBeNull] Action onActivate = null,
-        [CanBeNull] Action onPass = null,
-        [CanBeNull] Action onStrike = null
+        [AllowNull, CanBeNull] Action onActivate = null,
+        [AllowNull, CanBeNull] Action onPass = null,
+        [AllowNull, CanBeNull] Action onStrike = null
     )
     {
         onActivate?.Set(out module.OnActivate);
@@ -134,9 +134,9 @@ public static class KMExtensions
     [NotNull, PublicAPI]
     public static KMGameInfo Add(
         [NotNull] this KMGameInfo game,
-        [CanBeNull] Action onStateChange = null,
-        [CanBeNull] Action onAlarmClockChange = null,
-        [CanBeNull] Action onLightsChange = null
+        [AllowNull, CanBeNull] Action onStateChange = null,
+        [AllowNull, CanBeNull] Action onAlarmClockChange = null,
+        [AllowNull, CanBeNull] Action onLightsChange = null
     )
     {
         onStateChange?.ToAction<State>().Add(ref game.OnStateChange);
@@ -158,9 +158,9 @@ public static class KMExtensions
     [NotNull, PublicAPI]
     public static KMGameInfo Set(
         [NotNull] this KMGameInfo game,
-        [CanBeNull] Action onStateChange = null,
-        [CanBeNull] Action onAlarmClockChange = null,
-        [CanBeNull] Action onLightsChange = null
+        [AllowNull, CanBeNull] Action onStateChange = null,
+        [AllowNull, CanBeNull] Action onAlarmClockChange = null,
+        [AllowNull, CanBeNull] Action onLightsChange = null
     )
     {
         onStateChange?.ToAction<State>().Set(out game.OnStateChange);
@@ -183,12 +183,12 @@ public static class KMExtensions
     [NotNull, PublicAPI]
     public static KMNeedyModule Add(
         [NotNull] this KMNeedyModule needy,
-        [CanBeNull] Action onActivate = null,
-        [CanBeNull] Action onNeedyActivation = null,
-        [CanBeNull] Action onNeedyDeactivation = null,
-        [CanBeNull] Action onPass = null,
-        [CanBeNull] Action onStrike = null,
-        [CanBeNull] Action onTimerExpired = null
+        [AllowNull, CanBeNull] Action onActivate = null,
+        [AllowNull, CanBeNull] Action onNeedyActivation = null,
+        [AllowNull, CanBeNull] Action onNeedyDeactivation = null,
+        [AllowNull, CanBeNull] Action onPass = null,
+        [AllowNull, CanBeNull] Action onStrike = null,
+        [AllowNull, CanBeNull] Action onTimerExpired = null
     )
     {
         onActivate?.Add(ref needy.OnActivate);
@@ -214,12 +214,12 @@ public static class KMExtensions
     [NotNull, PublicAPI]
     public static KMNeedyModule Set(
         [NotNull] this KMNeedyModule needy,
-        [CanBeNull] Action onActivate = null,
-        [CanBeNull] Action onNeedyActivation = null,
-        [CanBeNull] Action onNeedyDeactivation = null,
-        [CanBeNull] Action onPass = null,
-        [CanBeNull] Action onStrike = null,
-        [CanBeNull] Action onTimerExpired = null
+        [AllowNull, CanBeNull] Action onActivate = null,
+        [AllowNull, CanBeNull] Action onNeedyActivation = null,
+        [AllowNull, CanBeNull] Action onNeedyDeactivation = null,
+        [AllowNull, CanBeNull] Action onPass = null,
+        [AllowNull, CanBeNull] Action onStrike = null,
+        [AllowNull, CanBeNull] Action onTimerExpired = null
     )
     {
         onActivate?.Set(out needy.OnActivate);
@@ -268,19 +268,19 @@ public static class KMExtensions
     public static KMSelectable Add(
         [NotNull] this KMSelectable selectable,
         bool? isParent = null,
-        [CanBeNull] Action onCancel = null,
-        [CanBeNull] Action onDefocus = null,
-        [CanBeNull] Action onDeselect = null,
-        [CanBeNull] Action onFocus = null,
-        [CanBeNull] Action onHighlight = null,
-        [CanBeNull] Action onHighlightEnded = null,
-        [CanBeNull] Action onInteract = null,
-        [CanBeNull] Action onInteractEnded = null,
-        [CanBeNull] Action onInteractionPunch = null,
-        [CanBeNull] Action onLeft = null,
-        [CanBeNull] Action onRight = null,
-        [CanBeNull] Action onSelect = null,
-        [CanBeNull] Action onUpdateChildren = null
+        [AllowNull, CanBeNull] Action onCancel = null,
+        [AllowNull, CanBeNull] Action onDefocus = null,
+        [AllowNull, CanBeNull] Action onDeselect = null,
+        [AllowNull, CanBeNull] Action onFocus = null,
+        [AllowNull, CanBeNull] Action onHighlight = null,
+        [AllowNull, CanBeNull] Action onHighlightEnded = null,
+        [AllowNull, CanBeNull] Action onInteract = null,
+        [AllowNull, CanBeNull] Action onInteractEnded = null,
+        [AllowNull, CanBeNull] Action onInteractionPunch = null,
+        [AllowNull, CanBeNull] Action onLeft = null,
+        [AllowNull, CanBeNull] Action onRight = null,
+        [AllowNull, CanBeNull] Action onSelect = null,
+        [AllowNull, CanBeNull] Action onUpdateChildren = null
     )
     {
         isParent ??= selectable.Children.Length > 0;
@@ -316,7 +316,7 @@ public static class KMExtensions
     [NotNull, PublicAPI]
     public static KMSelectable Notify(
         [NotNull] this KMSelectable selectable,
-        [CanBeNull] KMSelectable childrenToSelect = null
+        [AllowNull, CanBeNull] KMSelectable childrenToSelect = null
     )
     {
         if (s_isKtane)
@@ -360,19 +360,19 @@ public static class KMExtensions
     public static KMSelectable Set(
         [NotNull] this KMSelectable selectable,
         bool? isParent = null,
-        [CanBeNull] Action onCancel = null,
-        [CanBeNull] Action onDefocus = null,
-        [CanBeNull] Action onDeselect = null,
-        [CanBeNull] Action onFocus = null,
-        [CanBeNull] Action onHighlight = null,
-        [CanBeNull] Action onHighlightEnded = null,
-        [CanBeNull] Action onInteract = null,
-        [CanBeNull] Action onInteractEnded = null,
-        [CanBeNull] Action onInteractionPunch = null,
-        [CanBeNull] Action onLeft = null,
-        [CanBeNull] Action onRight = null,
-        [CanBeNull] Action onSelect = null,
-        [CanBeNull] Action onUpdateChildren = null
+        [AllowNull, CanBeNull] Action onCancel = null,
+        [AllowNull, CanBeNull] Action onDefocus = null,
+        [AllowNull, CanBeNull] Action onDeselect = null,
+        [AllowNull, CanBeNull] Action onFocus = null,
+        [AllowNull, CanBeNull] Action onHighlight = null,
+        [AllowNull, CanBeNull] Action onHighlightEnded = null,
+        [AllowNull, CanBeNull] Action onInteract = null,
+        [AllowNull, CanBeNull] Action onInteractEnded = null,
+        [AllowNull, CanBeNull] Action onInteractionPunch = null,
+        [AllowNull, CanBeNull] Action onLeft = null,
+        [AllowNull, CanBeNull] Action onRight = null,
+        [AllowNull, CanBeNull] Action onSelect = null,
+        [AllowNull, CanBeNull] Action onUpdateChildren = null
     )
     {
         isParent ??= selectable.Children.Length > 0;
@@ -488,19 +488,19 @@ public static class KMExtensions
     public static T Add<T>(
         [InstantHandle, NotNull] this T selectables,
         bool? isParent = null,
-        [CanBeNull] Action<int> onCancel = null,
-        [CanBeNull] Action<int> onDefocus = null,
-        [CanBeNull] Action<int> onDeselect = null,
-        [CanBeNull] Action<int> onFocus = null,
-        [CanBeNull] Action<int> onHighlight = null,
-        [CanBeNull] Action<int> onHighlightEnded = null,
-        [CanBeNull] Action<int> onInteract = null,
-        [CanBeNull] Action<int> onInteractEnded = null,
-        [CanBeNull] Action<int> onInteractionPunch = null,
-        [CanBeNull] Action<int> onLeft = null,
-        [CanBeNull] Action<int> onRight = null,
-        [CanBeNull] Action<int> onSelect = null,
-        [CanBeNull] Action<int> onUpdateChildren = null
+        [AllowNull, CanBeNull] Action<int> onCancel = null,
+        [AllowNull, CanBeNull] Action<int> onDefocus = null,
+        [AllowNull, CanBeNull] Action<int> onDeselect = null,
+        [AllowNull, CanBeNull] Action<int> onFocus = null,
+        [AllowNull, CanBeNull] Action<int> onHighlight = null,
+        [AllowNull, CanBeNull] Action<int> onHighlightEnded = null,
+        [AllowNull, CanBeNull] Action<int> onInteract = null,
+        [AllowNull, CanBeNull] Action<int> onInteractEnded = null,
+        [AllowNull, CanBeNull] Action<int> onInteractionPunch = null,
+        [AllowNull, CanBeNull] Action<int> onLeft = null,
+        [AllowNull, CanBeNull] Action<int> onRight = null,
+        [AllowNull, CanBeNull] Action<int> onSelect = null,
+        [AllowNull, CanBeNull] Action<int> onUpdateChildren = null
     )
         where T : IEnumerable<KMSelectable>
     {
@@ -545,7 +545,7 @@ public static class KMExtensions
     [NotNull, PublicAPI]
     public static T Notify<T>(
         [InstantHandle, NotNull] this T selectables,
-        [CanBeNull, InstantHandle] params KMSelectable[] childrenToSelect
+        [AllowNull, CanBeNull, InstantHandle] params KMSelectable[] childrenToSelect
     )
         where T : IEnumerable<KMSelectable> =>
         selectables.Notify(childrenToSelect as IEnumerable<KMSelectable>);
@@ -571,7 +571,7 @@ public static class KMExtensions
     [NotNull, PublicAPI]
     public static T Notify<T, TChild>(
         [InstantHandle, NotNull] this T selectables,
-        [CanBeNull, InstantHandle] TChild childrenToSelect
+        [AllowNull, CanBeNull, InstantHandle] TChild childrenToSelect
     )
         where T : IEnumerable<KMSelectable>
         where TChild : IEnumerable<KMSelectable>
@@ -625,19 +625,19 @@ public static class KMExtensions
     public static T Set<T>(
         [InstantHandle, NotNull] this T selectables,
         bool? isParent = null,
-        [CanBeNull] Action<int> onCancel = null,
-        [CanBeNull] Action<int> onDefocus = null,
-        [CanBeNull] Action<int> onDeselect = null,
-        [CanBeNull] Action<int> onFocus = null,
-        [CanBeNull] Action<int> onHighlight = null,
-        [CanBeNull] Action<int> onHighlightEnded = null,
-        [CanBeNull] Action<int> onInteract = null,
-        [CanBeNull] Action<int> onInteractEnded = null,
-        [CanBeNull] Action<int> onInteractionPunch = null,
-        [CanBeNull] Action<int> onLeft = null,
-        [CanBeNull] Action<int> onRight = null,
-        [CanBeNull] Action<int> onSelect = null,
-        [CanBeNull] Action<int> onUpdateChildren = null
+        [AllowNull, CanBeNull] Action<int> onCancel = null,
+        [AllowNull, CanBeNull] Action<int> onDefocus = null,
+        [AllowNull, CanBeNull] Action<int> onDeselect = null,
+        [AllowNull, CanBeNull] Action<int> onFocus = null,
+        [AllowNull, CanBeNull] Action<int> onHighlight = null,
+        [AllowNull, CanBeNull] Action<int> onHighlightEnded = null,
+        [AllowNull, CanBeNull] Action<int> onInteract = null,
+        [AllowNull, CanBeNull] Action<int> onInteractEnded = null,
+        [AllowNull, CanBeNull] Action<int> onInteractionPunch = null,
+        [AllowNull, CanBeNull] Action<int> onLeft = null,
+        [AllowNull, CanBeNull] Action<int> onRight = null,
+        [AllowNull, CanBeNull] Action<int> onSelect = null,
+        [AllowNull, CanBeNull] Action<int> onUpdateChildren = null
     )
         where T : IEnumerable<KMSelectable>
     {
@@ -699,7 +699,7 @@ public static class KMExtensions
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    static void NotifyInner([CanBeNull] this KMSelectable selectable)
+    static void NotifyInner([AllowNull, CanBeNull] this KMSelectable selectable)
     {
         if (selectable && selectable.GetComponent<ModSelectable>() is { } mod)
             mod.CopySettingsFromProxy();

@@ -19,8 +19,11 @@ public static class Maybe
     /// <returns>
     /// The value <see langword="true"/> if <paramref name="that"/> contains a value, otherwise <see langword="false"/>.
     /// </returns>
-    [MemberNotNullWhen(true, nameof(result)), PublicAPI, Pure]
-    public static bool TryGet<T>([InstantHandle] this Maybe<T> that, [CanBeNull] out T result) =>
+    [PublicAPI, Pure]
+    public static bool TryGet<T>(
+        [InstantHandle] this Maybe<T> that,
+        [AllowNull, CanBeNull, NotNullWhen(true)] out T result
+    ) =>
         that.IsSome
             ? (result = that.Value) is var _
             : !((result = default) is var _);
@@ -43,8 +46,8 @@ public static class Maybe
     [PublicAPI]
     public static Maybe<T> Match<T>(
         [InstantHandle] this Maybe<T> that,
-        [CanBeNull, InstantHandle] Action<T> some = null,
-        [CanBeNull, InstantHandle] Action<Unit> none = null
+        [AllowNull, CanBeNull, InstantHandle] Action<T> some = null,
+        [AllowNull, CanBeNull, InstantHandle] Action<Unit> none = null
     )
     {
         if (that.IsSome)
@@ -110,7 +113,7 @@ public static class Maybe
     /// <param name="that">This instance of <typeparamref name="T"/>.</param>
     /// <returns>A new instance of <see cref="Maybe{T}"/>.</returns>
     [PublicAPI, Pure]
-    public static Maybe<T> From<T>([CanBeNull] T that)
+    public static Maybe<T> From<T>([AllowNull, CanBeNull] T that)
         where T : class =>
         new(that);
 
@@ -119,7 +122,7 @@ public static class Maybe
     /// <param name="that">This instance of <typeparamref name="T"/>.</param>
     /// <returns>A new instance of <see cref="Maybe{T}"/>.</returns>
     [PublicAPI, Pure]
-    public static Maybe<T> From<T>([CanBeNull] T? that)
+    public static Maybe<T> From<T>([AllowNull, CanBeNull] T? that)
         where T : struct =>
         that.HasValue ? new(that.Value) : default;
 
@@ -129,7 +132,7 @@ public static class Maybe
     /// <param name="that">This instance of <typeparamref name="T"/>.</param>
     /// <returns>A new instance of <see cref="Maybe{T}"/>.</returns>
     [PublicAPI, Pure]
-    public static Maybe<T> ToMaybe<T>([CanBeNull] this T? that)
+    public static Maybe<T> ToMaybe<T>([AllowNull, CanBeNull] this T? that)
         where T : struct =>
         From(that);
 

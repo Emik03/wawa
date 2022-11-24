@@ -13,7 +13,7 @@ public readonly struct Maybe<T> : ICloneable, IEquatable<Maybe<T>>, IEqualityCom
 
     /// <summary>Initializes a new instance of the <see cref="Maybe{T}" /> struct.</summary>
     /// <param name="value">The value to encapsulate.</param>
-    public Maybe([CanBeNull] T value)
+    public Maybe([AllowNull, CanBeNull] T value)
     {
         Value = value;
         IsSome = value is not null;
@@ -31,7 +31,7 @@ public readonly struct Maybe<T> : ICloneable, IEquatable<Maybe<T>>, IEqualityCom
     public bool IsSome { [Pure] get; }
 
     /// <summary>Gets the value that is encapsulated. This value returned may be <see langword="null" />.</summary>
-    [CanBeNull]
+    [AllowNull, CanBeNull]
     public T Value { [Pure] get; }
 
     /// <summary>Converts the <typeparamref name="T" /> to a <see langword="new" /> <see cref="Maybe{T}" />.</summary>
@@ -41,7 +41,7 @@ public readonly struct Maybe<T> : ICloneable, IEquatable<Maybe<T>>, IEqualityCom
     /// whether <paramref name="value" /> is <see langword="null" />.
     /// </returns>
     [Pure]
-    public static implicit operator Maybe<T>([CanBeNull] T value) => new(value);
+    public static implicit operator Maybe<T>([AllowNull, CanBeNull] T value) => new(value);
 
     /// <summary>Converts the <see cref="Maybe{T}" /> to <typeparamref name="T" />.</summary>
     /// <param name="value">The <typeparamref name="T" /> instance to convert.</param>

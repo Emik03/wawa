@@ -12,7 +12,7 @@ public sealed class YieldEventArgs : EventArgs,
 {
     /// <summary>Initializes a new instance of the <see cref="YieldEventArgs"/> class.</summary>
     /// <param name="o">The value to store.</param>
-    internal YieldEventArgs([CanBeNull] Instruction o) => Query = o;
+    internal YieldEventArgs([AllowNull, CanBeNull] Instruction o) => Query = o;
 
     /// <summary>Gets the value that was yielded.</summary>
     /// <remarks><para>
@@ -28,7 +28,7 @@ public sealed class YieldEventArgs : EventArgs,
     /// The value <see langword="true"/> if both of them point to the same component, otherwise <see langword="false"/>.
     /// </returns>
     [Pure]
-    public static bool operator ==([CanBeNull] YieldEventArgs left, [CanBeNull] YieldEventArgs right) =>
+    public static bool operator ==([AllowNull, CanBeNull] YieldEventArgs left, [AllowNull, CanBeNull] YieldEventArgs right) =>
         left is null ? right is null : right is not null && left.Query == right.Query;
 
     /// <summary>Determines whether both instances do not point to the same component.</summary>
@@ -39,7 +39,7 @@ public sealed class YieldEventArgs : EventArgs,
     /// otherwise <see langword="false"/>.
     /// </returns>
     [Pure]
-    public static bool operator !=([CanBeNull] YieldEventArgs left, [CanBeNull] YieldEventArgs right) =>
+    public static bool operator !=([AllowNull, CanBeNull] YieldEventArgs left, [AllowNull, CanBeNull] YieldEventArgs right) =>
         !(left == right);
 
     /// <inheritdoc/>
@@ -56,7 +56,7 @@ public sealed class YieldEventArgs : EventArgs,
 
     /// <inheritdoc/>
     [Pure]
-    public int GetHashCode([CanBeNull] YieldEventArgs obj) => obj?.GetHashCode() ?? 0;
+    public int GetHashCode([AllowNull, CanBeNull] YieldEventArgs obj) => obj?.GetHashCode() ?? 0;
 
     /// <inheritdoc/>
     [Pure]

@@ -5,11 +5,20 @@
 #pragma warning disable CA1019, GlobalUsingsAnalyzer, MA0047, MA0048, SA1216, SA1402, SA1403, SA1649
 using static System.AttributeTargets;
 
+namespace NullGuard
+{
+    /// <summary>Prevents the injection of null checking (implicit mode only).</summary>
+    [AttributeUsage(Parameter | ReturnValue | Property)]
+    public sealed class AllowNullAttribute : Attribute { }
+}
+
 namespace System.Diagnostics.CodeAnalysis
 {
-    /// <summary>Specifies that null is allowed as an input even if the corresponding type disallows it.</summary>
-    [AttributeUsage(Field | Parameter | Property)]
-    sealed class AllowNullAttribute : Attribute { }
+    /*
+        /// <summary>Specifies that null is allowed as an input even if the corresponding type disallows it.</summary>
+        [AttributeUsage(Field | Parameter | Property)]
+        sealed class AllowNullAttribute : Attribute { }
+    */
 
     /// <summary>Specifies that null is disallowed as an input even if the corresponding type allows it.</summary>
     [AttributeUsage(Field | Parameter | Property)]

@@ -19,9 +19,9 @@ public static class Access
     /// <param name="def">The default value.</param>
     /// <returns>The value from <paramref name="factory"/>, or <see langword="default" />.</returns>
     public static TResult FromGame<T, TResult>(
-        [CanBeNull] T context,
+        [AllowNull, CanBeNull] T context,
         [InstantHandle, NotNull, RequireStaticDelegate(IsError = true)] Converter<T, TResult> factory,
-        [CanBeNull] TResult def = default
+        [AllowNull, CanBeNull] TResult def = default
     ) => // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
         IsKtane ? factory(context) : def;
 }

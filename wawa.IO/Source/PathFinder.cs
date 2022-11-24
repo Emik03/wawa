@@ -55,12 +55,8 @@ public static class PathFinder
     /// A <see cref="Maybe{T}" />, consisting of either folder <see cref="string" /> of the absolute directory
     /// of the file if there is a folder mod id entry within the game's mod dictionary, or <see langword="default" />.
     /// </returns>
-    public static Maybe<string> GetDirectory([CanBeNull] string assembly = null) =>
-        (assembly ?? Who).Get(
-            static asm => Mods?.Contains(asm) ?? false
-                ? (Mods[asm] as Mod)?.ModID
-                : null
-        );
+    public static Maybe<string> GetDirectory([AllowNull, CanBeNull] string assembly = null) =>
+        (assembly ?? Who).Get(static asm => Mods.Contains(asm) ? (Mods[asm] as Mod)?.ModID : null);
 
     /// <summary>Gets the absolute dir of folder file located inside folder mod.</summary>
     /// <param name="file">The file located inside folder mod directory.</param>
@@ -72,7 +68,7 @@ public static class PathFinder
     /// A <see cref="Maybe{T}" />, consisting of either folder <see cref="string" /> of the absolute directory
     /// of the file if the mod directory and file were found, or <see langword="default" />.
     /// </returns>
-    public static Maybe<string> GetFile([NotNull] string file, [CanBeNull] string assembly = null) =>
+    public static Maybe<string> GetFile([NotNull] string file, [AllowNull, CanBeNull] string assembly = null) =>
         new
         {
             file,
@@ -94,7 +90,7 @@ public static class PathFinder
     /// A <see cref="Maybe{T}" />, consisting of either folder <see cref="ModInfo" /> if the file was read
     /// and deserialized successfully, or <see langword="default" />.
     /// </returns>
-    public static Maybe<ModInfo> GetModInfo([CanBeNull] string assembly = null) =>
+    public static Maybe<ModInfo> GetModInfo([AllowNull, CanBeNull] string assembly = null) =>
         (assembly ?? Who).Get(
             static asm => GetFile(ModInfo.FileName, asm).Match(ModInfo.ReadThenDeserialize).Value,
             static _ => GetEditorModInfo()
@@ -112,7 +108,7 @@ public static class PathFinder
     /// from the assets in the file specified, or <see langword="default" /> in the event of an error.
     /// </returns>
     [CLSCompliant(false)]
-    public static Maybe<T[]> GetAssets<T>([NotNull] string file, [CanBeNull] string assembly = null)
+    public static Maybe<T[]> GetAssets<T>([NotNull] string file, [AllowNull, CanBeNull] string assembly = null)
         where T : Object =>
         new
         {
@@ -138,7 +134,7 @@ public static class PathFinder
     public static Maybe<T> GetUnmanaged<T>(
         [NotNull] string file,
         [NotNull] string method,
-        [CanBeNull] string assembly = null
+        [AllowNull, CanBeNull] string assembly = null
     )
         where T : Delegate =>
         new
@@ -158,6 +154,7 @@ public static class PathFinder
         Path.Combine(dir, folder) is var first && Directory.Exists(first) ? first : dir;
 
     [CanBeNull]
+    [return: AllowNull]
     static string FindLibrary([NotNull] this string file, [NotNull] in string dir)
     {
         var architecture = Application.platform switch
@@ -196,6 +193,7 @@ public static class PathFinder
     }
 
     [CanBeNull]
+    [return: AllowNull]
     static ModInfo GetEditorModInfo() =>
         AppDomain
            .CurrentDomain
@@ -239,6 +237,7 @@ public static class PathFinder
     }
 
     [CanBeNull]
+    [return: AllowNull]
     static T CreateUnmanagedMethod<T>([NotNull] this string dllName, [NotNull] in string name)
         where T : Delegate
     {

@@ -140,7 +140,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// <param name="message">The message to send.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
     [Pure]
-    public static TwitchString TryCancel([CanBeNull] string message = null) =>
+    public static TwitchString TryCancel([AllowNull, CanBeNull] string message = null) =>
         new(message is null ? @"trycancel" : $@"trycancel {message}");
 
     /// <summary>
@@ -155,7 +155,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// <param name="message">The message to send.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
     [Pure]
-    public static TwitchString TryWaitCancel(float time, [CanBeNull] string message = null) =>
+    public static TwitchString TryWaitCancel(float time, [AllowNull, CanBeNull] string message = null) =>
         new(message is null ? $@"trywaitcancel {time}" : $@"trywaitcancel {time} {message}");
 
     /// <summary>Yield return this to send a chat directly to twitch chat.</summary>
@@ -190,7 +190,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// <param name="message">The message to send.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
     [Pure]
-    public static TwitchString Detonate(float? time = null, [CanBeNull] string message = null) =>
+    public static TwitchString Detonate(float? time = null, [AllowNull, CanBeNull] string message = null) =>
         new($@"detonate {time} {message}");
 
     /// <summary>Yield return this to try advancing the clock to the specified time.</summary>

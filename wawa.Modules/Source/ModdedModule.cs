@@ -52,15 +52,14 @@ public abstract class ModdedModule : CachedBehaviour
     {
         [Pure]
         get =>
-            Solvable ? Solvable.ModuleDisplayName :
-            Needy ? Needy.ModuleDisplayName :
-            throw new MissingComponentException(NoComponent);
+            Solvable is { } s ? s.ModuleDisplayName :
+            Needy is { } n ? n.ModuleDisplayName : throw new MissingComponentException(NoComponent);
     }
 
-    [CanBeNull]
+    [AllowNull, CanBeNull]
     KMBombModule Solvable => _solvable ??= GetComponent<KMBombModule>();
 
-    [CanBeNull]
+    [AllowNull, CanBeNull]
     KMNeedyModule Needy => _needy ??= GetComponent<KMNeedyModule>();
 
     /// <inheritdoc/>
@@ -96,7 +95,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="location">The source of the sound.</param>
     /// <returns>The parameter <paramref name="sounds"/>.</returns>
     [NotNull]
-    public T PlayEnum<T>([InstantHandle, NotNull] T sounds, [CanBeNull] Transform location = null)
+    public T PlayEnum<T>([InstantHandle, NotNull] T sounds, [AllowNull, CanBeNull] Transform location = null)
         where T : IEnumerable<Sound>
     {
         var sources = Get<KMAudio[]>();
@@ -137,7 +136,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="format">The value to log.</param>
     /// <param name="args">The arguments to hook into format.</param>
     /// <returns>The value <see langword="default"/>.</returns>
-    public Unit Solve([CanBeNull] string format = null, [NotNull] params object[] args)
+    public Unit Solve([AllowNull, CanBeNull] string format = null, [NotNull] params object[] args)
     {
         if (Status.IsSolved)
             return default;
@@ -152,11 +151,11 @@ public abstract class ModdedModule : CachedBehaviour
 
         Status.IsSolved = true;
 
-        if (Solvable)
-            Solvable.HandlePass();
+        if (Solvable is { } s)
+            s.HandlePass();
 
-        if (Needy)
-            Needy.HandlePass();
+        if (Needy is { } n)
+            n.HandlePass();
 
         return default;
     }
@@ -165,7 +164,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="format">The value to log.</param>
     /// <param name="args">The arguments to hook into format.</param>
     /// <returns>The value <see langword="default"/>.</returns>
-    public Unit Strike([CanBeNull] string format = null, [NotNull] params object[] args)
+    public Unit Strike([AllowNull, CanBeNull] string format = null, [NotNull] params object[] args)
     {
         if (Status.HasException)
             return default;
@@ -176,11 +175,11 @@ public abstract class ModdedModule : CachedBehaviour
         Status.HasStruck = true;
         Status.Strikes++;
 
-        if (Solvable)
-            Solvable.HandleStrike();
+        if (Solvable is { } s)
+            s.HandleStrike();
 
-        if (Needy)
-            Needy.HandleStrike();
+        if (Needy is { } n)
+            n.HandleStrike();
 
         return default;
     }
@@ -193,7 +192,8 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="logType">The kind of logging method to invoke.</param>
     /// <returns>The parameter <paramref name="format"/>.</returns>
     [CanBeNull]
-    public T Log<T>([CanBeNull] T format = default, LogType logType = LogType.Log)
+    [return: AllowNull]
+    public T Log<T>([AllowNull, CanBeNull] T format = default, LogType logType = LogType.Log)
     {
         var id = Status.Id;
         var stringify = format.Stringify();
@@ -211,7 +211,9 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="format">The value to log.</param>
     /// <param name="args">The arguments to hook into format.</param>
     /// <returns>The parameter <paramref name="format"/>.</returns>
-    public T Log<T>([CanBeNull] T format = default, [NotNull] params object[] args)
+    [CanBeNull]
+    [return: AllowNull]
+    public T Log<T>([AllowNull, CanBeNull] T format = default, [NotNull] params object[] args)
     {
         var convertAll = Array.ConvertAll(args, static o => (object)o.Stringify());
         var stringify = format.Stringify();
@@ -231,7 +233,8 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="logType">The kind of logging method to invoke.</param>
     /// <returns>The parameter <paramref name="format"/>.</returns>
     [CanBeNull]
-    public T LogLower<T>([CanBeNull] T format = default, LogType logType = LogType.Log)
+    [return: AllowNull]
+    public T LogLower<T>([AllowNull, CanBeNull] T format = default, LogType logType = LogType.Log)
     {
         var message = $@"<{Name} #{Status.Id}> {format.Stringify()}";
 
@@ -247,7 +250,9 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="format">The value to log.</param>
     /// <param name="args">The arguments to hook into format.</param>
     /// <returns>The parameter <paramref name="format"/>.</returns>
-    public T LogLower<T>([CanBeNull] T format = default, [NotNull] params object[] args)
+    [CanBeNull]
+    [return: AllowNull]
+    public T LogLower<T>([AllowNull, CanBeNull] T format = default, [NotNull] params object[] args)
     {
         var convertAll = Array.ConvertAll(args, static o => (object)o.Stringify());
         var stringify = format.Stringify();
@@ -278,11 +283,11 @@ public abstract class ModdedModule : CachedBehaviour
     {
         Application.logMessageReceived -= CheckForException;
 
-        if (Solvable)
-            Solvable.OnActivate -= OnActivate;
+        if (Solvable is { } s)
+            s.OnActivate -= OnActivate;
 
-        if (Needy)
-            Needy.OnActivate -= OnActivate;
+        if (Needy is { } n)
+            n.OnActivate -= OnActivate;
     }
 
     /// <summary>
@@ -293,11 +298,11 @@ public abstract class ModdedModule : CachedBehaviour
     {
         Application.logMessageReceived += CheckForException;
 
-        if (Solvable)
-            Solvable.OnActivate += OnActivate;
+        if (Solvable is { } s)
+            s.OnActivate += OnActivate;
 
-        if (Needy)
-            Needy.OnActivate += OnActivate;
+        if (Needy is { } n)
+            n.OnActivate += OnActivate;
     }
 
     /// <summary>

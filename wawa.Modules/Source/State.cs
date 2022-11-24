@@ -50,7 +50,7 @@ public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<Sta
     /// The value <see langword="true"/> if both instances contain the same values, otherwise <see langword="false"/>.
     /// </returns>
     [Pure]
-    public static bool operator ==([CanBeNull] State left, [CanBeNull] State right) =>
+    public static bool operator ==([AllowNull, CanBeNull] State left, [AllowNull, CanBeNull] State right) =>
         left is null
             ? right is null
             : right is not null &&
@@ -66,7 +66,8 @@ public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<Sta
     /// otherwise <see langword="false"/>.
     /// </returns>
     [Pure]
-    public static bool operator !=([CanBeNull] State left, [CanBeNull] State right) => !(left == right);
+    public static bool operator !=([AllowNull, CanBeNull] State left, [AllowNull, CanBeNull] State right) =>
+        !(left == right);
 
     /// <inheritdoc/>
     [Pure]
@@ -78,7 +79,7 @@ public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<Sta
 
     /// <inheritdoc/>
     [Pure]
-    public int GetHashCode([CanBeNull] State obj) => obj?.GetHashCode() ?? 0;
+    public int GetHashCode([AllowNull, CanBeNull] State obj) => obj?.GetHashCode() ?? 0;
 
     /// <inheritdoc/>
     [Pure]
