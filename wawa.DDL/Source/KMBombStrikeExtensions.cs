@@ -35,14 +35,14 @@ public static class KMBombStrikeExtensions
     [CLSCompliant(false), NotNull, PublicAPI]
     public static KMBomb SetRate([NotNull] this KMBomb that, float value)
     {
-        static byte Hidden((KMBomb, float) x)
+        static byte Hidden(Mutation<float> x)
         {
             var (that, value) = x;
             that.GetComponent<Bomb>().GetTimer().SetRateModifier(value);
             return 0;
         }
 
-        FromGame((that, value), static x => Hidden(x));
+        FromGame(new Mutation<float>(that, value), static x => Hidden(x));
         return that;
     }
 
@@ -54,7 +54,7 @@ public static class KMBombStrikeExtensions
     [CLSCompliant(false), NotNull, PublicAPI]
     public static KMBomb SetStrikes([NotNull] this KMBomb that, int value)
     {
-        static byte Hidden((KMBomb, int) x)
+        static byte Hidden(Mutation<int> x)
         {
             var (that, value) = x;
             var inner = that.GetComponent<Bomb>();
@@ -71,11 +71,30 @@ public static class KMBombStrikeExtensions
             return 0;
         }
 
-        FromGame((that, value), static x => Hidden(x));
+        FromGame(new Mutation<int>(that, value), static x => Hidden(x));
         return that;
     }
 
     static float Clip(this float value, float min, float max) =>
         value <= min ? min :
         value >= max ? max : value;
+
+    sealed class Mutation<T>
+    {
+        readonly KMBomb _bomb;
+
+        readonly T _value;
+
+        internal Mutation(KMBomb bomb, T value)
+        {
+            _bomb = bomb;
+            _value = value;
+        }
+
+        internal void Deconstruct(out KMBomb bomb, out T value)
+        {
+            bomb = _bomb;
+            value = _value;
+        }
+    }
 }

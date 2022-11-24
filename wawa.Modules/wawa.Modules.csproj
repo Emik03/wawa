@@ -25,14 +25,12 @@
         <PackageReference Remove="Emik.Net20Records" />
         <PackageReference Remove="GlobalUsingsAnalyzer" />
         <ProjectReference Include="..\wawa.IO\wawa.IO.csproj" />
+        <Compile Remove="$(SharedPath)Emik.Morsels/Source/*.cs" />
         <ProjectReference Include="..\wawa.DDL\wawa.DDL.csproj" />
-        <Compile Remove="$(SharedPath)Emik.Morsels/Source/Type.cs" />
         <ProjectReference Include="..\Emik.Unity\Emik.Unity.csproj" />
-        <Compile Remove="$(SharedPath)Emik.Morsels/Source/Indexers.cs" />
         <ProjectReference Include="..\Emik.Optionals\Emik.Optionals.csproj" />
-        <Compile Remove="$(SharedPath)Emik.Morsels/Source/RuntimeHelpers.cs" />
         <ProjectReference Include="..\wawa.Extensions\wawa.Extensions.csproj" />
-        <Compile Include="../Polyfills/MoreIReadOnly.cs" Link="Source/References/System/Collections/MoreIReadOnly.cs" />
+        <Compile Include="../Polyfills/MoreIReadOnly.cs" Link="Source/References/System/Diagnostics/MoreIReadOnly.cs" />
         <Compile Include="../Polyfills/MoreAttributes.cs" Link="Source/References/System/Diagnostics/MoreAttributes.cs" />
     </ItemGroup>
 </Project>

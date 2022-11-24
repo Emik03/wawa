@@ -24,12 +24,10 @@
         <PackageReference Remove="Theraot.Core" />
         <PackageReference Remove="Emik.Net20Records" />
         <PackageReference Remove="GlobalUsingsAnalyzer" />
+        <Compile Remove="$(SharedPath)Emik.Morsels/Source/*.cs" />
         <ProjectReference Include="..\wawa.DDL\wawa.DDL.csproj" />
-        <Compile Remove="$(SharedPath)Emik.Morsels/Source/Type.cs" />
-        <Compile Remove="$(SharedPath)Emik.Morsels/Source/Indexers.cs" />
         <ProjectReference Include="..\Emik.Optionals\Emik.Optionals.csproj" />
-        <Compile Remove="$(SharedPath)Emik.Morsels/Source/RuntimeHelpers.cs" />
-        <Compile Include="../Polyfills/MoreIReadOnly.cs" Link="Source/References/System/Collections/MoreIReadOnly.cs" />
+        <Compile Include="../Polyfills/MoreIReadOnly.cs" Link="Source/References/System/Diagnostics/MoreIReadOnly.cs" />
         <Compile Include="../Polyfills/MoreAttributes.cs" Link="Source/References/System/Diagnostics/MoreAttributes.cs" />
     </ItemGroup>
 </Project>
