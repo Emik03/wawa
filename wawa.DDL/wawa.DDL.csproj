@@ -26,7 +26,6 @@
         <PackageReference Remove="GlobalUsingsAnalyzer" />
         <Compile Remove="$(SharedPath)Emik.Morsels/Source/*.cs" />
         <ProjectReference Include="..\Emik.Optionals\Emik.Optionals.csproj" />
-        <Analyzer Remove="$(ComparisonGenerator)Aetos.ComparisonGenerator.dll" />
         <Compile Include="../Polyfills/MoreIReadOnly.cs" Link="Source/References/System/Diagnostics/MoreIReadOnly.cs" />
         <Compile Include="../Polyfills/MoreAttributes.cs" Link="Source/References/System/Diagnostics/MoreAttributes.cs" />
         <Reference Include="UnityEngine.CoreModule" Private="false" HintPath="$(Unity)/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll" Aliases="core" />

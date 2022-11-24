@@ -30,7 +30,6 @@
         <ProjectReference Include="..\Emik.Unity\Emik.Unity.csproj" />
         <ProjectReference Include="..\Emik.Optionals\Emik.Optionals.csproj" />
         <ProjectReference Include="..\wawa.Extensions\wawa.Extensions.csproj" />
-        <Analyzer Remove="$(ComparisonGenerator)Aetos.ComparisonGenerator.dll" />
         <Compile Include="../Polyfills/MoreIReadOnly.cs" Link="Source/References/System/Diagnostics/MoreIReadOnly.cs" />
         <Compile Include="../Polyfills/MoreAttributes.cs" Link="Source/References/System/Diagnostics/MoreAttributes.cs" />
     </ItemGroup>
