@@ -21,7 +21,7 @@ This project has a dependency to [Emik.Morsels](https://github.com/Emik03/Emik.M
 
 3. Wait for Unity to reload, a new tab should appear called `wawa`.
 
-4. Hover over it, and download additional components as needed under `Updater`.
+4. Hover over it, and download additional components as needed under `Update`.
 
 ## Libraries
 
