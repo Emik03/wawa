@@ -9,6 +9,10 @@ namespace Wawa.Editors.Internals;
 sealed class WawaEditor : Editor
 #pragma warning restore CA1812
 {
+    /// <summary>The name of this library.</summary>
+    [NotNull]
+    internal const string This = $"{Wawa}Editors";
+
     [NotNull]
     const string
         DDL = $"{Wawa}{nameof(DDL)}",
@@ -20,7 +24,6 @@ sealed class WawaEditor : Editor
         Prefix = "wawa/",
         Scaffold = $"{Prefix}{nameof(Scaffold)}/",
         Suffix = " & deps",
-        This = $"{Wawa}Editors",
         TwitchPlays = $"{Wawa}{nameof(TwitchPlays)}",
         Update = $"{Prefix}{nameof(Update)}/",
         Unity = $"{Emik}{nameof(Unity)}",

@@ -13,6 +13,7 @@ static class Updater
         GitHub = $"github.com/{GitHubUser}/{GitHubRepo}/",
         GitHubRepo = "wawa",
         GitHubUser = "Emik03",
+        Managed = "Managed/",
         Pdb = "pdb",
         Prep = "Spawning a new game object, remove it once the downloads are complete. " +
             "Now preparing to fetch and download the following libraries: ",
@@ -25,6 +26,9 @@ static class Updater
 
     [NotNull]
     static string ContainingFolder => Directory.GetDirectoryRoot(Uri.UnescapeDataString(CodeBase.Path));
+
+    [NotNull]
+    static string ManagedContainingFolder => Path.Combine(ContainingFolder, Managed);
 
     [NotNull]
     static UriBuilder CodeBase => new(typeof(WawaEditor).Assembly.CodeBase);
@@ -59,7 +63,7 @@ static class Updater
 
         AssemblyLog($@"Received {data.Length} bytes.");
 
-        var path = Path.Combine(ContainingFolder, $"{lib}.{ext}");
+        var path = Path.Combine(lib is WawaEditor.This ? ContainingFolder : ManagedContainingFolder, $"{lib}.{ext}");
 
         AssemblyLog($@"Overwriting {path}...");
 
