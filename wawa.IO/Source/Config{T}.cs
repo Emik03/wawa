@@ -13,14 +13,10 @@ namespace Wawa.IO;
 public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComparer<Config<T>>
     where T : new()
 {
-    /// <summary>The name of the folder that contains locally stored mod settings.</summary>
-    [NotNull]
-    public const string Folder = "Modsettings";
-
     const string Suffix = "-settings.json";
 
     [NotNull]
-    static readonly string s_folder = Path.Combine(Application.persistentDataPath, Folder);
+    static readonly string s_folder = Path.Combine(Application.persistentDataPath, Config.Folder);
 
     static Config() => s_folder.SuppressIO(Directory.CreateDirectory);
 
@@ -79,7 +75,8 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
     /// otherwise <see langword="false"/>.
     /// </returns>
     [Pure]
-    public static bool operator !=([AllowNull, CanBeNull] Config<T> left, [AllowNull, CanBeNull] Config<T> right) => !(left == right);
+    public static bool operator !=([AllowNull, CanBeNull] Config<T> left, [AllowNull, CanBeNull] Config<T> right) =>
+        !(left == right);
 
     /// <inheritdoc/>
     [Pure]

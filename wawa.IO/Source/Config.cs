@@ -7,6 +7,10 @@ namespace Wawa.IO;
 [PublicAPI]
 public static class Config
 {
+    /// <summary>The name of the folder that contains locally stored mod settings.</summary>
+    [NotNull]
+    public const string Folder = "Modsettings";
+
     /// <summary>The key substring that is ignored in mod configs.</summary>
     [NotNull]
     public const string Tutorial = "HowToUse";
