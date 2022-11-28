@@ -16,17 +16,16 @@ sealed class WawaEditor : Editor
     [NotNull]
     const string
         DDL = $"{Wawa}{nameof(DDL)}",
-        Emik = "Emik.",
         Extensions = $"{Wawa}{nameof(Extensions)}",
         IO = $"{Wawa}{nameof(IO)}",
         Modules = $"{Wawa}{nameof(Modules)}",
-        Optionals = $"{Emik}{nameof(Optionals)}",
+        Optionals = $"{Wawa}{nameof(Optionals)}",
         Prefix = "wawa/",
         Scaffold = $"{Prefix}{nameof(Scaffold)}/",
         Suffix = " & deps",
         TwitchPlays = $"{Wawa}{nameof(TwitchPlays)}",
         Update = $"{Prefix}{nameof(Update)}/",
-        Unity = $"{Emik}{nameof(Unity)}",
+        Unity = $"{Wawa}{nameof(Unity)}",
         Wawa = "wawa.";
 
     [MenuItem($"{Scaffold}{nameof(Solvable)}"), UsedImplicitly]

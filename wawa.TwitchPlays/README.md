@@ -15,13 +15,13 @@ Adds an extensive system for creating Twitch Plays components that are attached 
 
 | Library                                                                     | Depends on... | Used in... |
 |-----------------------------------------------------------------------------|---------------|------------|
-| [Emik.Optionals](https://github.com/Emik03/wawa/tree/main/Emik.Optionals)   | ✔️            | ️❌         |
-| [Emik.Unity](https://github.com/Emik03/wawa/tree/main/Emik.Unity)           | ❌             | ️❌         |
 | [wawa.DDL](https://github.com/Emik03/wawa/tree/main/wawa.DDL)               | ✔️            | ❌️         |
 | [wawa.Editors](https://github.com/Emik03/wawa/tree/main/wawa.Editors)       | ❌             | ❌          |
 | [wawa.Extensions](https://github.com/Emik03/wawa/tree/main/wawa.Extensions) | ❌             | ❌          |
 | [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO)                 | ✔️            | ❌️         |
 | [wawa.Modules](https://github.com/Emik03/wawa/tree/main/wawa.Modules)       | ✔️            | ❌️         |
+| [wawa.Optionals](https://github.com/Emik03/wawa/tree/main/wawa.Optionals)   | ✔️            | ️❌         |
+| [wawa.Unity](https://github.com/Emik03/wawa/tree/main/wawa.Unity)           | ❌             | ️❌         |
 
 ## Example
 

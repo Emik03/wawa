@@ -1,6 +1,8 @@
-# Emik.Unity
+# wawa.Optionals
 
-Defines the `CachedBehavior` type, which provides a simple API for caching Unity API calls such as [`GetComponent`](https://docs.unity3d.com/2017.4/Documentation/ScriptReference/Component.GetComponent.html).
+Defines the `Maybe<T>` type, which is used throughout these libraries to represent a value that may be optional.
+
+All returned values from these libraries can be assumed to be always non-null, as a fallback value, or this type is used to explicitly mark optional values.
 
 ---
 
@@ -15,41 +17,32 @@ Defines the `CachedBehavior` type, which provides a simple API for caching Unity
 
 | Library                                                                       | Depends on... | Used in... |
 |-------------------------------------------------------------------------------|---------------|------------|
-| [Emik.Optionals](https://github.com/Emik03/wawa/tree/main/Emik.Optionals)     | ❌             | ️❌         |
-| [wawa.DDL](https://github.com/Emik03/wawa/tree/main/wawa.DDL)                 | ❌             | ❌️         |
+| [wawa.DDL](https://github.com/Emik03/wawa/tree/main/wawa.DDL)                 | ❌             | ✔️         |
 | [wawa.Editors](https://github.com/Emik03/wawa/tree/main/wawa.Editors)         | ❌             | ❌          |
 | [wawa.Extensions](https://github.com/Emik03/wawa/tree/main/wawa.Extensions)   | ❌             | ❌          |
 | [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO)                   | ❌             | ✔️         |
 | [wawa.Modules](https://github.com/Emik03/wawa/tree/main/wawa.Modules)         | ❌             | ✔️         |
 | [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) | ❌             | ✔️         |
+| [wawa.Unity](https://github.com/Emik03/wawa/tree/main/wawa.Unity)             | ❌             | ️❌         |
 
 ## Example
 
 ```csharp
-using Emik.Optionals;
-using UnityEngine;
+using Wawa.Optionals;
+using static System.Diagnostics.Debug;
 
-public sealed class Foo : CachedBehavior
-{
-    public int Bar { get; set }
+Maybe<int> some = 2;
+Maybe<int> none = default;
 
-    void Start()
-    {
-        Get<Foo>().Bar++;
+Assert(some.IsSome);
+Assert(some.TryGet(out var _));
+Assert(some.Match(x => x is 2, _ => false));
+Assert(some.Unwrap() is 2);
 
-        // Not inefficient, because the operation for 'Foo' has already been cached.
-        Get<Foo>().Bar++;
-
-        // Clears the cache.
-        Clear();
-
-        // GetComponents is called instead.
-        Foo[] foos = Get<Foo[]>();
-
-        // Maps it evenly in a 2-dimensional matrix.
-        Foo[,] foos = Get<Foo[,]>();
-    }
-}
+Assert(none.IsNone);
+Assert(!none.TryGet(out var _));
+Assert(none.Match(_ => throw new(), _ => true));
+Assert(none.UnwrapOrDefault() is 0);
 ```
 
 ## Contribute

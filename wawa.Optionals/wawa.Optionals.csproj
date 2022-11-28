@@ -20,6 +20,7 @@
                 <Absence />
             </Weavers>
         </WeaverConfiguration>
+        <RootNamespace>Emik.Optionals</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Remove="Theraot.Core" />

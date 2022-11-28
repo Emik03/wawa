@@ -4,7 +4,7 @@
 
 // Every Unity API call is cached, therefore;
 // ReSharper disable Unity.PerformanceCriticalCodeInvocation
-namespace Emik.Unity;
+namespace Wawa.Unity;
 
 /// <summary><see cref="MonoBehaviour"/> with caching methods.</summary>
 [CLSCompliant(false), PublicAPI]

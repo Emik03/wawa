@@ -25,7 +25,7 @@
         <PackageReference Remove="Theraot.Core" />
         <PackageReference Remove="GlobalUsingsAnalyzer" />
         <Compile Remove="$(SharedPath)Emik.Morsels/Source/*.cs" />
-        <ProjectReference Include="..\Emik.Optionals\Emik.Optionals.csproj" />
+        <ProjectReference Include="..\wawa.Optionals\wawa.Optionals.csproj" />
         <Compile Include="../Polyfills/MoreIReadOnly.cs" Link="Source/References/System/Diagnostics/MoreIReadOnly.cs" />
         <Compile Include="../Polyfills/MoreAttributes.cs" Link="Source/References/System/Diagnostics/MoreAttributes.cs" />
         <Reference Include="UnityEngine.CoreModule" Private="false" HintPath="$(Unity)/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll" Aliases="core" />

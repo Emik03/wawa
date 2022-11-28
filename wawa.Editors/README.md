@@ -21,13 +21,13 @@ Completely stand-alone library, and not used as a dependency in another library.
 
 | Library                                                                       | Depends on... | Used in... |
 |-------------------------------------------------------------------------------|---------------|------------|
-| [Emik.Optionals](https://github.com/Emik03/wawa/tree/main/Emik.Optionals)     | ❌             | ️❌         |
-| [Emik.Unity](https://github.com/Emik03/wawa/tree/main/Emik.Unity)             | ❌             | ️❌         |
 | [wawa.DDL](https://github.com/Emik03/wawa/tree/main/wawa.DDL)                 | ❌             | ❌️         |
 | [wawa.Extensions](https://github.com/Emik03/wawa/tree/main/wawa.Extensions)   | ❌             | ❌          |
 | [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO)                   | ❌             | ❌️         |
 | [wawa.Modules](https://github.com/Emik03/wawa/tree/main/wawa.Modules)         | ❌             | ❌️         |
+| [wawa.Optionals](https://github.com/Emik03/wawa/tree/main/wawa.Optionals)     | ❌             | ️❌         |
 | [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) | ❌             | ❌️         |
+| [wawa.Unity](https://github.com/Emik03/wawa/tree/main/wawa.Unity)             | ❌             | ️❌         |
 
 ## Contribute
 

@@ -1,7 +1,7 @@
 ﻿// <copyright file="Maybe{T}.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
-namespace Emik.Optionals;
+namespace Wawa.Optionals;
 
 /// <summary>A type representing an optional value; Either Some and contains a value, or None, and does not.</summary>
 /// <typeparam name="T">The type to encapsulate and project as an optional value.</typeparam>
