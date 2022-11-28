@@ -298,7 +298,7 @@ public static class KMExtensions
         onCancel?.ToFunc(isParent.Value).Add(ref selectable.OnCancel);
         onInteract?.ToFunc(isParent.Value).Add(ref selectable.OnInteract);
 
-        onInteractionPunch.ToAction<float>().Add(ref selectable.OnInteractionPunch);
+        onInteractionPunch?.ToAction<float>().Add(ref selectable.OnInteractionPunch);
 
         onUpdateChildren?.ToBiAction<KMSelectable>().Add(ref selectable.OnUpdateChildren);
 
@@ -390,7 +390,7 @@ public static class KMExtensions
 
         onInteract?.ToFunc(isParent.Value).Set(out selectable.OnInteract);
 
-        onInteractionPunch.ToAction<float>().Set(out selectable.OnInteractionPunch);
+        onInteractionPunch?.ToAction<float>().Set(out selectable.OnInteractionPunch);
 
         onUpdateChildren?.ToBiAction<KMSelectable>().Set(out selectable.OnUpdateChildren);
 
@@ -517,7 +517,7 @@ public static class KMExtensions
                 onHighlightEnded?.ToAction(i),
                 onInteract?.ToAction(i),
                 onInteractEnded?.ToAction(i),
-                onInteractionPunch.ToAction(i),
+                onInteractionPunch?.ToAction(i),
                 onLeft?.ToAction(i),
                 onRight?.ToAction(i),
                 onSelect?.ToAction(i),
@@ -654,7 +654,7 @@ public static class KMExtensions
                 onHighlightEnded?.ToAction(i),
                 onInteract?.ToAction(i),
                 onInteractEnded?.ToAction(i),
-                onInteractionPunch.ToAction(i),
+                onInteractionPunch?.ToAction(i),
                 onLeft?.ToAction(i),
                 onRight?.ToAction(i),
                 onSelect?.ToAction(i),
