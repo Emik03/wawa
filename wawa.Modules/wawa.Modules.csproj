@@ -22,7 +22,6 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Remove="Theraot.Core" />
-        <PackageReference Remove="Emik.Net20Records" />
         <PackageReference Remove="GlobalUsingsAnalyzer" />
         <ProjectReference Include="..\wawa.IO\wawa.IO.csproj" />
         <Compile Remove="$(SharedPath)Emik.Morsels/Source/*.cs" />
