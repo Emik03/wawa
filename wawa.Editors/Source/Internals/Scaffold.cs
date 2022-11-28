@@ -20,7 +20,6 @@ using System.Collections.Generic;",
         Material = ".mat",
         Mesh = ".fbx",
         ModdedModule = nameof(ModdedModule),
-        ModTag = "mod.bundle",
         Modules = "wawa.Modules",
         ModulesNamespace = @"
 using Wawa.Modules;",
@@ -204,7 +203,7 @@ using Wawa.Modules;",
 
     static void Save([NotNull] this GameObject go, [NotNull] string path)
     {
-        go.tag = ModTag;
+        go.tag = ModBundle.Tag;
 
         var uri = new Uri(Application.dataPath).MakeRelativeUri(new(path));
 

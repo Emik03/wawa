@@ -4,6 +4,7 @@
 global using Newtonsoft.Json.Linq;
 global using UnityEditor;
 global using UnityEditor.Animations;
+global using UnityEditor.Callbacks;
 global using UnityEngine;
 global using UnityEngine.Networking;
 global using static Wawa.Editors.Internals.Globals;
