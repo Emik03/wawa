@@ -15,7 +15,7 @@ This project has a dependency to [Emik.Morsels](https://github.com/Emik03/Emik.M
 
 ## Quick Start
 
-1. Go to [Releases](https://github.com/Emik03/wawa/releases) and download the latest [wawa.Editors]().
+1. Go to [Releases](https://github.com/Emik03/wawa/releases) and download the latest [wawa.Editors](https://github.com/Emik03/wawa/tree/main/Releases](https://github.com/Emik03/wawa/releases) and download the latest [wawa.Editors).
 
 2. Place the `.dll` in `Assets/Plugins/`, **not** `Assets/Plugins/Managed/`.
 
@@ -25,14 +25,14 @@ This project has a dependency to [Emik.Morsels](https://github.com/Emik03/Emik.M
 
 ## Libraries
 
-- [Emik.Optionals]() - Shared `Maybe` type. These libraries don't return `null` without wrapping it in this type.
-- [Emik.Unity]() - Adds `CachedBehavior`, eliminates overhead of Unity API calls without the need for explicit fields.
-- [wawa.DDL]() - Implements the [DDL pattern](https://github.com/Emik03/.DDL#chapter-23-the-ddl-pattern) to safely expose game values, such as missions or strikes.
-- [wawa.Editors]() - Editor-only assembly that adds a scaffolder to quickly create new modules, and an updater/downloader.
-- [wawa.Extensions]() - Adds extension methods for `KMFramework` types to make hooking easier.
-- [wawa.IO]() - Adds methods for KTaNE-related IO operations, such as Mod Settings, loading AssetBundles from the mod directory, or loading external libraries.
-- [wawa.Modules]() - Adds `ModdedModule`, a base class that implements essential module behavior.
-- [wawa.TwitchPlays]() - Adds `Twitch`, a base class that hooks on a `ModdedModule` to add essential TwitchPlays behavior.
+- [Emik.Optionals](https://github.com/Emik03/wawa/tree/main/Emik.Optionals) - Shared `Maybe` type. These libraries don't return `null` without wrapping it in this type.
+- [Emik.Unity](https://github.com/Emik03/wawa/tree/main/Emik.Unity) - Adds `CachedBehavior`, eliminates overhead of Unity API calls without the need for explicit fields.
+- [wawa.DDL](https://github.com/Emik03/wawa/tree/main/wawa.DDL) - Implements the [DDL pattern](https://github.com/Emik03/.DDL#chapter-23-the-ddl-pattern) to safely expose game values, such as missions or strikes.
+- [wawa.Editors](https://github.com/Emik03/wawa/tree/main/wawa.Editors) - Editor-only assembly that adds a scaffolder to quickly create new modules, and an updater/downloader.
+- [wawa.Extensions](https://github.com/Emik03/wawa/tree/main/wawa.Extensions) - Adds extension methods for `KMFramework` types to make hooking easier.
+- [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO) - Adds methods for KTaNE-related IO operations, such as Mod Settings, loading AssetBundles from the mod directory, or loading external libraries.
+- [wawa.Modules](https://github.com/Emik03/wawa/tree/main/wawa.Modules) - Adds `ModdedModule`, a base class that implements essential module behavior.
+- [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) - Adds `Twitch`, a base class that hooks on a `ModdedModule` to add essential TwitchPlays behavior.
 
 ## Contribute
 

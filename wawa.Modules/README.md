@@ -13,15 +13,15 @@ Adds a base type for modules.
 
 ## Dependencies
 
-| Library              | Depends on... | Used in... |
-|----------------------|---------------|------------|
-| [Emik.Optionals]()   | ✔️            | ️❌         |
-| [Emik.Unity]()       | ❌             | ️❌         |
-| [wawa.DDL]()         | ✔️            | ❌️         |
-| [wawa.Editors]()     | ❌             | ❌          |
-| [wawa.Extensions]()  | ❌             | ❌          |
-| [wawa.IO]()          | ✔️            | ❌️         |
-| [wawa.TwitchPlays]() | ❌             | ✔️         |
+| Library                                                                       | Depends on... | Used in... |
+|-------------------------------------------------------------------------------|---------------|------------|
+| [Emik.Optionals](https://github.com/Emik03/wawa/tree/main/Emik.Optionals)     | ✔️            | ️❌         |
+| [Emik.Unity](https://github.com/Emik03/wawa/tree/main/Emik.Unity)             | ❌             | ️❌         |
+| [wawa.DDL](https://github.com/Emik03/wawa/tree/main/wawa.DDL)                 | ✔️            | ❌️         |
+| [wawa.Editors](https://github.com/Emik03/wawa/tree/main/wawa.Editors)         | ❌             | ❌          |
+| [wawa.Extensions](https://github.com/Emik03/wawa/tree/main/wawa.Extensions)   | ❌             | ❌          |
+| [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO)                   | ✔️            | ❌️         |
+| [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) | ❌             | ✔️         |
 
 ## Example
 

@@ -19,15 +19,15 @@ When installed, `wawa` is shown at the top with the following options...
 
 Completely stand-alone library, and not used as a dependency in another library.
 
-| Library              | Depends on... | Used in... |
-|----------------------|---------------|------------|
-| [Emik.Optionals]()   | ❌             | ️❌         |
-| [Emik.Unity]()       | ❌             | ️❌         |
-| [wawa.DDL]()         | ❌             | ❌️         |
-| [wawa.Extensions]()  | ❌             | ❌          |
-| [wawa.IO]()          | ❌             | ❌️         |
-| [wawa.Modules]()     | ❌             | ❌️         |
-| [wawa.TwitchPlays]() | ❌             | ❌️         |
+| Library                                                                       | Depends on... | Used in... |
+|-------------------------------------------------------------------------------|---------------|------------|
+| [Emik.Optionals](https://github.com/Emik03/wawa/tree/main/Emik.Optionals)     | ❌             | ️❌         |
+| [Emik.Unity](https://github.com/Emik03/wawa/tree/main/Emik.Unity)             | ❌             | ️❌         |
+| [wawa.DDL](https://github.com/Emik03/wawa/tree/main/wawa.DDL)                 | ❌             | ❌️         |
+| [wawa.Extensions](https://github.com/Emik03/wawa/tree/main/wawa.Extensions)   | ❌             | ❌          |
+| [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO)                   | ❌             | ❌️         |
+| [wawa.Modules](https://github.com/Emik03/wawa/tree/main/wawa.Modules)         | ❌             | ❌️         |
+| [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) | ❌             | ❌️         |
 
 ## Contribute
 

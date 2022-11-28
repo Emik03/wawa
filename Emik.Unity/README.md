@@ -13,15 +13,15 @@ Defines the `CachedBehavior` type, which provides a simple API for caching Unity
 
 ## Dependencies
 
-| Library              | Depends on... | Used in... |
-|----------------------|---------------|------------|
-| [Emik.Optionals]()   | ❌             | ️❌         |
-| [Emik.Unity]()       | ❌             | ❌️         |
-| [wawa.Editors]()     | ❌             | ❌          |
-| [wawa.Extensions]()  | ❌             | ❌          |
-| [wawa.IO]()          | ❌             | ✔️         |
-| [wawa.Modules]()     | ❌             | ✔️         |
-| [wawa.TwitchPlays]() | ❌             | ✔️         |
+| Library                                                                       | Depends on... | Used in... |
+|-------------------------------------------------------------------------------|---------------|------------|
+| [Emik.Optionals](https://github.com/Emik03/wawa/tree/main/Emik.Optionals)     | ❌             | ️❌         |
+| [wawa.DDL](https://github.com/Emik03/wawa/tree/main/wawa.DDL)                 | ❌             | ❌️         |
+| [wawa.Editors](https://github.com/Emik03/wawa/tree/main/wawa.Editors)         | ❌             | ❌          |
+| [wawa.Extensions](https://github.com/Emik03/wawa/tree/main/wawa.Extensions)   | ❌             | ❌          |
+| [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO)                   | ❌             | ✔️         |
+| [wawa.Modules](https://github.com/Emik03/wawa/tree/main/wawa.Modules)         | ❌             | ✔️         |
+| [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) | ❌             | ✔️         |
 
 ## Example
 

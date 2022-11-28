@@ -13,15 +13,15 @@ Adds types for KTaNE-related IO operations.
 
 ## Dependencies
 
-| Library              | Depends on... | Used in... |
-|----------------------|---------------|------------|
-| [Emik.Optionals]()   | ✔️            | ️❌         |
-| [Emik.Unity]()       | ❌             | ️❌         |
-| [wawa.DDL]()         | ✔️            | ❌️         |
-| [wawa.Editors]()     | ❌             | ❌          |
-| [wawa.Extensions]()  | ❌             | ❌          |
-| [wawa.Modules]()     | ❌             | ✔️         |
-| [wawa.TwitchPlays]() | ❌             | ✔️         |
+| Library                                                                       | Depends on... | Used in... |
+|-------------------------------------------------------------------------------|---------------|------------|
+| [Emik.Optionals](https://github.com/Emik03/wawa/tree/main/Emik.Optionals)     | ✔️            | ️❌         |
+| [Emik.Unity](https://github.com/Emik03/wawa/tree/main/Emik.Unity)             | ❌             | ️❌         |
+| [wawa.DDL](https://github.com/Emik03/wawa/tree/main/wawa.DDL)                 | ✔️            | ❌️         |
+| [wawa.Editors](https://github.com/Emik03/wawa/tree/main/wawa.Editors)         | ❌             | ❌          |
+| [wawa.Extensions](https://github.com/Emik03/wawa/tree/main/wawa.Extensions)   | ❌             | ❌          |
+| [wawa.Modules](https://github.com/Emik03/wawa/tree/main/wawa.Modules)         | ❌             | ✔️         |
+| [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) | ❌             | ✔️         |
 
 ## Example
 
