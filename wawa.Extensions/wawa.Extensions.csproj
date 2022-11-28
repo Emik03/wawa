@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <FileVersion>1</FileVersion>
+        <Nullable>annotations</Nullable>
         <TargetFramework>net35</TargetFramework>
         <WeaverConfiguration>
             <Weavers>
