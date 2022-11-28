@@ -431,12 +431,13 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         [NotNull] in IList<ParameterInfo> parameters
     ) =>
         FromFail(
-            $@"Invalid {fail.Nth(true)} parameter ""{parameters[fail].Name}"": " +
+            $@"Invalid {Stringifier.Nth(fail, true)} parameter ""{parameters[fail].Name}"": " +
             ((ParseError)args[fail]).Reason(parameters[fail].ParameterType)
         );
 
     // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
-    void OnPrint([NotNull] object sender, [NotNull] YieldEventArgs args) => Module.Log(args.Query.Stringify());
+    void OnPrint([NotNull] object sender, [NotNull] YieldEventArgs args) =>
+        Module.Log(Stringifier.Stringify(args.Query));
 
     [NotNull]
     string GenerateHelp()
@@ -452,7 +453,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
             return $@"!{{0}} {prefix} {args}".TrimEnd();
         }
 
-        return Commands.Select(Selector).Conjoin(Separator).Trim();
+        return Stringifier.Conjoin(Commands.Select(Selector), Separator).Trim();
     }
 
     [CanBeNull]

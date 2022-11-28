@@ -196,7 +196,7 @@ public abstract class ModdedModule : CachedBehaviour
     public T Log<T>([AllowNull, CanBeNull] T format = default, LogType logType = LogType.Log)
     {
         var id = Status.Id;
-        var stringify = format.Stringify();
+        var stringify = Stringifier.Stringify(format);
         var message = $@"[{Name} #{id}] {stringify}";
 
         Debug.unityLogger.Log(logType, message);
@@ -215,8 +215,8 @@ public abstract class ModdedModule : CachedBehaviour
     [return: AllowNull]
     public T Log<T>([AllowNull, CanBeNull] T format = default, [NotNull] params object[] args)
     {
-        var convertAll = Array.ConvertAll(args, static o => (object)o.Stringify());
-        var stringify = format.Stringify();
+        var convertAll = Array.ConvertAll(args, static o => (object)Stringifier.Stringify(o));
+        var stringify = Stringifier.Stringify(format);
         var provider = CultureInfo.InvariantCulture;
         var message = string.Format(provider, stringify, convertAll);
 
@@ -236,7 +236,7 @@ public abstract class ModdedModule : CachedBehaviour
     [return: AllowNull]
     public T LogLower<T>([AllowNull, CanBeNull] T format = default, LogType logType = LogType.Log)
     {
-        var message = $@"<{Name} #{Status.Id}> {format.Stringify()}";
+        var message = $@"<{Name} #{Status.Id}> {Stringifier.Stringify(format)}";
 
         Log(format, message, logType);
 
@@ -254,8 +254,8 @@ public abstract class ModdedModule : CachedBehaviour
     [return: AllowNull]
     public T LogLower<T>([AllowNull, CanBeNull] T format = default, [NotNull] params object[] args)
     {
-        var convertAll = Array.ConvertAll(args, static o => (object)o.Stringify());
-        var stringify = format.Stringify();
+        var convertAll = Array.ConvertAll(args, static o => (object)Stringifier.Stringify(o));
+        var stringify = Stringifier.Stringify(format);
         var provider = CultureInfo.InvariantCulture;
         var message = string.Format(provider, stringify, convertAll);
 

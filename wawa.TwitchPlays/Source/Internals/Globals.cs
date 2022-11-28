@@ -53,7 +53,7 @@ static class Globals
         err switch
         {
             ParseError.Empty => TooShort,
-            ParseError.Field => $@"Expected one of {type.DisplayFields().Conjoin(' ')}",
+            ParseError.Field => $@"Expected one of {Stringifier.Conjoin(type.DisplayFields(), ' ')}",
             ParseError.NoMatch => InvalidFormat,
             ParseError.Unserializable => CannotSerialize,
             _ => throw new ArgumentOutOfRangeException(nameof(err), err, NotImplemented),
@@ -86,10 +86,10 @@ static class Globals
                     x == typeof(short) ||
                     x == typeof(int) ||
                     x == typeof(long) => Signed,
-                _ => $@"<{x.DisplayFields().Conjoin('/')}>",
+                _ => $@"<{Stringifier.Conjoin(x.DisplayFields(), '/')}>",
             };
 
-        return parameters.Select(static x => Display(x.ParameterType)).Conjoin(' ');
+        return Stringifier.Conjoin(parameters.Select(static x => Display(x.ParameterType)), ' ');
     }
 
     static IEnumerable<string> DisplayFields(this IReflect reflect) =>

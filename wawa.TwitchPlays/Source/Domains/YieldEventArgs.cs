@@ -69,5 +69,5 @@ public sealed class YieldEventArgs : EventArgs,
     /// <summary>Uses <see cref="Stringifier.Stringify{T}(T, bool, bool)"/> on <see cref="Query"/>.</summary>
     /// <returns>A <see cref="string"/> representation of <see cref="Query"/>.</returns>
     [Pure]
-    public override string ToString() => Query.Stringify();
+    public override string ToString() => Stringifier.Stringify(Query);
 }

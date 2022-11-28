@@ -37,7 +37,10 @@ public sealed class AliasAttribute : Attribute,
     /// The value <see langword="true"/> if both of them contain the same values,
     /// otherwise <see langword="false"/>.</returns>
     [Pure]
-    public static bool operator ==([AllowNull, CanBeNull] AliasAttribute left, [AllowNull, CanBeNull] AliasAttribute right) =>
+    public static bool operator ==(
+        [AllowNull, CanBeNull] AliasAttribute left,
+        [AllowNull, CanBeNull] AliasAttribute right
+    ) =>
         left is null
             ? right is null
             : right is not null && left.Aliases.SequenceEqual(right.Aliases, StringComparer.OrdinalIgnoreCase);
@@ -50,7 +53,10 @@ public sealed class AliasAttribute : Attribute,
     /// otherwise <see langword="false"/>.
     /// </returns>
     [Pure]
-    public static bool operator !=([AllowNull, CanBeNull] AliasAttribute left, [AllowNull, CanBeNull] AliasAttribute right) =>
+    public static bool operator !=(
+        [AllowNull, CanBeNull] AliasAttribute left,
+        [AllowNull, CanBeNull] AliasAttribute right
+    ) =>
         !(left == right);
 
     /// <summary>Gets a <see langword="string"/> representation showing every alias.</summary>
@@ -87,14 +93,15 @@ public sealed class AliasAttribute : Attribute,
 
     /// <inheritdoc/>
     [Pure]
-    public override string ToString() => Aliases.Conjoin();
+    public override string ToString() => Stringifier.Stringify(Aliases);
 
     /// <summary>Gets a <see langword="string"/> representation showing every alias.</summary>
     /// <param name="x">The original name of the field.</param>
     /// <returns>A concatenation of the parameter <paramref name="x"/> with <see cref="Aliases"/>.</returns>
     [NotNull]
-    public string ToString([NotNull] string x) => Enumerable.Repeat(x, 1).Concat(Aliases).Conjoin('/');
+    public string ToString([NotNull] string x) => Stringifier.Conjoin(Enumerable.Repeat(x, 1).Concat(Aliases), '/');
 
     /// <inheritdoc />
-    public string ToString([NotNull] string format, [AllowNull, CanBeNull] IFormatProvider formatProvider) => ToString(format);
+    public string ToString([NotNull] string format, [AllowNull, CanBeNull] IFormatProvider formatProvider) =>
+        ToString(format);
 }

@@ -113,7 +113,8 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <param name="right">The right-hand side.</param>
     /// <returns>The value <see langword="true"/> if both instances do not contain the same values.</returns>
     [Pure]
-    public static bool operator !=([AllowNull, CanBeNull] Instruction left, [AllowNull, CanBeNull] Instruction right) => !(left == right);
+    public static bool operator !=([AllowNull, CanBeNull] Instruction left, [AllowNull, CanBeNull] Instruction right) =>
+        !(left == right);
 
     /// <summary>
     /// Converts the <see cref="CustomYieldInstruction"/> to a <see langword="new"/> <see cref="Instruction"/>.
@@ -228,7 +229,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
 
     /// <inheritdoc/>
     [Pure]
-    public override string ToString() => Value.Stringify();
+    public override string ToString() => Stringifier.Stringify(Value);
 
     /// <inheritdoc/>
     [Pure]
