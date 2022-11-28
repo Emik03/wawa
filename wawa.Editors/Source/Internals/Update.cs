@@ -1,10 +1,10 @@
-// <copyright file="Updater.cs" company="Emik">
+// <copyright file="Update.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
 namespace Wawa.Editors.Internals;
 
 /// <summary>Updates libraries.</summary>
-static class Updater
+static class Update
 {
     [NotNull]
     const string
@@ -39,7 +39,7 @@ static class Updater
     {
         var displayed = string.Join(Separator, fetches);
 
-        AssemblyLog($@"{Prep}{displayed}");
+        AssemblyLog($"{Prep}{displayed}");
 
         GameObject go = new(nameof(EmptyBehaviour), typeof(EmptyBehaviour));
 
@@ -51,21 +51,21 @@ static class Updater
     [NotNull, Pure]
     static IEnumerator Download([NotNull] string tag, [NotNull] string lib, [NotNull] string ext)
     {
-        var url = $@"https://{GitHub}/releases/download/{tag}/{lib}.{ext}";
+        var url = $"https://{GitHub}/releases/download/{tag}/{lib}.{ext}";
         using var web = UnityWebRequest.Get(url);
 
-        AssemblyLog($@"Downloading {url}...");
+        AssemblyLog($"Downloading {url}...");
 
         yield return web.SendWebRequest();
 
         if (web.IsErr(out var data))
             yield break;
 
-        AssemblyLog($@"Received {data.Length} bytes.");
+        AssemblyLog($"Received {data.Length} bytes.");
 
         var path = Path.Combine(lib is WawaEditor.This ? ContainingFolder : ManagedContainingFolder, $"{lib}.{ext}");
 
-        AssemblyLog($@"Overwriting {path}...");
+        AssemblyLog($"Overwriting {path}...");
 
         File.WriteAllBytes(path, data);
     }
@@ -77,7 +77,7 @@ static class Updater
         yield return Download(s_tag, lib, Xml);
         yield return Download(s_tag, lib, Pdb);
 
-        AssemblyLog($@"Finished downloading {lib}!");
+        AssemblyLog($"Finished downloading {lib}!");
     }
 
     [NotNull, Pure]
@@ -85,22 +85,22 @@ static class Updater
     {
         using var web = UnityWebRequest.Get(FetchLink);
 
-        AssemblyLog($@"Fetching {FetchLink}...");
+        AssemblyLog($"Fetching {FetchLink}...");
 
         yield return web.SendWebRequest();
 
         if (web.IsErr(out var data))
             yield break;
 
-        AssemblyLog($@"Received {data.Length} bytes.");
+        AssemblyLog($"Received {data.Length} bytes.");
 
         var json = Encoding.UTF8.GetString(data);
 
-        AssemblyLog($@"Decoded bytes to {json.Length} chars.");
+        AssemblyLog($"Decoded bytes to {json.Length} chars.");
 
         s_tag = JObject.Parse(json).GetValue(TagName, Ordinal).ToObject<string>();
 
-        AssemblyLog($@"Latest version is {s_tag}.");
+        AssemblyLog($"Latest version is {s_tag}.");
 
         var downloads = fetches.Select(Downloads);
 

@@ -53,7 +53,7 @@ static class Globals
         err switch
         {
             ParseError.Empty => TooShort,
-            ParseError.Field => $@"Expected one of {Stringifier.Conjoin(type.DisplayFields(), ' ')}",
+            ParseError.Field => $"Expected one of {Stringifier.Conjoin(type.DisplayFields(), ' ')}",
             ParseError.NoMatch => InvalidFormat,
             ParseError.Unserializable => CannotSerialize,
             _ => throw new ArgumentOutOfRangeException(nameof(err), err, NotImplemented),
@@ -70,7 +70,7 @@ static class Globals
             x switch
             {
                 null => Null,
-                _ when x.GetElementType() is { } y => $@"{Display(y)} {Display(y)} {Ellipsis}",
+                _ when x.GetElementType() is { } y => $"{Display(y)} {Display(y)} {Ellipsis}",
                 _ when x == typeof(bool) => Boolean,
                 _ when x == typeof(char) => Character,
                 _ when x == typeof(string) ||
@@ -86,7 +86,7 @@ static class Globals
                     x == typeof(short) ||
                     x == typeof(int) ||
                     x == typeof(long) => Signed,
-                _ => $@"<{Stringifier.Conjoin(x.DisplayFields(), '/')}>",
+                _ => $"<{Stringifier.Conjoin(x.DisplayFields(), '/')}>",
             };
 
         return Stringifier.Conjoin(parameters.Select(static x => Display(x.ParameterType)), ' ');

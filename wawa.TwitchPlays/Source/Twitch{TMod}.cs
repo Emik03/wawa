@@ -195,7 +195,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
 
     /// <inheritdoc/>
     [Pure]
-    public override string ToString() => $@"{Module}";
+    public override string ToString() => $"{Module}";
 
     /// <summary>
     /// You can <see langword="yield"/> <see langword="return"/> this to repeatedly
@@ -345,7 +345,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// </summary>
     protected virtual void Awake()
     {
-        AssemblyLog($@"The module ""{Module}"" uses this library.");
+        AssemblyLog(@$"The module ""{Module}"" uses this library.");
 
         if (string.IsNullOrEmpty(Help))
             Help = AutoImplementedHelp;
@@ -431,7 +431,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         [NotNull] in IList<ParameterInfo> parameters
     ) =>
         FromFail(
-            $@"Invalid {Stringifier.Nth(fail, true)} parameter ""{parameters[fail].Name}"": " +
+            @$"Invalid {Stringifier.Nth(fail, true)} parameter ""{parameters[fail].Name}"": " +
             ((ParseError)args[fail]).Reason(parameters[fail].ParameterType)
         );
 
@@ -450,7 +450,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
 #pragma warning restore CA1308
             var prefix = x.Command.Prefix.UnwrapOr(inferred);
             var args = x.Method.GetParameters().Show();
-            return $@"!{{0}} {prefix} {args}".TrimEnd();
+            return $"!{{0}} {prefix} {args}".TrimEnd();
         }
 
         return Stringifier.Conjoin(Commands.Select(Selector), Separator).Trim();
@@ -477,13 +477,13 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
 
         var method = query.Method;
 
-        AssemblyLog($@"Captured ""{method.Name}""; sending ""{message}"".");
+        AssemblyLog(@$"Captured ""{method.Name}""; sending ""{message}"".");
 
         var split = Split(message);
         var parameters = method.GetParameters();
 
         if (split.Length > parameters.Length && !parameters.Any(IsParams))
-            return FromFail($@"Too many parameters, expected {parameters.Length}.");
+            return FromFail($"Too many parameters, expected {parameters.Length}.");
 
         object Params(int skip)
         {
