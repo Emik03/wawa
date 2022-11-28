@@ -16,6 +16,7 @@
                 <LocalsInit Default="false" />
                 <Caseless StringComparison="InvariantCulture" />
                 <InlineMethod />
+                <Divorce />
                 <Absence />
             </Weavers>
         </WeaverConfiguration>
