@@ -7,8 +7,8 @@ global using UnityEditor.Animations;
 global using UnityEngine;
 global using UnityEngine.Networking;
 global using static Wawa.Editors.Internals.Globals;
-global using static Wawa.Editors.Internals.Scaffolder;
-global using static Wawa.Editors.Internals.Updater;
+global using static Wawa.Editors.Internals.Scaffold;
+global using static Wawa.Editors.Internals.Update;
 
 namespace Wawa.Editors.Internals;
 
@@ -32,7 +32,7 @@ static class Globals
     /// <summary>Gets the version of <see cref="Caller"/>.</summary>
     [NotNull]
     static string Which =>
-        Caller.Version is { Minor: 0, Build: 0, Revision: 0 } ver ? $@"{ver.Major}" : $@"{Caller.Version}";
+        Caller.Version is { Minor: 0, Build: 0, Revision: 0 } ver ? $"{ver.Major}" : $"{Caller.Version}";
 
     /// <summary>Logs a message to the Unity Console with the assembly's name that called this.</summary>
     /// <param name="message">The message to log.</param>
@@ -56,7 +56,7 @@ static class Globals
             return false;
 
         string text = web.downloadHandler.text,
-            log = $@"Received {code} response code ({error})
+            log = @$"Received {code} response code ({error})
 {text}",
             asm = log.Assembly();
 
@@ -67,5 +67,5 @@ static class Globals
     }
 
     [NotNull]
-    static string Assembly([NotNull] this string message) => $@"[{Who} (v{Which})] {message}";
+    static string Assembly([NotNull] this string message) => $"[{Who} (v{Which})] {message}";
 }

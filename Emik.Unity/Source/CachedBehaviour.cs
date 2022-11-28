@@ -144,7 +144,7 @@ public abstract class CachedBehaviour : MonoBehaviour
     [NotNull]
     T Assert<T>([AllowNull, CanBeNull] in object o)
         where T : class =>
-        o as T ?? throw new MissingComponentException($@"Could not find {Element<T>().Name} in {this}.");
+        o as T ?? throw new MissingComponentException($"Could not find {Element<T>().Name} in {this}.");
 
     [NotNull]
     TTo Create<TFrom, TTo>([NotNull] in TFrom[] input, [InstantHandle] in bool includeSelf)

@@ -128,7 +128,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// <param name="message">The message to send.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
     [Pure]
-    public static TwitchString StrikeMessage([NotNull] string message) => new($@"strikemessage {message}");
+    public static TwitchString StrikeMessage([NotNull] string message) => new($"strikemessage {message}");
 
     /// <summary>
     /// Yield return this to indicate that this command is allowed to be cancelled at the given time of the yield.
@@ -141,7 +141,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// <returns>A formatted string for Twitch Plays.</returns>
     [Pure]
     public static TwitchString TryCancel([AllowNull, CanBeNull] string message = null) =>
-        new(message is null ? @"trycancel" : $@"trycancel {message}");
+        new(message is null ? @"trycancel" : $"trycancel {message}");
 
     /// <summary>
     /// Yield return this to cause Twitch Plays to wait for the given time,
@@ -156,19 +156,19 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// <returns>A formatted string for Twitch Plays.</returns>
     [Pure]
     public static TwitchString TryWaitCancel(float time, [AllowNull, CanBeNull] string message = null) =>
-        new(message is null ? $@"trywaitcancel {time}" : $@"trywaitcancel {time} {message}");
+        new(message is null ? $"trywaitcancel {time}" : $"trywaitcancel {time} {message}");
 
     /// <summary>Yield return this to send a chat directly to twitch chat.</summary>
     /// <param name="message">The message to send.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
     [Pure]
-    public static TwitchString SendToChat([NotNull] string message) => new($@"sendtochat {message}");
+    public static TwitchString SendToChat([NotNull] string message) => new($"sendtochat {message}");
 
     /// <summary>Yield return this to send a message to the chat about why a users' command was invalid.</summary>
     /// <param name="message">The message to send.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
     [Pure]
-    public static TwitchString SendToChatError([NotNull] string message) => new($@"sendtochaterror {message}");
+    public static TwitchString SendToChatError([NotNull] string message) => new($"sendtochaterror {message}");
 
     /// <summary>Yield return this to send a message to chat after <paramref name="time"/> seconds.</summary>
     /// <param name="time">The amount of time to wait before the message gets sent.</param>
@@ -176,7 +176,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// <returns>A formatted string for Twitch Plays.</returns>
     [Pure]
     public static TwitchString SendDelayedMessage(float time, [NotNull] string message) =>
-        new($@"sendtochat {time} {message}");
+        new($"sendtochat {time} {message}");
 
     /// <summary>Yield return this to explode the bomb instantly.</summary>
     /// <remarks><para>
@@ -191,7 +191,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// <returns>A formatted string for Twitch Plays.</returns>
     [Pure]
     public static TwitchString Detonate(float? time = null, [AllowNull, CanBeNull] string message = null) =>
-        new($@"detonate {time} {message}");
+        new($"detonate {time} {message}");
 
     /// <summary>Yield return this to try advancing the clock to the specified time.</summary>
     /// <remarks><para>
@@ -205,7 +205,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// <param name="seconds">The time to skip to in seconds.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
     [Pure]
-    public static TwitchString SkipTime(float seconds) => new($@"skiptime {seconds}");
+    public static TwitchString SkipTime(float seconds) => new($"skiptime {seconds}");
 
     /// <summary>Yield return this to award the user that sent the command points directly.</summary>
     /// <remarks><para>
@@ -214,7 +214,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// <param name="points">The amount of points to award. Negatives supported.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
     [Pure]
-    public static TwitchString AwardPoints(int points) => new($@"awardpoints {points}");
+    public static TwitchString AwardPoints(int points) => new($"awardpoints {points}");
 
     /// <summary>
     /// Yield return this to award the last user that sent the command points when the module is solved.
@@ -227,7 +227,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// <param name="points">The amount of points to award. Negatives supported.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
     [Pure]
-    public static TwitchString AwardPointsOnSolve(int points) => new($@"awardpointsonsolve {points}");
+    public static TwitchString AwardPointsOnSolve(int points) => new($"awardpointsonsolve {points}");
 
     /// <inheritdoc/>
     [Pure]

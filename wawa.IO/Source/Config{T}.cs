@@ -34,7 +34,7 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
     /// In the editor, the constructor will not merge the default values of the type with the file.
     /// </summary>
     public Config()
-        : this($@"{Who}{Suffix}") { }
+        : this($"{Who}{Suffix}") { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Config{TSerialize}"/> class.

@@ -95,5 +95,5 @@ public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<Sta
 
     /// <inheritdoc/>
     [Pure]
-    public override string ToString() => $@"{Prefix}{Id}";
+    public override string ToString() => $"{Prefix}{Id}";
 }

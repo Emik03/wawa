@@ -35,7 +35,7 @@ static class Globals
         }
         catch (Exception ex) when (ex.IsIO())
         {
-            AssemblyLog($@"Caught error of type {ex.GetType().Name}.");
+            AssemblyLog($"Caught error of type {ex.GetType().Name}.");
         }
     }
 
@@ -74,14 +74,14 @@ static class Globals
 
         AssemblyLog(
             IsKtane
-                ? $@"{name} called with {key}. Invoking factory method."
-                : $@"{name} called with {key}. Returning default value."
+                ? $"{name} called with {key}. Invoking factory method."
+                : $"{name} called with {key}. Returning default value."
         );
 
         var value = IsKtane ? factory(key) : editorFactory?.Invoke(key);
         dict[key] = value;
 
-        AssemblyLog($@"{name} halted with {Maybe.From(value)}.");
+        AssemblyLog($"{name} halted with {Maybe.From(value)}.");
 
         return value;
     }
@@ -116,7 +116,7 @@ static class Globals
         }
         catch (Exception ex) when (ex.IsIO())
         {
-            AssemblyLog($@"Caught error of type {ex.GetType().Name}, returning no value.");
+            AssemblyLog($"Caught error of type {ex.GetType().Name}, returning no value.");
 
             return default;
         }

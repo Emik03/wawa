@@ -139,6 +139,6 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
     /// <inheritdoc/>
     [Pure]
     public override string ToString() =>
-        $@"{{ {nameof(Author)}: {Author}, {nameof(Description)}: {Description}, {nameof(Id)}: {Id}, " +
-        $@"{nameof(Title)}: {Title}, {nameof(UnityVersion)}: {UnityVersion}, {nameof(Version)}: {Version} }}";
+        $"{{ {nameof(Author)}: {Author}, {nameof(Description)}: {Description}, {nameof(Id)}: {Id}, " +
+        $"{nameof(Title)}: {Title}, {nameof(UnityVersion)}: {UnityVersion}, {nameof(Version)}: {Version} }}";
 }

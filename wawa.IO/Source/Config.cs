@@ -40,7 +40,7 @@ public static class Config
         if (!that.HasRead)
             return that;
 
-        AssemblyLog($@"Writing to file ""{that.FilePath}"" the following contents: {value}");
+        AssemblyLog(@$"Writing to file ""{that.FilePath}"" the following contents: {value}");
 
         new
         {
@@ -130,7 +130,7 @@ public static class Config
                 continue;
 
             toMerge.Remove(kvp.Key);
-            AssemblyLog($@"The original file has a redundant key ""{kvp.Key}"" which will be automatically removed.");
+            AssemblyLog(@$"The original file has a redundant key ""{kvp.Key}"" which will be automatically removed.");
         }
     }
 
@@ -157,7 +157,7 @@ public static class Config
             ? deserialized.ToString()
             : Serialize(deserialized);
 
-        AssemblyLog($@"Read was successful: {message}");
+        AssemblyLog($"Read was successful: {message}");
 
         return deserialized;
     }

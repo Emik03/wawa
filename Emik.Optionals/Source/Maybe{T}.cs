@@ -96,5 +96,5 @@ public readonly struct Maybe<T> : ICloneable, IEquatable<Maybe<T>>, IEqualityCom
 
     /// <inheritdoc />
     [Pure]
-    public override string ToString() => IsSome ? $@"Some({Value})" : NoneMessage;
+    public override string ToString() => IsSome ? $"Some({Value})" : NoneMessage;
 }

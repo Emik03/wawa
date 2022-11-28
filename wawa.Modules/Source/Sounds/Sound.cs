@@ -131,5 +131,5 @@ public sealed partial class Sound : ICloneable, IEquatable<Sound>, IEqualityComp
     /// <inheritdoc/>
     [Pure]
     public override string ToString() =>
-        $@"{(Vanilla.IsSome ? nameof(Vanilla) : nameof(Modded))} ({(Vanilla.IsSome ? Vanilla.Value : Modded.Unwrap())})";
+        $"{(Vanilla.IsSome ? nameof(Vanilla) : nameof(Modded))} ({(Vanilla.IsSome ? Vanilla.Value : Modded.Unwrap())})";
 }

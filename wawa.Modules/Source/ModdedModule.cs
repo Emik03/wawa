@@ -14,7 +14,8 @@ public abstract class ModdedModule : CachedBehaviour
         ExceptionStackTrace = "Rethrow as ",
         NoComponent = $"There is no attached {nameof(KMBombModule)} or {nameof(KMNeedyModule)}.",
         NotFound = "[[HYPERLINK BLOCKED]]",
-        Prefix = "\n| ",
+        Prefix = @"
+| ",
         TooFewAudioSources = $"You need a {nameof(KMAudio)} component to play a sound. " +
             "It cannot be instantiated by this library, since the game could hook before this library can create one.",
         TooManyAudioSources =
@@ -197,7 +198,7 @@ public abstract class ModdedModule : CachedBehaviour
     {
         var id = Status.Id;
         var stringify = Stringifier.Stringify(format);
-        var message = $@"[{Name} #{id}] {stringify}";
+        var message = $"[{Name} #{id}] {stringify}";
 
         Debug.unityLogger.Log(logType, message);
 
@@ -236,7 +237,7 @@ public abstract class ModdedModule : CachedBehaviour
     [return: AllowNull]
     public T LogLower<T>([AllowNull, CanBeNull] T format = default, LogType logType = LogType.Log)
     {
-        var message = $@"<{Name} #{Status.Id}> {Stringifier.Stringify(format)}";
+        var message = $"<{Name} #{Status.Id}> {Stringifier.Stringify(format)}";
 
         Log(format, message, logType);
 
@@ -267,8 +268,8 @@ public abstract class ModdedModule : CachedBehaviour
     /// <summary>Logs version numbers. Be sure to call this method if you are implementing Awake.</summary>
     protected virtual void Awake()
     {
-        AssemblyLog($@"The module ""{Name}"" uses this library.");
-        Log($@"Version: {GetModInfo(Id).Value?.Version ?? NotFound}");
+        AssemblyLog(@$"The module ""{Name}"" uses this library.");
+        Log($"Version: {GetModInfo(Id).Value?.Version ?? NotFound}");
     }
 
     /// <summary>The method that is called when the lights are turned on. Automatically hooked in Awake.</summary>
@@ -311,7 +312,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="message">The message of the <see cref="Exception"/>.</param>
     protected virtual void OnException([NotNull] string message)
     {
-        var formatted = $@"Unhandled: {message}";
+        var formatted = $"Unhandled: {message}";
 
         Log(formatted, LogType.Warning);
 
@@ -367,7 +368,7 @@ public abstract class ModdedModule : CachedBehaviour
 
         var innerExceptions = string.Join(Prefix, rethrows);
         var spacing = innerExceptions is "" ? "" : Prefix;
-        var message = $@"{condition}{spacing}{innerExceptions}";
+        var message = $"{condition}{spacing}{innerExceptions}";
 
         OnException(message);
     }

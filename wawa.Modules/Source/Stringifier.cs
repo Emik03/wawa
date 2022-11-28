@@ -126,12 +126,12 @@ public static class Stringifier
         {
             null => Null,
             bool b => b ? True : False,
-            char c => isSurrounded ? $@"'{c}'" : $@"{c}",
-            string s => isSurrounded ? $@"""{s}""" : s,
+            char c => isSurrounded ? $"'{c}'" : $"{c}",
+            string s => isSurrounded ? @$"""{s}""" : s,
             IFormattable i => i.ToString(null, CultureInfo.InvariantCulture),
-            IDictionary d => $@"{{ {d.DictionaryStringifier()} }}",
-            ICollection l => $@"{l.Count} [{l.GetEnumerator().EnumeratorStringifier()}]",
-            IEnumerable e => $@"[{e.GetEnumerator().EnumeratorStringifier()}]",
+            IDictionary d => $"{{ {d.DictionaryStringifier()} }}",
+            ICollection l => $"{l.Count} [{l.GetEnumerator().EnumeratorStringifier()}]",
+            IEnumerable e => $"[{e.GetEnumerator().EnumeratorStringifier()}]",
             _ => source.StringifyObject(isRecursive),
         };
 
@@ -143,7 +143,7 @@ public static class Stringifier
 
     [Pure]
     static string ToOrdinal(this int i) =>
-        $@"{(i < 0 ? Negative : "")}{i}{Mod(i) switch
+        @$"{(i < 0 ? Negative : "")}{i}{Mod(i) switch
         {
             1 => First,
             2 => Second,
@@ -198,7 +198,7 @@ public static class Stringifier
         if (!s_stringifiers.ContainsKey(typeof(T)))
             s_stringifiers[typeof(T)] = GenerateStringifier<T>();
 
-        return $@"{typeof(T).Name} {{ {((Func<T, string>)s_stringifiers[typeof(T)])(source)} }}";
+        return $"{typeof(T).Name} {{ {((Func<T, string>)s_stringifiers[typeof(T)])(source)} }}";
     }
 
     [MustUseReturnValue]
@@ -230,7 +230,7 @@ public static class Stringifier
     [MustUseReturnValue]
     static MethodCallExpression GetMethodCaller(PropertyInfo info, Expression param)
     {
-        var exConstant = Expression.Constant($@"{info.Name}{KeyValueSeparator}");
+        var exConstant = Expression.Constant($"{info.Name}{KeyValueSeparator}");
         var method = s_stringify.MakeGenericMethod(info.PropertyType);
 
         Expression
