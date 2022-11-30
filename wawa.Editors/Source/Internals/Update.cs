@@ -10,12 +10,14 @@ static class Update
     const string
         Dll = "dll",
         ExternalAnnotations = "ExternalAnnotations.xml",
-        FetchLink = $"https://api.{GitHub}releases/latest",
+        FetchLink = $"https://api.{GitHubAPI}releases/latest",
         GitHub = $"github.com/{GitHubUser}/{GitHubRepo}/",
+        GitHubAPI = $"github.com/repos/{GitHubUser}/{GitHubRepo}/",
         GitHubRepo = "wawa",
         GitHubUser = "Emik03",
         Managed = "Managed/",
         Pdb = "pdb",
+        Plugins = "Plugins/",
         Prep = "Spawning a new game object, remove it once the downloads are complete. " +
             "Now preparing to fetch and download the following libraries: ",
         Separator = ", ",
@@ -26,13 +28,10 @@ static class Update
     static string s_tag = "";
 
     [NotNull]
-    static string ContainingFolder => Directory.GetDirectoryRoot(Uri.UnescapeDataString(CodeBase.Path));
+    static string ContainingFolder { get; } = Path.Combine(Application.dataPath, Plugins);
 
     [NotNull]
-    static string ManagedContainingFolder => Path.Combine(ContainingFolder, Managed);
-
-    [NotNull]
-    static UriBuilder CodeBase => new(typeof(WawaEditor).Assembly.CodeBase);
+    static string ManagedContainingFolder { get; } = Path.Combine(ContainingFolder, Managed);
 
     /// <summary>Fetches and downloads a set of libraries concurrently.</summary>
     /// <param name="fetches">The libraries to fetch.</param>

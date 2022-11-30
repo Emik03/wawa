@@ -52,8 +52,8 @@ static class Globals
         data = web.downloadHandler.data;
 
         if (error is null &&
-            code is < 200 or >= 300 &&
-            data is null or { Length: 0 })
+            code is >= 200 and < 300 &&
+            data is { Length: not 0 })
             return false;
 
         string text = web.downloadHandler.text,
