@@ -9,6 +9,7 @@ static class Update
     [NotNull]
     const string
         Dll = "dll",
+        ExternalAnnotations = "ExternalAnnotations.xml",
         FetchLink = $"https://api.{GitHub}releases/latest",
         GitHub = $"github.com/{GitHubUser}/{GitHubRepo}/",
         GitHubRepo = "wawa",
@@ -74,8 +75,9 @@ static class Update
     static IEnumerator Downloads([NotNull] string lib)
     {
         yield return Download(s_tag, lib, Dll);
-        yield return Download(s_tag, lib, Xml);
+        yield return Download(s_tag, lib, ExternalAnnotations);
         yield return Download(s_tag, lib, Pdb);
+        yield return Download(s_tag, lib, Xml);
 
         AssemblyLog($"Finished downloading {lib}!");
     }
