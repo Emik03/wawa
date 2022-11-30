@@ -53,8 +53,8 @@ sealed class WawaEditor : Editor
     static void FetchIO() => Fetch(Optionals, DDL, IO);
 
     [MenuItem($"{Update}{Modules}{Suffix}"), UsedImplicitly]
-    static void FetchModules() => Fetch(Optionals, DDL, IO, Modules);
+    static void FetchModules() => Fetch(Optionals, DDL, IO, Unity, Modules);
 
     [MenuItem($"{Update}{TwitchPlays}{Suffix}"), UsedImplicitly]
-    static void FetchTwitchPlays() => Fetch(Optionals, DDL, IO, Modules, TwitchPlays);
+    static void FetchTwitchPlays() => Fetch(Optionals, DDL, IO, Modules, Unity, TwitchPlays);
 }

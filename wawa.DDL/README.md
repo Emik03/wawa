@@ -17,7 +17,7 @@ Implements the [DDL pattern](https://github.com/Emik03/.DDL#chapter-23-the-ddl-p
 |-------------------------------------------------------------------------------|---------------|------------|
 | [wawa.Editors](https://github.com/Emik03/wawa/tree/main/wawa.Editors)         | ❌             | ❌          |
 | [wawa.Extensions](https://github.com/Emik03/wawa/tree/main/wawa.Extensions)   | ❌             | ❌          |
-| [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO)                   | ❌             | ❌          |
+| [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO)                   | ❌             | ✔️         |
 | [wawa.Modules](https://github.com/Emik03/wawa/tree/main/wawa.Modules)         | ❌             | ✔️         |
 | [wawa.Optionals](https://github.com/Emik03/wawa/tree/main/wawa.Optionals)     | ❌             | ️❌         |
 | [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) | ❌             | ✔️         |
