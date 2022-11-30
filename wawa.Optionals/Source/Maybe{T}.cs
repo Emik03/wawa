@@ -31,7 +31,7 @@ public readonly struct Maybe<T> : ICloneable, IEquatable<Maybe<T>>, IEqualityCom
     public bool IsSome { [Pure] get; }
 
     /// <summary>Gets the value that is encapsulated. This value returned may be <see langword="null" />.</summary>
-    [AllowNull, CanBeNull]
+    [AllowNull, CanBeNull, ProvidesContext]
     public T Value { [Pure] get; }
 
     /// <summary>Converts the <typeparamref name="T" /> to a <see langword="new" /> <see cref="Maybe{T}" />.</summary>

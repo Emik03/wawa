@@ -61,7 +61,8 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
     /// <param name="right">The right-hand side.</param>
     /// <returns>The value <see langword="true"/> if both instances do not contain the same values.</returns>
     [Pure]
-    public static bool operator !=([AllowNull, CanBeNull] ModInfo left, [AllowNull, CanBeNull] ModInfo right) => !(left == right);
+    public static bool operator !=([AllowNull, CanBeNull] ModInfo left, [AllowNull, CanBeNull] ModInfo right) =>
+        !(left == right);
 
     /// <summary>Tries to deserialize the parameter as <see cref="ModInfo"/>.</summary>
     /// <param name="contents">The contents to a modInfo.json.</param>
@@ -82,7 +83,7 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
     /// of <see cref="ModInfo"/> which has the information of the file if the serialization is successful,
     /// or no value if the file couldn't be read/located.
     /// </returns>
-    public static Maybe<ModInfo> ReadThenDeserialize([AllowNull, CanBeNull] string path) =>
+    public static Maybe<ModInfo> ReadThenDeserialize([AllowNull, CanBeNull, PathReference] string path) =>
         File.Exists(path)
             ? path?.SuppressIO(File.ReadAllText, true)?.SuppressIO(JsonConvert.DeserializeObject<ModInfo>, true)
             : default;

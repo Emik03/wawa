@@ -10,7 +10,7 @@ sealed class WawaEditor : Editor
 #pragma warning restore CA1812
 {
     /// <summary>The name of this library.</summary>
-    [NotNull]
+    [NotNull, ProvidesContext]
     internal const string This = $"{Wawa}Editors";
 
     [NotNull]

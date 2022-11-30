@@ -23,7 +23,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     [CanBeNull]
     static string s_autoImplementedHelp;
 
-    [CanBeNull]
+    [CanBeNull, ProvidesContext]
     static IEnumerable<CommandInfo> s_commands;
 
     bool _isPrintingYields;

@@ -10,7 +10,7 @@ namespace Wawa.Unity;
 [CLSCompliant(false), PublicAPI]
 public abstract class CachedBehaviour : MonoBehaviour
 {
-    [NotNull]
+    [NotNull, ProvidesContext]
     readonly Dictionary<Type, object> _cache = new();
 
     /// <summary>Clears the cache.</summary>

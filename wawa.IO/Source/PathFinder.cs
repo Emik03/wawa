@@ -68,7 +68,10 @@ public static class PathFinder
     /// A <see cref="Maybe{T}" />, consisting of either folder <see cref="string" /> of the absolute directory
     /// of the file if the mod directory and file were found, or <see langword="default" />.
     /// </returns>
-    public static Maybe<string> GetFile([NotNull] string file, [AllowNull, CanBeNull] string assembly = null) =>
+    public static Maybe<string> GetFile(
+        [NotNull, PathReference] string file,
+        [AllowNull, CanBeNull] string assembly = null
+    ) =>
         new
         {
             file,
@@ -108,7 +111,10 @@ public static class PathFinder
     /// from the assets in the file specified, or <see langword="default" /> in the event of an error.
     /// </returns>
     [CLSCompliant(false)]
-    public static Maybe<T[]> GetAssets<T>([NotNull] string file, [AllowNull, CanBeNull] string assembly = null)
+    public static Maybe<T[]> GetAssets<T>(
+        [NotNull, PathReference] string file,
+        [AllowNull, CanBeNull] string assembly = null
+    )
         where T : Object =>
         new
         {
@@ -132,7 +138,7 @@ public static class PathFinder
     /// The value <see langword="true" /> if copying the file was successful, otherwise <see langword="false" />.
     /// </returns>
     public static Maybe<T> GetUnmanaged<T>(
-        [NotNull] string file,
+        [NotNull, PathReference] string file,
         [NotNull] string method,
         [AllowNull, CanBeNull] string assembly = null
     )
@@ -150,12 +156,12 @@ public static class PathFinder
             );
 
     [NotNull]
-    static string Join([NotNull] this string dir, [NotNull] in string folder) =>
+    static string Join([NotNull, PathReference] this string dir, [NotNull, PathReference] in string folder) =>
         Path.Combine(dir, folder) is var first && Directory.Exists(first) ? first : dir;
 
     [CanBeNull]
     [return: AllowNull]
-    static string FindLibrary([NotNull] this string file, [NotNull] in string dir)
+    static string FindLibrary([NotNull, PathReference] this string file, [NotNull, PathReference] in string dir)
     {
         var architecture = Application.platform switch
         {
@@ -238,7 +244,7 @@ public static class PathFinder
 
     [CanBeNull]
     [return: AllowNull]
-    static T CreateUnmanagedMethod<T>([NotNull] this string dllName, [NotNull] in string name)
+    static T CreateUnmanagedMethod<T>([NotNull, PathReference] this string dllName, [NotNull] in string name)
         where T : Delegate
     {
         if (typeof(T).GetMethod(nameof(Action<T>.Invoke)) is not { } invoke)

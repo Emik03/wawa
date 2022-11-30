@@ -7,6 +7,7 @@ namespace Wawa.Extensions;
 [CLSCompliant(false), PublicAPI]
 public static class KMExtensions
 {
+    [ProvidesContext]
     static readonly bool s_isKtane = !Application.isEditor;
 
     /// <summary>

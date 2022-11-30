@@ -53,7 +53,7 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
     public bool HasRead { [Pure] get; internal set; }
 
     /// <summary>Gets the path of the file to read and write.</summary>
-    [JsonIgnore, NotNull]
+    [JsonIgnore, NotNull, ProvidesContext]
     public string FilePath { [Pure] get; }
 
     /// <summary>Determines whether both instances are both <see langword="null"/> or both instances.</summary>
