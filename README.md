@@ -17,7 +17,7 @@ This project has a dependency to [Emik.Morsels](https://github.com/Emik03/Emik.M
 
 ## Quick Start
 
-1. Go to [Releases](https://github.com/Emik03/wawa/releases) and download the latest [wawa.Editors](https://github.com/Emik03/wawa/tree/main/Releases](https://github.com/Emik03/wawa/releases) and download the latest [wawa.Editors).
+1. Go to [Releases](https://github.com/Emik03/wawa/releases) and download the latest [wawa.Editors](https://github.com/Emik03/wawa/tree/main/wawa.Editors).
 
 2. Place the `.dll` in `Assets/Plugins/`, **not** `Assets/Plugins/Managed/`.
 
