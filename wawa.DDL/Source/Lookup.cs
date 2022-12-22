@@ -1,11 +1,21 @@
+#region Emik.MPL
+
 // <copyright file="Lookup.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
+
+#endregion
+
 namespace Wawa.DDL;
+
+#region
 
 using static BindingFlags;
 
+#endregion
+
 /// <summary>Allows for querying general data from the game.</summary>
+// ReSharper disable Unity.PerformanceCriticalCodeInvocation
 [PublicAPI]
 public static class Lookup
 {
@@ -20,8 +30,6 @@ public static class Lookup
     /// </para></remarks>
     [NotNull, PublicAPI]
     public static IDictionary Mods { [Pure] get; } = FromGame(0, static _ => Factory(), new Hashtable());
-
-    // ReSharper disable Unity.PerformanceAnalysis
 
     /// <summary>Gets the localized value of a <see cref="string"/> term.</summary>
     /// <remarks><para>In the editor, this value returns <see cref="Maybe.None{T}"/>.</para></remarks>

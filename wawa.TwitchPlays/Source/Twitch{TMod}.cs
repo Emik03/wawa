@@ -1,6 +1,11 @@
-﻿// <copyright file="Twitch{TMod}.cs" company="Emik">
+﻿#region Emik.MPL
+
+// <copyright file="Twitch{TMod}.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
+
+#endregion
+
 #pragma warning disable CA1033
 namespace Wawa.TwitchPlays;
 
@@ -28,40 +33,39 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
 
     bool _isPrintingYields;
 
-    // ReSharper disable InconsistentNaming ReplaceWithFieldKeyword
-#pragma warning disable IDE0044, SA1306
-    [UsedImplicitly]
-    bool TwitchShouldCancelCommand;
+    /// <summary>Gets the instance of the module.</summary>
+    [NotNull]
+    public TMod Module => Get<TMod>();
 
-    [UsedImplicitly]
-    bool TimeModeActive;
+    /// <summary>Gets the suggested help command. This is a fallback value used when one isn't specified.</summary>
+    protected string AutoImplementedHelp
+    {
+        [NotNull] get => s_autoImplementedHelp ??= GenerateHelp();
+    }
 
-    [UsedImplicitly]
-    bool TwitchPlaysSkipTimeAllowed;
-
-    [UsedImplicitly]
-    bool TwitchPlaysActive;
-
-    [UsedImplicitly]
-    bool ZenModeActive;
-
-    [NotNull, SerializeField, UsedImplicitly]
-    string TwitchHelpMessage = "";
-
-    [NotNull, SerializeField, UsedImplicitly]
-    string TwitchManualCode = "";
-
-    [NotNull, SerializeField, UsedImplicitly]
-    List<KMBombModule> TwitchAbandonModule = new();
-
-    // ReSharper restore InconsistentNaming ReplaceWithFieldKeyword
-#pragma warning restore IDE0044, SA1306
+    [NotNull]
+    IEnumerable<CommandInfo> Commands =>
+        s_commands ??=
+            GetType()
+               .GetMethods(Bindings)
+               .Select(CommandInfo.TryFrom)
+               .Where(static c => c is not null)
+               .OrderByDescending(static c => c.Command.Priority)
+               .ToArray() is { Length: > 0 } query
+                ? query
+                : throw new MissingMethodException(None);
 
     /// <summary>
-    /// Gets or sets an event invoked whenever any command (including <see cref="TwitchString.AutoSolve"/>) yields
-    /// something and is processed. The value that it yielded is passed in.
+    /// Logs version numbers and automatically sets <see cref="Help"/>.
+    /// Be sure to call this method if you are implementing Awake.
     /// </summary>
-    public event EventHandler<YieldEventArgs> OnYield = static (_, _) => { };
+    protected virtual void Awake()
+    {
+        AssemblyLog(@$"The module ""{Module}"" uses this library.");
+
+        if (string.IsNullOrEmpty(Help))
+            Help = AutoImplementedHelp;
+    }
 
     /// <inheritdoc />
     public bool IsPrintingYields
@@ -134,28 +138,6 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <inheritdoc />
     ModdedModule ITwitchDeclarable.Inner => Module;
 
-    /// <summary>Gets the instance of the module.</summary>
-    [NotNull]
-    public TMod Module => Get<TMod>();
-
-    /// <summary>Gets the suggested help command. This is a fallback value used when one isn't specified.</summary>
-    protected string AutoImplementedHelp
-    {
-        [NotNull] get => s_autoImplementedHelp ??= GenerateHelp();
-    }
-
-    [NotNull]
-    IEnumerable<CommandInfo> Commands =>
-        s_commands ??=
-            GetType()
-               .GetMethods(Bindings)
-               .Select(CommandInfo.TryFrom)
-               .Where(static c => c is not null)
-               .OrderByDescending(static c => c.Command.Priority)
-               .ToArray() is { Length: > 0 } query
-                ? query
-                : throw new MissingMethodException(None);
-
     /// <inheritdoc />
     [Pure]
     public IEnumerator ProcessTwitchCommand(string command)
@@ -192,6 +174,30 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <inheritdoc />
     [Pure]
     public abstract IEnumerable<Instruction> ForceSolve();
+
+    /// <inheritdoc />
+    void ITwitchMutable.SetIsCancelCommand(in bool value) => TwitchShouldCancelCommand = value;
+
+    /// <inheritdoc />
+    void ITwitchMutable.SetIsTime(in bool value) => TimeModeActive = value;
+
+    /// <inheritdoc />
+    void ITwitchMutable.SetIsTimeSkippable(in bool value) => TwitchPlaysSkipTimeAllowed = value;
+
+    /// <inheritdoc />
+    void ITwitchMutable.SetIsTP(in bool value) => TwitchPlaysActive = value;
+
+    /// <inheritdoc />
+    void ITwitchMutable.SetIsZen(in bool value) => ZenModeActive = value;
+
+    /// <inheritdoc/>
+    IEnumerator ISolvable.ForceTPSolve() => TwitchHandleForcedSolve();
+
+    /// <summary>
+    /// Gets or sets an event invoked whenever any command (including <see cref="TwitchString.AutoSolve"/>) yields
+    /// something and is processed. The value that it yielded is passed in.
+    /// </summary>
+    public event EventHandler<YieldEventArgs> OnYield = static (_, _) => { };
 
     /// <inheritdoc/>
     [Pure]
@@ -274,24 +280,6 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
             ? Enumerable.Empty<WaitForSecondsRealtime>()
             : Sequence(indices.Select(x => selectables[x]), duration);
 
-    /// <inheritdoc />
-    void ITwitchMutable.SetIsCancelCommand(in bool value) => TwitchShouldCancelCommand = value;
-
-    /// <inheritdoc />
-    void ITwitchMutable.SetIsTime(in bool value) => TimeModeActive = value;
-
-    /// <inheritdoc />
-    void ITwitchMutable.SetIsTimeSkippable(in bool value) => TwitchPlaysSkipTimeAllowed = value;
-
-    /// <inheritdoc />
-    void ITwitchMutable.SetIsTP(in bool value) => TwitchPlaysActive = value;
-
-    /// <inheritdoc />
-    void ITwitchMutable.SetIsZen(in bool value) => ZenModeActive = value;
-
-    /// <inheritdoc/>
-    IEnumerator ISolvable.ForceTPSolve() => TwitchHandleForcedSolve();
-
     /// <summary>
     /// Splits a <see cref="string"/> into an <see cref="Array"/> of <see cref="string"/> values based on a separator.
     /// </summary>
@@ -337,18 +325,6 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     {
         while (!condition())
             yield return item;
-    }
-
-    /// <summary>
-    /// Logs version numbers and automatically sets <see cref="Help"/>.
-    /// Be sure to call this method if you are implementing Awake.
-    /// </summary>
-    protected virtual void Awake()
-    {
-        AssemblyLog(@$"The module ""{Module}"" uses this library.");
-
-        if (string.IsNullOrEmpty(Help))
-            Help = AutoImplementedHelp;
     }
 
     [NotNull]
@@ -522,4 +498,33 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
 
         return method.Invoke(instance, args) as IEnumerable<Instruction>;
     }
+
+    // ReSharper disable InconsistentNaming ReplaceWithFieldKeyword
+#pragma warning disable IDE0044, SA1306
+    [UsedImplicitly]
+    bool TwitchShouldCancelCommand;
+
+    [UsedImplicitly]
+    bool TimeModeActive;
+
+    [UsedImplicitly]
+    bool TwitchPlaysSkipTimeAllowed;
+
+    [UsedImplicitly]
+    bool TwitchPlaysActive;
+
+    [UsedImplicitly]
+    bool ZenModeActive;
+
+    [NotNull, SerializeField, UsedImplicitly]
+    string TwitchHelpMessage = "";
+
+    [NotNull, SerializeField, UsedImplicitly]
+    string TwitchManualCode = "";
+
+    [NotNull, SerializeField, UsedImplicitly]
+    List<KMBombModule> TwitchAbandonModule = new();
+
+    // ReSharper restore InconsistentNaming ReplaceWithFieldKeyword
+#pragma warning restore IDE0044, SA1306
 }

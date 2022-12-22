@@ -1,6 +1,11 @@
-﻿// <copyright file="KMExtensions.cs" company="Emik">
+﻿#region Emik.MPL
+
+// <copyright file="KMExtensions.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
+
+#endregion
+
 namespace Wawa.Extensions;
 
 /// <summary>Contains static methods able to be accessed from anywhere within this library.</summary>
@@ -234,8 +239,6 @@ public static class KMExtensions
         return needy;
     }
 
-    // ReSharper disable FunctionComplexityOverflow
-
     /// <summary>Adds specified delegate parameters into the <see cref="KMSelectable"/>.</summary>
     /// <param name="selectable">The <see cref="KMSelectable"/> to hook.</param>
     /// <param name="isParent">
@@ -265,6 +268,7 @@ public static class KMExtensions
     /// <param name="onSelect">Called whenever the selectable becomes the current selectable.</param>
     /// <param name="onUpdateChildren">Called when the selectable updates its children.</param>
     /// <returns>The parameter <paramref name="selectable"/>.</returns>
+    // ReSharper disable FunctionComplexityOverflow
     [NotNull, PublicAPI]
     public static KMSelectable Add(
         [NotNull] this KMSelectable selectable,

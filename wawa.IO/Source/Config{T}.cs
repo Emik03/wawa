@@ -1,6 +1,11 @@
-﻿// <copyright file="Config{T}.cs" company="Emik">
+﻿#region Emik.MPL
+
+// <copyright file="Config{T}.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
+
+#endregion
+
 namespace Wawa.IO;
 
 /// <summary>Meant for information that needs to be deserialized within the mod settings folder.</summary>
@@ -56,6 +61,22 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
     [JsonIgnore, NotNull, ProvidesContext]
     public string FilePath { [Pure] get; }
 
+    /// <inheritdoc/>
+    [Pure]
+    public object Clone() => this;
+
+    /// <inheritdoc/>
+    [Pure]
+    public bool Equals(Config<T> x, Config<T> y) => x == y;
+
+    /// <inheritdoc/>
+    [Pure]
+    public int GetHashCode([AllowNull, CanBeNull] Config<T> obj) => obj?.GetHashCode() ?? 0;
+
+    /// <inheritdoc/>
+    [Pure]
+    public bool Equals(Config<T> other) => this == other;
+
     /// <summary>Determines whether both instances are both <see langword="null"/> or both instances.</summary>
     /// <param name="left">The left-hand side operator.</param>
     /// <param name="right">The right-hand side operator.</param>
@@ -77,22 +98,6 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
     [Pure]
     public static bool operator !=([AllowNull, CanBeNull] Config<T> left, [AllowNull, CanBeNull] Config<T> right) =>
         !(left == right);
-
-    /// <inheritdoc/>
-    [Pure]
-    public bool Equals(Config<T> other) => this == other;
-
-    /// <inheritdoc/>
-    [Pure]
-    public bool Equals(Config<T> x, Config<T> y) => x == y;
-
-    /// <inheritdoc/>
-    [Pure]
-    public int GetHashCode([AllowNull, CanBeNull] Config<T> obj) => obj?.GetHashCode() ?? 0;
-
-    /// <inheritdoc/>
-    [Pure]
-    public object Clone() => this;
 
     /// <inheritdoc/>
     [Pure]

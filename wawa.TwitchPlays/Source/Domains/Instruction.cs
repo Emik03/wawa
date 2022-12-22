@@ -1,6 +1,11 @@
-﻿// <copyright file="Instruction.cs" company="Emik">
+﻿#region Emik.MPL
+
+// <copyright file="Instruction.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
+
+#endregion
+
 namespace Wawa.TwitchPlays.Domains;
 
 /// <summary>Defines an instruction for Twitch Plays to process.</summary>
@@ -67,6 +72,22 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// </summary>
     [NotNull]
     internal object Value { [Pure] get; }
+
+    /// <inheritdoc/>
+    [Pure]
+    public object Clone() => this;
+
+    /// <inheritdoc/>
+    [Pure]
+    public bool Equals(Instruction x, Instruction y) => x == y;
+
+    /// <inheritdoc/>
+    [Pure]
+    public int GetHashCode([AllowNull, CanBeNull] Instruction obj) => obj?.GetHashCode() ?? 0;
+
+    /// <inheritdoc/>
+    [Pure]
+    public bool Equals(Instruction other) => this == other;
 
     /// <summary>Implicitly calls the constructor.</summary>
     /// <param name="customYield">The <see cref="CustomYieldInstruction"/> to pass in to the constructor.</param>
@@ -209,19 +230,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
 
     /// <inheritdoc/>
     [Pure]
-    public bool Equals(Instruction other) => this == other;
-
-    /// <inheritdoc/>
-    [Pure]
-    public bool Equals(Instruction x, Instruction y) => x == y;
-
-    /// <inheritdoc/>
-    [Pure]
     public override bool Equals(object obj) => Equals(obj as Instruction);
-
-    /// <inheritdoc/>
-    [Pure]
-    public int GetHashCode([AllowNull, CanBeNull] Instruction obj) => obj?.GetHashCode() ?? 0;
 
     /// <inheritdoc/>
     [Pure]
@@ -230,8 +239,4 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <inheritdoc/>
     [Pure]
     public override string ToString() => Stringifier.Stringify(Value);
-
-    /// <inheritdoc/>
-    [Pure]
-    public object Clone() => this;
 }

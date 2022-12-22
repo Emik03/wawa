@@ -1,6 +1,11 @@
-﻿// <copyright file="AliasAttribute.cs" company="Emik">
+﻿#region Emik.MPL
+
+// <copyright file="AliasAttribute.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
+
+#endregion
+
 namespace Wawa.TwitchPlays.Domains;
 
 /// <summary>An <see cref="Attribute"/> to attach to a field to signify alternative ways to spell it.</summary>
@@ -29,6 +34,26 @@ public sealed class AliasAttribute : Attribute,
     /// <summary>Gets the alternative representations.</summary>
     [NotNull]
     public string[] Aliases { [Pure] get; }
+
+    /// <inheritdoc/>
+    [Pure]
+    public object Clone() => new AliasAttribute(Aliases);
+
+    /// <inheritdoc/>
+    [Pure]
+    public bool Equals(AliasAttribute x, AliasAttribute y) => x == y;
+
+    /// <inheritdoc/>
+    [Pure]
+    public int GetHashCode([AllowNull, CanBeNull] AliasAttribute obj) => obj?.GetHashCode() ?? 0;
+
+    /// <inheritdoc/>
+    [Pure]
+    public bool Equals(AliasAttribute other) => this == other;
+
+    /// <inheritdoc />
+    public string ToString([NotNull] string format, [AllowNull, CanBeNull] IFormatProvider formatProvider) =>
+        ToString(format);
 
     /// <summary>Determines whether both have the same values.</summary>
     /// <param name="left">The left-hand side.</param>
@@ -68,22 +93,6 @@ public sealed class AliasAttribute : Attribute,
 
     /// <inheritdoc/>
     [Pure]
-    public bool Equals(AliasAttribute other) => this == other;
-
-    /// <inheritdoc/>
-    [Pure]
-    public bool Equals(AliasAttribute x, AliasAttribute y) => x == y;
-
-    /// <inheritdoc/>
-    [Pure]
-    public int GetHashCode([AllowNull, CanBeNull] AliasAttribute obj) => obj?.GetHashCode() ?? 0;
-
-    /// <inheritdoc/>
-    [Pure]
-    public object Clone() => new AliasAttribute(Aliases);
-
-    /// <inheritdoc/>
-    [Pure]
     public override bool Equals(object obj) => Equals(obj as AliasAttribute);
 
     /// <inheritdoc/>
@@ -100,8 +109,4 @@ public sealed class AliasAttribute : Attribute,
     /// <returns>A concatenation of the parameter <paramref name="x"/> with <see cref="Aliases"/>.</returns>
     [NotNull]
     public string ToString([NotNull] string x) => Stringifier.Conjoin(Enumerable.Repeat(x, 1).Concat(Aliases), '/');
-
-    /// <inheritdoc />
-    public string ToString([NotNull] string format, [AllowNull, CanBeNull] IFormatProvider formatProvider) =>
-        ToString(format);
 }

@@ -1,6 +1,13 @@
+#region Emik.MPL
+
 // <copyright file="Globals.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
+
+#endregion
+
+#region
+
 global using Newtonsoft.Json;
 global using Newtonsoft.Json.Converters;
 global using Newtonsoft.Json.Linq;
@@ -11,6 +18,8 @@ global using static Wawa.DDL.Lookup;
 global using static Wawa.IO.Internals.Globals;
 global using static Wawa.IO.PathFinder;
 global using Formatting = Newtonsoft.Json.Formatting;
+
+#endregion
 
 namespace Wawa.IO.Internals;
 

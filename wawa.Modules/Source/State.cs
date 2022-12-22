@@ -1,6 +1,11 @@
-﻿// <copyright file="State.cs" company="Emik">
+﻿#region Emik.MPL
+
+// <copyright file="State.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
+
+#endregion
+
 namespace Wawa.Modules;
 
 /// <summary>Encapsulation of status conditions for a <see cref="ModdedModule"/>.</summary>
@@ -43,6 +48,22 @@ public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<Sta
     /// <summary>Gets or sets the amount of times <see cref="ModdedModule.Strike"/> was called.</summary>
     internal int Strikes { [Pure] get; set; }
 
+    /// <inheritdoc/>
+    [Pure]
+    public object Clone() => new State(_name);
+
+    /// <inheritdoc/>
+    [Pure]
+    public bool Equals(State x, State y) => x == y;
+
+    /// <inheritdoc/>
+    [Pure]
+    public int GetHashCode([AllowNull, CanBeNull] State obj) => obj?.GetHashCode() ?? 0;
+
+    /// <inheritdoc/>
+    [Pure]
+    public bool Equals(State other) => this == other;
+
     /// <summary>Determines whether both instances contain the same values.</summary>
     /// <param name="left">The left-hand side.</param>
     /// <param name="right">The right-hand side.</param>
@@ -68,22 +89,6 @@ public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<Sta
     [Pure]
     public static bool operator !=([AllowNull, CanBeNull] State left, [AllowNull, CanBeNull] State right) =>
         !(left == right);
-
-    /// <inheritdoc/>
-    [Pure]
-    public bool Equals(State other) => this == other;
-
-    /// <inheritdoc/>
-    [Pure]
-    public bool Equals(State x, State y) => x == y;
-
-    /// <inheritdoc/>
-    [Pure]
-    public int GetHashCode([AllowNull, CanBeNull] State obj) => obj?.GetHashCode() ?? 0;
-
-    /// <inheritdoc/>
-    [Pure]
-    public object Clone() => new State(_name);
 
     /// <inheritdoc/>
     [Pure]

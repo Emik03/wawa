@@ -1,6 +1,11 @@
-﻿// <copyright file="Maybe.cs" company="Emik">
+﻿#region Emik.MPL
+
+// <copyright file="Maybe.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
+
+#endregion
+
 namespace Wawa.Optionals;
 
 /// <summary>Implementations for <see cref="Maybe{T}"/>.</summary>
@@ -10,8 +15,6 @@ public static class Maybe
     [NotNull]
     const string UnwrapMessage = $"Called '{nameof(Unwrap)}' on a None {nameof(Maybe)}.";
 
-    // ReSharper disable UseNegatedPatternInIsExpression
-
     /// <summary>Assigns a value with the inner value, or a <see langword="default"/> value if none exists.</summary>
     /// <typeparam name="T">The generic type argument in <see cref="Maybe{T}"/>.</typeparam>
     /// <param name="that">This instance of <see cref="Maybe{T}"/>.</param>
@@ -19,6 +22,7 @@ public static class Maybe
     /// <returns>
     /// The value <see langword="true"/> if <paramref name="that"/> contains a value, otherwise <see langword="false"/>.
     /// </returns>
+    // ReSharper disable UseNegatedPatternInIsExpression
     [PublicAPI, Pure]
     public static bool TryGet<T>(
         [InstantHandle] this Maybe<T> that,

@@ -1,6 +1,11 @@
-﻿// <copyright file="CommandAttribute.cs" company="Emik">
+﻿#region Emik.MPL
+
+// <copyright file="CommandAttribute.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
+
+#endregion
+
 namespace Wawa.TwitchPlays.Domains;
 
 /// <summary>
@@ -30,30 +35,9 @@ public sealed class CommandAttribute : Attribute,
     /// <summary>Gets the prefix of this command. If <see cref="Maybe.None{T}"/>, the prefix is inferred.</summary>
     public Maybe<string> Prefix { [Pure] get; }
 
-    /// <summary>Determines whether both have the same values.</summary>
-    /// <param name="left">The left-hand side.</param>
-    /// <param name="right">The right-hand side.</param>
-    /// <returns>
-    /// The value <see langword="true"/> if both of them contain the same values,
-    /// otherwise <see langword="false"/>.</returns>
-    [Pure]
-    public static bool operator ==([AllowNull, CanBeNull] CommandAttribute left, [AllowNull, CanBeNull] CommandAttribute right) =>
-        left?.Prefix == right?.Prefix && left?.Priority == right?.Priority;
-
-    /// <summary>Determines whether both do not have the same values.</summary>
-    /// <param name="left">The left-hand side.</param>
-    /// <param name="right">The right-hand side.</param>
-    /// <returns>
-    /// The value <see langword="true"/> if both of them do not contain the same values,
-    /// otherwise <see langword="false"/>.
-    /// </returns>
-    [Pure]
-    public static bool operator !=([AllowNull, CanBeNull] CommandAttribute left, [AllowNull, CanBeNull] CommandAttribute right) =>
-        !(left == right);
-
     /// <inheritdoc/>
     [Pure]
-    public bool Equals(CommandAttribute other) => this == other;
+    public object Clone() => new CommandAttribute(Prefix.Value, Priority);
 
     /// <inheritdoc/>
     [Pure]
@@ -65,7 +49,34 @@ public sealed class CommandAttribute : Attribute,
 
     /// <inheritdoc/>
     [Pure]
-    public object Clone() => new CommandAttribute(Prefix.Value, Priority);
+    public bool Equals(CommandAttribute other) => this == other;
+
+    /// <summary>Determines whether both have the same values.</summary>
+    /// <param name="left">The left-hand side.</param>
+    /// <param name="right">The right-hand side.</param>
+    /// <returns>
+    /// The value <see langword="true"/> if both of them contain the same values,
+    /// otherwise <see langword="false"/>.</returns>
+    [Pure]
+    public static bool operator ==(
+        [AllowNull, CanBeNull] CommandAttribute left,
+        [AllowNull, CanBeNull] CommandAttribute right
+    ) =>
+        left?.Prefix == right?.Prefix && left?.Priority == right?.Priority;
+
+    /// <summary>Determines whether both do not have the same values.</summary>
+    /// <param name="left">The left-hand side.</param>
+    /// <param name="right">The right-hand side.</param>
+    /// <returns>
+    /// The value <see langword="true"/> if both of them do not contain the same values,
+    /// otherwise <see langword="false"/>.
+    /// </returns>
+    [Pure]
+    public static bool operator !=(
+        [AllowNull, CanBeNull] CommandAttribute left,
+        [AllowNull, CanBeNull] CommandAttribute right
+    ) =>
+        !(left == right);
 
     /// <inheritdoc/>
     [Pure]

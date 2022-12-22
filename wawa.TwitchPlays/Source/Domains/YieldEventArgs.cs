@@ -1,6 +1,11 @@
-﻿// <copyright file="YieldEventArgs.cs" company="Emik">
+﻿#region Emik.MPL
+
+// <copyright file="YieldEventArgs.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
+
+#endregion
+
 namespace Wawa.TwitchPlays.Domains;
 
 /// <summary>An <see cref="EventArgs"/> for yielded items.</summary>
@@ -21,6 +26,22 @@ public sealed class YieldEventArgs : EventArgs,
     /// </para></remarks>
     public Maybe<Instruction> Query { [Pure] get; }
 
+    /// <inheritdoc/>
+    [Pure]
+    public object Clone() => new YieldEventArgs(Query.Value);
+
+    /// <inheritdoc/>
+    [Pure]
+    public bool Equals(YieldEventArgs x, YieldEventArgs y) => x == y;
+
+    /// <inheritdoc/>
+    [Pure]
+    public int GetHashCode([AllowNull, CanBeNull] YieldEventArgs obj) => obj?.GetHashCode() ?? 0;
+
+    /// <inheritdoc/>
+    [Pure]
+    public bool Equals(YieldEventArgs other) => this == other;
+
     /// <summary>Determines whether both instances point to the same component.</summary>
     /// <param name="left">The left-hand side.</param>
     /// <param name="right">The right-hand side.</param>
@@ -28,7 +49,10 @@ public sealed class YieldEventArgs : EventArgs,
     /// The value <see langword="true"/> if both of them point to the same component, otherwise <see langword="false"/>.
     /// </returns>
     [Pure]
-    public static bool operator ==([AllowNull, CanBeNull] YieldEventArgs left, [AllowNull, CanBeNull] YieldEventArgs right) =>
+    public static bool operator ==(
+        [AllowNull, CanBeNull] YieldEventArgs left,
+        [AllowNull, CanBeNull] YieldEventArgs right
+    ) =>
         left is null ? right is null : right is not null && left.Query == right.Query;
 
     /// <summary>Determines whether both instances do not point to the same component.</summary>
@@ -39,16 +63,11 @@ public sealed class YieldEventArgs : EventArgs,
     /// otherwise <see langword="false"/>.
     /// </returns>
     [Pure]
-    public static bool operator !=([AllowNull, CanBeNull] YieldEventArgs left, [AllowNull, CanBeNull] YieldEventArgs right) =>
+    public static bool operator !=(
+        [AllowNull, CanBeNull] YieldEventArgs left,
+        [AllowNull, CanBeNull] YieldEventArgs right
+    ) =>
         !(left == right);
-
-    /// <inheritdoc/>
-    [Pure]
-    public bool Equals(YieldEventArgs other) => this == other;
-
-    /// <inheritdoc/>
-    [Pure]
-    public bool Equals(YieldEventArgs x, YieldEventArgs y) => x == y;
 
     /// <inheritdoc/>
     [Pure]
@@ -56,15 +75,7 @@ public sealed class YieldEventArgs : EventArgs,
 
     /// <inheritdoc/>
     [Pure]
-    public int GetHashCode([AllowNull, CanBeNull] YieldEventArgs obj) => obj?.GetHashCode() ?? 0;
-
-    /// <inheritdoc/>
-    [Pure]
     public override int GetHashCode() => Query.GetHashCode();
-
-    /// <inheritdoc/>
-    [Pure]
-    public object Clone() => new YieldEventArgs(Query.Value);
 
     /// <summary>Uses <see cref="Stringifier.Stringify{T}(T, bool, bool)"/> on <see cref="Query"/>.</summary>
     /// <returns>A <see cref="string"/> representation of <see cref="Query"/>.</returns>

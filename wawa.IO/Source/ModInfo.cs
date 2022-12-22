@@ -1,6 +1,11 @@
-﻿// <copyright file="ModInfo.cs" company="Emik">
+﻿#region Emik.MPL
+
+// <copyright file="ModInfo.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
+
+#endregion
+
 namespace Wawa.IO;
 
 /// <summary>
@@ -39,6 +44,31 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
     /// <summary>Gets the version number of the mod.</summary>
     [JsonProperty("version"), NotNull]
     public string Version { [Pure] get; private set; } = "";
+
+    /// <inheritdoc/>
+    [Pure]
+    public object Clone() =>
+        new ModInfo
+        {
+            Author = Author,
+            Description = Description,
+            Id = Id,
+            Title = Title,
+            UnityVersion = UnityVersion,
+            Version = Version,
+        };
+
+    /// <inheritdoc/>
+    [Pure]
+    public bool Equals(ModInfo x, ModInfo y) => x == y;
+
+    /// <inheritdoc/>
+    [Pure]
+    public int GetHashCode([AllowNull, CanBeNull] ModInfo obj) => obj?.GetHashCode() ?? 0;
+
+    /// <inheritdoc/>
+    [Pure]
+    public bool Equals(ModInfo other) => this == other;
 
     /// <summary>Determines whether both instances contain the same values.</summary>
     /// <param name="left">The left-hand side.</param>
@@ -87,31 +117,6 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
         File.Exists(path)
             ? path?.SuppressIO(File.ReadAllText, true)?.SuppressIO(JsonConvert.DeserializeObject<ModInfo>, true)
             : default;
-
-    /// <inheritdoc/>
-    [Pure]
-    public bool Equals(ModInfo other) => this == other;
-
-    /// <inheritdoc/>
-    [Pure]
-    public bool Equals(ModInfo x, ModInfo y) => x == y;
-
-    /// <inheritdoc/>
-    [Pure]
-    public int GetHashCode([AllowNull, CanBeNull] ModInfo obj) => obj?.GetHashCode() ?? 0;
-
-    /// <inheritdoc/>
-    [Pure]
-    public object Clone() =>
-        new ModInfo
-        {
-            Author = Author,
-            Description = Description,
-            Id = Id,
-            Title = Title,
-            UnityVersion = UnityVersion,
-            Version = Version,
-        };
 
     /// <inheritdoc/>
     [Pure]

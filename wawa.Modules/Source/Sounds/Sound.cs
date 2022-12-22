@@ -1,6 +1,11 @@
-﻿// <copyright file="Sound.cs" company="Emik">
+﻿#region Emik.MPL
+
+// <copyright file="Sound.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
+
+#endregion
+
 namespace Wawa.Modules;
 
 /// <summary>
@@ -37,6 +42,22 @@ public sealed partial class Sound : ICloneable, IEquatable<Sound>, IEqualityComp
 
     /// <summary>Gets the instance of the <see cref="KMAudio.KMAudioRef"/> created from playing a sound.</summary>
     public Maybe<KMAudioRef> Reference { [Pure] get; internal set; }
+
+    /// <inheritdoc/>
+    [Pure]
+    public object Clone() => Vanilla.IsSome ? new Sound(Vanilla.Value) : new(Modded.Unwrap());
+
+    /// <inheritdoc/>
+    [Pure]
+    public bool Equals(Sound x, Sound y) => x == y;
+
+    /// <inheritdoc/>
+    [Pure]
+    public int GetHashCode([AllowNull, CanBeNull] Sound obj) => obj?.GetHashCode() ?? 0;
+
+    /// <inheritdoc/>
+    [Pure]
+    public bool Equals(Sound other) => this == other;
 
     /// <summary>Implicitly calls the constructor.</summary>
     /// <param name="sound">The <see cref="string"/> to pass in to the constructor.</param>
@@ -95,22 +116,6 @@ public sealed partial class Sound : ICloneable, IEquatable<Sound>, IEqualityComp
     /// <returns>A <see langword="new"/> <see cref="Sound"/> instance encapsulating <paramref name="sound"/>.</returns>
     [NotNull, Pure]
     public static Sound FromSoundEffect(SoundEffect sound) => new(sound);
-
-    /// <inheritdoc/>
-    [Pure]
-    public bool Equals(Sound other) => this == other;
-
-    /// <inheritdoc/>
-    [Pure]
-    public bool Equals(Sound x, Sound y) => x == y;
-
-    /// <inheritdoc/>
-    [Pure]
-    public int GetHashCode([AllowNull, CanBeNull] Sound obj) => obj?.GetHashCode() ?? 0;
-
-    /// <inheritdoc/>
-    [Pure]
-    public object Clone() => Vanilla.IsSome ? new Sound(Vanilla.Value) : new(Modded.Unwrap());
 
     /// <inheritdoc/>
     [Pure]
