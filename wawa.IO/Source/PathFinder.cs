@@ -206,13 +206,9 @@ public static class PathFinder
     [CanBeNull]
     [return: AllowNull]
     static ModInfo GetEditorModInfo() =>
-        AppDomain
-           .CurrentDomain
-           .GetAssemblies()
-           .FirstOrDefault(static a => a.GetName().Name is UnityAssembly)
+        Array.Find(AppDomain.CurrentDomain.GetAssemblies(), static a => a.GetName().Name is UnityAssembly)
           ?.GetType(ModInfoEditor) is { } type &&
-        type
-           .GetMethod(ModInfoSerializerEditor, ToJsonBindings)
+        type.GetMethod(ModInfoSerializerEditor, ToJsonBindings)
           ?.Invoke(type.GetProperty(ModInfoInstanceEditor, InstanceBindings)?.GetValue(null, null), null) is string s
             ? ModInfo.Deserialize(s).Value
             : null;
