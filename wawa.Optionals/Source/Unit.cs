@@ -26,9 +26,9 @@ public readonly struct Unit : ICloneable, IEquatable<Unit>, IEqualityComparer<Un
     /// <param name="right">The right-hand side.</param>
     /// <returns>The value <see langword="true" />.</returns>
     [Pure]
-#pragma warning disable IDE0060
+#pragma warning disable IDE0060, RCS1163
     public static bool operator ==([InstantHandle] Unit left, [InstantHandle] Unit right) => true;
-#pragma warning restore IDE0060
+#pragma warning restore IDE0060, RCS1163
 
     /// <summary>Returns <see langword="false" />.</summary>
     /// <remarks><para>Since this type has one value, any instance is the same as each other.</para></remarks>
@@ -36,9 +36,9 @@ public readonly struct Unit : ICloneable, IEquatable<Unit>, IEqualityComparer<Un
     /// <param name="right">The right-hand side.</param>
     /// <returns>The value <see langword="false" />.</returns>
     [Pure]
-#pragma warning disable IDE0060
+#pragma warning disable IDE0060, RCS1163
     public static bool operator !=([InstantHandle] Unit left, [InstantHandle] Unit right) => true;
-#pragma warning restore IDE0060
+#pragma warning restore IDE0060, RCS1163
 
     /// <inheritdoc />
     [Pure]

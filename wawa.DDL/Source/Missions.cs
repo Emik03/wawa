@@ -9,6 +9,7 @@
 namespace Wawa.DDL;
 
 /// <summary>Allows access into current mission metadata.</summary>
+// ReSharper disable Unity.PerformanceCriticalCodeInvocation
 [PublicAPI]
 #pragma warning disable CA1724
 public static class Missions
