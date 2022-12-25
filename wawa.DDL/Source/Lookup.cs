@@ -20,9 +20,9 @@ using static BindingFlags;
 public static class Lookup
 {
     [NotNull]
-    const string ModsName = "loadedMods";
+    const string Name = "loadedMods";
 
-    const BindingFlags ModsBindings = DeclaredOnly | Instance | NonPublic;
+    const BindingFlags Bindings = DeclaredOnly | Instance | NonPublic;
 
     /// <summary>Gets the dictionary of loaded mods.</summary>
     /// <remarks><para>
@@ -40,6 +40,5 @@ public static class Lookup
 
     [NotNull]
     static IDictionary Factory() =>
-        typeof(ModManager).GetField(ModsName, ModsBindings)?.GetValue(ModManager.Instance) as IDictionary ??
-        throw new();
+        typeof(ModManager).GetField(Name, Bindings)?.GetValue(ModManager.Instance) as IDictionary ?? throw new();
 }
