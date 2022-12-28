@@ -22,7 +22,6 @@
         </WeaverConfiguration>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Remove="Theraot.Core" />
         <PackageReference Remove="GlobalUsingsAnalyzer" />
         <Compile Remove="$(SharedPath)Emik.Morsels/Source/*.cs" />
         <ProjectReference Include="..\wawa.DDL\wawa.DDL.csproj" />

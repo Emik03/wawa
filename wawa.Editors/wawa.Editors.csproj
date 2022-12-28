@@ -22,7 +22,6 @@
         </WeaverConfiguration>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Remove="Theraot.Core" />
         <PackageReference Remove="GlobalUsingsAnalyzer" />
         <Compile Remove="$(SharedPath)Emik.Morsels/Source/*.cs" />
         <Compile Include="../Polyfills/MoreIReadOnly.cs" Link="Source/References/System/Diagnostics/MoreIReadOnly.cs" />

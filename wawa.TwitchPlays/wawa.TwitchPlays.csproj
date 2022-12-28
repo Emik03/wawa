@@ -22,14 +22,10 @@
         </WeaverConfiguration>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Remove="Theraot.Core" />
         <PackageReference Remove="GlobalUsingsAnalyzer" />
         <Compile Remove="$(SharedPath)Emik.Morsels/Source/*.cs" />
         <ProjectReference Include="..\wawa.Modules\wawa.Modules.csproj" />
         <Compile Include="../Polyfills/MoreIReadOnly.cs" Link="Source/References/System/Diagnostics/MoreIReadOnly.cs" />
         <Compile Include="../Polyfills/MoreAttributes.cs" Link="Source/References/System/Diagnostics/MoreAttributes.cs" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Remove="wawa.TwitchPlays.ExternalAnnotations.xml" />
     </ItemGroup>
 </Project>

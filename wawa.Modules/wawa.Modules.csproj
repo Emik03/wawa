@@ -22,14 +22,12 @@
         </WeaverConfiguration>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Remove="Theraot.Core" />
         <PackageReference Remove="GlobalUsingsAnalyzer" />
         <ProjectReference Include="..\wawa.IO\wawa.IO.csproj" />
         <Compile Remove="$(SharedPath)Emik.Morsels/Source/*.cs" />
         <ProjectReference Include="..\wawa.DDL\wawa.DDL.csproj" />
         <ProjectReference Include="..\wawa.Unity\wawa.Unity.csproj" />
         <ProjectReference Include="..\wawa.Optionals\wawa.Optionals.csproj" />
-        <ProjectReference Include="..\wawa.Extensions\wawa.Extensions.csproj" />
         <Compile Include="../Polyfills/MoreIReadOnly.cs" Link="Source/References/System/Diagnostics/MoreIReadOnly.cs" />
         <Compile Include="../Polyfills/MoreAttributes.cs" Link="Source/References/System/Diagnostics/MoreAttributes.cs" />
     </ItemGroup>
