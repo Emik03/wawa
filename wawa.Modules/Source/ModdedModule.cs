@@ -26,7 +26,8 @@ public abstract class ModdedModule : CachedBehaviour
         TooManyAudioSources =
             $"There is more than one {nameof(KMAudio)} component. " +
             "This is considered a mistake because the game will only add the sounds to one of the " +
-            $"{nameof(KMAudio)} components, which gives no certainty on the {nameof(KMAudio)} having sounds assigned.";
+            $"{nameof(KMAudio)} components, which gives no certainty on the {nameof(KMAudio)} having sounds assigned.",
+        Unspecified = "There is no version. Press [F5] or go to [Keep Talking ModKit > Configure Mod] to specify one.";
 
     // For some reason this doesn't compile??
     // ReSharper disable ReplaceWithFieldKeyword
@@ -273,8 +274,15 @@ public abstract class ModdedModule : CachedBehaviour
     /// <summary>Logs version numbers. Be sure to call this method if you are implementing Awake.</summary>
     protected virtual void Awake()
     {
+        var version = $"Version: {GetModInfo(Id).Value?.Version switch
+        {
+            null => NotFound,
+            "" => Unspecified,
+            var x => x,
+        }}";
+
         AssemblyLog(@$"The module ""{Name}"" uses this library.");
-        Log($"Version: {GetModInfo(Id).Value?.Version ?? NotFound}");
+        Log(version);
     }
 
     /// <summary>The method that is called when the lights are turned on. Automatically hooked in Awake.</summary>
