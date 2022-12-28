@@ -35,7 +35,7 @@ public static class PathFinder
     /// <remarks><para>This is used by the library to log itself, and obtain information about callers.</para></remarks>
     [NotNull]
 #pragma warning disable CA1065
-    public static AssemblyName Caller => new StackFrame(2).GetMethod().ReflectedType?.Assembly.GetName() ?? throw new();
+    public static AssemblyName Caller => new StackFrame(3).GetMethod().ReflectedType?.Assembly.GetName() ?? throw new();
 #pragma warning restore CA1065
 
     /// <summary>Gets the name of <see cref="Caller"/>.</summary>
