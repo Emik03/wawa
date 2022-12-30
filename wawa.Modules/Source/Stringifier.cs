@@ -12,6 +12,7 @@ namespace Wawa.Modules;
 [PublicAPI]
 public static class Stringifier
 {
+    [NotNull]
     const string
         Else = "th",
         False = "false",
@@ -24,16 +25,20 @@ public static class Stringifier
         Third = "rd",
         True = "true";
 
+    [NotNull]
     static readonly Dictionary<Type, bool> s_hasMethods = new();
 
+    [NotNull]
     static readonly Dictionary<Type, Delegate> s_stringifiers = new();
 
+    [NotNull]
     static readonly ConstantExpression
         s_exEmpty = Expression.Constant(""),
         s_exFalse = Expression.Constant(false),
         s_exSeparator = Expression.Constant(Separator),
         s_exTrue = Expression.Constant(true);
 
+    [NotNull]
     static readonly MethodInfo
         s_combine = ((Func<string, string, string>)string.Concat).Method,
         s_stringify = ((Func<bool, bool, bool, string>)Stringify).Method.GetGenericMethodDefinition();
@@ -48,20 +53,20 @@ public static class Stringifier
     /// <param name="separator">The separator between each item.</param>
     /// <returns>One long <see cref="string"/>.</returns>
     [Pure]
-    public static string Conjoin<T>(IEnumerable<T> values, char separator)
+    public static string Conjoin<T>([ItemCanBeNull, NotNull] IEnumerable<T> values, char separator)
     {
-        StringBuilder stringBuilder = new();
+        StringBuilder build = new();
         using var enumerator = values.GetEnumerator();
 
         if (enumerator.MoveNext())
-            stringBuilder.Append(enumerator.Current);
+            build.Append(enumerator.Current);
         else
             return "";
 
         while (enumerator.MoveNext())
-            stringBuilder.Append(separator).Append(enumerator.Current);
+            build.Append(separator).Append(enumerator.Current);
 
-        return stringBuilder.ToString();
+        return build.ToString();
     }
 
     /// <summary>Joins a set of values into one long <see cref="string"/>.</summary>
@@ -70,20 +75,23 @@ public static class Stringifier
     /// <param name="separator">The separator between each item.</param>
     /// <returns>One long <see cref="string"/>.</returns>
     [Pure]
-    public static string Conjoin<T>(IEnumerable<T> values, string separator = Separator)
+    public static string Conjoin<T>(
+        [ItemCanBeNull, NotNull] IEnumerable<T> values,
+        [NotNull] string separator = Separator
+    )
     {
-        StringBuilder stringBuilder = new();
+        StringBuilder build = new();
         using var enumerator = values.GetEnumerator();
 
         if (enumerator.MoveNext())
-            stringBuilder.Append(enumerator.Current);
+            build.Append(enumerator.Current);
         else
             return "";
 
         while (enumerator.MoveNext())
-            stringBuilder.Append(separator).Append(enumerator.Current);
+            build.Append(separator).Append(enumerator.Current);
 
-        return stringBuilder.ToString();
+        return build.ToString();
     }
 
     /// <summary>Converts a number to an ordinal.</summary>
@@ -105,7 +113,7 @@ public static class Stringifier
     /// <param name="source">The item to get a <see cref="string"/> representation of.</param>
     /// <returns><paramref name="source"/> as <see cref="string"/>.</returns>
     [MustUseReturnValue]
-    public static string Stringify<T>(T? source) => Stringify(source, false, true);
+    public static string Stringify<T>([AllowNull, CanBeNull] T source) => Stringify(source, false, true);
 
     /// <summary>
     /// Converts <paramref name="source"/> into a <see cref="string"/> representation of <paramref name="source"/>.
@@ -126,7 +134,7 @@ public static class Stringifier
     /// </param>
     /// <returns><paramref name="source"/> as <see cref="string"/>.</returns>
     [MustUseReturnValue]
-    public static string Stringify<T>(T? source, bool isSurrounded, bool isRecursive) =>
+    public static string Stringify<T>([AllowNull, CanBeNull] T source, bool isSurrounded, bool isRecursive) =>
         source switch
         {
             null => Null,
@@ -140,13 +148,13 @@ public static class Stringifier
             _ => source.StringifyObject(isRecursive),
         };
 
-    static void AppendKeyValuePair(this StringBuilder builder, string key, string value) =>
-        builder.Append(key).Append(KeyValueSeparator).Append(value);
+    static void AppendKeyValuePair([NotNull] this StringBuilder build, [NotNull] string key, [NotNull] string value) =>
+        build.Append(key).Append(KeyValueSeparator).Append(value);
 
     [Pure]
     static int Mod(this in int i) => Math.Abs(i) / 10 % 10 == 1 ? 0 : Math.Abs(i) % 10;
 
-    [Pure]
+    [NotNull, Pure]
     static string ToOrdinal(this int i) =>
         @$"{(i < 0 ? Negative : "")}{i}{Mod(i) switch
         {
@@ -156,8 +164,8 @@ public static class Stringifier
             _ => Else,
         }}";
 
-    [Pure]
-    static StringBuilder DictionaryStringifier(this IDictionary dictionary)
+    [NotNull, Pure]
+    static StringBuilder DictionaryStringifier([NotNull] this IDictionary dictionary)
     {
         var iterator = dictionary.GetEnumerator();
         StringBuilder builder = new();
@@ -171,8 +179,8 @@ public static class Stringifier
         return builder;
     }
 
-    [Pure]
-    static StringBuilder EnumeratorStringifier(this IEnumerator iterator)
+    [NotNull, Pure]
+    static StringBuilder EnumeratorStringifier([NotNull] this IEnumerator iterator)
     {
         StringBuilder builder = new();
 
@@ -185,8 +193,8 @@ public static class Stringifier
         return builder;
     }
 
-    [MustUseReturnValue]
-    static string StringifyObject<T>(this T source, bool isRecursive)
+    [MustUseReturnValue, NotNull]
+    static string StringifyObject<T>([AllowNull, CanBeNull] this T source, bool isRecursive)
     {
         if (typeof(T) == typeof(object))
             return source?.ToString() ?? Null;
@@ -206,7 +214,7 @@ public static class Stringifier
         return $"{typeof(T).Name} {{ {((Func<T, string>)s_stringifiers[typeof(T)])(source)} }}";
     }
 
-    [MustUseReturnValue]
+    [MustUseReturnValue, NotNull]
     static Func<T, string> GenerateStringifier<T>()
     {
         var exParam = Expression.Parameter(typeof(T), nameof(T));
@@ -217,7 +225,8 @@ public static class Stringifier
            .Select(p => GetMethodCaller(p, exParam))
            .ToList();
 
-        static MethodCallExpression Combine(MethodCallExpression prev, MethodCallExpression curr)
+        [NotNull, Pure]
+        static MethodCallExpression Combine([NotNull] MethodCallExpression prev, [NotNull] MethodCallExpression curr)
         {
             var call = Expression.Call(s_combine, prev, s_exSeparator);
             return Expression.Call(s_combine, call, curr);
@@ -232,8 +241,8 @@ public static class Stringifier
            .Compile();
     }
 
-    [MustUseReturnValue]
-    static MethodCallExpression GetMethodCaller(PropertyInfo info, Expression param)
+    [MustUseReturnValue, NotNull]
+    static MethodCallExpression GetMethodCaller([NotNull] PropertyInfo info, [NotNull] Expression param)
     {
         var exConstant = Expression.Constant($"{info.Name}{KeyValueSeparator}");
         var method = s_stringify.MakeGenericMethod(info.PropertyType);
