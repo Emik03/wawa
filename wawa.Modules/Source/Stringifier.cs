@@ -221,7 +221,7 @@ public static class Stringifier
 
         var array = typeof(T) // ReSharper disable ArrangeStaticMemberQualifier
            .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-           .Where(p => p.CanRead)
+           .Where(p => p.CanRead && p.GetCustomAttributes(true).All(x => x?.GetType() != typeof(ObsoleteAttribute)))
            .Select(p => GetMethodCaller(p, exParam))
            .ToList();
 
