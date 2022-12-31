@@ -49,7 +49,10 @@ public abstract class ModdedModule : CachedBehaviour
     /// <exception cref="MissingComponentException">
     /// There is no <see cref="KMSelectable"/> <see cref="Component"/> attached to this <see cref="GameObject"/>.
     /// </exception>
-    public IList<KMSelectable> Children => Get<KMSelectable>().Children;
+    public IList<KMSelectable> Children
+    {
+        [ItemCanBeNull, NotNull, MustUseReturnValue] get => Get<KMSelectable>().Children;
+    }
 
     /// <summary>Gets the children of the top-level selectable.</summary>
     /// <remarks><para>
@@ -63,10 +66,14 @@ public abstract class ModdedModule : CachedBehaviour
     /// <exception cref="MissingComponentException">
     /// There is no <see cref="KMSelectable"/> <see cref="Component"/> attached to this <see cref="GameObject"/>.
     /// </exception>
-    public IList<IList<KMSelectable>> Matrix =>
-        _matrix ??= Get<KMSelectable>().ChildRowLength > 0
-            ? new Matrix<KMSelectable>(() => Children, () => Get<KMSelectable>().ChildRowLength)
-            : throw new InvalidOperationException(LengthNotSet);
+    public IList<IList<KMSelectable>> Matrix
+    {
+        [ItemNotNull, NotNull, MustUseReturnValue]
+        get =>
+            _matrix ??= Get<KMSelectable>().ChildRowLength > 0
+                ? new Matrix<KMSelectable>(() => Children, () => Get<KMSelectable>().ChildRowLength)
+                : throw new InvalidOperationException(LengthNotSet);
+    }
 
     /// <summary>Gets the current solve/strike status of the module.</summary>
     [NotNull]
