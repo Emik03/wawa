@@ -26,14 +26,23 @@ public sealed class AliasAttribute : Attribute,
     /// according to <see cref="char.IsWhiteSpace(char)"/>.
     /// </exception>
     /// <param name="aliases">The prefix of this command.</param>
-    public AliasAttribute([InstantHandle, NotNull] params string[] aliases) =>
+    public AliasAttribute([NotNull] params string[] aliases)
+        : this((IList<string>)aliases) { }
+
+    /// <summary>Initializes a new instance of the <see cref="AliasAttribute"/> class.</summary>
+    /// <exception cref="InvalidOperationException">
+    /// A <see cref="string"/> in <paramref name="aliases"/> contain at least one <see cref="char"/> that is whitespace,
+    /// according to <see cref="char.IsWhiteSpace(char)"/>.
+    /// </exception>
+    /// <param name="aliases">The prefix of this command.</param>
+    public AliasAttribute([NotNull] IList<string> aliases) =>
         Aliases = aliases.Any(static x => x.Any(char.IsWhiteSpace))
             ? throw new InvalidOperationException(Whitespace)
             : aliases;
 
     /// <summary>Gets the alternative representations.</summary>
     [NotNull]
-    public string[] Aliases { [Pure] get; }
+    public IList<string> Aliases { [Pure] get; }
 
     /// <inheritdoc/>
     [Pure]
