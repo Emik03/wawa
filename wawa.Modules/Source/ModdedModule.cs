@@ -80,7 +80,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="sounds">The sounds to play.</param>
     /// <returns>The parameter <paramref name="sounds"/>.</returns>
     [NotNull]
-    public Sound[] Play([InstantHandle, NotNull] params Sound[] sounds) => PlayEnum(sounds, transform);
+    public IList<Sound> Play([InstantHandle, NotNull] params Sound[] sounds) => PlayEnum(sounds, transform);
 
     /// <summary>Plays one or more sounds from a specified <see cref="Transform"/>.</summary>
     /// <exception cref="InvalidOperationException">
@@ -90,7 +90,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="sounds">The sounds to play.</param>
     /// <returns>The parameter <paramref name="sounds"/>.</returns>
     [NotNull]
-    public Sound[] Play([NotNull] Transform location, [InstantHandle, NotNull] params Sound[] sounds) =>
+    public IList<Sound> Play([NotNull] Transform location, [InstantHandle, NotNull] params Sound[] sounds) =>
         PlayEnum(sounds, location);
 
     /// <summary>Plays one or more sounds from a specified <see cref="Transform"/>.</summary>
