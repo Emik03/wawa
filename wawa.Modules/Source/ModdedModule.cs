@@ -29,16 +29,28 @@ public abstract class ModdedModule : CachedBehaviour
             $"{nameof(KMAudio)} components, which gives no certainty on the {nameof(KMAudio)} having sounds assigned.",
         Unspecified = "There is no version. Press [F5] or go to [Keep Talking ModKit > Configure Mod] to specify one.";
 
-    // For some reason this doesn't compile??
-    // ReSharper disable ReplaceWithFieldKeyword
     [CanBeNull]
-    KMBombModule _solvable;
+    IList<IList<KMSelectable>>? _matrix;
 
     [CanBeNull]
     KMNeedyModule _needy;
 
     [CanBeNull]
+    KMBombModule _solvable;
+
+    [CanBeNull]
     State _status;
+
+    /// <summary>Gets the children of the top-level selectable.</summary>
+    public IList<KMSelectable> Children => Get<KMSelectable>().Children;
+
+    /// <summary>Gets the children of the top-level selectable.</summary>
+    /// <remarks><para>
+    /// Unlike <see cref="Children"/>, this returns a 2-dimensional list by mapping
+    /// it with inference from <see cref="KMSelectable.ChildRowLength"/>.
+    /// </para></remarks>
+    public IList<IList<KMSelectable>> Matrix =>
+        _matrix ??= new Matrix<KMSelectable>(() => Children, () => Get<KMSelectable>().ChildRowLength);
 
     /// <summary>Gets the current solve/strike status of the module.</summary>
     [NotNull]
@@ -68,6 +80,50 @@ public abstract class ModdedModule : CachedBehaviour
 
     [AllowNull, CanBeNull]
     KMNeedyModule Needy => _needy ??= GetComponent<KMNeedyModule>();
+
+    /// <summary>Logs version numbers. Be sure to call this method if you are implementing Awake.</summary>
+    protected virtual void Awake()
+    {
+        var version = $"Version: {GetModInfo(Id).Value?.Version switch
+        {
+            null => NotFound,
+            "" => Unspecified,
+            var x => x,
+        }}";
+
+        AssemblyLog(@$"The module ""{Name}"" uses this library.");
+        Log(version);
+    }
+
+    /// <summary>
+    /// Unsubscribes <see cref="Application.logMessageReceived"/> and <see cref="KMBombModule.OnActivate"/>.
+    /// </summary>
+    /// <remarks><para>It is recommended to invoke the base method when overriding this method.</para></remarks>
+    protected virtual void OnEnable()
+    {
+        Application.logMessageReceived += CheckForException;
+
+        if (Solvable is { } s)
+            s.OnActivate += OnActivate;
+
+        if (Needy is { } n)
+            n.OnActivate += OnActivate;
+    }
+
+    /// <summary>
+    /// Subscribes <see cref="Application.logMessageReceived"/> and <see cref="KMBombModule.OnActivate"/>.
+    /// </summary>
+    /// <remarks><para>It is recommended to invoke the base method when overriding this method.</para></remarks>
+    protected virtual void OnDisable()
+    {
+        Application.logMessageReceived -= CheckForException;
+
+        if (Solvable is { } s)
+            s.OnActivate -= OnActivate;
+
+        if (Needy is { } n)
+            n.OnActivate -= OnActivate;
+    }
 
     /// <inheritdoc/>
     [Pure]
@@ -271,53 +327,9 @@ public abstract class ModdedModule : CachedBehaviour
         return format;
     }
 
-    /// <summary>Logs version numbers. Be sure to call this method if you are implementing Awake.</summary>
-    protected virtual void Awake()
-    {
-        var version = $"Version: {GetModInfo(Id).Value?.Version switch
-        {
-            null => NotFound,
-            "" => Unspecified,
-            var x => x,
-        }}";
-
-        AssemblyLog(@$"The module ""{Name}"" uses this library.");
-        Log(version);
-    }
-
     /// <summary>The method that is called when the lights are turned on. Automatically hooked in Awake.</summary>
     /// <remarks><para>The base method doesn't do anything; Calling this base method is a no-op.</para></remarks>
     protected virtual void OnActivate() { }
-
-    /// <summary>
-    /// Subscribes <see cref="Application.logMessageReceived"/> and <see cref="KMBombModule.OnActivate"/>.
-    /// </summary>
-    /// <remarks><para>It is recommended to invoke the base method when overriding this method.</para></remarks>
-    protected virtual void OnDisable()
-    {
-        Application.logMessageReceived -= CheckForException;
-
-        if (Solvable is { } s)
-            s.OnActivate -= OnActivate;
-
-        if (Needy is { } n)
-            n.OnActivate -= OnActivate;
-    }
-
-    /// <summary>
-    /// Unsubscribes <see cref="Application.logMessageReceived"/> and <see cref="KMBombModule.OnActivate"/>.
-    /// </summary>
-    /// <remarks><para>It is recommended to invoke the base method when overriding this method.</para></remarks>
-    protected virtual void OnEnable()
-    {
-        Application.logMessageReceived += CheckForException;
-
-        if (Solvable is { } s)
-            s.OnActivate += OnActivate;
-
-        if (Needy is { } n)
-            n.OnActivate += OnActivate;
-    }
 
     /// <summary>
     /// The method that is called when an unhandled <see cref="Exception"/> is thrown by this module type.
