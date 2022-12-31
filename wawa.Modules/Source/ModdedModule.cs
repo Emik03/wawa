@@ -19,6 +19,10 @@ public abstract class ModdedModule : CachedBehaviour
         ExceptionStackTrace = "Rethrow as ",
         NoComponent = $"There is no attached {nameof(KMBombModule)} or {nameof(KMNeedyModule)}.",
         NotFound = "[[HYPERLINK BLOCKED]]",
+        LengthNotSet =
+            $"The {nameof(KMSelectable)} attached to this {nameof(GameObject)} has a " +
+            $"{nameof(KMSelectable.ChildRowLength)} set to 0 or less. Be sure to set this to a natural number so " +
+            "that the matrix can be instantiated properly.",
         Prefix = @"
 | ",
         TooFewAudioSources = $"You need a {nameof(KMAudio)} component to play a sound. " +
@@ -42,6 +46,9 @@ public abstract class ModdedModule : CachedBehaviour
     State _status;
 
     /// <summary>Gets the children of the top-level selectable.</summary>
+    /// <exception cref="MissingComponentException">
+    /// There is no <see cref="KMSelectable"/> <see cref="Component"/> attached to this <see cref="GameObject"/>.
+    /// </exception>
     public IList<KMSelectable> Children => Get<KMSelectable>().Children;
 
     /// <summary>Gets the children of the top-level selectable.</summary>
@@ -49,8 +56,17 @@ public abstract class ModdedModule : CachedBehaviour
     /// Unlike <see cref="Children"/>, this returns a 2-dimensional list by mapping
     /// it with inference from <see cref="KMSelectable.ChildRowLength"/>.
     /// </para></remarks>
+    /// <exception cref="InvalidOperationException">
+    /// The <see cref="KMSelectable"/> <see cref="Component"/> attached to this <see cref="GameObject"/> has a
+    /// <see cref="KMSelectable.ChildRowLength"/> value of 0.
+    /// </exception>
+    /// <exception cref="MissingComponentException">
+    /// There is no <see cref="KMSelectable"/> <see cref="Component"/> attached to this <see cref="GameObject"/>.
+    /// </exception>
     public IList<IList<KMSelectable>> Matrix =>
-        _matrix ??= new Matrix<KMSelectable>(() => Children, () => Get<KMSelectable>().ChildRowLength);
+        _matrix ??= Get<KMSelectable>().ChildRowLength > 0
+            ? new Matrix<KMSelectable>(() => Children, () => Get<KMSelectable>().ChildRowLength)
+            : throw new InvalidOperationException(LengthNotSet);
 
     /// <summary>Gets the current solve/strike status of the module.</summary>
     [NotNull]
