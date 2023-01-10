@@ -211,12 +211,7 @@ using Wawa.Modules;",
         go.tag = ModBundle.Tag;
 
         var uri = new Uri(Application.dataPath).MakeRelativeUri(new(path));
-
-        string
-            str = $"{uri}",
-            slash = str.Replace('/', Path.DirectorySeparatorChar),
-            relative = Uri.UnescapeDataString(slash);
-
+        var relative = Uri.UnescapeDataString($"{uri}");
         var newGo = PrefabUtility.CreatePrefab(relative, go);
 
         Object.DestroyImmediate(go);
