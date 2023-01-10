@@ -23,8 +23,7 @@ static class Update
         Managed = "Managed/",
         Pdb = "pdb",
         Plugins = "Plugins/",
-        Prep = "Spawning a new game object, remove it once the downloads are complete. " +
-            "Now preparing to fetch and download the following libraries: ",
+        Prep = "Now preparing to fetch and download the following libraries: ",
         Separator = ", ",
         TagName = "tag_name",
         Xml = "xml";
@@ -46,11 +45,12 @@ static class Update
 
         AssemblyLog($"{Prep}{displayed}");
 
-        GameObject go = new(nameof(EmptyBehaviour), typeof(EmptyBehaviour));
+        var mono = Object.FindObjectOfType<MonoBehaviour>() ??
+            new GameObject(nameof(DeleteMe), typeof(DeleteMe)).GetComponent<DeleteMe>();
 
-        var requests = Latest(go, fetches);
+        var requests = Latest(mono, fetches);
 
-        go.GetComponent<EmptyBehaviour>().StartCoroutine(requests);
+        mono.StartCoroutine(requests);
     }
 
     [NotNull, Pure]
@@ -87,7 +87,7 @@ static class Update
     }
 
     [NotNull, Pure]
-    static IEnumerator Latest([NotNull] GameObject go, [InstantHandle, NotNull] IEnumerable<string> fetches)
+    static IEnumerator Latest([NotNull] MonoBehaviour mono, [InstantHandle, NotNull] IEnumerable<string> fetches)
     {
         using var web = UnityWebRequest.Get(FetchLink);
 
@@ -111,6 +111,6 @@ static class Update
         var downloads = fetches.Select(Downloads);
 
         foreach (var requests in downloads)
-            go.GetComponent<EmptyBehaviour>().StartCoroutine(requests);
+            mono.StartCoroutine(requests);
     }
 }
