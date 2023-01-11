@@ -56,8 +56,8 @@ public static class PathFinder
     public static void AssemblyLog([NotNull] string message) => Debug.Log($"[{Who} ({Which})] {message}");
 
     /// <summary>Gets the absolute directory of the mod.</summary>
-    /// <param name="assembly">
-    /// The name of the assembly which is used to get the mod directory of the mod.
+    /// <param name="modId">
+    /// The mod id to get the mod directory from.
     /// If <see langword="null" />, implicitly gets the directory of the mod from the file of the assembly.
     /// </param>
     /// <returns>
@@ -65,8 +65,8 @@ public static class PathFinder
     /// of the file if there is a folder mod id entry within the game's mod dictionary, or <see langword="default" />.
     /// </returns>
     [PublicAPI, Pure]
-    public static Maybe<string> GetDirectory([AllowNull, CanBeNull] string assembly = null) =>
-        (assembly ?? Who).Get(
+    public static Maybe<string> GetDirectory([AllowNull, CanBeNull] string modId = null) =>
+        (modId ?? Who).Get(
             static asm =>
                 (s_directories?.Count == Mods.Count
                     ? s_directories
@@ -80,9 +80,9 @@ public static class PathFinder
         );
 
     /// <summary>Gets the absolute directory of the file located inside the mod directory.</summary>
-    /// <param name="file">The file located inside folder mod directory.</param>
-    /// <param name="assembly">
-    /// The name of the assembly which is used to get the mod directory of the mod.
+    /// <param name="filePath">The file located inside folder mod directory.</param>
+    /// <param name="modId">
+    /// The mod id to get the mod directory from.
     /// If <see langword="null" />, implicitly gets the directory of the mod from the file of the assembly.
     /// </param>
     /// <returns>
@@ -91,24 +91,24 @@ public static class PathFinder
     /// </returns>
     [PublicAPI, Pure]
     public static Maybe<string> GetFile(
-        [NotNull, PathReference] string file,
-        [AllowNull, CanBeNull] string assembly = null
+        [NotNull, PathReference] string filePath,
+        [AllowNull, CanBeNull] string modId = null
     ) =>
         new
         {
-            file,
-            asm = assembly ?? Who,
+            FilePath = filePath,
+            ModId = modId ?? Who,
         }.Get(
             static key => key.SuppressIO(
-                k => GetDirectory(k.asm).Value is { } directory
-                    ? Path.Combine(directory, key.file)
+                k => GetDirectory(k.FilePath).Value is { } directory
+                    ? Path.Combine(directory, key.ModId)
                     : null
             )
         );
 
     /// <summary>Gets and deserializes the <see cref="ModInfo" /> file located in every mod's root directory.</summary>
-    /// <param name="assembly">
-    /// The name of the assembly which is used to get the mod directory of the mod.
+    /// <param name="modId">
+    /// The mod id to get the mod directory from.
     /// If <see langword="null" />, implicitly gets the directory of the mod from the file of the assembly.
     /// </param>
     /// <returns>
@@ -116,8 +116,8 @@ public static class PathFinder
     /// and deserialized successfully, or <see langword="default" />.
     /// </returns>
     [PublicAPI, Pure]
-    public static Maybe<ModInfo> GetModInfo([AllowNull, CanBeNull] string assembly = null) =>
-        (assembly ?? Who).Get(
+    public static Maybe<ModInfo> GetModInfo([AllowNull, CanBeNull] string modId = null) =>
+        (modId ?? Who).Get(
             static asm => GetDirectory(asm).Value is { } dir &&
                 ModManager.Instance.InstalledModInfos.TryGetValue(dir, out var value)
                     ? ModInfo.FromInternalModInfo(value)
@@ -127,9 +127,9 @@ public static class PathFinder
 
     /// <summary>Loads and returns assets from disk.</summary>
     /// <typeparam name="T">The type of asset to get.</typeparam>
-    /// <param name="file">The file which contains the assets.</param>
-    /// <param name="assembly">
-    /// The name of the assembly which is used to get the mod directory of the mod.
+    /// <param name="filePath">The file which contains the assets.</param>
+    /// <param name="modId">
+    /// The mod id to get the mod directory from.
     /// If <see langword="null" />, implicitly gets the directory of the mod from the file of the assembly.
     /// </param>
     /// <returns>
@@ -138,47 +138,47 @@ public static class PathFinder
     /// </returns>
     [CLSCompliant(false), PublicAPI]
     public static Maybe<T[]> GetAssets<T>(
-        [NotNull, PathReference] string file,
-        [AllowNull, CanBeNull] string assembly = null
+        [NotNull, PathReference] string filePath,
+        [AllowNull, CanBeNull] string modId = null
     )
         where T : Object =>
         new
         {
-            file,
-            asm = assembly ?? Who,
+            FilePath = filePath,
+            ModId = modId ?? Who,
         }.Get(
-            static key => GetFile(key.file, key.asm).Value is not { } path ? null :
+            static key => GetFile(key.FilePath, key.ModId).Value is not { } path ? null :
                 AssetBundle.LoadFromFileAsync(path).assetBundle is not { } bundle ||
                 bundle.LoadAllAssets<T>() is not { } assets ? null : assets
         );
 
     /// <summary>Gets an unmanaged function from an external library.</summary>
     /// <typeparam name="T">The signature of the function.</typeparam>
-    /// <param name="file">The external file.</param>
-    /// <param name="method">The name of the method.</param>
-    /// <param name="assembly">
-    /// The name of the assembly which is used to get the mod directory of the mod. If <see langword="null" />,
-    /// implicitly gets the directory of the mod from the file of the assembly.
+    /// <param name="libPath">The external file.</param>
+    /// <param name="ffiMethodName">The name of the method.</param>
+    /// <param name="modId">
+    /// The mod id to get the mod directory from.
+    /// If <see langword="null" />, implicitly gets the directory of the mod from the file of the assembly.
     /// </param>
     /// <returns>
     /// The value <see langword="true" /> if copying the file was successful, otherwise <see langword="false" />.
     /// </returns>
     [PublicAPI]
     public static Maybe<T> GetUnmanaged<T>(
-        [NotNull, PathReference] string file,
-        [NotNull] string method,
-        [AllowNull, CanBeNull] string assembly = null
+        [NotNull, PathReference] string libPath,
+        [NotNull] string ffiMethodName,
+        [AllowNull, CanBeNull] string modId = null
     )
         where T : Delegate =>
         new
             {
-                asm = assembly ?? Who,
-                file,
-                method,
+                LibPath = libPath,
+                FFIMethodName = ffiMethodName,
+                ModId = modId ?? Who,
             }
            .Get(
-                static key => GetDirectory(key.asm).Value is { } directory
-                    ? key.file.FindLibrary(directory)?.CreateUnmanagedMethod<T>(key.method)
+                static key => GetDirectory(key.ModId).Value is { } directory
+                    ? key.LibPath.FindLibrary(directory)?.CreateUnmanagedMethod<T>(key.FFIMethodName)
                     : null
             );
 
