@@ -70,11 +70,13 @@ public static class PathFinder
             static asm =>
                 (s_directories?.Count == Mods.Count
                     ? s_directories
-                    : s_directories = (Mods as IEnumerable<KeyValuePair<string, Mod>>)?.ToDictionary(
-                        static x => x.Value.ModID,
-                        static x => x.Key,
-                        StringComparer.Ordinal
-                    ))?[asm]
+                    : s_directories = (Mods as IEnumerable<KeyValuePair<string, Mod>>)?
+                       .Cast<object>() // Boxing required; Avoids creating closures with the undesired 'Mod' type.
+                       .ToDictionary(
+                            static x => ((KeyValuePair<string, Mod>)x).Value.ModID,
+                            static x => ((KeyValuePair<string, Mod>)x).Key,
+                            StringComparer.Ordinal
+                        ))?[asm]
         );
 
     /// <summary>Gets the absolute directory of the file located inside the mod directory.</summary>
