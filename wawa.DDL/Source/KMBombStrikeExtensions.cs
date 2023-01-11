@@ -26,7 +26,7 @@ public static class KMBombStrikeExtensions
     /// <returns>The number of strikes.</returns>
     [CLSCompliant(false), PublicAPI]
     public static int GetStrikes([NotNull] this KMBomb that) =>
-        FromGame(that, static v => v.GetComponent<Bomb>().NumStrikes);
+        FromGame(that, static x => x.GetComponent<Bomb>().NumStrikes);
 
     /// <summary>Gets the rate in which the timer ticks.</summary>
     /// <remarks><para>In the editor, this value always returns 1.</para></remarks>
@@ -69,7 +69,7 @@ public static class KMBombStrikeExtensions
             var inner = that.GetComponent<Bomb>();
             inner.StrikeIndicator.StrikeCount = inner.NumStrikes = value;
 
-            // Reimplementation for tick rate found in [Assembly-CSharp]Bomb.OnStrike(MonoBehavior)
+            // Reimplementation for tick rate found in [Assembly-CSharp]Bomb.OnStrike(MonoBehaviour)
             // The sign is set to match the current rate.
             var sign = Sign(that.GetRate());
 

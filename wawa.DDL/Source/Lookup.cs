@@ -37,7 +37,7 @@ public static class Lookup
     /// <returns>The localized <see cref="string"/> of <paramref name="term"/>.</returns>
     [PublicAPI]
     public static Maybe<string> Localized([NotNull] string term) =>
-        FromGame(term, static v => Localization.GetLocalizedString(v));
+        FromGame(term, static x => Localization.GetLocalizedString(x));
 
     [NotNull, PublicAPI]
     static IDictionary Factory() =>
