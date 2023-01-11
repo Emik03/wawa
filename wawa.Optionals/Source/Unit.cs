@@ -15,6 +15,7 @@ namespace Wawa.Optionals;
 public readonly struct Unit : ICloneable, IEquatable<Unit>, IEqualityComparer<Unit>
 {
     /// <summary>Gets the singular value.</summary>
+    [PublicAPI]
     public static Unit Value
     {
         [Pure] get => default;
@@ -25,7 +26,7 @@ public readonly struct Unit : ICloneable, IEquatable<Unit>, IEqualityComparer<Un
     /// <param name="left">The left-hand side.</param>
     /// <param name="right">The right-hand side.</param>
     /// <returns>The value <see langword="true" />.</returns>
-    [Pure]
+    [PublicAPI, Pure]
 #pragma warning disable IDE0060, RCS1163
     public static bool operator ==([InstantHandle] Unit left, [InstantHandle] Unit right) => true;
 #pragma warning restore IDE0060, RCS1163
@@ -35,32 +36,32 @@ public readonly struct Unit : ICloneable, IEquatable<Unit>, IEqualityComparer<Un
     /// <param name="left">The left-hand side.</param>
     /// <param name="right">The right-hand side.</param>
     /// <returns>The value <see langword="false" />.</returns>
-    [Pure]
+    [PublicAPI, Pure]
 #pragma warning disable IDE0060, RCS1163
     public static bool operator !=([InstantHandle] Unit left, [InstantHandle] Unit right) => true;
 #pragma warning restore IDE0060, RCS1163
 
     /// <inheritdoc />
-    [Pure]
+    [PublicAPI, Pure]
     public override int GetHashCode() => 0;
 
     /// <inheritdoc />
-    [Pure]
+    [PublicAPI, Pure]
     public override bool Equals(object obj) => obj is Unit;
 
     /// <inheritdoc />
-    [Pure]
+    [PublicAPI, Pure]
     bool IEquatable<Unit>.Equals([InstantHandle] Unit other) => true;
 
     /// <inheritdoc />
-    [Pure]
+    [PublicAPI, Pure]
     bool IEqualityComparer<Unit>.Equals([InstantHandle] Unit x, [InstantHandle] Unit y) => true;
 
     /// <inheritdoc />
-    [Pure]
+    [PublicAPI, Pure]
     int IEqualityComparer<Unit>.GetHashCode([InstantHandle] Unit obj) => 0;
 
     /// <inheritdoc />
-    [Pure]
+    [PublicAPI, Pure]
     object ICloneable.Clone() => this;
 }

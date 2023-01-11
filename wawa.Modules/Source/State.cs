@@ -32,12 +32,15 @@ public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<Sta
     /// <summary>
     /// Gets or sets a value indicating whether the module has ever called <see cref="ModdedModule.Strike"/>.
     /// </summary>
+    [PublicAPI]
     public bool HasStruck { [Pure] get; set; }
 
     /// <summary>Gets a value indicating whether the module is solved.</summary>
+    [PublicAPI]
     public bool IsSolved { [Pure] get; internal set; }
 
     /// <summary>Gets the unique module id of this module type, primarily used in logging.</summary>
+    [PublicAPI]
     public int Id { [Pure] get; }
 
     /// <summary>

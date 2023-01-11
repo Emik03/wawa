@@ -20,5 +20,6 @@ sealed class DeleteMe : MonoBehaviour
 #pragma warning restore CA1822
 
     /// <inheritdoc />
+    [PublicAPI, Pure]
     public override string ToString() => nameof(DeleteMe);
 }

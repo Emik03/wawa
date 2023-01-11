@@ -15,7 +15,7 @@ namespace Wawa.TwitchPlays;
 /// <typeparam name="TMod">
 /// The <see cref="Type"/> of <see cref="Mod"/> to implement Twitch Plays support for.
 /// </typeparam>
-[CLSCompliant(false), Serializable, RequireComponent(typeof(ModdedModule))]
+[CLSCompliant(false), PublicAPI, RequireComponent(typeof(ModdedModule)), Serializable]
 public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     where TMod : ModdedModule
 {
@@ -34,10 +34,11 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     bool _isPrintingYields;
 
     /// <summary>Gets the instance of the module.</summary>
-    [NotNull]
+    [NotNull, PublicAPI]
     public TMod Module => Get<TMod>();
 
     /// <summary>Gets the suggested help command. This is a fallback value used when one isn't specified.</summary>
+    [PublicAPI]
     protected string AutoImplementedHelp
     {
         [NotNull] get => s_autoImplementedHelp ??= GenerateHelp();
@@ -59,6 +60,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// Logs version numbers and automatically sets <see cref="Help"/>.
     /// Be sure to call this method if you are implementing Awake.
     /// </summary>
+    [PublicAPI]
     protected virtual void Awake()
     {
         AssemblyLog(@$"The module ""{Module}"" uses this library.");
@@ -68,6 +70,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     }
 
     /// <inheritdoc />
+    [PublicAPI]
     public bool IsPrintingYields
     {
         [Pure] get => _isPrintingYields;
@@ -86,36 +89,42 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     }
 
     /// <inheritdoc />
+    [PublicAPI]
     public bool IsCancelCommand
     {
         [Pure] get => TwitchShouldCancelCommand;
     }
 
     /// <inheritdoc />
+    [PublicAPI]
     public bool IsTime
     {
         [Pure] get => TimeModeActive;
     }
 
     /// <inheritdoc />
+    [PublicAPI]
     public bool IsTimeSkippable
     {
         [Pure] get => TwitchPlaysSkipTimeAllowed;
     }
 
     /// <inheritdoc />
+    [PublicAPI]
     public bool IsTP
     {
         [Pure] get => TwitchPlaysActive;
     }
 
     /// <inheritdoc />
+    [PublicAPI]
     public bool IsZen
     {
         [Pure] get => ZenModeActive;
     }
 
     /// <inheritdoc />
+    [PublicAPI]
     public string Help
     {
         [Pure] get => TwitchHelpMessage;
@@ -123,6 +132,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     }
 
     /// <inheritdoc />
+    [PublicAPI]
     public string Manual
     {
         [Pure] get => TwitchManualCode;
@@ -130,6 +140,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     }
 
     /// <inheritdoc />
+    [PublicAPI]
     public ReadOnlyCollection<KMBombModule> Abandons
     {
         [Pure] get => new(TwitchAbandonModule);
@@ -139,7 +150,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     ModdedModule ITwitchDeclarable.Inner => Module;
 
     /// <inheritdoc />
-    [Pure]
+    [PublicAPI, Pure]
     public IEnumerator ProcessTwitchCommand(string command)
     {
         if (command is null || Match(command) is not { } match)
@@ -157,7 +168,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     }
 
     /// <inheritdoc />
-    [Pure]
+    [PublicAPI, Pure]
     public IEnumerator TwitchHandleForcedSolve()
     {
         var enumerator = Flatten(ForceSolve().GetEnumerator());
@@ -172,7 +183,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     }
 
     /// <inheritdoc />
-    [Pure]
+    [PublicAPI, Pure]
     public abstract IEnumerable<Instruction> ForceSolve();
 
     /// <inheritdoc />
@@ -191,16 +202,18 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     void ITwitchMutable.SetIsZen(in bool value) => ZenModeActive = value;
 
     /// <inheritdoc/>
+    [NotNull, PublicAPI, Pure]
     IEnumerator ISolvable.ForceTPSolve() => TwitchHandleForcedSolve();
 
     /// <summary>
     /// Gets or sets an event invoked whenever any command (including <see cref="TwitchString.AutoSolve"/>) yields
     /// something and is processed. The value that it yielded is passed in.
     /// </summary>
+    [PublicAPI]
     public event EventHandler<YieldEventArgs> OnYield = static (_, _) => { };
 
     /// <inheritdoc/>
-    [Pure]
+    [Pure, PublicAPI]
     public override string ToString() => $"{Module}";
 
     /// <summary>
@@ -211,7 +224,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// Repeatedly <see langword="true"/>, halting when <see cref="State.IsSolved"/>
     /// from <see cref="Module"/> is <see langword="true"/>.
     /// </returns>
-    [NotNull]
+    [NotNull, PublicAPI]
     public IEnumerable<bool> UntilSolve()
     {
         while (!Module.Status.IsSolved)
@@ -226,7 +239,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// Repeatedly <see langword="true"/>, halting when <see cref="State.HasStruck"/>
     /// from <see cref="Module"/> is <see langword="true"/>.
     /// </returns>
-    [NotNull]
+    [NotNull, PublicAPI]
     public IEnumerable<bool> UntilStrike()
     {
         while (!Module.Status.HasStruck)
@@ -243,7 +256,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <param name="selectables">The array of selectables to interact with.</param>
     /// <param name="duration">The delay between each button press in seconds.</param>
     /// <returns>A sequence of button presses for Twitch Plays to process.</returns>
-    [NotNull]
+    [NotNull, PublicAPI]
     public IEnumerable<WaitForSecondsRealtime> Sequence(
         [NotNull] IEnumerable<KMSelectable> selectables,
         float duration
@@ -270,7 +283,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <param name="duration">The delay between each button press in seconds.</param>
     /// <param name="indices">The indices to press within the array.</param>
     /// <returns>A sequence of button presses for Twitch Plays to process.</returns>
-    [NotNull]
+    [NotNull, PublicAPI]
     public IEnumerable<WaitForSecondsRealtime> IndexedSequence(
         [NotNull] IList<KMSelectable> selectables,
         float duration,
@@ -289,7 +302,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// An <see cref="Array"/> of <see cref="string"/> values which are substrings of <paramref name="instance"/>
     /// based on <paramref name="separator"/>. Empty entries are omitted.
     /// </returns>
-    [NotNull]
+    [NotNull, PublicAPI]
     protected static string[] Split([NotNull] string instance, [NotNull] string separator = " ") =>
         instance.Split(separator.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
@@ -303,7 +316,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <returns>
     /// <paramref name="item"/> continuously until <paramref name="condition"/> is <see langword="false"/>.
     /// </returns>
-    [NotNull]
+    [NotNull, PublicAPI]
     protected static IEnumerable<T> YieldWhile<T>([NotNull] T item, [InstantHandle, NotNull] Func<bool> condition)
     {
         while (condition())
@@ -320,7 +333,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <returns>
     /// <paramref name="item"/> continuously until <paramref name="condition"/> is <see langword="true"/>.
     /// </returns>
-    [NotNull]
+    [NotNull, PublicAPI]
     protected static IEnumerable<T> YieldUntil<T>([NotNull] T item, [InstantHandle, NotNull] Func<bool> condition)
     {
         while (!condition())

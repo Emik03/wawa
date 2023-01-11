@@ -18,6 +18,7 @@ public readonly struct Maybe<T> : ICloneable, IEquatable<Maybe<T>>, IEqualityCom
 
     /// <summary>Initializes a new instance of the <see cref="Maybe{T}" /> struct.</summary>
     /// <param name="value">The value to encapsulate.</param>
+    [PublicAPI]
     public Maybe([AllowNull, CanBeNull] T value)
     {
         Value = value;
@@ -25,18 +26,18 @@ public readonly struct Maybe<T> : ICloneable, IEquatable<Maybe<T>>, IEqualityCom
     }
 
     /// <summary>Gets a value indicating whether the value encapsulated is <see langword="null" />.</summary>
-    [MemberNotNullWhen(false, nameof(Value))]
+    [MemberNotNullWhen(false, nameof(Value)), PublicAPI]
     public bool IsNone
     {
         [Pure] get => !IsSome;
     }
 
     /// <summary>Gets a value indicating whether the value encapsulated is not <see langword="null" />.</summary>
-    [MemberNotNullWhen(true, nameof(Value))]
+    [MemberNotNullWhen(true, nameof(Value)), PublicAPI]
     public bool IsSome { [Pure] get; }
 
     /// <summary>Gets the value that is encapsulated. This value returned may be <see langword="null" />.</summary>
-    [AllowNull, CanBeNull, ProvidesContext]
+    [AllowNull, CanBeNull, ProvidesContext, PublicAPI]
     public T Value { [Pure] get; }
 
     /// <summary>Converts the <typeparamref name="T" /> to a <see langword="new" /> <see cref="Maybe{T}" />.</summary>
@@ -45,14 +46,14 @@ public readonly struct Maybe<T> : ICloneable, IEquatable<Maybe<T>>, IEqualityCom
     /// A <see cref="Maybe{T}" /> that is Some or None depending on
     /// whether <paramref name="value" /> is <see langword="null" />.
     /// </returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static implicit operator Maybe<T>([AllowNull, CanBeNull] T value) => new(value);
 
     /// <summary>Converts the <see cref="Maybe{T}" /> to <typeparamref name="T" />.</summary>
     /// <param name="value">The <typeparamref name="T" /> instance to convert.</param>
     /// <returns>The inner value.</returns>
     /// <exception cref="InvalidOperationException">The parameter <paramref name="value" /> is a None value.</exception>
-    [Pure]
+    [PublicAPI, Pure]
     public static explicit operator T(Maybe<T> value) => value.Unwrap();
 
     /// <summary>Determines whether both instances contain the same values.</summary>
@@ -62,7 +63,7 @@ public readonly struct Maybe<T> : ICloneable, IEquatable<Maybe<T>>, IEqualityCom
     /// The value <see langword="true" /> if both instances contain the same values,
     /// otherwise <see langword="false" />.
     /// </returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static bool operator ==(Maybe<T> left, Maybe<T> right) =>
         left.IsNone ? right.IsNone : EqualityComparer<T>.Default.Equals(left.Value, right.Value);
 
@@ -72,34 +73,34 @@ public readonly struct Maybe<T> : ICloneable, IEquatable<Maybe<T>>, IEqualityCom
     /// <returns>
     /// The value <see langword="true" /> if both instances do not contain the same values,
     /// otherwise <see langword="false" />.</returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static bool operator !=(Maybe<T> left, Maybe<T> right) => !(left == right);
 
     /// <inheritdoc />
-    [Pure]
+    [PublicAPI, Pure]
     public object Clone() => this;
 
     /// <inheritdoc />
-    [Pure]
+    [PublicAPI, Pure]
     public bool Equals(Maybe<T> other) => this == other;
 
     /// <inheritdoc />
-    [Pure]
+    [PublicAPI, Pure]
     public bool Equals(Maybe<T> x, Maybe<T> y) => x == y;
 
     /// <inheritdoc />
-    [Pure]
+    [PublicAPI, Pure]
     public int GetHashCode(Maybe<T> obj) => obj.GetHashCode();
 
     /// <inheritdoc />
-    [Pure]
+    [PublicAPI, Pure]
     public override bool Equals(object obj) => obj is Maybe<T> may && Equals(may);
 
     /// <inheritdoc />
-    [Pure]
+    [PublicAPI, Pure]
     public override int GetHashCode() => -1598703110 + EqualityComparer<T>.Default.GetHashCode(Value);
 
     /// <inheritdoc />
-    [Pure]
+    [PublicAPI, Pure]
     public override string ToString() => IsSome ? $"Some({Value})" : NoneMessage;
 }

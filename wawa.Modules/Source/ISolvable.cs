@@ -12,6 +12,7 @@ namespace Wawa.Modules;
 /// Interface for Twitch Plays auto-solvers. Used by <see cref="Module"/> to abstractly communicate
 /// with Twitch Plays solvers without importing the namespace.
 /// </summary>
+[PublicAPI]
 public interface ISolvable
 {
     /// <summary>Gets a value indicating whether Twitch Plays is currently active.</summary>
@@ -22,6 +23,7 @@ public interface ISolvable
     /// therefore there's no guarantee that it'll be available there, the field must be first accessed in a delegate in
     /// <see cref="KMBombModule.OnActivate"/> or later.
     /// </para></remarks>
+    [PublicAPI]
     bool IsTP { [Pure] get; }
 
     /// <summary>
@@ -31,6 +33,6 @@ public interface ISolvable
     /// Make sure that the module is solved before this method closes, otherwise it causes a forced-solve.
     /// </para></remarks>
     /// <returns>A series of instructions for the Twitch Plays mod to handle in order to guarantee a solve.</returns>
-    [NotNull, Pure]
+    [NotNull, PublicAPI, Pure]
     IEnumerator ForceTPSolve();
 }

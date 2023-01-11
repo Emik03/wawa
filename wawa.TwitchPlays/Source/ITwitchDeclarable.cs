@@ -9,7 +9,7 @@
 namespace Wawa.TwitchPlays;
 
 /// <summary>Interface for non-generic <see cref="Twitch{TModule}"/>.</summary>
-[CLSCompliant(false)]
+[CLSCompliant(false), PublicAPI]
 public interface ITwitchDeclarable : ISolvable, ITwitchSupportable
 {
     /// <summary>
@@ -19,6 +19,7 @@ public interface ITwitchDeclarable : ISolvable, ITwitchSupportable
     /// <remarks><para>
     /// Particularily useful as a debugging tool, whether it be in the editor or in-game.
     /// </para></remarks>
+    [PublicAPI]
     bool IsPrintingYields { [Pure] get; set; }
 
     /// <summary>
@@ -34,6 +35,7 @@ public interface ITwitchDeclarable : ISolvable, ITwitchSupportable
     /// therefore there's no guarantee that it'll be available there, the field must be first accessed in a delegate in
     /// <see cref="KMBombModule.OnActivate"/> or later.
     /// </para></remarks>
+    [PublicAPI]
     bool IsCancelCommand { [Pure] get; }
 
     /// <summary>Gets a value indicating whether it is in Time Mode, where solves change the timer.</summary>
@@ -43,6 +45,7 @@ public interface ITwitchDeclarable : ISolvable, ITwitchSupportable
     /// therefore there's no guarantee that it'll be available there, the field must be first accessed in a delegate in
     /// <see cref="KMBombModule.OnActivate"/> or later.
     /// </para></remarks>
+    [PublicAPI]
     bool IsTime { [Pure] get; }
 
     /// <summary>
@@ -54,6 +57,7 @@ public interface ITwitchDeclarable : ISolvable, ITwitchSupportable
     /// therefore there's no guarantee that it'll be available there, the field must be first accessed in a delegate in
     /// <see cref="KMBombModule.OnActivate"/> or later.
     /// </para></remarks>
+    [PublicAPI]
     bool IsTimeSkippable { [Pure] get; }
 
     /// <summary>
@@ -65,17 +69,18 @@ public interface ITwitchDeclarable : ISolvable, ITwitchSupportable
     /// therefore there's no guarantee that it'll be available there, the field must be first accessed in a delegate in
     /// <see cref="KMBombModule.OnActivate"/> or later.
     /// </para></remarks>
+    [PublicAPI]
     bool IsZen { [Pure] get; }
 
     /// <summary>Gets or sets the help message that gets sent when typing <c>!{id} help</c>.</summary>
-    [NotNull]
+    [NotNull, PublicAPI]
     string Help { [Pure] get; set; }
 
     /// <summary>
     /// Gets or sets the manual that is looked up on The Manual Repository when
     /// <c>!{id} manual</c> is entered into chat.
     /// </summary>
-    [NotNull]
+    [NotNull, PublicAPI]
     string Manual { [Pure] get; set; }
 
     /// <summary>Gets the list that contains modules that it should stop processing.</summary>
@@ -86,11 +91,11 @@ public interface ITwitchDeclarable : ISolvable, ITwitchSupportable
     /// therefore there's no guarantee that it'll be available there, the field must be first accessed in a delegate in
     /// <see cref="KMBombModule.OnActivate"/> or later.
     /// </para></remarks>
-    [NotNull]
+    [NotNull, PublicAPI]
     ReadOnlyCollection<KMBombModule> Abandons { [Pure] get; }
 
     /// <summary>Gets the module that is attached to this instance.</summary>
-    [NotNull]
+    [NotNull, PublicAPI]
     ModdedModule Inner { [Pure] get; }
 
     /// <summary>
@@ -100,6 +105,6 @@ public interface ITwitchDeclarable : ISolvable, ITwitchSupportable
     /// Make sure that the module is solved before this method closes, otherwise it causes a forced-solve.
     /// </para></remarks>
     /// <returns>A series of instructions for the Twitch Plays mod to handle in order to guarantee a solve.</returns>
-    [NotNull, Pure]
+    [NotNull, PublicAPI, Pure]
     IEnumerable<Instruction> ForceSolve();
 }

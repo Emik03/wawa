@@ -34,6 +34,7 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
     /// that isn't in the file will automatically write to the file with said property.
     /// In the editor, the constructor will not merge the default values of the type with the file.
     /// </summary>
+    [PublicAPI]
     public Config()
         : this($"{Who}{Suffix}") { }
 
@@ -46,6 +47,7 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
     /// In the editor, the constructor will not merge the default values of the type with the file.
     /// </summary>
     /// <param name="fileName">The file name to get.</param>
+    [PublicAPI]
     public Config([NotNull] string fileName)
     {
         FilePath = Path.Combine(s_folder, fileName);
@@ -54,27 +56,27 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
 
     /// <summary>Gets a value indicating whether or not there has been a successful read of the settings file.</summary>
     /// <remarks><para>This value will always be false in the editor.</para></remarks>
-    [JsonIgnore]
+    [JsonIgnore, PublicAPI]
     public bool HasRead { [Pure] get; internal set; }
 
     /// <summary>Gets the path of the file to read and write.</summary>
-    [JsonIgnore, NotNull, ProvidesContext]
+    [JsonIgnore, NotNull, PublicAPI, ProvidesContext]
     public string FilePath { [Pure] get; }
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public object Clone() => this;
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public bool Equals(Config<T> x, Config<T> y) => x == y;
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public int GetHashCode([AllowNull, CanBeNull] Config<T> obj) => obj?.GetHashCode() ?? 0;
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public bool Equals(Config<T> other) => this == other;
 
     /// <summary>Determines whether both instances are both <see langword="null"/> or both instances.</summary>
@@ -84,7 +86,7 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
     /// The value <see langword="true"/> if both share the same <see cref="FilePath"/>,
     /// otherwise <see langword="false"/>.
     /// </returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static bool operator ==([AllowNull, CanBeNull] Config<T> left, [AllowNull, CanBeNull] Config<T> right) =>
         (left?.FilePath).OrdinalEquals(right?.FilePath);
 
@@ -95,16 +97,16 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
     /// The value <see langword="true"/> if both do not share the same <see cref="FilePath"/>,
     /// otherwise <see langword="false"/>.
     /// </returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static bool operator !=([AllowNull, CanBeNull] Config<T> left, [AllowNull, CanBeNull] Config<T> right) =>
         !(left == right);
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public override bool Equals(object obj) => Equals(obj as Config<T>);
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public override int GetHashCode() => StringComparer.Ordinal.GetHashCode(FilePath);
 
     /// <summary>
@@ -112,5 +114,6 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
     /// In the editor, this method serializes the default value of the constructor in <typeparamref name="T"/>.
     /// </summary>
     /// <returns>A string representation of the value from <see cref="Config.Read{T}"/>.</returns>
+    [PublicAPI]
     public override string ToString() => Config.Serialize(this.Read());
 }

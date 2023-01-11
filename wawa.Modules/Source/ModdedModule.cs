@@ -49,6 +49,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <exception cref="MissingComponentException">
     /// There is no <see cref="KMSelectable"/> <see cref="Component"/> attached to this <see cref="GameObject"/>.
     /// </exception>
+    [PublicAPI]
     public IList<KMSelectable> Children
     {
         [ItemCanBeNull, NotNull, MustUseReturnValue] get => Get<KMSelectable>().Children;
@@ -66,6 +67,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <exception cref="MissingComponentException">
     /// There is no <see cref="KMSelectable"/> <see cref="Component"/> attached to this <see cref="GameObject"/>.
     /// </exception>
+    [PublicAPI]
     public IList<IList<KMSelectable>> Matrix
     {
         [ItemNotNull, NotNull, MustUseReturnValue]
@@ -222,6 +224,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="format">The value to log.</param>
     /// <param name="args">The arguments to hook into format.</param>
     /// <returns>The value <see langword="default"/>.</returns>
+    [PublicAPI]
     public Unit Solve([AllowNull, CanBeNull] string format = null, [NotNull] params object[] args)
     {
         if (Status.IsSolved)
@@ -250,6 +253,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="format">The value to log.</param>
     /// <param name="args">The arguments to hook into format.</param>
     /// <returns>The value <see langword="default"/>.</returns>
+    [PublicAPI]
     public Unit Strike([AllowNull, CanBeNull] string format = null, [NotNull] params object[] args)
     {
         if (Status.HasException)

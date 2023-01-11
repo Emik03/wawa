@@ -37,6 +37,7 @@ sealed class TwitchEditor : Editor
         Zen = "Enable zen mode";
 
     /// <inheritdoc />
+    [PublicAPI]
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();

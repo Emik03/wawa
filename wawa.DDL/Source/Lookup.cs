@@ -35,10 +35,11 @@ public static class Lookup
     /// <remarks><para>In the editor, this value returns <see cref="Maybe.None{T}"/>.</para></remarks>
     /// <param name="term">The term to get the localized <see cref="string"/> of.</param>
     /// <returns>The localized <see cref="string"/> of <paramref name="term"/>.</returns>
+    [PublicAPI]
     public static Maybe<string> Localized([NotNull] string term) =>
         FromGame(term, static v => Localization.GetLocalizedString(v));
 
-    [NotNull]
+    [NotNull, PublicAPI]
     static IDictionary Factory() =>
         typeof(ModManager).GetField(Name, Bindings)?.GetValue(ModManager.Instance) as IDictionary ?? throw new();
 }

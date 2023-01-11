@@ -69,7 +69,8 @@ static class Globals
     internal static TResult Get<T, TResult>(
         [NotNull] this T key,
         [InstantHandle, NotNull] in Func<T, TResult> factory,
-        [AllowNull, CanBeNull, InstantHandle] in Func<T, TResult> editorFactory = null
+        [AllowNull, CanBeNull, InstantHandle, RequireStaticDelegate(IsError = true)] in Func<T, TResult> editorFactory =
+            null
     )
         where T : class
         where TResult : class
