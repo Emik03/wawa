@@ -3,6 +3,7 @@
         <FileVersion>2.0.1</FileVersion>
         <Nullable>annotations</Nullable>
         <TargetFramework>net35</TargetFramework>
+        <DefineConstants>$(DefineConstants);WAWA</DefineConstants>
         <WeaverConfiguration>
             <Weavers>
                 <Equals />
@@ -24,7 +25,6 @@
     <ItemGroup>
         <PackageReference Remove="GlobalUsingsAnalyzer" />
         <Compile Remove="$(SharedPath)Emik.Morsels/Source/*.cs" />
-        <Compile Include="../Polyfills/MoreIReadOnly.cs" Link="Source/References/System/Diagnostics/MoreIReadOnly.cs" />
         <Compile Include="../Polyfills/MoreAttributes.cs" Link="Source/References/System/Diagnostics/MoreAttributes.cs" />
     </ItemGroup>
 </Project>

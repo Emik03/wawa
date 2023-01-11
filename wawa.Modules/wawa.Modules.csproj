@@ -3,6 +3,7 @@
         <FileVersion>2.0.1</FileVersion>
         <Nullable>annotations</Nullable>
         <TargetFramework>net35</TargetFramework>
+        <DefineConstants>$(DefineConstants);WAWA</DefineConstants>
         <WeaverConfiguration>
             <Weavers>
                 <Equals />
@@ -28,7 +29,6 @@
         <ProjectReference Include="..\wawa.DDL\wawa.DDL.csproj" />
         <ProjectReference Include="..\wawa.Unity\wawa.Unity.csproj" />
         <ProjectReference Include="..\wawa.Optionals\wawa.Optionals.csproj" />
-        <Compile Include="../Polyfills/MoreIReadOnly.cs" Link="Source/References/System/Diagnostics/MoreIReadOnly.cs" />
         <Compile Include="../Polyfills/MoreAttributes.cs" Link="Source/References/System/Diagnostics/MoreAttributes.cs" />
     </ItemGroup>
 </Project>
