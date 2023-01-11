@@ -48,7 +48,10 @@ public static class PathFinder
     /// <summary>Gets the version of <see cref="Caller"/>.</summary>
     [NotNull]
     static string Which =>
-        Caller.Version is var ver && ver is { Minor: 0, Build: 0, Revision: 0 } ? $"v{ver.Major}" : $"v{ver}";
+        Caller.Version is var ver && ver is { Minor: 0, Build: 0, Revision: 0 } ? $"v{ver.Major}" :
+        ver is { Build: 0, Revision: 0 } ? $"v{ver.Major}.{ver.Minor}" :
+        ver is { Revision: 0 } ? $"v{ver.Major}.{ver.Minor}.{ver.Build}" :
+        $"v{ver.Major}.{ver.Minor}.{ver.Build}.{ver.Revision}";
 
     /// <summary>Logs a message to the Unity Console with the assembly's name that called this.</summary>
     /// <param name="message">The message to log.</param>
