@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <FileVersion>2.0.1</FileVersion>
+        <FileVersion>3</FileVersion>
         <Nullable>annotations</Nullable>
         <TargetFramework>net35</TargetFramework>
         <DefineConstants>$(DefineConstants);WAWA</DefineConstants>
