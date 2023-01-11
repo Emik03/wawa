@@ -19,7 +19,7 @@ namespace NullGuard
 {
     /// <summary>Prevents the injection of null checking (implicit mode only).</summary>
     [AttributeUsage(Parameter | ReturnValue | Property)]
-    public sealed class AllowNullAttribute : Attribute { }
+    sealed class AllowNullAttribute : Attribute { }
 }
 
 namespace System.Diagnostics.CodeAnalysis
