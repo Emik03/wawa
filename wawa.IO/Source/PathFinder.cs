@@ -31,9 +31,12 @@ public static class PathFinder
         InstanceBindings = DeclaredOnly | Static | Public,
         ToJsonBindings = DeclaredOnly | Instance | Public;
 
+    [CanBeNull]
+    static IDictionary<string, string> s_directories;
+
     /// <summary>Gets the <see cref="AssemblyName"/> of the caller that invoked the method calling this.</summary>
     /// <remarks><para>This is used by the library to log itself, and obtain information about callers.</para></remarks>
-    [NotNull]
+    [NotNull, PublicAPI]
 #pragma warning disable CA1065
     public static AssemblyName Caller => new StackFrame(3).GetMethod().ReflectedType?.Assembly.GetName() ?? throw new();
 #pragma warning restore CA1065
@@ -49,9 +52,10 @@ public static class PathFinder
 
     /// <summary>Logs a message to the Unity Console with the assembly's name that called this.</summary>
     /// <param name="message">The message to log.</param>
+    [PublicAPI]
     public static void AssemblyLog([NotNull] string message) => Debug.Log($"[{Who} ({Which})] {message}");
 
-    /// <summary>Gets the absolute dir of the directory from folder mod.</summary>
+    /// <summary>Gets the absolute directory of the mod.</summary>
     /// <param name="assembly">
     /// The name of the assembly which is used to get the mod directory of the mod.
     /// If <see langword="null" />, implicitly gets the directory of the mod from the file of the assembly.
@@ -60,10 +64,18 @@ public static class PathFinder
     /// A <see cref="Maybe{T}" />, consisting of either folder <see cref="string" /> of the absolute directory
     /// of the file if there is a folder mod id entry within the game's mod dictionary, or <see langword="default" />.
     /// </returns>
+    [PublicAPI, Pure]
     public static Maybe<string> GetDirectory([AllowNull, CanBeNull] string assembly = null) =>
-        (assembly ?? Who).Get(static asm => Mods.Contains(asm) ? (Mods[asm] as Mod)?.ModID : null);
+        (assembly ?? Who).Get(
+            static asm =>
+                (s_directories ??= (Mods as IEnumerable<KeyValuePair<string, Mod>>)?.ToDictionary(
+                    static x => x.Value.ModID,
+                    static x => x.Key,
+                    StringComparer.Ordinal
+                ))?[asm]
+        );
 
-    /// <summary>Gets the absolute dir of folder file located inside folder mod.</summary>
+    /// <summary>Gets the absolute directory of the file located inside the mod directory.</summary>
     /// <param name="file">The file located inside folder mod directory.</param>
     /// <param name="assembly">
     /// The name of the assembly which is used to get the mod directory of the mod.
@@ -73,6 +85,7 @@ public static class PathFinder
     /// A <see cref="Maybe{T}" />, consisting of either folder <see cref="string" /> of the absolute directory
     /// of the file if the mod directory and file were found, or <see langword="default" />.
     /// </returns>
+    [PublicAPI, Pure]
     public static Maybe<string> GetFile(
         [NotNull, PathReference] string file,
         [AllowNull, CanBeNull] string assembly = null
@@ -84,7 +97,7 @@ public static class PathFinder
         }.Get(
             static key => key.SuppressIO(
                 k => GetDirectory(k.asm).Value is { } directory
-                    ? Directory.GetFiles(directory, key.file).FirstOrDefault()
+                    ? Path.Combine(directory, key.file)
                     : null
             )
         );
@@ -98,9 +111,13 @@ public static class PathFinder
     /// A <see cref="Maybe{T}" />, consisting of either folder <see cref="ModInfo" /> if the file was read
     /// and deserialized successfully, or <see langword="default" />.
     /// </returns>
+    [PublicAPI, Pure]
     public static Maybe<ModInfo> GetModInfo([AllowNull, CanBeNull] string assembly = null) =>
         (assembly ?? Who).Get(
-            static asm => GetFile(ModInfo.FileName, asm).Match(ModInfo.ReadThenDeserialize).Value,
+            static asm => GetDirectory(asm).Value is { } dir &&
+                ModManager.Instance.InstalledModInfos.TryGetValue(dir, out var value)
+                    ? ModInfo.FromInternalModInfo(value)
+                    : null,
             static _ => GetEditorModInfo()
         );
 
@@ -115,7 +132,7 @@ public static class PathFinder
     /// A <see cref="Maybe{T}" />, consisting of either an <see cref="Array" /> of <typeparamref file="T" />
     /// from the assets in the file specified, or <see langword="default" /> in the event of an error.
     /// </returns>
-    [CLSCompliant(false)]
+    [CLSCompliant(false), PublicAPI]
     public static Maybe<T[]> GetAssets<T>(
         [NotNull, PathReference] string file,
         [AllowNull, CanBeNull] string assembly = null
@@ -142,6 +159,7 @@ public static class PathFinder
     /// <returns>
     /// The value <see langword="true" /> if copying the file was successful, otherwise <see langword="false" />.
     /// </returns>
+    [PublicAPI]
     public static Maybe<T> GetUnmanaged<T>(
         [NotNull, PathReference] string file,
         [NotNull] string method,
@@ -155,8 +173,8 @@ public static class PathFinder
                 method,
             }
            .Get(
-                key => GetDirectory(key.asm).Value is { } directory
-                    ? key.file.FindLibrary(directory)?.CreateUnmanagedMethod<T>(method)
+                static key => GetDirectory(key.asm).Value is { } directory
+                    ? key.file.FindLibrary(directory)?.CreateUnmanagedMethod<T>(key.method)
                     : null
             );
 
@@ -251,18 +269,12 @@ public static class PathFinder
         if (typeof(T).GetMethod(nameof(Action<T>.Invoke)) is not { } invoke)
             return null;
 
-        var assembly =
-            AppDomain
-               .CurrentDomain
-               .DefineDynamicAssembly(new(name), AssemblyBuilderAccess.Run);
-
+        var assembly = AppDomain.CurrentDomain.DefineDynamicAssembly(new(name), AssemblyBuilderAccess.Run);
         var module = assembly.DefineDynamicModule(name);
         var parameters = Array.ConvertAll(invoke.GetParameters(), static x => x.ParameterType);
         var returnType = invoke.ReturnType;
 
-        module
-           .DefineMethod(dllName, name, returnType, parameters)
-           .CreateGlobalFunctions();
+        module.DefineMethod(dllName, name, returnType, parameters).CreateGlobalFunctions();
 
         var method = module.GetMethod(name);
 
