@@ -238,16 +238,28 @@ using Wawa.Modules;",
         @$"{TwitchPrefix}
     [{nameof(SerializeField)}]
     {(b ? SolvableDeclaration : NeedyDeclaration)};
+
+    static int s_lastModuleId;
+
+    int _moduleId;
+
+    static void Log(string message, params object[] args)
+    {{
+        var log = string.Format(message, args);
+        Debug.LogFormat(""[{{0}} #{{1}}] #{{2}}"", {(b ? SolvableVar : NeedyVar)}.ModuleDisplayName, _moduleId, log);
+    }}
     
     void Start()
     {{
+        _moduleId = ++s_lastModuleId;
         {(b ? SolvableVar : NeedyVar)}.{nameof(KMBombModule.OnActivate)} += {nameof(KMBombModule.OnActivate)};
     }}
     
     void {nameof(KMBombModule.OnActivate)}()
     {{
         {NotImplemented}
-    }}{TwitchSuffix}";
+    }}
+    {TwitchSuffix}";
 
     [NotNull]
     static string Source([NotNull] this string name, [InstantHandle] bool hasWawaModules, bool isSolvable) =>
