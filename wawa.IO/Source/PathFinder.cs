@@ -68,11 +68,13 @@ public static class PathFinder
     public static Maybe<string> GetDirectory([AllowNull, CanBeNull] string assembly = null) =>
         (assembly ?? Who).Get(
             static asm =>
-                (s_directories ??= (Mods as IEnumerable<KeyValuePair<string, Mod>>)?.ToDictionary(
-                    static x => x.Value.ModID,
-                    static x => x.Key,
-                    StringComparer.Ordinal
-                ))?[asm]
+                (s_directories?.Count == Mods.Count
+                    ? s_directories
+                    : s_directories = (Mods as IEnumerable<KeyValuePair<string, Mod>>)?.ToDictionary(
+                        static x => x.Value.ModID,
+                        static x => x.Key,
+                        StringComparer.Ordinal
+                    ))?[asm]
         );
 
     /// <summary>Gets the absolute directory of the file located inside the mod directory.</summary>
