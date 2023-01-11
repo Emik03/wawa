@@ -202,7 +202,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     void ITwitchMutable.SetIsZen(in bool value) => ZenModeActive = value;
 
     /// <inheritdoc/>
-    [NotNull, PublicAPI, Pure]
+    [PublicAPI, Pure]
     IEnumerator ISolvable.ForceTPSolve() => TwitchHandleForcedSolve();
 
     /// <summary>
