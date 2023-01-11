@@ -399,8 +399,8 @@ FodyWeavers.xsd
 .idea/
 
 # Emik.Morsels symlinks
-./Directory.Build.local.props
-./Directory.Build.props
-./Directory.Build.targets
-./global.json
-./stylecop.json
+/Directory.Build.local.props
+/Directory.Build.props
+/Directory.Build.targets
+/global.json
+/stylecop.json
