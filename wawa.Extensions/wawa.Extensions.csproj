@@ -23,8 +23,8 @@
         </WeaverConfiguration>
     </PropertyGroup>
     <ItemGroup>
+        <Compile Remove="$(Morsels)Source/*.cs" />
         <PackageReference Remove="GlobalUsingsAnalyzer" />
-        <Compile Remove="$(SharedPath)Emik.Morsels/Source/*.cs" />
         <Compile Include="../Polyfills/MoreAttributes.cs" Link="Source/References/System/Diagnostics/MoreAttributes.cs" />
         <Reference Include="UnityEngine.CoreModule" Private="false" HintPath="$(Unity)/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll" Aliases="core" />
     </ItemGroup>

@@ -23,8 +23,8 @@
         </WeaverConfiguration>
     </PropertyGroup>
     <ItemGroup>
+        <Compile Remove="$(Morsels)Source/*.cs" />
         <PackageReference Remove="GlobalUsingsAnalyzer" />
-        <Compile Remove="$(SharedPath)Emik.Morsels/Source/*.cs" />
         <ProjectReference Include="..\wawa.DDL\wawa.DDL.csproj" />
         <ProjectReference Include="..\wawa.Optionals\wawa.Optionals.csproj" />
         <Compile Include="../Polyfills/MoreIReadOnly.cs" Link="Source/References/System/Diagnostics/MoreIReadOnly.cs" />
