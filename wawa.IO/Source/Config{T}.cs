@@ -103,7 +103,7 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
-    public override bool Equals(object obj) => Equals(obj as Config<T>);
+    public override bool Equals([AllowNull] object obj) => Equals(obj as Config<T>);
 
     /// <inheritdoc/>
     [PublicAPI, Pure]

@@ -95,7 +95,7 @@ public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<Sta
 
     /// <inheritdoc/>
     [Pure]
-    public override bool Equals(object obj) => Equals(obj as State);
+    public override bool Equals([AllowNull] object obj) => Equals(obj as State);
 
     /// <inheritdoc/>
     [Pure]

@@ -124,7 +124,7 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
-    public override bool Equals(object obj) => Equals(obj as ModInfo);
+    public override bool Equals([AllowNull] object obj) => Equals(obj as ModInfo);
 
     /// <inheritdoc/>
     [PublicAPI, Pure]

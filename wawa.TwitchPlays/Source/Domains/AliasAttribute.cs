@@ -102,7 +102,7 @@ public sealed class AliasAttribute : Attribute,
 
     /// <inheritdoc/>
     [Pure]
-    public override bool Equals(object obj) => Equals(obj as AliasAttribute);
+    public override bool Equals([AllowNull] object obj) => Equals(obj as AliasAttribute);
 
     /// <inheritdoc/>
     [Pure]

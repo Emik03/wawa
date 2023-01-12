@@ -94,7 +94,7 @@ public readonly struct Maybe<T> : ICloneable, IEquatable<Maybe<T>>, IEqualityCom
 
     /// <inheritdoc />
     [PublicAPI, Pure]
-    public override bool Equals(object obj) => obj is Maybe<T> may && Equals(may);
+    public override bool Equals([AllowNull] object obj) => obj is Maybe<T> may && Equals(may);
 
     /// <inheritdoc />
     [PublicAPI, Pure]

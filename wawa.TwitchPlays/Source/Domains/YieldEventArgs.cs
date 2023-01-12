@@ -71,7 +71,7 @@ public sealed class YieldEventArgs : EventArgs,
 
     /// <inheritdoc/>
     [Pure]
-    public override bool Equals(object obj) => Equals(obj as YieldEventArgs);
+    public override bool Equals([AllowNull] object obj) => Equals(obj as YieldEventArgs);
 
     /// <inheritdoc/>
     [Pure]

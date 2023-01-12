@@ -27,9 +27,9 @@ public readonly struct Unit : ICloneable, IEquatable<Unit>, IEqualityComparer<Un
     /// <param name="right">The right-hand side.</param>
     /// <returns>The value <see langword="true" />.</returns>
     [PublicAPI, Pure]
-#pragma warning disable IDE0060, RCS1163
+#pragma warning disable CA1801, IDE0060, RCS1163
     public static bool operator ==([InstantHandle] Unit left, [InstantHandle] Unit right) => true;
-#pragma warning restore IDE0060, RCS1163
+#pragma warning restore CA1801, IDE0060, RCS1163
 
     /// <summary>Returns <see langword="false" />.</summary>
     /// <remarks><para>Since this type has one value, any instance is the same as each other.</para></remarks>
@@ -37,9 +37,9 @@ public readonly struct Unit : ICloneable, IEquatable<Unit>, IEqualityComparer<Un
     /// <param name="right">The right-hand side.</param>
     /// <returns>The value <see langword="false" />.</returns>
     [PublicAPI, Pure]
-#pragma warning disable IDE0060, RCS1163
+#pragma warning disable CA1801, IDE0060, RCS1163
     public static bool operator !=([InstantHandle] Unit left, [InstantHandle] Unit right) => true;
-#pragma warning restore IDE0060, RCS1163
+#pragma warning restore CA1801, IDE0060, RCS1163
 
     /// <inheritdoc />
     [PublicAPI, Pure]
@@ -47,7 +47,7 @@ public readonly struct Unit : ICloneable, IEquatable<Unit>, IEqualityComparer<Un
 
     /// <inheritdoc />
     [PublicAPI, Pure]
-    public override bool Equals(object obj) => obj is Unit;
+    public override bool Equals([AllowNull] object obj) => obj is Unit;
 
     /// <inheritdoc />
     [PublicAPI, Pure]

@@ -230,7 +230,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
 
     /// <inheritdoc/>
     [Pure]
-    public override bool Equals(object obj) => Equals(obj as Instruction);
+    public override bool Equals([AllowNull] object obj) => Equals(obj as Instruction);
 
     /// <inheritdoc/>
     [Pure]

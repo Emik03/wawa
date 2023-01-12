@@ -125,7 +125,7 @@ public sealed partial class Sound : ICloneable, IEquatable<Sound>, IEqualityComp
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
-    public override bool Equals(object obj) => Equals(obj as Sound);
+    public override bool Equals([AllowNull] object obj) => Equals(obj as Sound);
 
     /// <inheritdoc/>
     [PublicAPI, Pure]

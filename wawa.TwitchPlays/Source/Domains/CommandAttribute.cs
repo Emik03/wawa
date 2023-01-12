@@ -80,7 +80,7 @@ public sealed class CommandAttribute : Attribute,
 
     /// <inheritdoc/>
     [Pure]
-    public override bool Equals(object obj) => Equals(obj as CommandAttribute);
+    public override bool Equals([AllowNull] object obj) => Equals(obj as CommandAttribute);
 
     /// <inheritdoc/>
     [Pure]

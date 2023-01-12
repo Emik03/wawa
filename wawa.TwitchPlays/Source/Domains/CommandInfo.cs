@@ -70,7 +70,7 @@ sealed class CommandInfo : ICloneable, IEquatable<CommandInfo>, IEqualityCompare
 
     /// <inheritdoc />
     [Pure]
-    public override bool Equals(object obj) => Equals(obj as CommandInfo);
+    public override bool Equals([AllowNull] object obj) => Equals(obj as CommandInfo);
 
     /// <inheritdoc />
     [Pure]

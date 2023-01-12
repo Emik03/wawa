@@ -244,7 +244,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
 
     /// <inheritdoc/>
     [Pure]
-    public override bool Equals(object obj) => obj is TwitchString query && Equals(query);
+    public override bool Equals([AllowNull] object obj) => obj is TwitchString query && Equals(query);
 
     /// <inheritdoc/>
     [Pure]
