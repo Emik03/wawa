@@ -73,21 +73,30 @@ public static class SoundCore
     [NotNull, PublicAPI, Pure]
     public static Sound ToSound([NotNull] this AudioClip sound) => new(sound);
 
-    /// <summary>Creates a <see cref="System.Collections.ObjectModel.ReadOnlyCollection{T}"/> where each element has been converted.</summary>
+    /// <summary>
+    /// Creates a <see cref="System.Collections.ObjectModel.ReadOnlyCollection{T}"/>
+    /// where each element has been converted.
+    /// </summary>
     /// <param name="sounds">The collection.</param>
     /// <returns>An immutable array.</returns>
     [NotNull, PublicAPI, Pure]
     public static ReadOnlyCollection<Sound> ToSounds([InstantHandle, NotNull] this IEnumerable<string> sounds) =>
         sounds.ToReadOnly(AsSound);
 
-    /// <summary>Creates an <see cref="System.Collections.ObjectModel.ReadOnlyCollection{T}"/> where each element has been converted.</summary>
+    /// <summary>
+    /// Creates a <see cref="System.Collections.ObjectModel.ReadOnlyCollection{T}"/>
+    /// where each element has been converted.
+    /// </summary>
     /// <param name="sounds">The collection.</param>
     /// <returns>An immutable array.</returns>
     [NotNull, PublicAPI, Pure]
     public static ReadOnlyCollection<Sound> ToSounds([InstantHandle, NotNull] this IEnumerable<SoundEffect> sounds) =>
         sounds.ToReadOnly(AsSound);
 
-    /// <summary>Creates a <see cref="System.Collections.ObjectModel.ReadOnlyCollection{T}"/> where each element has been converted.</summary>
+    /// <summary>
+    /// Creates a <see cref="System.Collections.ObjectModel.ReadOnlyCollection{T}"/>
+    /// where each element has been converted.
+    /// </summary>
     /// <param name="sounds">The collection.</param>
     /// <returns>An immutable array.</returns>
     [NotNull, PublicAPI, Pure]
