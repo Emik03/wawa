@@ -126,7 +126,7 @@ public static class Maybe
     /// <param name="that">This instance of <typeparamref name="T"/>.</param>
     /// <returns>A new instance of <see cref="Maybe{T}"/>.</returns>
     [PublicAPI, Pure]
-    public static Maybe<T> From<T>([AllowNull, CanBeNull] T? that)
+    public static Maybe<T> From<T>(T? that)
         where T : struct =>
         that.HasValue ? new(that.Value) : default;
 
@@ -136,7 +136,7 @@ public static class Maybe
     /// <param name="that">This instance of <typeparamref name="T"/>.</param>
     /// <returns>A new instance of <see cref="Maybe{T}"/>.</returns>
     [PublicAPI, Pure]
-    public static Maybe<T> ToMaybe<T>([AllowNull, CanBeNull] this T? that)
+    public static Maybe<T> AsMaybe<T>(this T? that)
         where T : struct =>
         From(that);
 
