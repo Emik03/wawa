@@ -1,5 +1,7 @@
 # wawa
 
+[![License](https://img.shields.io/github/license/Emik03/wawa.svg?style=flat)](https://github.com/Emik03/wawa/blob/main/LICENSE)
+
 A collection of libraries to help with the creation of mods in the game [Keep Talking and Nobody Explodes](https://keeptalkinggame.com/).
 
 Named after the respective [toki pona](https://tokipona.org/) word, meaning roughly "[strong, powerful; confident, sure; energetic, intense](https://lipu-linku.github.io/)".
