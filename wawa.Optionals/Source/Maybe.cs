@@ -130,15 +130,25 @@ public static class Maybe
         where T : struct =>
         that.HasValue ? new(that.Value) : default;
 
-    /// <summary>Wraps <typeparamref name="T"/> in a <see cref="Maybe{T}"/>.</summary>
+    /// <summary>Creates a <see cref="Nullable{T}"/> from a <see cref="Maybe{T}"/>.</summary>
     /// <remarks><para>This is an extension method for calling <see cref="From{T}(T)"/>.</para></remarks>
     /// <typeparam name="T">The type of parameter and generic in <see cref="Maybe{T}"/>.</typeparam>
     /// <param name="that">This instance of <typeparamref name="T"/>.</param>
-    /// <returns>A new instance of <see cref="Maybe{T}"/>.</returns>
+    /// <returns>The <see cref="Maybe{T}"/> representing <paramref name="that"/>.</returns>
     [PublicAPI, Pure]
     public static Maybe<T> AsMaybe<T>(this T? that)
         where T : struct =>
         From(that);
+
+    /// <summary>Creates a <see cref="Maybe{T}"/> from a <see cref="Nullable{T}"/>.</summary>
+    /// <remarks><para>This is an extension method for a ternary <see cref="Maybe{T}.IsSome"/>.</para></remarks>
+    /// <typeparam name="T">The type of parameter and generic in <see cref="Nullable{T}"/>.</typeparam>
+    /// <param name="that">This instance of <typeparamref name="T"/>.</param>
+    /// <returns>The <see cref="Nullable{T}"/> representing <paramref name="that"/>.</returns>
+    [PublicAPI, Pure]
+    public static T? AsNullable<T>(this Maybe<T> that)
+        where T : struct =>
+        that.IsSome ? that.Value : null;
 
     /// <summary>Uses the callback corresponding to the inner value of <paramref name="that"/>.</summary>
     /// <typeparam name="T">The type of value stored within <paramref name="that"/>.</typeparam>
