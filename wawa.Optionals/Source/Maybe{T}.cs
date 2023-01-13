@@ -78,10 +78,6 @@ public readonly struct Maybe<T> : ICloneable, IEquatable<Maybe<T>>, IEqualityCom
 
     /// <inheritdoc />
     [PublicAPI, Pure]
-    public object Clone() => this;
-
-    /// <inheritdoc />
-    [PublicAPI, Pure]
     public bool Equals(Maybe<T> other) => this == other;
 
     /// <inheritdoc />
@@ -91,6 +87,10 @@ public readonly struct Maybe<T> : ICloneable, IEquatable<Maybe<T>>, IEqualityCom
     /// <inheritdoc />
     [PublicAPI, Pure]
     public int GetHashCode(Maybe<T> obj) => obj.GetHashCode();
+
+    /// <inheritdoc />
+    [PublicAPI, Pure]
+    public object Clone() => this;
 
     /// <inheritdoc />
     [PublicAPI, Pure]
