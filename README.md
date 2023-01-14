@@ -4,7 +4,7 @@
 
 A collection of libraries to help with the creation of mods in the game [Keep Talking and Nobody Explodes](https://keeptalkinggame.com/).
 
-Named after the respective [toki pona](https://tokipona.org/) word, meaning roughly "[strong, powerful; confident, sure; energetic, intense](https://lipu-linku.github.io/)".
+Named after the respective [toki pona](https://tokipona.org/) word, meaning roughly "[strong, powerful; confident, sure; energetic, intense](https://linku.la)".
 
 This project has a dependency to [Emik.Morsels](https://github.com/Emik03/Emik.Morsels), if you are building this project, refer to its [README](https://github.com/Emik03/Emik.Morsels/blob/main/README.md) first.
 
@@ -19,13 +19,11 @@ This project has a dependency to [Emik.Morsels](https://github.com/Emik03/Emik.M
 
 ## Quick Start
 
-1. Go to [Releases](https://github.com/Emik03/wawa/releases) and download the latest [wawa.Editors](https://github.com/Emik03/wawa/tree/main/wawa.Editors).
+If you are using Qkrisi's modkit, install it from `Keep Talking ModKit > Plugins > wawa.Editors (By Emik) > Install`.
 
-2. Place the `.dll` in `Assets/Plugins/`, **not** `Assets/Plugins/Managed/`.
+Otherwise, you can install it manually by going to [Releases](https://github.com/Emik03/wawa/releases), downloading the latest [wawa.Editors](https://github.com/Emik03/wawa/tree/main/wawa.Editors) `.dll` file, and placing it in `./Assets/Editor/Plugins/Managed/`, **not** `./Assets/Plugins/Managed/`.
 
-3. Wait for Unity to reload, a new tab should appear called `wawa`.
-
-4. Hover over it, and download additional components as needed under `Update`.
+Whichever method is used, wait for Unity to reload, and a new tab should appear named `wawa`. Hover over it, and download additional libraries as needed under `Update`.
 
 ## Libraries
 
