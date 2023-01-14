@@ -72,6 +72,9 @@ static class Update
 
         AssemblyLog($"Overwriting {path}...");
 
+        if (Path.GetDirectoryName(path) is { } dir)
+            Directory.CreateDirectory(dir);
+
         File.WriteAllBytes(path, data);
     }
 
