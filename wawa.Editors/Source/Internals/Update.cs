@@ -20,10 +20,10 @@ static class Update
         GitHubAPI = $"github.com/repos/{GitHubUser}/{GitHubRepo}/",
         GitHubRepo = "wawa",
         GitHubUser = "Emik03",
-        Managed = "Managed/",
         Pdb = "pdb",
-        Plugins = "Plugins/",
         Prep = "Now preparing to fetch and download the following libraries: ",
+        RelativeEditor = $"Editor/{RelativeFolder}",
+        RelativeFolder = "Plugins/Managed/",
         Separator = ", ",
         TagName = "tag_name",
         Xml = "xml";
@@ -32,10 +32,10 @@ static class Update
     static string s_tag = "";
 
     [NotNull]
-    static string ContainingFolder { get; } = Path.Combine(Application.dataPath, Plugins);
+    static string Folder { get; } = Path.Combine(Application.dataPath, RelativeFolder);
 
     [NotNull]
-    static string ManagedContainingFolder { get; } = Path.Combine(ContainingFolder, Managed);
+    static string EditorFolder { get; } = Path.Combine(Application.dataPath, RelativeEditor);
 
     /// <summary>Fetches and downloads a set of libraries concurrently.</summary>
     /// <param name="fetches">The libraries to fetch.</param>
@@ -68,7 +68,7 @@ static class Update
 
         AssemblyLog($"Received {data.Length} bytes.");
 
-        var path = Path.Combine(lib is WawaEditor.This ? ContainingFolder : ManagedContainingFolder, $"{lib}.{ext}");
+        var path = Path.Combine(lib is WawaEditor.This ? EditorFolder : Folder, $"{lib}.{ext}");
 
         AssemblyLog($"Overwriting {path}...");
 
