@@ -248,13 +248,14 @@ using Wawa.Modules;",
         var log = string.Format(message, args);
         Debug.LogFormat(""[{{0}} #{{1}}] #{{2}}"", {(b ? SolvableVar : NeedyVar)}.ModuleDisplayName, _moduleId, log);
     }}
-    
+
     void Start()
     {{
         _moduleId = ++s_lastModuleId;
+        {Greeting}
         {(b ? SolvableVar : NeedyVar)}.{nameof(KMBombModule.OnActivate)} += {nameof(KMBombModule.OnActivate)};
     }}
-    
+
     void {nameof(KMBombModule.OnActivate)}()
     {{
         {NotImplemented}
