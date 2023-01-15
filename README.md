@@ -19,7 +19,7 @@ This project has a dependency to [Emik.Morsels](https://github.com/Emik03/Emik.M
 
 ## Quick Start
 
-If you are using Qkrisi's modkit, install it from `Keep Talking ModKit > Plugins > wawa.Editors (By Emik) > Install`.
+If you are using [Qkrisi's modkit](https://github.com/Qkrisi/ktanemodkit), install it from `Keep Talking ModKit > Plugins > wawa.Editors (By Emik) > Install`.
 
 Otherwise, you can install it manually by going to [Releases](https://github.com/Emik03/wawa/releases), downloading the latest [wawa.Editors](https://github.com/Emik03/wawa/tree/main/wawa.Editors) `.dll` file, and placing it in `./Assets/Editor/Plugins/Managed/`, **not** `./Assets/Plugins/Managed/`.
 
