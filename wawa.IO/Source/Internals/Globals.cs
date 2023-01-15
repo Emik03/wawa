@@ -62,36 +62,26 @@ static class Globals
     /// <typeparam name="TResult">The type of return.</typeparam>
     /// <param name="key">The parameter of the method.</param>
     /// <param name="factory">The expensive callback.</param>
-    /// <param name="editorFactory">The expensive callback exclusive to the editor.</param>
+    /// <param name="editor">The expensive callback exclusive to the editor.</param>
     /// <returns>The value from the first time <paramref name="factory" /> was invoked.</returns>
-    [CanBeNull]
+    [CanBeNull, Pure]
     [return: AllowNull]
     internal static TResult Get<T, TResult>(
         [NotNull] this T key,
         [InstantHandle, NotNull] in Func<T, TResult> factory,
-        [AllowNull, CanBeNull, InstantHandle, RequireStaticDelegate(IsError = true)] in Func<T, TResult> editorFactory =
-            null
+        [AllowNull, CanBeNull, InstantHandle, RequireStaticDelegate(IsError = true)] in Func<T, TResult> editor = null
     )
         where T : class
         where TResult : class
     {
         var caller = new StackFrame(1).GetMethod();
-        var name = caller.Name;
         var dict = s_cache.TryGetValue(caller, out var d) ? d : s_cache[caller] = new Dictionary<T, TResult>();
 
         if (dict.Contains(key))
             return dict[key] as TResult;
 
-        AssemblyLog(
-            IsKtane
-                ? $"{name} called with {key}. Invoking factory method."
-                : $"{name} called with {key}. Returning default value."
-        );
-
-        var value = IsKtane ? factory(key) : editorFactory?.Invoke(key);
+        var value = IsKtane ? factory(key) : editor?.Invoke(key);
         dict[key] = value;
-
-        AssemblyLog($"{name} halted with {Maybe.From(value)}.");
 
         return value;
     }
