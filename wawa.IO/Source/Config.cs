@@ -54,8 +54,8 @@ public static class Config
         new
         {
             that.FilePath,
-            value,
-        }.SuppressIO(static t => File.WriteAllText(t.FilePath, t.value));
+            Contents = value,
+        }.SuppressIO(static t => File.WriteAllText(t.FilePath, t.Contents));
 
         return that;
     }
