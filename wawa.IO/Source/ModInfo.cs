@@ -163,7 +163,7 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
         FromGame(
             metadata,
             static x => x is Assets.Scripts.Mods.ModInfo mod
-                ? new ModInfo
+                ? new()
                 {
                     Author = mod.Author,
                     Description = mod.Description,
@@ -172,7 +172,7 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
                     UnityVersion = mod.UnityVersion,
                     Version = mod.Version,
                 }
-                : null,
+                : s_default,
             s_default
         );
 }
