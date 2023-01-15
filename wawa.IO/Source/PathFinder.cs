@@ -150,9 +150,9 @@ public static class PathFinder
             FilePath = filePath,
             ModId = modId ?? Who,
         }.Get(
-            static key => GetFile(key.FilePath, key.ModId).Value is not { } path ? null :
-                AssetBundle.LoadFromFileAsync(path).assetBundle is not { } bundle ||
-                bundle.LoadAllAssets<T>() is not { } assets ? null : assets
+            static key => GetFile(key.FilePath, key.ModId).Value is { } path
+                ? AssetBundle.LoadFromFile(path)?.LoadAllAssets<T>()
+                : null
         );
 
     /// <summary>Gets an unmanaged function from an external library.</summary>
@@ -186,12 +186,12 @@ public static class PathFinder
             );
 
     [NotNull]
-    static string Join([NotNull, PathReference] this string dir, [NotNull, PathReference] in string folder) =>
-        Path.Combine(dir, folder) is var first && Directory.Exists(first) ? first : dir;
+    static string Join([NotNull, PathReference] this string root, [NotNull, PathReference] in string folder) =>
+        Path.Combine(root, folder) is var first && Directory.Exists(first) ? first : root;
 
     [CanBeNull]
     [return: AllowNull]
-    static string FindLibrary([NotNull, PathReference] this string file, [NotNull, PathReference] in string dir)
+    static string FindLibrary([NotNull, PathReference] this string file, [NotNull, PathReference] in string root)
     {
         var architecture = Application.platform switch
         {
@@ -215,15 +215,14 @@ public static class PathFinder
             return null;
         }
 
-        Directory.CreateDirectory(platform);
+        var directory = root.Join(Library).Join(platform).Join(architecture);
 
-        var directory = dir.Join(Library).Join(platform).Join(architecture);
-        var source = Directory.GetFiles(directory, $"{file}*").SingleOrDefault();
+        Directory.CreateDirectory(directory);
 
-        if (source is not null && File.Exists(source))
+        if (Directory.GetFiles(directory, $"{file}*").SingleOrDefault() is { } source && File.Exists(source))
             return source;
 
-        AssemblyLog($"{nameof(FindLibrary)} Error: Couldn't find appropriate library in directory {directory}.");
+        AssemblyLog($"{nameof(FindLibrary)} Error: Couldn't find {file} library in directory {directory}.");
 
         return null;
     }
