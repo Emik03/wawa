@@ -122,24 +122,10 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
     public override bool Equals([AllowNull] object obj) => Equals(obj as ModInfo);
 
     /// <inheritdoc/>
+    // The setters only exist for serialization means. This class is immutable otherwise.
+    // ReSharper disable NonReadonlyMemberInGetHashCode
     [PublicAPI, Pure]
-    public override int GetHashCode()
-    {
-        var hashCode = 1876013109;
-
-        // The setters only exist for serialization means. This class is immutable otherwise.
-        // ReSharper disable NonReadonlyMemberInGetHashCode
-        hashCode = hashCode * -1521134295 + StringComparer.Ordinal.GetHashCode(Author);
-        hashCode = hashCode * -1521134295 + StringComparer.Ordinal.GetHashCode(Description);
-        hashCode = hashCode * -1521134295 + StringComparer.Ordinal.GetHashCode(Id);
-        hashCode = hashCode * -1521134295 + StringComparer.Ordinal.GetHashCode(Title);
-        hashCode = hashCode * -1521134295 + StringComparer.Ordinal.GetHashCode(UnityVersion);
-        hashCode = hashCode * -1521134295 + StringComparer.Ordinal.GetHashCode(Version);
-
-        // ReSharper restore NonReadonlyMemberInGetHashCode
-
-        return hashCode;
-    }
+    public override int GetHashCode() => StringComparer.Ordinal.GetHashCode(Id);
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
