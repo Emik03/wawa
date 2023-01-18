@@ -100,6 +100,9 @@ public abstract class ModdedModule : CachedBehaviour
     KMNeedyModule Needy => _needy ??= GetComponent<KMNeedyModule>();
 
     /// <summary>Logs version numbers. Be sure to call this method if you are implementing Awake.</summary>
+    /// <exception cref="InvalidOperationException">
+    /// A loaded mod has a null mod id, or has an id that conflicts with another loaded mod.
+    /// </exception>
     protected virtual void Awake()
     {
         var version = $"Version: {GetModInfo(Id).Value?.Version switch

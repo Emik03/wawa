@@ -9,12 +9,15 @@ public static class PathFinder
 
     [NotNull]
     const string
+        DuplicateReason = "duplicate mod ids",
         Library = "lib",
         Linux = "linux",
         ModInfoEditor = "ModConfig",
         ModInfoSerializerEditor = "ToJson",
         ModInfoInstanceEditor = "Instance",
+        NullReason = "null mod ids",
         OSX = "darwin",
+        Separator = ", ",
         Windows = "win32",
         X86 = "x86",
         X86Wide = "x86_64",
@@ -56,6 +59,9 @@ public static class PathFinder
     /// The mod id to get the mod directory from.
     /// If <see langword="null" />, implicitly gets the directory of the mod from the file of the assembly.
     /// </param>
+    /// <exception cref="InvalidOperationException">
+    /// A loaded mod has a null mod id, or has an id that conflicts with another loaded mod.
+    /// </exception>
     /// <returns>
     /// A <see cref="Maybe{T}" />, consisting of either folder <see cref="string" /> of the absolute directory
     /// of the file if there is a folder mod id entry within the game's mod dictionary, or <see langword="default" />.
@@ -66,13 +72,7 @@ public static class PathFinder
             static asm =>
                 (s_directories?.Count == Mods.Count
                     ? s_directories
-                    : s_directories = (Mods as IEnumerable<KeyValuePair<string, Mod>>)?
-                       .Cast<object>() // Boxing required; Avoids creating closures with the undesired 'Mod' type.
-                       .ToDictionary(
-                            static x => ((KeyValuePair<string, Mod>)x).Value.ModID,
-                            static x => ((KeyValuePair<string, Mod>)x).Key,
-                            StringComparer.Ordinal
-                        ))?[asm]
+                    : s_directories = CreateModIdToDirectoryMapping())?[asm]
         );
 
     /// <summary>Gets the absolute directory of the file located inside the mod directory.</summary>
@@ -81,6 +81,9 @@ public static class PathFinder
     /// The mod id to get the mod directory from.
     /// If <see langword="null" />, implicitly gets the directory of the mod from the file of the assembly.
     /// </param>
+    /// <exception cref="InvalidOperationException">
+    /// A loaded mod has a null mod id, or has an id that conflicts with another loaded mod.
+    /// </exception>
     /// <returns>
     /// A <see cref="Maybe{T}" />, consisting of either folder <see cref="string" /> of the absolute directory
     /// of the file if the mod directory and file were found, or <see langword="default" />.
@@ -156,6 +159,9 @@ public static class PathFinder
     /// The mod id to get the mod directory from.
     /// If <see langword="null" />, implicitly gets the directory of the mod from the file of the assembly.
     /// </param>
+    /// <exception cref="InvalidOperationException">
+    /// A loaded mod has a null mod id, or has an id that conflicts with another loaded mod.
+    /// </exception>
     /// <returns>
     /// The value <see langword="true" /> if copying the file was successful, otherwise <see langword="false" />.
     /// </returns>
@@ -220,6 +226,48 @@ public static class PathFinder
         return null;
     }
 
+    [NotNull, ItemNotNull]
+    static string[] CollectModsWithDuplicateIds([NotNull, ItemNotNull] this IEnumerable<ValueType> mods) =>
+        mods
+           .Select(static x => ((KeyValuePair<string, Mod>)x).Value.ModID)
+           .GroupBy(x => x, StringComparer.Ordinal)
+           .Where(x => x.Skip(1).Any())
+           .Select(x => x.Key)
+           .ToArray();
+
+    [NotNull, ItemNotNull]
+    static string[] CollectModsWithNullIds([NotNull, ItemNotNull] this IEnumerable<ValueType> mods) =>
+        mods
+           .Where(static x => ((KeyValuePair<string, Mod>)x).Value.ModID is null)
+           .Select(static x => ((KeyValuePair<string, Mod>)x).Key)
+           .ToArray();
+
+    [NotNull]
+    static IDictionary<string, string> CreateModIdToDirectoryMapping() =>
+
+        // Boxing required; Avoids creating closures with the 'Mod' type.
+        // Collected as list due to multiple enumerations.
+        Mods.Cast<ValueType>().ToList() is var mods && mods.CollectModsWithNullIds() is { Length: > 0 } filteredByNull ?
+            throw filteredByNull.InvalidBecause(NullReason) :
+            mods.CollectModsWithDuplicateIds() is { Length: > 0 } filteredByDuplicate ?
+                throw filteredByDuplicate.InvalidBecause(DuplicateReason) :
+                mods.InvertModDictionary();
+
+    [NotNull]
+    static IDictionary<string, string> InvertModDictionary([NotNull, ItemNotNull] this IEnumerable<ValueType> mods) =>
+        mods.ToDictionary(
+            static x => ((KeyValuePair<string, Mod>)x).Value.ModID,
+            static x => ((KeyValuePair<string, Mod>)x).Key,
+            StringComparer.Ordinal
+        );
+
+    [NotNull]
+    static InvalidOperationException InvalidBecause(
+        [NotNull, ItemNotNull] this string[] ids,
+        [NotNull] string reason
+    ) =>
+        new($"The following mod directories have {reason}: {string.Join(Separator, ids)}");
+
     [CanBeNull]
     [return: AllowNull]
     static ModInfo GetEditorModInfo() =>
@@ -236,7 +284,7 @@ public static class PathFinder
         [NotNull] in string dllName,
         [NotNull] in string name,
         [NotNull] in Type returnType,
-        [NotNull] in Type[] parameters
+        [NotNull, ItemNotNull] in Type[] parameters
     )
     {
         const CallingConvention NativeCall = CallingConvention.Cdecl;
