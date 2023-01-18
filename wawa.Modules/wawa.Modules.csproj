@@ -1,4 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<!-- SPDX-License-Identifier: MPL-2.0 -->
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <FileVersion>3.0</FileVersion>
         <Nullable>annotations</Nullable>
@@ -29,6 +30,7 @@
         <ProjectReference Include="..\wawa.DDL\wawa.DDL.csproj" />
         <ProjectReference Include="..\wawa.Unity\wawa.Unity.csproj" />
         <ProjectReference Include="..\wawa.Optionals\wawa.Optionals.csproj" />
-        <Compile Include="../Polyfills/MoreAttributes.cs" Link="Source/References/System/Diagnostics/MoreAttributes.cs" />
+        <Compile Include="$(Morsels)Source/Matrix.cs" Link="Source/References/Emik/Collections/Generics/Matrix.cs" />
+        <Compile Include="$(Morsels)Source/Attributes.cs" Link="Source/References/System/Diagnostics/Attributes.cs" />
     </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<!-- SPDX-License-Identifier: MPL-2.0 -->
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <FileVersion>3.0</FileVersion>
         <Nullable>annotations</Nullable>
@@ -25,6 +26,6 @@
     <ItemGroup>
         <Compile Remove="$(Morsels)Source/*.cs" />
         <PackageReference Remove="GlobalUsingsAnalyzer" />
-        <Compile Include="../Polyfills/MoreAttributes.cs" Link="Source/References/System/Diagnostics/MoreAttributes.cs" />
+        <Compile Include="$(Morsels)Source/Attributes.cs" Link="Source/References/System/Diagnostics/Attributes.cs" />
     </ItemGroup>
 </Project>
