@@ -1,6 +1,5 @@
-// <copyright file="MoreIReadOnly.cs" company="Emik">
-// Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
-// </copyright>
+// SPDX-License-Identifier: MPL-2.0
+
 // ReSharper disable CheckNamespace EmptyNamespace UnusedParameter.Global
 namespace System.Collections.Generic;
 #pragma warning disable CA1710, SA1649, MA0048

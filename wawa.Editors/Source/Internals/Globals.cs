@@ -1,13 +1,4 @@
-#region Emik.MPL
-
-// <copyright file="Globals.cs" company="Emik">
-// Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
-// </copyright>
-
-#endregion
-
-#region
-
+// SPDX-License-Identifier: MPL-2.0
 global using Newtonsoft.Json.Linq;
 global using UnityEditor;
 global using UnityEditor.Animations;
@@ -17,8 +8,6 @@ global using UnityEngine.Networking;
 global using static Wawa.Editors.Internals.Globals;
 global using static Wawa.Editors.Internals.Scaffold;
 global using static Wawa.Editors.Internals.Update;
-
-#endregion
 
 namespace Wawa.Editors.Internals;
 
