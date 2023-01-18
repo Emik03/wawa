@@ -13,7 +13,7 @@ public static class KMBombStrikeExtensions
     /// <remarks><para>In the editor, this value always returns 0.</para></remarks>
     /// <param name="that">The <see cref="KMBomb"/> module instance to grab strikes from.</param>
     /// <returns>The number of strikes.</returns>
-    [CLSCompliant(false), PublicAPI]
+    [CLSCompliant(false), NonNegativeValue, PublicAPI]
     public static int GetStrikes([NotNull] this KMBomb that) =>
         FromGame(that, static x => x.GetComponent<Bomb>().NumStrikes);
 
@@ -49,7 +49,7 @@ public static class KMBombStrikeExtensions
     /// <param name="that">The <see cref="KMBomb"/> module instance to grab strikes from.</param>
     /// <param name="value">The value to set it to.</param>
     /// <returns>The parameter <see cref="KMBomb"/>.</returns>
-    [CLSCompliant(false), NotNull, PublicAPI]
+    [CLSCompliant(false), NonNegativeValue, NotNull, PublicAPI]
     public static KMBomb SetStrikes([NotNull] this KMBomb that, int value)
     {
         static byte Hidden(Mutation<int> x)

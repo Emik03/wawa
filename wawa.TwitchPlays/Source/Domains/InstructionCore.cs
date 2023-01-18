@@ -12,7 +12,9 @@ public static class InstructionCore
     /// containing the values from <paramref name="that"/>.
     /// </returns>
     [NotNull, Pure]
-    public static IEnumerator<object> Flatten([InstantHandle, NotNull] this IEnumerable<Instruction> that) =>
+    public static IEnumerator<object> Flatten(
+        [InstantHandle, ItemCanBeNull, NotNull] this IEnumerable<Instruction> that
+    ) =>
         that.GetEnumerator().Recursive();
 
     [NotNull, Pure]

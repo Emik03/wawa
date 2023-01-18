@@ -21,7 +21,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     [CanBeNull]
     static string s_autoImplementedHelp;
 
-    [CanBeNull, ProvidesContext]
+    [CanBeNull, ItemNotNull, ProvidesContext]
     static IEnumerable<CommandInfo> s_commands;
 
     bool _isPrintingYields;
@@ -37,7 +37,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         [NotNull] get => s_autoImplementedHelp ??= GenerateHelp();
     }
 
-    [NotNull]
+    [ItemNotNull, NotNull]
     IEnumerable<CommandInfo> Commands =>
         s_commands ??=
             GetType()
@@ -125,7 +125,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     }
 
     /// <inheritdoc />
-    [PublicAPI]
+    [PublicAPI, StringSyntax(StringSyntaxAttribute.Uri), UriString]
     public string Manual
     {
         [Pure] get => TwitchManualCode;
@@ -177,7 +177,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
 
     /// <inheritdoc />
     [PublicAPI, Pure]
-    public abstract IEnumerable<Instruction> ForceSolve();
+    public abstract IEnumerable<Instruction?> ForceSolve();
 
     /// <inheritdoc />
     void ITwitchMutable.SetIsCancelCommand(in bool value) => TwitchShouldCancelCommand = value;
@@ -249,15 +249,15 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <param name="selectables">The array of selectables to interact with.</param>
     /// <param name="duration">The delay between each button press in seconds.</param>
     /// <returns>A sequence of button presses for Twitch Plays to process.</returns>
-    [NotNull, PublicAPI]
+    [ItemNotNull, NotNull, PublicAPI]
     public IEnumerable<WaitForSecondsRealtime> Sequence(
-        [NotNull] IEnumerable<KMSelectable> selectables,
+        [ItemCanBeNull, NotNull] IEnumerable<KMSelectable> selectables,
         float duration
     )
     {
         Module.Status.HasStruck = false;
 
-        foreach (var selectable in selectables)
+        foreach (var selectable in selectables.Where(x => x))
         {
             selectable.OnInteract();
 
@@ -276,9 +276,9 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <param name="duration">The delay between each button press in seconds.</param>
     /// <param name="indices">The indices to press within the array.</param>
     /// <returns>A sequence of button presses for Twitch Plays to process.</returns>
-    [NotNull, PublicAPI]
+    [ItemNotNull, NotNull, PublicAPI]
     public IEnumerable<WaitForSecondsRealtime> IndexedSequence(
-        [NotNull] IList<KMSelectable> selectables,
+        [ItemCanBeNull, NotNull] IList<KMSelectable> selectables,
         float duration,
         [NotNull] params int[] indices
     ) =>
@@ -309,7 +309,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <returns>
     /// <paramref name="item"/> continuously until <paramref name="condition"/> is <see langword="false"/>.
     /// </returns>
-    [NotNull, PublicAPI]
+    [ItemNotNull, NotNull, PublicAPI]
     protected static IEnumerable<T> YieldWhile<T>([NotNull] T item, [InstantHandle, NotNull] Func<bool> condition)
     {
         while (condition())
@@ -326,7 +326,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <returns>
     /// <paramref name="item"/> continuously until <paramref name="condition"/> is <see langword="true"/>.
     /// </returns>
-    [NotNull, PublicAPI]
+    [ItemNotNull, NotNull, PublicAPI]
     protected static IEnumerable<T> YieldUntil<T>([NotNull] T item, [InstantHandle, NotNull] Func<bool> condition)
     {
         while (!condition())
@@ -334,7 +334,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     }
 
     [NotNull]
-    static string Combine([NotNull] in string main, [NotNull] params object[] toAppend)
+    static string Combine([NotNull] in string main, [ItemCanBeNull, NotNull] params object[] toAppend)
     {
         StringBuilder builder = new(main);
 
@@ -403,14 +403,15 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         }
     }
 
+    [ItemNotNull, NotNull]
     static IEnumerable<Instruction> FromFail([NotNull] in string reason) =>
         Enumerable.Repeat<Instruction>(TwitchString.SendToChatError(reason), 1);
 
-    [NotNull]
+    [ItemNotNull, NotNull]
     static IEnumerable<Instruction> FromFail(
         in int fail,
-        [NotNull] in IList<object> args,
-        [NotNull] in IList<ParameterInfo> parameters
+        [ItemNotNull, NotNull] in IList<object> args,
+        [ItemNotNull, NotNull] in IList<ParameterInfo> parameters
     ) =>
         FromFail(
             @$"Invalid {Stringifier.Nth(fail, true)} parameter ""{parameters[fail].Name}"": " +
@@ -438,7 +439,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         return Stringifier.Conjoin(Commands.Select(Selector), Separator).Trim();
     }
 
-    [CanBeNull]
+    [CanBeNull, ItemNotNull]
     [return: AllowNull]
     IEnumerable<Instruction> Match([NotNull] string command)
     {
@@ -450,7 +451,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
            .FirstOrDefault();
     }
 
-    [CanBeNull]
+    [CanBeNull, ItemNotNull]
     [return: AllowNull]
     IEnumerable<Instruction> ProcessCommand([NotNull] CommandInfo query, [NotNull] string message)
     {
@@ -467,6 +468,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         if (split.Length > parameters.Length && !parameters.Any(IsParams))
             return FromFail($"Too many parameters, expected {parameters.Length}.");
 
+        [NotNull]
         object Params(int skip)
         {
             var arrType = parameters[skip].ParameterType.GetElementType() ?? throw new();
@@ -528,7 +530,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     [NotNull, SerializeField, UsedImplicitly]
     string TwitchManualCode = "";
 
-    [NotNull, SerializeField, UsedImplicitly]
+    [ItemCanBeNull, NotNull, SerializeField, UsedImplicitly]
     List<KMBombModule> TwitchAbandonModule = new();
 
     // ReSharper restore InconsistentNaming ReplaceWithFieldKeyword

@@ -73,7 +73,9 @@ public static class SoundCore
     /// <param name="sounds">The collection.</param>
     /// <returns>An immutable array.</returns>
     [NotNull, PublicAPI, Pure]
-    public static ReadOnlyCollection<Sound> ToSounds([InstantHandle, NotNull] this IEnumerable<string> sounds) =>
+    public static ReadOnlyCollection<Sound> ToSounds(
+        [InstantHandle, ItemNotNull, NotNull] this IEnumerable<string> sounds
+    ) =>
         sounds.ToReadOnly(AsSound);
 
     /// <summary>
@@ -93,7 +95,9 @@ public static class SoundCore
     /// <param name="sounds">The collection.</param>
     /// <returns>An immutable array.</returns>
     [NotNull, PublicAPI, Pure]
-    public static ReadOnlyCollection<Sound> ToSounds([InstantHandle, NotNull] this IEnumerable<AudioClip> sounds) =>
+    public static ReadOnlyCollection<Sound> ToSounds(
+        [InstantHandle, ItemNotNull, NotNull] this IEnumerable<AudioClip> sounds
+    ) =>
         sounds.ToReadOnly(ToSound);
 
     /// <summary>
@@ -103,7 +107,7 @@ public static class SoundCore
     /// <param name="sounds">The multiple <see cref="Sound"/> instances to each call <see cref="Stop"/> on.</param>
     /// <returns>The parameter <paramref name="sounds"/>.</returns>
     [NotNull, PublicAPI]
-    public static T Stop<T>([InstantHandle, NotNull] this T sounds)
+    public static T Stop<T>([InstantHandle, ItemNotNull, NotNull] this T sounds)
         where T : IEnumerable<Sound>
     {
         foreach (var sound in sounds)
@@ -124,7 +128,7 @@ public static class SoundCore
     /// </returns>
     [LinqTunnel, NotNull, PublicAPI]
     public static IEnumerable<Maybe<KMAudioRef>> Play(
-        [NotNull] this IEnumerable<Sound> that,
+        [ItemNotNull, NotNull] this IEnumerable<Sound> that,
         [NotNull] KMAudio audio,
         [NotNull] Transform transform,
         bool isLooping = false

@@ -73,7 +73,7 @@ public interface ITwitchDeclarable : ISolvable, ITwitchSupportable
     /// Gets or sets the manual that is looked up on The Manual Repository when
     /// <c>!{id} manual</c> is entered into chat.
     /// </summary>
-    [NotNull, PublicAPI]
+    [NotNull, PublicAPI, StringSyntax(StringSyntaxAttribute.Uri), UriString]
     string Manual { [Pure] get; set; }
 
     /// <summary>Gets the list that contains modules that it should stop processing.</summary>
@@ -84,7 +84,7 @@ public interface ITwitchDeclarable : ISolvable, ITwitchSupportable
     /// therefore there's no guarantee that it'll be available there, the field must be first accessed in a delegate in
     /// <see cref="KMBombModule.OnActivate"/> or later.
     /// </para></remarks>
-    [NotNull, PublicAPI]
+    [NotNull, ItemCanBeNull, PublicAPI]
     ReadOnlyCollection<KMBombModule> Abandons { [Pure] get; }
 
     /// <summary>Gets the module that is attached to this instance.</summary>
@@ -98,6 +98,6 @@ public interface ITwitchDeclarable : ISolvable, ITwitchSupportable
     /// Make sure that the module is solved before this method closes, otherwise it causes a forced-solve.
     /// </para></remarks>
     /// <returns>A series of instructions for the Twitch Plays mod to handle in order to guarantee a solve.</returns>
-    [NotNull, PublicAPI, Pure]
+    [NotNull, ItemCanBeNull, PublicAPI, Pure]
     IEnumerable<Instruction> ForceSolve();
 }

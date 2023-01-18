@@ -47,7 +47,11 @@ static class Update
     }
 
     [NotNull, Pure]
-    static IEnumerator Download([NotNull] string tag, [NotNull] string lib, [NotNull] string ext)
+    static IEnumerator<UnityWebRequestAsyncOperation> Download(
+        [NotNull] string tag,
+        [NotNull] string lib,
+        [NotNull] string ext
+    )
     {
         var url = $"https://{GitHub}/releases/download/{tag}/{lib}.{ext}";
         using var web = UnityWebRequest.Get(url);
@@ -72,7 +76,7 @@ static class Update
     }
 
     [NotNull, Pure]
-    static IEnumerator Downloads([NotNull] string lib)
+    static IEnumerator<IEnumerator<UnityWebRequestAsyncOperation>> Downloads([NotNull] string lib)
     {
         yield return Download(s_tag, lib, Dll);
         yield return Download(s_tag, lib, ExternalAnnotations);
@@ -83,7 +87,10 @@ static class Update
     }
 
     [NotNull, Pure]
-    static IEnumerator Latest([NotNull] MonoBehaviour mono, [InstantHandle, NotNull] IEnumerable<string> fetches)
+    static IEnumerator<UnityWebRequestAsyncOperation> Latest(
+        [NotNull] MonoBehaviour mono,
+        [InstantHandle, NotNull] IEnumerable<string> fetches
+    )
     {
         using var web = UnityWebRequest.Get(FetchLink);
 

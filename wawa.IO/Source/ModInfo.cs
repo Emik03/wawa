@@ -105,16 +105,18 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
     /// <summary>
     /// Attempts to read the specified path to try to deserialize its contents as <see cref="ModInfo"/>.
     /// </summary>
-    /// <param name="path">The contents to a modInfo.json.</param>
+    /// <param name="filePath">The contents to a modInfo.json.</param>
     /// <returns>
     /// A <see cref="Maybe{T}"/> containing either a <see langword="new"/> instance
     /// of <see cref="ModInfo"/> which has the information of the file if the serialization is successful,
     /// or no value if the file couldn't be read/located.
     /// </returns>
     [PublicAPI]
-    public static Maybe<ModInfo> ReadThenDeserialize([AllowNull, CanBeNull, PathReference] string path) =>
-        File.Exists(path)
-            ? path?.SuppressIO(File.ReadAllText, true)?.SuppressIO(JsonConvert.DeserializeObject<ModInfo>, true)
+    public static Maybe<ModInfo> ReadThenDeserialize(
+        [AllowNull, CanBeNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] string filePath
+    ) =>
+        File.Exists(filePath)
+            ? filePath?.SuppressIO(File.ReadAllText, true)?.SuppressIO(JsonConvert.DeserializeObject<ModInfo>, true)
             : default;
 
     /// <inheritdoc/>

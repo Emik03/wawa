@@ -40,7 +40,7 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
     /// </summary>
     /// <param name="fileName">The file name to get.</param>
     [PublicAPI]
-    public Config([NotNull, PathReference] string fileName)
+    public Config([NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] string fileName)
     {
         FilePath = Path.Combine(s_folder, fileName);
         this.Merge(new());
@@ -52,7 +52,7 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
     public bool HasRead { [Pure] get; internal set; }
 
     /// <summary>Gets the path of the file to read and write.</summary>
-    [JsonIgnore, NotNull, PublicAPI, ProvidesContext]
+    [JsonIgnore, NotNull, PublicAPI, ProvidesContext, StringSyntax(StringSyntaxAttribute.Uri), UriString]
     public string FilePath { [Pure] get; }
 
     /// <inheritdoc/>

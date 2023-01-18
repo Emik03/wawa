@@ -10,7 +10,7 @@ public sealed class AliasAttribute : Attribute,
     IFormattable
 {
     const string Whitespace =
-        "One or more aliases contain whitespace. " +
+        "One or more aliases contain whitespace or is null. " +
         "Since commands are split by whitespace, this makes those aliases unreachable.";
 
     /// <summary>Initializes a new instance of the <see cref="AliasAttribute"/> class.</summary>
@@ -28,13 +28,13 @@ public sealed class AliasAttribute : Attribute,
     /// according to <see cref="char.IsWhiteSpace(char)"/>.
     /// </exception>
     /// <param name="aliases">The prefix of this command.</param>
-    public AliasAttribute([NotNull] IList<string> aliases) =>
-        Aliases = aliases.Any(static x => x.Any(char.IsWhiteSpace))
+    public AliasAttribute([ItemNotNull, NotNull] IList<string?> aliases) =>
+        Aliases = aliases.Any(static x => x?.Any(char.IsWhiteSpace) ?? false)
             ? throw new InvalidOperationException(Whitespace)
             : aliases;
 
     /// <summary>Gets the alternative representations.</summary>
-    [NotNull]
+    [ItemNotNull, NotNull]
     public IList<string> Aliases { [Pure] get; }
 
     /// <inheritdoc/>

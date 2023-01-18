@@ -33,7 +33,7 @@ public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<Sta
     public bool IsSolved { [Pure] get; internal set; }
 
     /// <summary>Gets the unique module id of this module type, primarily used in logging.</summary>
-    [PublicAPI]
+    [NonNegativeValue, PublicAPI]
     public int Id { [Pure] get; }
 
     /// <summary>
@@ -42,6 +42,7 @@ public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<Sta
     internal bool HasException { [Pure] get; set; }
 
     /// <summary>Gets or sets the amount of times <see cref="ModdedModule.Strike"/> was called.</summary>
+    [NonNegativeValue]
     internal int Strikes { [Pure] get; set; }
 
     /// <inheritdoc/>
@@ -91,7 +92,7 @@ public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<Sta
     public override bool Equals([AllowNull] object obj) => Equals(obj as State);
 
     /// <inheritdoc/>
-    [Pure]
+    [NonNegativeValue, Pure]
     public override int GetHashCode() => Id;
 
     /// <inheritdoc/>

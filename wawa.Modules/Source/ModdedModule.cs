@@ -63,7 +63,7 @@ public abstract class ModdedModule : CachedBehaviour
     [PublicAPI]
     public IList<IList<KMSelectable>> Matrix
     {
-        [ItemNotNull, NotNull, MustUseReturnValue]
+        [ItemCanBeNull, NotNull, MustUseReturnValue]
         get =>
             _matrix ??= Get<KMSelectable>().ChildRowLength > 0
                 ? new Matrix<KMSelectable>(() => Children, () => Get<KMSelectable>().ChildRowLength)
@@ -156,8 +156,9 @@ public abstract class ModdedModule : CachedBehaviour
     /// </exception>
     /// <param name="sounds">The sounds to play.</param>
     /// <returns>The parameter <paramref name="sounds"/>.</returns>
-    [NotNull]
-    public IList<Sound> Play([InstantHandle, NotNull] params Sound[] sounds) => PlayEnum(sounds, transform);
+    [ItemCanBeNull, NotNull]
+    public IList<Sound> Play([InstantHandle, ItemCanBeNull, NotNull] params Sound[] sounds) =>
+        PlayEnum(sounds, transform);
 
     /// <summary>Plays one or more sounds from a specified <see cref="Transform"/>.</summary>
     /// <exception cref="InvalidOperationException">
@@ -166,8 +167,11 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="location">The source of the sound.</param>
     /// <param name="sounds">The sounds to play.</param>
     /// <returns>The parameter <paramref name="sounds"/>.</returns>
-    [NotNull]
-    public IList<Sound> Play([NotNull] Transform location, [InstantHandle, NotNull] params Sound[] sounds) =>
+    [ItemCanBeNull, NotNull]
+    public IList<Sound> Play(
+        [NotNull] Transform location,
+        [InstantHandle, ItemCanBeNull, NotNull] params Sound[] sounds
+    ) =>
         PlayEnum(sounds, location);
 
     /// <summary>Plays one or more sounds from a specified <see cref="Transform"/>.</summary>
@@ -178,8 +182,11 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="sounds">The sounds to play.</param>
     /// <param name="location">The source of the sound.</param>
     /// <returns>The parameter <paramref name="sounds"/>.</returns>
-    [NotNull]
-    public T PlayEnum<T>([InstantHandle, NotNull] T sounds, [AllowNull, CanBeNull] Transform location = null)
+    [ItemCanBeNull, NotNull]
+    public T PlayEnum<T>(
+        [InstantHandle, ItemCanBeNull, NotNull] T sounds,
+        [AllowNull, CanBeNull] Transform location = null
+    )
         where T : IEnumerable<Sound>
     {
         var sources = Get<KMAudio[]>();
@@ -205,7 +212,7 @@ public abstract class ModdedModule : CachedBehaviour
     public KMSelectable Shake(
         [NotNull] KMSelectable selectable,
         float intensityModifier = 0,
-        [NotNull] params Sound[] sounds
+        [ItemCanBeNull, NotNull] params Sound[] sounds
     )
     {
         var location = selectable.transform;
@@ -221,7 +228,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="args">The arguments to hook into format.</param>
     /// <returns>The value <see langword="default"/>.</returns>
     [PublicAPI]
-    public Unit Solve([AllowNull, CanBeNull] string format = null, [NotNull] params object[] args)
+    public Unit Solve([AllowNull, CanBeNull] string format = null, [ItemCanBeNull, NotNull] params object[] args)
     {
         if (Status.IsSolved)
             return default;
@@ -250,7 +257,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="args">The arguments to hook into format.</param>
     /// <returns>The value <see langword="default"/>.</returns>
     [PublicAPI]
-    public Unit Strike([AllowNull, CanBeNull] string format = null, [NotNull] params object[] args)
+    public Unit Strike([AllowNull, CanBeNull] string format = null, [ItemCanBeNull, NotNull] params object[] args)
     {
         if (Status.HasException)
             return default;
@@ -299,7 +306,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <returns>The parameter <paramref name="format"/>.</returns>
     [CanBeNull]
     [return: AllowNull]
-    public T Log<T>([AllowNull, CanBeNull] T format = default, [NotNull] params object[] args)
+    public T Log<T>([AllowNull, CanBeNull] T format = default, [ItemCanBeNull, NotNull] params object[] args)
     {
         var convertAll = Array.ConvertAll(args, static o => (object)Stringifier.Stringify(o));
         var stringify = Stringifier.Stringify(format);
@@ -338,7 +345,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <returns>The parameter <paramref name="format"/>.</returns>
     [CanBeNull]
     [return: AllowNull]
-    public T LogLower<T>([AllowNull, CanBeNull] T format = default, [NotNull] params object[] args)
+    public T LogLower<T>([AllowNull, CanBeNull] T format = default, [ItemCanBeNull, NotNull] params object[] args)
     {
         var convertAll = Array.ConvertAll(args, static o => (object)Stringifier.Stringify(o));
         var stringify = Stringifier.Stringify(format);
@@ -382,8 +389,8 @@ public abstract class ModdedModule : CachedBehaviour
         };
     }
 
-    [NotNull]
-    static T Play<T>([NotNull] in Transform location, [NotNull] in T sounds, [NotNull] in KMAudio source)
+    [ItemCanBeNull, NotNull]
+    static T Play<T>([NotNull] in Transform location, [ItemCanBeNull, NotNull] in T sounds, [NotNull] in KMAudio source)
         where T : IEnumerable<Sound>
     {
         foreach (var sound in sounds)
@@ -404,7 +411,7 @@ public abstract class ModdedModule : CachedBehaviour
             PrepareException(condition, traces);
     }
 
-    void PrepareException([NotNull] string condition, [NotNull] IEnumerable<string> traces)
+    void PrepareException([NotNull] string condition, [ItemNotNull, NotNull] IEnumerable<string> traces)
     {
         Application.logMessageReceived -= CheckForException;
         Status.HasException = true;

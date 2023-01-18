@@ -19,7 +19,7 @@ public static class Preferences
 
     /// <summary>Gets or sets the current music volume from the dossier menu. Ranges 0 to 100.</summary>
     /// <remarks><para>In the editor, this returns <see cref="MaxVolume"/>.</para></remarks>
-    [PublicAPI]
+    [PublicAPI, ValueRange(0, MaxVolume)]
     public static byte Music
     {
         [Pure]
@@ -29,7 +29,7 @@ public static class Preferences
 
     /// <summary>Gets or sets the current sound effect volume from the dossier menu. Ranges 0 to 100.</summary>
     /// <remarks><para>In the editor, this returns <see cref="MaxVolume"/>.</para></remarks>
-    [PublicAPI]
+    [PublicAPI, ValueRange(0, MaxVolume)]
     public static byte Sound
     {
         [Pure] get => FromGame(0, static _ => (byte)PlayerSettingsManager.Instance.PlayerSettings.SFXVolume, MaxVolume);

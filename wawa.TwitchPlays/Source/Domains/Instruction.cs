@@ -23,7 +23,8 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <summary>Initializes a new instance of the <see cref="Instruction"/> class.</summary>
     /// <remarks><para>Provides a nested enumeration.</para></remarks>
     /// <param name="enumerator">The value to pass in.</param>
-    public Instruction([NotNull] IEnumerable<Instruction> enumerator) => Value = enumerator.GetEnumerator();
+    public Instruction([ItemCanBeNull, NotNull] IEnumerable<Instruction> enumerator) =>
+        Value = enumerator.GetEnumerator();
 
     /// <summary>Initializes a new instance of the <see cref="Instruction"/> class.</summary>
     /// <remarks><para>Provides a nested enumeration.</para></remarks>
@@ -148,7 +149,8 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// A <see langword="new"/> <see cref="Instruction"/> instance encapsulating <paramref name="enumerable"/>.
     /// </returns>
     [NotNull, Pure]
-    public static Instruction FromInstructions([NotNull] IEnumerable<Instruction> enumerable) => new(enumerable);
+    public static Instruction FromInstructions([ItemCanBeNull, NotNull] IEnumerable<Instruction> enumerable) =>
+        new(enumerable);
 
     /// <summary>
     /// Converts the <see cref="IEnumerator{T}"/> to a <see langword="new"/> <see cref="Instruction"/>.
@@ -191,7 +193,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     [CLSCompliant(false), NotNull, Pure]
 
     // ReSharper disable once InconsistentNaming
-    public static Instruction FromKMSelectableArray([NotNull] KMSelectable[] selectable) => selectable;
+    public static Instruction FromKMSelectableArray([ItemCanBeNull, NotNull] KMSelectable[] selectable) => selectable;
 
     /// <summary>Converts the <see cref="Quaternion"/> to a <see langword="new"/> <see cref="Instruction"/>.</summary>
     /// <param name="orientation">The <see cref="Quaternion"/> instance to convert.</param>

@@ -410,7 +410,7 @@ public static class KMExtensions
     /// <param name="onStopSound">Called when the sound is prematurely stopped.</param>
     /// <returns>The parameter <paramref name="audio"/>.</returns>
     [NotNull, PublicAPI]
-    public static T Add<T>([InstantHandle, NotNull] this T audio, [NotNull] Action<int> onStopSound)
+    public static T Add<T>([InstantHandle, ItemNotNull, NotNull] this T audio, [NotNull] Action<int> onStopSound)
         where T : IEnumerable<KMAudioRef>
     {
         var i = 0;
@@ -436,7 +436,7 @@ public static class KMExtensions
     /// <param name="onStopSound">Called when the sound is prematurely stopped.</param>
     /// <returns>The parameter <paramref name="audio"/>.</returns>
     [NotNull, PublicAPI]
-    public static T Set<T>([InstantHandle, NotNull] this T audio, [NotNull] Action<int> onStopSound)
+    public static T Set<T>([InstantHandle, ItemNotNull, NotNull] this T audio, [NotNull] Action<int> onStopSound)
         where T : IEnumerable<KMAudioRef>
     {
         var i = 0;
@@ -484,7 +484,7 @@ public static class KMExtensions
     /// <returns>The parameter <paramref name="selectables"/>.</returns>
     [NotNull, PublicAPI]
     public static T Add<T>(
-        [InstantHandle, NotNull] this T selectables,
+        [InstantHandle, ItemNotNull, NotNull] this T selectables,
         bool? isParent = null,
         [AllowNull, CanBeNull] Action<int> onCancel = null,
         [AllowNull, CanBeNull] Action<int> onDefocus = null,
@@ -542,7 +542,7 @@ public static class KMExtensions
     /// <returns>The parameter <paramref name="selectables"/>.</returns>
     [NotNull, PublicAPI]
     public static T Notify<T>(
-        [InstantHandle, NotNull] this T selectables,
+        [InstantHandle, ItemNotNull, NotNull] this T selectables,
         [AllowNull, CanBeNull, InstantHandle] params KMSelectable[] childrenToSelect
     )
         where T : IEnumerable<KMSelectable> =>
@@ -568,7 +568,7 @@ public static class KMExtensions
     /// <returns>The parameter <paramref name="selectables"/>.</returns>
     [NotNull, PublicAPI]
     public static T Notify<T, TChild>(
-        [InstantHandle, NotNull] this T selectables,
+        [InstantHandle, ItemNotNull, NotNull] this T selectables,
         [AllowNull, CanBeNull, InstantHandle] TChild childrenToSelect
     )
         where T : IEnumerable<KMSelectable>
@@ -621,7 +621,7 @@ public static class KMExtensions
     /// <returns>The parameter <paramref name="selectables"/>.</returns>
     [NotNull, PublicAPI]
     public static T Set<T>(
-        [InstantHandle, NotNull] this T selectables,
+        [InstantHandle, ItemNotNull, NotNull] this T selectables,
         bool? isParent = null,
         [AllowNull, CanBeNull] Action<int> onCancel = null,
         [AllowNull, CanBeNull] Action<int> onDefocus = null,
@@ -675,7 +675,7 @@ public static class KMExtensions
     /// </param>
     /// <returns>The parameter <paramref name="audio"/>.</returns>
     [NotNull, PublicAPI]
-    public static T Stop<T>([InstantHandle, NotNull] this T audio)
+    public static T Stop<T>([InstantHandle, ItemCanBeNull, NotNull] this T audio)
         where T : IEnumerable<KMAudioRef>
     {
         foreach (var a in audio)

@@ -90,7 +90,7 @@ public static class PathFinder
     /// </returns>
     [PublicAPI, Pure]
     public static Maybe<string> GetFile(
-        [NotNull, PathReference] string filePath,
+        [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] string filePath,
         [AllowNull, CanBeNull] string modId = null
     ) =>
         new
@@ -136,8 +136,8 @@ public static class PathFinder
     /// from the assets in the file specified, or <see langword="default" /> in the event of an error.
     /// </returns>
     [CLSCompliant(false), PublicAPI]
-    public static Maybe<T[]> GetAssets<T>(
-        [NotNull, PathReference] string filePath,
+    public static Maybe<IList<T>> GetAssets<T>(
+        [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] string filePath,
         [AllowNull, CanBeNull] string modId = null
     )
         where T : Object =>
@@ -167,7 +167,7 @@ public static class PathFinder
     /// </returns>
     [PublicAPI]
     public static Maybe<T> GetUnmanaged<T>(
-        [NotNull, PathReference] string libPath,
+        [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] string libPath,
         [NotNull] string ffiMethodName,
         [AllowNull, CanBeNull] string modId = null
     )
@@ -185,12 +185,18 @@ public static class PathFinder
             );
 
     [NotNull]
-    static string Join([NotNull, PathReference] this string root, [NotNull, PathReference] in string folder) =>
+    static string Join(
+        [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] this string root,
+        [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] in string folder
+    ) =>
         Path.Combine(root, folder) is var first && Directory.Exists(first) ? first : root;
 
     [CanBeNull]
     [return: AllowNull]
-    static string FindLibrary([NotNull, PathReference] this string file, [NotNull, PathReference] in string root)
+    static string FindLibrary(
+        [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] this string file,
+        [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] in string root
+    )
     {
         var architecture = Application.platform switch
         {
@@ -310,7 +316,10 @@ public static class PathFinder
 
     [CanBeNull]
     [return: AllowNull]
-    static T CreateUnmanagedMethod<T>([NotNull, PathReference] this string dllName, [NotNull] in string name)
+    static T CreateUnmanagedMethod<T>(
+        [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] this string dllName,
+        [NotNull] in string name
+    )
         where T : Delegate
     {
         if (typeof(T).GetMethod(nameof(Action<T>.Invoke)) is not { } invoke)
