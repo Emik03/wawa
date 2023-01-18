@@ -3,7 +3,7 @@ namespace Wawa.IO;
 
 /// <summary>Meant for information that needs to be deserialized within the mod settings folder.</summary>
 /// <remarks><para>
-/// Originally by samfundev: https://github.com/Qkrisi/ktanemodkit/blob/master/Assets/Scripts/ModConfig.cs.
+/// Originally by samfundev: https://github.com/samfundev/KTANE-Utilities/blob/master/ModConfig.cs.
 /// </para></remarks>
 /// <typeparam name="T">The type to serialize and deserialize the file.</typeparam>
 [PublicAPI]
