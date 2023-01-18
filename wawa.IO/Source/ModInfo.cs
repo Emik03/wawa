@@ -5,7 +5,7 @@ namespace Wawa.IO;
 /// Contains the properties needed to perform JSON-deserialization
 /// of a modInfo.json located in the root directory of a mod.
 /// </summary>
-[PublicAPI]
+[PublicAPI, Serializable]
 public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer<ModInfo>
 {
     /// <summary>The file name used for this type.</summary>
