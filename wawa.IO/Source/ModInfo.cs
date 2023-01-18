@@ -97,7 +97,9 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
     /// or no value if the file couldn't be read/located.
     /// </returns>
     [PublicAPI]
-    public static Maybe<ModInfo> Deserialize([AllowNull, CanBeNull] string contents) =>
+    public static Maybe<ModInfo> Deserialize(
+        [AllowNull, CanBeNull, StringSyntax(StringSyntaxAttribute.Json)] string contents
+    ) =>
         contents?.SuppressIO(JsonConvert.DeserializeObject<ModInfo>, true);
 
     /// <summary>

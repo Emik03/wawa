@@ -3,8 +3,7 @@ namespace Wawa.IO;
 
 /// <summary>Meant for information that needs to be deserialized within the mod settings folder.</summary>
 /// <remarks><para>
-/// Originally by samfundev:
-/// <see href="https://github.com/Qkrisi/ktanemodkit/blob/master/Assets/Scripts/ModConfig.cs"/>.
+/// Originally by samfundev: https://github.com/Qkrisi/ktanemodkit/blob/master/Assets/Scripts/ModConfig.cs.
 /// </para></remarks>
 /// <typeparam name="T">The type to serialize and deserialize the file.</typeparam>
 [PublicAPI]
@@ -41,7 +40,7 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
     /// </summary>
     /// <param name="fileName">The file name to get.</param>
     [PublicAPI]
-    public Config([NotNull] string fileName)
+    public Config([NotNull, PathReference] string fileName)
     {
         FilePath = Path.Combine(s_folder, fileName);
         this.Merge(new());

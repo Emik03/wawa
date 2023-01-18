@@ -36,7 +36,10 @@ public static class Config
     /// <param name="value">The contents to write.</param>
     /// <returns>The parameter <paramref name="that"/>.</returns>
     [PublicAPI, NotNull]
-    public static Config<T> Write<T>([NotNull] this Config<T> that, [NotNull] string value)
+    public static Config<T> Write<T>(
+        [NotNull] this Config<T> that,
+        [NotNull, StringSyntax(StringSyntaxAttribute.Json)] string value
+    )
         where T : new()
     {
         if (!that.HasRead)
