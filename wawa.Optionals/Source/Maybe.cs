@@ -65,16 +65,6 @@ public static class Maybe
         where T : struct =>
         new(that);
 
-    /// <summary>Gets an iterator that has the value once, or is empty.</summary>
-    /// <typeparam name="T">The type of parameter and generic in <see cref="Maybe{T}"/>.</typeparam>
-    /// <param name="source">This instance of <see cref="Maybe{T}"/>.</param>
-    /// <returns>An iterator that yields the inner value once, or <see cref="Enumerable.Empty{T}"/>.</returns>
-    [LinqTunnel, NotNull, Pure, PublicAPI]
-    public static IEnumerable<T> GetEnumerator<T>(this Maybe<T> source) =>
-        source.IsSome
-            ? Enumerable.Repeat(source.Value, 1)
-            : Enumerable.Empty<T>();
-
     /// <summary>Filters a collection with only that of items with a value.</summary>
     /// <typeparam name="T">The type of parameter and generic in <see cref="Maybe{T}"/>.</typeparam>
     /// <param name="source">This collection of <see cref="Maybe{T}"/>.</param>
