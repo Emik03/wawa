@@ -23,10 +23,18 @@ public static class Lookup
     /// <summary>Gets the localized value of a <see cref="string"/> term.</summary>
     /// <remarks><para>In the editor, this value returns <see cref="Maybe.None{T}"/>.</para></remarks>
     /// <param name="term">The term to get the localized <see cref="string"/> of.</param>
-    /// <returns>The localized <see cref="string"/> of <paramref name="term"/>.</returns>
+    /// <returns>The localized <see cref="string"/> of the parameter <paramref name="term"/>.</returns>
     [PublicAPI]
     public static Maybe<string> Localized([NotNull] string term) =>
         FromGame(term, static x => Localization.GetLocalizedString(x));
+
+    /// <summary>Gets the mod name attached to the component.</summary>
+    /// <remarks><para>In the editor, this value returns <see cref="Maybe.None{T}"/>.</para></remarks>
+    /// <param name="component">The component to get the mod source from.</param>
+    /// <returns>The mod name attached to the parameter <paramref name="component"/>.</returns>
+    [PublicAPI]
+    public static Maybe<string> ModNameOf([NotNull] Component component) =>
+        FromGame(component, static o => o.GetComponent<ModSource>() is var m && m ? m.ModName : null);
 
     [NotNull, PublicAPI]
     static IDictionary Factory() =>
