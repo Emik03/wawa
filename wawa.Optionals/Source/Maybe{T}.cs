@@ -7,8 +7,9 @@ using static CollectionAccessType;
 /// <typeparam name="T">The type to encapsulate and project as an optional value.</typeparam>
 [StructLayout(LayoutKind.Auto), PublicAPI]
 #pragma warning disable CA1710
-public readonly struct Maybe<T> : ICollection,
+public readonly struct Maybe<T> :
 #pragma warning restore CA1710
+    ICollection,
     ICloneable,
     IEquatable<Maybe<T>>,
     IEqualityComparer<Maybe<T>>,
@@ -81,7 +82,7 @@ public readonly struct Maybe<T> : ICollection,
     [AllowNull, CanBeNull, PublicAPI]
     T IList<T>.this[int index]
     {
-        [CollectionAccess(Read), Pure] get => Value;
+        [CollectionAccess(Read), Pure] get => this.Unwrap();
         [CollectionAccess(None)] set { }
     }
 
@@ -100,6 +101,14 @@ public readonly struct Maybe<T> : ICollection,
     /// <exception cref="InvalidOperationException">The parameter <paramref name="value" /> is a None value.</exception>
     [CollectionAccess(Read), PublicAPI, Pure]
     public static explicit operator T(Maybe<T> value) => value.Unwrap();
+
+    /// <inheritdoc cref="IsSome"/>
+    [CollectionAccess(None), Pure]
+    public static bool operator true(Maybe<T> value) => value.IsSome;
+
+    /// <inheritdoc cref="IsNone"/>
+    [CollectionAccess(None), Pure]
+    public static bool operator false(Maybe<T> value) => value.IsNone;
 
     /// <summary>Determines whether both instances contain the same values.</summary>
     /// <param name="left">The left-hand side.</param>
@@ -120,6 +129,10 @@ public readonly struct Maybe<T> : ICollection,
     /// otherwise <see langword="false" />.</returns>
     [CollectionAccess(Read), PublicAPI, Pure]
     public static bool operator !=(Maybe<T> left, Maybe<T> right) => !(left == right);
+
+    /// <inheritdoc cref="Maybe.UnwrapOr{T}(Maybe{T}, T)"/>
+    [CollectionAccess(Read), Pure]
+    public static T operator |(Maybe<T> value, T def) => value.UnwrapOr(def);
 
     /// <inheritdoc />
     [CollectionAccess(Read), PublicAPI, Pure]
