@@ -699,7 +699,7 @@ public static class KMExtensions
     [MethodImpl(MethodImplOptions.NoInlining)]
     static void NotifyInner([AllowNull, CanBeNull] this KMSelectable selectable)
     {
-        if (selectable && selectable.GetComponent<ModSelectable>() is { } mod)
+        if (selectable && selectable.GetComponent<ModSelectable>() is var mod && mod)
             mod.CopySettingsFromProxy();
     }
 

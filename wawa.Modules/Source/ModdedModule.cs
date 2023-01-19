@@ -4,6 +4,7 @@ namespace Wawa.Modules;
 /// <summary>
 /// A <see cref="Component"/> that handles general Keep Talking and Nobody Explodes modded module behaviour.
 /// </summary>
+// ReSharper disable Unity.PerformanceCriticalCodeInvocation
 [CLSCompliant(false), PublicAPI]
 public abstract class ModdedModule : CachedBehaviour
 {
@@ -78,7 +79,9 @@ public abstract class ModdedModule : CachedBehaviour
     /// Gets the mod id. Override this if you are working with an assembly with a different name than your mod id.
     /// </summary>
     [NotNull]
-    protected virtual string Id => GetType().Assembly.GetName().Name;
+    protected virtual string Id =>
+        FromGame(this, static x => x.GetComponent<ModSource>() is { ModName: not null or "" } m ? m.ModName : null) ??
+        GetType().Assembly.GetName().Name;
 
     // DO NOT REMOVE. The mod 'Tweaks' uses reflection to get any field/property named "moduleId". (case-insensitive)
     [UsedImplicitly]
@@ -89,8 +92,8 @@ public abstract class ModdedModule : CachedBehaviour
     {
         [Pure]
         get =>
-            Solvable is { } s ? s.ModuleDisplayName :
-            Needy is { } n ? n.ModuleDisplayName : throw new MissingComponentException(NoComponent);
+            Solvable ? Solvable.ModuleDisplayName :
+            Needy ? Needy.ModuleDisplayName : throw new MissingComponentException(NoComponent);
     }
 
     [AllowNull, CanBeNull]
@@ -124,11 +127,11 @@ public abstract class ModdedModule : CachedBehaviour
     {
         Application.logMessageReceived += CheckForException;
 
-        if (Solvable is { } s)
-            s.OnActivate += OnActivate;
+        if (Solvable)
+            Solvable.OnActivate += OnActivate;
 
-        if (Needy is { } n)
-            n.OnActivate += OnActivate;
+        if (Needy)
+            Needy.OnActivate += OnActivate;
     }
 
     /// <summary>
@@ -139,11 +142,11 @@ public abstract class ModdedModule : CachedBehaviour
     {
         Application.logMessageReceived -= CheckForException;
 
-        if (Solvable is { } s)
-            s.OnActivate -= OnActivate;
+        if (Solvable)
+            Solvable.OnActivate -= OnActivate;
 
-        if (Needy is { } n)
-            n.OnActivate -= OnActivate;
+        if (Needy)
+            Needy.OnActivate -= OnActivate;
     }
 
     /// <inheritdoc/>
@@ -233,21 +236,19 @@ public abstract class ModdedModule : CachedBehaviour
         if (Status.IsSolved)
             return default;
 
-        if (Status.HasException && IsKtane) // ReSharper disable Unity.PerformanceCriticalCodeInvocation
+        if (Status.HasException && IsKtane)
             Parent<KMBomb>().SetStrikes(Status.Strikes);
-
-        // ReSharper restore Unity.PerformanceCriticalCodeInvocation
 
         if (format is not null)
             Log(format, args);
 
         Status.IsSolved = true;
 
-        if (Solvable is { } s)
-            s.HandlePass();
+        if (Solvable)
+            Solvable.HandlePass();
 
-        if (Needy is { } n)
-            n.HandlePass();
+        if (Needy)
+            Needy.HandlePass();
 
         return default;
     }
@@ -268,11 +269,11 @@ public abstract class ModdedModule : CachedBehaviour
         Status.HasStruck = true;
         Status.Strikes++;
 
-        if (Solvable is { } s)
-            s.HandleStrike();
+        if (Solvable)
+            Solvable.HandleStrike();
 
-        if (Needy is { } n)
-            n.HandleStrike();
+        if (Needy)
+            Needy.HandleStrike();
 
         return default;
     }
@@ -431,10 +432,8 @@ public abstract class ModdedModule : CachedBehaviour
     [NotNull]
     IEnumerator WaitForSolve()
     {
-        // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
         Solve();
 
-        // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
         if (GetComponent<ISolvable>() is { } solver)
             yield return solver.ForceTPSolve();
     }
