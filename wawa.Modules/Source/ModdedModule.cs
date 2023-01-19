@@ -28,6 +28,9 @@ public abstract class ModdedModule : CachedBehaviour
         Unspecified = "There is no version. Press [F5] or go to [Keep Talking ModKit > Configure Mod] to specify one.";
 
     [CanBeNull]
+    string _id;
+
+    [CanBeNull]
     IList<IList<KMSelectable>>? _matrix;
 
     [CanBeNull]
@@ -79,9 +82,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// Gets the mod id. Override this if you are working with an assembly with a different name than your mod id.
     /// </summary>
     [NotNull]
-    protected virtual string Id =>
-        FromGame(this, static x => x.GetComponent<ModSource>() is { ModName: not null or "" } m ? m.ModName : null) ??
-        GetType().Assembly.GetName().Name;
+    protected virtual string Id => _id ??= Lookup.ModNameOf(this).Value ?? GetType().Assembly.GetName().Name;
 
     // DO NOT REMOVE. The mod 'Tweaks' uses reflection to get any field/property named "moduleId". (case-insensitive)
     [UsedImplicitly]
@@ -434,7 +435,7 @@ public abstract class ModdedModule : CachedBehaviour
     {
         Solve();
 
-        if (GetComponent<ISolvable>() is { } solver)
+        if (GetComponent<ISolvable>() is var solver && solver as Object)
             yield return solver.ForceTPSolve();
     }
 }
