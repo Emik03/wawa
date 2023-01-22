@@ -7,27 +7,27 @@
         <DefineConstants>$(DefineConstants);WAWA</DefineConstants>
         <WeaverConfiguration>
             <Weavers>
-                <Equals />
-                <InfoOf />
-                <InlineIL />
-                <ToString />
-                <NullGuard Mode="Implicit" />
-                <Substitute />
-                <Virtuosity />
-                <JetBrainsAnnotations />
-                <LocalsInit Default="false" />
-                <Caseless StringComparison="InvariantCulture" />
-                <InlineMethod />
-                <Divorce />
-                <Absence />
+                <Equals/>
+                <InfoOf/>
+                <InlineIL/>
+                <ToString/>
+                <NullGuard Mode="Implicit"/>
+                <Substitute/>
+                <Virtuosity/>
+                <JetBrainsAnnotations/>
+                <LocalsInit Default="false"/>
+                <Caseless StringComparison="InvariantCulture"/>
+                <InlineMethod/>
+                <Divorce/>
+                <Absence/>
             </Weavers>
         </WeaverConfiguration>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Remove="$(Morsels)Source/*.cs" />
-        <PackageReference Remove="GlobalUsingsAnalyzer" />
-        <ProjectReference Include="..\wawa.Optionals\wawa.Optionals.csproj" />
-        <Compile Include="$(Morsels)Source/Attributes.cs" Link="Source/References/System/Diagnostics/Attributes.cs" />
-        <Reference Include="UnityEngine.CoreModule" Private="false" HintPath="$(Unity)/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll" Aliases="core" />
+        <Compile Remove="$(Morsels)Source/*.cs"/>
+        <PackageReference Remove="GlobalUsingsAnalyzer"/>
+        <ProjectReference Include="..\wawa.Optionals\wawa.Optionals.csproj"/>
+        <Compile Include="$(Morsels)Source/Attributes.cs" Link="Source/References/System/Diagnostics/Attributes.cs"/>
+        <Reference Include="UnityEngine.CoreModule" Private="false" HintPath="$(Unity)/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll" Aliases="core"/>
     </ItemGroup>
 </Project>

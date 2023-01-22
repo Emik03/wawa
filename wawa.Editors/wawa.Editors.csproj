@@ -7,25 +7,25 @@
         <DefineConstants>$(DefineConstants);WAWA</DefineConstants>
         <WeaverConfiguration>
             <Weavers>
-                <Equals />
-                <InfoOf />
-                <InlineIL />
-                <ToString />
-                <NullGuard Mode="Implicit" />
-                <Substitute />
-                <Virtuosity />
-                <JetBrainsAnnotations />
-                <LocalsInit Default="false" />
-                <Caseless StringComparison="InvariantCulture" />
-                <InlineMethod />
-                <Divorce />
-                <Absence />
+                <Equals/>
+                <InfoOf/>
+                <InlineIL/>
+                <ToString/>
+                <NullGuard Mode="Implicit"/>
+                <Substitute/>
+                <Virtuosity/>
+                <JetBrainsAnnotations/>
+                <LocalsInit Default="false"/>
+                <Caseless StringComparison="InvariantCulture"/>
+                <InlineMethod/>
+                <Divorce/>
+                <Absence/>
             </Weavers>
         </WeaverConfiguration>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Remove="$(Morsels)Source/*.cs" />
-        <PackageReference Remove="GlobalUsingsAnalyzer" />
-        <Compile Include="$(Morsels)Source/Attributes.cs" Link="Source/References/System/Diagnostics/Attributes.cs" />
+        <Compile Remove="$(Morsels)Source/*.cs"/>
+        <PackageReference Remove="GlobalUsingsAnalyzer"/>
+        <Compile Include="$(Morsels)Source/Attributes.cs" Link="Source/References/System/Diagnostics/Attributes.cs"/>
     </ItemGroup>
 </Project>
