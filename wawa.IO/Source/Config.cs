@@ -67,7 +67,7 @@ public static class Config
     /// <param name="value">The value to overwrite the settings file with.</param>
     /// <returns>The value <see langword="default"/>.</returns>
     [NotNull, PublicAPI]
-    public static Config<T> Write<T>([NotNull] this Config<T> that, [DisallowNull] T value)
+    public static Config<T> Write<T>([NotNull] this Config<T> that, [DisallowNull, NotNull] T value)
         where T : new() =>
         that.Write(Serialize(value));
 
