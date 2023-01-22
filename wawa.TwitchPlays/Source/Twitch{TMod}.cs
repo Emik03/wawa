@@ -310,7 +310,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <paramref name="item"/> continuously until <paramref name="condition"/> is <see langword="false"/>.
     /// </returns>
     [ItemNotNull, NotNull, PublicAPI]
-    protected static IEnumerable<T> YieldWhile<T>([NotNull] T item, [InstantHandle, NotNull] Func<bool> condition)
+    protected static IEnumerable<T> YieldWhile<T>([DisallowNull, NotNull] T item, [InstantHandle, NotNull] Func<bool> condition)
     {
         while (condition())
             yield return item;
@@ -327,21 +327,10 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <paramref name="item"/> continuously until <paramref name="condition"/> is <see langword="true"/>.
     /// </returns>
     [ItemNotNull, NotNull, PublicAPI]
-    protected static IEnumerable<T> YieldUntil<T>([NotNull] T item, [InstantHandle, NotNull] Func<bool> condition)
+    protected static IEnumerable<T> YieldUntil<T>([DisallowNull, NotNull] T item, [InstantHandle, NotNull] Func<bool> condition)
     {
         while (!condition())
             yield return item;
-    }
-
-    [NotNull]
-    static string Combine([NotNull] in string main, [ItemCanBeNull, NotNull] params object[] toAppend)
-    {
-        StringBuilder builder = new(main);
-
-        foreach (var o in toAppend)
-            builder.Append(' ').Append(o);
-
-        return builder.ToString();
     }
 
     [CanBeNull]

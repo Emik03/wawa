@@ -91,7 +91,7 @@ static class Globals
     [CanBeNull]
     [return: AllowNull]
     internal static TResult SuppressIO<T, TResult>(
-        [NotNull] this T item,
+        [DisallowNull, NotNull] this T item,
         [InstantHandle, NotNull] in Func<T, TResult> func,
         [InstantHandle] in bool force = false
     )

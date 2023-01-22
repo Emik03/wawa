@@ -6,19 +6,19 @@ namespace Wawa.IO;
 public static class Config
 {
     /// <summary>The name of the folder that contains locally stored mod settings.</summary>
-    [PublicAPI, NotNull]
+    [NotNull, PublicAPI]
     public const string Folder = "Modsettings";
 
     /// <summary>The key substring that is ignored in mod configs.</summary>
-    [PublicAPI, NotNull]
+    [NotNull, PublicAPI]
     public const string Tutorial = "HowToUse";
 
     /// <summary>Serializes settings the same way it's written to the file. Supports settings that use enums.</summary>
     /// <typeparam name="TSerialize">The type to serialize the value.</typeparam>
     /// <param name="value">The value to serialize.</param>
     /// <returns>A <see cref="string"/> representation of <paramref name="value"/> by serializing it as JSON.</returns>
-    [PublicAPI, NotNull]
-    public static string Serialize<TSerialize>([NotNull] TSerialize value) =>
+    [NotNull, PublicAPI]
+    public static string Serialize<TSerialize>([DisallowNull, NotNull] TSerialize value) =>
         JsonConvert.SerializeObject(
             value,
             Formatting.Indented,
@@ -35,7 +35,7 @@ public static class Config
     /// <param name="that">This instance of <see cref="Config{T}"/>.</param>
     /// <param name="value">The contents to write.</param>
     /// <returns>The parameter <paramref name="that"/>.</returns>
-    [PublicAPI, NotNull]
+    [NotNull, PublicAPI]
     public static Config<T> Write<T>(
         [NotNull] this Config<T> that,
         [NotNull, StringSyntax(StringSyntaxAttribute.Json)] string value
@@ -66,8 +66,8 @@ public static class Config
     /// <param name="that">This instance of <see cref="Config{T}"/>.</param>
     /// <param name="value">The value to overwrite the settings file with.</param>
     /// <returns>The value <see langword="default"/>.</returns>
-    [PublicAPI, NotNull]
-    public static Config<T> Write<T>([NotNull] this Config<T> that, [NotNull] T value)
+    [NotNull, PublicAPI]
+    public static Config<T> Write<T>([NotNull] this Config<T> that, [DisallowNull] T value)
         where T : new() =>
         that.Write(Serialize(value));
 
@@ -83,10 +83,10 @@ public static class Config
     /// <param name="isDiscarding">Determines whether it should remove values from the original
     /// file that isn't contained within the type, or has the incorrect type.</param>
     /// <returns>The parameter <paramref name="that"/>.</returns>
-    [PublicAPI, NotNull]
+    [NotNull, PublicAPI]
     public static Config<T> Merge<T>(
         [NotNull] this Config<T> that,
-        [NotNull] T value,
+        [DisallowNull, NotNull] T value,
         [InstantHandle] bool isDiscarding = false
     )
         where T : new()
@@ -122,7 +122,7 @@ public static class Config
     /// If the read and deserialization was successful, a <typeparamref name="T"/> containing the values from the file,
     /// otherwise a new instance of <typeparamref name="T"/>.
     /// </returns>
-    [PublicAPI, NotNull]
+    [NotNull, PublicAPI]
     public static T Read<T>([NotNull] this Config<T> that)
         where T : new() =>
         that.SuppressIO(Deserialized) ?? new();
@@ -153,8 +153,8 @@ public static class Config
             return new();
         }
 
-        var deserialized =
-            JsonConvert.DeserializeObject<T>(File.ReadAllText(these.FilePath), new JsonSerializerSettings()) ?? new();
+        var contents = File.ReadAllText(these.FilePath);
+        var deserialized = JsonConvert.DeserializeObject<T>(contents, new JsonSerializerSettings()) ?? new();
 
         these.HasRead = true;
 
