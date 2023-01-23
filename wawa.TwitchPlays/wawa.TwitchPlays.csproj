@@ -1,32 +1,12 @@
 ﻿<!-- SPDX-License-Identifier: MPL-2.0 -->
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <FileVersion>3.1</FileVersion>
-        <Nullable>annotations</Nullable>
         <TargetFramework>net35</TargetFramework>
-        <DefineConstants>$(DefineConstants);WAWA</DefineConstants>
-        <WeaverConfiguration>
-            <Weavers>
-                <Equals/>
-                <InfoOf/>
-                <InlineIL/>
-                <ToString/>
-                <NullGuard Mode="Implicit"/>
-                <Substitute/>
-                <Virtuosity/>
-                <JetBrainsAnnotations/>
-                <LocalsInit Default="false"/>
-                <Caseless StringComparison="InvariantCulture"/>
-                <InlineMethod/>
-                <Divorce/>
-                <Absence/>
-            </Weavers>
-        </WeaverConfiguration>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Remove="$(Morsels)Source/*.cs"/>
-        <PackageReference Remove="GlobalUsingsAnalyzer"/>
+        <Compile Remove="$(Morsels)Compile/Source/References/*/**/*.cs"/>
         <ProjectReference Include="..\wawa.Modules\wawa.Modules.csproj"/>
-        <Compile Include="$(Morsels)Source/Attributes.cs" Link="Source/References/System/Diagnostics/Attributes.cs"/>
+        <Compile Include="$(Morsels)Compile/Source/References/Fody/AllowNullAttribute.cs" Link="Source/References/Fody/AllowNullAttribute.cs"/>
+        <Compile Include="$(Morsels)Compile/Source/References/System/Diagnostics/Attributes.cs" Link="Source/References/System/Diagnostics/Attributes.cs"/>
     </ItemGroup>
 </Project>
