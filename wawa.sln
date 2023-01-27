@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wawa.Optionals", "wawa.Opti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wawa.Editors", "wawa.Editors\wawa.Editors.csproj", "{BA3EAE50-3E0E-4310-830B-2F47B6E92B7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wawa.Overkill", "wawa.Overkill\wawa.Overkill.csproj", "{B27936ED-8E5A-4156-9CEE-49762AC0947D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,5 +57,9 @@ Global
 		{BA3EAE50-3E0E-4310-830B-2F47B6E92B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA3EAE50-3E0E-4310-830B-2F47B6E92B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA3EAE50-3E0E-4310-830B-2F47B6E92B7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B27936ED-8E5A-4156-9CEE-49762AC0947D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B27936ED-8E5A-4156-9CEE-49762AC0947D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B27936ED-8E5A-4156-9CEE-49762AC0947D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B27936ED-8E5A-4156-9CEE-49762AC0947D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
