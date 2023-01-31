@@ -4,40 +4,58 @@ namespace Wawa.IO;
 /// <summary>Meant for information that needs to be deserialized within the mod settings folder.</summary>
 /// <remarks><para>
 /// Originally by samfundev: https://github.com/samfundev/KTANE-Utilities/blob/master/ModConfig.cs.
-/// </para></remarks>
+/// </para><para>
+/// All constructors in this type have the following side effects:
+/// </para><list type="bullet">
+/// <item><description>A file will automatically be made if it doesn't exist.</description></item>
+/// <item><description>
+/// A JSON property defined in the type <typeparamref name="T"/> that doesn't exist in the file
+/// will automatically be appended with a new default instance of <typeparamref name="T"/>'s values.
+/// </description></item>
+/// <item><description>
+/// In the editor, this constructor will not merge the default of type <typeparamref name="T"/> with the file.
+/// </description></item>
+/// </list></remarks>
 /// <typeparam name="T">The type to serialize and deserialize the file.</typeparam>
 [PublicAPI]
 public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComparer<Config<T>>
     where T : new()
 {
-    const string Suffix = "-settings.json";
-
-    [NotNull]
+    [NotNull, StringSyntax(StringSyntaxAttribute.Uri), UriString]
     static readonly string s_folder = Path.Combine(Application.persistentDataPath, Config.Folder);
 
     static Config() => s_folder.SuppressIO(Directory.CreateDirectory);
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="Config{TSerialize}"/> class.
-    /// The target file name is implicitly gotten by the name of the assembly that called this.
-    /// Allows specification of an optional event of when the file is read.
-    /// A file will automatically be made if it doesn't exist.
-    /// A JSON property defined in the type <typeparamref name="T"/>
-    /// that isn't in the file will automatically write to the file with said property.
-    /// In the editor, the constructor will not merge the default values of the type with the file.
-    /// </summary>
+    /// <summary>Initializes a new instance of the <see cref="Config{TSerialize}"/> class.</summary>
+    /// <remarks><list type="bullet">
+    /// <item><description>
+    /// The target file name is implicitly gotten by the name of the assembly that called this constructor.
+    /// </description></item>
+    /// <item><description>A file will automatically be made if it doesn't exist.</description></item>
+    /// <item><description>
+    /// A JSON property defined in the type <typeparamref name="T"/> that doesn't exist in the file
+    /// will automatically be appended with a new default instance of <typeparamref name="T"/>'s values.
+    /// </description></item>
+    /// <item><description>
+    /// In the editor, this constructor will not merge the default of type <typeparamref name="T"/> with the file.
+    /// </description></item>
+    /// </list></remarks>
     [PublicAPI]
     public Config()
-        : this($"{Who}{Suffix}") { }
+        : this($"{Who}{Config.Suffix}") { }
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="Config{TSerialize}"/> class.
-    /// Allows specification of the target file name.
-    /// A file will automatically be made if it doesn't exist.
-    /// A JSON property defined in the type <typeparamref name="T"/>
-    /// that isn't in the file will automatically write to the file with said property.
-    /// In the editor, the constructor will not merge the default values of the type with the file.
-    /// </summary>
+    /// <summary>Initializes a new instance of the <see cref="Config{TSerialize}"/> class.</summary>
+    /// <remarks><list type="bullet">
+    /// <item><description>Allows specification of the target file name.</description></item>
+    /// <item><description>A file will automatically be made if it doesn't exist.</description></item>
+    /// <item><description>
+    /// A JSON property defined in the type <typeparamref name="T"/> that doesn't exist in the file
+    /// will automatically be appended with a new default instance of <typeparamref name="T"/>'s values.
+    /// </description></item>
+    /// <item><description>
+    /// In the editor, this constructor will not merge the default of type <typeparamref name="T"/> with the file.
+    /// </description></item>
+    /// </list></remarks>
     /// <param name="fileName">The file name to get.</param>
     [PublicAPI]
     public Config([NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] string fileName)

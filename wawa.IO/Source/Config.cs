@@ -6,8 +6,12 @@ namespace Wawa.IO;
 public static class Config
 {
     /// <summary>The name of the folder that contains locally stored mod settings.</summary>
-    [NotNull, PublicAPI]
+    [NotNull, PublicAPI, StringSyntax(StringSyntaxAttribute.Uri), UriString]
     public const string Folder = "Modsettings";
+
+    /// <summary>The suffix for the default file name for mod settings.</summary>
+    [NotNull, PublicAPI, StringSyntax(StringSyntaxAttribute.Uri), UriString]
+    public const string Suffix = "-settings.json";
 
     /// <summary>The key substring that is ignored in mod configs.</summary>
     [NotNull, PublicAPI]
