@@ -1,0 +1,12 @@
+### [Wawa.IO](Wawa.IO.md 'Wawa.IO').[ModInfo](ModInfo.md 'Wawa.IO.ModInfo')
+
+## ModInfo.FileName Field
+
+The file name used for this type.
+
+```csharp
+public const string FileName = "modInfo.json";
+```
+
+#### Field Value
+[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
