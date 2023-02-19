@@ -1,7 +1,7 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
 namespace Wawa.Modules;
 
-/// <inheritdoc cref="Sound"/>
+/// <content>Static properties for each sound effect from the vanilla game.</content>
 public sealed partial class Sound
 {
     /// <summary>Gets all vanilla sounds from the base game.</summary>

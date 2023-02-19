@@ -42,22 +42,6 @@ public sealed partial class Sound : ICloneable, IEquatable<Sound>, IEqualityComp
     [PublicAPI]
     public Maybe<KMAudioRef> Reference { [Pure] get; internal set; }
 
-    /// <inheritdoc/>
-    [PublicAPI, Pure]
-    public object Clone() => Vanilla.IsSome ? new Sound(Vanilla.Value) : new(Modded.Unwrap());
-
-    /// <inheritdoc/>
-    [PublicAPI, Pure]
-    public bool Equals(Sound x, Sound y) => x == y;
-
-    /// <inheritdoc/>
-    [PublicAPI, Pure]
-    public int GetHashCode([AllowNull, CanBeNull] Sound obj) => obj?.GetHashCode() ?? 0;
-
-    /// <inheritdoc/>
-    [PublicAPI, Pure]
-    public bool Equals(Sound other) => this == other;
-
     /// <summary>Implicitly calls the constructor.</summary>
     /// <param name="sound">The <see cref="string"/> to pass in to the constructor.</param>
     [NotNull, PublicAPI, Pure]
@@ -118,7 +102,15 @@ public sealed partial class Sound : ICloneable, IEquatable<Sound>, IEqualityComp
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
-    public override bool Equals([AllowNull] object obj) => Equals(obj as Sound);
+    public override bool Equals([AllowNull] object other) => Equals(other as Sound);
+
+    /// <inheritdoc/>
+    [PublicAPI, Pure]
+    public bool Equals(Sound other) => this == other;
+
+    /// <inheritdoc/>
+    [PublicAPI, Pure]
+    public bool Equals(Sound x, Sound y) => x == y;
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
@@ -134,6 +126,14 @@ public sealed partial class Sound : ICloneable, IEquatable<Sound>, IEqualityComp
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
+    public int GetHashCode([AllowNull, CanBeNull] Sound obj) => obj?.GetHashCode() ?? 0;
+
+    /// <inheritdoc/>
+    [PublicAPI, Pure]
     public override string ToString() =>
         $"{(Vanilla.IsSome ? nameof(Vanilla) : nameof(Modded))} ({(Vanilla.IsSome ? Vanilla.Value : Modded.Unwrap())})";
+
+    /// <inheritdoc/>
+    [PublicAPI, Pure]
+    public object Clone() => Vanilla.IsSome ? new Sound(Vanilla.Value) : new(Modded.Unwrap());
 }
