@@ -2,6 +2,8 @@
 
 ## wawa.TwitchPlays Assembly
 
+Adds an extensive system for creating Twitch Plays components that are attached to modded modules.
+
 | Namespaces | |
 | :--- | :--- |
 | [Wawa.TwitchPlays](Wawa.TwitchPlays.md 'Wawa.TwitchPlays') | Contains [Twitch&lt;TMod&gt;](Twitch_TMod_.md 'Wawa.TwitchPlays.Twitch<TMod>'), and its interfaces. |
