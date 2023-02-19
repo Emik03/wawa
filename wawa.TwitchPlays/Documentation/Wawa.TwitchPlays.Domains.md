@@ -2,6 +2,8 @@
 
 ## Wawa.TwitchPlays.Domains Namespace
 
+Contains domain objects used within [Twitch&lt;TMod&gt;](Twitch_TMod_.md 'Wawa.TwitchPlays.Twitch<TMod>').
+
 | Classes | |
 | :--- | :--- |
 | [AliasAttribute](AliasAttribute.md 'Wawa.TwitchPlays.Domains.AliasAttribute') | An [System.Attribute](https://docs.microsoft.com/en-us/dotnet/api/System.Attribute 'System.Attribute') to attach to a field to signify alternative ways to spell it. |

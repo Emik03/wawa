@@ -2,6 +2,8 @@
 
 ## Wawa.TwitchPlays Namespace
 
+Contains [Twitch&lt;TMod&gt;](Twitch_TMod_.md 'Wawa.TwitchPlays.Twitch<TMod>'), and its interfaces.
+
 | Classes | |
 | :--- | :--- |
 | [Twitch&lt;TMod&gt;](Twitch_TMod_.md 'Wawa.TwitchPlays.Twitch<TMod>') | Base class for TwitchPlays support for solvable and needy modded modules in Keep Talking and Nobody Explodes. |
