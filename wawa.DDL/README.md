@@ -2,6 +2,8 @@
 
 Implements the [DDL pattern](https://github.com/Emik03/.DDL#chapter-23-the-ddl-pattern) to allow direct access to common in-game values that are normally annoying to obtain.
 
+### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.DDL/Documentation/Wawa.DDL.md)
+
 ---
 
 - [Dependencies](#dependencies)

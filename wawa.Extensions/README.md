@@ -2,6 +2,8 @@
 
 Implements convenience extension methods for `KMFramework` types, as well as fixes for broken/buggy ones.
 
+### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.Extensions/Documentation/Wawa.Extension.md)
+
 ---
 
 - [Dependencies](#dependencies)

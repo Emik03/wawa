@@ -2,6 +2,8 @@
 
 Defines the `CachedBehavior` type, which provides a simple API for caching Unity API calls such as [`GetComponent`](https://docs.unity3d.com/2017.4/Documentation/ScriptReference/Component.GetComponent.html).
 
+### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.Unity/Documentation/Wawa.Unity.md)
+
 ---
 
 - [Dependencies](#dependencies)

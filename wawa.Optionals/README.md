@@ -4,6 +4,8 @@ Defines the `Maybe<T>` type, which is used throughout these libraries to represe
 
 All returned values from these libraries can be assumed to be always non-null, as a fallback value, or this type is used to explicitly mark optional values.
 
+### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.Optionals/Documentation/Wawa.Optionals.md)
+
 ---
 
 - [Dependencies](#dependencies)

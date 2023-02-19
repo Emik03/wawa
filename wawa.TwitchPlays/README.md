@@ -2,6 +2,8 @@
 
 Adds an extensive system for creating Twitch Plays components that are attached to modded modules.
 
+### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.TwitchPlays/Documentation/Wawa.TwitchPlays.md)
+
 ---
 
 - [Dependencies](#dependencies)

@@ -2,6 +2,8 @@
 
 Adds a base type for modules.
 
+### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.Modules/Documentation/Wawa.Modules.md)
+
 ---
 
 - [Dependencies](#dependencies)
