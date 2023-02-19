@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.TwitchPlays;
+namespace Wawa.TwitchPlays.Internals;
 
 using static GUILayout;
 
