@@ -375,6 +375,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+*.ExternalAnnotations.xml
 
 # VS Code files for those working on multiple tools
 .vscode/*
@@ -396,7 +397,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-.idea/
 
 # Emik.Morsels symlinks
 /Directory.Build.local.props
