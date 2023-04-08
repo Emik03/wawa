@@ -49,6 +49,19 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
                 ? query
                 : throw new MissingMethodException(None);
 
+    /// <summary>
+    /// Logs version numbers and automatically sets <see cref="Help"/>.
+    /// Be sure to call this method if you are implementing Awake.
+    /// </summary>
+    [PublicAPI]
+    protected virtual void Awake()
+    {
+        AssemblyLog(@$"The module ""{Module}"" uses this library.");
+
+        if (string.IsNullOrEmpty(Help))
+            Help = AutoImplementedHelp;
+    }
+
     /// <inheritdoc />
     [PublicAPI]
     public bool IsPrintingYields
@@ -186,19 +199,6 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     IEnumerator ISolvable.ForceTPSolve() => TwitchHandleForcedSolve();
 
     /// <summary>
-    /// Logs version numbers and automatically sets <see cref="Help"/>.
-    /// Be sure to call this method if you are implementing Awake.
-    /// </summary>
-    [PublicAPI]
-    protected virtual void Awake()
-    {
-        AssemblyLog(@$"The module ""{Module}"" uses this library.");
-
-        if (string.IsNullOrEmpty(Help))
-            Help = AutoImplementedHelp;
-    }
-
-    /// <summary>
     /// Gets or sets an event invoked whenever any command (including <see cref="TwitchString.AutoSolve"/>) yields
     /// something and is processed. The value that it yielded is passed in.
     /// </summary>
@@ -207,36 +207,36 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
 
     /// <inheritdoc/>
     [Pure, PublicAPI]
-    public override string ToString() => $"{Module}";
+    public override string ToString() => Module.ToString();
 
     /// <summary>
-    /// You can <see langword="yield"/> <see langword="return"/> this to repeatedly
-    /// <see langword="yield"/> <see langword="return"/> <see langword="true"/> until the module is solved.
+    /// You can <see langword="yield"/> <see langword="return"/> this to
+    /// allow interactions of other modules until the module is solved.
     /// </summary>
     /// <returns>
     /// Repeatedly <see langword="true"/>, halting when <see cref="Modules.State.IsSolved"/>
     /// from <see cref="Module"/> is <see langword="true"/>.
     /// </returns>
     [NotNull, PublicAPI]
-    public IEnumerable<bool> UntilSolve()
+    public IEnumerable<Instruction> UntilSolve()
     {
         while (!Module.Status.IsSolved)
-            yield return true;
+            yield return Instruction.Pause;
     }
 
     /// <summary>
-    /// You can <see langword="yield"/> <see langword="return"/> this to repeatedly
-    /// <see langword="yield"/> <see langword="return"/> <see langword="true"/> until the module has struck.
+    /// You can <see langword="yield"/> <see langword="return"/> this to
+    /// allow interactions of other modules until the module has struck.
     /// </summary>
     /// <returns>
     /// Repeatedly <see langword="true"/>, halting when <see cref="Modules.State.HasStruck"/>
     /// from <see cref="Module"/> is <see langword="true"/>.
     /// </returns>
     [NotNull, PublicAPI]
-    public IEnumerable<bool> UntilStrike()
+    public IEnumerable<Instruction> UntilStrike()
     {
         while (!Module.Status.HasStruck)
-            yield return true;
+            yield return Instruction.Pause;
 
         Module.Status.HasStruck = false;
     }
@@ -250,7 +250,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <param name="duration">The delay between each button press in seconds.</param>
     /// <returns>A sequence of button presses for Twitch Plays to process.</returns>
     [ItemNotNull, NotNull, PublicAPI]
-    public IEnumerable<WaitForSecondsRealtime> Sequence(
+    public IEnumerable<Instruction> Sequence(
         [ItemCanBeNull, NotNull] IEnumerable<KMSelectable> selectables,
         float duration
     )
@@ -277,13 +277,13 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <param name="indices">The indices to press within the array.</param>
     /// <returns>A sequence of button presses for Twitch Plays to process.</returns>
     [ItemNotNull, NotNull, PublicAPI]
-    public IEnumerable<WaitForSecondsRealtime> IndexedSequence(
+    public IEnumerable<Instruction> IndexedSequence(
         [ItemCanBeNull, NotNull] IList<KMSelectable> selectables,
         float duration,
         [NotNull] params int[] indices
     ) =>
         indices.Any(index => index < 0 || index < selectables.Count)
-            ? Enumerable.Empty<WaitForSecondsRealtime>()
+            ? Enumerable.Empty<Instruction>()
             : Sequence(indices.Select(x => selectables[x]), duration);
 
     /// <summary>

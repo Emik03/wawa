@@ -8,7 +8,7 @@ waiting [duration](Twitch_TMod_.Sequence.BZwvHeIkNNv/7sVRyfqb6A.md#Wawa.TwitchPl
 [Wawa.Modules.State.HasStruck](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Modules.State.HasStruck 'Wawa.Modules.State.HasStruck') is [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').
 
 ```csharp
-public virtual System.Collections.Generic.IEnumerable<WaitForSecondsRealtime> Sequence(System.Collections.Generic.IEnumerable<KMSelectable> selectables, float duration);
+public virtual System.Collections.Generic.IEnumerable<Wawa.TwitchPlays.Domains.Instruction> Sequence(System.Collections.Generic.IEnumerable<KMSelectable> selectables, float duration);
 ```
 #### Parameters
 
@@ -25,5 +25,5 @@ The array of selectables to interact with.
 The delay between each button press in seconds.
 
 #### Returns
-[System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')[UnityEngine.WaitForSecondsRealtime](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.WaitForSecondsRealtime 'UnityEngine.WaitForSecondsRealtime')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')  
+[System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')[Instruction](Instruction.md 'Wawa.TwitchPlays.Domains.Instruction')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')  
 A sequence of button presses for Twitch Plays to process.

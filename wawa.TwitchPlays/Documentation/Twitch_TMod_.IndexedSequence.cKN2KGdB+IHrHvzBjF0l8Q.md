@@ -8,7 +8,7 @@ waiting [duration](Twitch_TMod_.IndexedSequence.cKN2KGdB+IHrHvzBjF0l8Q.md#Wawa.T
 [Wawa.Modules.State.HasStruck](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Modules.State.HasStruck 'Wawa.Modules.State.HasStruck') is true.
 
 ```csharp
-public virtual System.Collections.Generic.IEnumerable<WaitForSecondsRealtime> IndexedSequence(System.Collections.Generic.IList<KMSelectable> selectables, float duration, params int[] indices);
+public virtual System.Collections.Generic.IEnumerable<Wawa.TwitchPlays.Domains.Instruction> IndexedSequence(System.Collections.Generic.IList<KMSelectable> selectables, float duration, params int[] indices);
 ```
 #### Parameters
 
@@ -31,5 +31,5 @@ The delay between each button press in seconds.
 The indices to press within the array.
 
 #### Returns
-[System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')[UnityEngine.WaitForSecondsRealtime](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.WaitForSecondsRealtime 'UnityEngine.WaitForSecondsRealtime')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')  
+[System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')[Instruction](Instruction.md 'Wawa.TwitchPlays.Domains.Instruction')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')  
 A sequence of button presses for Twitch Plays to process.
