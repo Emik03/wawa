@@ -5,7 +5,5 @@
     </PropertyGroup>
     <ItemGroup>
         <Compile Remove="$(Morsels)/Compile/Source/References/*/**/*.cs"/>
-        <Compile Include="$(Morsels)/Compile/Source/References/Fody/AllowNullAttribute.cs" Link="Source/References/Fody/AllowNullAttribute.cs"/>
-        <Compile Include="$(Morsels)/Compile/Source/References/System/Diagnostics/Attributes.cs" Link="Source/References/System/Diagnostics/Attributes.cs"/>
     </ItemGroup>
 </Project>
