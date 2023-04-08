@@ -165,7 +165,7 @@ using Wawa.Modules;",
         var query =
             name
                .Where(static x => x is >= 'A' and <= 'Z' or >= 'a' and <= 'z' or '_')
-               .Select(static x => $"{x}")
+               .Select(static x => x.ToString())
                .ToArray();
 
         string
@@ -216,7 +216,7 @@ using Wawa.Modules;",
         go.tag = ModBundle.Tag;
 
         var uri = new Uri(Application.dataPath).MakeRelativeUri(new(path));
-        var relative = Uri.UnescapeDataString($"{uri}");
+        var relative = Uri.UnescapeDataString(uri.ToString());
         var newGo = PrefabUtility.CreatePrefab(relative, go);
 
         Object.DestroyImmediate(go);
