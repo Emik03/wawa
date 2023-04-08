@@ -1,15 +1,4 @@
 // SPDX-License-Identifier: MPL-2.0
-global using Newtonsoft.Json;
-global using Newtonsoft.Json.Converters;
-global using Newtonsoft.Json.Linq;
-global using Wawa.Optionals;
-global using static System.Reflection.BindingFlags;
-global using static Wawa.DDL.Access;
-global using static Wawa.DDL.Lookup;
-global using static Wawa.IO.Internals.Globals;
-global using static Wawa.IO.PathFinder;
-global using Formatting = Newtonsoft.Json.Formatting;
-
 namespace Wawa.IO.Internals;
 
 /// <summary>Contains static methods able to be accessed from anywhere within this library.</summary>

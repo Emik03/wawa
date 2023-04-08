@@ -1,13 +1,4 @@
 // SPDX-License-Identifier: MPL-2.0
-global using Wawa.DDL;
-global using Wawa.Optionals;
-global using Wawa.Unity;
-global using static KMAudio;
-global using static KMSoundOverride;
-global using static Wawa.DDL.Access;
-global using static Wawa.IO.PathFinder;
-global using static Wawa.Modules.Internals.Globals;
-
 namespace Wawa.Modules.Internals;
 
 /// <summary>Contains static methods able to be accessed from anywhere within this library.</summary>

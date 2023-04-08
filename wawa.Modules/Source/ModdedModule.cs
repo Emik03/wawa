@@ -435,6 +435,7 @@ public abstract class ModdedModule : CachedBehaviour
     {
         Solve();
 
+        // ReSharper disable once SuspiciousTypeConversion.Global
         if (GetComponent<ISolvable>() is var solver && solver as Object)
             yield return solver.ForceTPSolve();
     }

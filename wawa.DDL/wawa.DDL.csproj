@@ -4,10 +4,10 @@
         <TargetFramework>net35</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Remove="$(Morsels)Compile/Source/References/*/**/*.cs"/>
-        <ProjectReference Include="..\wawa.Optionals\wawa.Optionals.csproj"/>
-        <Compile Include="$(Morsels)Compile/Source/References/Fody/AllowNullAttribute.cs" Link="Source/References/Fody/AllowNullAttribute.cs"/>
-        <Compile Include="$(Morsels)Compile/Source/References/System/Diagnostics/Attributes.cs" Link="Source/References/System/Diagnostics/Attributes.cs"/>
-        <Reference Include="UnityEngine.CoreModule" Private="false" HintPath="$(Unity)Data/Managed/UnityEngine/UnityEngine.CoreModule.dll" Aliases="core"/>
+        <Compile Remove="$(Morsels)/Compile/Source/References/*/**/*.cs"/>
+        <ProjectReference Include="../wawa.Optionals/wawa.Optionals.csproj"/>
+        <Compile Include="$(Morsels)/Compile/Source/References/Fody/AllowNullAttribute.cs" Link="Source/References/Fody/AllowNullAttribute.cs"/>
+        <Compile Include="$(Morsels)/Compile/Source/References/System/Diagnostics/Attributes.cs" Link="Source/References/System/Diagnostics/Attributes.cs"/>
+        <Reference Include="UnityEngine.CoreModule" Private="false" HintPath="$(Unity)/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll" Aliases="core"/>
     </ItemGroup>
 </Project>

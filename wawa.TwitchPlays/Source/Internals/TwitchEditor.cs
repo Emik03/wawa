@@ -1,8 +1,6 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
 namespace Wawa.TwitchPlays.Internals;
 
-using static GUILayout;
-
 /// <summary>Custom inspector for <see cref="Twitch{TMod}"/>.</summary>
 [CanEditMultipleObjects, CustomEditor(typeof(Twitch<>), true), UsedImplicitly]
 #pragma warning disable CA1812

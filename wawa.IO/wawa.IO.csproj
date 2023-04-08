@@ -4,10 +4,10 @@
         <TargetFramework>net35</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\wawa.DDL\wawa.DDL.csproj"/>
-        <Compile Remove="$(Morsels)Compile/Source/References/*/**/*.cs"/>
-        <ProjectReference Include="..\wawa.Optionals\wawa.Optionals.csproj"/>
-        <Compile Include="$(Morsels)Compile/Source/References/Fody/AllowNullAttribute.cs" Link="Source/References/Fody/AllowNullAttribute.cs"/>
-        <Compile Include="$(Morsels)Compile/Source/References/System/Diagnostics/Attributes.cs" Link="Source/References/System/Diagnostics/Attributes.cs"/>
+        <ProjectReference Include="../wawa.DDL/wawa.DDL.csproj"/>
+        <Compile Remove="$(Morsels)/Compile/Source/References/*/**/*.cs"/>
+        <ProjectReference Include="../wawa.Optionals/wawa.Optionals.csproj"/>
+        <Compile Include="$(Morsels)/Compile/Source/References/Fody/AllowNullAttribute.cs" Link="Source/References/Fody/AllowNullAttribute.cs"/>
+        <Compile Include="$(Morsels)/Compile/Source/References/System/Diagnostics/Attributes.cs" Link="Source/References/System/Diagnostics/Attributes.cs"/>
     </ItemGroup>
 </Project>

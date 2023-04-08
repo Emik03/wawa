@@ -1,13 +1,4 @@
 // SPDX-License-Identifier: MPL-2.0
-global using Wawa.Modules;
-global using Wawa.Optionals;
-global using Wawa.TwitchPlays.Domains;
-global using Wawa.TwitchPlays.Internals;
-global using Wawa.Unity;
-global using static System.Reflection.BindingFlags;
-global using static Wawa.IO.PathFinder;
-global using static Wawa.TwitchPlays.Internals.Globals;
-
 namespace Wawa.TwitchPlays.Internals;
 
 /// <summary>Contains static methods able to be accessed from anywhere within this library.</summary>

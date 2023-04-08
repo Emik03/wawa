@@ -49,19 +49,6 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
                 ? query
                 : throw new MissingMethodException(None);
 
-    /// <summary>
-    /// Logs version numbers and automatically sets <see cref="Help"/>.
-    /// Be sure to call this method if you are implementing Awake.
-    /// </summary>
-    [PublicAPI]
-    protected virtual void Awake()
-    {
-        AssemblyLog(@$"The module ""{Module}"" uses this library.");
-
-        if (string.IsNullOrEmpty(Help))
-            Help = AutoImplementedHelp;
-    }
-
     /// <inheritdoc />
     [PublicAPI]
     public bool IsPrintingYields
@@ -199,6 +186,19 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     IEnumerator ISolvable.ForceTPSolve() => TwitchHandleForcedSolve();
 
     /// <summary>
+    /// Logs version numbers and automatically sets <see cref="Help"/>.
+    /// Be sure to call this method if you are implementing Awake.
+    /// </summary>
+    [PublicAPI]
+    protected virtual void Awake()
+    {
+        AssemblyLog(@$"The module ""{Module}"" uses this library.");
+
+        if (string.IsNullOrEmpty(Help))
+            Help = AutoImplementedHelp;
+    }
+
+    /// <summary>
     /// Gets or sets an event invoked whenever any command (including <see cref="TwitchString.AutoSolve"/>) yields
     /// something and is processed. The value that it yielded is passed in.
     /// </summary>
@@ -214,7 +214,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <see langword="yield"/> <see langword="return"/> <see langword="true"/> until the module is solved.
     /// </summary>
     /// <returns>
-    /// Repeatedly <see langword="true"/>, halting when <see cref="State.IsSolved"/>
+    /// Repeatedly <see langword="true"/>, halting when <see cref="Modules.State.IsSolved"/>
     /// from <see cref="Module"/> is <see langword="true"/>.
     /// </returns>
     [NotNull, PublicAPI]
@@ -229,7 +229,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <see langword="yield"/> <see langword="return"/> <see langword="true"/> until the module has struck.
     /// </summary>
     /// <returns>
-    /// Repeatedly <see langword="true"/>, halting when <see cref="State.HasStruck"/>
+    /// Repeatedly <see langword="true"/>, halting when <see cref="Modules.State.HasStruck"/>
     /// from <see cref="Module"/> is <see langword="true"/>.
     /// </returns>
     [NotNull, PublicAPI]
@@ -244,7 +244,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <summary>
     /// Presses a sequence of buttons in order of <paramref name="selectables"/>,
     /// waiting <paramref name="duration"/> seconds in-between each, and interrupting as soon as
-    /// <see cref="State.HasStruck"/> is <see langword="true"/>.
+    /// <see cref="Modules.State.HasStruck"/> is <see langword="true"/>.
     /// </summary>
     /// <param name="selectables">The array of selectables to interact with.</param>
     /// <param name="duration">The delay between each button press in seconds.</param>
@@ -270,7 +270,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <summary>
     /// Presses a sequence of buttons according to <paramref name="indices"/> within <paramref name="selectables"/>,
     /// waiting <paramref name="duration"/> seconds in-between each, and interrupting as soon as
-    /// <see cref="State.HasStruck"/> is true.
+    /// <see cref="Modules.State.HasStruck"/> is true.
     /// </summary>
     /// <param name="selectables">The array of selectables to interact with.</param>
     /// <param name="duration">The delay between each button press in seconds.</param>
@@ -310,7 +310,10 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <paramref name="item"/> continuously until <paramref name="condition"/> is <see langword="false"/>.
     /// </returns>
     [ItemNotNull, NotNull, PublicAPI]
-    protected static IEnumerable<T> YieldWhile<T>([DisallowNull, NotNull] T item, [InstantHandle, NotNull] Func<bool> condition)
+    protected static IEnumerable<T> YieldWhile<T>(
+        [DisallowNull, NotNull] T item,
+        [InstantHandle, NotNull] Func<bool> condition
+    )
     {
         while (condition())
             yield return item;
@@ -327,7 +330,10 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <paramref name="item"/> continuously until <paramref name="condition"/> is <see langword="true"/>.
     /// </returns>
     [ItemNotNull, NotNull, PublicAPI]
-    protected static IEnumerable<T> YieldUntil<T>([DisallowNull, NotNull] T item, [InstantHandle, NotNull] Func<bool> condition)
+    protected static IEnumerable<T> YieldUntil<T>(
+        [DisallowNull, NotNull] T item,
+        [InstantHandle, NotNull] Func<bool> condition
+    )
     {
         while (!condition())
             yield return item;

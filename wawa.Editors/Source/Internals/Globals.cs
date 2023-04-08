@@ -1,14 +1,4 @@
 // SPDX-License-Identifier: MPL-2.0
-global using Newtonsoft.Json.Linq;
-global using UnityEditor;
-global using UnityEditor.Animations;
-global using UnityEditor.Callbacks;
-global using UnityEngine;
-global using UnityEngine.Networking;
-global using static Wawa.Editors.Internals.Globals;
-global using static Wawa.Editors.Internals.Scaffold;
-global using static Wawa.Editors.Internals.Update;
-
 namespace Wawa.Editors.Internals;
 
 /// <summary>Contains static methods able to be accessed from anywhere within this library.</summary>
