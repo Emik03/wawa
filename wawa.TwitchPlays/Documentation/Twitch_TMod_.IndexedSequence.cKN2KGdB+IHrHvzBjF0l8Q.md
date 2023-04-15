@@ -28,7 +28,7 @@ The delay between each button press in seconds.
 
 `indices` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
 
-The indices to press within the array.
+The indices to press within the list [selectables](Twitch_TMod_.IndexedSequence.cKN2KGdB+IHrHvzBjF0l8Q.md#Wawa.TwitchPlays.Twitch_TMod_.IndexedSequence(System.Collections.Generic.IList_KMSelectable_,float,int[]).selectables 'Wawa.TwitchPlays.Twitch<TMod>.IndexedSequence(System.Collections.Generic.IList<KMSelectable>, float, int[]).selectables').
 
 #### Returns
 [System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')[Instruction](Instruction.md 'Wawa.TwitchPlays.Domains.Instruction')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')  

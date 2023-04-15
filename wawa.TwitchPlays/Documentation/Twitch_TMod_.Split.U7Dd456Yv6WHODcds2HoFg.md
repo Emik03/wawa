@@ -6,7 +6,7 @@
 Splits a [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') into an [System.Array](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array') of [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') values based on a separator.
 
 ```csharp
-protected static string[] Split(string instance, string separator=" ");
+protected static System.Collections.Generic.IList<string> Split(string instance, string separator=" ");
 ```
 #### Parameters
 
@@ -23,6 +23,6 @@ The [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'S
 The separator to split each [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') with.
 
 #### Returns
-[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+[System.Collections.Generic.IList&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IList-1 'System.Collections.Generic.IList`1')[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IList-1 'System.Collections.Generic.IList`1')  
 An [System.Array](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array') of [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') values which are substrings of [instance](Twitch_TMod_.Split.U7Dd456Yv6WHODcds2HoFg.md#Wawa.TwitchPlays.Twitch_TMod_.Split(string,string).instance 'Wawa.TwitchPlays.Twitch<TMod>.Split(string, string).instance')  
 based on [separator](Twitch_TMod_.Split.U7Dd456Yv6WHODcds2HoFg.md#Wawa.TwitchPlays.Twitch_TMod_.Split(string,string).separator 'Wawa.TwitchPlays.Twitch<TMod>.Split(string, string).separator'). Empty entries are omitted.

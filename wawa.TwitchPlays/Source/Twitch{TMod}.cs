@@ -274,7 +274,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// </summary>
     /// <param name="selectables">The array of selectables to interact with.</param>
     /// <param name="duration">The delay between each button press in seconds.</param>
-    /// <param name="indices">The indices to press within the array.</param>
+    /// <param name="indices">The indices to press within the list <paramref name="selectables"/>.</param>
     /// <returns>A sequence of button presses for Twitch Plays to process.</returns>
     [ItemNotNull, NotNull, PublicAPI]
     public IEnumerable<Instruction> IndexedSequence(
@@ -287,17 +287,21 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
             : Sequence(indices.Select(x => selectables[x]), duration);
 
     /// <summary>
-    /// Splits a <see cref="string"/> into an <see cref="Array"/> of <see cref="string"/> values based on a separator.
+    /// Presses a sequence of buttons according to <paramref name="indices"/> within <paramref name="selectables"/>,
+    /// waiting <paramref name="duration"/> seconds in-between each, and interrupting as soon as
+    /// <see cref="Modules.State.HasStruck"/> is true.
     /// </summary>
-    /// <param name="instance">The <see cref="string"/> to split.</param>
-    /// <param name="separator">The separator to split each <see cref="string"/> with.</param>
-    /// <returns>
-    /// An <see cref="Array"/> of <see cref="string"/> values which are substrings of <paramref name="instance"/>
-    /// based on <paramref name="separator"/>. Empty entries are omitted.
-    /// </returns>
-    [NotNull, PublicAPI]
-    protected static string[] Split([NotNull] string instance, [NotNull] string separator = " ") =>
-        instance.Split(separator.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+    /// <param name="selectables">The array of selectables to interact with.</param>
+    /// <param name="duration">The delay between each button press in seconds.</param>
+    /// <param name="indices">The indices to press within the list <paramref name="selectables"/>.</param>
+    /// <returns>A sequence of button presses for Twitch Plays to process.</returns>
+    [ItemNotNull, NotNull, PublicAPI]
+    public IEnumerable<Instruction> IndexedSequence(
+        [ItemCanBeNull, NotNull] IList<KMSelectable> selectables,
+        float duration,
+        [NotNull] IEnumerable<int> indices
+    ) =>
+        IndexedSequence(selectables, duration, indices.ToArray());
 
     /// <summary>
     /// You can <see langword="yield"/> <see langword="return"/> this to repeatedly
@@ -338,6 +342,19 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         while (!condition())
             yield return item;
     }
+
+    /// <summary>
+    /// Splits a <see cref="string"/> into an <see cref="Array"/> of <see cref="string"/> values based on a separator.
+    /// </summary>
+    /// <param name="instance">The <see cref="string"/> to split.</param>
+    /// <param name="separator">The separator to split each <see cref="string"/> with.</param>
+    /// <returns>
+    /// An <see cref="Array"/> of <see cref="string"/> values which are substrings of <paramref name="instance"/>
+    /// based on <paramref name="separator"/>. Empty entries are omitted.
+    /// </returns>
+    [NotNull, PublicAPI]
+    protected static IList<string> Split([NotNull] string instance, [NotNull] string separator = " ") =>
+        instance.Split(separator.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
     [CanBeNull]
     [return: AllowNull]
@@ -460,14 +477,14 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         var split = Split(message);
         var parameters = method.GetParameters();
 
-        if (split.Length > parameters.Length && !parameters.Any(IsParams))
+        if (split.Count > parameters.Length && !parameters.Any(IsParams))
             return FromFail($"Too many parameters, expected {parameters.Length}.");
 
         [NotNull]
         object Params(int skip)
         {
             var arrType = parameters[skip].ParameterType.GetElementType() ?? throw new();
-            var arrLen = split.Length - skip;
+            var arrLen = split.Count - skip;
             var arr = Array.CreateInstance(arrType, arrLen);
 
             for (var i = 0; i < arrLen; i++)
