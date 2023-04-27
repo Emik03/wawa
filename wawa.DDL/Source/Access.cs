@@ -17,7 +17,8 @@ public static class Access
     /// <param name="factory">The factory containing the game data.</param>
     /// <param name="def">The default value.</param>
     /// <returns>The value from <paramref name="factory"/>, or <see langword="default" />.</returns>
-    [PublicAPI]
+    [CanBeNull, PublicAPI]
+    [return: AllowNull]
     public static TResult FromGame<T, TResult>(
         [AllowNull, CanBeNull] T context,
         [InstantHandle, NotNull, RequireStaticDelegate(IsError = true)] Converter<T, TResult> factory,
