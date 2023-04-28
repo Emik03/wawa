@@ -18,7 +18,7 @@ public static class Lookup
     /// In the editor, this value returns an instance of <see cref="Hashtable"/>, initialized as empty.
     /// </para></remarks>
     [NotNull, PublicAPI]
-    public static IDictionary Mods { [Pure] get; } = FromGame(0, static _ => Factory(), new Hashtable());
+    public static IDictionary Mods { [Pure] get; } = FromGame(0, static _ => Factory(), new Hashtable()) ?? throw new();
 
     /// <summary>Gets the localized value of a <see cref="string"/> term.</summary>
     /// <remarks><para>In the editor, this value returns <see cref="Maybe.None{T}"/>.</para></remarks>
