@@ -19,19 +19,19 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 
 | Constructors | |
 | :--- | :--- |
-| [AliasAttribute(string[])](AliasAttribute..ctor.po4ZFqU2DJIWGF901BhHBA.md 'Wawa.TwitchPlays.Domains.AliasAttribute.AliasAttribute(string[])') | Initializes a new instance of the [AliasAttribute](AliasAttribute.md 'Wawa.TwitchPlays.Domains.AliasAttribute') class. |
-| [AliasAttribute(IList&lt;string&gt;)](AliasAttribute..ctor.TFFwoRvtbiPFNImRaF+46g.md 'Wawa.TwitchPlays.Domains.AliasAttribute.AliasAttribute(System.Collections.Generic.IList<string>)') | Initializes a new instance of the [AliasAttribute](AliasAttribute.md 'Wawa.TwitchPlays.Domains.AliasAttribute') class. |
+| [AliasAttribute(string[])](AliasAttribute..ctor(String[]).md 'Wawa.TwitchPlays.Domains.AliasAttribute.AliasAttribute(string[])') | Initializes a new instance of the [AliasAttribute](AliasAttribute.md 'Wawa.TwitchPlays.Domains.AliasAttribute') class. |
+| [AliasAttribute(IList&lt;string&gt;)](AliasAttribute..ctor(IList).md 'Wawa.TwitchPlays.Domains.AliasAttribute.AliasAttribute(System.Collections.Generic.IList<string>)') | Initializes a new instance of the [AliasAttribute](AliasAttribute.md 'Wawa.TwitchPlays.Domains.AliasAttribute') class. |
 
 | Properties | |
 | :--- | :--- |
-| [Aliases](AliasAttribute.Aliases.md 'Wawa.TwitchPlays.Domains.AliasAttribute.Aliases') | Gets the alternative representations. |
+| [Aliases](AliasAttribute.Aliases().md 'Wawa.TwitchPlays.Domains.AliasAttribute.Aliases') | Gets the alternative representations. |
 
 | Methods | |
 | :--- | :--- |
-| [ToString(string)](AliasAttribute.ToString.0z/TneY9rv9N3+hxxz335A.md 'Wawa.TwitchPlays.Domains.AliasAttribute.ToString(string)') | Gets a [string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string') representation showing every alias. |
-| [ToString(FieldInfo)](AliasAttribute.ToString.sSR2XcRIBp3Jf5/P1Vaxjw.md 'Wawa.TwitchPlays.Domains.AliasAttribute.ToString(System.Reflection.FieldInfo)') | Gets a [string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string') representation showing every alias. |
+| [ToString(string)](AliasAttribute.ToString(String).md 'Wawa.TwitchPlays.Domains.AliasAttribute.ToString(string)') | Gets a [string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string') representation showing every alias. |
+| [ToString(FieldInfo)](AliasAttribute.ToString(FieldInfo).md 'Wawa.TwitchPlays.Domains.AliasAttribute.ToString(System.Reflection.FieldInfo)') | Gets a [string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string') representation showing every alias. |
 
 | Operators | |
 | :--- | :--- |
-| [operator ==(AliasAttribute, AliasAttribute)](AliasAttribute.op_Equality.je1R0didB8feFyqtDecoaQ.md 'Wawa.TwitchPlays.Domains.AliasAttribute.op_Equality(Wawa.TwitchPlays.Domains.AliasAttribute, Wawa.TwitchPlays.Domains.AliasAttribute)') | Determines whether both have the same values. |
-| [operator !=(AliasAttribute, AliasAttribute)](AliasAttribute.op_Inequality.Etk/Dz2ZsTL/hHqb/l21ig.md 'Wawa.TwitchPlays.Domains.AliasAttribute.op_Inequality(Wawa.TwitchPlays.Domains.AliasAttribute, Wawa.TwitchPlays.Domains.AliasAttribute)') | Determines whether both do not have the same values. |
+| [operator ==(AliasAttribute, AliasAttribute)](AliasAttribute.op_Equality(AliasAttribute,AliasAttribute).md 'Wawa.TwitchPlays.Domains.AliasAttribute.op_Equality(Wawa.TwitchPlays.Domains.AliasAttribute, Wawa.TwitchPlays.Domains.AliasAttribute)') | Determines whether both have the same values. |
+| [operator !=(AliasAttribute, AliasAttribute)](AliasAttribute.op_Inequality(AliasAttribute,AliasAttribute).md 'Wawa.TwitchPlays.Domains.AliasAttribute.op_Inequality(Wawa.TwitchPlays.Domains.AliasAttribute, Wawa.TwitchPlays.Domains.AliasAttribute)') | Determines whether both do not have the same values. |

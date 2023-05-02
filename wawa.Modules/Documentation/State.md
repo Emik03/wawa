@@ -17,11 +17,11 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 
 | Properties | |
 | :--- | :--- |
-| [HasStruck](State.HasStruck.md 'Wawa.Modules.State.HasStruck') | Gets or sets a value indicating whether the module has ever called [Strike(string, object[])](ModdedModule.Strike.zlRt8R6FbQCu8oNTRD4I7Q.md 'Wawa.Modules.ModdedModule.Strike(string, object[])'). |
-| [Id](State.Id.md 'Wawa.Modules.State.Id') | Gets the unique module id of this module type, primarily used in logging. |
-| [IsSolved](State.IsSolved.md 'Wawa.Modules.State.IsSolved') | Gets a value indicating whether the module is solved. |
+| [HasStruck](State.HasStruck().md 'Wawa.Modules.State.HasStruck') | Gets or sets a value indicating whether the module has ever called [Strike(string, object[])](ModdedModule.Strike(String,Object[]).md 'Wawa.Modules.ModdedModule.Strike(string, object[])'). |
+| [Id](State.Id().md 'Wawa.Modules.State.Id') | Gets the unique module id of this module type, primarily used in logging. |
+| [IsSolved](State.IsSolved().md 'Wawa.Modules.State.IsSolved') | Gets a value indicating whether the module is solved. |
 
 | Operators | |
 | :--- | :--- |
-| [operator ==(State, State)](State.op_Equality./Jiz2oAGvwHRej5bp6KovA.md 'Wawa.Modules.State.op_Equality(Wawa.Modules.State, Wawa.Modules.State)') | Determines whether both instances contain the same values. |
-| [operator !=(State, State)](State.op_Inequality.kZUSwW5goVKbKrqGusygXw.md 'Wawa.Modules.State.op_Inequality(Wawa.Modules.State, Wawa.Modules.State)') | Determines whether both instances do not contain the same values. |
+| [operator ==(State, State)](State.op_Equality(State,State).md 'Wawa.Modules.State.op_Equality(Wawa.Modules.State, Wawa.Modules.State)') | Determines whether both instances contain the same values. |
+| [operator !=(State, State)](State.op_Inequality(State,State).md 'Wawa.Modules.State.op_Inequality(Wawa.Modules.State, Wawa.Modules.State)') | Determines whether both instances do not contain the same values. |

@@ -11,7 +11,7 @@ public interface ISolvable
 
 | Properties | |
 | :--- | :--- |
-| [IsTP](ISolvable.IsTP.md 'Wawa.Modules.ISolvable.IsTP') | Gets a value indicating whether Twitch Plays is currently active. |
+| [IsTP](ISolvable.IsTP().md 'Wawa.Modules.ISolvable.IsTP') | Gets a value indicating whether Twitch Plays is currently active. |
 
 | Methods | |
 | :--- | :--- |

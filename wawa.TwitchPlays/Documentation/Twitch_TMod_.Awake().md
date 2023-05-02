@@ -3,7 +3,7 @@
 
 ## Twitch<TMod>.Awake() Method
 
-Logs version numbers and automatically sets [Help](Twitch_TMod_.Help.md 'Wawa.TwitchPlays.Twitch<TMod>.Help').  
+Logs version numbers and automatically sets [Help](Twitch_TMod_.Help().md 'Wawa.TwitchPlays.Twitch<TMod>.Help').  
 Be sure to call this method if you are implementing Awake.
 
 ```csharp

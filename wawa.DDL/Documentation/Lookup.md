@@ -12,9 +12,9 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Properties | |
 | :--- | :--- |
-| [Mods](Lookup.Mods.md 'Wawa.DDL.Lookup.Mods') | Gets the dictionary of loaded mods. |
+| [Mods](Lookup.Mods().md 'Wawa.DDL.Lookup.Mods') | Gets the dictionary of loaded mods. |
 
 | Methods | |
 | :--- | :--- |
-| [Localized(string)](Lookup.Localized.XCG8viZq62tIJqor/+9eYg.md 'Wawa.DDL.Lookup.Localized(string)') | Gets the localized value of a [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') term. |
-| [ModNameOf(Component)](Lookup.ModNameOf.ehvPgAuZkI7eVSbH9HoYlQ.md 'Wawa.DDL.Lookup.ModNameOf(Component)') | Gets the mod name attached to the component. |
+| [Localized(string)](Lookup.Localized(String).md 'Wawa.DDL.Lookup.Localized(string)') | Gets the localized value of a [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') term. |
+| [ModNameOf(Component)](Lookup.ModNameOf(Component).md 'Wawa.DDL.Lookup.ModNameOf(Component)') | Gets the mod name attached to the component. |

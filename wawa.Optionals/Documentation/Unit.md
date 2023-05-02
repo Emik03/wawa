@@ -15,9 +15,9 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 
 | Properties | |
 | :--- | :--- |
-| [Value](Unit.Value.md 'Wawa.Optionals.Unit.Value') | Gets the singular value. |
+| [Value](Unit.Value().md 'Wawa.Optionals.Unit.Value') | Gets the singular value. |
 
 | Operators | |
 | :--- | :--- |
-| [operator ==(Unit, Unit)](Unit.op_Equality.wBgv71X9hcNKerlxmvwv0Q.md 'Wawa.Optionals.Unit.op_Equality(Wawa.Optionals.Unit, Wawa.Optionals.Unit)') | Returns [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool'). |
-| [operator !=(Unit, Unit)](Unit.op_Inequality.h+EpKbrcAD4j9WmfpXzabg.md 'Wawa.Optionals.Unit.op_Inequality(Wawa.Optionals.Unit, Wawa.Optionals.Unit)') | Returns [false](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool'). |
+| [operator ==(Unit, Unit)](Unit.op_Equality(Unit,Unit).md 'Wawa.Optionals.Unit.op_Equality(Wawa.Optionals.Unit, Wawa.Optionals.Unit)') | Returns [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool'). |
+| [operator !=(Unit, Unit)](Unit.op_Inequality(Unit,Unit).md 'Wawa.Optionals.Unit.op_Inequality(Wawa.Optionals.Unit, Wawa.Optionals.Unit)') | Returns [false](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool'). |

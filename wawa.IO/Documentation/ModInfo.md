@@ -18,23 +18,23 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 
 | Fields | |
 | :--- | :--- |
-| [FileName](ModInfo.FileName.md 'Wawa.IO.ModInfo.FileName') | The file name used for this type. |
+| [FileName](FileName.md 'Wawa.IO.ModInfo.FileName') | The file name used for this type. |
 
 | Properties | |
 | :--- | :--- |
-| [Author](ModInfo.Author.md 'Wawa.IO.ModInfo.Author') | Gets the author(s) of the mod. |
-| [Description](ModInfo.Description.md 'Wawa.IO.ModInfo.Description') | Gets the description of the mod. |
-| [Id](ModInfo.Id.md 'Wawa.IO.ModInfo.Id') | Gets the id of the mod. |
-| [Title](ModInfo.Title.md 'Wawa.IO.ModInfo.Title') | Gets the title of the mod. |
-| [UnityVersion](ModInfo.UnityVersion.md 'Wawa.IO.ModInfo.UnityVersion') | Gets the Unity version used to compile the mod. |
-| [Version](ModInfo.Version.md 'Wawa.IO.ModInfo.Version') | Gets the version number of the mod. |
+| [Author](ModInfo.Author().md 'Wawa.IO.ModInfo.Author') | Gets the author(s) of the mod. |
+| [Description](ModInfo.Description().md 'Wawa.IO.ModInfo.Description') | Gets the description of the mod. |
+| [Id](ModInfo.Id().md 'Wawa.IO.ModInfo.Id') | Gets the id of the mod. |
+| [Title](ModInfo.Title().md 'Wawa.IO.ModInfo.Title') | Gets the title of the mod. |
+| [UnityVersion](ModInfo.UnityVersion().md 'Wawa.IO.ModInfo.UnityVersion') | Gets the Unity version used to compile the mod. |
+| [Version](ModInfo.Version().md 'Wawa.IO.ModInfo.Version') | Gets the version number of the mod. |
 
 | Methods | |
 | :--- | :--- |
-| [Deserialize(string)](ModInfo.Deserialize.kNjYqzFD5WSwl17Uj4U6uA.md 'Wawa.IO.ModInfo.Deserialize(string)') | Tries to deserialize the parameter as [ModInfo](ModInfo.md 'Wawa.IO.ModInfo'). |
-| [ReadThenDeserialize(string)](ModInfo.ReadThenDeserialize.RlM9tEAbHu9qaPDACNvviQ.md 'Wawa.IO.ModInfo.ReadThenDeserialize(string)') | Attempts to read the specified path to try to deserialize its contents as [ModInfo](ModInfo.md 'Wawa.IO.ModInfo'). |
+| [Deserialize(string)](ModInfo.Deserialize(String).md 'Wawa.IO.ModInfo.Deserialize(string)') | Tries to deserialize the parameter as [ModInfo](ModInfo.md 'Wawa.IO.ModInfo'). |
+| [ReadThenDeserialize(string)](ModInfo.ReadThenDeserialize(String).md 'Wawa.IO.ModInfo.ReadThenDeserialize(string)') | Attempts to read the specified path to try to deserialize its contents as [ModInfo](ModInfo.md 'Wawa.IO.ModInfo'). |
 
 | Operators | |
 | :--- | :--- |
-| [operator ==(ModInfo, ModInfo)](ModInfo.op_Equality.P8F2OIoLFI3CB+jcve6SIg.md 'Wawa.IO.ModInfo.op_Equality(Wawa.IO.ModInfo, Wawa.IO.ModInfo)') | Determines whether both instances contain the same values. |
-| [operator !=(ModInfo, ModInfo)](ModInfo.op_Inequality.lYm2WQXpvfHsshtswBKrCg.md 'Wawa.IO.ModInfo.op_Inequality(Wawa.IO.ModInfo, Wawa.IO.ModInfo)') | Determines whether both instances do not contain the same values. |
+| [operator ==(ModInfo, ModInfo)](ModInfo.op_Equality(ModInfo,ModInfo).md 'Wawa.IO.ModInfo.op_Equality(Wawa.IO.ModInfo, Wawa.IO.ModInfo)') | Determines whether both instances contain the same values. |
+| [operator !=(ModInfo, ModInfo)](ModInfo.op_Inequality(ModInfo,ModInfo).md 'Wawa.IO.ModInfo.op_Inequality(Wawa.IO.ModInfo, Wawa.IO.ModInfo)') | Determines whether both instances do not contain the same values. |

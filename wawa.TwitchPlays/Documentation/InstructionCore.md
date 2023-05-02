@@ -13,4 +13,4 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Methods | |
 | :--- | :--- |
-| [Flatten(this IEnumerable&lt;Instruction&gt;)](InstructionCore.Flatten.SNpEwLi044bxC0LVGQlfGQ.md 'Wawa.TwitchPlays.Domains.InstructionCore.Flatten(this System.Collections.Generic.IEnumerable<Wawa.TwitchPlays.Domains.Instruction>)') | Flattens the enumeration for coroutine use. |
+| [Flatten(this IEnumerable&lt;Instruction&gt;)](InstructionCore.Flatten(IEnumerable).md 'Wawa.TwitchPlays.Domains.InstructionCore.Flatten(this System.Collections.Generic.IEnumerable<Wawa.TwitchPlays.Domains.Instruction>)') | Flattens the enumeration for coroutine use. |

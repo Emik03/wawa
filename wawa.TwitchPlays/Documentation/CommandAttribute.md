@@ -19,14 +19,14 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 
 | Constructors | |
 | :--- | :--- |
-| [CommandAttribute(string, int)](CommandAttribute..ctor.ug5Skh62zvc96usuZjkPNw.md 'Wawa.TwitchPlays.Domains.CommandAttribute.CommandAttribute(string, int)') | Initializes a new instance of the [CommandAttribute](CommandAttribute.md 'Wawa.TwitchPlays.Domains.CommandAttribute') class. |
+| [CommandAttribute(string, int)](CommandAttribute..ctor(String,Int32).md 'Wawa.TwitchPlays.Domains.CommandAttribute.CommandAttribute(string, int)') | Initializes a new instance of the [CommandAttribute](CommandAttribute.md 'Wawa.TwitchPlays.Domains.CommandAttribute') class. |
 
 | Properties | |
 | :--- | :--- |
-| [Prefix](CommandAttribute.Prefix.md 'Wawa.TwitchPlays.Domains.CommandAttribute.Prefix') | Gets the prefix of this command. If [Wawa.Optionals.Maybe.None&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe.None--1 'Wawa.Optionals.Maybe.None``1'), the prefix is inferred. |
-| [Priority](CommandAttribute.Priority.md 'Wawa.TwitchPlays.Domains.CommandAttribute.Priority') | Gets the priority. Higher means evaluated sooner. |
+| [Prefix](CommandAttribute.Prefix().md 'Wawa.TwitchPlays.Domains.CommandAttribute.Prefix') | Gets the prefix of this command. If [Wawa.Optionals.Maybe.None&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe.None--1 'Wawa.Optionals.Maybe.None``1'), the prefix is inferred. |
+| [Priority](CommandAttribute.Priority().md 'Wawa.TwitchPlays.Domains.CommandAttribute.Priority') | Gets the priority. Higher means evaluated sooner. |
 
 | Operators | |
 | :--- | :--- |
-| [operator ==(CommandAttribute, CommandAttribute)](CommandAttribute.op_Equality.BkpC9z4gYV07QzEFgTWcgQ.md 'Wawa.TwitchPlays.Domains.CommandAttribute.op_Equality(Wawa.TwitchPlays.Domains.CommandAttribute, Wawa.TwitchPlays.Domains.CommandAttribute)') | Determines whether both have the same values. |
-| [operator !=(CommandAttribute, CommandAttribute)](CommandAttribute.op_Inequality.Ion6jwSJd+N2GvZ0fDmJVQ.md 'Wawa.TwitchPlays.Domains.CommandAttribute.op_Inequality(Wawa.TwitchPlays.Domains.CommandAttribute, Wawa.TwitchPlays.Domains.CommandAttribute)') | Determines whether both do not have the same values. |
+| [operator ==(CommandAttribute, CommandAttribute)](CommandAttribute.op_Equality(CommandAttribute,CommandAttribute).md 'Wawa.TwitchPlays.Domains.CommandAttribute.op_Equality(Wawa.TwitchPlays.Domains.CommandAttribute, Wawa.TwitchPlays.Domains.CommandAttribute)') | Determines whether both have the same values. |
+| [operator !=(CommandAttribute, CommandAttribute)](CommandAttribute.op_Inequality(CommandAttribute,CommandAttribute).md 'Wawa.TwitchPlays.Domains.CommandAttribute.op_Inequality(Wawa.TwitchPlays.Domains.CommandAttribute, Wawa.TwitchPlays.Domains.CommandAttribute)') | Determines whether both do not have the same values. |
