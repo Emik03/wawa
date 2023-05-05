@@ -17,15 +17,39 @@ Implements convenience extension methods for `KMFramework` types, as well as fix
 
 Completely stand-alone library, and not used as a dependency in another library.
 
-| Library                                                                       | Depends on... | Used in... |
-|-------------------------------------------------------------------------------|---------------|------------|
-| [wawa.DDL](https://github.com/Emik03/wawa/tree/main/wawa.DDL)                 |               |            |
-| [wawa.Editors](https://github.com/Emik03/wawa/tree/main/wawa.Editors)         |               |            |
-| [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO)                   |               |            |
-| [wawa.Modules](https://github.com/Emik03/wawa/tree/main/wawa.Modules)         |               |            |
-| [wawa.Optionals](https://github.com/Emik03/wawa/tree/main/wawa.Optionals)     |               |            |
-| [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) |               |            |
-| [wawa.Unity](https://github.com/Emik03/wawa/tree/main/wawa.Unity)             |               |            |
+<table>
+    <thead>
+        <tr>
+            <th>Library</th>
+            <th>Depends on...</th>
+            <th>Used in...</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.DDL">wawa.DDL</a></td>
+            <td colspan="2" rowspan="7">None</td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.Editors">wawa.Editors</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.IO">wawa.IO</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.Modules">wawa.Modules</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.Optionals">wawa.Optionals</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays">wawa.TwitchPlays</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.Unity">wawa.Unity</a></td>
+        </tr>
+    </tbody>
+</table>
 
 ## Example
 
