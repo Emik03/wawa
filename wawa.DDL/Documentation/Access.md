@@ -12,8 +12,8 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Properties | |
 | :--- | :--- |
-| [IsKtane](Access.IsKtane().md 'Wawa.DDL.Access.IsKtane') | Gets a value indicating whether the runtime is in-game. |
+| [IsKtane](Access.IsKtane.md 'Wawa.DDL.Access.IsKtane') | Gets a value indicating whether the runtime is in-game. |
 
 | Methods | |
 | :--- | :--- |
-| [FromGame&lt;T,TResult&gt;(T, Converter&lt;T,TResult&gt;, TResult)](Access.FromGame(T,Converter,TResult).md 'Wawa.DDL.Access.FromGame<T,TResult>(T, System.Converter<T,TResult>, TResult)') | Method for obtaining something from the game, ensuring that the Unity editor stays happy. |
+| [FromGame&lt;T,TResult&gt;(T, Converter&lt;T,TResult&gt;, TResult)](Access.FromGame{T,TResult}(T,Converter{T,TResult},TResult).md 'Wawa.DDL.Access.FromGame<T,TResult>(T, System.Converter<T,TResult>, TResult)') | Method for obtaining something from the game, ensuring that the Unity editor stays happy. |

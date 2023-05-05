@@ -18,16 +18,16 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 
 | Fields | |
 | :--- | :--- |
-| [FileName](FileName.md 'Wawa.IO.ModInfo.FileName') | The file name used for this type. |
+| [FileName](ModInfo.FileName.md 'Wawa.IO.ModInfo.FileName') | The file name used for this type. |
 
 | Properties | |
 | :--- | :--- |
-| [Author](ModInfo.Author().md 'Wawa.IO.ModInfo.Author') | Gets the author(s) of the mod. |
-| [Description](ModInfo.Description().md 'Wawa.IO.ModInfo.Description') | Gets the description of the mod. |
-| [Id](ModInfo.Id().md 'Wawa.IO.ModInfo.Id') | Gets the id of the mod. |
-| [Title](ModInfo.Title().md 'Wawa.IO.ModInfo.Title') | Gets the title of the mod. |
-| [UnityVersion](ModInfo.UnityVersion().md 'Wawa.IO.ModInfo.UnityVersion') | Gets the Unity version used to compile the mod. |
-| [Version](ModInfo.Version().md 'Wawa.IO.ModInfo.Version') | Gets the version number of the mod. |
+| [Author](ModInfo.Author.md 'Wawa.IO.ModInfo.Author') | Gets the author(s) of the mod. |
+| [Description](ModInfo.Description.md 'Wawa.IO.ModInfo.Description') | Gets the description of the mod. |
+| [Id](ModInfo.Id.md 'Wawa.IO.ModInfo.Id') | Gets the id of the mod. |
+| [Title](ModInfo.Title.md 'Wawa.IO.ModInfo.Title') | Gets the title of the mod. |
+| [UnityVersion](ModInfo.UnityVersion.md 'Wawa.IO.ModInfo.UnityVersion') | Gets the Unity version used to compile the mod. |
+| [Version](ModInfo.Version.md 'Wawa.IO.ModInfo.Version') | Gets the version number of the mod. |
 
 | Methods | |
 | :--- | :--- |

@@ -18,4 +18,4 @@ The field.
 
 #### Returns
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
-A concatenation of the parameter [x](AliasAttribute.ToString(FieldInfo).md#Wawa.TwitchPlays.Domains.AliasAttribute.ToString(System.Reflection.FieldInfo).x 'Wawa.TwitchPlays.Domains.AliasAttribute.ToString(System.Reflection.FieldInfo).x') with [Aliases](AliasAttribute.Aliases().md 'Wawa.TwitchPlays.Domains.AliasAttribute.Aliases').
+A concatenation of the parameter [x](AliasAttribute.ToString(FieldInfo).md#Wawa.TwitchPlays.Domains.AliasAttribute.ToString(System.Reflection.FieldInfo).x 'Wawa.TwitchPlays.Domains.AliasAttribute.ToString(System.Reflection.FieldInfo).x') with [Aliases](AliasAttribute.Aliases.md 'Wawa.TwitchPlays.Domains.AliasAttribute.Aliases').

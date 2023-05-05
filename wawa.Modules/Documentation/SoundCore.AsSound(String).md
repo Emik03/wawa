@@ -2,7 +2,7 @@
 
 ## SoundCore.AsSound(this string) Method
 
-Creates an instance of [Sound](Sound.md 'Wawa.Modules.Sound') where [Modded](Sound.Modded().md 'Wawa.Modules.Sound.Modded') is set.
+Creates an instance of [Sound](Sound.md 'Wawa.Modules.Sound') where [Modded](Sound.Modded.md 'Wawa.Modules.Sound.Modded') is set.
 
 ```csharp
 public static Wawa.Modules.Sound AsSound(this string sound);

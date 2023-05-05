@@ -4,7 +4,7 @@
 ## CommandAttribute Class
 
 An [System.Attribute](https://docs.microsoft.com/en-us/dotnet/api/System.Attribute 'System.Attribute') to attach to methods to signify that  
-the command should be processed by [Twitch&lt;TMod&gt;](Twitch_TMod_.md 'Wawa.TwitchPlays.Twitch<TMod>').
+the command should be processed by [Twitch&lt;TMod&gt;](Twitch{TMod}.md 'Wawa.TwitchPlays.Twitch<TMod>').
 
 ```csharp
 public sealed class CommandAttribute : System.Attribute,
@@ -23,8 +23,8 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 
 | Properties | |
 | :--- | :--- |
-| [Prefix](CommandAttribute.Prefix().md 'Wawa.TwitchPlays.Domains.CommandAttribute.Prefix') | Gets the prefix of this command. If [Wawa.Optionals.Maybe.None&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe.None--1 'Wawa.Optionals.Maybe.None``1'), the prefix is inferred. |
-| [Priority](CommandAttribute.Priority().md 'Wawa.TwitchPlays.Domains.CommandAttribute.Priority') | Gets the priority. Higher means evaluated sooner. |
+| [Prefix](CommandAttribute.Prefix.md 'Wawa.TwitchPlays.Domains.CommandAttribute.Prefix') | Gets the prefix of this command. If [Wawa.Optionals.Maybe.None&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe.None--1 'Wawa.Optionals.Maybe.None``1'), the prefix is inferred. |
+| [Priority](CommandAttribute.Priority.md 'Wawa.TwitchPlays.Domains.CommandAttribute.Priority') | Gets the priority. Higher means evaluated sooner. |
 
 | Operators | |
 | :--- | :--- |

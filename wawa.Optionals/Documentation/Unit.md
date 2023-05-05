@@ -15,7 +15,7 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 
 | Properties | |
 | :--- | :--- |
-| [Value](Unit.Value().md 'Wawa.Optionals.Unit.Value') | Gets the singular value. |
+| [Value](Unit.Value.md 'Wawa.Optionals.Unit.Value') | Gets the singular value. |
 
 | Operators | |
 | :--- | :--- |

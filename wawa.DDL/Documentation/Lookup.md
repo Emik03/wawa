@@ -12,7 +12,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Properties | |
 | :--- | :--- |
-| [Mods](Lookup.Mods().md 'Wawa.DDL.Lookup.Mods') | Gets the dictionary of loaded mods. |
+| [Mods](Lookup.Mods.md 'Wawa.DDL.Lookup.Mods') | Gets the dictionary of loaded mods. |
 
 | Methods | |
 | :--- | :--- |

@@ -20,11 +20,11 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 | Constructors | |
 | :--- | :--- |
 | [AliasAttribute(string[])](AliasAttribute..ctor(String[]).md 'Wawa.TwitchPlays.Domains.AliasAttribute.AliasAttribute(string[])') | Initializes a new instance of the [AliasAttribute](AliasAttribute.md 'Wawa.TwitchPlays.Domains.AliasAttribute') class. |
-| [AliasAttribute(IList&lt;string&gt;)](AliasAttribute..ctor(IList).md 'Wawa.TwitchPlays.Domains.AliasAttribute.AliasAttribute(System.Collections.Generic.IList<string>)') | Initializes a new instance of the [AliasAttribute](AliasAttribute.md 'Wawa.TwitchPlays.Domains.AliasAttribute') class. |
+| [AliasAttribute(IList&lt;string&gt;)](AliasAttribute..ctor(IList{String}).md 'Wawa.TwitchPlays.Domains.AliasAttribute.AliasAttribute(System.Collections.Generic.IList<string>)') | Initializes a new instance of the [AliasAttribute](AliasAttribute.md 'Wawa.TwitchPlays.Domains.AliasAttribute') class. |
 
 | Properties | |
 | :--- | :--- |
-| [Aliases](AliasAttribute.Aliases().md 'Wawa.TwitchPlays.Domains.AliasAttribute.Aliases') | Gets the alternative representations. |
+| [Aliases](AliasAttribute.Aliases.md 'Wawa.TwitchPlays.Domains.AliasAttribute.Aliases') | Gets the alternative representations. |
 
 | Methods | |
 | :--- | :--- |

@@ -11,8 +11,8 @@ public interface ISolvable
 
 | Properties | |
 | :--- | :--- |
-| [IsTP](ISolvable.IsTP().md 'Wawa.Modules.ISolvable.IsTP') | Gets a value indicating whether Twitch Plays is currently active. |
+| [IsTP](ISolvable.IsTP.md 'Wawa.Modules.ISolvable.IsTP') | Gets a value indicating whether Twitch Plays is currently active. |
 
 | Methods | |
 | :--- | :--- |
-| [ForceTPSolve()](ISolvable.ForceTPSolve().md 'Wawa.Modules.ISolvable.ForceTPSolve()') | When the module runs into an exception or the module is forced to be solved, it calls this method. |
+| [ForceTPSolve()](ISolvable.ForceTPSolve.md 'Wawa.Modules.ISolvable.ForceTPSolve()') | When the module runs into an exception or the module is forced to be solved, it calls this method. |

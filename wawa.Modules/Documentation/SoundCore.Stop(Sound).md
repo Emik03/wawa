@@ -2,7 +2,7 @@
 
 ## SoundCore.Stop(this Sound) Method
 
-Gets the [Reference](Sound.Reference().md 'Wawa.Modules.Sound.Reference') and stops the sound if it is playing.
+Gets the [Reference](Sound.Reference.md 'Wawa.Modules.Sound.Reference') and stops the sound if it is playing.
 
 ```csharp
 public static Wawa.Modules.Sound Stop(this Wawa.Modules.Sound that);
