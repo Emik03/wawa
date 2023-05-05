@@ -30,7 +30,7 @@ Completely stand-alone library, and not used as a dependency in another library.
     <tbody>
         <tr>
             <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.DDL">wawa.DDL</a></td>
-            <td colspan="2" rowspan="7">None</td>
+            <td colspan="2" rowspan="7" style="text-align: center;">None</td>
         </tr>
         <tr>
             <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.Extensions">wawa.Extensions</a></td>
