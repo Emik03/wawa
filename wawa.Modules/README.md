@@ -17,13 +17,13 @@ Adds a base type for modules.
 
 | Library                                                                       | Depends on... | Used in... |
 |-------------------------------------------------------------------------------|---------------|------------|
-| [wawa.DDL](https://github.com/Emik03/wawa/tree/main/wawa.DDL)                 | ✔️            | ❌️         |
-| [wawa.Editors](https://github.com/Emik03/wawa/tree/main/wawa.Editors)         | ❌             | ❌          |
-| [wawa.Extensions](https://github.com/Emik03/wawa/tree/main/wawa.Extensions)   | ❌             | ❌          |
-| [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO)                   | ✔️            | ❌️         |
-| [wawa.Optionals](https://github.com/Emik03/wawa/tree/main/wawa.Optionals)     | ✔️            | ️❌         |
-| [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) | ❌             | ✔️         |
-| [wawa.Unity](https://github.com/Emik03/wawa/tree/main/wawa.Unity)             | ✔️            | ️❌         |
+| [wawa.DDL](https://github.com/Emik03/wawa/tree/main/wawa.DDL)                 | Yes           |            |
+| [wawa.Editors](https://github.com/Emik03/wawa/tree/main/wawa.Editors)         |               |            |
+| [wawa.Extensions](https://github.com/Emik03/wawa/tree/main/wawa.Extensions)   |               |            |
+| [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO)                   | Yes           |            |
+| [wawa.Optionals](https://github.com/Emik03/wawa/tree/main/wawa.Optionals)     | Yes           | ️          |
+| [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) |               | Yes        |
+| [wawa.Unity](https://github.com/Emik03/wawa/tree/main/wawa.Unity)             | Yes           | ️          |
 
 ## Example
 
