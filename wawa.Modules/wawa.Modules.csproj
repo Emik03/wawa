@@ -9,6 +9,7 @@
         <ProjectReference Include="../wawa.Unity/wawa.Unity.csproj"/>
         <Compile Remove="$(Morsels)/Compile/Source/References/*/**/*.cs"/>
         <ProjectReference Include="../wawa.Optionals/wawa.Optionals.csproj"/>
+        <Compile Include="$(Morsels)/Compile/Source/References/Emik/Linq/Force.cs" Link="Source/References/Emik/Linq/Force.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/Emik/Text/Stringifier.cs" Link="Source/References/Emik/Text/Stringifier.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/Emik/Collections/Generics/Matrix.cs" Link="Source/References/Emik/Collections/Generics/Matrix.cs"/>
     </ItemGroup>
