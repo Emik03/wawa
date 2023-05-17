@@ -19,7 +19,7 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 
 | Constructors | |
 | :--- | :--- |
-| [AliasAttribute(string[])](AliasAttribute..ctor(String[]).md 'Wawa.TwitchPlays.Domains.AliasAttribute.AliasAttribute(string[])') | Initializes a new instance of the [AliasAttribute](AliasAttribute.md 'Wawa.TwitchPlays.Domains.AliasAttribute') class. |
+| [AliasAttribute(string[])](AliasAttribute..ctor(string[]).md 'Wawa.TwitchPlays.Domains.AliasAttribute.AliasAttribute(string[])') | Initializes a new instance of the [AliasAttribute](AliasAttribute.md 'Wawa.TwitchPlays.Domains.AliasAttribute') class. |
 | [AliasAttribute(IList&lt;string&gt;)](AliasAttribute..ctor(IList{String}).md 'Wawa.TwitchPlays.Domains.AliasAttribute.AliasAttribute(System.Collections.Generic.IList<string>)') | Initializes a new instance of the [AliasAttribute](AliasAttribute.md 'Wawa.TwitchPlays.Domains.AliasAttribute') class. |
 
 | Properties | |
@@ -28,7 +28,7 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 
 | Methods | |
 | :--- | :--- |
-| [ToString(string)](AliasAttribute.ToString(String).md 'Wawa.TwitchPlays.Domains.AliasAttribute.ToString(string)') | Gets a [string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string') representation showing every alias. |
+| [ToString(string)](AliasAttribute.ToString(string).md 'Wawa.TwitchPlays.Domains.AliasAttribute.ToString(string)') | Gets a [string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string') representation showing every alias. |
 | [ToString(FieldInfo)](AliasAttribute.ToString(FieldInfo).md 'Wawa.TwitchPlays.Domains.AliasAttribute.ToString(System.Reflection.FieldInfo)') | Gets a [string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string') representation showing every alias. |
 
 | Operators | |

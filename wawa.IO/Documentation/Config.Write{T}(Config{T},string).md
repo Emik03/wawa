@@ -14,12 +14,12 @@ public static Wawa.IO.Config<T> Write<T>(this Wawa.IO.Config<T> that, string val
 
 `T`
 
-The generic used in [that](Config.Write{T}(Config{T},String).md#Wawa.IO.Config.Write_T_(thisWawa.IO.Config_T_,string).that 'Wawa.IO.Config.Write<T>(this Wawa.IO.Config<T>, string).that').
+The generic used in [that](Config.Write{T}(Config{T},string).md#Wawa.IO.Config.Write_T_(thisWawa.IO.Config_T_,string).that 'Wawa.IO.Config.Write<T>(this Wawa.IO.Config<T>, string).that').
 #### Parameters
 
 <a name='Wawa.IO.Config.Write_T_(thisWawa.IO.Config_T_,string).that'></a>
 
-`that` [Wawa.IO.Config&lt;](Config{T}.md 'Wawa.IO.Config<T>')[T](Config.Write{T}(Config{T},String).md#Wawa.IO.Config.Write_T_(thisWawa.IO.Config_T_,string).T 'Wawa.IO.Config.Write<T>(this Wawa.IO.Config<T>, string).T')[&gt;](Config{T}.md 'Wawa.IO.Config<T>')
+`that` [Wawa.IO.Config&lt;](Config{T}.md 'Wawa.IO.Config<T>')[T](Config.Write{T}(Config{T},string).md#Wawa.IO.Config.Write_T_(thisWawa.IO.Config_T_,string).T 'Wawa.IO.Config.Write<T>(this Wawa.IO.Config<T>, string).T')[&gt;](Config{T}.md 'Wawa.IO.Config<T>')
 
 This instance of [Config&lt;T&gt;](Config{T}.md 'Wawa.IO.Config<T>').
 
@@ -30,8 +30,8 @@ This instance of [Config&lt;T&gt;](Config{T}.md 'Wawa.IO.Config<T>').
 The contents to write.
 
 #### Returns
-[Wawa.IO.Config&lt;](Config{T}.md 'Wawa.IO.Config<T>')[T](Config.Write{T}(Config{T},String).md#Wawa.IO.Config.Write_T_(thisWawa.IO.Config_T_,string).T 'Wawa.IO.Config.Write<T>(this Wawa.IO.Config<T>, string).T')[&gt;](Config{T}.md 'Wawa.IO.Config<T>')  
-The parameter [that](Config.Write{T}(Config{T},String).md#Wawa.IO.Config.Write_T_(thisWawa.IO.Config_T_,string).that 'Wawa.IO.Config.Write<T>(this Wawa.IO.Config<T>, string).that').
+[Wawa.IO.Config&lt;](Config{T}.md 'Wawa.IO.Config<T>')[T](Config.Write{T}(Config{T},string).md#Wawa.IO.Config.Write_T_(thisWawa.IO.Config_T_,string).T 'Wawa.IO.Config.Write<T>(this Wawa.IO.Config<T>, string).T')[&gt;](Config{T}.md 'Wawa.IO.Config<T>')  
+The parameter [that](Config.Write{T}(Config{T},string).md#Wawa.IO.Config.Write_T_(thisWawa.IO.Config_T_,string).that 'Wawa.IO.Config.Write<T>(this Wawa.IO.Config<T>, string).that').
 
 ### Remarks
   

@@ -29,4 +29,4 @@ The sounds to play.
 
 #### Returns
 [KMSelectable](https://docs.microsoft.com/en-us/dotnet/api/KMSelectable 'KMSelectable')  
-The parameter [selectable](ModdedModule.Shake(KMSelectable,Single,Sound[]).md#Wawa.Modules.ModdedModule.Shake(KMSelectable,float,Wawa.Modules.Sound[]).selectable 'Wawa.Modules.ModdedModule.Shake(KMSelectable, float, Wawa.Modules.Sound[]).selectable').
+The parameter [selectable](ModdedModule.Shake(KMSelectable,float,Sound[]).md#Wawa.Modules.ModdedModule.Shake(KMSelectable,float,Wawa.Modules.Sound[]).selectable 'Wawa.Modules.ModdedModule.Shake(KMSelectable, float, Wawa.Modules.Sound[]).selectable').

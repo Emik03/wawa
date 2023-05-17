@@ -36,7 +36,7 @@ All constructors in this type have the following side effects:
 | Constructors | |
 | :--- | :--- |
 | [Config()](Config{T}..ctor.md 'Wawa.IO.Config<T>.Config()') | Initializes a new instance of the [Config&lt;T&gt;](Config{T}.md 'Wawa.IO.Config<T>') class. |
-| [Config(string)](Config{T}..ctor(String).md 'Wawa.IO.Config<T>.Config(string)') | Initializes a new instance of the [Config&lt;T&gt;](Config{T}.md 'Wawa.IO.Config<T>') class. |
+| [Config(string)](Config{T}..ctor(string).md 'Wawa.IO.Config<T>.Config(string)') | Initializes a new instance of the [Config&lt;T&gt;](Config{T}.md 'Wawa.IO.Config<T>') class. |
 
 | Properties | |
 | :--- | :--- |

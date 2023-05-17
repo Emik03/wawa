@@ -2,7 +2,7 @@
 
 ## State.HasStruck Property
 
-Gets or sets a value indicating whether the module has ever called [Strike(string, object[])](ModdedModule.Strike(String,Object[]).md 'Wawa.Modules.ModdedModule.Strike(string, object[])').
+Gets or sets a value indicating whether the module has ever called [Strike(string, object[])](ModdedModule.Strike(string,object[]).md 'Wawa.Modules.ModdedModule.Strike(string, object[])').
 
 ```csharp
 public bool HasStruck { get; set; }

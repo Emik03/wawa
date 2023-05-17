@@ -37,7 +37,7 @@ The mod id to get the mod directory from.
 If [null](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null'), implicitly gets the directory of the mod from the file of the assembly.
 
 #### Returns
-[Wawa.Optionals.Maybe&lt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe-1 'Wawa.Optionals.Maybe`1')[T](PathFinder.GetUnmanaged{T}(String,String,String).md#Wawa.IO.PathFinder.GetUnmanaged_T_(string,string,string).T 'Wawa.IO.PathFinder.GetUnmanaged<T>(string, string, string).T')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe-1 'Wawa.Optionals.Maybe`1')  
+[Wawa.Optionals.Maybe&lt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe-1 'Wawa.Optionals.Maybe`1')[T](PathFinder.GetUnmanaged{T}(string,string,string).md#Wawa.IO.PathFinder.GetUnmanaged_T_(string,string,string).T 'Wawa.IO.PathFinder.GetUnmanaged<T>(string, string, string).T')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe-1 'Wawa.Optionals.Maybe`1')  
 The value [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool') if copying the file was successful, otherwise [false](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').
 
 #### Exceptions

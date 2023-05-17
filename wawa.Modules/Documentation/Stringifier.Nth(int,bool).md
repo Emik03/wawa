@@ -23,4 +23,4 @@ Determines whether to index from zero or one.
 
 #### Returns
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
-The parameter [i](Stringifier.Nth(Int32,Boolean).md#Wawa.Modules.Stringifier.Nth(int,bool).i 'Wawa.Modules.Stringifier.Nth(int, bool).i') as an ordinal.
+The parameter [i](Stringifier.Nth(int,bool).md#Wawa.Modules.Stringifier.Nth(int,bool).i 'Wawa.Modules.Stringifier.Nth(int, bool).i') as an ordinal.

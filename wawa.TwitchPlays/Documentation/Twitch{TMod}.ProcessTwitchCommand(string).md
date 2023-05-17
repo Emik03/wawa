@@ -16,7 +16,7 @@ public virtual System.Collections.IEnumerator ProcessTwitchCommand(string comman
 
 The command of the user.
 
-Implements [ProcessTwitchCommand(string)](ITwitchSupportable.ProcessTwitchCommand(String).md 'Wawa.TwitchPlays.Domains.ITwitchSupportable.ProcessTwitchCommand(string)')
+Implements [ProcessTwitchCommand(string)](ITwitchSupportable.ProcessTwitchCommand(string).md 'Wawa.TwitchPlays.Domains.ITwitchSupportable.ProcessTwitchCommand(string)')
 
 #### Returns
 [System.Collections.IEnumerator](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.IEnumerator 'System.Collections.IEnumerator')  

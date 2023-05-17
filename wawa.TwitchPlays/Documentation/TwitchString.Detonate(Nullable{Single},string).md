@@ -28,8 +28,8 @@ A formatted string for Twitch Plays.
 
 ### Remarks
   
-[time](TwitchString.Detonate(Nullable{Single},String).md#Wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable_float_,string).time 'Wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable<float>, string).time') is specified in number of seconds before the bomb explodes.  
+[time](TwitchString.Detonate(Nullable{Single},string).md#Wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable_float_,string).time 'Wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable<float>, string).time') is specified in number of seconds before the bomb explodes.  
             (Note, sending another detonate command will auto-cancel the previous one on  
             the same module if it hasn't happened already.).  
-            [message](TwitchString.Detonate(Nullable{Single},String).md#Wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable_float_,string).message 'Wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable<float>, string).message') is the message to send to chat upon detonation.  
+            [message](TwitchString.Detonate(Nullable{Single},string).md#Wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable_float_,string).message 'Wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable<float>, string).message') is the message to send to chat upon detonation.  
             Both of the parameters are optional.

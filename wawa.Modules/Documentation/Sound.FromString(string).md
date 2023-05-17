@@ -17,4 +17,4 @@ The [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'S
 
 #### Returns
 [Sound](Sound.md 'Wawa.Modules.Sound')  
-A [new](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new')[Sound](Sound.md 'Wawa.Modules.Sound') instance encapsulating [sound](Sound.FromString(String).md#Wawa.Modules.Sound.FromString(string).sound 'Wawa.Modules.Sound.FromString(string).sound').
+A [new](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new')[Sound](Sound.md 'Wawa.Modules.Sound') instance encapsulating [sound](Sound.FromString(string).md#Wawa.Modules.Sound.FromString(string).sound 'Wawa.Modules.Sound.FromString(string).sound').

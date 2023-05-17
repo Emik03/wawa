@@ -17,7 +17,7 @@ The term to get the localized [System.String](https://docs.microsoft.com/en-us/d
 
 #### Returns
 [Wawa.Optionals.Maybe&lt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe-1 'Wawa.Optionals.Maybe`1')[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe-1 'Wawa.Optionals.Maybe`1')  
-The localized [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') of the parameter [term](Lookup.Localized(String).md#Wawa.DDL.Lookup.Localized(string).term 'Wawa.DDL.Lookup.Localized(string).term').
+The localized [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') of the parameter [term](Lookup.Localized(string).md#Wawa.DDL.Lookup.Localized(string).term 'Wawa.DDL.Lookup.Localized(string).term').
 
 ### Remarks
   

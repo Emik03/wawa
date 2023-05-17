@@ -18,7 +18,7 @@ The type of the value to log.
 
 <a name='Wawa.Modules.ModdedModule.LogLower_T_(T,object[]).format'></a>
 
-`format` [T](ModdedModule.LogLower{T}(T,Object[]).md#Wawa.Modules.ModdedModule.LogLower_T_(T,object[]).T 'Wawa.Modules.ModdedModule.LogLower<T>(T, object[]).T')
+`format` [T](ModdedModule.LogLower{T}(T,object[]).md#Wawa.Modules.ModdedModule.LogLower_T_(T,object[]).T 'Wawa.Modules.ModdedModule.LogLower<T>(T, object[]).T')
 
 The value to log.
 
@@ -29,5 +29,5 @@ The value to log.
 The arguments to hook into format.
 
 #### Returns
-[T](ModdedModule.LogLower{T}(T,Object[]).md#Wawa.Modules.ModdedModule.LogLower_T_(T,object[]).T 'Wawa.Modules.ModdedModule.LogLower<T>(T, object[]).T')  
-The parameter [format](ModdedModule.LogLower{T}(T,Object[]).md#Wawa.Modules.ModdedModule.LogLower_T_(T,object[]).format 'Wawa.Modules.ModdedModule.LogLower<T>(T, object[]).format').
+[T](ModdedModule.LogLower{T}(T,object[]).md#Wawa.Modules.ModdedModule.LogLower_T_(T,object[]).T 'Wawa.Modules.ModdedModule.LogLower<T>(T, object[]).T')  
+The parameter [format](ModdedModule.LogLower{T}(T,object[]).md#Wawa.Modules.ModdedModule.LogLower_T_(T,object[]).format 'Wawa.Modules.ModdedModule.LogLower<T>(T, object[]).format').

@@ -18,7 +18,7 @@ The type of each item in the collection.
 
 <a name='Wawa.Modules.Stringifier.Conjoin_T_(System.Collections.Generic.IEnumerable_T_,char).values'></a>
 
-`values` [System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')[T](Stringifier.Conjoin{T}(IEnumerable{T},Char).md#Wawa.Modules.Stringifier.Conjoin_T_(System.Collections.Generic.IEnumerable_T_,char).T 'Wawa.Modules.Stringifier.Conjoin<T>(System.Collections.Generic.IEnumerable<T>, char).T')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')
+`values` [System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')[T](Stringifier.Conjoin{T}(IEnumerable{T},char).md#Wawa.Modules.Stringifier.Conjoin_T_(System.Collections.Generic.IEnumerable_T_,char).T 'Wawa.Modules.Stringifier.Conjoin<T>(System.Collections.Generic.IEnumerable<T>, char).T')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')
 
 The values to join.
 
@@ -35,4 +35,4 @@ One long [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.Stri
 ### Remarks
   
 This method is more efficient than using  
-[Conjoin&lt;T&gt;(IEnumerable&lt;T&gt;, string)](Stringifier.Conjoin{T}(IEnumerable{T},String).md 'Wawa.Modules.Stringifier.Conjoin<T>(System.Collections.Generic.IEnumerable<T>, string)') for [System.Char](https://docs.microsoft.com/en-us/dotnet/api/System.Char 'System.Char') separators.
+[Conjoin&lt;T&gt;(IEnumerable&lt;T&gt;, string)](Stringifier.Conjoin{T}(IEnumerable{T},string).md 'Wawa.Modules.Stringifier.Conjoin<T>(System.Collections.Generic.IEnumerable<T>, string)') for [System.Char](https://docs.microsoft.com/en-us/dotnet/api/System.Char 'System.Char') separators.

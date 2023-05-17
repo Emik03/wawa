@@ -19,7 +19,7 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 
 | Constructors | |
 | :--- | :--- |
-| [CommandAttribute(string, int)](CommandAttribute..ctor(String,Int32).md 'Wawa.TwitchPlays.Domains.CommandAttribute.CommandAttribute(string, int)') | Initializes a new instance of the [CommandAttribute](CommandAttribute.md 'Wawa.TwitchPlays.Domains.CommandAttribute') class. |
+| [CommandAttribute(string, int)](CommandAttribute..ctor(string,int).md 'Wawa.TwitchPlays.Domains.CommandAttribute.CommandAttribute(string, int)') | Initializes a new instance of the [CommandAttribute](CommandAttribute.md 'Wawa.TwitchPlays.Domains.CommandAttribute') class. |
 
 | Properties | |
 | :--- | :--- |

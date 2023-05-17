@@ -17,4 +17,4 @@ The [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'S
 
 #### Returns
 [Sound](Sound.md 'Wawa.Modules.Sound')  
-A new instance of [Sound](Sound.md 'Wawa.Modules.Sound') which encapsulates [sound](SoundCore.AsSound(String).md#Wawa.Modules.SoundCore.AsSound(thisstring).sound 'Wawa.Modules.SoundCore.AsSound(this string).sound').
+A new instance of [Sound](Sound.md 'Wawa.Modules.Sound') which encapsulates [sound](SoundCore.AsSound(string).md#Wawa.Modules.SoundCore.AsSound(thisstring).sound 'Wawa.Modules.SoundCore.AsSound(this string).sound').

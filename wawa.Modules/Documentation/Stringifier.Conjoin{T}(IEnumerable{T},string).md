@@ -18,7 +18,7 @@ The type of each item in the collection.
 
 <a name='Wawa.Modules.Stringifier.Conjoin_T_(System.Collections.Generic.IEnumerable_T_,string).values'></a>
 
-`values` [System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')[T](Stringifier.Conjoin{T}(IEnumerable{T},String).md#Wawa.Modules.Stringifier.Conjoin_T_(System.Collections.Generic.IEnumerable_T_,string).T 'Wawa.Modules.Stringifier.Conjoin<T>(System.Collections.Generic.IEnumerable<T>, string).T')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')
+`values` [System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')[T](Stringifier.Conjoin{T}(IEnumerable{T},string).md#Wawa.Modules.Stringifier.Conjoin_T_(System.Collections.Generic.IEnumerable_T_,string).T 'Wawa.Modules.Stringifier.Conjoin<T>(System.Collections.Generic.IEnumerable<T>, string).T')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')
 
 The values to join.
 

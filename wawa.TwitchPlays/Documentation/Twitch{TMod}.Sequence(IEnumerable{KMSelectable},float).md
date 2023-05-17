@@ -3,8 +3,8 @@
 
 ## Twitch<TMod>.Sequence(IEnumerable<KMSelectable>, float) Method
 
-Presses a sequence of buttons in order of [selectables](Twitch{TMod}.Sequence(IEnumerable{KMSelectable},Single).md#Wawa.TwitchPlays.Twitch_TMod_.Sequence(System.Collections.Generic.IEnumerable_KMSelectable_,float).selectables 'Wawa.TwitchPlays.Twitch<TMod>.Sequence(System.Collections.Generic.IEnumerable<KMSelectable>, float).selectables'),  
-waiting [duration](Twitch{TMod}.Sequence(IEnumerable{KMSelectable},Single).md#Wawa.TwitchPlays.Twitch_TMod_.Sequence(System.Collections.Generic.IEnumerable_KMSelectable_,float).duration 'Wawa.TwitchPlays.Twitch<TMod>.Sequence(System.Collections.Generic.IEnumerable<KMSelectable>, float).duration') seconds in-between each, and interrupting as soon as  
+Presses a sequence of buttons in order of [selectables](Twitch{TMod}.Sequence(IEnumerable{KMSelectable},float).md#Wawa.TwitchPlays.Twitch_TMod_.Sequence(System.Collections.Generic.IEnumerable_KMSelectable_,float).selectables 'Wawa.TwitchPlays.Twitch<TMod>.Sequence(System.Collections.Generic.IEnumerable<KMSelectable>, float).selectables'),  
+waiting [duration](Twitch{TMod}.Sequence(IEnumerable{KMSelectable},float).md#Wawa.TwitchPlays.Twitch_TMod_.Sequence(System.Collections.Generic.IEnumerable_KMSelectable_,float).duration 'Wawa.TwitchPlays.Twitch<TMod>.Sequence(System.Collections.Generic.IEnumerable<KMSelectable>, float).duration') seconds in-between each, and interrupting as soon as  
 [Wawa.Modules.State.HasStruck](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Modules.State.HasStruck 'Wawa.Modules.State.HasStruck') is [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').
 
 ```csharp

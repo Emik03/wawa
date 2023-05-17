@@ -29,5 +29,5 @@ A formatted string for Twitch Plays.
 
 ### Remarks
   
-Like [TryCancel(string)](TwitchString.TryCancel(String).md 'Wawa.TwitchPlays.Domains.TwitchString.TryCancel(string)'), you won't be able to clean up if you cancel this way.  
-Also like [TryCancel(string)](TwitchString.TryCancel(String).md 'Wawa.TwitchPlays.Domains.TwitchString.TryCancel(string)'), [message](TwitchString.TryWaitCancel(Single,String).md#Wawa.TwitchPlays.Domains.TwitchString.TryWaitCancel(float,string).message 'Wawa.TwitchPlays.Domains.TwitchString.TryWaitCancel(float, string).message') is optional.
+Like [TryCancel(string)](TwitchString.TryCancel(string).md 'Wawa.TwitchPlays.Domains.TwitchString.TryCancel(string)'), you won't be able to clean up if you cancel this way.  
+Also like [TryCancel(string)](TwitchString.TryCancel(string).md 'Wawa.TwitchPlays.Domains.TwitchString.TryCancel(string)'), [message](TwitchString.TryWaitCancel(float,string).md#Wawa.TwitchPlays.Domains.TwitchString.TryWaitCancel(float,string).message 'Wawa.TwitchPlays.Domains.TwitchString.TryWaitCancel(float, string).message') is optional.

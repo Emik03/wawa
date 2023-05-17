@@ -19,7 +19,7 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 | Constructors | |
 | :--- | :--- |
 | [Sound(Object)](Sound..ctor(Object).md 'Wawa.Modules.Sound.Sound(Object)') | Initializes a new instance of the [Sound](Sound.md 'Wawa.Modules.Sound') class. Uses the name of the [UnityEngine.AudioClip](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.AudioClip 'UnityEngine.AudioClip'). |
-| [Sound(string)](Sound..ctor(String).md 'Wawa.Modules.Sound.Sound(string)') | Initializes a new instance of the [Sound](Sound.md 'Wawa.Modules.Sound') class. |
+| [Sound(string)](Sound..ctor(string).md 'Wawa.Modules.Sound.Sound(string)') | Initializes a new instance of the [Sound](Sound.md 'Wawa.Modules.Sound') class. |
 
 | Properties | |
 | :--- | :--- |
@@ -67,11 +67,11 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 | Methods | |
 | :--- | :--- |
 | [FromObject(Object)](Sound.FromObject(Object).md 'Wawa.Modules.Sound.FromObject(Object)') | Converts the [UnityEngine.Object](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Object 'UnityEngine.Object') to a [new](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new')[Sound](Sound.md 'Wawa.Modules.Sound'). |
-| [FromString(string)](Sound.FromString(String).md 'Wawa.Modules.Sound.FromString(string)') | Converts the [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') to a [new](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new')[Sound](Sound.md 'Wawa.Modules.Sound'). |
+| [FromString(string)](Sound.FromString(string).md 'Wawa.Modules.Sound.FromString(string)') | Converts the [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') to a [new](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new')[Sound](Sound.md 'Wawa.Modules.Sound'). |
 
 | Operators | |
 | :--- | :--- |
 | [operator ==(Sound, Sound)](Sound.op_Equality(Sound,Sound).md 'Wawa.Modules.Sound.op_Equality(Wawa.Modules.Sound, Wawa.Modules.Sound)') | Determines whether both instances contain the same values. |
 | [explicit operator Sound(Object)](Sound.Sound(Object).md 'Wawa.Modules.Sound.op_Explicit Wawa.Modules.Sound(Object)') | Explicitly calls the constructor. |
-| [implicit operator Sound(string)](Sound.Sound(String).md 'Wawa.Modules.Sound.op_Implicit Wawa.Modules.Sound(string)') | Implicitly calls the constructor. |
+| [implicit operator Sound(string)](Sound.Sound(string).md 'Wawa.Modules.Sound.op_Implicit Wawa.Modules.Sound(string)') | Implicitly calls the constructor. |
 | [operator !=(Sound, Sound)](Sound.op_Inequality(Sound,Sound).md 'Wawa.Modules.Sound.op_Inequality(Wawa.Modules.Sound, Wawa.Modules.Sound)') | Determines whether both instances do not contain the same values. |

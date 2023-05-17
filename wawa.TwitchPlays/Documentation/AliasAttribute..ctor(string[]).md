@@ -19,5 +19,5 @@ The prefix of this command.
 #### Exceptions
 
 [System.InvalidOperationException](https://docs.microsoft.com/en-us/dotnet/api/System.InvalidOperationException 'System.InvalidOperationException')  
-A [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') in [aliases](AliasAttribute..ctor(String[]).md#Wawa.TwitchPlays.Domains.AliasAttribute.AliasAttribute(string[]).aliases 'Wawa.TwitchPlays.Domains.AliasAttribute.AliasAttribute(string[]).aliases') contain at least one [System.Char](https://docs.microsoft.com/en-us/dotnet/api/System.Char 'System.Char') that is whitespace,  
+A [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') in [aliases](AliasAttribute..ctor(string[]).md#Wawa.TwitchPlays.Domains.AliasAttribute.AliasAttribute(string[]).aliases 'Wawa.TwitchPlays.Domains.AliasAttribute.AliasAttribute(string[]).aliases') contain at least one [System.Char](https://docs.microsoft.com/en-us/dotnet/api/System.Char 'System.Char') that is whitespace,  
 according to [System.Char.IsWhiteSpace(System.Char)](https://docs.microsoft.com/en-us/dotnet/api/System.Char.IsWhiteSpace#System_Char_IsWhiteSpace_System_Char_ 'System.Char.IsWhiteSpace(System.Char)').

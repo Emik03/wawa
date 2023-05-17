@@ -31,8 +31,8 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 
 | Methods | |
 | :--- | :--- |
-| [Deserialize(string)](ModInfo.Deserialize(String).md 'Wawa.IO.ModInfo.Deserialize(string)') | Tries to deserialize the parameter as [ModInfo](ModInfo.md 'Wawa.IO.ModInfo'). |
-| [ReadThenDeserialize(string)](ModInfo.ReadThenDeserialize(String).md 'Wawa.IO.ModInfo.ReadThenDeserialize(string)') | Attempts to read the specified path to try to deserialize its contents as [ModInfo](ModInfo.md 'Wawa.IO.ModInfo'). |
+| [Deserialize(string)](ModInfo.Deserialize(string).md 'Wawa.IO.ModInfo.Deserialize(string)') | Tries to deserialize the parameter as [ModInfo](ModInfo.md 'Wawa.IO.ModInfo'). |
+| [ReadThenDeserialize(string)](ModInfo.ReadThenDeserialize(string).md 'Wawa.IO.ModInfo.ReadThenDeserialize(string)') | Attempts to read the specified path to try to deserialize its contents as [ModInfo](ModInfo.md 'Wawa.IO.ModInfo'). |
 
 | Operators | |
 | :--- | :--- |

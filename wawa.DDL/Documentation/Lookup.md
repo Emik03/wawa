@@ -16,5 +16,5 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Methods | |
 | :--- | :--- |
-| [Localized(string)](Lookup.Localized(String).md 'Wawa.DDL.Lookup.Localized(string)') | Gets the localized value of a [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') term. |
+| [Localized(string)](Lookup.Localized(string).md 'Wawa.DDL.Lookup.Localized(string)') | Gets the localized value of a [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') term. |
 | [ModNameOf(Component)](Lookup.ModNameOf(Component).md 'Wawa.DDL.Lookup.ModNameOf(Component)') | Gets the mod name attached to the component. |

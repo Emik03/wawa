@@ -33,16 +33,16 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 
 | Methods | |
 | :--- | :--- |
-| [AwardPoints(int)](TwitchString.AwardPoints(Int32).md 'Wawa.TwitchPlays.Domains.TwitchString.AwardPoints(int)') | Yield return this to award the user that sent the command points directly. |
-| [AwardPointsOnSolve(int)](TwitchString.AwardPointsOnSolve(Int32).md 'Wawa.TwitchPlays.Domains.TwitchString.AwardPointsOnSolve(int)') | Yield return this to award the last user that sent the command points when the module is solved. |
-| [Detonate(Nullable&lt;float&gt;, string)](TwitchString.Detonate(Nullable{Single},String).md 'Wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable<float>, string)') | Yield return this to explode the bomb instantly. |
-| [SendDelayedMessage(float, string)](TwitchString.SendDelayedMessage(Single,String).md 'Wawa.TwitchPlays.Domains.TwitchString.SendDelayedMessage(float, string)') | Yield return this to send a message to chat after [time](TwitchString.SendDelayedMessage(Single,String).md#Wawa.TwitchPlays.Domains.TwitchString.SendDelayedMessage(float,string).time 'Wawa.TwitchPlays.Domains.TwitchString.SendDelayedMessage(float, string).time') seconds. |
-| [SendToChat(string)](TwitchString.SendToChat(String).md 'Wawa.TwitchPlays.Domains.TwitchString.SendToChat(string)') | Yield return this to send a chat directly to twitch chat. |
-| [SendToChatError(string)](TwitchString.SendToChatError(String).md 'Wawa.TwitchPlays.Domains.TwitchString.SendToChatError(string)') | Yield return this to send a message to the chat about why a users' command was invalid. |
-| [SkipTime(float)](TwitchString.SkipTime(Single).md 'Wawa.TwitchPlays.Domains.TwitchString.SkipTime(float)') | Yield return this to try advancing the clock to the specified time. |
-| [StrikeMessage(string)](TwitchString.StrikeMessage(String).md 'Wawa.TwitchPlays.Domains.TwitchString.StrikeMessage(string)') | Yield return this to allow you to tell the user why they got a strike if it isn't clear. |
-| [TryCancel(string)](TwitchString.TryCancel(String).md 'Wawa.TwitchPlays.Domains.TwitchString.TryCancel(string)') | Yield return this to indicate that this command is allowed to be cancelled at the given time of the yield. |
-| [TryWaitCancel(float, string)](TwitchString.TryWaitCancel(Single,String).md 'Wawa.TwitchPlays.Domains.TwitchString.TryWaitCancel(float, string)') | Yield return this to cause Twitch Plays to wait for the given time,<br/>and any time during the entire duration, the command may cancel. |
+| [AwardPoints(int)](TwitchString.AwardPoints(int).md 'Wawa.TwitchPlays.Domains.TwitchString.AwardPoints(int)') | Yield return this to award the user that sent the command points directly. |
+| [AwardPointsOnSolve(int)](TwitchString.AwardPointsOnSolve(int).md 'Wawa.TwitchPlays.Domains.TwitchString.AwardPointsOnSolve(int)') | Yield return this to award the last user that sent the command points when the module is solved. |
+| [Detonate(Nullable&lt;float&gt;, string)](TwitchString.Detonate(Nullable{Single},string).md 'Wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable<float>, string)') | Yield return this to explode the bomb instantly. |
+| [SendDelayedMessage(float, string)](TwitchString.SendDelayedMessage(float,string).md 'Wawa.TwitchPlays.Domains.TwitchString.SendDelayedMessage(float, string)') | Yield return this to send a message to chat after [time](TwitchString.SendDelayedMessage(float,string).md#Wawa.TwitchPlays.Domains.TwitchString.SendDelayedMessage(float,string).time 'Wawa.TwitchPlays.Domains.TwitchString.SendDelayedMessage(float, string).time') seconds. |
+| [SendToChat(string)](TwitchString.SendToChat(string).md 'Wawa.TwitchPlays.Domains.TwitchString.SendToChat(string)') | Yield return this to send a chat directly to twitch chat. |
+| [SendToChatError(string)](TwitchString.SendToChatError(string).md 'Wawa.TwitchPlays.Domains.TwitchString.SendToChatError(string)') | Yield return this to send a message to the chat about why a users' command was invalid. |
+| [SkipTime(float)](TwitchString.SkipTime(float).md 'Wawa.TwitchPlays.Domains.TwitchString.SkipTime(float)') | Yield return this to try advancing the clock to the specified time. |
+| [StrikeMessage(string)](TwitchString.StrikeMessage(string).md 'Wawa.TwitchPlays.Domains.TwitchString.StrikeMessage(string)') | Yield return this to allow you to tell the user why they got a strike if it isn't clear. |
+| [TryCancel(string)](TwitchString.TryCancel(string).md 'Wawa.TwitchPlays.Domains.TwitchString.TryCancel(string)') | Yield return this to indicate that this command is allowed to be cancelled at the given time of the yield. |
+| [TryWaitCancel(float, string)](TwitchString.TryWaitCancel(float,string).md 'Wawa.TwitchPlays.Domains.TwitchString.TryWaitCancel(float, string)') | Yield return this to cause Twitch Plays to wait for the given time,<br/>and any time during the entire duration, the command may cancel. |
 
 | Operators | |
 | :--- | :--- |

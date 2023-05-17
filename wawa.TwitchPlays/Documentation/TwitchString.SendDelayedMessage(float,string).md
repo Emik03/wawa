@@ -3,7 +3,7 @@
 
 ## TwitchString.SendDelayedMessage(float, string) Method
 
-Yield return this to send a message to chat after [time](TwitchString.SendDelayedMessage(Single,String).md#Wawa.TwitchPlays.Domains.TwitchString.SendDelayedMessage(float,string).time 'Wawa.TwitchPlays.Domains.TwitchString.SendDelayedMessage(float, string).time') seconds.
+Yield return this to send a message to chat after [time](TwitchString.SendDelayedMessage(float,string).md#Wawa.TwitchPlays.Domains.TwitchString.SendDelayedMessage(float,string).time 'Wawa.TwitchPlays.Domains.TwitchString.SendDelayedMessage(float, string).time') seconds.
 
 ```csharp
 public static Wawa.TwitchPlays.Domains.TwitchString SendDelayedMessage(float time, string message);
