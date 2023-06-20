@@ -55,6 +55,53 @@ public static class Maybe
         return that;
     }
 
+    /// <summary>Gives itself, or the parameter.</summary>
+    /// <typeparam name="T">The type of value stored within <paramref name="that"/>.</typeparam>
+    /// <param name="that">This instance of <see cref="Maybe{T}"/>.</param>
+    /// <param name="otherwise">The value to return if <see cref="Maybe{T}.IsSome"/> is <see langword="true"/>.</param>
+    /// <returns>The inner value, or the parameter <paramref name="otherwise"/>.</returns>
+    [PublicAPI, Pure]
+    public static Maybe<T> And<T>(this Maybe<T> that, Maybe<T> otherwise) => that.IsSome ? otherwise : that;
+
+    /// <summary>Gives itself, or the parameter.</summary>
+    /// <typeparam name="T">The type of value stored within <paramref name="that"/>.</typeparam>
+    /// <param name="that">This instance of <see cref="Maybe{T}"/>.</param>
+    /// <param name="otherwise">
+    /// The callback to execute if <see cref="Maybe{T}.IsSome"/> is <see langword="true"/>.
+    /// </param>
+    /// <returns>The inner value, or the parameter <paramref name="otherwise"/>.</returns>
+    [PublicAPI]
+    public static Maybe<T> And<T>(this Maybe<T> that, Func<Unit, Maybe<T>> otherwise) =>
+        that.IsSome ? otherwise(default) : that;
+
+    /// <summary>Gives itself, or the parameter.</summary>
+    /// <typeparam name="T">The type of value stored within <paramref name="that"/>.</typeparam>
+    /// <param name="that">This instance of <see cref="Maybe{T}"/>.</param>
+    /// <param name="otherwise">The value to return if <see cref="Maybe{T}.IsSome"/> is <see langword="false"/>.</param>
+    /// <returns>The inner value, or the parameter <paramref name="otherwise"/>.</returns>
+    [PublicAPI, Pure]
+    public static Maybe<T> Or<T>(this Maybe<T> that, Maybe<T> otherwise) => that.IsSome ? that : otherwise;
+
+    /// <summary>Gives itself, or the parameter.</summary>
+    /// <typeparam name="T">The type of value stored within <paramref name="that"/>.</typeparam>
+    /// <param name="that">This instance of <see cref="Maybe{T}"/>.</param>
+    /// <param name="otherwise">
+    /// The callback to execute if <see cref="Maybe{T}.IsSome"/> is <see langword="false"/>.
+    /// </param>
+    /// <returns>The inner value, or the parameter <paramref name="otherwise"/>.</returns>
+    [PublicAPI]
+    public static Maybe<T> Or<T>(this Maybe<T> that, Func<Unit, Maybe<T>> otherwise) =>
+        that.IsSome ? that : otherwise(default);
+
+    /// <summary>Gives itself, or the parameter.</summary>
+    /// <typeparam name="T">The type of value stored within <paramref name="that"/>.</typeparam>
+    /// <param name="that">This instance of <see cref="Maybe{T}"/>.</param>
+    /// <param name="otherwise">The value to return if <see cref="Maybe{T}.IsSome"/> is <see langword="false"/>.</param>
+    /// <returns>The inner value, or the parameter <paramref name="otherwise"/>.</returns>
+    [PublicAPI, Pure]
+    public static Maybe<T> Xor<T>(this Maybe<T> that, Maybe<T> otherwise) =>
+        that.IsSome ? otherwise.IsSome ? None<T>() : that : otherwise;
+
     /// <summary>Wraps <typeparamref name="T"/> in a <see cref="Maybe{T}"/>.</summary>
     /// <remarks><para>Value types are the only types that cannot be <see langword="null"/>.</para></remarks>
     /// <typeparam name="T">The type of parameter and generic in <see cref="Maybe{T}"/>.</typeparam>

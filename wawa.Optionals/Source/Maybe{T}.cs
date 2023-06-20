@@ -10,6 +10,8 @@ using static CollectionAccessType;
 public readonly struct Maybe<T> :
 #pragma warning restore CA1710
     ICollection,
+    IComparable<Maybe<T>>,
+    IComparer<Maybe<T>>,
     ICloneable,
     IEquatable<Maybe<T>>,
     IEqualityComparer<Maybe<T>>,
@@ -92,22 +94,22 @@ public readonly struct Maybe<T> :
     /// A <see cref="Maybe{T}" /> that is Some or None depending on
     /// whether <paramref name="value" /> is <see langword="null" />.
     /// </returns>
-    [CollectionAccess(None), PublicAPI, Pure]
+    [PublicAPI, Pure]
     public static implicit operator Maybe<T>([AllowNull, CanBeNull] T value) => new(value);
 
     /// <summary>Converts the <see cref="Maybe{T}" /> to <typeparamref name="T" />.</summary>
     /// <param name="value">The <typeparamref name="T" /> instance to convert.</param>
     /// <returns>The inner value.</returns>
     /// <exception cref="InvalidOperationException">The parameter <paramref name="value" /> is a None value.</exception>
-    [CollectionAccess(Read), PublicAPI, Pure]
+    [PublicAPI, Pure]
     public static explicit operator T(Maybe<T> value) => value.Unwrap();
 
     /// <inheritdoc cref="IsSome"/>
-    [CollectionAccess(None), Pure]
+    [PublicAPI, Pure]
     public static bool operator true(Maybe<T> value) => value.IsSome;
 
     /// <inheritdoc cref="IsNone"/>
-    [CollectionAccess(None), Pure]
+    [PublicAPI, Pure]
     public static bool operator false(Maybe<T> value) => value.IsNone;
 
     /// <summary>Determines whether both instances contain the same values.</summary>
@@ -117,7 +119,7 @@ public readonly struct Maybe<T> :
     /// The value <see langword="true" /> if both instances contain the same values,
     /// otherwise <see langword="false" />.
     /// </returns>
-    [CollectionAccess(Read), PublicAPI, Pure]
+    [PublicAPI, Pure]
     public static bool operator ==(Maybe<T> left, Maybe<T> right) =>
         left.IsNone ? right.IsNone : EqualityComparer<T>.Default.Equals(left.Value, right.Value);
 
@@ -127,12 +129,64 @@ public readonly struct Maybe<T> :
     /// <returns>
     /// The value <see langword="true" /> if both instances do not contain the same values,
     /// otherwise <see langword="false" />.</returns>
-    [CollectionAccess(Read), PublicAPI, Pure]
+    [PublicAPI, Pure]
     public static bool operator !=(Maybe<T> left, Maybe<T> right) => !(left == right);
 
+    /// <summary>Determines whether the left-hand side is less than the right.</summary>
+    /// <param name="left">The left-hand side.</param>
+    /// <param name="right">The right-hand side.</param>
+    /// <returns>
+    /// The value <see langword="true"/> if the parameter <paramref name="left"/> is less
+    /// than the parameter <paramref name="right"/>; otherwise, <see langword="false"/>.
+    /// </returns>
+    [PublicAPI, Pure]
+    public static bool operator <(Maybe<T> left, Maybe<T> right) => left.CompareTo(right) < 0;
+
+    /// <summary>Determines whether the left-hand side is equal to or less than the right.</summary>
+    /// <param name="left">The left-hand side.</param>
+    /// <param name="right">The right-hand side.</param>
+    /// <returns>
+    /// The value <see langword="true"/> if the parameter <paramref name="left"/> is equal to or less
+    /// than the parameter <paramref name="right"/>; otherwise, <see langword="false"/>.
+    /// </returns>
+    [PublicAPI, Pure]
+    public static bool operator <=(Maybe<T> left, Maybe<T> right) => left.CompareTo(right) <= 0;
+
+    /// <summary>Determines whether the left-hand side is more than the right.</summary>
+    /// <param name="left">The left-hand side.</param>
+    /// <param name="right">The right-hand side.</param>
+    /// <returns>
+    /// The value <see langword="true"/> if the parameter <paramref name="left"/> is more
+    /// than the parameter <paramref name="right"/>; otherwise, <see langword="false"/>.
+    /// </returns>
+    [PublicAPI, Pure]
+    public static bool operator >(Maybe<T> left, Maybe<T> right) => left.CompareTo(right) > 0;
+
+    /// <summary>Determines whether the left-hand side is equal to or more than the right.</summary>
+    /// <param name="left">The left-hand side.</param>
+    /// <param name="right">The right-hand side.</param>
+    /// <returns>
+    /// The value <see langword="true"/> if the parameter <paramref name="left"/> is equal to or more
+    /// than the parameter <paramref name="right"/>; otherwise, <see langword="false"/>.
+    /// </returns>
+    [PublicAPI, Pure]
+    public static bool operator >=(Maybe<T> left, Maybe<T> right) => left.CompareTo(right) >= 0;
+
     /// <inheritdoc cref="Maybe.UnwrapOr{T}(Maybe{T}, T)"/>
-    [CollectionAccess(Read), Pure]
+    [PublicAPI, Pure]
     public static T operator |(Maybe<T> value, T def) => value.UnwrapOr(def);
+
+    /// <inheritdoc cref="Maybe.Or{T}(Maybe{T}, Maybe{T})"/>
+    [PublicAPI, Pure]
+    public static Maybe<T> operator |(Maybe<T> left, Maybe<T> right) => left.Or(right);
+
+    /// <inheritdoc cref="Maybe.And{T}(Maybe{T}, Maybe{T})"/>
+    [PublicAPI, Pure]
+    public static Maybe<T> operator &(Maybe<T> left, Maybe<T> right) => left.And(right);
+
+    /// <inheritdoc cref="Maybe.Xor{T}(Maybe{T}, Maybe{T})"/>
+    [PublicAPI, Pure]
+    public static Maybe<T> operator ^(Maybe<T> left, Maybe<T> right) => left.Xor(right);
 
     /// <inheritdoc />
     [CollectionAccess(Read), PublicAPI, Pure]
@@ -141,6 +195,12 @@ public readonly struct Maybe<T> :
     /// <inheritdoc />
     [CollectionAccess(Read), PublicAPI, Pure]
     public override int GetHashCode() => -1598703110 + EqualityComparer<T>.Default.GetHashCode(Value);
+
+    /// <inheritdoc />
+    [CollectionAccess(Read), PublicAPI, Pure]
+    public int CompareTo(Maybe<T> other) =>
+        IsNone ? other.IsNone ? 0 : -1 :
+        other.IsNone ? 1 : Comparer<T>.Default.Compare(Value, other.Value);
 
     /// <inheritdoc />
     [CollectionAccess(Read), PublicAPI, Pure]
@@ -210,6 +270,10 @@ public readonly struct Maybe<T> :
     /// <inheritdoc />
     [CollectionAccess(None), Pure]
     bool ICollection<T>.Remove(T item) => false;
+
+    /// <inheritdoc />
+    [CollectionAccess(None), Pure]
+    int IComparer<Maybe<T>>.Compare(Maybe<T> x, Maybe<T> y) => x.CompareTo(y);
 
     /// <inheritdoc />
     [CollectionAccess(Read), Pure, ValueRange(-1, 0)]
