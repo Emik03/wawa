@@ -70,7 +70,7 @@ public sealed class YieldEventArgs : EventArgs,
     [Pure]
     public override int GetHashCode() => Query.GetHashCode();
 
-    /// <summary>Uses <see cref="Stringifier.Stringify{T}(T, bool, bool, bool)"/> on <see cref="Query"/>.</summary>
+    /// <summary>Uses <see cref="Stringifier.Stringify{T}(T)"/> on <see cref="Query"/>.</summary>
     /// <returns>A <see cref="string"/> representation of <see cref="Query"/>.</returns>
     [Pure]
     public override string ToString() => Stringifier.Stringify(Query);
