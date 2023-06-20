@@ -12,6 +12,7 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
     [NotNull, PublicAPI]
     public const string FileName = "modInfo.json";
 
+    [NotNull]
     static readonly ModInfo s_default = new();
 
     ModInfo() { }
@@ -55,7 +56,7 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
-    public bool Equals(ModInfo x, ModInfo y) => x == y;
+    public bool Equals([AllowNull] ModInfo x, [AllowNull] ModInfo y) => x == y;
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
@@ -63,7 +64,7 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
-    public bool Equals(ModInfo other) => this == other;
+    public bool Equals([AllowNull] ModInfo other) => this == other;
 
     /// <summary>Determines whether both instances contain the same values.</summary>
     /// <param name="left">The left-hand side.</param>
@@ -120,13 +121,11 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
             : default;
 
     /// <inheritdoc/>
-    [PublicAPI, Pure]
+    [PublicAPI, Pure] // ReSharper disable once AssignNullToNotNullAttribute
     public override bool Equals([AllowNull] object obj) => Equals(obj as ModInfo);
 
     /// <inheritdoc/>
-    // The setters only exist for serialization means. This class is immutable otherwise.
-    // ReSharper disable NonReadonlyMemberInGetHashCode
-    [PublicAPI, Pure]
+    [PublicAPI, Pure] // ReSharper disable once NonReadonlyMemberInGetHashCode
     public override int GetHashCode() => StringComparer.Ordinal.GetHashCode(Id);
 
     /// <inheritdoc/>
@@ -157,5 +156,6 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
                 }
                 : s_default,
             s_default
-        );
+        ) ??
+        s_default;
 }

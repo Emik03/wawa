@@ -51,7 +51,7 @@ public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<Sta
 
     /// <inheritdoc/>
     [Pure]
-    public bool Equals(State x, State y) => x == y;
+    public bool Equals([AllowNull] State x, [AllowNull] State y) => x == y;
 
     /// <inheritdoc/>
     [Pure]
@@ -59,7 +59,7 @@ public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<Sta
 
     /// <inheritdoc/>
     [Pure]
-    public bool Equals(State other) => this == other;
+    public bool Equals([AllowNull] State other) => this == other;
 
     /// <summary>Determines whether both instances contain the same values.</summary>
     /// <param name="left">The left-hand side.</param>
@@ -88,7 +88,7 @@ public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<Sta
         !(left == right);
 
     /// <inheritdoc/>
-    [Pure]
+    [Pure] // ReSharper disable once AssignNullToNotNullAttribute
     public override bool Equals([AllowNull] object obj) => Equals(obj as State);
 
     /// <inheritdoc/>

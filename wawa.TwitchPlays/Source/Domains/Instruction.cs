@@ -73,7 +73,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
 
     /// <inheritdoc/>
     [Pure]
-    public bool Equals(Instruction x, Instruction y) => x == y;
+    public bool Equals([AllowNull] Instruction x, [AllowNull] Instruction y) => x == y;
 
     /// <inheritdoc/>
     [Pure]
@@ -81,7 +81,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
 
     /// <inheritdoc/>
     [Pure]
-    public bool Equals(Instruction other) => this == other;
+    public bool Equals([AllowNull] Instruction other) => this == other;
 
     /// <summary>Implicitly calls the constructor.</summary>
     /// <param name="customYield">The <see cref="CustomYieldInstruction"/> to pass in to the constructor.</param>
@@ -224,7 +224,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     public static Instruction FromYieldInstruction([NotNull] YieldInstruction yield) => yield;
 
     /// <inheritdoc/>
-    [Pure]
+    [Pure] // ReSharper disable once AssignNullToNotNullAttribute
     public override bool Equals([AllowNull] object obj) => Equals(obj as Instruction);
 
     /// <inheritdoc/>

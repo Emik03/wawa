@@ -48,7 +48,7 @@ public sealed partial class Sound : ICloneable, IEquatable<Sound>, IEqualityComp
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
-    public bool Equals(Sound x, Sound y) => x == y;
+    public bool Equals([AllowNull] Sound x, [AllowNull] Sound y) => x == y;
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
@@ -56,7 +56,7 @@ public sealed partial class Sound : ICloneable, IEquatable<Sound>, IEqualityComp
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
-    public bool Equals(Sound other) => this == other;
+    public bool Equals([AllowNull] Sound other) => this == other;
 
     /// <summary>Implicitly calls the constructor.</summary>
     /// <param name="sound">The <see cref="string"/> to pass in to the constructor.</param>
@@ -117,7 +117,7 @@ public sealed partial class Sound : ICloneable, IEquatable<Sound>, IEqualityComp
     public static Sound FromSoundEffect(SoundEffect sound) => new(sound);
 
     /// <inheritdoc/>
-    [PublicAPI, Pure]
+    [PublicAPI, Pure] // ReSharper disable once AssignNullToNotNullAttribute
     public override bool Equals([AllowNull] object obj) => Equals(obj as Sound);
 
     /// <inheritdoc/>

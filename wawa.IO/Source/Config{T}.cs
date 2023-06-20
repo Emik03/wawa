@@ -79,7 +79,7 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
-    public bool Equals(Config<T> x, Config<T> y) => x == y;
+    public bool Equals([AllowNull] Config<T> x, [AllowNull] Config<T> y) => x == y;
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
@@ -87,7 +87,7 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
-    public bool Equals(Config<T> other) => this == other;
+    public bool Equals([AllowNull] Config<T> other) => this == other;
 
     /// <summary>Determines whether both instances are both <see langword="null"/> or both instances.</summary>
     /// <param name="left">The left-hand side operator.</param>
@@ -112,7 +112,7 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
         !(left == right);
 
     /// <inheritdoc/>
-    [PublicAPI, Pure]
+    [PublicAPI, Pure] // ReSharper disable once AssignNullToNotNullAttribute
     public override bool Equals([AllowNull] object obj) => Equals(obj as Config<T>);
 
     /// <inheritdoc/>

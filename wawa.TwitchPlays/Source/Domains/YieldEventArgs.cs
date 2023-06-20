@@ -9,8 +9,8 @@ public sealed class YieldEventArgs : EventArgs,
     IEqualityComparer<YieldEventArgs>
 {
     /// <summary>Initializes a new instance of the <see cref="YieldEventArgs"/> class.</summary>
-    /// <param name="o">The value to store.</param>
-    internal YieldEventArgs([AllowNull, CanBeNull] Instruction o) => Query = o;
+    /// <param name="query">The value to store.</param>
+    internal YieldEventArgs([AllowNull, CanBeNull] Instruction query) => Query = query;
 
     /// <summary>Gets the value that was yielded.</summary>
     /// <remarks><para>
@@ -25,7 +25,7 @@ public sealed class YieldEventArgs : EventArgs,
 
     /// <inheritdoc/>
     [Pure]
-    public bool Equals(YieldEventArgs x, YieldEventArgs y) => x == y;
+    public bool Equals([AllowNull] YieldEventArgs x, [AllowNull] YieldEventArgs y) => x == y;
 
     /// <inheritdoc/>
     [Pure]
@@ -33,7 +33,7 @@ public sealed class YieldEventArgs : EventArgs,
 
     /// <inheritdoc/>
     [Pure]
-    public bool Equals(YieldEventArgs other) => this == other;
+    public bool Equals([AllowNull] YieldEventArgs other) => this == other;
 
     /// <summary>Determines whether both instances point to the same component.</summary>
     /// <param name="left">The left-hand side.</param>
@@ -63,7 +63,7 @@ public sealed class YieldEventArgs : EventArgs,
         !(left == right);
 
     /// <inheritdoc/>
-    [Pure]
+    [Pure] // ReSharper disable once AssignNullToNotNullAttribute
     public override bool Equals([AllowNull] object obj) => Equals(obj as YieldEventArgs);
 
     /// <inheritdoc/>

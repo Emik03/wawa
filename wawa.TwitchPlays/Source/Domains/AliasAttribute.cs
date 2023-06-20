@@ -43,7 +43,7 @@ public sealed class AliasAttribute : Attribute,
 
     /// <inheritdoc/>
     [Pure]
-    public bool Equals(AliasAttribute x, AliasAttribute y) => x == y;
+    public bool Equals([AllowNull] AliasAttribute x, [AllowNull] AliasAttribute y) => x == y;
 
     /// <inheritdoc/>
     [Pure]
@@ -51,7 +51,7 @@ public sealed class AliasAttribute : Attribute,
 
     /// <inheritdoc/>
     [Pure]
-    public bool Equals(AliasAttribute other) => this == other;
+    public bool Equals([AllowNull] AliasAttribute other) => this == other;
 
     /// <inheritdoc />
     public string ToString([NotNull] string format, [AllowNull, CanBeNull] IFormatProvider formatProvider) =>
@@ -94,7 +94,7 @@ public sealed class AliasAttribute : Attribute,
         x.GetCustomAttributes(true).OfType<AliasAttribute>().FirstOrDefault()?.ToString(x.Name) ?? x.Name;
 
     /// <inheritdoc/>
-    [Pure]
+    [Pure] // ReSharper disable once AssignNullToNotNullAttribute
     public override bool Equals([AllowNull] object obj) => Equals(obj as AliasAttribute);
 
     /// <inheritdoc/>

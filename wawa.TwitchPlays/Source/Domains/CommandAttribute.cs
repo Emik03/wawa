@@ -42,7 +42,7 @@ public sealed class CommandAttribute : Attribute,
 
     /// <inheritdoc/>
     [Pure]
-    public bool Equals(CommandAttribute other) => this == other;
+    public bool Equals([AllowNull] CommandAttribute other) => this == other;
 
     /// <summary>Determines whether both have the same values.</summary>
     /// <param name="left">The left-hand side.</param>
@@ -72,7 +72,7 @@ public sealed class CommandAttribute : Attribute,
         !(left == right);
 
     /// <inheritdoc/>
-    [Pure]
+    [Pure] // ReSharper disable once AssignNullToNotNullAttribute
     public override bool Equals([AllowNull] object obj) => Equals(obj as CommandAttribute);
 
     /// <inheritdoc/>
