@@ -77,7 +77,7 @@ public readonly struct Maybe<T> :
     [CollectionAccess(None), PublicAPI]
     object ICollection.SyncRoot
     {
-        [Pure] get => this;
+        [Pure] get => new();
     }
 
     /// <inheritdoc />
