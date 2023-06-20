@@ -23,11 +23,7 @@ public static class Config
     /// <returns>A <see cref="string"/> representation of <paramref name="value"/> by serializing it as JSON.</returns>
     [NotNull, PublicAPI]
     public static string Serialize<TSerialize>([DisallowNull, NotNull] TSerialize value) =>
-        JsonConvert.SerializeObject(
-            value,
-            Formatting.Indented,
-            new StringEnumConverter()
-        );
+        JsonConvert.SerializeObject(value, Formatting.Indented, new StringEnumConverter());
 
     /// <summary>Writes the string to the settings file.</summary>
     /// <remarks><para>
