@@ -7,26 +7,26 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
 {
     TwitchString([NotNull] string message) => Message = message;
 
-    /// <summary>Gets a Twitch Plays query.</summary>
+    /// <summary>Gets the auto-solving Twitch Plays query.</summary>
     /// <remarks><para>
     /// Yield return this to indicate automatically solving the module, as if it threw an exception while solving.
     /// </para></remarks>
     public static TwitchString AutoSolve { [Pure] get; } = new("autosolve");
 
-    /// <summary>Gets a Twitch Plays query.</summary>
+    /// <summary>Gets the cancellation-of-detonation Twitch Plays query.</summary>
     /// <remarks><para>
     /// Yield return this to indicate cancelling a previously issued delayed detonation command on the same module.
     /// </para></remarks>
     public static TwitchString CancelDetonate { [Pure] get; } = new("cancel detonate");
 
-    /// <summary>Gets a Twitch Plays query.</summary>
+    /// <summary>Gets the cancellation-of-processing Twitch Plays query.</summary>
     /// <remarks><para>
     /// Yield return this to indicate that you have stopped processing the command in response to the
     /// <see cref="Twitch{TMod}.TwitchShouldCancelCommand"/> bool being set to <see langword="true"/>.
     /// </para></remarks>
     public static TwitchString Cancelled { [Pure] get; } = new("cancelled");
 
-    /// <summary>Gets a Twitch Plays query.</summary>
+    /// <summary>Gets the strike enabler Twitch Plays query.</summary>
     /// <remarks><para>
     /// Yield return this to indicate that the strike tracker should be enabled.
     /// If any strikes were issued during the time it was disabled,
@@ -38,18 +38,18 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// </para></remarks>
     public static TwitchString EndMultipleStrikes { [Pure] get; } = new("end multiple strikes");
 
-    /// <summary>Gets a Twitch Plays query.</summary>
+    /// <summary>Gets the cancellation-of-music Twitch Plays query.</summary>
     /// <remarks><para>Yield return this to indicate stopping the waiting music mid-command.</para></remarks>
     public static TwitchString EndWaitingMusic { [Pure] get; } = new("end waiting music");
 
-    /// <summary>Gets a Twitch Plays query.</summary>
+    /// <summary>Gets the camera hider Twitch Plays query.</summary>
     /// <remarks><para>
     /// Yield return this to hide the heads-up display and cameras while doing quaternion rotations,
     /// if it is expected that the camera/hud will get in the way.
     /// </para></remarks>
     public static TwitchString HideCamera { [Pure] get; } = new("hide camera");
 
-    /// <summary>Gets a Twitch Plays query.</summary>
+    /// <summary>Gets the strike disabler Twitch Plays query.</summary>
     /// <remarks><para>
     /// Yield return this to indicate that the issued command is going to cause more than one strike,
     /// so should disable the internal strike tracker in order to avoid flooding the chat with
@@ -59,39 +59,39 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// </para></remarks>
     public static TwitchString MultipleStrikes { [Pure] get; } = new("multiple strikes");
 
-    /// <summary>Gets a Twitch Plays query.</summary>
+    /// <summary>Gets the solving Twitch Plays query.</summary>
     /// <remarks><para>
     /// Yield return this to indicate that this command will solve the module at some later point;
     /// all this does is tell Twitch Plays to attribute the solve to the author of this command.
     /// </para></remarks>
     public static TwitchString Solve { [Pure] get; } = new("solve");
 
-    /// <summary>Gets a Twitch Plays query.</summary>
+    /// <summary>Gets the striking Twitch Plays query.</summary>
     /// <remarks><para>
     /// Yield return this to indicate that this command will cause a strike at some later point;
     /// all this does is tell Twitch Plays to attribute the strike to the author of this command.
     /// </para></remarks>
     public static TwitchString Strike { [Pure] get; } = new("strike");
 
-    /// <summary>Gets a Twitch Plays query.</summary>
+    /// <summary>Gets the music toggle Twitch Plays query.</summary>
     /// <remarks><para>Yield return this to toggle the waiting music on and off mid-command.</para></remarks>
     public static TwitchString ToggleWaitingMusic { [Pure] get; } = new("toggle waiting music");
 
-    /// <summary>Gets a Twitch Plays query.</summary>
+    /// <summary>Gets the allow cancel Twitch Plays query.</summary>
     /// <remarks><para>
     /// Yield return this to indicate that the <c>KMSelectable[]</c> sequence that follows this command should be
     /// cancelled if a "<c>!cancel</c>" or "<c>!stop</c>" is issued mid-way through that sequence.
     /// </para></remarks>
     public static TwitchString TryCancelSequence { [Pure] get; } = new("trycancelsequence");
 
-    /// <summary>Gets a Twitch Plays query.</summary>
+    /// <summary>Gets the unsubmittable penalty Twitch Plays query.</summary>
     /// <remarks><para>
     /// Yield return this to indicate that the command couldn't submit an answer and should only be used to prevent
     /// users from guessing the answer. This should not be used if an answer could never be submittable for a module.
     /// </para></remarks>
     public static TwitchString UnsubmittablePenalty { [Pure] get; } = new("unsubmittablepenalty");
 
-    /// <summary>Gets a Twitch Plays query.</summary>
+    /// <summary>Gets the music Twitch Plays query.</summary>
     /// <remarks><para>
     /// Yield return this to indicate playing the waiting music if a command will take long to finish.
     /// </para></remarks>
