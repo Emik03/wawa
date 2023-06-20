@@ -3,7 +3,7 @@
 
 ## TwitchString.MultipleStrikes Property
 
-Gets a Twitch Plays query.
+Gets the strike disabler Twitch Plays query.
 
 ```csharp
 public static Wawa.TwitchPlays.Domains.TwitchString MultipleStrikes { get; }

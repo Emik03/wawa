@@ -3,7 +3,7 @@
 
 ## TwitchString.AutoSolve Property
 
-Gets a Twitch Plays query.
+Gets the auto-solving Twitch Plays query.
 
 ```csharp
 public static Wawa.TwitchPlays.Domains.TwitchString AutoSolve { get; }

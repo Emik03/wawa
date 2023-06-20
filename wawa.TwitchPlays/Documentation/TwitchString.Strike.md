@@ -3,7 +3,7 @@
 
 ## TwitchString.Strike Property
 
-Gets a Twitch Plays query.
+Gets the striking Twitch Plays query.
 
 ```csharp
 public static Wawa.TwitchPlays.Domains.TwitchString Strike { get; }

@@ -3,7 +3,7 @@
 
 ## TwitchString.Cancelled Property
 
-Gets a Twitch Plays query.
+Gets the cancellation-of-processing Twitch Plays query.
 
 ```csharp
 public static Wawa.TwitchPlays.Domains.TwitchString Cancelled { get; }

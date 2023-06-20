@@ -3,7 +3,7 @@
 
 ## TwitchString.ToggleWaitingMusic Property
 
-Gets a Twitch Plays query.
+Gets the music toggle Twitch Plays query.
 
 ```csharp
 public static Wawa.TwitchPlays.Domains.TwitchString ToggleWaitingMusic { get; }

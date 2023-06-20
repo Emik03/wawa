@@ -3,7 +3,7 @@
 
 ## TwitchString.UnsubmittablePenalty Property
 
-Gets a Twitch Plays query.
+Gets the unsubmittable penalty Twitch Plays query.
 
 ```csharp
 public static Wawa.TwitchPlays.Domains.TwitchString UnsubmittablePenalty { get; }

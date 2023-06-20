@@ -3,7 +3,7 @@
 
 ## TwitchString.HideCamera Property
 
-Gets a Twitch Plays query.
+Gets the camera hider Twitch Plays query.
 
 ```csharp
 public static Wawa.TwitchPlays.Domains.TwitchString HideCamera { get; }

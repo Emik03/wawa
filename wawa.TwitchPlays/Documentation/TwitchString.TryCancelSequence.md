@@ -3,7 +3,7 @@
 
 ## TwitchString.TryCancelSequence Property
 
-Gets a Twitch Plays query.
+Gets the allow cancel Twitch Plays query.
 
 ```csharp
 public static Wawa.TwitchPlays.Domains.TwitchString TryCancelSequence { get; }

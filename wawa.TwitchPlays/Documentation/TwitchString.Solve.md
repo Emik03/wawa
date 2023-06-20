@@ -3,7 +3,7 @@
 
 ## TwitchString.Solve Property
 
-Gets a Twitch Plays query.
+Gets the solving Twitch Plays query.
 
 ```csharp
 public static Wawa.TwitchPlays.Domains.TwitchString Solve { get; }

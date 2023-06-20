@@ -3,7 +3,7 @@
 
 ## TwitchString.EndWaitingMusic Property
 
-Gets a Twitch Plays query.
+Gets the cancellation-of-music Twitch Plays query.
 
 ```csharp
 public static Wawa.TwitchPlays.Domains.TwitchString EndWaitingMusic { get; }

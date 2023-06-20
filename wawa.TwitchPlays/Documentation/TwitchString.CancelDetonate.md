@@ -3,7 +3,7 @@
 
 ## TwitchString.CancelDetonate Property
 
-Gets a Twitch Plays query.
+Gets the cancellation-of-detonation Twitch Plays query.
 
 ```csharp
 public static Wawa.TwitchPlays.Domains.TwitchString CancelDetonate { get; }

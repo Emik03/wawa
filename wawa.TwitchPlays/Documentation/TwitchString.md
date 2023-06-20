@@ -16,20 +16,20 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 
 | Properties | |
 | :--- | :--- |
-| [AutoSolve](TwitchString.AutoSolve.md 'Wawa.TwitchPlays.Domains.TwitchString.AutoSolve') | Gets a Twitch Plays query. |
-| [CancelDetonate](TwitchString.CancelDetonate.md 'Wawa.TwitchPlays.Domains.TwitchString.CancelDetonate') | Gets a Twitch Plays query. |
-| [Cancelled](TwitchString.Cancelled.md 'Wawa.TwitchPlays.Domains.TwitchString.Cancelled') | Gets a Twitch Plays query. |
-| [EndMultipleStrikes](TwitchString.EndMultipleStrikes.md 'Wawa.TwitchPlays.Domains.TwitchString.EndMultipleStrikes') | Gets a Twitch Plays query. |
-| [EndWaitingMusic](TwitchString.EndWaitingMusic.md 'Wawa.TwitchPlays.Domains.TwitchString.EndWaitingMusic') | Gets a Twitch Plays query. |
-| [HideCamera](TwitchString.HideCamera.md 'Wawa.TwitchPlays.Domains.TwitchString.HideCamera') | Gets a Twitch Plays query. |
+| [AutoSolve](TwitchString.AutoSolve.md 'Wawa.TwitchPlays.Domains.TwitchString.AutoSolve') | Gets the auto-solving Twitch Plays query. |
+| [CancelDetonate](TwitchString.CancelDetonate.md 'Wawa.TwitchPlays.Domains.TwitchString.CancelDetonate') | Gets the cancellation-of-detonation Twitch Plays query. |
+| [Cancelled](TwitchString.Cancelled.md 'Wawa.TwitchPlays.Domains.TwitchString.Cancelled') | Gets the cancellation-of-processing Twitch Plays query. |
+| [EndMultipleStrikes](TwitchString.EndMultipleStrikes.md 'Wawa.TwitchPlays.Domains.TwitchString.EndMultipleStrikes') | Gets the strike enabler Twitch Plays query. |
+| [EndWaitingMusic](TwitchString.EndWaitingMusic.md 'Wawa.TwitchPlays.Domains.TwitchString.EndWaitingMusic') | Gets the cancellation-of-music Twitch Plays query. |
+| [HideCamera](TwitchString.HideCamera.md 'Wawa.TwitchPlays.Domains.TwitchString.HideCamera') | Gets the camera hider Twitch Plays query. |
 | [Message](TwitchString.Message.md 'Wawa.TwitchPlays.Domains.TwitchString.Message') | Gets the message to send to Twitch Plays. |
-| [MultipleStrikes](TwitchString.MultipleStrikes.md 'Wawa.TwitchPlays.Domains.TwitchString.MultipleStrikes') | Gets a Twitch Plays query. |
-| [Solve](TwitchString.Solve.md 'Wawa.TwitchPlays.Domains.TwitchString.Solve') | Gets a Twitch Plays query. |
-| [Strike](TwitchString.Strike.md 'Wawa.TwitchPlays.Domains.TwitchString.Strike') | Gets a Twitch Plays query. |
-| [ToggleWaitingMusic](TwitchString.ToggleWaitingMusic.md 'Wawa.TwitchPlays.Domains.TwitchString.ToggleWaitingMusic') | Gets a Twitch Plays query. |
-| [TryCancelSequence](TwitchString.TryCancelSequence.md 'Wawa.TwitchPlays.Domains.TwitchString.TryCancelSequence') | Gets a Twitch Plays query. |
-| [UnsubmittablePenalty](TwitchString.UnsubmittablePenalty.md 'Wawa.TwitchPlays.Domains.TwitchString.UnsubmittablePenalty') | Gets a Twitch Plays query. |
-| [WaitingMusic](TwitchString.WaitingMusic.md 'Wawa.TwitchPlays.Domains.TwitchString.WaitingMusic') | Gets a Twitch Plays query. |
+| [MultipleStrikes](TwitchString.MultipleStrikes.md 'Wawa.TwitchPlays.Domains.TwitchString.MultipleStrikes') | Gets the strike disabler Twitch Plays query. |
+| [Solve](TwitchString.Solve.md 'Wawa.TwitchPlays.Domains.TwitchString.Solve') | Gets the solving Twitch Plays query. |
+| [Strike](TwitchString.Strike.md 'Wawa.TwitchPlays.Domains.TwitchString.Strike') | Gets the striking Twitch Plays query. |
+| [ToggleWaitingMusic](TwitchString.ToggleWaitingMusic.md 'Wawa.TwitchPlays.Domains.TwitchString.ToggleWaitingMusic') | Gets the music toggle Twitch Plays query. |
+| [TryCancelSequence](TwitchString.TryCancelSequence.md 'Wawa.TwitchPlays.Domains.TwitchString.TryCancelSequence') | Gets the allow cancel Twitch Plays query. |
+| [UnsubmittablePenalty](TwitchString.UnsubmittablePenalty.md 'Wawa.TwitchPlays.Domains.TwitchString.UnsubmittablePenalty') | Gets the unsubmittable penalty Twitch Plays query. |
+| [WaitingMusic](TwitchString.WaitingMusic.md 'Wawa.TwitchPlays.Domains.TwitchString.WaitingMusic') | Gets the music Twitch Plays query. |
 
 | Methods | |
 | :--- | :--- |
