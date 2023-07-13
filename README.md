@@ -12,6 +12,7 @@ This project has a dependency to [Emik.Morsels](https://github.com/Emik03/Emik.M
 
 - [Quick Start](#quick-start)
 - [Libraries](#libraries)
+- [Building](#building)
 - [Contribute](#contribute)
 - [License](#license)
 
@@ -35,6 +36,25 @@ Whichever method is used, wait for Unity to reload, and a new tab should appear 
 - [wawa.Optionals](https://github.com/Emik03/wawa/tree/main/wawa.Optionals) - Shared `Maybe` type. These libraries don't return `null` without wrapping it in this type.
 - [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) - Adds `Twitch`, a base class that hooks on a `ModdedModule` to add essential TwitchPlays behavior.
 - [wawa.Unity](https://github.com/Emik03/wawa/tree/main/wawa.Unity) - Adds `CachedBehavior`, eliminates overhead of Unity API calls without the need for explicit fields.
+
+## Building
+
+1. Set up [Emik.Morsels](https://github.com/Emik03/Emik.Morsels#usage).
+
+2. Download and extract the full source code, or clone the repository:
+    ```shell
+    git clone https://github.com/Emik03/wawa.git
+    ```
+
+3. **WINDOWS ONLY**: You are required to [extend the maximum path length](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry) and additionally run this command:
+    ```shell
+    git config --global core.longpaths true
+    ```
+
+4. Open the solution in your favorite IDE, or use the command-line directly to build it.
+    ```shell
+    dotnet build
+    ```
 
 ## Contribute
 
