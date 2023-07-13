@@ -21,7 +21,7 @@ The type of [System.Collections.Generic.IEnumerable&lt;&gt;](https://docs.micros
 
 <a name='Wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).audio'></a>
 
-`audio` [T](KMExtensions.Set{T}(T,Action{Int32}).md#Wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).T 'Wawa.Extensions.KMExtensions.Set<T>(this T, System.Action<int>).T')
+`audio` [T](KMExtensions.Set{T}(T,Action{int}).md#Wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).T 'Wawa.Extensions.KMExtensions.Set<T>(this T, System.Action<int>).T')
 
 The [System.Collections.Generic.IEnumerable&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1') of [KMAudio.KMAudioRef](https://docs.microsoft.com/en-us/dotnet/api/KMAudio.KMAudioRef 'KMAudio.KMAudioRef')  
 instances to invoke [KMAudio.KMAudioRef.StopSound](https://docs.microsoft.com/en-us/dotnet/api/KMAudio.KMAudioRef.StopSound 'KMAudio.KMAudioRef.StopSound').
@@ -33,5 +33,5 @@ instances to invoke [KMAudio.KMAudioRef.StopSound](https://docs.microsoft.com/en
 Called when the sound is prematurely stopped.
 
 #### Returns
-[T](KMExtensions.Set{T}(T,Action{Int32}).md#Wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).T 'Wawa.Extensions.KMExtensions.Set<T>(this T, System.Action<int>).T')  
-The parameter [audio](KMExtensions.Set{T}(T,Action{Int32}).md#Wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).audio 'Wawa.Extensions.KMExtensions.Set<T>(this T, System.Action<int>).audio').
+[T](KMExtensions.Set{T}(T,Action{int}).md#Wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).T 'Wawa.Extensions.KMExtensions.Set<T>(this T, System.Action<int>).T')  
+The parameter [audio](KMExtensions.Set{T}(T,Action{int}).md#Wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).audio 'Wawa.Extensions.KMExtensions.Set<T>(this T, System.Action<int>).audio').
