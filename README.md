@@ -41,14 +41,14 @@ Whichever method is used, wait for Unity to reload, and a new tab should appear 
 
 1. Set up [Emik.Morsels](https://github.com/Emik03/Emik.Morsels#usage).
 
-2. Download and extract the full source code, or clone the repository:
-    ```shell
-    git clone https://github.com/Emik03/wawa.git
-    ```
-
-3. **WINDOWS ONLY**: You are required to [extend the maximum path length](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry) and additionally run this command:
+2. **WINDOWS ONLY**: You are required to [extend the maximum path length](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry) and run this command:
     ```shell
     git config --global core.longpaths true
+    ```
+
+3. Download and extract the full source code, or clone the repository:
+    ```shell
+    git clone https://github.com/Emik03/wawa.git
     ```
 
 4. Open the solution in your favorite IDE, or use the command-line directly to build it.
