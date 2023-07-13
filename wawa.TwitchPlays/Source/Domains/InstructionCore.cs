@@ -14,8 +14,11 @@ public static class InstructionCore
     [NotNull, Pure]
     public static IEnumerator<object> Flatten(
         [InstantHandle, ItemCanBeNull, NotNull] this IEnumerable<Instruction> that
-    ) =>
-        that.GetEnumerator().Recursive();
+    )
+    {
+        using var e = that.GetEnumerator();
+        return e.Recursive();
+    }
 
     [NotNull, Pure]
     static IEnumerator<object?> Recursive([AllowNull, CanBeNull] this IEnumerator<Instruction> that)

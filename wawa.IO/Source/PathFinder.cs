@@ -248,11 +248,10 @@ public static class PathFinder
            .Select(static x => ((KeyValuePair<string, Mod>)x).Key)
            .ToArray();
 
+    // Boxing required; Avoids creating closures with the 'Mod' type.
+    // Collected as list due to multiple enumerations.
     [NotNull]
-    static IDictionary<string, string> CreateModIdToDirectoryMapping() =>
-
-        // Boxing required; Avoids creating closures with the 'Mod' type.
-        // Collected as list due to multiple enumerations.
+    static Dictionary<string, string> CreateModIdToDirectoryMapping() =>
         Mods.Cast<ValueType>().ToList() is var mods && mods.CollectModsWithNullIds() is { Length: > 0 } filteredByNull ?
             throw filteredByNull.InvalidBecause(NullReason) :
             mods.CollectModsWithDuplicateIds() is { Length: > 0 } filteredByDuplicate ?
@@ -260,7 +259,7 @@ public static class PathFinder
                 mods.InvertModDictionary();
 
     [NotNull]
-    static IDictionary<string, string> InvertModDictionary([NotNull, ItemNotNull] this IEnumerable<ValueType> mods) =>
+    static Dictionary<string, string> InvertModDictionary([NotNull, ItemNotNull] this IEnumerable<ValueType> mods) =>
         mods.ToDictionary(
             static x => ((KeyValuePair<string, Mod>)x).Value.ModID,
             static x => ((KeyValuePair<string, Mod>)x).Key,

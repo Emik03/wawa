@@ -64,8 +64,10 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// Gets a value indicating whether Twitch Plays should allow
     /// other modules to be interacted with for the current frame.
     /// </summary>
+#pragma warning disable IDISP008
     [NotNull]
     internal object Value { [Pure] get; }
+#pragma warning restore IDISP008
 
     /// <inheritdoc/>
     [Pure]

@@ -80,7 +80,8 @@ static class Globals
         return Stringifier.Conjoin(parameters.Select(static x => Display(x.ParameterType)), ' ');
     }
 
-    static IEnumerable<string> DisplayFields(this IReflect reflect) =>
+    // ReSharper disable once SuggestBaseTypeForParameter
+    static IEnumerable<string> DisplayFields(this Type reflect) =>
         reflect
            .GetFields(FieldBindings)
            .Where(static x => x.Name is not InternalField)

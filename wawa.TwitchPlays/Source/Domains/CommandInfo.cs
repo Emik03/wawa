@@ -39,7 +39,7 @@ sealed class CommandInfo : ICloneable, IEquatable<CommandInfo>, IEqualityCompare
 
     /// <inheritdoc />
     [Pure]
-    public bool Equals(CommandInfo other) => this == other;
+    public bool Equals([AllowNull] CommandInfo other) => this == other;
 
     /// <summary>Determines whether both have the same values.</summary>
     /// <param name="left">The left-hand side.</param>
@@ -62,7 +62,7 @@ sealed class CommandInfo : ICloneable, IEquatable<CommandInfo>, IEqualityCompare
         !(left == right);
 
     /// <inheritdoc />
-    [Pure]
+    [Pure] // ReSharper disable once AssignNullToNotNullAttribute
     public override bool Equals([AllowNull] object obj) => Equals(obj as CommandInfo);
 
     /// <inheritdoc />

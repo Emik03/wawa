@@ -149,7 +149,8 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         if (command is null || Match(command) is not { } match)
             yield break;
 
-        var query = Flatten(match.GetEnumerator());
+        using var e = match.GetEnumerator();
+        var query = Flatten(e);
 
         while (query.MoveNext())
         {
@@ -164,7 +165,8 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     [PublicAPI, Pure]
     public IEnumerator TwitchHandleForcedSolve()
     {
-        var enumerator = Flatten(ForceSolve().GetEnumerator());
+        using var e = ForceSolve().GetEnumerator();
+        var enumerator = Flatten(e);
 
         while (enumerator.MoveNext())
         {
