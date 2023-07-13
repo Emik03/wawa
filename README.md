@@ -12,7 +12,6 @@ This project has a dependency to [Emik.Morsels](https://github.com/Emik03/Emik.M
 
 - [Quick Start](#quick-start)
 - [Libraries](#libraries)
-- [Building](#building)
 - [Contribute](#contribute)
 - [License](#license)
 
@@ -37,7 +36,7 @@ Whichever method is used, wait for Unity to reload, and a new tab should appear 
 - [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) - Adds `Twitch`, a base class that hooks on a `ModdedModule` to add essential TwitchPlays behavior.
 - [wawa.Unity](https://github.com/Emik03/wawa/tree/main/wawa.Unity) - Adds `CachedBehavior`, eliminates overhead of Unity API calls without the need for explicit fields.
 
-## Building
+## Contribute
 
 1. Set up [Emik.Morsels](https://github.com/Emik03/Emik.Morsels#usage).
 
@@ -55,8 +54,6 @@ Whichever method is used, wait for Unity to reload, and a new tab should appear 
     ```shell
     dotnet build
     ```
-
-## Contribute
 
 Issues and pull requests are welcome to help this repository be the best it can be.
 
