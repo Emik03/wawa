@@ -8,7 +8,7 @@ namespace Wawa.TwitchPlays.Domains;
 /// according to <see cref="char.IsWhiteSpace(char)"/>.
 /// </exception>
 [AttributeUsage(AttributeTargets.Field), CLSCompliant(false), PublicAPI]
-public sealed class AliasAttribute([ItemCanBeNull, NotNull] IList<string?> aliases) : Attribute,
+public sealed class AliasAttribute([ItemCanBeNull, NotNull] IList<string> aliases) : Attribute,
     ICloneable,
     IEquatable<AliasAttribute>,
     IEqualityComparer<AliasAttribute>,
@@ -28,6 +28,7 @@ public sealed class AliasAttribute([ItemCanBeNull, NotNull] IList<string?> alias
         : this((IList<string>)aliases) { }
 
     /// <summary>Gets the alternative representations.</summary>
+    // ReSharper disable ConstantConditionalAccessQualifier ConstantNullCoalescingCondition
     [ItemNotNull, NotNull]
     public IList<string> Aliases { [Pure] get; } = aliases.Any(static x => x?.Any(char.IsWhiteSpace) ?? false)
         ? throw new InvalidOperationException(Whitespace)
