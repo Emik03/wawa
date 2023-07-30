@@ -79,7 +79,8 @@ public static class KMBombStrikeExtensions
 
         internal unsafe KMBomb SetRate()
         {
-            bomb.GetComponent<Bomb>().GetTimer().SetRateModifier(*(float*)&value);
+            var copy = value; // Avoids having to use a fixed expression.
+            bomb.GetComponent<Bomb>().GetTimer().SetRateModifier(*(float*)&copy);
             return bomb;
         }
     }
