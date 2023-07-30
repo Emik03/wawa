@@ -2,8 +2,13 @@
 namespace Wawa.TwitchPlays.Domains;
 
 /// <summary>An <see cref="Attribute"/> to attach to a field to signify alternative ways to spell it.</summary>
+/// <param name="aliases">The prefix of this command.</param>
+/// <exception cref="InvalidOperationException">
+/// A <see cref="string"/> in <paramref name="aliases"/> contain at least one <see cref="char"/> that is whitespace,
+/// according to <see cref="char.IsWhiteSpace(char)"/>.
+/// </exception>
 [AttributeUsage(AttributeTargets.Field), CLSCompliant(false), PublicAPI]
-public sealed class AliasAttribute : Attribute,
+public sealed class AliasAttribute([ItemCanBeNull, NotNull] IList<string?> aliases) : Attribute,
     ICloneable,
     IEquatable<AliasAttribute>,
     IEqualityComparer<AliasAttribute>,
@@ -22,20 +27,11 @@ public sealed class AliasAttribute : Attribute,
     public AliasAttribute([NotNull] params string[] aliases)
         : this((IList<string>)aliases) { }
 
-    /// <summary>Initializes a new instance of the <see cref="AliasAttribute"/> class.</summary>
-    /// <exception cref="InvalidOperationException">
-    /// A <see cref="string"/> in <paramref name="aliases"/> contain at least one <see cref="char"/> that is whitespace,
-    /// according to <see cref="char.IsWhiteSpace(char)"/>.
-    /// </exception>
-    /// <param name="aliases">The prefix of this command.</param>
-    public AliasAttribute([ItemNotNull, NotNull] IList<string?> aliases) =>
-        Aliases = aliases.Any(static x => x?.Any(char.IsWhiteSpace) ?? false)
-            ? throw new InvalidOperationException(Whitespace)
-            : aliases;
-
     /// <summary>Gets the alternative representations.</summary>
     [ItemNotNull, NotNull]
-    public IList<string> Aliases { [Pure] get; }
+    public IList<string> Aliases { [Pure] get; } = aliases.Any(static x => x?.Any(char.IsWhiteSpace) ?? false)
+        ? throw new InvalidOperationException(Whitespace)
+        : aliases;
 
     /// <inheritdoc/>
     [Pure]

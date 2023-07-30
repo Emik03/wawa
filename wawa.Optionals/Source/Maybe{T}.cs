@@ -4,10 +4,11 @@ namespace Wawa.Optionals;
 using static CollectionAccessType;
 
 /// <summary>A type representing an optional value; Either Some and contains a value, or None, and does not.</summary>
+/// <param name="value">The value to encapsulate.</param>
 /// <typeparam name="T">The type to encapsulate and project as an optional value.</typeparam>
 [StructLayout(LayoutKind.Auto), PublicAPI]
 #pragma warning disable CA1710
-public readonly struct Maybe<T> :
+public readonly struct Maybe<T>([AllowNull, CanBeNull] T value) :
 #pragma warning restore CA1710
     ICollection,
     IComparable<Maybe<T>>,
@@ -21,15 +22,6 @@ public readonly struct Maybe<T> :
     [NotNull, PublicAPI]
     const string NoneMessage = "None";
 
-    /// <summary>Initializes a new instance of the <see cref="Maybe{T}" /> struct.</summary>
-    /// <param name="value">The value to encapsulate.</param>
-    [PublicAPI]
-    public Maybe([AllowNull, CanBeNull] T value)
-    {
-        Value = value;
-        IsSome = value is not null;
-    }
-
     /// <summary>Gets a value indicating whether the value encapsulated is <see langword="null" />.</summary>
     [CollectionAccess(None), MemberNotNullWhen(false, nameof(Value)), PublicAPI]
     public bool IsNone
@@ -39,11 +31,11 @@ public readonly struct Maybe<T> :
 
     /// <summary>Gets a value indicating whether the value encapsulated is not <see langword="null" />.</summary>
     [CollectionAccess(None), MemberNotNullWhen(true, nameof(Value)), PublicAPI]
-    public bool IsSome { [Pure] get; }
+    public bool IsSome { [Pure] get; } = value is not null;
 
     /// <summary>Gets the value that is encapsulated. This value returned may be <see langword="null" />.</summary>
     [AllowNull, CanBeNull, CollectionAccess(Read), ProvidesContext, PublicAPI]
-    public T Value { [Pure] get; }
+    public T Value { [Pure] get; } = value;
 
     /// <inheritdoc />
     [CollectionAccess(None), PublicAPI]

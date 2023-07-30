@@ -5,28 +5,21 @@ namespace Wawa.TwitchPlays.Domains;
 /// An <see cref="Attribute"/> to attach to methods to signify that
 /// the command should be processed by <see cref="Twitch{T}"/>.
 /// </summary>
+/// <param name="prefix">The prefix of this command.</param>
+/// <param name="priority">The priority of the command. A higher value means it will be evaluated sooner.</param>
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true), CLSCompliant(false), PublicAPI]
-public sealed class CommandAttribute : Attribute,
+public sealed class CommandAttribute([AllowNull, CanBeNull] string prefix = null, int priority = 0) : Attribute,
     ICloneable,
     IEquatable<CommandAttribute>,
     IEqualityComparer<CommandAttribute>
 {
     const string Null = "<inferred>";
 
-    /// <summary>Initializes a new instance of the <see cref="CommandAttribute"/> class.</summary>
-    /// <param name="prefix">The prefix of this command.</param>
-    /// <param name="priority">The priority of the command. A higher value means it will be evaluated sooner.</param>
-    public CommandAttribute([AllowNull, CanBeNull] string prefix = null, int priority = 0)
-    {
-        Prefix = prefix;
-        Priority = priority;
-    }
-
     /// <summary>Gets the priority. Higher means evaluated sooner.</summary>
-    public int Priority { get; }
+    public int Priority { [Pure] get; } = priority;
 
     /// <summary>Gets the prefix of this command. If <see cref="Maybe.None{T}"/>, the prefix is inferred.</summary>
-    public Maybe<string> Prefix { [Pure] get; }
+    public Maybe<string> Prefix { [Pure] get; } = prefix;
 
     /// <inheritdoc/>
     [Pure]
