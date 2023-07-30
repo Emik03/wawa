@@ -8,34 +8,37 @@ static class Scaffold
     const string
         Cancelled = "Operation cancelled.",
         CSharp = ".cs",
-        CSharpStringSyntax = "csharp",
-        CollectionsNamespace = @"
-using System.Collections;
-using System.Collections.Generic;", // EditorAssembly = "Assembly-CSharp",
+        CSharpStringSyntax = "csharp", // EditorAssembly = "Assembly-CSharp",
         FileTwitch = "Twitch",
-        Greeting = "Log(\"Hello, World! ma o, toki!\");",
         Highlight = "Component_Highlight",
         NeedyBackground = "Component_Needy_Background",
         Material = ".mat",
         Mesh = ".fbx",
         ModdedModule = nameof(ModdedModule),
         Modules = "wawa.Modules",
-        ModulesNamespace = @"
-using Wawa.Modules;",
         NeedyController = "NeedyBackingAnimController.controller",
-        NeedyDeclaration = $"{nameof(KMNeedyModule)} {NeedyVar}",
         NeedyVar = "_needy",
-        NotImplemented = $"throw new {nameof(NotImplementedException)}();",
         Prefab = "prefab",
         Reload =
             "Scaffolding complete. Once the editor reloads, you will have to attach the newly generated script files " +
             "in the root folder of Assets to the newly generated component manually.",
         Scripts = nameof(Scripts),
         SolvableBackground = "Component_PuzzleBackground",
-        SolvableDeclaration = $"{nameof(KMBombModule)} {SolvableVar}",
         SolvableVar = "_solvable",
         Title = "Please enter the name of your new module.",
-        TwitchPlays = "wawa.TwitchPlays",
+        TwitchPlays = "wawa.TwitchPlays";
+
+    [NotNull, StringSyntax(CSharpStringSyntax)]
+    const string
+        CollectionsNamespace = @"
+using System.Collections;
+using System.Collections.Generic;",
+        Greeting = "Log(\"Hello, World! ma o, toki!\");",
+        ModulesNamespace = @"
+using Wawa.Modules;",
+        NeedyDeclaration = $"{nameof(KMNeedyModule)} {NeedyVar}",
+        NotImplemented = $"throw new {nameof(NotImplementedException)}();",
+        SolvableDeclaration = $"{nameof(KMBombModule)} {SolvableVar}",
         TwitchPrefix = @$"
     // Uncomment or remove as needed. Documentation for what each field does is as follows:
     // https://github.com/samfundev/KtaneTwitchPlays/wiki/External-Mod-Module-Support#additional-implementation-tasks
@@ -243,7 +246,8 @@ using Wawa.Modules;",
 
     [NotNull]
     static string WawalessTemplate([InstantHandle] this bool b) =>
-        @$"{TwitchPrefix}
+        Id(
+            @$"{TwitchPrefix}
     [{nameof(SerializeField)}]
     {(b ? SolvableDeclaration : NeedyDeclaration)};
 
@@ -268,11 +272,13 @@ using Wawa.Modules;",
     {{
         {NotImplemented}
     }}
-    {TwitchSuffix}";
+    {TwitchSuffix}"
+        );
 
     [NotNull]
     static string Source([NotNull] this string name, [InstantHandle] bool hasWawaModules, bool isSolvable) =>
-        @$"{Header}
+        Id(
+            @$"{Header}
 using System;
 using UnityEngine;{(hasWawaModules ? ModulesNamespace : CollectionsNamespace)}
 using Random = UnityEngine.Random;
@@ -281,11 +287,15 @@ using Random = UnityEngine.Random;
 public sealed class {name} : {(hasWawaModules ? ModdedModule : nameof(MonoBehaviour))}
 {{{(hasWawaModules ? WawaTemplate : isSolvable.WawalessTemplate())}
 }}
-";
+"
+        );
 
     [NotNull]
+#pragma warning disable MA0051
     static string SourceTwitch([NotNull] this string name) =>
-        @$"{Header}
+#pragma warning restore MA0051
+        Id(
+            @$"{Header}
 using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
@@ -344,7 +354,11 @@ public sealed class {name}{FileTwitch} : Twitch<{name}>
         {NotImplemented}
     }}
 }}
-";
+"
+        );
+
+    [NotNull]
+    static string Id([NotNull, StringSyntax(CSharpStringSyntax)] string x) => x;
 
     [NotNull]
     static GameObject Add([NotNull] this GameObject go, [NotNull] string name, [NotNull] params Type[] components) =>
