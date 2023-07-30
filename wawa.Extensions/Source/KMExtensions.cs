@@ -696,7 +696,6 @@ public static class KMExtensions
         selectable.NotifyInner();
     }
 
-    [MethodImpl(MethodImplOptions.NoInlining)]
     static void NotifyInner([AllowNull, CanBeNull] this KMSelectable selectable)
     {
         if (selectable && selectable.GetComponent<ModSelectable>() is var mod && mod)
