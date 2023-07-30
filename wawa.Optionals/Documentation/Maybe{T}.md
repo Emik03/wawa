@@ -30,7 +30,7 @@ Implements [System.Collections.ICollection](https://docs.microsoft.com/en-us/dot
 
 | Constructors | |
 | :--- | :--- |
-| [Maybe(T)](Maybe{T}..ctor(T).md 'Wawa.Optionals.Maybe<T>.Maybe(T)') | Initializes a new instance of the [Maybe&lt;T&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>') struct. |
+| [Maybe(T)](Maybe{T}..ctor(T).md 'Wawa.Optionals.Maybe<T>.Maybe(T)') | A type representing an optional value; Either Some and contains a value, or None, and does not. |
 
 | Properties | |
 | :--- | :--- |

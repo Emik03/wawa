@@ -2,7 +2,7 @@
 
 ## Maybe(T) Constructor
 
-Initializes a new instance of the [Maybe&lt;T&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>') struct.
+A type representing an optional value; Either Some and contains a value, or None, and does not.
 
 ```csharp
 public Maybe(T value);
