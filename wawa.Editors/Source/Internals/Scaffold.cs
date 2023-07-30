@@ -251,10 +251,10 @@ using Wawa.Modules;",
 
     int _moduleId;
 
-    static void Log(string message, params object[] args)
+    void Log(string message, params object[] args)
     {{
         var log = string.Format(message, args);
-        Debug.LogFormat(""[{{0}} #{{1}}] #{{2}}"", {(b ? SolvableVar : NeedyVar)}.ModuleDisplayName, _moduleId, log);
+        Debug.LogFormat(""[{{0}} #{{1}}] {{2}}"", {(b ? SolvableVar : NeedyVar)}.ModuleDisplayName, _moduleId, log);
     }}
 
     void Start()
