@@ -12,7 +12,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Methods | |
 | :--- | :--- |
-| [GetRate(this KMBomb)](KMBombStrikeExtensions.GetRate(KMBomb).md 'Wawa.DDL.KMBombStrikeExtensions.GetRate(this KMBomb)') | Gets the rate in which the timer ticks. |
+| [GetRate(this KMBomb, bool)](KMBombStrikeExtensions.GetRate(KMBomb,bool).md 'Wawa.DDL.KMBombStrikeExtensions.GetRate(this KMBomb, bool)') | Gets the rate in which the timer ticks. |
 | [GetStrikes(this KMBomb)](KMBombStrikeExtensions.GetStrikes(KMBomb).md 'Wawa.DDL.KMBombStrikeExtensions.GetStrikes(this KMBomb)') | Gets the number of strikes. |
-| [SetRate(this KMBomb, float)](KMBombStrikeExtensions.SetRate(KMBomb,float).md 'Wawa.DDL.KMBombStrikeExtensions.SetRate(this KMBomb, float)') | Sets the rate in which the timer ticks. |
+| [SetRate(this KMBomb, float, bool)](KMBombStrikeExtensions.SetRate(KMBomb,float,bool).md 'Wawa.DDL.KMBombStrikeExtensions.SetRate(this KMBomb, float, bool)') | Sets the rate in which the timer ticks. |
 | [SetStrikes(this KMBomb, int)](KMBombStrikeExtensions.SetStrikes(KMBomb,int).md 'Wawa.DDL.KMBombStrikeExtensions.SetStrikes(this KMBomb, int)') | Sets the number of strikes. |
