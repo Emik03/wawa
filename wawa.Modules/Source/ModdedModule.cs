@@ -231,8 +231,11 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="format">The value to log.</param>
     /// <param name="args">The arguments to hook into format.</param>
     /// <returns>The value <see langword="default"/>.</returns>
-    [PublicAPI]
-    public Unit Solve([AllowNull, CanBeNull] string format = null, [ItemCanBeNull, NotNull] params object[] args)
+    [PublicAPI, StringFormatMethod(nameof(format))]
+    public Unit Solve(
+        [AllowNull, CanBeNull, StringSyntax(StringSyntaxAttribute.CompositeFormat)] string format = null,
+        [ItemCanBeNull, NotNull] params object[] args
+    )
     {
         if (Status.IsSolved)
             return default;
@@ -258,8 +261,11 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="format">The value to log.</param>
     /// <param name="args">The arguments to hook into format.</param>
     /// <returns>The value <see langword="default"/>.</returns>
-    [PublicAPI]
-    public Unit Strike([AllowNull, CanBeNull] string format = null, [ItemCanBeNull, NotNull] params object[] args)
+    [PublicAPI, StringFormatMethod(nameof(format))]
+    public Unit Strike(
+        [AllowNull, CanBeNull, StringSyntax(StringSyntaxAttribute.CompositeFormat)] string format = null,
+        [ItemCanBeNull, NotNull] params object[] args
+    )
     {
         if (Status.HasException)
             return default;
@@ -286,9 +292,12 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="format">The value to log.</param>
     /// <param name="logType">The kind of logging method to invoke.</param>
     /// <returns>The parameter <paramref name="format"/>.</returns>
-    [CanBeNull]
+    [CanBeNull, StringFormatMethod(nameof(format))]
     [return: AllowNull]
-    public T Log<T>([AllowNull, CanBeNull] T format = default, LogType logType = LogType.Log)
+    public T Log<T>(
+        [AllowNull, CanBeNull, StringSyntax(StringSyntaxAttribute.CompositeFormat)] T format = default,
+        LogType logType = LogType.Log
+    )
     {
         var id = Status.Id;
         var stringify = Stringifier.Stringify(format);
@@ -306,9 +315,12 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="format">The value to log.</param>
     /// <param name="args">The arguments to hook into format.</param>
     /// <returns>The parameter <paramref name="format"/>.</returns>
-    [CanBeNull]
+    [CanBeNull, StringFormatMethod(nameof(format))]
     [return: AllowNull]
-    public T Log<T>([AllowNull, CanBeNull] T format = default, [ItemCanBeNull, NotNull] params object[] args)
+    public T Log<T>(
+        [AllowNull, CanBeNull, StringSyntax(StringSyntaxAttribute.CompositeFormat)] T format = default,
+        [ItemCanBeNull, NotNull] params object[] args
+    )
     {
         var convertAll = Array.ConvertAll(args, static o => (object)Stringifier.Stringify(o));
         var stringify = Stringifier.Stringify(format);
@@ -345,9 +357,12 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="format">The value to log.</param>
     /// <param name="args">The arguments to hook into format.</param>
     /// <returns>The parameter <paramref name="format"/>.</returns>
-    [CanBeNull]
+    [CanBeNull, StringFormatMethod(nameof(format))]
     [return: AllowNull]
-    public T LogLower<T>([AllowNull, CanBeNull] T format = default, [ItemCanBeNull, NotNull] params object[] args)
+    public T LogLower<T>(
+        [AllowNull, CanBeNull, StringSyntax(StringSyntaxAttribute.CompositeFormat)] T format = default,
+        [ItemCanBeNull, NotNull] params object[] args
+    )
     {
         var convertAll = Array.ConvertAll(args, static o => (object)Stringifier.Stringify(o));
         var stringify = Stringifier.Stringify(format);
