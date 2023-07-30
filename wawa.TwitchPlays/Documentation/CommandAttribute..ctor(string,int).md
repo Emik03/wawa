@@ -3,7 +3,8 @@
 
 ## CommandAttribute(string, int) Constructor
 
-Initializes a new instance of the [CommandAttribute](CommandAttribute.md 'Wawa.TwitchPlays.Domains.CommandAttribute') class.
+An [System.Attribute](https://docs.microsoft.com/en-us/dotnet/api/System.Attribute 'System.Attribute') to attach to methods to signify that  
+the command should be processed by [Twitch&lt;TMod&gt;](Twitch{TMod}.md 'Wawa.TwitchPlays.Twitch<TMod>').
 
 ```csharp
 public CommandAttribute(string prefix=null, int priority=0);

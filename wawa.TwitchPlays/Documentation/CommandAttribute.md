@@ -19,7 +19,7 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 
 | Constructors | |
 | :--- | :--- |
-| [CommandAttribute(string, int)](CommandAttribute..ctor(string,int).md 'Wawa.TwitchPlays.Domains.CommandAttribute.CommandAttribute(string, int)') | Initializes a new instance of the [CommandAttribute](CommandAttribute.md 'Wawa.TwitchPlays.Domains.CommandAttribute') class. |
+| [CommandAttribute(string, int)](CommandAttribute..ctor(string,int).md 'Wawa.TwitchPlays.Domains.CommandAttribute.CommandAttribute(string, int)') | An [System.Attribute](https://docs.microsoft.com/en-us/dotnet/api/System.Attribute 'System.Attribute') to attach to methods to signify that<br/>the command should be processed by [Twitch&lt;TMod&gt;](Twitch{TMod}.md 'Wawa.TwitchPlays.Twitch<TMod>'). |
 
 | Properties | |
 | :--- | :--- |

@@ -3,10 +3,10 @@
 
 ## AliasAttribute(IList<string>) Constructor
 
-Initializes a new instance of the [AliasAttribute](AliasAttribute.md 'Wawa.TwitchPlays.Domains.AliasAttribute') class.
+An [System.Attribute](https://docs.microsoft.com/en-us/dotnet/api/System.Attribute 'System.Attribute') to attach to a field to signify alternative ways to spell it.
 
 ```csharp
-public AliasAttribute(System.Collections.Generic.IList<string?> aliases);
+public AliasAttribute(System.Collections.Generic.IList<string> aliases);
 ```
 #### Parameters
 
