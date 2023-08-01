@@ -38,7 +38,7 @@ public readonly struct Unit : IComparable<Unit>,
     /// <param name="right">The right-hand side.</param>
     /// <returns>The value <see langword="false" />.</returns>
     [PublicAPI, Pure]
-    public static bool operator !=([InstantHandle] Unit left, [InstantHandle] Unit right) => true;
+    public static bool operator !=([InstantHandle] Unit left, [InstantHandle] Unit right) => false;
 
     /// <summary>Returns <see langword="false" />.</summary>
     /// <remarks><para>Since this type has one value, any instance is the same as each other.</para></remarks>
