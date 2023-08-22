@@ -2,9 +2,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net35</TargetFramework>
+        <UseUnityCoreModule>true</UseUnityCoreModule>
     </PropertyGroup>
     <ItemGroup>
         <Compile Remove="$(Morsels)/Compile/Source/References/*/**/*.cs"/>
-        <Reference Include="UnityEngine.CoreModule" Private="false" HintPath="$(Unity)/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll" Aliases="core"/>
     </ItemGroup>
 </Project>
