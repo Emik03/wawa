@@ -20,8 +20,13 @@ static class Globals
         {
             action(item);
         }
-        catch (Exception ex) when (ex.IsIO())
+        catch (Exception ex)
         {
+            // CANNOT BE 'WHEN' CLAUSE: .NET Framework 3.5 does not support IL metadata 'filter'.
+#pragma warning disable RCS1236
+            if (!ex.IsIO())
+                throw;
+#pragma warning restore RCS1236
             AssemblyLog($"Caught error of type {ex.GetType().Name}.");
         }
     }
@@ -31,8 +36,10 @@ static class Globals
     /// <param name="right">The right-hand side.</param>
     /// <returns>Whether the two values are the same based on <see cref="StringComparison.Ordinal"/>.</returns>
     [Pure]
-    internal static bool
-        OrdinalEquals([AllowNull, CanBeNull] this string left, [AllowNull, CanBeNull] in string right) =>
+    internal static bool OrdinalEquals(
+        [AllowNull, CanBeNull] this string left,
+        [AllowNull, CanBeNull] in string right
+    ) =>
         string.Equals(left, right, Ordinal);
 
     /// <summary>Computes an expensive computation, then caches it in subsequent calls.</summary>
@@ -82,7 +89,7 @@ static class Globals
     internal static TResult SuppressIO<T, TResult>(
         [DisallowNull, NotNull] this T item,
         [InstantHandle, NotNull] in Func<T, TResult> func,
-        [InstantHandle] in bool force = false
+        [InstantHandle] bool force = false
     )
     {
         if (!force && !IsKtane)
@@ -92,10 +99,14 @@ static class Globals
         {
             return func(item);
         }
-        catch (Exception ex) when (ex.IsIO())
+        catch (Exception ex)
         {
+            // CANNOT BE 'WHEN' CLAUSE: .NET Framework 3.5 does not support IL metadata 'filter'.
+#pragma warning disable RCS1236
+            if (!ex.IsIO())
+                throw;
+#pragma warning restore RCS1236
             AssemblyLog($"Caught error of type {ex.GetType().Name}, returning no value.");
-
             return default;
         }
     }
