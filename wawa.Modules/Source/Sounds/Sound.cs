@@ -116,7 +116,7 @@ public sealed partial class Sound : ICloneable, IEquatable<Sound>, IEqualityComp
     [NotNull, PublicAPI, Pure]
     public static Sound FromSoundEffect(SoundEffect sound) => new(sound);
 
-    /// <inheritdoc/>
+    /// <inheritdoc cref="object.Equals(object)"/>
     [PublicAPI, Pure] // ReSharper disable once AssignNullToNotNullAttribute
     public override bool Equals([AllowNull] object obj) => Equals(obj as Sound);
 
