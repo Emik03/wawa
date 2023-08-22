@@ -13,6 +13,7 @@ sealed class WawaEditor : Editor
 
     [NotNull]
     const string
+        All = "All wawa libraries",
         DDL = $"{Wawa}{nameof(DDL)}",
         Extensions = $"{Wawa}{nameof(Extensions)}",
         IO = $"{Wawa}{nameof(IO)}",
@@ -55,4 +56,7 @@ sealed class WawaEditor : Editor
 
     [MenuItem($"{Update}{TwitchPlays}{Suffix}"), UsedImplicitly]
     static void FetchTwitchPlays() => Fetch(Optionals, DDL, IO, Modules, Unity, TwitchPlays);
+
+    [MenuItem($"{Update}{All}"), UsedImplicitly]
+    static void FetchAll() => Fetch(Optionals, DDL, IO, Modules, Unity, TwitchPlays, Extensions, This);
 }
