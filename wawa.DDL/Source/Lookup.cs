@@ -17,8 +17,8 @@ public static class Lookup
     /// <remarks><para>
     /// In the editor, this value returns an instance of <see cref="Hashtable"/>, initialized as empty.
     /// </para></remarks>
-    [NotNull, PublicAPI]
-    public static IDictionary Mods { [Pure] get; } = FromGame(0, static _ => Factory(), new Hashtable()) ?? throw new();
+    [NotNull, PublicAPI] // ReSharper disable once AssignNullToNotNullAttribute
+    public static IDictionary Mods { [Pure] get; } = FromGame(0, static _ => Factory(), new Hashtable());
 
     /// <summary>Gets the localized value of a <see cref="string"/> term.</summary>
     /// <remarks><para>In the editor, this value returns <see cref="Maybe.None{T}"/>.</para></remarks>
@@ -36,7 +36,8 @@ public static class Lookup
     public static Maybe<string> ModNameOf([NotNull] Component component) =>
         FromGame(component, static o => o.GetComponent<ModSource>() is var m && m ? m.ModName : null);
 
+    // ReSharper disable once NullableWarningSuppressionIsUsed
     [NotNull, PublicAPI]
     static IDictionary Factory() =>
-        typeof(ModManager).GetField(Name, Bindings)?.GetValue(ModManager.Instance) as IDictionary ?? throw new();
+        (typeof(ModManager).GetField(Name, Bindings)?.GetValue(ModManager.Instance) as IDictionary)!;
 }

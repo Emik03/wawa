@@ -485,7 +485,8 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         [NotNull]
         object Params(int skip)
         {
-            var arrType = parameters[skip].ParameterType.GetElementType() ?? throw new();
+            // ReSharper disable once NullableWarningSuppressionIsUsed
+            var arrType = parameters[skip].ParameterType.GetElementType()!;
             var arrLen = split.Count - skip;
             var arr = Array.CreateInstance(arrType, arrLen);
 

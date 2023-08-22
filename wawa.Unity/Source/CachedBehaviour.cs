@@ -136,8 +136,8 @@ public abstract class CachedBehaviour : MonoBehaviour
                     : GetComponentInParent(typeof(T))
             );
 
-    [NotNull]
-    static Type Element<T>() => typeof(T).IsArray ? typeof(T).GetElementType() ?? throw new() : typeof(T);
+    [NotNull] // ReSharper disable once NullableWarningSuppressionIsUsed
+    static Type Element<T>() => typeof(T).IsArray ? typeof(T).GetElementType()! : typeof(T);
 
     [NotNull]
     T Assert<T>([AllowNull, CanBeNull] in object o)

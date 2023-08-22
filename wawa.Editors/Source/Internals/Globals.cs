@@ -15,8 +15,8 @@ static class Globals
 
     /// <summary>Gets the <see cref="AssemblyName"/> of the caller that invoked the method calling this.</summary>
     /// <remarks><para>This is used by the library to log itself, and obtain information about callers.</para></remarks>
-    [NotNull]
-    static AssemblyName Caller => new StackFrame(2).GetMethod().ReflectedType?.Assembly.GetName() ?? throw new();
+    [NotNull] // ReSharper disable once NullableWarningSuppressionIsUsed
+    static AssemblyName Caller => new StackFrame(2).GetMethod().ReflectedType?.Assembly.GetName()!;
 
     /// <summary>Gets the version of <see cref="Caller"/>.</summary>
     [NotNull]

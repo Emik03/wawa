@@ -731,7 +731,6 @@ public static class KMExtensions
         () =>
         {
             action();
-
             return value;
         };
 
