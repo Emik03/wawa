@@ -91,9 +91,7 @@ public static class Config
     )
         where T : new()
     {
-        var file = that.FilePath.SuppressIO(File.ReadAllText);
-
-        if (file is null)
+        if (that.FilePath.SuppressIO(File.ReadAllText) is not { } file)
             return that;
 
         JObject
@@ -106,7 +104,6 @@ public static class Config
             toMerge.Lint(content);
 
         that.Write(toMerge.ToString());
-
         return that;
     }
 
@@ -149,7 +146,6 @@ public static class Config
         {
             AssemblyLog(@$"File ""{these.FilePath}"" doesn't exist, writing default new instance.");
             File.WriteAllText(these.FilePath, Serialize(new T()));
-
             return new();
         }
 
@@ -163,7 +159,6 @@ public static class Config
             : Serialize(deserialized);
 
         AssemblyLog($"Read was successful: {message}");
-
         return deserialized;
     }
 }
