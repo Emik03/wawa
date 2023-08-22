@@ -33,8 +33,8 @@ public static class PathFinder
     /// <summary>Gets the <see cref="AssemblyName"/> of the caller that invoked the method calling this.</summary>
     /// <remarks><para>This is used by the library to log itself, and obtain information about callers.</para></remarks>
     [NotNull, PublicAPI]
-#pragma warning disable CA1065
-    public static AssemblyName Caller => new StackFrame(3).GetMethod().ReflectedType?.Assembly.GetName() ?? throw new();
+#pragma warning disable CA1065 // ReSharper disable once NullableWarningSuppressionIsUsed
+    public static AssemblyName Caller => new StackFrame(3).GetMethod().ReflectedType?.Assembly.GetName()!;
 #pragma warning restore CA1065
 
     /// <summary>Gets the name of <see cref="Caller"/>.</summary>
