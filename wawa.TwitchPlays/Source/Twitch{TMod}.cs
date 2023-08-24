@@ -151,12 +151,12 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
 
         using var e = match.GetEnumerator();
         var query = Flatten(e);
+        yield return null; // Signifies to TwitchPlays that the command is valid.
 
         while (query.MoveNext())
         {
             var current = query.Current;
             OnYield(this, new(current));
-
             yield return current?.Value;
         }
     }
@@ -407,7 +407,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
             {
                 yield return current;
 
-                yield break;
+                continue;
             }
 
             var result = Flatten(nested);
