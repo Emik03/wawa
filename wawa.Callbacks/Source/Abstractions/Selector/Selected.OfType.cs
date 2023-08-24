@@ -216,9 +216,9 @@ public sealed partial class Selected
     {
         [Pure]
         get =>
-            Modded.IsSome
-                ? Modded.Unwrap().Parent is var selectable && selectable ? new(selectable) : null
-                : ParentInner(Vanilla.Unwrap());
+            Value is KMSelectable km && km
+                ? km.Parent is var selectable && selectable ? new(selectable) : null
+                : ParentInner(Value);
     }
 
     /// <summary>
@@ -300,8 +300,7 @@ public sealed partial class Selected
     [NotNull, PublicAPI]
     public ReadOnlyCollection<Maybe<Selected>> Children
     {
-        [Pure]
-        get => Array.AsReadOnly(Vanilla.IsSome ? ChildrenInner(Vanilla.Unwrap()) : ChildrenOuter(Modded.Unwrap()));
+        [Pure] get => Array.AsReadOnly(Value is KMSelectable km ? ChildrenOuter(km) : ChildrenInner(Value));
     }
 
     /// <summary>Gets a value indicating whether this instance contains a modded selectable.</summary>
@@ -351,7 +350,7 @@ public sealed partial class Selected
     static Maybe<Selected> ParentInner([NotNull] in object m) =>
         ((Selectable)m).Parent is var selectable && selectable ? new Selected(selectable.Core()) : null;
 
-    [NotNull]
+    [MethodImpl(MethodImplOptions.NoInlining), NotNull]
     static Maybe<Selected>[] ChildrenInner([NotNull] in object m)
     {
         var children = ((Selectable)m).Children;

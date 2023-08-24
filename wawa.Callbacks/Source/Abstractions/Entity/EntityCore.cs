@@ -116,50 +116,64 @@ public static class EntityCore
     /// <param name="needyTimerGet">Invoked to get the time remaining of the needy timer.</param>
     /// <param name="needyTimerSet">Invoked to set the time of the needy timer.</param>
     /// <param name="ruleGeneration">Invoked to get the random seed used to generate rules for the game.</param>
+    /// <param name="onSolve">Invoked when the entire module has been solved.</param>
+    /// <param name="onStrike">Invoked on any mistake that causes a bomb strike.</param>
     /// <returns>Itself.</returns>
     [NotNull, PublicAPI]
     public static Entity Add(
         [NotNull] Entity that,
         [AllowNull, CanBeNull] Func<float> needyTimerGet = null,
         [AllowNull, CanBeNull] Action<float> needyTimerSet = null,
-        [AllowNull, CanBeNull] Func<int> ruleGeneration = null
+        [AllowNull, CanBeNull] Func<int> ruleGeneration = null,
+        [AllowNull, CanBeNull] Func<bool> onSolve = null,
+        [AllowNull, CanBeNull] Func<bool> onStrike = null
     )
     {
         that.NeedyTimerSet.TryAdd(needyTimerSet);
         that.RuleGeneration.TryAdd(ruleGeneration);
         that.NeedyTimerGet.TryAdd(needyTimerGet);
+        that.Solve.Add(onSolve);
+        that.Strike.Add(onStrike);
         return that;
     }
 
     /// <summary>Removes the parameter values to the corresponding hooks, when applicable.</summary>
-    /// <inheritdoc cref="Add(Entity, Func{float}, Action{float}, Func{int})"/>
+    /// <inheritdoc cref="Add(Entity, Func{float}, Action{float}, Func{int}, Func{bool}, Func{bool})"/>
     [NotNull, PublicAPI]
     public static Entity Remove(
         [NotNull] Entity that,
         [AllowNull, CanBeNull] Func<float> needyTimerGet = null,
         [AllowNull, CanBeNull] Action<float> needyTimerSet = null,
-        [AllowNull, CanBeNull] Func<int> ruleGeneration = null
+        [AllowNull, CanBeNull] Func<int> ruleGeneration = null,
+        [AllowNull, CanBeNull] Func<bool> onSolve = null,
+        [AllowNull, CanBeNull] Func<bool> onStrike = null
     )
     {
         that.NeedyTimerSet.TryRemove(needyTimerSet);
         that.RuleGeneration.TryRemove(ruleGeneration);
         that.NeedyTimerGet.TryRemove(needyTimerGet);
+        that.Solve.Add(onSolve);
+        that.Strike.Add(onStrike);
         return that;
     }
 
     /// <summary>Sets the parameter values to the corresponding hooks, when applicable.</summary>
-    /// <inheritdoc cref="Add(Entity, Func{float}, Action{float}, Func{int})"/>
+    /// <inheritdoc cref="Add(Entity, Func{float}, Action{float}, Func{int}, Func{bool}, Func{bool})"/>
     [NotNull, PublicAPI]
     public static Entity Set(
         [NotNull] Entity that,
         [AllowNull, CanBeNull] Func<float> needyTimerGet = null,
         [AllowNull, CanBeNull] Action<float> needyTimerSet = null,
-        [AllowNull, CanBeNull] Func<int> ruleGeneration = null
+        [AllowNull, CanBeNull] Func<int> ruleGeneration = null,
+        [AllowNull, CanBeNull] Func<bool> onSolve = null,
+        [AllowNull, CanBeNull] Func<bool> onStrike = null
     )
     {
         that.NeedyTimerSet.TrySet(needyTimerSet);
         that.RuleGeneration.TrySet(ruleGeneration);
         that.NeedyTimerGet.TrySet(needyTimerGet);
+        that.Solve.Add(onSolve);
+        that.Strike.Add(onStrike);
         return that;
     }
 
