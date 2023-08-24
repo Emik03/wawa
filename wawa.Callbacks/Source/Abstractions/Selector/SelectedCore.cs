@@ -223,6 +223,17 @@ public static class SelectedCore
         foreach (var next in that)
             next.Log();
 
+        return that;
+    }
+
+    /// <inheritdoc cref="Log(Selected)"/>
+    [NotNull, PublicAPI]
+    public static IEnumerable<Maybe<Selected>> Log([NotNull] this IEnumerable<Maybe<Selected>> that)
+    {
+        foreach (var next in that)
+            if (next.Value is { } value)
+                value.Log();
+
         return that; // ReSharper restore PossibleMultipleEnumeration
     }
 

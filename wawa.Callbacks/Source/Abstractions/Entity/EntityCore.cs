@@ -192,6 +192,17 @@ public static class EntityCore
         foreach (var next in that)
             next.Log();
 
+        return that;
+    }
+
+    /// <inheritdoc cref="Log(Entity)"/>
+    [NotNull, PublicAPI]
+    public static IEnumerable<Maybe<Entity>> Log([NotNull] this IEnumerable<Maybe<Entity>> that)
+    {
+        foreach (var next in that)
+            if (next.Value is { } value)
+                value.Log();
+
         return that; // ReSharper restore PossibleMultipleEnumeration
     }
 
