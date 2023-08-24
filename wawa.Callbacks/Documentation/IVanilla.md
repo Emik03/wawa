@@ -17,4 +17,5 @@ Derived
 | :--- | :--- |
 | [IsModded](IVanilla.IsModded.md 'Wawa.Callbacks.IVanilla.IsModded') | Gets a value indicating whether this instance contains a modded instance. |
 | [IsVanilla](IVanilla.IsVanilla.md 'Wawa.Callbacks.IVanilla.IsVanilla') | Gets a value indicating whether this instance contains a vanilla instance. |
+| [Value](IVanilla.Value.md 'Wawa.Callbacks.IVanilla.Value') | Gets the encapsulated component. |
 | [Vanilla](IVanilla.Vanilla.md 'Wawa.Callbacks.IVanilla.Vanilla') | Gets the encapsulated vanilla component, if it exists. |

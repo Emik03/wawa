@@ -5,7 +5,7 @@
 Adds the parameter [value](Generator.ExpectAdd{T}(HookMay{T},T).md#Wawa.Callbacks.Generator.ExpectAdd_T_(thisWawa.Callbacks.HookMay_T_,T).value 'Wawa.Callbacks.Generator.ExpectAdd<T>(this Wawa.Callbacks.HookMay<T>, T).value') from the inner value. Will throw on fail.
 
 ```csharp
-public static Wawa.Callbacks.HookMay<T>? ExpectAdd<T>(this Wawa.Callbacks.HookMay<T>? that, T value)
+public static Wawa.Callbacks.HookMay<T> ExpectAdd<T>(this Wawa.Callbacks.HookMay<T> that, T value)
     where T : System.Delegate;
 ```
 #### Type parameters

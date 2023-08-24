@@ -5,7 +5,7 @@
 Sets the inner value with the provided [value](Generator.ExpectSet{T}(PropMay{T},T).md#Wawa.Callbacks.Generator.ExpectSet_T_(thisWawa.Callbacks.PropMay_T_,T).value 'Wawa.Callbacks.Generator.ExpectSet<T>(this Wawa.Callbacks.PropMay<T>, T).value'). Will throw on fail.
 
 ```csharp
-public static Wawa.Callbacks.PropMay<T>? ExpectSet<T>(this Wawa.Callbacks.PropMay<T>? that, T value);
+public static Wawa.Callbacks.PropMay<T> ExpectSet<T>(this Wawa.Callbacks.PropMay<T> that, T value);
 ```
 #### Type parameters
 
