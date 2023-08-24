@@ -14,12 +14,15 @@ public abstract class Hook<T> : Prop<T>
     [NotNull]
     static readonly Func<T, T> s_id = x => x;
 
+    [NotNull]
+    static readonly Func<Action, T> s_as = t => t as T;
+
     /// <summary>Initializes a new instance of the <see cref="Hook{T}"/> class.</summary>
     /// <param name="instance">The instance to get the value from.</param>
     /// <param name="name">The name of <see cref="FieldInfo"/> to get the value of.</param>
     /// <param name="getterOverride">Overrides the getter in the event that the field cannot be found.</param>
     /// <param name="converter">The converter from <see cref="Action"/> to <typeparamref name="T"/>.</param>
-    /// <param name="wrapper">Specifies the transformation before storing in the <see cref="Chest{T}"/>.</param>
+    /// <param name="wrapper">Specifies the transformation before storing in the <see cref="Chest"/>.</param>
     private protected Hook(
         [NotNull] object instance,
         [NotNull] string name,
@@ -30,7 +33,7 @@ public abstract class Hook<T> : Prop<T>
         : base(instance, name, getterOverride)
     {
         Container = Info is null ? null : new();
-        Converter = converter;
+        Converter = converter ?? s_as;
         Wrapper = wrapper ?? s_id;
     }
 
@@ -49,7 +52,7 @@ public abstract class Hook<T> : Prop<T>
     )
         : base(instance, info, getterOverride)
     {
-        Converter = converter;
+        Converter = converter ?? s_as;
         Wrapper = s_id;
     }
 
@@ -58,8 +61,8 @@ public abstract class Hook<T> : Prop<T>
     internal Chest? Container { [Pure] get; }
 
     /// <summary>Gets the converter from <see cref="Action"/> to <typeparamref name="T"/>.</summary>
-    [AllowNull, CanBeNull]
-    internal Func<Action, T>? Converter { [Pure] get; }
+    [NotNull]
+    internal Func<Action, T> Converter { [Pure] get; }
 
     /// <summary>Gets the wrapper, used to intercept how the underlying function gets invoked.</summary>
     [NotNull]
