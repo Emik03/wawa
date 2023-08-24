@@ -518,6 +518,9 @@ public static class Generator
     static Func<T, Delegate> Caster<T>([NotNull] this FieldInfo info)
         where T : Delegate
     {
+        if (typeof(T) == info.FieldType)
+            return x => x;
+
         if (s_casters.TryGetValue(info, out var value) && value is Func<T, Delegate> fun)
             return fun;
 
