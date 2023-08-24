@@ -184,16 +184,15 @@ public static class EntityCore
             that.Logger(nameof(Entity.RuleGeneration))
         );
 
-    /// <inheritdoc cref="Log"/>
-    /// <typeparam name="T">The <see cref="IEnumerable{T}"/> of <see cref="Selected"/> instances to hook.</typeparam>
+    /// <inheritdoc cref="Log(Entity)"/>
+    // ReSharper disable PossibleMultipleEnumeration
     [NotNull, PublicAPI]
-    public static T Log<T>([NotNull] this T that)
-        where T : IEnumerable<Entity>
+    public static IEnumerable<Entity> Log([NotNull] this IEnumerable<Entity> that)
     {
         foreach (var next in that)
             next.Log();
 
-        return that;
+        return that; // ReSharper restore PossibleMultipleEnumeration
     }
 
     /// <summary>

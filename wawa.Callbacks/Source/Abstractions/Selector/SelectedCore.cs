@@ -215,16 +215,15 @@ public static class SelectedCore
             that.Logger(nameof(Selected.UpdateChildren))
         );
 
-    /// <inheritdoc cref="Log"/>
-    /// <typeparam name="T">The <see cref="IEnumerable{T}"/> of <see cref="Selected"/> instances to hook.</typeparam>
+    /// <inheritdoc cref="Log(Selected)"/>
+    // ReSharper disable PossibleMultipleEnumeration
     [NotNull, PublicAPI]
-    public static T Log<T>([NotNull] this T that)
-        where T : IEnumerable<Selected>
+    public static IEnumerable<Selected> Log([NotNull] this IEnumerable<Selected> that)
     {
         foreach (var next in that)
             next.Log();
 
-        return that;
+        return that; // ReSharper restore PossibleMultipleEnumeration
     }
 
     /// <summary>Creates an <see cref="ReadOnlyCollection{T}"/> where each element has been converted.</summary>
