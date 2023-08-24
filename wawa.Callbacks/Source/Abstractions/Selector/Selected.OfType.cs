@@ -327,8 +327,8 @@ public sealed partial class Selected
     [MethodImpl(MethodImplOptions.NoInlining), NonNegativeValue]
     static int ChildLengthInner([NotNull] in object component) => ((Selectable)component).Children.Length;
 
-    [MethodImpl(MethodImplOptions.NoInlining), NotNull]
-    static Highlighted HighlighterInner([NotNull] in object m) => new(((Selectable)m).Highlight.Core());
+    [MethodImpl(MethodImplOptions.NoInlining), NotNull] // ReSharper disable once NullableWarningSuppressionIsUsed
+    static Highlighted HighlighterInner([NotNull] in object m) => new(((Selectable)m).Highlight.Core()!);
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     static Maybe<Selected> ParentInner([NotNull] in object m) =>
