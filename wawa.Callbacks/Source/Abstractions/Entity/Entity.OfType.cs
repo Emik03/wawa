@@ -339,25 +339,25 @@ public sealed partial class Entity
         [AllowNull, CanBeNull] Action needyActivate = null,
         [AllowNull, CanBeNull] Action needyDeactivate = null,
         [AllowNull, CanBeNull] Action needyTimerExpired = null,
-        [AllowNull, CanBeNull] Action<float> needyTimerSet = null,
-        [AllowNull, CanBeNull] Func<int> ruleGeneration = null,
-        [AllowNull, CanBeNull] Func<float> needyTimerGet = null
+        [AllowNull, CanBeNull] Action needyTimerSet = null,
+        [AllowNull, CanBeNull] Action ruleGeneration = null,
+        [AllowNull, CanBeNull] Action needyTimerGet = null
     )
     {
-        Activate.Add(activate);
         Solve.Add(solve);
         Strike.Add(strike);
+        Activate.Add(activate);
         NeedyActivate.TryAdd(needyActivate);
-        NeedyDeactivate.TryAdd(needyDeactivate);
-        NeedyTimerExpired.TryAdd(needyTimerExpired);
+        NeedyTimerGet.TryAdd(needyTimerGet);
         NeedyTimerSet.TryAdd(needyTimerSet);
         RuleGeneration.TryAdd(ruleGeneration);
-        NeedyTimerGet.TryAdd(needyTimerGet);
+        NeedyDeactivate.TryAdd(needyDeactivate);
+        NeedyTimerExpired.TryAdd(needyTimerExpired);
         return this;
     }
 
     /// <summary>Sets the parameter values to the corresponding hooks, when applicable.</summary>
-    /// <inheritdoc cref="Add(Action, Action, Action, Action, Action, Action, Action{float}, Func{int}, Func{float})"/>
+    /// <inheritdoc cref="Add(Action, Action, Action, Action, Action, Action, Action, Action, Action"/>
     public Entity Set(
         [AllowNull, CanBeNull] Action activate = null,
         [AllowNull, CanBeNull] Action solve = null,
@@ -365,25 +365,25 @@ public sealed partial class Entity
         [AllowNull, CanBeNull] Action needyActivate = null,
         [AllowNull, CanBeNull] Action needyDeactivate = null,
         [AllowNull, CanBeNull] Action needyTimerExpired = null,
-        [AllowNull, CanBeNull] Action<float> needyTimerSet = null,
-        [AllowNull, CanBeNull] Func<int> ruleGeneration = null,
-        [AllowNull, CanBeNull] Func<float> needyTimerGet = null
+        [AllowNull, CanBeNull] Action needyTimerSet = null,
+        [AllowNull, CanBeNull] Action ruleGeneration = null,
+        [AllowNull, CanBeNull] Action needyTimerGet = null
     )
     {
-        Activate.Set(activate);
         Solve.Set(solve);
         Strike.Set(strike);
+        Activate.Set(activate);
         NeedyActivate.TrySet(needyActivate);
-        NeedyDeactivate.TrySet(needyDeactivate);
-        NeedyTimerExpired.TrySet(needyTimerExpired);
+        NeedyTimerGet.TrySet(needyTimerGet);
         NeedyTimerSet.TrySet(needyTimerSet);
         RuleGeneration.TrySet(ruleGeneration);
-        NeedyTimerGet.TrySet(needyTimerGet);
+        NeedyDeactivate.TrySet(needyDeactivate);
+        NeedyTimerExpired.TrySet(needyTimerExpired);
         return this;
     }
 
     /// <summary>Removes the parameter values to the corresponding hooks, when applicable.</summary>
-    /// <inheritdoc cref="Add(Action, Action, Action, Action, Action, Action, Action{float}, Func{int}, Func{float})"/>
+    /// <inheritdoc cref="Add(Action, Action, Action, Action, Action, Action, Action, Action, Action)"/>
     public Entity Remove(
         [AllowNull, CanBeNull] Action activate = null,
         [AllowNull, CanBeNull] Action solve = null,
@@ -391,20 +391,20 @@ public sealed partial class Entity
         [AllowNull, CanBeNull] Action needyActivate = null,
         [AllowNull, CanBeNull] Action needyDeactivate = null,
         [AllowNull, CanBeNull] Action needyTimerExpired = null,
-        [AllowNull, CanBeNull] Action<float> needyTimerSet = null,
-        [AllowNull, CanBeNull] Func<int> ruleGeneration = null,
-        [AllowNull, CanBeNull] Func<float> needyTimerGet = null
+        [AllowNull, CanBeNull] Action needyTimerSet = null,
+        [AllowNull, CanBeNull] Action ruleGeneration = null,
+        [AllowNull, CanBeNull] Action needyTimerGet = null
     )
     {
-        Activate.Remove(activate);
         Solve.Remove(solve);
         Strike.Remove(strike);
+        Activate.Remove(activate);
         NeedyActivate.TryRemove(needyActivate);
-        NeedyDeactivate.TryRemove(needyDeactivate);
-        NeedyTimerExpired.TryRemove(needyTimerExpired);
+        NeedyTimerGet.TryRemove(needyTimerGet);
         NeedyTimerSet.TryRemove(needyTimerSet);
         RuleGeneration.TryRemove(ruleGeneration);
-        NeedyTimerGet.TryRemove(needyTimerGet);
+        NeedyDeactivate.TryRemove(needyDeactivate);
+        NeedyTimerExpired.TryRemove(needyTimerExpired);
         return this;
     }
 
@@ -414,9 +414,9 @@ public sealed partial class Entity
     /// <param name="needyTimerGet">Invoked to get the time remaining of the needy timer.</param>
     /// <returns>Itself.</returns>
     public Entity Add(
-        [AllowNull, CanBeNull] Action needyTimerSet = null,
-        [AllowNull, CanBeNull] Action ruleGeneration = null,
-        [AllowNull, CanBeNull] Action needyTimerGet = null
+        [AllowNull, CanBeNull] Action<float> needyTimerSet = null,
+        [AllowNull, CanBeNull] Func<int> ruleGeneration = null,
+        [AllowNull, CanBeNull] Func<float> needyTimerGet = null
     )
     {
         NeedyTimerSet.TryAdd(needyTimerSet);
@@ -426,11 +426,11 @@ public sealed partial class Entity
     }
 
     /// <summary>Removes the parameter values to the corresponding hooks, when applicable.</summary>
-    /// <inheritdoc cref="Add(Action, Action, Action)"/>
+    /// <inheritdoc cref="Add(Action{float}, Func{int}, Func{float})"/>
     public Entity Remove(
-        [AllowNull, CanBeNull] Action needyTimerSet = null,
-        [AllowNull, CanBeNull] Action ruleGeneration = null,
-        [AllowNull, CanBeNull] Action needyTimerGet = null
+        [AllowNull, CanBeNull] Action<float> needyTimerSet = null,
+        [AllowNull, CanBeNull] Func<int> ruleGeneration = null,
+        [AllowNull, CanBeNull] Func<float> needyTimerGet = null
     )
     {
         NeedyTimerSet.TryRemove(needyTimerSet);
@@ -440,7 +440,7 @@ public sealed partial class Entity
     }
 
     /// <summary>Sets the parameter values to the corresponding hooks, when applicable.</summary>
-    /// <inheritdoc cref="Add(Action, Action, Action)"/>
+    /// <inheritdoc cref="Add(Action{float}, Func{int}, Func{float})"/>
     public Entity Set(
         [AllowNull, CanBeNull] Action needyTimerSet = null,
         [AllowNull, CanBeNull] Action ruleGeneration = null,

@@ -324,6 +324,158 @@ public sealed partial class Selected
         [Pure] get => Array.AsReadOnly(Vanilla.IsSome ? ChildrenInner(Vanilla.Unwrap()) : ChildrenOuter(Modded.Unwrap()));
     }
 
+    /// <summary>Adds the parameter values to the corresponding hooks, when applicable.</summary>
+    /// <param name="select">Invoked when this becomes the current selectable.</param>
+    /// <param name="deselect">Invoked when this stops being the current selectable.</param>
+    /// <param name="interactEnded">Invoked when the player releases the mouse or controller button.</param>
+    /// <param name="highlight">Invoked whenever the highlight is turned on.</param>
+    /// <param name="highlightEnded">Invoked whenever the highlight is turned off.</param>
+    /// <param name="focus">Invoked when the selectable is focused.</param>
+    /// <param name="defocus">Invoked when the selectable is defocused.</param>
+    /// <param name="left">Invoked when the player pulls the selection stick left while selected.</param>
+    /// <param name="right">Invoked when the player pulls the selection stick right while selected.</param>
+    /// <param name="cancel">Invoked when the player backs out of the selectable.</param>
+    /// <param name="interact">Invoked when the player interacts with the selectable.</param>
+    /// <param name="updateChildren">Invoked when the list of children are updated.</param>
+    /// <returns>Itself.</returns>
+    // ReSharper disable FunctionComplexityOverflow
+    public Selected Add(
+        [AllowNull, CanBeNull] Action select = null,
+        [AllowNull, CanBeNull] Action deselect = null,
+        [AllowNull, CanBeNull] Action interactEnded = null,
+        [AllowNull, CanBeNull] Action highlight = null,
+        [AllowNull, CanBeNull] Action highlightEnded = null,
+        [AllowNull, CanBeNull] Action focus = null,
+        [AllowNull, CanBeNull] Action defocus = null,
+        [AllowNull, CanBeNull] Action left = null,
+        [AllowNull, CanBeNull] Action right = null,
+        [AllowNull, CanBeNull] Action cancel = null,
+        [AllowNull, CanBeNull] Action interact = null,
+        [AllowNull, CanBeNull] Action updateChildren = null
+    )
+    {
+        Left.Add(left);
+        Focus.Add(focus);
+        Right.Add(right);
+        Cancel.Add(cancel);
+        Select.Add(select);
+        Defocus.Add(defocus);
+        Deselect.Add(deselect);
+        Interact.Add(interact);
+        Highlight.Add(highlight);
+        InteractEnded.Add(interactEnded);
+        HighlightEnded.Add(highlightEnded);
+        UpdateChildren.TryAdd(updateChildren);
+        return this;
+    }
+
+    /// <summary>Removes the parameter values to the corresponding hooks, when applicable.</summary>
+    /// <inheritdoc cref="Add(Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action)"/>
+    public Selected Remove(
+        [AllowNull, CanBeNull] Action select = null,
+        [AllowNull, CanBeNull] Action deselect = null,
+        [AllowNull, CanBeNull] Action interactEnded = null,
+        [AllowNull, CanBeNull] Action highlight = null,
+        [AllowNull, CanBeNull] Action highlightEnded = null,
+        [AllowNull, CanBeNull] Action focus = null,
+        [AllowNull, CanBeNull] Action defocus = null,
+        [AllowNull, CanBeNull] Action left = null,
+        [AllowNull, CanBeNull] Action right = null,
+        [AllowNull, CanBeNull] Action cancel = null,
+        [AllowNull, CanBeNull] Action interact = null,
+        [AllowNull, CanBeNull] Action updateChildren = null
+    )
+    {
+        Left.Remove(left);
+        Focus.Remove(focus);
+        Right.Remove(right);
+        Cancel.Remove(cancel);
+        Select.Remove(select);
+        Defocus.Remove(defocus);
+        Deselect.Remove(deselect);
+        Interact.Remove(interact);
+        Highlight.Remove(highlight);
+        InteractEnded.Remove(interactEnded);
+        HighlightEnded.Remove(highlightEnded);
+        UpdateChildren.TryRemove(updateChildren);
+        return this;
+    }
+
+    /// <summary>Sets the parameter values to the corresponding hooks, when applicable.</summary>
+    /// <inheritdoc cref="Add(Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action)"/>
+    public Selected Set(
+        [AllowNull, CanBeNull] Action select = null,
+        [AllowNull, CanBeNull] Action deselect = null,
+        [AllowNull, CanBeNull] Action interactEnded = null,
+        [AllowNull, CanBeNull] Action highlight = null,
+        [AllowNull, CanBeNull] Action highlightEnded = null,
+        [AllowNull, CanBeNull] Action focus = null,
+        [AllowNull, CanBeNull] Action defocus = null,
+        [AllowNull, CanBeNull] Action left = null,
+        [AllowNull, CanBeNull] Action right = null,
+        [AllowNull, CanBeNull] Action cancel = null,
+        [AllowNull, CanBeNull] Action interact = null,
+        [AllowNull, CanBeNull] Action updateChildren = null
+    )
+    {
+        Left.Set(left);
+        Focus.Set(focus);
+        Right.Set(right);
+        Cancel.Set(cancel);
+        Select.Set(select);
+        Defocus.Set(defocus);
+        Deselect.Set(deselect);
+        Interact.Set(interact);
+        Highlight.Set(highlight);
+        InteractEnded.Set(interactEnded);
+        HighlightEnded.Set(highlightEnded);
+        UpdateChildren.TrySet(updateChildren);
+        return this;
+    }
+
+    /// <summary>Removes the parameter values to the corresponding hooks, when applicable.</summary>
+    /// <inheritdoc cref="Add(Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action)"/>
+    // ReSharper disable FunctionComplexityOverflow
+    public Selected Add(
+        [AllowNull, CanBeNull] Func<bool> cancel = null,
+        [AllowNull, CanBeNull] Func<bool> interact = null,
+        [AllowNull, CanBeNull] Action<KMSelectable> updateChildren = null
+    )
+    {
+        Cancel.Add(cancel);
+        Interact.Add(interact);
+        UpdateChildren.TryAdd(updateChildren);
+        return this;
+    }
+
+    /// <summary>Removes the parameter values to the corresponding hooks, when applicable.</summary>
+    /// <inheritdoc cref="Add(Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action)"/>
+    public Selected Remove(
+        [AllowNull, CanBeNull] Func<bool> cancel = null,
+        [AllowNull, CanBeNull] Func<bool> interact = null,
+        [AllowNull, CanBeNull] Action<KMSelectable> updateChildren = null
+    )
+    {
+        Cancel.Remove(cancel);
+        Interact.Remove(interact);
+        UpdateChildren.TryRemove(updateChildren);
+        return this;
+    }
+
+    /// <summary>Removes the parameter values to the corresponding hooks, when applicable.</summary>
+    /// <inheritdoc cref="Add(Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action)"/>
+    public Selected Set(
+        [AllowNull, CanBeNull] Func<bool> cancel = null,
+        [AllowNull, CanBeNull] Func<bool> interact = null,
+        [AllowNull, CanBeNull] Action<KMSelectable> updateChildren = null
+    )
+    {
+        Cancel.Set(cancel);
+        Interact.Set(interact);
+        UpdateChildren.TrySet(updateChildren);
+        return this;
+    }
+
     [MethodImpl(MethodImplOptions.NoInlining), NonNegativeValue]
     static int ChildLengthInner([NotNull] in object component) => ((Selectable)component).Children.Length;
 
