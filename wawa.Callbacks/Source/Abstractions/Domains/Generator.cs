@@ -133,12 +133,35 @@ public static class Generator
         return that;
     }
 
+    /// <inheritdoc cref="Set{T}(PropDef{T}, T)"/>
+    [NotNull, PublicAPI]
+    public static HookDef<T> Set<T>(
+        [NotNull] this HookDef<T> that,
+        [AllowNull, CanBeNull, NotNullWhen(true)] Action? value
+    )
+        where T : Delegate
+    {
+        var assertion = that.TrySet(value);
+        Debug.Assert(assertion);
+        return that;
+    }
+
     /// <inheritdoc cref="ExpectSet{T}(PropMay{T}, T)"/>
     [return: AllowNull, NotNullIfNotNull(nameof(that))]
     [CanBeNull, PublicAPI]
     public static HookMay<T>? ExpectSet<T>(
         [AllowNull, CanBeNull, NotNullWhen(true)] this HookMay<T>? that,
         [AllowNull, CanBeNull, NotNullWhen(true)] T value
+    )
+        where T : Delegate =>
+        (that as Hook<T>).TrySet(value).ShouldBeTrue(that);
+
+    /// <inheritdoc cref="ExpectSet{T}(PropMay{T}, T)"/>
+    [return: AllowNull, NotNullIfNotNull(nameof(that))]
+    [CanBeNull, PublicAPI]
+    public static HookMay<T>? ExpectSet<T>(
+        [AllowNull, CanBeNull, NotNullWhen(true)] this HookMay<T>? that,
+        [AllowNull, CanBeNull, NotNullWhen(true)] Action? value
     )
         where T : Delegate =>
         (that as Hook<T>).TrySet(value).ShouldBeTrue(that);
@@ -160,6 +183,19 @@ public static class Generator
         return that;
     }
 
+    /// <inheritdoc cref="Add{T}(HookDef{T}, T)"/>
+    [NotNull, PublicAPI]
+    public static HookDef<T> Add<T>(
+        [NotNull] this HookDef<T> that,
+        [AllowNull, CanBeNull, NotNullWhen(true)] Action? value
+    )
+        where T : Delegate
+    {
+        var assertion = that.TryAdd(value);
+        Debug.Assert(assertion);
+        return that;
+    }
+
     /// <summary>Adds the parameter <paramref name="value"/> from the inner value. Will throw on fail.</summary>
     /// <typeparam name="T">The type parameter of <see cref="Prop{T}"/>.</typeparam>
     /// <param name="that">This instance of <see cref="Prop{T}"/>.</param>
@@ -170,7 +206,17 @@ public static class Generator
     [CanBeNull, PublicAPI]
     public static HookMay<T>? ExpectAdd<T>(
         [AllowNull, CanBeNull, NotNullWhen(true)] this HookMay<T>? that,
-        [AllowNull, CanBeNull, NotNullWhen(true)] T value
+        [NotNull] T value
+    )
+        where T : Delegate =>
+        (that as Hook<T>).TryAdd(value).ShouldBeTrue(that);
+
+    /// <inheritdoc cref="ExpectAdd{T}(HookMay{T}, T)"/>
+    [return: AllowNull, NotNullIfNotNull(nameof(that))]
+    [CanBeNull, PublicAPI]
+    public static HookMay<T>? ExpectAdd<T>(
+        [AllowNull, CanBeNull, NotNullWhen(true)] this HookMay<T>? that,
+        [NotNull] Action value
     )
         where T : Delegate =>
         (that as Hook<T>).TryAdd(value).ShouldBeTrue(that);
@@ -192,6 +238,19 @@ public static class Generator
         return that;
     }
 
+    /// <inheritdoc cref="Remove{T}(HookDef{T}, T)"/>
+    [NotNull, PublicAPI]
+    public static HookDef<T> Remove<T>(
+        [NotNull] this HookDef<T> that,
+        [AllowNull, CanBeNull, NotNullWhen(true)] Action? value
+    )
+        where T : Delegate
+    {
+        var assertion = that.TryRemove(value);
+        Debug.Assert(assertion);
+        return that;
+    }
+
     /// <summary>Removes the parameter <paramref name="value"/> from the inner value. Will throw on fail.</summary>
     /// <typeparam name="T">The type parameter of <see cref="Prop{T}"/>.</typeparam>
     /// <param name="that">This instance of <see cref="Prop{T}"/>.</param>
@@ -202,10 +261,57 @@ public static class Generator
     [CanBeNull, PublicAPI]
     public static HookMay<T>? ExpectRemove<T>(
         [AllowNull, CanBeNull, NotNullWhen(true)] this HookMay<T>? that,
-        [AllowNull, CanBeNull, NotNullWhen(true)] T value
+        [NotNull] T value
     )
         where T : Delegate =>
         (that as Hook<T>).TryRemove(value).ShouldBeTrue(that);
+
+    /// <inheritdoc cref="ExpectRemove{T}(HookMay{T}, T)"/>
+    [return: AllowNull, NotNullIfNotNull(nameof(that))]
+    [CanBeNull, PublicAPI]
+    public static HookMay<T>? ExpectRemove<T>(
+        [AllowNull, CanBeNull, NotNullWhen(true)] this HookMay<T>? that,
+        [NotNull] Action? value
+    )
+        where T : Delegate =>
+        (that as Hook<T>).TryRemove(value).ShouldBeTrue(that);
+
+    /// <inheritdoc cref="Do{T}(T, Action{T})"/>
+    [return: AllowNull, NotNullIfNotNull(nameof(that))]
+    [CanBeNull]
+    public static IEnumerable<T>? Do<T>(
+        [AllowNull, CanBeNull, InstantHandle] this IEnumerable<T>? that,
+        [InstantHandle] Action<T> action
+    )
+        where T : IVanilla // ReSharper disable PossibleMultipleEnumeration
+    {
+        if (that is null)
+            return null;
+
+        foreach (var next in that)
+            next.Do(action);
+
+        return that; // ReSharper restore PossibleMultipleEnumeration
+    }
+
+    /// <summary>Executes the function, then returns the parameter <paramref name="that"/>.</summary>
+    /// <remarks><para>
+    /// Types that implement <see cref="IVanilla"/> generally expose lots of callbacks.
+    /// As such it may be desired to pass a reference of <paramref name="that"/> into the callback.
+    /// This function acts as a Y-combinator, allowing you to assign a temporary variable that can bind to the callback.
+    /// </para></remarks>
+    /// <typeparam name="T">The type of context value.</typeparam>
+    /// <param name="that">The value to pass into the callback.</param>
+    /// <param name="action">The callback.</param>
+    /// <returns>The parameter <paramref name="that"/>.</returns>
+    [return: AllowNull, NotNullIfNotNull(nameof(that))]
+    [CanBeNull]
+    public static T Do<T>([AllowNull, CanBeNull] this T that, [InstantHandle] Action<T> action)
+        where T : IVanilla
+    {
+        action(that);
+        return that;
+    }
 
     /// <summary>Gets the inner value.</summary>
     /// <typeparam name="T">The type parameter of <see cref="Prop{T}"/>.</typeparam>
