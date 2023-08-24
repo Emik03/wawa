@@ -47,7 +47,7 @@ public sealed partial class Selected
     }
 
     /// <summary>
-    /// Gets the <see cref="Action"/> that is called whenever this selectable becomes the current selectable.
+    /// Gets the <see cref="DefocusFix"/> that is called whenever this selectable becomes the current selectable.
     /// </summary>
     [NotNull, PublicAPI]
     public HookDef<Action> Select
@@ -56,7 +56,7 @@ public sealed partial class Selected
     }
 
     /// <summary>
-    /// Gets the <see cref="Action"/> that is called whenever this selectable stops being the current selectable.
+    /// Gets the <see cref="DefocusFix"/> that is called whenever this selectable stops being the current selectable.
     /// </summary>
     [NotNull, PublicAPI]
     public HookDef<Action> Deselect
@@ -108,7 +108,7 @@ public sealed partial class Selected
     }
 
     /// <summary>
-    /// Gets the <see cref="Action"/> that is called whenever the player is interacting
+    /// Gets the <see cref="DefocusFix"/> that is called whenever the player is interacting
     /// with this selectable and releases the mouse or controller button.
     /// </summary>
     [NotNull, PublicAPI]
@@ -118,7 +118,7 @@ public sealed partial class Selected
     }
 
     /// <summary>
-    /// Gets the <see cref="Action"/> that is called whenever the highlight is turned on.
+    /// Gets the <see cref="DefocusFix"/> that is called whenever the highlight is turned on.
     /// </summary>
     [NotNull, PublicAPI]
     public HookDef<Action> Highlight
@@ -127,7 +127,7 @@ public sealed partial class Selected
     }
 
     /// <summary>
-    /// Gets the <see cref="Action"/> that is called whenever the highlight is turned off.
+    /// Gets the <see cref="DefocusFix"/> that is called whenever the highlight is turned off.
     /// </summary>
     [NotNull, PublicAPI]
     public HookDef<Action> HighlightEnded
@@ -136,7 +136,7 @@ public sealed partial class Selected
     }
 
     /// <summary>
-    /// Gets the <see cref="Action"/> that is called whenever the module is focused,
+    /// Gets the <see cref="DefocusFix"/> that is called whenever the module is focused,
     /// this is when it is interacted with from the bomb face level and this module's children can be selected.
     /// </summary>
     [NotNull, PublicAPI]
@@ -146,17 +146,19 @@ public sealed partial class Selected
     }
 
     /// <summary>
-    /// Gets the <see cref="Action"/> that is called whenever the module is defocused,
+    /// Gets the <see cref="DefocusFix"/> that is called whenever the module is defocused,
     /// this is when a different selectable becomes the focus or the module has been backed out of.
     /// </summary>
     [NotNull, PublicAPI]
     public HookDef<Action> Defocus
     {
-        [Pure] get => _defocus ??= new(Value, nameof(KMSelectable.OnDefocus));
+        [Pure]
+        get =>
+            _defocus ??= new(Value, nameof(KMSelectable.OnDefocus), wrapper: IsKtane ? DefocusFix : x => x);
     }
 
     /// <summary>
-    /// Gets the <see cref="Action"/> that is called whenever the player
+    /// Gets the <see cref="DefocusFix"/> that is called whenever the player
     /// pulls selection stick left while this selectable is focused.
     /// </summary>
     [NotNull, PublicAPI]
@@ -166,7 +168,7 @@ public sealed partial class Selected
     }
 
     /// <summary>
-    /// Gets the <see cref="Action"/> that is called whenever player
+    /// Gets the <see cref="DefocusFix"/> that is called whenever player
     /// pulls selection stick right while this selectable is focused.
     /// </summary>
     [NotNull, PublicAPI]
@@ -176,7 +178,7 @@ public sealed partial class Selected
     }
 
     /// <summary>
-    /// Gets the <see cref="Action"/> that when called,
+    /// Gets the <see cref="DefocusFix"/> that when called,
     /// performs an interaction punch or bomb shake with the impact level based on the parameter passed in.
     /// </summary>
     [NotNull, PublicAPI]
@@ -187,7 +189,7 @@ public sealed partial class Selected
     }
 
     /// <summary>
-    /// Gets the <see cref="Action"/> that when called, updates the list of children,
+    /// Gets the <see cref="DefocusFix"/> that when called, updates the list of children,
     /// with the parameter being the <see cref="KMSelectable"/> to select.
     /// </summary>
     [CLSCompliant(false), NotNull, PublicAPI]
@@ -329,14 +331,27 @@ public sealed partial class Selected
     [MethodImpl(MethodImplOptions.NoInlining), NonNegativeValue]
     static int ChildLengthInner([NotNull] in object component) => ((Selectable)component).Children.Length;
 
-    [MethodImpl(MethodImplOptions.NoInlining), NotNull] // ReSharper disable once NullableWarningSuppressionIsUsed
+    [NotNull]
+    static Action DefocusFix([NotNull] Action onDefocus)
+    {
+        var call = true;
+
+        return () =>
+        {
+            call ^= true;
+
+            if (call)
+                onDefocus();
+        };
+    }
+
+    [NotNull] // ReSharper disable once NullableWarningSuppressionIsUsed
     static Highlighted HighlighterInner([NotNull] in object m) => new(((Selectable)m).Highlight.Core()!);
 
-    [MethodImpl(MethodImplOptions.NoInlining)]
     static Maybe<Selected> ParentInner([NotNull] in object m) =>
         ((Selectable)m).Parent is var selectable && selectable ? new Selected(selectable.Core()) : null;
 
-    [MethodImpl(MethodImplOptions.NoInlining), NotNull]
+    [NotNull]
     static Maybe<Selected>[] ChildrenInner([NotNull] in object m)
     {
         var children = ((Selectable)m).Children;
