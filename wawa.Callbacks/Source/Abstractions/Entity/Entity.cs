@@ -53,8 +53,8 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
     }
 
     /// <summary>Gets the value which is guaranteed to be a <see cref="MonoBehaviour"/>.</summary>
-    [NotNull]
-    internal MonoBehaviour Value { [Pure] get; }
+    [PublicAPI]
+    public MonoBehaviour Value { [Pure] get; }
 
     [AllowNull, CanBeNull]
     MonoBehaviour VanillaTimer
@@ -131,7 +131,7 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
     public static ReadOnlyCollection<Entity> GetChildren([AllowNull, CanBeNull] GameObject gameObject)
     {
         if (gameObject is null)
-            return Chest<Entity>.Empty;
+            return Cache<Entity>.Empty;
 
         if (s_allModules.TryGetValue(gameObject, out var children))
             return children;

@@ -2,6 +2,7 @@
 namespace Wawa.Callbacks;
 
 /// <summary>Implementations for <see cref="Prop{T}"/> and its derivatives.</summary>
+// ReSharper disable NullableWarningSuppressionIsUsed
 [PublicAPI]
 public static class Generator
 {
@@ -14,26 +15,6 @@ public static class Generator
         s_getters = new(),
         s_setters = new(),
         s_removers = new();
-
-    [NotNull]
-    static readonly MethodInfo
-        s_combine = ((Func<Delegate, Delegate, Delegate>)Delegate.Combine).Method,
-        s_createDelegate = ((Func<Type, object, MethodInfo, Delegate>)Delegate.CreateDelegate).Method,
-        s_remove = ((Delegate)Delegate.Remove).Method; // ReSharper disable NullableWarningSuppressionIsUsed
-
-    [NotNull]
-    static readonly PropertyInfo
-        s_method = typeof(Delegate).GetProperty(nameof(Delegate.Method), Flags)!,
-        s_target = typeof(Delegate).GetProperty(nameof(Delegate.Target), Flags)!;
-
-    /// <inheritdoc cref="TrySet{T}(Prop{T}, T)"/>
-    // ReSharper restore NullableWarningSuppressionIsUsed
-    [PublicAPI]
-    public static bool TrySet<T>(
-        [AllowNull, CanBeNull, NotNullWhen(true)] this PropMay<T>? that,
-        [AllowNull, CanBeNull, NotNullWhen(true)] T value
-    ) =>
-        (that as Prop<T>).TrySet(value);
 
     /// <inheritdoc cref="TrySet{T}(Hook{T}, T)"/>
     [PublicAPI]
@@ -106,16 +87,34 @@ public static class Generator
         return that;
     }
 
+    [NotNull]
+    static readonly MethodInfo
+        s_combine = ((Func<Delegate, Delegate, Delegate>)Delegate.Combine).Method,
+        s_createDelegate = ((Func<Type, object, MethodInfo, Delegate>)Delegate.CreateDelegate).Method,
+        s_remove = ((Delegate)Delegate.Remove).Method;
+
+    [NotNull]
+    static readonly PropertyInfo
+        s_method = typeof(Delegate).GetProperty(nameof(Delegate.Method), Flags)!,
+        s_target = typeof(Delegate).GetProperty(nameof(Delegate.Target), Flags)!;
+
+    /// <inheritdoc cref="TrySet{T}(Prop{T}, T)"/>
+    [PublicAPI]
+    public static bool TrySet<T>(
+        [AllowNull, CanBeNull, NotNullWhen(true)] this PropMay<T>? that,
+        [AllowNull, CanBeNull, NotNullWhen(true)] T value
+    ) =>
+        (that as Prop<T>).TrySet(value);
+
     /// <summary>Sets the inner value with the provided <paramref name="value"/>. Will throw on fail.</summary>
     /// <typeparam name="T">The type parameter of <see cref="Prop{T}"/>.</typeparam>
     /// <param name="that">This instance of <see cref="Prop{T}"/>.</param>
     /// <param name="value">The value to set the inner value with.</param>
     /// <exception cref="InvalidOperationException">The parameter <paramref name="that"/> is immutable.</exception>
     /// <returns>The parameter <paramref name="that"/>.</returns>
-    [return: AllowNull, NotNullIfNotNull(nameof(that))]
-    [CanBeNull, PublicAPI]
-    public static PropMay<T>? ExpectSet<T>(
-        [AllowNull, CanBeNull, NotNullWhen(true)] this PropMay<T>? that,
+    [NotNull, PublicAPI]
+    public static PropMay<T> ExpectSet<T>(
+        [NotNull] this PropMay<T> that,
         [AllowNull, CanBeNull, NotNullWhen(true)] T value
     ) =>
         (that as Prop<T>).TrySet(value).ShouldBeTrue(that);
@@ -147,24 +146,16 @@ public static class Generator
     }
 
     /// <inheritdoc cref="ExpectSet{T}(PropMay{T}, T)"/>
-    [return: AllowNull, NotNullIfNotNull(nameof(that))]
-    [CanBeNull, PublicAPI]
-    public static HookMay<T>? ExpectSet<T>(
-        [AllowNull, CanBeNull, NotNullWhen(true)] this HookMay<T>? that,
-        [AllowNull, CanBeNull, NotNullWhen(true)] T value
-    )
+    [NotNull, PublicAPI]
+    public static HookMay<T> ExpectSet<T>([NotNull] this HookMay<T> that, [AllowNull, CanBeNull] T value)
         where T : Delegate =>
         (that as Hook<T>).TrySet(value).ShouldBeTrue(that);
 
     /// <inheritdoc cref="ExpectSet{T}(PropMay{T}, T)"/>
-    [return: AllowNull, NotNullIfNotNull(nameof(that))]
-    [CanBeNull, PublicAPI]
-    public static HookMay<T>? ExpectSet<T>(
-        [AllowNull, CanBeNull, NotNullWhen(true)] this HookMay<T>? that,
-        [AllowNull, CanBeNull, NotNullWhen(true)] Action? value
-    )
+    [NotNull, PublicAPI]
+    public static HookMay<T> ExpectSet<T>([NotNull] this HookMay<T> that, [AllowNull, CanBeNull] Action? value)
         where T : Delegate =>
-        (that as Hook<T>).TrySet(value).ShouldBeTrue(that);
+        (that as Hook<T>).TrySet(value).ShouldBeTrue(that)!;
 
     /// <summary>Adds the parameter <paramref name="value"/> from the inner value.</summary>
     /// <typeparam name="T">The type parameter of <see cref="Prop{T}"/>.</typeparam>
@@ -202,24 +193,16 @@ public static class Generator
     /// <param name="value">The value to set the inner value with.</param>
     /// <exception cref="InvalidOperationException">The parameter <paramref name="that"/> is immutable.</exception>
     /// <returns>The parameter <paramref name="that"/>.</returns>
-    [return: AllowNull, NotNullIfNotNull(nameof(that))]
-    [CanBeNull, PublicAPI]
-    public static HookMay<T>? ExpectAdd<T>(
-        [AllowNull, CanBeNull, NotNullWhen(true)] this HookMay<T>? that,
-        [NotNull] T value
-    )
+    [NotNull, PublicAPI]
+    public static HookMay<T> ExpectAdd<T>([NotNull] this HookMay<T> that, [NotNull] T value)
         where T : Delegate =>
         (that as Hook<T>).TryAdd(value).ShouldBeTrue(that);
 
     /// <inheritdoc cref="ExpectAdd{T}(HookMay{T}, T)"/>
-    [return: AllowNull, NotNullIfNotNull(nameof(that))]
-    [CanBeNull, PublicAPI]
-    public static HookMay<T>? ExpectAdd<T>(
-        [AllowNull, CanBeNull, NotNullWhen(true)] this HookMay<T>? that,
-        [NotNull] Action value
-    )
+    [NotNull, PublicAPI]
+    public static HookMay<T> ExpectAdd<T>([NotNull] this HookMay<T> that, [NotNull] Action value)
         where T : Delegate =>
-        (that as Hook<T>).TryAdd(value).ShouldBeTrue(that);
+        (that as Hook<T>).TryAdd(value).ShouldBeTrue(that)!;
 
     /// <summary>Removes the parameter <paramref name="value"/> from the inner value.</summary>
     /// <typeparam name="T">The type parameter of <see cref="Prop{T}"/>.</typeparam>
@@ -251,42 +234,76 @@ public static class Generator
         return that;
     }
 
+    /// <summary>Clears all hooks set by this instance.</summary>
+    /// <typeparam name="T">The type parameter of <see cref="Prop{T}"/>.</typeparam>
+    /// <param name="that">This instance of <see cref="Hook{T}"/>.</param>
+    /// <returns>The parameter <paramref name="that"/>.</returns>
+    [NotNull, PublicAPI]
+    public static Hook<T> Clear<T>([NotNull] this Hook<T> that)
+        where T : Delegate
+    {
+        if (that.Container is not { } container)
+            return that;
+
+        foreach (var next in container)
+            that.TryRemove(next);
+
+        return that;
+    }
+
+    /// <inheritdoc cref="Clear{T}(Hook{T})"/>
+    [NotNull, PublicAPI]
+    public static HookDef<T> Clear<T>([NotNull] this HookDef<T> that)
+        where T : Delegate
+    {
+        (that as Hook<T>).Clear();
+        return that;
+    }
+
+    /// <inheritdoc cref="Clear{T}(Hook{T})"/>
+    [NotNull, PublicAPI]
+    public static HookMay<T> Clear<T>([NotNull] this HookMay<T> that)
+        where T : Delegate
+    {
+        (that as Hook<T>).Clear();
+        return that;
+    }
+
     /// <summary>Removes the parameter <paramref name="value"/> from the inner value. Will throw on fail.</summary>
     /// <typeparam name="T">The type parameter of <see cref="Prop{T}"/>.</typeparam>
     /// <param name="that">This instance of <see cref="Prop{T}"/>.</param>
     /// <param name="value">The value to set the inner value with.</param>
     /// <exception cref="InvalidOperationException">The parameter <paramref name="that"/> is immutable.</exception>
     /// <returns>The parameter <paramref name="that"/>.</returns>
-    [return: AllowNull, NotNullIfNotNull(nameof(that))]
-    [CanBeNull, PublicAPI]
-    public static HookMay<T>? ExpectRemove<T>(
-        [AllowNull, CanBeNull, NotNullWhen(true)] this HookMay<T>? that,
-        [NotNull] T value
-    )
+    [NotNull, PublicAPI]
+    public static HookMay<T>? ExpectRemove<T>([NotNull] this HookMay<T> that, [NotNull] T value)
         where T : Delegate =>
         (that as Hook<T>).TryRemove(value).ShouldBeTrue(that);
 
     /// <inheritdoc cref="ExpectRemove{T}(HookMay{T}, T)"/>
-    [return: AllowNull, NotNullIfNotNull(nameof(that))]
-    [CanBeNull, PublicAPI]
-    public static HookMay<T>? ExpectRemove<T>(
-        [AllowNull, CanBeNull, NotNullWhen(true)] this HookMay<T>? that,
-        [NotNull] Action? value
-    )
+    [NotNull, PublicAPI]
+    public static HookMay<T> ExpectRemove<T>([NotNull] this HookMay<T> that, [NotNull] Action value)
         where T : Delegate =>
-        (that as Hook<T>).TryRemove(value).ShouldBeTrue(that);
+        (that as Hook<T>).TryRemove(value).ShouldBeTrue(that)!;
+
+    /// <summary>Gets the logger of the <see cref="IVanilla"/>.</summary>
+    /// <param name="vanilla">The current <see cref="IVanilla"/>.</param>
+    /// <param name="label">An additional label to attach to the end.</param>
+    /// <returns>The callable function that logs the current path of the encapsulated value.</returns>
+    [NotNull, PublicAPI, Pure]
+    public static Action Logger([NotNull] this IVanilla vanilla, [AllowNull, CanBeNull] string label = null) =>
+        () => Debug.LogFormat(vanilla.Value.GetPath(label));
 
     /// <inheritdoc cref="Do{T}(T, Action{T})"/>
-    [return: AllowNull, NotNullIfNotNull(nameof(that))]
-    [CanBeNull]
-    public static IEnumerable<T>? Do<T>(
+    [NotNull]
+    public static IEnumerable<T> Do<T>(
         [AllowNull, CanBeNull, InstantHandle] this IEnumerable<T>? that,
         [InstantHandle] Action<T> action
     )
         where T : IVanilla // ReSharper disable PossibleMultipleEnumeration
     {
         if (that is null)
-            return null;
+            return Enumerable.Empty<T>();
 
         foreach (var next in that)
             next.Do(action);
@@ -304,9 +321,8 @@ public static class Generator
     /// <param name="that">The value to pass into the callback.</param>
     /// <param name="action">The callback.</param>
     /// <returns>The parameter <paramref name="that"/>.</returns>
-    [return: AllowNull, NotNullIfNotNull(nameof(that))]
-    [CanBeNull]
-    public static T Do<T>([AllowNull, CanBeNull] this T that, [InstantHandle] Action<T> action)
+    [NotNull]
+    public static T Do<T>([NotNull] this T that, [InstantHandle] Action<T> action)
         where T : IVanilla
     {
         action(that);
@@ -349,8 +365,7 @@ public static class Generator
         if (that is null or { Container: null } or { Info: null })
             return false;
 
-        var del = that.Info.Caster<T>()(value);
-
+        var del = that.Info.Caster<T>()(that.Wrapper(value));
         that.Info.Setter<Delegate>()(that.Instance, del);
         that.Container.Clear();
 
@@ -370,8 +385,7 @@ public static class Generator
         if (that is null or { Container: null } or { Info: null })
             return false;
 
-        var del = that.Info.Caster<T>()(that.Converter?.Invoke(value));
-
+        var del = that.Info.Caster<T>()(that.Wrapper(that.Converter?.Invoke(value)));
         that.Info.Setter<Delegate>()(that.Instance, del);
         that.Container.Clear();
 
@@ -395,7 +409,7 @@ public static class Generator
         if (that is null or { Container: null } or { Info: null } || value is null)
             return false;
 
-        var del = that.Info.Caster<T>()(value);
+        var del = that.Info.Caster<T>()(that.Wrapper(value));
         that.Info.Adder()(that.Instance, del);
         that.Container.Add(value, del);
         return true;
@@ -411,7 +425,7 @@ public static class Generator
         if (that is null or { Container: null } or { Info: null } || value is null)
             return false;
 
-        var del = that.Info.Caster<T>()(that.Converter?.Invoke(value));
+        var del = that.Info.Caster<T>()(that.Wrapper(that.Converter?.Invoke(value)));
         that.Info.Adder()(that.Instance, del);
         that.Container.Add(value, del);
         return true;
@@ -459,7 +473,6 @@ public static class Generator
         [NotNull] Expression exNoComponent
     )
     {
-        // ReSharper disable once NullableWarningSuppressionIsUsed
         var arg = info.DeclaringType!.Name is nameof(PassEvent) or nameof(StrikeEvent)
             ? Expression.Lambda<Action>(Expression.Invoke(exField, exNoComponent))
             : exField;
@@ -467,7 +480,6 @@ public static class Generator
         return Expression.Call(s_createDelegate, exType, arg);
     }
 
-    // ReSharper disable NullableWarningSuppressionIsUsed
     [NotNull]
     static Action<object, T> GenerateSetter<T>(
         [NotNull] FieldInfo info,
@@ -564,13 +576,11 @@ public static class Generator
         return func;
     }
 
-    [return: AllowNull, NotNullIfNotNull(nameof(consequent))]
-    [CanBeNull]
-    static T ShouldBeTrue<T>(this bool assert, [AllowNull, CanBeNull] T consequent)
-        where T : class =>
+    [NotNull]
+    static T ShouldBeTrue<T>(this bool assert, [NotNull] T consequent) =>
         assert ? consequent : throw new InvalidOperationException(Message(consequent));
 
     [NotNull, Pure]
-    static string Message([AllowNull, CanBeNull] object consequent) =>
+    static string Message([NotNull] object consequent) =>
         $"Assertion failed while calling {new StackTrace().GetFrame(1).GetMethod().Name}; cannot operate on current object \"{consequent}\"";
 }

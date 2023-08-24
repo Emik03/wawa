@@ -2,8 +2,7 @@
 namespace Wawa.Callbacks;
 
 /// <summary>Internal storage of events used by <see cref="Hook{T}"/> to remove delegates.</summary>
-/// <typeparam name="T">The <see cref="Type"/> of <see cref="Delegate"/> to store.</typeparam>
-sealed class Chest<T> : ICloneable
+sealed class Chest : ICloneable, IEnumerable<Delegate>
 {
     [NotNull]
     const string
@@ -13,14 +12,11 @@ sealed class Chest<T> : ICloneable
     [NotNull]
     readonly Dictionary<Delegate, Delegate> _dictionary = new();
 
-    /// <summary>Gets the empty set.</summary>
-    public static ReadOnlyCollection<T> Empty { get; } = new(new T[] { });
-
     /// <inheritdoc/>
     [Pure]
     public object Clone()
     {
-        Chest<T> instance = new();
+        Chest instance = new();
 
         foreach (var item in _dictionary)
             instance._dictionary[item.Key] = item.Value;
@@ -44,6 +40,12 @@ sealed class Chest<T> : ICloneable
 
         return sb.ToString();
     }
+
+    /// <inheritdoc />
+    public IEnumerator<Delegate> GetEnumerator() => _dictionary.Keys.AsEnumerable().GetEnumerator();
+
+    /// <inheritdoc />
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
     /// <summary>Clears the dictionary.</summary>
     internal void Clear() => _dictionary.Clear();

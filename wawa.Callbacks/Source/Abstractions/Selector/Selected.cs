@@ -22,8 +22,8 @@ public sealed partial class Selected : ICloneable, IEquatable<Selected>, IEquali
     internal Selected(MonoBehaviour selectable) => Value = selectable;
 
     /// <summary>Gets the value which is guaranteed to be a <see cref="MonoBehaviour"/>.</summary>
-    [NotNull]
-    internal MonoBehaviour Value { [Pure] get; }
+    [PublicAPI]
+    public MonoBehaviour Value { [Pure] get; }
 
     /// <summary>Determines whether both instances point to the same component.</summary>
     /// <param name="left">The left-hand side.</param>
@@ -71,7 +71,7 @@ public sealed partial class Selected : ICloneable, IEquatable<Selected>, IEquali
     /// </returns>
     [CLSCompliant(false), PublicAPI, Pure]
     public static Maybe<Selected> FromComponent([NotNull] Component component) =>
-        component.GetComponent<KMSelectable>() is { } selectable ? new Selected(selectable) :
+        component.GetComponent<KMSelectable>() is var selectable && selectable ? new Selected(selectable) :
         IsKtane ? ToSelectableInner(component) : default;
 
     /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>

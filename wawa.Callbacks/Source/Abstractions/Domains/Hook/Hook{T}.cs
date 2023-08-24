@@ -11,21 +11,27 @@ namespace Wawa.Callbacks;
 public abstract class Hook<T> : Prop<T>
     where T : Delegate
 {
+    [NotNull]
+    static readonly Func<T, T> s_id = x => x;
+
     /// <summary>Initializes a new instance of the <see cref="Hook{T}"/> class.</summary>
     /// <param name="instance">The instance to get the value from.</param>
     /// <param name="name">The name of <see cref="FieldInfo"/> to get the value of.</param>
     /// <param name="getterOverride">Overrides the getter in the event that the field cannot be found.</param>
     /// <param name="converter">The converter from <see cref="Action"/> to <typeparamref name="T"/>.</param>
+    /// <param name="wrapper">Specifies the transformation before storing in the <see cref="Chest{T}"/>.</param>
     private protected Hook(
         [NotNull] object instance,
         [NotNull] string name,
         [AllowNull, CanBeNull] Func<object, T> getterOverride,
-        [AllowNull, CanBeNull] Func<Action, T> converter
+        [AllowNull, CanBeNull] Func<Action, T> converter,
+        [AllowNull, CanBeNull] Func<T, T> wrapper = null
     )
         : base(instance, name, getterOverride)
     {
         Container = Info is null ? null : new();
         Converter = converter;
+        Wrapper = wrapper ?? s_id;
     }
 
     /// <summary>
@@ -41,14 +47,21 @@ public abstract class Hook<T> : Prop<T>
         [AllowNull, CanBeNull] Func<object, T> getterOverride,
         [AllowNull, CanBeNull] Func<Action, T> converter
     )
-        : base(instance, info, getterOverride) =>
+        : base(instance, info, getterOverride)
+    {
         Converter = converter;
+        Wrapper = s_id;
+    }
 
     /// <summary>Gets the container.</summary>
     [AllowNull, CanBeNull]
-    internal Chest<T>? Container { [Pure] get; }
+    internal Chest? Container { [Pure] get; }
 
     /// <summary>Gets the converter from <see cref="Action"/> to <typeparamref name="T"/>.</summary>
     [AllowNull, CanBeNull]
     internal Func<Action, T>? Converter { [Pure] get; }
+
+    /// <summary>Gets the wrapper, used to intercept how the underlying function gets invoked.</summary>
+    [NotNull]
+    internal Func<T, T> Wrapper { [Pure] get; }
 }

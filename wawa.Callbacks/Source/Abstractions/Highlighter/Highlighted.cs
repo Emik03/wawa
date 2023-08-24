@@ -24,8 +24,8 @@ public sealed partial class Highlighted : ICloneable, IEquatable<Highlighted>, I
     internal Highlighted([NotNull] MonoBehaviour highlightable) => Value = highlightable;
 
     /// <summary>Gets the value which is guaranteed to be a <see cref="MonoBehaviour"/>.</summary>
-    [NotNull]
-    internal MonoBehaviour Value { [Pure] get; }
+    [PublicAPI]
+    public MonoBehaviour Value { [Pure] get; }
 
     /// <summary>
     /// Determines whether both instances point to the same component.
@@ -41,6 +41,13 @@ public sealed partial class Highlighted : ICloneable, IEquatable<Highlighted>, I
         left?.Equals(right) ?? right is null;
 
     /// <summary>
+    /// Implicitly calls the constructor.
+    /// </summary>
+    /// <param name="highlightable">The <see cref="KMHighlightable"/> to pass in to the constructor.</param>
+    [CLSCompliant(false), NotNull, PublicAPI, Pure]
+    public static implicit operator Highlighted([NotNull] KMHighlightable highlightable) => new(highlightable);
+
+    /// <summary>
     /// Determines whether both instances do not point to the same component.
     /// </summary>
     /// <param name="left">The left-hand side.</param>
@@ -52,13 +59,6 @@ public sealed partial class Highlighted : ICloneable, IEquatable<Highlighted>, I
         [AllowNull, CanBeNull] Highlighted right
     ) =>
         !(left == right);
-
-    /// <summary>
-    /// Implicitly calls the constructor.
-    /// </summary>
-    /// <param name="highlightable">The <see cref="KMHighlightable"/> to pass in to the constructor.</param>
-    [CLSCompliant(false), NotNull, PublicAPI, Pure]
-    public static implicit operator Highlighted([NotNull] KMHighlightable highlightable) => new(highlightable);
 
     /// <summary>
     /// Converts the <see cref="KMBombModule"/> to a <see langword="new"/> <see cref="Selected"/>.
@@ -80,8 +80,9 @@ public sealed partial class Highlighted : ICloneable, IEquatable<Highlighted>, I
     /// </returns>
     [CLSCompliant(false), MustUseReturnValue, PublicAPI]
     public static Maybe<Highlighted> FromComponent([NotNull] Component component) =>
-        component.GetComponent<KMHighlightable>() is { } highlightable ? new Highlighted(highlightable) :
-        IsKtane ? ToHighlightableInner(component) : default;
+        component.GetComponent<KMHighlightable>() is var highlightable && highlightable ?
+            new Highlighted(highlightable) :
+            IsKtane ? ToHighlightableInner(component) : default;
 
     /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
     [PublicAPI, Pure]

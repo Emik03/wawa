@@ -16,6 +16,186 @@ public static class EntityCore
     [CLSCompliant(false), NotNull, Pure]
     public static Entity AsEntity([NotNull] this KMNeedyModule needy) => new(needy);
 
+    /// <summary>Adds the parameter values to the corresponding hooks, when applicable.</summary>
+    /// <param name="that">This instance of <see cref="Entity"/>.</param>
+    /// <param name="onActivate">Invoked when the lights turn on.</param>
+    /// <param name="onNeedyActivate">Invoked when the needy activates.</param>
+    /// <param name="onNeedyDeactivate">Invoked when the needy deactivates.</param>
+    /// <param name="onNeedyTimerExpired">Invoked when the needy timer expires.</param>
+    /// <param name="onNeedyTimerGet">Invoked to get the time remaining of the needy timer.</param>
+    /// <param name="onNeedyTimerSet">Invoked to set the time of the needy timer.</param>
+    /// <param name="onRuleGeneration">Invoked to get the random seed used to generate rules for the game.</param>
+    /// <param name="onSolve">Invoked when the entire module has been solved.</param>
+    /// <param name="onStrike">Invoked on any mistake that causes a bomb strike.</param>
+    /// <returns>Itself.</returns>
+    // ReSharper disable MethodOverloadWithOptionalParameter
+    [NotNull, PublicAPI]
+    public static Entity Add(
+        [NotNull] this Entity that,
+        [AllowNull, CanBeNull] Action onActivate = null,
+        [AllowNull, CanBeNull] Action onNeedyActivate = null,
+        [AllowNull, CanBeNull] Action onNeedyDeactivate = null,
+        [AllowNull, CanBeNull] Action onNeedyTimerExpired = null,
+        [AllowNull, CanBeNull] Action onNeedyTimerGet = null,
+        [AllowNull, CanBeNull] Action onNeedyTimerSet = null,
+        [AllowNull, CanBeNull] Action onRuleGeneration = null,
+        [AllowNull, CanBeNull] Action onSolve = null,
+        [AllowNull, CanBeNull] Action onStrike = null
+    )
+    {
+        that.Solve.Add(onSolve);
+        that.Strike.Add(onStrike);
+        that.Activate.Add(onActivate);
+        that.NeedyActivate.TryAdd(onNeedyActivate);
+        that.NeedyTimerGet.TryAdd(onNeedyTimerGet);
+        that.NeedyTimerSet.TryAdd(onNeedyTimerSet);
+        that.RuleGeneration.TryAdd(onRuleGeneration);
+        that.NeedyDeactivate.TryAdd(onNeedyDeactivate);
+        that.NeedyTimerExpired.TryAdd(onNeedyTimerExpired);
+        return that;
+    }
+
+    /// <summary>Sets the parameter values to the corresponding hooks, when applicable.</summary>
+    /// <inheritdoc cref="Add(Entity, Action, Action, Action, Action, Action, Action, Action, Action, Action)"/>
+    [NotNull, PublicAPI]
+    public static Entity Set(
+        [NotNull] this Entity that,
+        [AllowNull, CanBeNull] Action onActivate = null,
+        [AllowNull, CanBeNull] Action onNeedyActivate = null,
+        [AllowNull, CanBeNull] Action onNeedyDeactivate = null,
+        [AllowNull, CanBeNull] Action onNeedyTimerExpired = null,
+        [AllowNull, CanBeNull] Action onNeedyTimerGet = null,
+        [AllowNull, CanBeNull] Action onNeedyTimerSet = null,
+        [AllowNull, CanBeNull] Action onRuleGeneration = null,
+        [AllowNull, CanBeNull] Action onSolve = null,
+        [AllowNull, CanBeNull] Action onStrike = null
+    )
+    {
+        that.Solve.Set(onSolve);
+        that.Strike.Set(onStrike);
+        that.Activate.Set(onActivate);
+        that.NeedyActivate.TrySet(onNeedyActivate);
+        that.NeedyTimerGet.TrySet(onNeedyTimerGet);
+        that.NeedyTimerSet.TrySet(onNeedyTimerSet);
+        that.RuleGeneration.TrySet(onRuleGeneration);
+        that.NeedyDeactivate.TrySet(onNeedyDeactivate);
+        that.NeedyTimerExpired.TrySet(onNeedyTimerExpired);
+        return that;
+    }
+
+    /// <summary>Removes the parameter values to the corresponding hooks, when applicable.</summary>
+    /// <inheritdoc cref="Add(Entity, Action, Action, Action, Action, Action, Action, Action, Action, Action)"/>
+    [NotNull, PublicAPI]
+    public static Entity Remove(
+        [NotNull] this Entity that,
+        [AllowNull, CanBeNull] Action onActivate = null,
+        [AllowNull, CanBeNull] Action onNeedyActivate = null,
+        [AllowNull, CanBeNull] Action onNeedyDeactivate = null,
+        [AllowNull, CanBeNull] Action onNeedyTimerExpired = null,
+        [AllowNull, CanBeNull] Action onNeedyTimerGet = null,
+        [AllowNull, CanBeNull] Action onNeedyTimerSet = null,
+        [AllowNull, CanBeNull] Action onRuleGeneration = null,
+        [AllowNull, CanBeNull] Action onSolve = null,
+        [AllowNull, CanBeNull] Action onStrike = null
+    )
+    {
+        that.Solve.Remove(onSolve);
+        that.Strike.Remove(onStrike);
+        that.Activate.Remove(onActivate);
+        that.NeedyActivate.TryRemove(onNeedyActivate);
+        that.NeedyTimerGet.TryRemove(onNeedyTimerGet);
+        that.NeedyTimerSet.TryRemove(onNeedyTimerSet);
+        that.RuleGeneration.TryRemove(onRuleGeneration);
+        that.NeedyDeactivate.TryRemove(onNeedyDeactivate);
+        that.NeedyTimerExpired.TryRemove(onNeedyTimerExpired);
+        return that;
+    }
+
+    /// <summary>Adds the parameter values to the corresponding hooks, when applicable.</summary>
+    /// <param name="that">This instance of <see cref="Entity"/>.</param>
+    /// <param name="needyTimerGet">Invoked to get the time remaining of the needy timer.</param>
+    /// <param name="needyTimerSet">Invoked to set the time of the needy timer.</param>
+    /// <param name="ruleGeneration">Invoked to get the random seed used to generate rules for the game.</param>
+    /// <returns>Itself.</returns>
+    [NotNull, PublicAPI]
+    public static Entity Add(
+        [NotNull] Entity that,
+        [AllowNull, CanBeNull] Func<float> needyTimerGet = null,
+        [AllowNull, CanBeNull] Action<float> needyTimerSet = null,
+        [AllowNull, CanBeNull] Func<int> ruleGeneration = null
+    )
+    {
+        that.NeedyTimerSet.TryAdd(needyTimerSet);
+        that.RuleGeneration.TryAdd(ruleGeneration);
+        that.NeedyTimerGet.TryAdd(needyTimerGet);
+        return that;
+    }
+
+    /// <summary>Removes the parameter values to the corresponding hooks, when applicable.</summary>
+    /// <inheritdoc cref="Add(Entity, Func{float}, Action{float}, Func{int})"/>
+    [NotNull, PublicAPI]
+    public static Entity Remove(
+        [NotNull] Entity that,
+        [AllowNull, CanBeNull] Func<float> needyTimerGet = null,
+        [AllowNull, CanBeNull] Action<float> needyTimerSet = null,
+        [AllowNull, CanBeNull] Func<int> ruleGeneration = null
+    )
+    {
+        that.NeedyTimerSet.TryRemove(needyTimerSet);
+        that.RuleGeneration.TryRemove(ruleGeneration);
+        that.NeedyTimerGet.TryRemove(needyTimerGet);
+        return that;
+    }
+
+    /// <summary>Sets the parameter values to the corresponding hooks, when applicable.</summary>
+    /// <inheritdoc cref="Add(Entity, Func{float}, Action{float}, Func{int})"/>
+    [NotNull, PublicAPI]
+    public static Entity Set(
+        [NotNull] Entity that,
+        [AllowNull, CanBeNull] Func<float> needyTimerGet = null,
+        [AllowNull, CanBeNull] Action<float> needyTimerSet = null,
+        [AllowNull, CanBeNull] Func<int> ruleGeneration = null
+    )
+    {
+        that.NeedyTimerSet.TrySet(needyTimerSet);
+        that.RuleGeneration.TrySet(ruleGeneration);
+        that.NeedyTimerGet.TrySet(needyTimerGet);
+        return that;
+    }
+
+    /// <summary>Hooks the logger to each instance.</summary>
+    /// <remarks><para>
+    /// Since the logger is implicitly created within this function, the logging cannot easily
+    /// be reversed without using the nuclear option <see cref="Generator.Clear{T}(Hook{T})"/>.
+    /// </para></remarks>
+    /// <param name="that">This instance of <see cref="Selected"/>.</param>
+    /// <returns>The parameter <paramref name="that"/>.</returns>
+    [NotNull, PublicAPI]
+    public static Entity Log([NotNull] this Entity that) =>
+        that.Add(
+            that.Logger(nameof(Entity.Activate)),
+            that.Logger(nameof(Entity.Solve)),
+            that.Logger(nameof(Entity.Strike)),
+            that.Logger(nameof(Entity.NeedyActivate)),
+            that.Logger(nameof(Entity.NeedyDeactivate)),
+            that.Logger(nameof(Entity.NeedyTimerExpired)),
+            that.Logger(nameof(Entity.NeedyTimerGet)),
+            that.Logger(nameof(Entity.NeedyTimerSet)),
+            that.Logger(nameof(Entity.RuleGeneration))
+        );
+
+    /// <inheritdoc cref="Log"/>
+    /// <typeparam name="T">The <see cref="IEnumerable{T}"/> of <see cref="Selected"/> instances to hook.</typeparam>
+    [NotNull, PublicAPI]
+    public static T Log<T>([NotNull] this T that)
+        where T : IEnumerable<Entity>
+    {
+        foreach (var next in that)
+            next.Log();
+
+        return that;
+    }
+
     /// <summary>
     /// Gets the <see cref="Highlighted"/> of this <see cref="Entity"/>.
     /// An empty value is given if there is no attached <see cref="Selected"/> on the <see cref="Entity"/>.
@@ -56,7 +236,7 @@ public static class EntityCore
     /// <returns>A <see cref="ReadOnlyCollection{T}"/> of type <see cref="Entity"/> which contains every module from <paramref name="bomb"/>.</returns>
     [CLSCompliant(false), MustUseReturnValue, NotNull]
     public static ReadOnlyCollection<Entity> ToEntities([AllowNull, CanBeNull] this KMBomb bomb) =>
-        bomb ? bomb.gameObject.GetChildren() : Chest<Entity>.Empty;
+        bomb ? bomb.gameObject.GetChildren() : Cache<Entity>.Empty;
 
     /// <summary>Creates an <see cref="ReadOnlyCollection{T}"/> where each element has been converted.</summary>
     /// <param name="solvables">The collection.</param>
@@ -65,7 +245,7 @@ public static class EntityCore
     public static ReadOnlyCollection<Entity> ToEntities(
         [AllowNull, CanBeNull] this IEnumerable<KMBombModule> solvables
     ) =>
-        solvables is null ? Chest<Entity>.Empty : new(solvables.Select(AsEntity).ToList());
+        solvables is null ? Cache<Entity>.Empty : new(solvables.Select(AsEntity).ToList());
 
     /// <summary>Creates an <see cref="ReadOnlyCollection{T}"/> where each element has been converted.</summary>
     /// <param name="needies">The collection.</param>
@@ -74,7 +254,7 @@ public static class EntityCore
     public static ReadOnlyCollection<Entity> ToEntities(
         [AllowNull, CanBeNull] this IEnumerable<KMNeedyModule> needies
     ) =>
-        needies is null ? Chest<Entity>.Empty : new(needies.Select(AsEntity).ToList());
+        needies is null ? Cache<Entity>.Empty : new(needies.Select(AsEntity).ToList());
 
     /// <summary>Creates an <see cref="ReadOnlyCollection{T}"/> where each element has been converted.</summary>
     /// <param name="entities">The collection.</param>
@@ -83,7 +263,7 @@ public static class EntityCore
     public static ReadOnlyCollection<Maybe<Highlighted>> ToHighlighters(
         [AllowNull, CanBeNull] this IEnumerable<Entity> entities
     ) =>
-        entities is null ? Chest<Maybe<Highlighted>>.Empty : new(entities.Select(ToHighlightable).ToList());
+        entities is null ? Cache<Maybe<Highlighted>>.Empty : new(entities.Select(ToHighlightable).ToList());
 
     /// <summary>Creates an <see cref="ReadOnlyCollection{T}"/> where each element has been converted.</summary>
     /// <param name="entities">The collection.</param>
@@ -92,7 +272,7 @@ public static class EntityCore
     public static ReadOnlyCollection<Maybe<Selected>> ToSelectors(
         [AllowNull, CanBeNull] this IEnumerable<Entity> entities
     ) =>
-        entities is null ? Chest<Maybe<Selected>>.Empty : new(entities.Select(ToSelectable).ToList());
+        entities is null ? Cache<Maybe<Selected>>.Empty : new(entities.Select(ToSelectable).ToList());
 
     /// <summary>Creates an <see cref="ReadOnlyCollection{T}"/> where each element has been converted.</summary>
     /// <param name="bombs">The collection.</param>
@@ -101,5 +281,5 @@ public static class EntityCore
     public static ReadOnlyCollection<ReadOnlyCollection<Entity>> ToManyEntities(
         [AllowNull, CanBeNull] this IEnumerable<KMBomb> bombs
     ) =>
-        bombs is null ? Chest<ReadOnlyCollection<Entity>>.Empty : new(bombs.Select(ToEntities).ToList());
+        bombs is null ? Cache<ReadOnlyCollection<Entity>>.Empty : new(bombs.Select(ToEntities).ToList());
 }

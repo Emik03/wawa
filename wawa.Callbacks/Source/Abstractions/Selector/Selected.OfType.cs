@@ -28,20 +28,6 @@ public sealed partial class Selected
     [CanBeNull]
     PropMay<Collider[]> _colliders;
 
-    /// <summary>Gets a value indicating whether this instance contains a modded selectable.</summary>
-    [PublicAPI]
-    public bool IsModded
-    {
-        [Pure] get => Value.Core() is KMSelectable;
-    }
-
-    /// <summary>Gets a value indicating whether this instance contains a vanilla selectable.</summary>
-    [PublicAPI]
-    public bool IsVanilla
-    {
-        [Pure] get => !IsModded;
-    }
-
     /// <summary>
     /// Gets the number of children the selectable has. Calling <see cref="ChildLength"/> is more efficient
     /// than <see cref="Children"/> then using <see cref="ReadOnlyCollection{T}.Count"/> because
@@ -196,7 +182,8 @@ public sealed partial class Selected
     [NotNull, PublicAPI]
     public HookMay<Action<float>> InteractionPunch
     {
-        [Pure] get => _interactionPunch ??= new(Value, nameof(KMSelectable.OnInteractionPunch), converter: a => _ => a());
+        [Pure]
+        get => _interactionPunch ??= new(Value, nameof(KMSelectable.OnInteractionPunch), converter: a => _ => a());
     }
 
     /// <summary>
@@ -220,16 +207,6 @@ public sealed partial class Selected
     }
 
     /// <summary>
-    /// Gets the encapsulated Selectable from this instance as <see cref="Maybe{T}"/>
-    /// due to ambiguity in this value being set.
-    /// </summary>
-    [CLSCompliant(false), PublicAPI]
-    public Maybe<MonoBehaviour> Vanilla
-    {
-        [Pure] get => Value.Core() is KMSelectable ? default : Value;
-    }
-
-    /// <summary>
     /// Gets the parent of this selectable.
     /// </summary>
     [PublicAPI]
@@ -238,7 +215,7 @@ public sealed partial class Selected
         [Pure]
         get =>
             Modded.IsSome
-                ? Modded.Unwrap().Parent is { } selectable ? new(selectable) : null
+                ? Modded.Unwrap().Parent is var selectable && selectable ? new(selectable) : null
                 : ParentInner(Vanilla.Unwrap());
     }
 
@@ -321,159 +298,32 @@ public sealed partial class Selected
     [NotNull, PublicAPI]
     public ReadOnlyCollection<Maybe<Selected>> Children
     {
-        [Pure] get => Array.AsReadOnly(Vanilla.IsSome ? ChildrenInner(Vanilla.Unwrap()) : ChildrenOuter(Modded.Unwrap()));
+        [Pure]
+        get => Array.AsReadOnly(Vanilla.IsSome ? ChildrenInner(Vanilla.Unwrap()) : ChildrenOuter(Modded.Unwrap()));
     }
 
-    /// <summary>Adds the parameter values to the corresponding hooks, when applicable.</summary>
-    /// <param name="select">Invoked when this becomes the current selectable.</param>
-    /// <param name="deselect">Invoked when this stops being the current selectable.</param>
-    /// <param name="interactEnded">Invoked when the player releases the mouse or controller button.</param>
-    /// <param name="highlight">Invoked whenever the highlight is turned on.</param>
-    /// <param name="highlightEnded">Invoked whenever the highlight is turned off.</param>
-    /// <param name="focus">Invoked when the selectable is focused.</param>
-    /// <param name="defocus">Invoked when the selectable is defocused.</param>
-    /// <param name="left">Invoked when the player pulls the selection stick left while selected.</param>
-    /// <param name="right">Invoked when the player pulls the selection stick right while selected.</param>
-    /// <param name="cancel">Invoked when the player backs out of the selectable.</param>
-    /// <param name="interact">Invoked when the player interacts with the selectable.</param>
-    /// <param name="updateChildren">Invoked when the list of children are updated.</param>
-    /// <returns>Itself.</returns>
-    // ReSharper disable FunctionComplexityOverflow
-    public Selected Add(
-        [AllowNull, CanBeNull] Action select = null,
-        [AllowNull, CanBeNull] Action deselect = null,
-        [AllowNull, CanBeNull] Action interactEnded = null,
-        [AllowNull, CanBeNull] Action highlight = null,
-        [AllowNull, CanBeNull] Action highlightEnded = null,
-        [AllowNull, CanBeNull] Action focus = null,
-        [AllowNull, CanBeNull] Action defocus = null,
-        [AllowNull, CanBeNull] Action left = null,
-        [AllowNull, CanBeNull] Action right = null,
-        [AllowNull, CanBeNull] Action cancel = null,
-        [AllowNull, CanBeNull] Action interact = null,
-        [AllowNull, CanBeNull] Action updateChildren = null
-    )
+    /// <summary>Gets a value indicating whether this instance contains a modded selectable.</summary>
+    [PublicAPI]
+    public bool IsModded
     {
-        Left.Add(left);
-        Focus.Add(focus);
-        Right.Add(right);
-        Cancel.Add(cancel);
-        Select.Add(select);
-        Defocus.Add(defocus);
-        Deselect.Add(deselect);
-        Interact.Add(interact);
-        Highlight.Add(highlight);
-        InteractEnded.Add(interactEnded);
-        HighlightEnded.Add(highlightEnded);
-        UpdateChildren.TryAdd(updateChildren);
-        return this;
+        [Pure] get => Value.Core() is KMSelectable;
     }
 
-    /// <summary>Removes the parameter values to the corresponding hooks, when applicable.</summary>
-    /// <inheritdoc cref="Add(Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action)"/>
-    public Selected Remove(
-        [AllowNull, CanBeNull] Action select = null,
-        [AllowNull, CanBeNull] Action deselect = null,
-        [AllowNull, CanBeNull] Action interactEnded = null,
-        [AllowNull, CanBeNull] Action highlight = null,
-        [AllowNull, CanBeNull] Action highlightEnded = null,
-        [AllowNull, CanBeNull] Action focus = null,
-        [AllowNull, CanBeNull] Action defocus = null,
-        [AllowNull, CanBeNull] Action left = null,
-        [AllowNull, CanBeNull] Action right = null,
-        [AllowNull, CanBeNull] Action cancel = null,
-        [AllowNull, CanBeNull] Action interact = null,
-        [AllowNull, CanBeNull] Action updateChildren = null
-    )
+    /// <summary>Gets a value indicating whether this instance contains a vanilla selectable.</summary>
+    [PublicAPI]
+    public bool IsVanilla
     {
-        Left.Remove(left);
-        Focus.Remove(focus);
-        Right.Remove(right);
-        Cancel.Remove(cancel);
-        Select.Remove(select);
-        Defocus.Remove(defocus);
-        Deselect.Remove(deselect);
-        Interact.Remove(interact);
-        Highlight.Remove(highlight);
-        InteractEnded.Remove(interactEnded);
-        HighlightEnded.Remove(highlightEnded);
-        UpdateChildren.TryRemove(updateChildren);
-        return this;
+        [Pure] get => !IsModded;
     }
 
-    /// <summary>Sets the parameter values to the corresponding hooks, when applicable.</summary>
-    /// <inheritdoc cref="Add(Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action)"/>
-    public Selected Set(
-        [AllowNull, CanBeNull] Action select = null,
-        [AllowNull, CanBeNull] Action deselect = null,
-        [AllowNull, CanBeNull] Action interactEnded = null,
-        [AllowNull, CanBeNull] Action highlight = null,
-        [AllowNull, CanBeNull] Action highlightEnded = null,
-        [AllowNull, CanBeNull] Action focus = null,
-        [AllowNull, CanBeNull] Action defocus = null,
-        [AllowNull, CanBeNull] Action left = null,
-        [AllowNull, CanBeNull] Action right = null,
-        [AllowNull, CanBeNull] Action cancel = null,
-        [AllowNull, CanBeNull] Action interact = null,
-        [AllowNull, CanBeNull] Action updateChildren = null
-    )
+    /// <summary>
+    /// Gets the encapsulated Selectable from this instance as <see cref="Maybe{T}"/>
+    /// due to ambiguity in this value being set.
+    /// </summary>
+    [CLSCompliant(false), PublicAPI]
+    public Maybe<MonoBehaviour> Vanilla
     {
-        Left.Set(left);
-        Focus.Set(focus);
-        Right.Set(right);
-        Cancel.Set(cancel);
-        Select.Set(select);
-        Defocus.Set(defocus);
-        Deselect.Set(deselect);
-        Interact.Set(interact);
-        Highlight.Set(highlight);
-        InteractEnded.Set(interactEnded);
-        HighlightEnded.Set(highlightEnded);
-        UpdateChildren.TrySet(updateChildren);
-        return this;
-    }
-
-    /// <summary>Removes the parameter values to the corresponding hooks, when applicable.</summary>
-    /// <inheritdoc cref="Add(Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action)"/>
-    // ReSharper disable FunctionComplexityOverflow
-    public Selected Add(
-        [AllowNull, CanBeNull] Func<bool> cancel = null,
-        [AllowNull, CanBeNull] Func<bool> interact = null,
-        [AllowNull, CanBeNull] Action<KMSelectable> updateChildren = null
-    )
-    {
-        Cancel.Add(cancel);
-        Interact.Add(interact);
-        UpdateChildren.TryAdd(updateChildren);
-        return this;
-    }
-
-    /// <summary>Removes the parameter values to the corresponding hooks, when applicable.</summary>
-    /// <inheritdoc cref="Add(Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action)"/>
-    public Selected Remove(
-        [AllowNull, CanBeNull] Func<bool> cancel = null,
-        [AllowNull, CanBeNull] Func<bool> interact = null,
-        [AllowNull, CanBeNull] Action<KMSelectable> updateChildren = null
-    )
-    {
-        Cancel.Remove(cancel);
-        Interact.Remove(interact);
-        UpdateChildren.TryRemove(updateChildren);
-        return this;
-    }
-
-    /// <summary>Removes the parameter values to the corresponding hooks, when applicable.</summary>
-    /// <inheritdoc cref="Add(Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action, Action)"/>
-    public Selected Set(
-        [AllowNull, CanBeNull] Func<bool> cancel = null,
-        [AllowNull, CanBeNull] Func<bool> interact = null,
-        [AllowNull, CanBeNull] Action<KMSelectable> updateChildren = null
-    )
-    {
-        Cancel.Set(cancel);
-        Interact.Set(interact);
-        UpdateChildren.TrySet(updateChildren);
-        return this;
+        [Pure] get => Value.Core() is KMSelectable ? default : Value;
     }
 
     [MethodImpl(MethodImplOptions.NoInlining), NonNegativeValue]
@@ -484,7 +334,7 @@ public sealed partial class Selected
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     static Maybe<Selected> ParentInner([NotNull] in object m) =>
-        ((Selectable)m).Parent is { } selectable ? new Selected(selectable.Core()) : null;
+        ((Selectable)m).Parent is var selectable && selectable ? new Selected(selectable.Core()) : null;
 
     [MethodImpl(MethodImplOptions.NoInlining), NotNull]
     static Maybe<Selected>[] ChildrenInner([NotNull] in object m)
@@ -493,7 +343,7 @@ public sealed partial class Selected
         var modules = new Maybe<Selected>[children.Length];
 
         for (var i = 0; i < children.Length; i++)
-            modules[i] = children[i] is { } selectable ? new Selected(selectable.Core()) : null;
+            modules[i] = children[i] is var selectable && selectable ? new Selected(selectable.Core()) : null;
 
         return modules;
     }
@@ -504,7 +354,7 @@ public sealed partial class Selected
         var modules = new Maybe<Selected>[v.Children.Length];
 
         for (var i = 0; i < v.Children.Length; i++)
-            modules[i] = v.Children[i] is { } selectable ? new Selected(selectable) : null;
+            modules[i] = v.Children[i] is var selectable && selectable ? new Selected(selectable) : null;
 
         return modules;
     }

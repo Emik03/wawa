@@ -16,4 +16,8 @@ public interface IVanilla
     /// <summary>Gets the encapsulated vanilla component, if it exists.</summary>
     [PublicAPI]
     public Maybe<MonoBehaviour> Vanilla { [Pure] get; }
+
+    /// <summary>Gets the encapsulated component.</summary>
+    [NotNull, PublicAPI]
+    public MonoBehaviour Value { [Pure] get; }
 }
