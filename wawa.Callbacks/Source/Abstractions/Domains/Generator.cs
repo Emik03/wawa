@@ -8,6 +8,8 @@ public static class Generator
 {
     const BindingFlags Flags = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public;
 
+    static readonly ConstantExpression s_exDelegateNull = Expression.Constant(null, typeof(Delegate));
+
     [NotNull]
     static readonly Dictionary<FieldInfo, Delegate>
         s_adders = new(),
@@ -385,7 +387,7 @@ public static class Generator
         if (that is null or { Container: null } or { Info: null })
             return false;
 
-        var del = that.Info.Caster<T>()(that.Wrapper(that.Converter?.Invoke(value)));
+        var del = that.Info.Caster<T>()(that.Wrapper(that.Converter!(value)));
         that.Info.Setter<Delegate>()(that.Instance, del);
         that.Container.Clear();
 
@@ -425,7 +427,7 @@ public static class Generator
         if (that is null or { Container: null } or { Info: null } || value is null)
             return false;
 
-        var del = that.Info.Caster<T>()(that.Wrapper(that.Converter?.Invoke(value)));
+        var del = that.Info.Caster<T>()(that.Wrapper(that.Converter!(value)));
         that.Info.Adder()(that.Instance, del);
         that.Container.Add(value, del);
         return true;
@@ -537,6 +539,7 @@ public static class Generator
             return fun;
 
         var exType = Expression.Constant(info.FieldType);
+        var exNull = Expression.Constant(null, typeof(T));
         var exParameter = Expression.Parameter(typeof(T), "del");
         var exComponent = Expression.Parameter(typeof(Component), "com");
 
@@ -547,8 +550,9 @@ public static class Generator
         var exMethod = Expression.Property(exWrapper, s_method);
         var exTarget = Expression.Property(exWrapper, s_target);
         var exCaller = Expression.Call(s_createDelegate, exType, exTarget, exMethod);
-
-        var func = Expression.Lambda<Func<T, Delegate>>(exCaller, exParameter).Compile();
+        var exIsNull = Expression.Equal(exParameter, exNull);
+        var exCondition = Expression.Condition(exIsNull, s_exDelegateNull, exCaller);
+        var func = Expression.Lambda<Func<T, Delegate>>(exCondition, exParameter).Compile();
         s_casters[info] = func;
         return func;
     }
