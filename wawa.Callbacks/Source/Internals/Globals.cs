@@ -9,8 +9,25 @@ static class Globals
     public static class Cache<T>
     {
         /// <summary>Gets the empty set.</summary>
-        public static ReadOnlyCollection<T> Empty { get; } = new(new T[] { });
+        public static ReadOnlyCollection<T> Empty { [Pure] get; } = new(new T[] { });
     }
+
+    /// <summary>Gets the <see cref="AssemblyName"/> of the caller that invoked the method calling this.</summary>
+    /// <remarks><para>This is used by the library to log itself, and obtain information about callers.</para></remarks>
+    [NotNull] // ReSharper disable once NullableWarningSuppressionIsUsed
+    static AssemblyName Caller => new StackFrame(3).GetMethod().ReflectedType?.Assembly.GetName()!;
+
+    /// <summary>Gets the name of <see cref="Caller"/>.</summary>
+    [NotNull]
+    static string Who => Caller.Name;
+
+    /// <summary>Gets the version of <see cref="Caller"/>.</summary>
+    [NotNull]
+    static string Which =>
+        Caller.Version is var ver && ver is { Minor: 0, Build: 0, Revision: 0 } ? $"v{ver.Major}" :
+        ver is { Build: 0, Revision: 0 } ? $"v{ver.Major}.{ver.Minor}" :
+        ver is { Revision: 0 } ? $"v{ver.Major}.{ver.Minor}.{ver.Build}" :
+        $"v{ver.Major}.{ver.Minor}.{ver.Build}.{ver.Revision}";
 
     /// <summary>Gets a value indicating whether the runtime is in-game.</summary>
     /// <remarks><para>Opposite of <see cref="Application.isEditor"/>, but as a pure getter.</para></remarks>
@@ -42,5 +59,5 @@ static class Globals
     /// <returns>The path in the hierarchy to the parameter <paramref name="component"/>.</returns>
     [NotNull, Pure]
     public static string GetPath([NotNull] this Component component, [CanBeNull] string label) =>
-        $"<{component.transform.GetPath()}/{component.GetType()}>{(string.IsNullOrEmpty(label) ? "" : $" {label}")}";
+        $"[{Who} {Which}] {component.transform.GetPath()}/{component.GetType()}/{label}";
 }
