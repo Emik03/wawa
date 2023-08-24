@@ -20,7 +20,10 @@ public sealed partial class Entity
     PropDef<string> _id, _name;
 
     [CanBeNull]
-    HookDef<Action> _activate, _solve, _strike;
+    HookDef<Action> _activate;
+
+    [CanBeNull]
+    HookDef<Func<bool>> _solve, _strike;
 
     [CanBeNull]
     HookMay<Action> _needyActivate, _needyDeactivate, _needyTimerExpired;
@@ -249,14 +252,14 @@ public sealed partial class Entity
 
     /// <summary>Gets the <see cref="Action"/> that is called when the entire module has been solved.</summary>
     [PublicAPI]
-    public HookDef<Action> Solve
+    public HookDef<Func<bool>> Solve
     {
         [Pure] get => _solve ??= new(Value, nameof(KMBombModule.OnPass));
     }
 
     /// <summary>Gets the <see cref="Action"/> that is called on any mistake that causes a bomb strike.</summary>
     [PublicAPI]
-    public HookDef<Action> Strike
+    public HookDef<Func<bool>> Strike
     {
         [Pure] get => _strike ??= new(Value, nameof(KMBombModule.OnStrike));
     }
