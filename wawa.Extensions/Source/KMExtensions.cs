@@ -21,7 +21,6 @@ public static class KMExtensions
     public static KMAudioRef Add([NotNull] this KMAudioRef audio, [NotNull] Action onStopSound)
     {
         onStopSound.Add(ref audio.StopSound);
-
         return audio;
     }
 
@@ -38,7 +37,6 @@ public static class KMExtensions
     public static KMAudioRef Set([NotNull] this KMAudioRef audio, [NotNull] Action onStopSound)
     {
         onStopSound.Set(out audio.StopSound);
-
         return audio;
     }
 
@@ -56,7 +54,6 @@ public static class KMExtensions
     {
         onBombExploded?.Add(ref info.OnBombExploded);
         onBombSolved?.Add(ref info.OnBombSolved);
-
         return info;
     }
 
@@ -74,7 +71,6 @@ public static class KMExtensions
     {
         onBombExploded?.Set(out info.OnBombExploded);
         onBombSolved?.Set(out info.OnBombSolved);
-
         return info;
     }
 
@@ -93,10 +89,8 @@ public static class KMExtensions
     )
     {
         onActivate?.Add(ref module.OnActivate);
-
         onPass?.ToFunc(false).Add(ref module.OnPass);
         onStrike?.ToFunc(false).Add(ref module.OnStrike);
-
         return module;
     }
 
@@ -115,10 +109,8 @@ public static class KMExtensions
     )
     {
         onActivate?.Set(out module.OnActivate);
-
         onPass?.ToFunc(false).Set(out module.OnPass);
         onStrike?.ToFunc(false).Set(out module.OnStrike);
-
         return module;
     }
 
@@ -139,10 +131,8 @@ public static class KMExtensions
     )
     {
         onStateChange?.ToAction<State>().Add(ref game.OnStateChange);
-
         onAlarmClockChange?.ToAction<bool>().Add(ref game.OnAlarmClockChange);
         onLightsChange?.ToAction<bool>().Add(ref game.OnLightsChange);
-
         return game;
     }
 
@@ -163,10 +153,8 @@ public static class KMExtensions
     )
     {
         onStateChange?.ToAction<State>().Set(out game.OnStateChange);
-
         onAlarmClockChange?.ToAction<bool>().Set(out game.OnAlarmClockChange);
         onLightsChange?.ToAction<bool>().Set(out game.OnLightsChange);
-
         return game;
     }
 
@@ -194,10 +182,8 @@ public static class KMExtensions
         onNeedyActivation?.Add(ref needy.OnNeedyActivation);
         onNeedyDeactivation?.Add(ref needy.OnNeedyDeactivation);
         onTimerExpired?.Add(ref needy.OnTimerExpired);
-
         onPass?.ToFunc(false).Add(ref needy.OnPass);
         onStrike?.ToFunc(false).Add(ref needy.OnStrike);
-
         return needy;
     }
 
@@ -225,10 +211,8 @@ public static class KMExtensions
         onNeedyActivation?.Set(out needy.OnNeedyActivation);
         onNeedyDeactivation?.Set(out needy.OnNeedyDeactivation);
         onTimerExpired?.Set(out needy.OnTimerExpired);
-
         onPass?.ToFunc(false).Set(out needy.OnPass);
         onStrike?.ToFunc(false).Set(out needy.OnStrike);
-
         return needy;
     }
 
@@ -282,8 +266,7 @@ public static class KMExtensions
     )
     {
         isParent ??= selectable.Children.Length > 0;
-
-        onDefocus?.Add(ref selectable.OnDefocus);
+        onDefocus?.ToBiAction()?.Add(ref selectable.OnDefocus);
         onDeselect?.Add(ref selectable.OnDeselect);
         onFocus?.Add(ref selectable.OnFocus);
         onHighlight?.Add(ref selectable.OnHighlight);
@@ -292,14 +275,10 @@ public static class KMExtensions
         onLeft?.Add(ref selectable.OnLeft);
         onRight?.Add(ref selectable.OnRight);
         onSelect?.Add(ref selectable.OnSelect);
-
         onCancel?.ToFunc(isParent.Value).Add(ref selectable.OnCancel);
         onInteract?.ToFunc(isParent.Value).Add(ref selectable.OnInteract);
-
         onInteractionPunch?.ToAction<float>().Add(ref selectable.OnInteractionPunch);
-
-        onUpdateChildren?.ToBiAction<KMSelectable>().Add(ref selectable.OnUpdateChildren);
-
+        onUpdateChildren?.Add(ref selectable.OnUpdateChildren);
         return selectable;
     }
 
@@ -321,7 +300,6 @@ public static class KMExtensions
             selectable.NotifyAll();
 
         selectable.UpdateChildren(childrenToSelect);
-
         return selectable;
     }
 
@@ -374,9 +352,8 @@ public static class KMExtensions
     )
     {
         isParent ??= selectable.Children.Length > 0;
-
         onCancel?.ToFunc(isParent.Value).Set(out selectable.OnCancel);
-        onDefocus?.Set(out selectable.OnDefocus);
+        onDefocus?.ToBiAction()?.Set(out selectable.OnDefocus);
         onDeselect?.Set(out selectable.OnDeselect);
         onFocus?.Set(out selectable.OnFocus);
         onHighlight?.Set(out selectable.OnHighlight);
@@ -385,13 +362,9 @@ public static class KMExtensions
         onLeft?.Set(out selectable.OnLeft);
         onRight?.Set(out selectable.OnRight);
         onSelect?.Set(out selectable.OnSelect);
-
         onInteract?.ToFunc(isParent.Value).Set(out selectable.OnInteract);
-
         onInteractionPunch?.ToAction<float>().Set(out selectable.OnInteractionPunch);
-
-        onUpdateChildren?.ToBiAction<KMSelectable>().Set(out selectable.OnUpdateChildren);
-
+        onUpdateChildren?.Set(out selectable.OnUpdateChildren);
         return selectable;
     }
 
@@ -713,17 +686,19 @@ public static class KMExtensions
     static Action<T> ToAction<T>([NotNull] this Action action) => _ => action();
 
     [NotNull, Pure]
-    static Action<T> ToBiAction<T>([NotNull] this Action action)
+    static Action ToBiAction([NotNull] this Action action)
     {
         var call = false;
 
-        return _ =>
-        {
-            call ^= s_isKtane;
+        return s_isKtane
+            ? () =>
+            {
+                call ^= true;
 
-            if (call)
-                action();
-        };
+                if (call)
+                    action();
+            }
+            : action;
     }
 
     [NotNull, Pure]
