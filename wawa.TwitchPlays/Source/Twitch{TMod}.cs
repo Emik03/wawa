@@ -146,17 +146,24 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     [PublicAPI, Pure]
     public IEnumerator ProcessTwitchCommand(string command)
     {
-        if (command is null || Match(command) is not { } match)
+        if (command is null || Match(command, out var isEmpty) is not { } match)
             yield break;
 
         using var e = match.GetEnumerator();
         var query = Flatten(e);
-        yield return null; // Signifies to TwitchPlays that the command is valid.
+
+        if (!isEmpty)
+            yield return null;
 
         while (query.MoveNext())
         {
             var current = query.Current;
             OnYield(this, new(current));
+
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            if (isEmpty && !(isEmpty = false))
+                yield return null;
+
             yield return current?.Value;
         }
     }
@@ -166,13 +173,12 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     public IEnumerator TwitchHandleForcedSolve()
     {
         using var e = ForceSolve().GetEnumerator();
-        var enumerator = Flatten(e);
+        using var enumerator = Flatten(e);
 
         while (enumerator.MoveNext())
         {
             var current = enumerator.Current;
             OnYield(this, new(current));
-
             yield return current?.Value;
         }
     }
@@ -262,7 +268,6 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         foreach (var selectable in selectables.Where(x => x))
         {
             selectable.OnInteract();
-
             yield return new(duration);
         }
 
@@ -410,7 +415,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
                 continue;
             }
 
-            var result = Flatten(nested);
+            using var result = Flatten(nested);
 
             while (result.MoveNext())
                 yield return result.Current;
@@ -455,14 +460,23 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
 
     [CanBeNull, ItemNotNull]
     [return: AllowNull]
-    IEnumerable<Instruction> Match([NotNull] string command)
+    IEnumerable<Instruction> Match([NotNull] string command, out bool isQueryEmpty)
     {
         var trimmed = command.Trim();
+        var temp = true;
 
-        return Commands
+        var ret = Commands
            .Where(query => trimmed.StartsWith(query.Prefix, OrdinalIgnoreCase))
-           .Select(query => ProcessCommand(query, trimmed.Substring(query.Prefix.Length)))
+           .Select(
+                query => ProcessCommand( // ReSharper disable once ConditionalTernaryEqualBranch
+                    (temp = string.IsNullOrEmpty(query.Prefix)) ? query : query,
+                    trimmed.Substring(query.Prefix.Length)
+                )
+            )
            .FirstOrDefault();
+
+        isQueryEmpty = temp;
+        return ret;
     }
 
     [CanBeNull, ItemNotNull]
