@@ -18,6 +18,17 @@ public static class Generator
         s_setters = new(),
         s_removers = new();
 
+    [NotNull]
+    static readonly MethodInfo
+        s_combine = ((Func<Delegate, Delegate, Delegate>)Delegate.Combine).Method,
+        s_create = ((Func<Type, object, MethodInfo, Delegate>)Delegate.CreateDelegate).Method,
+        s_remove = ((Delegate)Delegate.Remove).Method;
+
+    [NotNull]
+    static readonly PropertyInfo
+        s_method = typeof(Delegate).GetProperty(nameof(Delegate.Method), Flags)!,
+        s_target = typeof(Delegate).GetProperty(nameof(Delegate.Target), Flags)!;
+
     /// <inheritdoc cref="TrySet{T}(Hook{T}, T)"/>
     [PublicAPI]
     public static bool TrySet<T>(
@@ -88,17 +99,6 @@ public static class Generator
         Debug.Assert(assertion);
         return that;
     }
-
-    [NotNull]
-    static readonly MethodInfo
-        s_combine = ((Func<Delegate, Delegate, Delegate>)Delegate.Combine).Method,
-        s_createDelegate = ((Func<Type, object, MethodInfo, Delegate>)Delegate.CreateDelegate).Method,
-        s_remove = ((Delegate)Delegate.Remove).Method;
-
-    [NotNull]
-    static readonly PropertyInfo
-        s_method = typeof(Delegate).GetProperty(nameof(Delegate.Method), Flags)!,
-        s_target = typeof(Delegate).GetProperty(nameof(Delegate.Target), Flags)!;
 
     /// <inheritdoc cref="TrySet{T}(Prop{T}, T)"/>
     [PublicAPI]
@@ -185,6 +185,7 @@ public static class Generator
         where T : Delegate
     {
         var assertion = that.TryAdd(value);
+        Debug.Log(assertion);
         Debug.Assert(assertion);
         return that;
     }
@@ -424,6 +425,11 @@ public static class Generator
     )
         where T : Delegate
     {
+        Debug.Log($"that: {that}");
+        Debug.Log($"container: {that?.Container}");
+        Debug.Log($"info: {that?.Info}");
+        Debug.Log($"value: {value?.Method}");
+
         if (that is null or { Container: null } or { Info: null } || value is null)
             return false;
 
@@ -475,11 +481,13 @@ public static class Generator
         [NotNull] Expression exNoComponent
     )
     {
-        var arg = info.DeclaringType!.Name is nameof(PassEvent) or nameof(StrikeEvent)
+        var exWrapper = info.DeclaringType!.Name is nameof(PassEvent) or nameof(StrikeEvent)
             ? Expression.Lambda<Action>(Expression.Invoke(exField, exNoComponent))
             : exField;
 
-        return Expression.Call(s_createDelegate, exType, arg);
+        var exMethod = Expression.Property(exWrapper, s_method);
+        var exTarget = Expression.Property(exWrapper, s_target);
+        return Expression.Call(s_create, exType, exTarget, exMethod);
     }
 
     [NotNull]
@@ -490,14 +498,11 @@ public static class Generator
     {
         var exReference = Expression.Parameter(typeof(object), "o");
         var exValue = Expression.Parameter(typeof(T), "t");
-
         var exReferenceCast = Expression.Convert(exReference, info.DeclaringType!);
         var exValueCast = Expression.Convert(exValue, info.FieldType);
-
         var exField = Expression.Field(exReferenceCast, info);
         var exFieldCast = Expression.Convert(mutator(exField, exValueCast), info.FieldType);
         var exResult = Expression.Call(info.GenerateSetter<T>().Method, exReference, exFieldCast);
-
         return Expression.Lambda<Action<object, T>>(exResult, exReference, exValue).Compile();
     }
 
@@ -549,7 +554,7 @@ public static class Generator
 
         var exMethod = Expression.Property(exWrapper, s_method);
         var exTarget = Expression.Property(exWrapper, s_target);
-        var exCaller = Expression.Call(s_createDelegate, exType, exTarget, exMethod);
+        var exCaller = Expression.Call(s_create, exType, exTarget, exMethod);
         var exIsNull = Expression.Equal(exParameter, exNull);
         var exCondition = Expression.Condition(exIsNull, s_exDelegateNull, exCaller);
         var func = Expression.Lambda<Func<T, Delegate>>(exCondition, exParameter).Compile();
