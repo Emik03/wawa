@@ -6,28 +6,24 @@ namespace Wawa.Callbacks;
 [PublicAPI]
 public static class Generator
 {
-    const BindingFlags Flags = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public;
-
-    static readonly ConstantExpression s_exDelegateNull = Expression.Constant(null, typeof(Delegate));
-
     [NotNull]
     static readonly Dictionary<FieldInfo, Delegate>
         s_adders = new(),
-        s_casters = new(),
         s_getters = new(),
         s_setters = new(),
         s_removers = new();
 
     [NotNull]
+    static readonly Dictionary<Type, Delegate> s_casters = new();
+
+    [NotNull]
     static readonly MethodInfo
+        s_caster = ((Func<Type, Func<Delegate, Delegate>>)Caster<Delegate>).Method,
         s_combine = ((Func<Delegate, Delegate, Delegate>)Delegate.Combine).Method,
-        s_create = ((Func<Type, object, MethodInfo, Delegate>)Delegate.CreateDelegate).Method,
         s_remove = ((Delegate)Delegate.Remove).Method;
 
     [NotNull]
-    static readonly PropertyInfo
-        s_method = typeof(Delegate).GetProperty(nameof(Delegate.Method), Flags)!,
-        s_target = typeof(Delegate).GetProperty(nameof(Delegate.Target), Flags)!;
+    static readonly ParameterExpression[] s_parameterless = new ParameterExpression[0];
 
     /// <inheritdoc cref="TrySet{T}(Hook{T}, T)"/>
     [PublicAPI]
@@ -368,7 +364,7 @@ public static class Generator
         if (that is null or { Container: null } or { Info: null })
             return false;
 
-        var del = that.Info.Caster<T>()(that.Wrapper(value));
+        var del = that.Info.FieldType.Caster<T>()(that.Wrapper(value));
         that.Info.Setter<Delegate>()(that.Instance, del);
         that.Container.Clear();
 
@@ -388,7 +384,7 @@ public static class Generator
         if (that is null or { Container: null } or { Info: null })
             return false;
 
-        var del = that.Info.Caster<T>()(that.Wrapper(that.Converter!(value)));
+        var del = that.Info.FieldType.Caster<T>()(that.Wrapper(that.Converter!(value)));
         that.Info.Setter<Delegate>()(that.Instance, del);
         that.Container.Clear();
 
@@ -412,7 +408,7 @@ public static class Generator
         if (that is null or { Container: null } or { Info: null } || value is null)
             return false;
 
-        var del = that.Info.Caster<T>()(that.Wrapper(value));
+        var del = that.Info.FieldType.Caster<T>()(that.Wrapper(value));
         that.Info.Adder()(that.Instance, del);
         that.Container.Add(value, del);
         return true;
@@ -433,7 +429,7 @@ public static class Generator
         if (that is null or { Container: null } or { Info: null } || value is null)
             return false;
 
-        var del = that.Info.Caster<T>()(that.Wrapper(that.Converter!(value)));
+        var del = that.Info.FieldType.Caster<T>()(that.Wrapper(that.Converter!(value)));
         that.Info.Adder()(that.Instance, del);
         that.Container.Add(value, del);
         return true;
@@ -474,20 +470,12 @@ public static class Generator
     }
 
     [NotNull]
-    static MethodCallExpression Caller(
-        [NotNull] this FieldInfo info,
-        [NotNull] Expression exType,
-        [NotNull] Expression exField,
-        [NotNull] Expression exNoComponent
-    )
+    static InvocationExpression Caller<T>([NotNull] this FieldInfo info, [NotNull] Expression exField)
     {
-        var exWrapper = info.DeclaringType!.Name is nameof(PassEvent) or nameof(StrikeEvent)
-            ? Expression.Lambda<Action>(Expression.Invoke(exField, exNoComponent))
-            : exField;
-
-        var exMethod = Expression.Property(exWrapper, s_method);
-        var exTarget = Expression.Property(exWrapper, s_target);
-        return Expression.Call(s_create, exType, exTarget, exMethod);
+        var exT = Expression.Constant(typeof(T));
+        var caster = s_caster.MakeGenericMethod(info.FieldType);
+        var fun = Expression.Call(caster, exT);
+        return Expression.Invoke(fun, exField);
     }
 
     [NotNull]
@@ -534,31 +522,31 @@ public static class Generator
     static Action<object, T> Setter<T>([NotNull] this FieldInfo info) => info.Mutator<T>(s_setters);
 
     [NotNull]
-    static Func<T, Delegate> Caster<T>([NotNull] this FieldInfo info)
+    static Func<T, Delegate> Caster<T>([NotNull] this Type type)
         where T : Delegate
     {
-        if (typeof(T) == info.FieldType)
+        if (typeof(T) == type)
             return x => x;
 
-        if (s_casters.TryGetValue(info, out var value) && value is Func<T, Delegate> fun)
+        if (s_casters.TryGetValue(type, out var value) && value is Func<T, Delegate> fun)
             return fun;
 
-        var exType = Expression.Constant(info.FieldType);
         var exNull = Expression.Constant(null, typeof(T));
-        var exParameter = Expression.Parameter(typeof(T), "del");
-        var exComponent = Expression.Parameter(typeof(Component), "com");
+        var exOtherNull = Expression.Constant(null, type);
+        var exParameter = Expression.Parameter(typeof(T), nameof(T));
+        var method = type.GetMethod(nameof(Action.Invoke))!;
 
-        Expression exWrapper = info.FieldType.Name is nameof(PassEvent) or nameof(StrikeEvent)
-            ? Expression.Lambda<Action<Component>>(Expression.Invoke(exParameter), exComponent)
-            : exParameter;
+        var exArgs =
+            typeof(T).GetMethod(nameof(Action.Invoke))!.GetParameters().Length is 0
+                ? s_parameterless
+                : method.GetParameters().Select((x, i) => Expression.Parameter(x.ParameterType, $"a{i}")).ToArray();
 
-        var exMethod = Expression.Property(exWrapper, s_method);
-        var exTarget = Expression.Property(exWrapper, s_target);
-        var exCaller = Expression.Call(s_create, exType, exTarget, exMethod);
+        var exInvoke = Expression.Invoke(exParameter, exArgs.Cast<Expression>());
+        var exLambda = Expression.Lambda(type, exInvoke, exArgs);
         var exIsNull = Expression.Equal(exParameter, exNull);
-        var exCondition = Expression.Condition(exIsNull, s_exDelegateNull, exCaller);
+        var exCondition = Expression.Condition(exIsNull, exOtherNull, exLambda);
         var func = Expression.Lambda<Func<T, Delegate>>(exCondition, exParameter).Compile();
-        s_casters[info] = func;
+        s_casters[type] = func;
         return func;
     }
 
@@ -568,19 +556,16 @@ public static class Generator
         if (s_getters.TryGetValue(info, out var value) && value is Func<object, T> fun)
             return fun;
 
-        var exNoComponent = Expression.Constant(null, typeof(Component));
-        var exType = Expression.Constant(typeof(T));
         var exReference = Expression.Parameter(typeof(object), "x");
         var exCast = Expression.Convert(exReference, info.DeclaringType!);
         var exField = Expression.Field(exCast, info);
 
-        Expression exDelegate = typeof(Delegate).IsAssignableFrom(typeof(T))
-            ? info.Caller(exType, exField, exNoComponent)
+        Expression exDelegate = typeof(T) != info.FieldType && typeof(Delegate).IsAssignableFrom(typeof(T))
+            ? info.Caller<T>(exField)
             : exField;
 
         var exResult = Expression.Convert(exDelegate, typeof(T));
         var func = Expression.Lambda<Func<object, T>>(exResult, exReference).Compile();
-
         s_getters[info] = func;
         return func;
     }
