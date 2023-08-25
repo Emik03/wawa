@@ -95,8 +95,8 @@ public static class Config
             return that;
 
         JObject
-            toMerge = JObject.Parse(Serialize(value)),
-            content = JObject.Parse(file);
+            toMerge = Parse(Serialize(value)),
+            content = Parse(file);
 
         toMerge.Merge(content, new());
 
@@ -133,6 +133,19 @@ public static class Config
 
             toMerge.Remove(kvp.Key);
             AssemblyLog(@$"The original file has a redundant key ""{kvp.Key}"" which will be automatically removed.");
+        }
+    }
+
+    [NotNull, Pure]
+    static JObject Parse(string file)
+    {
+        try
+        {
+            return JObject.Parse(file);
+        }
+        catch (JsonReaderException)
+        {
+            return new();
         }
     }
 
