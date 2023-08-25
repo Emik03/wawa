@@ -188,14 +188,14 @@ public static class EntityCore
     public static Entity Log([NotNull] this Entity that) =>
         that.Add(
             that.Logger(nameof(Entity.Activate)),
-            that.Logger(nameof(Entity.Solve)),
-            that.Logger(nameof(Entity.Strike)),
             that.Logger(nameof(Entity.NeedyActivate)),
             that.Logger(nameof(Entity.NeedyDeactivate)),
             that.Logger(nameof(Entity.NeedyTimerExpired)),
             that.Logger(nameof(Entity.NeedyTimerGet)),
             that.Logger(nameof(Entity.NeedyTimerSet)),
-            that.Logger(nameof(Entity.RuleGeneration))
+            that.Logger(nameof(Entity.RuleGeneration)),
+            that.Logger(nameof(Entity.Solve)),
+            that.Logger(nameof(Entity.Strike))
         );
 
     /// <inheritdoc cref="Log(Entity)"/>
