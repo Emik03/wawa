@@ -147,47 +147,47 @@ public static class SelectedCore
     /// <returns>The parameter <paramref name="that"/>.</returns>
     // ReSharper disable FunctionComplexityOverflow
     [CLSCompliant(false), NotNull, PublicAPI]
-    public static Selected Add(
+    public static Selected AddRaw(
         [NotNull] this Selected that,
         [AllowNull, CanBeNull] Func<bool> onCancel = null,
         [AllowNull, CanBeNull] Func<bool> onInteract = null,
         [AllowNull, CanBeNull] Action<KMSelectable> onUpdateChildren = null
     )
     {
-        that.Cancel.Add(onCancel);
-        that.Interact.Add(onInteract);
+        that.Cancel.AddRaw(onCancel);
+        that.Interact.AddRaw(onInteract);
         that.UpdateChildren.TryAdd(onUpdateChildren);
         return that;
     }
 
     /// <summary>Removes the parameter values to the corresponding hooks, when applicable.</summary>
-    /// <inheritdoc cref="Add(Selected, Func{bool}, Func{bool}, Action{KMSelectable})"/>
+    /// <inheritdoc cref="AddRaw"/>
     [CLSCompliant(false), NotNull, PublicAPI]
-    public static Selected Remove(
+    public static Selected RemoveRaw(
         [NotNull] this Selected that,
         [AllowNull, CanBeNull] Func<bool> cancel = null,
         [AllowNull, CanBeNull] Func<bool> interact = null,
         [AllowNull, CanBeNull] Action<KMSelectable> updateChildren = null
     )
     {
-        that.Cancel.Remove(cancel);
-        that.Interact.Remove(interact);
+        that.Cancel.RemoveRaw(cancel);
+        that.Interact.RemoveRaw(interact);
         that.UpdateChildren.TryRemove(updateChildren);
         return that;
     }
 
     /// <summary>Removes the parameter values to the corresponding hooks, when applicable.</summary>
-    /// <inheritdoc cref="Add(Selected, Func{bool}, Func{bool}, Action{KMSelectable})"/>
+    /// <inheritdoc cref="AddRaw"/>
     [CLSCompliant(false), NotNull, PublicAPI]
-    public static Selected Set(
+    public static Selected SetRaw(
         [NotNull] Selected that,
         [AllowNull, CanBeNull] Func<bool> cancel = null,
         [AllowNull, CanBeNull] Func<bool> interact = null,
         [AllowNull, CanBeNull] Action<KMSelectable> updateChildren = null
     )
     {
-        that.Cancel.Set(cancel);
-        that.Interact.Set(interact);
+        that.Cancel.SetRaw(cancel);
+        that.Interact.SetRaw(interact);
         that.UpdateChildren.TrySet(updateChildren);
         return that;
     }

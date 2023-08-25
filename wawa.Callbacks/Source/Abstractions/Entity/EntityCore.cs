@@ -120,7 +120,7 @@ public static class EntityCore
     /// <param name="onStrike">Invoked on any mistake that causes a bomb strike.</param>
     /// <returns>Itself.</returns>
     [NotNull, PublicAPI]
-    public static Entity Add(
+    public static Entity AddRaw(
         [NotNull] Entity that,
         [AllowNull, CanBeNull] Func<float> needyTimerGet = null,
         [AllowNull, CanBeNull] Action<float> needyTimerSet = null,
@@ -132,15 +132,15 @@ public static class EntityCore
         that.NeedyTimerSet.TryAdd(needyTimerSet);
         that.RuleGeneration.TryAdd(ruleGeneration);
         that.NeedyTimerGet.TryAdd(needyTimerGet);
-        that.Solve.Add(onSolve);
-        that.Strike.Add(onStrike);
+        that.Solve.AddRaw(onSolve);
+        that.Strike.AddRaw(onStrike);
         return that;
     }
 
     /// <summary>Removes the parameter values to the corresponding hooks, when applicable.</summary>
-    /// <inheritdoc cref="Add(Entity, Func{float}, Action{float}, Func{int}, Func{bool}, Func{bool})"/>
+    /// <inheritdoc cref="AddRaw"/>
     [NotNull, PublicAPI]
-    public static Entity Remove(
+    public static Entity RemoveRaw(
         [NotNull] Entity that,
         [AllowNull, CanBeNull] Func<float> needyTimerGet = null,
         [AllowNull, CanBeNull] Action<float> needyTimerSet = null,
@@ -152,15 +152,15 @@ public static class EntityCore
         that.NeedyTimerSet.TryRemove(needyTimerSet);
         that.RuleGeneration.TryRemove(ruleGeneration);
         that.NeedyTimerGet.TryRemove(needyTimerGet);
-        that.Solve.Add(onSolve);
-        that.Strike.Add(onStrike);
+        that.Solve.AddRaw(onSolve);
+        that.Strike.AddRaw(onStrike);
         return that;
     }
 
     /// <summary>Sets the parameter values to the corresponding hooks, when applicable.</summary>
-    /// <inheritdoc cref="Add(Entity, Func{float}, Action{float}, Func{int}, Func{bool}, Func{bool})"/>
+    /// <inheritdoc cref="AddRaw"/>
     [NotNull, PublicAPI]
-    public static Entity Set(
+    public static Entity SetRaw(
         [NotNull] Entity that,
         [AllowNull, CanBeNull] Func<float> needyTimerGet = null,
         [AllowNull, CanBeNull] Action<float> needyTimerSet = null,
@@ -172,8 +172,8 @@ public static class EntityCore
         that.NeedyTimerSet.TrySet(needyTimerSet);
         that.RuleGeneration.TrySet(ruleGeneration);
         that.NeedyTimerGet.TrySet(needyTimerGet);
-        that.Solve.Add(onSolve);
-        that.Strike.Add(onStrike);
+        that.Solve.AddRaw(onSolve);
+        that.Strike.AddRaw(onStrike);
         return that;
     }
 

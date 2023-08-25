@@ -123,7 +123,7 @@ public static class Generator
 
     /// <inheritdoc cref="Set{T}(PropDef{T}, T)"/>
     [NotNull, PublicAPI]
-    public static HookDef<T> Set<T>(
+    public static HookDef<T> SetRaw<T>(
         [NotNull] this HookDef<T> that,
         [AllowNull, CanBeNull, NotNullWhen(true)] T value
     )
@@ -149,7 +149,7 @@ public static class Generator
 
     /// <inheritdoc cref="ExpectSet{T}(PropMay{T}, T)"/>
     [NotNull, PublicAPI]
-    public static HookMay<T> ExpectSet<T>([NotNull] this HookMay<T> that, [AllowNull, CanBeNull] T value)
+    public static HookMay<T> ExpectSetRaw<T>([NotNull] this HookMay<T> that, [AllowNull, CanBeNull] T value)
         where T : Delegate =>
         (that as Hook<T>).TrySet(value).ShouldBeTrue(that);
 
@@ -165,7 +165,7 @@ public static class Generator
     /// <param name="value">The value to set the inner value with.</param>
     /// <returns>The parameter <paramref name="that"/>.</returns>
     [NotNull, PublicAPI]
-    public static HookDef<T> Add<T>(
+    public static HookDef<T> AddRaw<T>(
         [NotNull] this HookDef<T> that,
         [AllowNull, CanBeNull, NotNullWhen(true)] T value
     )
@@ -176,7 +176,7 @@ public static class Generator
         return that;
     }
 
-    /// <inheritdoc cref="Add{T}(HookDef{T}, T)"/>
+    /// <inheritdoc cref="AddRaw{T}"/>
     [NotNull, PublicAPI]
     public static HookDef<T> Add<T>(
         [NotNull] this HookDef<T> that,
@@ -196,11 +196,11 @@ public static class Generator
     /// <exception cref="InvalidOperationException">The parameter <paramref name="that"/> is immutable.</exception>
     /// <returns>The parameter <paramref name="that"/>.</returns>
     [NotNull, PublicAPI]
-    public static HookMay<T> ExpectAdd<T>([NotNull] this HookMay<T> that, [NotNull] T value)
+    public static HookMay<T> ExpectAddRaw<T>([NotNull] this HookMay<T> that, [NotNull] T value)
         where T : Delegate =>
         (that as Hook<T>).TryAdd(value).ShouldBeTrue(that);
 
-    /// <inheritdoc cref="ExpectAdd{T}(HookMay{T}, T)"/>
+    /// <inheritdoc cref="ExpectAddRaw{T}"/>
     [NotNull, PublicAPI]
     public static HookMay<T> ExpectAdd<T>([NotNull] this HookMay<T> that, [NotNull] Action value)
         where T : Delegate =>
@@ -212,7 +212,7 @@ public static class Generator
     /// <param name="value">The value to set the inner value with.</param>
     /// <returns>The parameter <paramref name="that"/>.</returns>
     [NotNull, PublicAPI]
-    public static HookDef<T> Remove<T>(
+    public static HookDef<T> RemoveRaw<T>(
         [NotNull] this HookDef<T> that,
         [AllowNull, CanBeNull, NotNullWhen(true)] T value
     )
@@ -223,7 +223,7 @@ public static class Generator
         return that;
     }
 
-    /// <inheritdoc cref="Remove{T}(HookDef{T}, T)"/>
+    /// <inheritdoc cref="RemoveRaw{T}"/>
     [NotNull, PublicAPI]
     public static HookDef<T> Remove<T>(
         [NotNull] this HookDef<T> that,
@@ -278,11 +278,11 @@ public static class Generator
     /// <exception cref="InvalidOperationException">The parameter <paramref name="that"/> is immutable.</exception>
     /// <returns>The parameter <paramref name="that"/>.</returns>
     [NotNull, PublicAPI]
-    public static HookMay<T>? ExpectRemove<T>([NotNull] this HookMay<T> that, [NotNull] T value)
+    public static HookMay<T>? ExpectRemoveRaw<T>([NotNull] this HookMay<T> that, [NotNull] T value)
         where T : Delegate =>
         (that as Hook<T>).TryRemove(value).ShouldBeTrue(that);
 
-    /// <inheritdoc cref="ExpectRemove{T}(HookMay{T}, T)"/>
+    /// <inheritdoc cref="ExpectRemoveRaw{T}"/>
     [NotNull, PublicAPI]
     public static HookMay<T> ExpectRemove<T>([NotNull] this HookMay<T> that, [NotNull] Action value)
         where T : Delegate =>
