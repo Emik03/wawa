@@ -181,7 +181,6 @@ public static class Generator
         where T : Delegate
     {
         var assertion = that.TryAdd(value);
-        Debug.Log(assertion);
         Debug.Assert(assertion);
         return that;
     }
@@ -421,11 +420,6 @@ public static class Generator
     )
         where T : Delegate
     {
-        Debug.Log($"that: {that}");
-        Debug.Log($"container: {that?.Container}");
-        Debug.Log($"info: {that?.Info}");
-        Debug.Log($"value: {value?.Method}");
-
         if (that is null or { Container: null } or { Info: null } || value is null)
             return false;
 

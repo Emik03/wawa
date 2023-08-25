@@ -145,6 +145,55 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
         return modules;
     }
 
+    /// <summary>Hooks the logger to all instances.</summary>
+    /// <remarks><para>
+    /// Since the logger is implicitly created within this function, the logging cannot easily
+    /// be reversed without using the nuclear option <see cref="Generator.Clear{T}(Hook{T})"/>.
+    /// </para></remarks>
+    /// <returns>All entities in the current scene.</returns>
+    [NotNull, PublicAPI]
+    public static ReadOnlyCollection<ReadOnlyCollection<Entity>> LogEverything()
+    {
+        HashSet<MonoBehaviour> set = new();
+
+        Unit Enumerate([NotNull] Selected next)
+        {
+            Unit CheckForKey([NotNull] Selected next)
+            {
+                var key = next.Value;
+
+                if (set.Contains(key))
+                    return default;
+
+                Enumerate(next);
+                set.Add(key);
+                return default;
+            }
+
+            next.Log();
+            next.Parent.Match(CheckForKey);
+
+            foreach (var child in next.Children)
+                child.Match(CheckForKey);
+
+            return default;
+        }
+
+        var km = Object.FindObjectsOfType<KMBomb>();
+        var ret = new ReadOnlyCollection<Entity>[km.Length];
+
+        for (var i = 0; i < km.Length; i++)
+        {
+            var current = km[i].ToEntities();
+            ret[i] = current;
+
+            foreach (var x in current)
+                x.ToSelectable().Match(Enumerate);
+        }
+
+        return Array.AsReadOnly(ret);
+    }
+
     /// <summary>
     /// Gets the <see cref="Entity"/> of this <see cref="Selected"/>.
     /// An empty value is given if there is no attached <see cref="Entity"/> on the <see cref="Selected"/>.
