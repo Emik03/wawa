@@ -212,6 +212,7 @@ public static class SelectedCore
             that.Logger(nameof(Selected.InteractEnded)),
             that.Logger(nameof(Selected.Left)),
             that.Logger(nameof(Selected.Right)),
+            that.Logger(nameof(Selected.Select)),
             that.Logger(nameof(Selected.UpdateChildren))
         );
 
