@@ -78,11 +78,7 @@ public sealed partial class Selected
             _cancel ??= new(
                 Value,
                 nameof(KMSelectable.OnCancel),
-                converter: a => () =>
-                {
-                    a();
-                    return true;
-                }
+                converter: False
             );
     }
 
@@ -341,6 +337,14 @@ public sealed partial class Selected
 
     [NotNull, Pure]
     static Action<T> Invoke<T>([NotNull] Action a) => _ => a();
+
+    [NotNull, Pure]
+    static Func<bool> False(Action a) =>
+        () =>
+        {
+            a();
+            return true;
+        };
 
     [NotNull, Pure]
     Func<bool> InteractHandler([NotNull] Action a) =>

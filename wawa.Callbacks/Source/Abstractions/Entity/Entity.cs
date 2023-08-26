@@ -166,12 +166,9 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
                     return default;
 
                 set.Add(key);
-                Enumerate(next);
+                Enumerate(next.Log());
                 return default;
             }
-
-            next.Log();
-            next.Parent.Match(CheckForKey);
 
             foreach (var child in next.Children)
                 child.Match(CheckForKey);
