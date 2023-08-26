@@ -285,15 +285,13 @@ public sealed partial class Entity
     }
 
     /// <summary>
-    /// Gets a <see cref="Func{TResult}"/> that when called,
-    /// gets the random seed used to generate the rules for this game.
-    /// Not currently used. Modded Only.
+    /// Gets a <see cref="Func{TResult}"/> that when called, gets the random seed
+    /// used to generate the rules for this game. Not currently used. Modded Only.
     /// </summary>
     [NotNull, PublicAPI]
     public HookMay<Func<int>> RuleGeneration
     {
-        [Pure]
-        get => _ruleGeneration ??= new(Value, nameof(KMBombModule.GetRuleGenerationSeedHandler), converter: One);
+        [Pure] get => _ruleGeneration ??= new(Value, nameof(KMBombModule.GetRuleGenerationSeedHandler), converter: One);
     }
 
     /// <summary>

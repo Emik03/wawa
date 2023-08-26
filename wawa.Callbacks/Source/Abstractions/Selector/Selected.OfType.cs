@@ -97,9 +97,7 @@ public sealed partial class Selected
         [Pure] get => _interactEnded ??= new(Value, nameof(KMSelectable.OnInteractEnded));
     }
 
-    /// <summary>
-    /// Gets the <see cref="Action"/> that is called whenever the highlight is turned on.
-    /// </summary>
+    /// <summary>Gets the <see cref="Action"/> that is called whenever the highlight is turned on.</summary>
     [NotNull, PublicAPI]
     public HookDef<Action> Highlight
     {
@@ -155,8 +153,8 @@ public sealed partial class Selected
     }
 
     /// <summary>
-    /// Gets the <see cref="Action"/> that when called,
-    /// performs an interaction punch or bomb shake with the impact level based on the parameter passed in.
+    /// Gets the <see cref="Action"/> that when called, performs an interaction punch
+    /// or bomb shake with the impact level based on the parameter passed in. Modded Only.
     /// </summary>
     [NotNull, PublicAPI]
     public HookMay<Action<float>> InteractionPunch
@@ -167,7 +165,7 @@ public sealed partial class Selected
 
     /// <summary>
     /// Gets the <see cref="Action"/> that when called, updates the list of children,
-    /// with the parameter being the <see cref="KMSelectable"/> to select.
+    /// with the parameter being the <see cref="KMSelectable"/> to select. Modded Only.
     /// </summary>
     [CLSCompliant(false), NotNull, PublicAPI]
     public HookMay<Action<KMSelectable>> UpdateChildren
@@ -177,8 +175,8 @@ public sealed partial class Selected
     }
 
     /// <summary>
-    /// Gets the encapsulated <see cref="KMSelectable"/> from this instance as
-    /// <see cref="Maybe{T}"/> due to ambiguity in this value being set.
+    /// Gets the encapsulated <see cref="KMSelectable"/> from this instance
+    /// as <see cref="Maybe{T}"/> due to ambiguity in this value being set.
     /// </summary>
     [CLSCompliant(false), PublicAPI]
     public Maybe<KMSelectable> Modded
@@ -186,10 +184,7 @@ public sealed partial class Selected
         [Pure] get => Value as KMSelectable;
     }
 
-    /// <summary>
-    /// Gets the encapsulated Selectable from this instance as <see cref="Maybe{T}"/>
-    /// due to ambiguity in this value being set.
-    /// </summary>
+    /// <summary>Gets the encapsulated <c>Selectable</c> from this instance.</summary>
     [CLSCompliant(false), PublicAPI]
     public Maybe<MonoBehaviour> Vanilla
     {
@@ -200,22 +195,17 @@ public sealed partial class Selected
     [PublicAPI]
     public Maybe<Selected> Parent
     {
-        [Pure]
-        get => Value is KMSelectable km && km ? km.Parent is var p && p ? new(p) : null : ParentInner(Value);
+        [Pure] get => Value is KMSelectable km && km ? km.Parent is var p && p ? new(p) : null : ParentInner(Value);
     }
 
-    /// <summary>
-    /// Gets a value indicating whether gamepad selection should wrap around left/right.
-    /// </summary>
+    /// <summary>Gets a value indicating whether gamepad selection should wrap around left/right.</summary>
     [NotNull, PublicAPI]
     public PropDef<bool> AllowWrapX
     {
         [Pure] get => _allowWrapX ??= new(Value, nameof(KMSelectable.AllowSelectionWrapX));
     }
 
-    /// <summary>
-    /// Gets a value indicating whether gamepad selection should wrap around up/down.
-    /// </summary>
+    /// <summary>Gets a value indicating whether gamepad selection should wrap around up/down.</summary>
     [NotNull, PublicAPI]
     public PropDef<bool> AllowWrapY
     {
@@ -223,7 +213,8 @@ public sealed partial class Selected
     }
 
     /// <summary>
-    /// Gets a value indicating whether it forces highlight to be selection highlight, this is yellow in game. Should be used when interaction will drill down to child selectables.
+    /// Gets a value indicating whether it forces highlight to be selection highlight,
+    /// this is yellow in game. Should be used when interaction will drill down to child selectables.
     /// </summary>
     [NotNull, PublicAPI]
     public PropDef<bool> ForceSelectionHighlight
@@ -232,7 +223,8 @@ public sealed partial class Selected
     }
 
     /// <summary>
-    /// Gets a value indicating whether it forces highlight to be interaction highlight, this is red in game. Should be used when interaction will trigger a behavior.
+    /// Gets a value indicating whether it forces highlight to be interaction highlight,
+    /// this is red in game. Should be used when interaction will trigger a behavior.
     /// </summary>
     [NotNull, PublicAPI]
     public PropDef<bool> ForceInteractionHighlight
@@ -249,27 +241,21 @@ public sealed partial class Selected
         [Pure] get => _isPassThrough ??= new(Value, nameof(KMSelectable.IsPassThrough));
     }
 
-    /// <summary>
-    /// Gets the number of selectables per row for gamepad controls.
-    /// </summary>
+    /// <summary>Gets the number of selectables per row for gamepad controls.</summary>
     [NotNull, PublicAPI]
     public PropDef<int> ChildRowLength
     {
         [Pure] get => _childRowLength ??= new(Value, nameof(KMSelectable.ChildRowLength));
     }
 
-    /// <summary>
-    /// Gets the particular child as the default index for gamepad controls.
-    /// </summary>
+    /// <summary>Gets the particular child as the default index for gamepad controls.</summary>
     [NotNull, PublicAPI]
     public PropDef<int> DefaultIndex
     {
         [Pure] get => _defaultIndex ??= new(Value, nameof(KMSelectable.DefaultSelectableIndex));
     }
 
-    /// <summary>
-    /// Gets the interaction colliders for mouse other than the highlight.
-    /// </summary>
+    /// <summary>Gets the interaction colliders for mouse other than the highlight. Modded Only.</summary>
     [CLSCompliant(false), NotNull, PublicAPI]
     public PropMay<Collider[]> Colliders
     {
@@ -277,8 +263,8 @@ public sealed partial class Selected
     }
 
     /// <summary>
-    /// Gets the list of child selectables.
-    /// Order is important as it is treated as a grid with row length defined by <see cref="ChildRowLength"/>.
+    /// Gets the list of child selectables. Order is important as it is treated
+    /// as a grid with row length defined by <see cref="ChildRowLength"/>.
     /// </summary>
     [NotNull, PublicAPI]
     public ReadOnlyCollection<Maybe<Selected>> Children
