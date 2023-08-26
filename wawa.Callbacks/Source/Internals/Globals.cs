@@ -45,6 +45,17 @@ static class Globals
     /// <remarks><para>Opposite of <see cref="Application.isEditor"/>, but as a pure getter.</para></remarks>
     public static bool IsKtane { [Pure] get; } = !Application.isEditor;
 
+    [NotNull, Pure]
+    public static Action<T> Invoke<T>([NotNull] Action a) => _ => a();
+
+    [NotNull, Pure]
+    public static Func<bool> False([NotNull] Action a) =>
+        () =>
+        {
+            a();
+            return false;
+        };
+
     /// <summary>Converts this instance to the core module.</summary>
     /// <param name="that">The object to convert.</param>
     /// <returns><paramref name="that"/> <see langword="as"/> <see cref="CoreBehaviour"/>.</returns>

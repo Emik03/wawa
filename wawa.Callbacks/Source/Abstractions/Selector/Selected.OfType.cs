@@ -317,25 +317,6 @@ public sealed partial class Selected
         };
     }
 
-    [NotNull, Pure]
-    static Action<T> Invoke<T>([NotNull] Action a) => _ => a();
-
-    [NotNull, Pure]
-    static Func<bool> False(Action a) =>
-        () =>
-        {
-            a();
-            return true;
-        };
-
-    [NotNull, Pure]
-    Func<bool> InteractHandler([NotNull] Action a) =>
-        () =>
-        {
-            a();
-            return ChildLength > 0;
-        };
-
     [NotNull] // ReSharper disable once NullableWarningSuppressionIsUsed
     static Highlighted HighlighterInner([NotNull] in object m) => new(((Selectable)m).Highlight.Core()!);
 
@@ -364,4 +345,12 @@ public sealed partial class Selected
 
         return modules;
     }
+
+    [NotNull, Pure]
+    Func<bool> InteractHandler([NotNull] Action a) =>
+        () =>
+        {
+            a();
+            return ChildLength > 0;
+        };
 }

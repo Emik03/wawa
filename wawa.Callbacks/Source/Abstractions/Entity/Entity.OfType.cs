@@ -172,42 +172,36 @@ public sealed partial class Entity
     /// Useful when the rules involve the timer in some way (like the Big Button),
     /// but should be used sparingly as it limits generation possibilities.
     /// </summary>
-    [PublicAPI]
+    [NotNull, PublicAPI]
     public PropDef<bool> RequiresTimerVisibility
     {
-        [Pure] get => _requiresTimerVisibility ??= new(Value, nameof(RequiresTimerVisibility));
+        [Pure] get => _requiresTimerVisibility ??= new(Value, nameof(KMBombModule.RequiresTimerVisibility));
     }
 
     /// <summary>Gets whether the needy warning sound effect plays when 5 seconds or less remain. Needy Only.</summary>
     // ReSharper disable NullableWarningSuppressionIsUsed
-    [PublicAPI]
+    [NotNull, PublicAPI]
     public PropMay<bool> NeedyWarnAtFiveSeconds
     {
-        [Pure]
-        get =>
-            _needyWarnAtFiveSeconds ??= new(
-                Value,
-                nameof(KMNeedyModule.WarnAtFiveSeconds),
-                _ => IsNeedy && ((NeedyTimer)VanillaTimer!.Core()).WarnTime is 5
-            );
+        [Pure] get => _needyWarnAtFiveSeconds ??= new(Value, nameof(KMNeedyModule.WarnAtFiveSeconds), IsVanillaWarn);
     }
 
     /// <summary>Gets the amount of time on the needy timer whenever this module is activated. Needy Only.</summary>
-    [PublicAPI]
+    [NotNull, PublicAPI]
     public PropMay<float> NeedyStartingTime
     {
         [Pure] get => _needyStartingTime ??= new(Value, nameof(KMNeedyModule.CountdownTime));
     }
 
     /// <summary>Gets the minimum delay for the needy to activate. Needy Only.</summary>
-    [PublicAPI]
+    [NotNull, PublicAPI]
     public PropMay<float> NeedyMinResetInterval
     {
         [Pure] get => _needyMinResetInterval ??= new(Value, nameof(KMNeedyModule.ResetDelayMin));
     }
 
     /// <summary>Gets the maximum delay for the needy to activate. Needy Only.</summary>
-    [PublicAPI]
+    [NotNull, PublicAPI]
     public PropMay<float> NeedyMaxResetInterval
     {
         [Pure] get => _needyMaxResetInterval ??= new(Value, nameof(KMNeedyModule.ResetDelayMax));
@@ -217,46 +211,40 @@ public sealed partial class Entity
     /// Gets the identifier for the module as referenced in missions. e.g. "BigButton" Also known as a "Module ID".
     /// This value is immutable for vanilla modules.
     /// </summary>
-    [PublicAPI]
+    [NotNull, PublicAPI]
     public PropDef<string> Id
     {
-        [Pure] get => _id ??= new(Value, nameof(KMBombModule.ModuleType), o => $"{((BombComponent)o).ComponentType}");
+        [Pure] get => _id ??= new(Value, nameof(KMBombModule.ModuleType), Typed);
     }
 
     /// <summary>
     /// Gets the nice display name shown to players. e.g. "The Button". This value is immutable for vanilla modules.
     /// </summary>
-    [PublicAPI]
+    [NotNull, PublicAPI]
     public PropDef<string> Name
     {
-        [Pure]
-        get =>
-            _name ??= new(
-                Value,
-                nameof(KMBombModule.ModuleDisplayName),
-                o => ((BombComponent)o).GetModuleDisplayName()
-            );
+        [Pure] get => _name ??= new(Value, nameof(KMBombModule.ModuleDisplayName), Named);
     }
 
     /// <summary>
     /// Gets the <see cref="Action"/> that is invoked when the lights turn on.
     /// This value is immutable for vanilla modules.
     /// </summary>
-    [PublicAPI]
+    [NotNull, PublicAPI]
     public HookDef<Action> Activate
     {
-        [Pure] get => _activate ??= new(Value, nameof(KMBombModule.OnActivate), o => ((BombComponent)o).Activate);
+        [Pure] get => _activate ??= new(Value, nameof(KMBombModule.OnActivate), Activator);
     }
 
     /// <summary>Gets the <see cref="Action"/> that is invoked when the needy activates. Modded Needy Only.</summary>
-    [PublicAPI]
+    [NotNull, PublicAPI]
     public HookMay<Action> NeedyActivate
     {
         [Pure] get => _needyActivate ??= new(Value, nameof(KMNeedyModule.OnNeedyActivation));
     }
 
     /// <summary>Gets the <see cref="Action"/> that is invoked when the needy deactivates. Modded Needy Only.</summary>
-    [PublicAPI]
+    [NotNull, PublicAPI]
     public HookMay<Action> NeedyDeactivate
     {
         [Pure] get => _needyDeactivate ??= new(Value, nameof(KMNeedyModule.OnNeedyActivation));
@@ -265,21 +253,21 @@ public sealed partial class Entity
     /// <summary>
     /// Gets the <see cref="Action"/> that is invoked when the needy timer expires. Modded Needy Only.
     /// </summary>
-    [PublicAPI]
+    [NotNull, PublicAPI]
     public HookMay<Action> NeedyTimerExpired
     {
         [Pure] get => _needyTimerExpired ??= new(Value, nameof(KMNeedyModule.OnTimerExpired));
     }
 
     /// <summary>Gets the <see cref="Action"/> that is called when the entire module has been solved.</summary>
-    [PublicAPI]
+    [NotNull, PublicAPI]
     public HookDef<Func<bool>> Solve
     {
         [Pure] get => _solve ??= new(Value, nameof(KMBombModule.OnPass), converter: False);
     }
 
     /// <summary>Gets the <see cref="Action"/> that is called on any mistake that causes a bomb strike.</summary>
-    [PublicAPI]
+    [NotNull, PublicAPI]
     public HookDef<Func<bool>> Strike
     {
         [Pure] get => _strike ??= new(Value, nameof(KMBombModule.OnStrike), converter: False);
@@ -289,17 +277,11 @@ public sealed partial class Entity
     /// Gets a <see cref="Action{T}"/> that when called, sets the time remaining to the parameter passed in.
     /// This value is immutable for vanilla modules. Needy Only.
     /// </summary>
-    [PublicAPI]
+    [NotNull, PublicAPI]
     public HookMay<Action<float>> NeedyTimerSet
     {
         [Pure]
-        get =>
-            _needyTimerSet ??= new(
-                Value,
-                nameof(KMNeedyModule.SetNeedyTimeRemainingHandler),
-                _ => IsNeedy ? f => ((NeedyTimer)VanillaTimer!.Core()).TimeRemaining = f : null!,
-                a => _ => a()
-            );
+        get => _needyTimerSet ??= new(Value, nameof(KMNeedyModule.SetNeedyTimeRemainingHandler), Setter, Invoke<float>);
     }
 
     /// <summary>
@@ -307,53 +289,63 @@ public sealed partial class Entity
     /// gets the random seed used to generate the rules for this game.
     /// Not currently used. Modded Only.
     /// </summary>
-    [PublicAPI]
+    [NotNull, PublicAPI]
     public HookMay<Func<int>> RuleGeneration
     {
         [Pure]
-        get =>
-            _ruleGeneration ??= new(
-                Value,
-                nameof(KMBombModule.GetRuleGenerationSeedHandler),
-                converter: a => () =>
-                {
-                    a();
-                    return 1;
-                }
-            );
+        get => _ruleGeneration ??= new(Value, nameof(KMBombModule.GetRuleGenerationSeedHandler), converter: One);
     }
 
     /// <summary>
     /// Gets a <see cref="Func{TResult}"/> that when called, gets the time remaining.
     /// This value is immutable for vanilla modules. Needy Only.
     /// </summary>
-    [PublicAPI]
+    [NotNull, PublicAPI]
     public HookMay<Func<float>> NeedyTimerGet
     {
         [Pure]
-        get =>
-            _needyTimerGet ??= new(
-                Value,
-                nameof(KMNeedyModule.SetNeedyTimeRemainingHandler),
-                _ => IsNeedy ? () => ((NeedyTimer)VanillaTimer!.Core()).TimeRemaining : null!,
-                a => () =>
-                {
-                    a();
-                    return IsVanilla ? VanillaTime(Value) : 0;
-                }
-            );
-    } // ReSharper restore NullableWarningSuppressionIsUsed
+        get => _needyTimerGet ??= new(Value, nameof(KMNeedyModule.SetNeedyTimeRemainingHandler), Getter, GetHandler);
+    }
 
-    [NonNegativeValue]
+    [NonNegativeValue, Pure]
     static float VanillaTime([NotNull] MonoBehaviour value) => (value.Core() as NeedyComponent)?.TimeRemaining ?? 0;
 
-    [NotNull]
-    static Func<bool> False([NotNull] Action a) =>
+    [NotNull, Pure]
+    static string Named([NotNull] object o) => ((BombComponent)o).GetModuleDisplayName();
+
+    [NotNull, Pure]
+    static string Typed([NotNull] object o) => $"{((BombComponent)o).ComponentType}";
+
+    [NotNull, Pure]
+    static Action Activator([NotNull] object o) => ((BombComponent)o).Activate;
+
+    [NotNull, Pure]
+    static Func<int> One([NotNull] Action a) =>
         () =>
         {
             a();
-            return false;
+            return 1;
         };
 
+    [Pure]
     static Modules VanillaType([NotNull] MonoBehaviour value) => (Modules)((BombComponent)value.Core()).ComponentType;
+
+    [Pure]
+    bool IsVanillaWarn([NotNull] object _) => IsNeedy && ((NeedyTimer)VanillaTimer!.Core()).WarnTime is 5;
+
+    [NotNull, Pure]
+    Action<float> Setter([NotNull] object _) =>
+        (IsNeedy ? f => ((NeedyTimer)VanillaTimer!.Core()).TimeRemaining = f : null!)!;
+
+    [NotNull, Pure]
+    Func<float> GetHandler([NotNull] Action a) =>
+        () =>
+        {
+            a();
+            return IsVanilla ? VanillaTime(Value) : 0;
+        };
+
+    [NotNull, Pure]
+    Func<float> Getter([NotNull] object _) =>
+        (IsNeedy ? () => ((NeedyTimer)VanillaTimer!.Core()).TimeRemaining : null)!;
 }
