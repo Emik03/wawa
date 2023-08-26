@@ -13,6 +13,12 @@ public sealed partial class Highlighted
     [CanBeNull]
     PropDef<Vector3> _scale;
 
+    [CanBeNull]
+    PropMay<bool> _ignore;
+
+    [CanBeNull]
+    PropMay<Material> _override;
+
     /// <summary>Gets a value indicating whether this instance contains a modded highlightable.</summary>
     [PublicAPI]
     public bool IsModded
@@ -34,9 +40,7 @@ public sealed partial class Highlighted
         [Pure] get => Value as KMHighlightable;
     }
 
-    /// <summary>
-    /// Gets the encapsulated Highlightable from this instance as <see cref="Maybe{T}"/> due to ambiguity in this value being set.
-    /// </summary>
+    /// <summary>Gets the encapsulated <c>Highlightable</c> from this instance.</summary>
     [CLSCompliant(false), PublicAPI]
     public Maybe<MonoBehaviour> Vanilla
     {
@@ -58,5 +62,25 @@ public sealed partial class Highlighted
     public PropDef<Vector3> Scale
     {
         [Pure] get => _scale ??= new(Value, nameof(KMHighlightable.HighlightScale));
+    }
+
+    /// <summary>
+    /// Gets the value that if true, the highlight would only activate directly: it
+    /// will not be activated when a parent highlight is activated. Vanilla Only.
+    /// </summary>
+    [NotNull, PublicAPI]
+    public PropMay<bool> Ignore
+    {
+        [Pure] get => _ignore ??= new(Value, nameof(Highlightable.IgnoreAsChildHighlight));
+    }
+
+    /// <summary>
+    /// Gets the value that if true, the highlight would only activate directly: it will not
+    /// be activated when a parent highlight is activated. Vanilla Only.
+    /// </summary>
+    [NotNull, PublicAPI]
+    public PropMay<Material> Override
+    {
+        [Pure] get => _override ??= new(Value, nameof(Highlightable.MaterialOverride));
     }
 }
