@@ -31,27 +31,6 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
     /// <param name="bombComponent">The <see cref="MonoBehaviour"/> instance to use to obtain the components.</param>
     internal Entity([NotNull] MonoBehaviour bombComponent) => Value = bombComponent;
 
-    /// <summary>Gets the encapsulated <see cref="KMBombModule"/> from this instance, if it exists.</summary>
-    [CLSCompliant(false), PublicAPI]
-    public Maybe<KMBombModule> Solvable
-    {
-        [Pure] get => Value as KMBombModule;
-    }
-
-    /// <summary>Gets the encapsulated <see cref="KMNeedyModule"/> from this instance, if it exists.</summary>
-    [CLSCompliant(false), PublicAPI]
-    public Maybe<KMNeedyModule> Needy
-    {
-        [Pure] get => Value as KMNeedyModule;
-    }
-
-    /// <summary>Gets the encapsulated BombComponent from this instance, if it exists.</summary>
-    [CLSCompliant(false), PublicAPI]
-    public Maybe<MonoBehaviour> Vanilla
-    {
-        [Pure] get => Value is KMBombModule or KMNeedyModule ? default : Value;
-    }
-
     /// <summary>Gets the value which is guaranteed to be a <see cref="MonoBehaviour"/>.</summary>
     [PublicAPI]
     public MonoBehaviour Value { [Pure] get; }
@@ -63,7 +42,7 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
         get =>
             Value is KMBombModule or KMNeedyModule
                 ? null
-                : ((object)Vanilla.Unwrap().Core() as NeedyComponent)?.GetComponentInChildren<NeedyTimer>().Core();
+                : ((object)Value.Core() as NeedyComponent)?.GetComponentInChildren<NeedyTimer>().Core();
     }
 
     /// <summary>
@@ -131,7 +110,7 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
     public static ReadOnlyCollection<Entity> GetChildren([AllowNull, CanBeNull] GameObject gameObject)
     {
         if (gameObject is null)
-            return Cache<Entity>.Empty;
+            return Lot<Entity>.Empty;
 
         if (s_allModules.TryGetValue(gameObject, out var children))
             return children;
@@ -213,8 +192,7 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
 
     /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
     [PublicAPI, Pure]
-    public bool Equals([AllowNull] Entity? other) =>
-        other is not null && Solvable == other.Solvable && Needy == other.Needy && Vanilla == other.Vanilla;
+    public bool Equals([AllowNull] Entity? other) => Value == other?.Value;
 
     /// <inheritdoc cref="IEqualityComparer{T}.Equals(T, T)"/>
     [PublicAPI, Pure]

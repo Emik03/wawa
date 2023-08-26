@@ -36,14 +36,14 @@ public sealed partial class Selected
     [NonNegativeValue, PublicAPI]
     public int ChildLength
     {
-        [Pure] get => Modded.IsSome ? Modded.Unwrap().Children.Length : ChildLengthInner(Vanilla.Unwrap());
+        [Pure] get => Value.Core() is KMSelectable km && km ? km.Children.Length : ChildLengthInner(Value);
     }
 
     /// <summary>Gets the <see cref="Highlighted"/> for this <see cref="Selected"/>.</summary>
     [NotNull, PublicAPI]
     public Highlighted Highlighted
     {
-        [Pure] get => Modded.IsSome ? Modded.Unwrap().Highlight : HighlighterInner(Vanilla.Unwrap());
+        [Pure] get => Value.Core() is KMSelectable km && km ? km.Highlight : HighlighterInner(Value);
     }
 
     /// <summary>
@@ -73,13 +73,7 @@ public sealed partial class Selected
     [NotNull, PublicAPI]
     public HookDef<Func<bool>> Cancel
     {
-        [Pure]
-        get =>
-            _cancel ??= new(
-                Value,
-                nameof(KMSelectable.OnCancel),
-                converter: False
-            );
+        [Pure] get => _cancel ??= new(Value, nameof(KMSelectable.OnCancel), converter: False);
     }
 
     /// <summary>
@@ -90,13 +84,7 @@ public sealed partial class Selected
     [NotNull, PublicAPI]
     public HookDef<Func<bool>> Interact
     {
-        [Pure]
-        get =>
-            _interact ??= new(
-                Value,
-                nameof(KMSelectable.OnInteract),
-                converter: InteractHandler
-            );
+        [Pure] get => _interact ??= new(Value, nameof(KMSelectable.OnInteract), converter: InteractHandler);
     }
 
     /// <summary>
@@ -118,9 +106,7 @@ public sealed partial class Selected
         [Pure] get => _highlight ??= new(Value, nameof(KMSelectable.OnHighlight));
     }
 
-    /// <summary>
-    /// Gets the <see cref="Action"/> that is called whenever the highlight is turned off.
-    /// </summary>
+    /// <summary>Gets the <see cref="Action"/> that is called whenever the highlight is turned off.</summary>
     [NotNull, PublicAPI]
     public HookDef<Action> HighlightEnded
     {
@@ -144,7 +130,8 @@ public sealed partial class Selected
     [NotNull, PublicAPI]
     public HookDef<Action> Defocus
     {
-        [Pure] get => _defocus ??= new(Value, nameof(KMSelectable.OnDefocus), wrapper: IsKtane ? DefocusFix : x => x);
+        [Pure]
+        get => _defocus ??= new(Value, nameof(KMSelectable.OnDefocus), wrapper: IsKtane ? DefocusFix : Lot<Action>.Id);
     }
 
     /// <summary>
@@ -200,16 +187,21 @@ public sealed partial class Selected
     }
 
     /// <summary>
-    /// Gets the parent of this selectable.
+    /// Gets the encapsulated Selectable from this instance as <see cref="Maybe{T}"/>
+    /// due to ambiguity in this value being set.
     /// </summary>
+    [CLSCompliant(false), PublicAPI]
+    public Maybe<MonoBehaviour> Vanilla
+    {
+        [Pure] get => Value.Core() is KMSelectable ? default : Value;
+    }
+
+    /// <summary>Gets the parent of this selectable.</summary>
     [PublicAPI]
     public Maybe<Selected> Parent
     {
         [Pure]
-        get =>
-            Value is KMSelectable km && km
-                ? km.Parent is var selectable && selectable ? new(selectable) : null
-                : ParentInner(Value);
+        get => Value is KMSelectable km && km ? km.Parent is var p && p ? new(p) : null : ParentInner(Value);
     }
 
     /// <summary>
@@ -306,16 +298,6 @@ public sealed partial class Selected
     public bool IsVanilla
     {
         [Pure] get => !IsModded;
-    }
-
-    /// <summary>
-    /// Gets the encapsulated Selectable from this instance as <see cref="Maybe{T}"/>
-    /// due to ambiguity in this value being set.
-    /// </summary>
-    [CLSCompliant(false), PublicAPI]
-    public Maybe<MonoBehaviour> Vanilla
-    {
-        [Pure] get => Value.Core() is KMSelectable ? default : Value;
     }
 
     [MethodImpl(MethodImplOptions.NoInlining), NonNegativeValue]

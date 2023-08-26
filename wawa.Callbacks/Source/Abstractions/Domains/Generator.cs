@@ -520,7 +520,7 @@ public static class Generator
         where T : Delegate
     {
         if (typeof(T) == type)
-            return x => x;
+            return DelegateLot<T>.Id;
 
         if (s_casters.TryGetValue(type, out var value) && value is Func<T, Delegate> fun)
             return fun;

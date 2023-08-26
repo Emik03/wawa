@@ -31,7 +31,7 @@ public static class HighlightedCore
     public static ReadOnlyCollection<Maybe<Entity>> ToEntities(
         [AllowNull, CanBeNull] this IEnumerable<Highlighted> highlighters
     ) =>
-        highlighters is null ? Cache<Maybe<Entity>>.Empty : new(highlighters.Select(ToEntity).ToList());
+        highlighters is null ? Lot<Maybe<Entity>>.Empty : new(highlighters.Select(ToEntity).ToList());
 
     /// <summary>Creates a <see cref="ReadOnlyCollection{T}"/> where each element has been converted.</summary>
     /// <param name="highlightables">The collection.</param>
@@ -40,5 +40,5 @@ public static class HighlightedCore
     public static ReadOnlyCollection<Highlighted> ToHighlighters(
         [AllowNull, CanBeNull] this IEnumerable<KMHighlightable> highlightables
     ) =>
-        highlightables is null ? Cache<Highlighted>.Empty : new(highlightables.Select(AsHighlighter).ToList());
+        highlightables is null ? Lot<Highlighted>.Empty : new(highlightables.Select(AsHighlighter).ToList());
 }

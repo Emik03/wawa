@@ -86,11 +86,11 @@ public sealed partial class Highlighted : ICloneable, IEquatable<Highlighted>, I
 
     /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
     [PublicAPI, Pure]
-    public bool Equals([AllowNull, CanBeNull] Highlighted other) => Value == other?.Value;
+    public bool Equals([AllowNull] Highlighted other) => Value == other?.Value;
 
     /// <inheritdoc cref="IEqualityComparer{T}.Equals(T, T)"/>
     [PublicAPI, Pure]
-    public bool Equals([AllowNull, CanBeNull] Highlighted x, [AllowNull, CanBeNull] Highlighted y) => x == y;
+    public bool Equals([AllowNull] Highlighted x, [AllowNull] Highlighted y) => x == y;
 
     /// <inheritdoc cref="IEqualityComparer{T}.GetHashCode(T)"/>
     [PublicAPI, Pure]

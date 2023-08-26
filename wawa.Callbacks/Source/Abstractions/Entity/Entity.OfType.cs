@@ -129,6 +129,27 @@ public sealed partial class Entity
                 not Modules.NeedyKnob;
     }
 
+    /// <summary>Gets the encapsulated <see cref="KMBombModule"/> from this instance, if it exists.</summary>
+    [CLSCompliant(false), PublicAPI]
+    public Maybe<KMBombModule> Solvable
+    {
+        [Pure] get => Value as KMBombModule;
+    }
+
+    /// <summary>Gets the encapsulated <see cref="KMNeedyModule"/> from this instance, if it exists.</summary>
+    [CLSCompliant(false), PublicAPI]
+    public Maybe<KMNeedyModule> Needy
+    {
+        [Pure] get => Value as KMNeedyModule;
+    }
+
+    /// <summary>Gets the encapsulated BombComponent from this instance, if it exists.</summary>
+    [CLSCompliant(false), PublicAPI]
+    public Maybe<MonoBehaviour> Vanilla
+    {
+        [Pure] get => Value is KMBombModule or KMNeedyModule ? default : Value;
+    }
+
     /// <summary>
     /// Gets the type of component, to differentiate the different kinds of vanilla modules.
     /// Modded modules are grouped as <see cref="Modules.Mod"/> or <see cref="Modules.NeedyMod"/> depending on type.

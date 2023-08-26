@@ -260,7 +260,7 @@ public static class EntityCore
     /// <returns>A <see cref="ReadOnlyCollection{T}"/> of type <see cref="Entity"/> which contains every module from <paramref name="bomb"/>.</returns>
     [CLSCompliant(false), MustUseReturnValue, NotNull]
     public static ReadOnlyCollection<Entity> ToEntities([AllowNull, CanBeNull] this KMBomb bomb) =>
-        bomb ? bomb.gameObject.GetChildren() : Cache<Entity>.Empty;
+        bomb ? bomb.gameObject.GetChildren() : Lot<Entity>.Empty;
 
     /// <summary>Creates an <see cref="ReadOnlyCollection{T}"/> where each element has been converted.</summary>
     /// <param name="solvables">The collection.</param>
@@ -269,7 +269,7 @@ public static class EntityCore
     public static ReadOnlyCollection<Entity> ToEntities(
         [AllowNull, CanBeNull] this IEnumerable<KMBombModule> solvables
     ) =>
-        solvables is null ? Cache<Entity>.Empty : new(solvables.Select(AsEntity).ToList());
+        solvables is null ? Lot<Entity>.Empty : new(solvables.Select(AsEntity).ToList());
 
     /// <summary>Creates an <see cref="ReadOnlyCollection{T}"/> where each element has been converted.</summary>
     /// <param name="needies">The collection.</param>
@@ -278,7 +278,7 @@ public static class EntityCore
     public static ReadOnlyCollection<Entity> ToEntities(
         [AllowNull, CanBeNull] this IEnumerable<KMNeedyModule> needies
     ) =>
-        needies is null ? Cache<Entity>.Empty : new(needies.Select(AsEntity).ToList());
+        needies is null ? Lot<Entity>.Empty : new(needies.Select(AsEntity).ToList());
 
     /// <summary>Creates an <see cref="ReadOnlyCollection{T}"/> where each element has been converted.</summary>
     /// <param name="entities">The collection.</param>
@@ -287,7 +287,7 @@ public static class EntityCore
     public static ReadOnlyCollection<Maybe<Highlighted>> ToHighlighters(
         [AllowNull, CanBeNull] this IEnumerable<Entity> entities
     ) =>
-        entities is null ? Cache<Maybe<Highlighted>>.Empty : new(entities.Select(ToHighlightable).ToList());
+        entities is null ? Lot<Maybe<Highlighted>>.Empty : new(entities.Select(ToHighlightable).ToList());
 
     /// <summary>Creates an <see cref="ReadOnlyCollection{T}"/> where each element has been converted.</summary>
     /// <param name="entities">The collection.</param>
@@ -296,7 +296,7 @@ public static class EntityCore
     public static ReadOnlyCollection<Maybe<Selected>> ToSelectors(
         [AllowNull, CanBeNull] this IEnumerable<Entity> entities
     ) =>
-        entities is null ? Cache<Maybe<Selected>>.Empty : new(entities.Select(ToSelectable).ToList());
+        entities is null ? Lot<Maybe<Selected>>.Empty : new(entities.Select(ToSelectable).ToList());
 
     /// <summary>Creates an <see cref="ReadOnlyCollection{T}"/> where each element has been converted.</summary>
     /// <param name="bombs">The collection.</param>
@@ -305,5 +305,5 @@ public static class EntityCore
     public static ReadOnlyCollection<ReadOnlyCollection<Entity>> ToManyEntities(
         [AllowNull, CanBeNull] this IEnumerable<KMBomb> bombs
     ) =>
-        bombs is null ? Cache<ReadOnlyCollection<Entity>>.Empty : new(bombs.Select(ToEntities).ToList());
+        bombs is null ? Lot<ReadOnlyCollection<Entity>>.Empty : new(bombs.Select(ToEntities).ToList());
 }
