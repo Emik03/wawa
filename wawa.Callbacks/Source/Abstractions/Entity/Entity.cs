@@ -150,7 +150,7 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
     /// Since the logger is implicitly created within this function, the logging cannot easily
     /// be reversed without using the nuclear option <see cref="Generator.Clear{T}(Hook{T})"/>.
     /// </para></remarks>
-    /// <returns>All entities in the current scene.</returns>
+    /// <returns>All entities in the current scene, where each collection represents a separate bomb.</returns>
     [NotNull, PublicAPI]
     public static ReadOnlyCollection<ReadOnlyCollection<Entity>> LogEverything()
     {
