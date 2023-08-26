@@ -529,10 +529,8 @@ public static class Generator
         var exOtherNull = Expression.Constant(null, type);
         var exParameter = Expression.Parameter(typeof(T), nameof(T));
         var method = type.GetMethod(nameof(Action.Invoke))!;
-
         var exArgs = method.GetParameters().Select((x, i) => Expression.Parameter(x.ParameterType, $"a{i}")).ToArray();
         var exDest = typeof(T).GetMethod(nameof(Action.Invoke))!.GetParameters().Length is 0 ? s_parameterless : exArgs;
-
         var exInvoke = Expression.Invoke(exParameter, exDest.Cast<Expression>());
         var exLambda = Expression.Lambda(type, exInvoke, exArgs);
         var exIsNull = Expression.Equal(exParameter, exNull);
