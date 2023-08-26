@@ -55,8 +55,8 @@ public sealed partial class Highlighted
     }
 
     /// <summary>
-    /// Gets the scaling. A non-zero value for a custom highlight scale.
-    /// Otherwise, leave it at <see cref="Vector3.zero"/> for default scaling.
+    /// Gets the scaling. A non-zero value for a custom highlight scale. Otherwise,
+    /// leave it at <see cref="Vector3.zero"/> for default scaling.
     /// </summary>
     [CLSCompliant(false), NotNull, PublicAPI]
     public PropDef<Vector3> Scale

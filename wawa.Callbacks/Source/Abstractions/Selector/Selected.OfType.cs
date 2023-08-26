@@ -28,6 +28,9 @@ public sealed partial class Selected
     [CanBeNull]
     PropMay<Collider[]> _colliders;
 
+    [CanBeNull]
+    PropMay<Vector3> _scale;
+
     /// <summary>
     /// Gets the number of children the selectable has. Calling <see cref="ChildLength"/> is more efficient
     /// than <see cref="Children"/> then using <see cref="ReadOnlyCollection{T}.Count"/> because
@@ -260,6 +263,16 @@ public sealed partial class Selected
     public PropMay<Collider[]> Colliders
     {
         [Pure] get => _colliders ??= new(Value, nameof(KMSelectable.SelectableColliders));
+    }
+
+    /// <summary>
+    /// Gets the scaling. A non-zero value for a custom highlight scale. Otherwise,
+    /// leave it at <see cref="Vector3.zero"/> for default scaling. Vanilla Only.
+    /// </summary>
+    [CLSCompliant(false), NotNull, PublicAPI]
+    public PropMay<Vector3> Scale
+    {
+        [Pure] get => _scale ??= new(Value, nameof(Selectable.HighlightScale));
     }
 
     /// <summary>
