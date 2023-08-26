@@ -167,7 +167,7 @@ public sealed partial class Entity
             _needyWarnAtFiveSeconds ??= new(
                 Value,
                 nameof(KMNeedyModule.WarnAtFiveSeconds),
-                _ => IsNeedy && ((NeedyTimer)VanillaTimer.Core()!).WarnTime is 5
+                _ => IsNeedy && ((NeedyTimer)VanillaTimer!.Core()).WarnTime is 5
             );
     }
 
@@ -254,14 +254,14 @@ public sealed partial class Entity
     [PublicAPI]
     public HookDef<Func<bool>> Solve
     {
-        [Pure] get => _solve ??= new(Value, nameof(KMBombModule.OnPass));
+        [Pure] get => _solve ??= new(Value, nameof(KMBombModule.OnPass), converter: False);
     }
 
     /// <summary>Gets the <see cref="Action"/> that is called on any mistake that causes a bomb strike.</summary>
     [PublicAPI]
     public HookDef<Func<bool>> Strike
     {
-        [Pure] get => _strike ??= new(Value, nameof(KMBombModule.OnStrike));
+        [Pure] get => _strike ??= new(Value, nameof(KMBombModule.OnStrike), converter: False);
     }
 
     /// <summary>
@@ -276,7 +276,7 @@ public sealed partial class Entity
             _needyTimerSet ??= new(
                 Value,
                 nameof(KMNeedyModule.SetNeedyTimeRemainingHandler),
-                _ => IsNeedy ? f => ((NeedyTimer)VanillaTimer.Core()!).TimeRemaining = f : null!,
+                _ => IsNeedy ? f => ((NeedyTimer)VanillaTimer!.Core()).TimeRemaining = f : null!,
                 a => _ => a()
             );
     }
@@ -314,7 +314,7 @@ public sealed partial class Entity
             _needyTimerGet ??= new(
                 Value,
                 nameof(KMNeedyModule.SetNeedyTimeRemainingHandler),
-                _ => IsNeedy ? () => ((NeedyTimer)VanillaTimer.Core()!).TimeRemaining : null!,
+                _ => IsNeedy ? () => ((NeedyTimer)VanillaTimer!.Core()).TimeRemaining : null!,
                 a => () =>
                 {
                     a();
@@ -325,6 +325,14 @@ public sealed partial class Entity
 
     [NonNegativeValue]
     static float VanillaTime([NotNull] MonoBehaviour value) => (value.Core() as NeedyComponent)?.TimeRemaining ?? 0;
+
+    [NotNull]
+    static Func<bool> False([NotNull] Action a) =>
+        () =>
+        {
+            a();
+            return false;
+        };
 
     static Modules VanillaType([NotNull] MonoBehaviour value) => (Modules)((BombComponent)value.Core()).ComponentType;
 }

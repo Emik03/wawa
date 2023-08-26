@@ -165,8 +165,8 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
                 if (set.Contains(key))
                     return default;
 
-                Enumerate(next);
                 set.Add(key);
+                Enumerate(next);
                 return default;
             }
 
@@ -188,7 +188,7 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
             ret[i] = current;
 
             foreach (var x in current)
-                x.ToSelectable().Match(Enumerate);
+                x.Log().ToSelectable().Match(Enumerate);
         }
 
         return Array.AsReadOnly(ret);

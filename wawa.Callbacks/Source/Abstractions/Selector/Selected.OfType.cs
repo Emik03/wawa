@@ -99,11 +99,7 @@ public sealed partial class Selected
             _interact ??= new(
                 Value,
                 nameof(KMSelectable.OnInteract),
-                converter: a => () =>
-                {
-                    a();
-                    return ChildLength > 0;
-                }
+                converter: InteractHandler
             );
     }
 
@@ -152,9 +148,7 @@ public sealed partial class Selected
     [NotNull, PublicAPI]
     public HookDef<Action> Defocus
     {
-        [Pure]
-        get =>
-            _defocus ??= new(Value, nameof(KMSelectable.OnDefocus), wrapper: IsKtane ? DefocusFix : x => x);
+        [Pure] get => _defocus ??= new(Value, nameof(KMSelectable.OnDefocus), wrapper: IsKtane ? DefocusFix : x => x);
     }
 
     /// <summary>
@@ -185,7 +179,7 @@ public sealed partial class Selected
     public HookMay<Action<float>> InteractionPunch
     {
         [Pure]
-        get => _interactionPunch ??= new(Value, nameof(KMSelectable.OnInteractionPunch), converter: a => _ => a());
+        get => _interactionPunch ??= new(Value, nameof(KMSelectable.OnInteractionPunch), converter: Invoke<float>);
     }
 
     /// <summary>
@@ -195,7 +189,8 @@ public sealed partial class Selected
     [CLSCompliant(false), NotNull, PublicAPI]
     public HookMay<Action<KMSelectable>> UpdateChildren
     {
-        [Pure] get => _updateChildren ??= new(Value, nameof(KMSelectable.OnUpdateChildren), converter: a => _ => a());
+        [Pure]
+        get => _updateChildren ??= new(Value, nameof(KMSelectable.OnUpdateChildren), converter: Invoke<KMSelectable>);
     }
 
     /// <summary>
@@ -343,6 +338,17 @@ public sealed partial class Selected
                 onDefocus();
         };
     }
+
+    [NotNull, Pure]
+    static Action<T> Invoke<T>([NotNull] Action a) => _ => a();
+
+    [NotNull, Pure]
+    Func<bool> InteractHandler([NotNull] Action a) =>
+        () =>
+        {
+            a();
+            return ChildLength > 0;
+        };
 
     [NotNull] // ReSharper disable once NullableWarningSuppressionIsUsed
     static Highlighted HighlighterInner([NotNull] in object m) => new(((Selectable)m).Highlight.Core()!);

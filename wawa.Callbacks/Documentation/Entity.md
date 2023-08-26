@@ -65,6 +65,7 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 | [FromKMBombModule(KMBombModule)](Entity.FromKMBombModule(KMBombModule).md 'Wawa.Callbacks.Entity.FromKMBombModule(KMBombModule)') | Converts the [KMBombModule](https://docs.microsoft.com/en-us/dotnet/api/KMBombModule 'KMBombModule') to a [new](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new')[Entity](Entity.md 'Wawa.Callbacks.Entity'). |
 | [FromKMNeedyModule(KMNeedyModule)](Entity.FromKMNeedyModule(KMNeedyModule).md 'Wawa.Callbacks.Entity.FromKMNeedyModule(KMNeedyModule)') | Converts the [KMNeedyModule](https://docs.microsoft.com/en-us/dotnet/api/KMNeedyModule 'KMNeedyModule') to a [new](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new')[Entity](Entity.md 'Wawa.Callbacks.Entity'). |
 | [GetChildren(GameObject)](Entity.GetChildren(GameObject).md 'Wawa.Callbacks.Entity.GetChildren(GameObject)') | Gets all modules that are children of a provided [UnityEngine.GameObject](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.GameObject 'UnityEngine.GameObject'), and caches it in a thread-safe manner. |
+| [LogEverything()](Entity.LogEverything.md 'Wawa.Callbacks.Entity.LogEverything()') | Hooks the logger to all instances. |
 
 | Operators | |
 | :--- | :--- |
