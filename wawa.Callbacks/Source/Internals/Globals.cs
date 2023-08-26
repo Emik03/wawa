@@ -59,5 +59,5 @@ static class Globals
     /// <returns>The path in the hierarchy to the parameter <paramref name="component"/>.</returns>
     [NotNull, Pure]
     public static string GetPath([NotNull] this Component component, [CanBeNull] string label) =>
-        $"[{Who} {Which}] {component.transform.GetPath()}/{component.GetType()}/{label}";
+        $"[{Who} {Which}] {component.transform.GetPath()}/{component.GetType().Name}.{label}";
 }
