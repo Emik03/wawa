@@ -39,14 +39,14 @@ public sealed partial class Selected
     [NonNegativeValue, PublicAPI]
     public int ChildLength
     {
-        [Pure] get => Value.Core() is KMSelectable km && km ? km.Children.Length : ChildLengthInner(Value);
+        [Pure] get => Value is KMSelectable km && km ? km.Children.Length : ChildLengthInner(Value);
     }
 
     /// <summary>Gets the <see cref="Highlighted"/> for this <see cref="Selected"/>.</summary>
     [NotNull, PublicAPI]
     public Highlighted Highlighted
     {
-        [Pure] get => Value.Core() is KMSelectable km && km ? km.Highlight : HighlighterInner(Value);
+        [Pure] get => Value is KMSelectable km && km ? km.Highlight : HighlighterInner(Value);
     }
 
     /// <summary>
