@@ -170,6 +170,8 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
                 return default;
             }
 
+            next.Parent.Match(CheckForKey);
+
             foreach (var child in next.Children)
                 child.Match(CheckForKey);
 
