@@ -45,14 +45,24 @@ static class Globals
     /// <remarks><para>Opposite of <see cref="Application.isEditor"/>, but as a pure getter.</para></remarks>
     public static bool IsKtane { [Pure] get; } = !Application.isEditor;
 
+    /// <summary>Returns the function that invokes the method.</summary>
+    /// <typeparam name="T">The type of argument of the returning <see cref="Action{T}"/>.</typeparam>
+    /// <param name="value">The method to invoke.</param>
+    /// <returns>The <see cref="Action{T}"/> that invokes the parameter <paramref name="value"/>.</returns>
     [NotNull, Pure]
-    public static Action<T> Invoke<T>([NotNull] Action a) => _ => a();
+    public static Action<T> Invoke<T>([NotNull] Action value) => _ => value();
 
+    /// <summary>Returns <see langword="false"/> after invoking the method.</summary>
+    /// <param name="value">The method to invoke.</param>
+    /// <returns>
+    /// The <see cref="Func{T}"/> that returns <see langword="false"/>
+    /// after invoking the parameter <paramref name="value"/>.
+    /// </returns>
     [NotNull, Pure]
-    public static Func<bool> False([NotNull] Action a) =>
+    public static Func<bool> False([NotNull] Action value) =>
         () =>
         {
-            a();
+            value();
             return false;
         };
 
