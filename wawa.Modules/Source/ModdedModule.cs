@@ -292,12 +292,9 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="format">The value to log.</param>
     /// <param name="logType">The kind of logging method to invoke.</param>
     /// <returns>The parameter <paramref name="format"/>.</returns>
-    [CanBeNull, StringFormatMethod(nameof(format))]
+    [CanBeNull]
     [return: AllowNull]
-    public T Log<T>(
-        [AllowNull, CanBeNull, StringSyntax(StringSyntaxAttribute.CompositeFormat)] T format = default,
-        LogType logType = LogType.Log
-    )
+    public T Log<T>([AllowNull, CanBeNull] T format = default, LogType logType = LogType.Log)
     {
         var id = Status.Id;
         var stringify = Stringifier.Stringify(format);
@@ -315,7 +312,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="format">The value to log.</param>
     /// <param name="args">The arguments to hook into format.</param>
     /// <returns>The parameter <paramref name="format"/>.</returns>
-    [CanBeNull, StringFormatMethod(nameof(format))]
+    [CanBeNull]
     [return: AllowNull]
     public T Log<T>(
         [AllowNull, CanBeNull, StringSyntax(StringSyntaxAttribute.CompositeFormat)] T format = default,
