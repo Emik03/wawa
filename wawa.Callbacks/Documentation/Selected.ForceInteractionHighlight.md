@@ -2,7 +2,8 @@
 
 ## Selected.ForceInteractionHighlight Property
 
-Gets a value indicating whether it forces highlight to be interaction highlight, this is red in game. Should be used when interaction will trigger a behavior.
+Gets a value indicating whether it forces highlight to be interaction highlight,  
+this is red in game. Should be used when interaction will trigger a behavior.
 
 ```csharp
 public Wawa.Callbacks.PropDef<bool> ForceInteractionHighlight { get; }

@@ -2,8 +2,8 @@
 
 ## Selected.InteractionPunch Property
 
-Gets the [System.Action](https://docs.microsoft.com/en-us/dotnet/api/System.Action 'System.Action') that when called,  
-performs an interaction punch or bomb shake with the impact level based on the parameter passed in.
+Gets the [System.Action](https://docs.microsoft.com/en-us/dotnet/api/System.Action 'System.Action') that when called, performs an interaction punch  
+or bomb shake with the impact level based on the parameter passed in. Modded Only.
 
 ```csharp
 public Wawa.Callbacks.HookMay<System.Action<float>> InteractionPunch { get; }

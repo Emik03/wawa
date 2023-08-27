@@ -2,7 +2,8 @@
 
 ## Selected.ForceSelectionHighlight Property
 
-Gets a value indicating whether it forces highlight to be selection highlight, this is yellow in game. Should be used when interaction will drill down to child selectables.
+Gets a value indicating whether it forces highlight to be selection highlight,  
+this is yellow in game. Should be used when interaction will drill down to child selectables.
 
 ```csharp
 public Wawa.Callbacks.PropDef<bool> ForceSelectionHighlight { get; }

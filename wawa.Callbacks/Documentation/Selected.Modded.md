@@ -2,8 +2,8 @@
 
 ## Selected.Modded Property
 
-Gets the encapsulated [KMSelectable](https://docs.microsoft.com/en-us/dotnet/api/KMSelectable 'KMSelectable') from this instance as  
-[Wawa.Optionals.Maybe&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe-1 'Wawa.Optionals.Maybe`1') due to ambiguity in this value being set.
+Gets the encapsulated [KMSelectable](https://docs.microsoft.com/en-us/dotnet/api/KMSelectable 'KMSelectable') from this instance  
+as [Wawa.Optionals.Maybe&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe-1 'Wawa.Optionals.Maybe`1') due to ambiguity in this value being set.
 
 ```csharp
 public Wawa.Optionals.Maybe<KMSelectable> Modded { get; }

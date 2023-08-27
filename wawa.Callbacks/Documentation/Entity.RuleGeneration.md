@@ -2,9 +2,8 @@
 
 ## Entity.RuleGeneration Property
 
-Gets a [System.Func&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Func-1 'System.Func`1') that when called,  
-gets the random seed used to generate the rules for this game.  
-Not currently used. Modded Only.
+Gets a [System.Func&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Func-1 'System.Func`1') that when called, gets the random seed  
+used to generate the rules for this game. Not currently used. Modded Only.
 
 ```csharp
 public Wawa.Callbacks.HookMay<System.Func<int>> RuleGeneration { get; }

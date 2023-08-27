@@ -2,7 +2,7 @@
 
 ## Highlighted.Vanilla Property
 
-Gets the encapsulated Highlightable from this instance as [Wawa.Optionals.Maybe&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe-1 'Wawa.Optionals.Maybe`1') due to ambiguity in this value being set.
+Gets the encapsulated `Highlightable` from this instance.
 
 ```csharp
 public Wawa.Optionals.Maybe<MonoBehaviour> Vanilla { get; }

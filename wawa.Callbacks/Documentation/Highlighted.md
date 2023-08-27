@@ -25,13 +25,15 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 
 | Properties | |
 | :--- | :--- |
+| [Ignore](Highlighted.Ignore.md 'Wawa.Callbacks.Highlighted.Ignore') | Gets the value that if true, the highlight would only activate directly: it<br/>will not be activated when a parent highlight is activated. Vanilla Only. |
 | [IsModded](Highlighted.IsModded.md 'Wawa.Callbacks.Highlighted.IsModded') | Gets a value indicating whether this instance contains a modded highlightable. |
 | [IsVanilla](Highlighted.IsVanilla.md 'Wawa.Callbacks.Highlighted.IsVanilla') | Gets a value indicating whether this instance contains a vanilla highlightable. |
 | [Modded](Highlighted.Modded.md 'Wawa.Callbacks.Highlighted.Modded') | Gets the encapsulated [KMHighlightable](https://docs.microsoft.com/en-us/dotnet/api/KMHighlightable 'KMHighlightable') from this instance. |
 | [Outline](Highlighted.Outline.md 'Wawa.Callbacks.Highlighted.Outline') | Gets the outline thickness amount. |
-| [Scale](Highlighted.Scale.md 'Wawa.Callbacks.Highlighted.Scale') | Gets the scaling. A non-zero value for a custom highlight scale.<br/>Otherwise, leave it at [UnityEngine.Vector3.zero](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Vector3.zero 'UnityEngine.Vector3.zero') for default scaling. |
+| [Override](Highlighted.Override.md 'Wawa.Callbacks.Highlighted.Override') | Gets the value that if true, the highlight would only activate directly: it will not<br/>be activated when a parent highlight is activated. Vanilla Only. |
+| [Scale](Highlighted.Scale.md 'Wawa.Callbacks.Highlighted.Scale') | Gets the scaling. A non-zero value for a custom highlight scale. Otherwise,<br/>leave it at [UnityEngine.Vector3.zero](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Vector3.zero 'UnityEngine.Vector3.zero') for default scaling. |
 | [Value](Highlighted.Value.md 'Wawa.Callbacks.Highlighted.Value') | Gets the value which is guaranteed to be a [UnityEngine.MonoBehaviour](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.MonoBehaviour 'UnityEngine.MonoBehaviour'). |
-| [Vanilla](Highlighted.Vanilla.md 'Wawa.Callbacks.Highlighted.Vanilla') | Gets the encapsulated Highlightable from this instance as [Wawa.Optionals.Maybe&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe-1 'Wawa.Optionals.Maybe`1') due to ambiguity in this value being set. |
+| [Vanilla](Highlighted.Vanilla.md 'Wawa.Callbacks.Highlighted.Vanilla') | Gets the encapsulated `Highlightable` from this instance. |
 
 | Methods | |
 | :--- | :--- |

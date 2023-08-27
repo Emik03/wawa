@@ -3,7 +3,7 @@
 ## Selected.UpdateChildren Property
 
 Gets the [System.Action](https://docs.microsoft.com/en-us/dotnet/api/System.Action 'System.Action') that when called, updates the list of children,  
-with the parameter being the [KMSelectable](https://docs.microsoft.com/en-us/dotnet/api/KMSelectable 'KMSelectable') to select.
+with the parameter being the [KMSelectable](https://docs.microsoft.com/en-us/dotnet/api/KMSelectable 'KMSelectable') to select. Modded Only.
 
 ```csharp
 public Wawa.Callbacks.HookMay<System.Action<KMSelectable>> UpdateChildren { get; }

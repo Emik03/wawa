@@ -2,7 +2,7 @@
 
 ## Selected.Colliders Property
 
-Gets the interaction colliders for mouse other than the highlight.
+Gets the interaction colliders for mouse other than the highlight. Modded Only.
 
 ```csharp
 public Wawa.Callbacks.PropMay<Collider[]> Colliders { get; }

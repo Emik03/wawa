@@ -2,8 +2,8 @@
 
 ## Selected.Children Property
 
-Gets the list of child selectables.  
-Order is important as it is treated as a grid with row length defined by [ChildRowLength](Selected.ChildRowLength.md 'Wawa.Callbacks.Selected.ChildRowLength').
+Gets the list of child selectables. Order is important as it is treated  
+as a grid with row length defined by [ChildRowLength](Selected.ChildRowLength.md 'Wawa.Callbacks.Selected.ChildRowLength').
 
 ```csharp
 public System.Collections.ObjectModel.ReadOnlyCollection<Wawa.Optionals.Maybe<Wawa.Callbacks.Selected>> Children { get; }
