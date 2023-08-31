@@ -222,8 +222,6 @@ global using global::Oculus.Platform.Samples.SimplePlatformSample;
 global using global::Oculus.Platform.Samples.VrBoardGame;
 global using global::Oculus.Platform.Samples.VrHoops;
 global using global::Oculus.Platform.Samples.VrVoiceChat;
-global using global::Pakala;
-global using global::Pakala.Callbacks;
 global using global::SimpleJson;
 global using global::SimpleJson.Reflection;
 global using global::TMPro;
@@ -363,6 +361,8 @@ global using global::UnityEngineInternal.Input;
 global using global::VirtualDeviceExample;
 global using global::Wawa;
 global using global::Wawa.Optionals;
+global using global::Wawa.Recall;
+global using global::Wawa.Recall.Internals;
 global using global::nn;
 global using global::nn.nifm;
 global using global::proto;
@@ -811,10 +811,6 @@ namespace Oculus.Platform.Samples.VrHoops { }
 
 namespace Oculus.Platform.Samples.VrVoiceChat { }
 
-namespace Pakala { }
-
-namespace Pakala.Callbacks { }
-
 namespace SimpleJson { }
 
 namespace SimpleJson.Reflection { }
@@ -1092,6 +1088,10 @@ namespace VirtualDeviceExample { }
 namespace Wawa { }
 
 namespace Wawa.Optionals { }
+
+namespace Wawa.Recall { }
+
+namespace Wawa.Recall.Internals { }
 
 namespace nn { }
 
