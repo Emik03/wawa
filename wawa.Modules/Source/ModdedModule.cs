@@ -76,17 +76,26 @@ public abstract class ModdedModule : CachedBehaviour
 
     /// <summary>Gets the current solve/strike status of the module.</summary>
     [NotNull]
-    public State Status => _status ??= new(Name);
+    public State Status
+    {
+        [Pure] get => _status ??= new(Name);
+    }
 
     /// <summary>
     /// Gets the mod id. Override this if you are working with an assembly with a different name than your mod id.
     /// </summary>
     [NotNull]
-    protected virtual string Id => _id ??= Lookup.ModNameOf(this).Value ?? GetType().Assembly.GetName().Name;
+    protected virtual string Id
+    {
+        [MustUseReturnValue] get => _id ??= Lookup.ModNameOf(this).Value ?? GetType().Assembly.GetName().Name;
+    }
 
     // DO NOT REMOVE. The mod 'Tweaks' uses reflection to get any field/property named "moduleId". (case-insensitive)
     [UsedImplicitly]
-    int ModuleId => Status.Id;
+    int ModuleId
+    {
+        [Pure] get => Status.Id;
+    }
 
     [NotNull]
     string Name
@@ -98,10 +107,16 @@ public abstract class ModdedModule : CachedBehaviour
     }
 
     [AllowNull, CanBeNull]
-    KMBombModule Solvable => _solvable ??= GetComponent<KMBombModule>();
+    KMBombModule Solvable
+    {
+        [Pure] get => _solvable ??= GetComponent<KMBombModule>();
+    }
 
     [AllowNull, CanBeNull]
-    KMNeedyModule Needy => _needy ??= GetComponent<KMNeedyModule>();
+    KMNeedyModule Needy
+    {
+        [Pure] get => _needy ??= GetComponent<KMNeedyModule>();
+    }
 
     /// <summary>Logs version numbers. Be sure to call this method if you are implementing Awake.</summary>
     /// <exception cref="InvalidOperationException">
@@ -121,30 +136,8 @@ public abstract class ModdedModule : CachedBehaviour
     }
 
     /// <summary>
-    /// Unsubscribes <see cref="Application.logMessageReceived"/> and <see cref="KMBombModule.OnActivate"/>.
-    /// </summary>
-    /// <remarks><para>It is recommended to invoke the base method when overriding this method.</para></remarks>
-    protected virtual void OnEnable()
-    {
-        Application.logMessageReceived += CheckForException;
-
-        if (Solvable)
-        {
-            Solvable.OnActivate += OnActivate;
-            Solvable.OnPass += OnPass;
-            Solvable.OnStrike -= OnStrike;
-        }
-
-        if (!Needy)
-            return;
-
-        Needy.OnActivate += OnActivate;
-        Needy.OnPass += OnPass;
-        Needy.OnStrike += OnStrike;
-    }
-
-    /// <summary>
-    /// Subscribes <see cref="Application.logMessageReceived"/> and <see cref="KMBombModule.OnActivate"/>.
+    /// Unsubscribes from <see cref="Application.logMessageReceived"/>, <see cref="KMBombModule.OnActivate"/>,
+    /// <see cref="KMBombModule.OnPass"/>, and <see cref="KMBombModule.OnStrike"/>.
     /// </summary>
     /// <remarks><para>It is recommended to invoke the base method when overriding this method.</para></remarks>
     protected virtual void OnDisable()
@@ -164,6 +157,30 @@ public abstract class ModdedModule : CachedBehaviour
         Needy.OnActivate -= OnActivate;
         Needy.OnPass -= OnPass;
         Needy.OnStrike -= OnStrike;
+    }
+
+    /// <summary>
+    /// Subscribes from <see cref="Application.logMessageReceived"/>, <see cref="KMBombModule.OnActivate"/>,
+    /// <see cref="KMBombModule.OnPass"/>, and <see cref="KMBombModule.OnStrike"/>.
+    /// </summary>
+    /// <remarks><para>It is recommended to invoke the base method when overriding this method.</para></remarks>
+    protected virtual void OnEnable()
+    {
+        Application.logMessageReceived += CheckForException;
+
+        if (Solvable)
+        {
+            Solvable.OnActivate += OnActivate;
+            Solvable.OnPass += OnPass;
+            Solvable.OnStrike += OnStrike;
+        }
+
+        if (!Needy)
+            return;
+
+        Needy.OnActivate += OnActivate;
+        Needy.OnPass += OnPass;
+        Needy.OnStrike += OnStrike;
     }
 
     /// <inheritdoc/>
@@ -402,14 +419,12 @@ public abstract class ModdedModule : CachedBehaviour
         if (GetComponent<KMSelectable>() is not { } selectable)
         {
             StartCoroutine(WaitForSolve());
-
             return;
         }
 
         selectable.OnInteract += () =>
         {
             StartCoroutine(WaitForSolve());
-
             return false;
         };
     }
@@ -441,11 +456,7 @@ public abstract class ModdedModule : CachedBehaviour
         Application.logMessageReceived -= CheckForException;
         Status.HasException = true;
 
-        var rethrows =
-            traces
-               .TakeWhile(static s => s.StartsWith(ExceptionStackTrace, Ordinal))
-               .ToArray();
-
+        var rethrows = traces.TakeWhile(static s => s.StartsWith(ExceptionStackTrace, Ordinal)).ToArray();
         var innerExceptions = string.Join(Prefix, rethrows);
         var spacing = innerExceptions is "" ? "" : Prefix;
         var message = $"{condition}{spacing}{innerExceptions}";
