@@ -22,6 +22,7 @@ sealed class WawaEditor : Editor
         Prefix = "wawa/",
         Scaffold = $"{Prefix}{nameof(Scaffold)}/",
         Suffix = " & deps",
+        Recall = $"{Wawa}{nameof(Recall)}",
         TwitchPlays = $"{Wawa}{nameof(TwitchPlays)}",
         Update = $"{Prefix}{nameof(Update)}/",
         Unity = $"{Wawa}{nameof(Unity)}",
@@ -54,9 +55,12 @@ sealed class WawaEditor : Editor
     [MenuItem($"{Update}{Modules}{Suffix}"), UsedImplicitly]
     static void FetchModules() => Fetch(Optionals, DDL, IO, Unity, Modules);
 
+    [MenuItem($"{Update}{Recall}{Suffix}"), UsedImplicitly]
+    static void FetchRecall() => Fetch(Optionals, Recall);
+
     [MenuItem($"{Update}{TwitchPlays}{Suffix}"), UsedImplicitly]
     static void FetchTwitchPlays() => Fetch(Optionals, DDL, IO, Modules, Unity, TwitchPlays);
 
     [MenuItem($"{Update}{All}"), UsedImplicitly]
-    static void FetchAll() => Fetch(Optionals, DDL, IO, Modules, Unity, TwitchPlays, Extensions, This);
+    static void FetchAll() => Fetch(Optionals, Unity, DDL, Recall, IO, Modules, TwitchPlays, Extensions, This);
 }
