@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wawa.Callbacks", "wawa.Callbacks\wawa.Callbacks.csproj", "{316114EE-FB3B-4DB9-BA1C-5248180D981C}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wawa.DDL", "wawa.DDL\wawa.DDL.csproj", "{1DD13D96-1952-4863-AA9B-DA844A75F305}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wawa.Unity", "wawa.Unity\wawa.Unity.csproj", "{A66B6892-8D0C-4500-810D-097FD7E2632E}"
@@ -23,6 +25,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{316114EE-FB3B-4DB9-BA1C-5248180D981C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{316114EE-FB3B-4DB9-BA1C-5248180D981C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{316114EE-FB3B-4DB9-BA1C-5248180D981C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{316114EE-FB3B-4DB9-BA1C-5248180D981C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1DD13D96-1952-4863-AA9B-DA844A75F305}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1DD13D96-1952-4863-AA9B-DA844A75F305}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DD13D96-1952-4863-AA9B-DA844A75F305}.Release|Any CPU.ActiveCfg = Release|Any CPU
