@@ -22,6 +22,7 @@ Adds a base type for modules.
 | [wawa.Extensions](https://github.com/Emik03/wawa/tree/main/wawa.Extensions)   |               |            |
 | [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO)                   | Yes           |            |
 | [wawa.Optionals](https://github.com/Emik03/wawa/tree/main/wawa.Optionals)     | Yes           | ️          |
+| [wawa.Recall](https://github.com/Emik03/wawa/tree/main/wawa.Recall)           |               |            |
 | [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) |               | Yes        |
 | [wawa.Unity](https://github.com/Emik03/wawa/tree/main/wawa.Unity)             | Yes           | ️          |
 

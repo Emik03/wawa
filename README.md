@@ -27,6 +27,7 @@ Whichever method is used, wait for Unity to reload, and a new tab should appear 
 
 ## Libraries
 
+- [wawa.Callbacks](https://github.com/Emik03/wawa/tree/main/wawa.DDL) - Allows hooking onto other vanilla/modded modules and/or selectables. Useful for modules that require context of other modules.
 - [wawa.DDL](https://github.com/Emik03/wawa/tree/main/wawa.DDL) - Implements the [DDL pattern](https://github.com/Emik03/.DDL#chapter-23-the-ddl-pattern) to safely expose game values, such as missions or strikes.
 - [wawa.Editors](https://github.com/Emik03/wawa/tree/main/wawa.Editors) - Editor-only assembly that adds a scaffolder to quickly create new modules, and an updater/downloader.
 - [wawa.Extensions](https://github.com/Emik03/wawa/tree/main/wawa.Extensions) - Adds extension methods for `KMFramework` types to make hooking easier.

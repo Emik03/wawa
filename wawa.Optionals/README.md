@@ -2,7 +2,8 @@
 
 Defines the `Maybe<T>` type, which is used throughout these libraries to represent a value that may be optional.
 
-All returned values from these libraries can be assumed to be always non-null, as a fallback value, or this type is used to explicitly mark optional values.
+All returned values from these libraries can be assumed to be always non-null, as a fallback value, or this type is used
+to explicitly mark optional values.
 
 ### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.Optionals/Documentation/Wawa.Optionals.md)
 
@@ -24,6 +25,7 @@ All returned values from these libraries can be assumed to be always non-null, a
 | [wawa.Extensions](https://github.com/Emik03/wawa/tree/main/wawa.Extensions)   |               |            |
 | [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO)                   |               | Yes        |
 | [wawa.Modules](https://github.com/Emik03/wawa/tree/main/wawa.Modules)         |               | Yes        |
+| [wawa.Recall](https://github.com/Emik03/wawa/tree/main/wawa.Recall)           |               | Yes        |
 | [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) |               | Yes        |
 | [wawa.Unity](https://github.com/Emik03/wawa/tree/main/wawa.Unity)             |               |            |
 

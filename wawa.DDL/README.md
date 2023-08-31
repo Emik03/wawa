@@ -1,6 +1,7 @@
 # wawa.DDL
 
-Implements the [DDL pattern](https://github.com/Emik03/.DDL#chapter-23-the-ddl-pattern) to allow direct access to common in-game values that are normally annoying to obtain.
+Implements the [DDL pattern](https://github.com/Emik03/.DDL#chapter-23-the-ddl-pattern) to allow direct access to common
+in-game values that are normally annoying to obtain.
 
 ### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.DDL/Documentation/Wawa.DDL.md)
 
@@ -22,6 +23,7 @@ Implements the [DDL pattern](https://github.com/Emik03/.DDL#chapter-23-the-ddl-p
 | [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO)                   |               | Yes        |
 | [wawa.Modules](https://github.com/Emik03/wawa/tree/main/wawa.Modules)         |               | Yes        |
 | [wawa.Optionals](https://github.com/Emik03/wawa/tree/main/wawa.Optionals)     | Yes           | ️          |
+| [wawa.Recall](https://github.com/Emik03/wawa/tree/main/wawa.Recall)           |               |            |
 | [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) |               | Yes        |
 | [wawa.Unity](https://github.com/Emik03/wawa/tree/main/wawa.Unity)             |               | ️          |
 

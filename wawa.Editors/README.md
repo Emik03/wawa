@@ -4,7 +4,8 @@ Editor-only dependency that extends the editor to integrate an installer and sca
 
 When installed, `wawa` is shown at the top with the following options...
 
-- `Scaffold`: Creates a template prefab and script. Uses a `wawa.Modules` and/or `wawa.TwitchPlays` template if the library exists, otherwise a generic template.
+- `Scaffold`: Creates a template prefab and script. Uses a `wawa.Modules` and/or `wawa.TwitchPlays` template if the
+  library exists, otherwise a generic template.
 - `Updater`: Downloads the latest of that library, as well as all dependencies.
 
 ---
@@ -30,7 +31,7 @@ Completely stand-alone library, and not used as a dependency in another library.
     <tbody>
         <tr>
             <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.DDL">wawa.DDL</a></td>
-            <td align="center" colspan="2" rowspan="7" style="text-align: center;">None</td>
+            <td align="center" colspan="2" rowspan="8" style="text-align: center;">None</td>
         </tr>
         <tr>
             <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.Extensions">wawa.Extensions</a></td>
@@ -43,6 +44,9 @@ Completely stand-alone library, and not used as a dependency in another library.
         </tr>
         <tr>
             <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.Optionals">wawa.Optionals</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.Recall">wawa.Recall</a></td>
         </tr>
         <tr>
             <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays">wawa.TwitchPlays</a></td>
