@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Callbacks;
+namespace Wawa.Recall;
 
 /// <summary>An interface for all encapsulations of vanilla objects.</summary>
 [CLSCompliant(false), PublicAPI]

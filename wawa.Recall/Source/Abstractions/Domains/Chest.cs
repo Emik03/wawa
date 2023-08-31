@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Callbacks;
+namespace Wawa.Recall;
 
 /// <summary>Internal storage of events used by <see cref="Hook{T}"/> to remove delegates.</summary>
 sealed class Chest : ICloneable, IEnumerable<Delegate>

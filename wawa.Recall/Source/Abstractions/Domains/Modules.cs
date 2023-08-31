@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Callbacks;
+namespace Wawa.Recall;
 
 /// <summary>
 /// The different types of modules in the game used to discern the type of vanilla module.
