@@ -66,6 +66,7 @@ sealed class TwitchEditor : Editor
 
         if (!EditorApplication.isPlaying)
         {
+            // ReSharper disable once FormatStringProblem
             module.Log(OutsidePlayMode, LogType.Error);
 
             yield break;
@@ -73,7 +74,7 @@ sealed class TwitchEditor : Editor
 
         yield return tp.TwitchHandleForcedSolve();
 
-        if (!module.Status.IsSolved)
+        if (!module.Status.IsSolved) // ReSharper disable once FormatStringProblem
             module.Log(SolvedTooEarly, LogType.Error);
     }
 }
