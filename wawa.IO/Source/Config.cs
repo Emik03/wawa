@@ -42,7 +42,7 @@ public static class Config
     )
         where T : new()
     {
-        if (!that.HasRead)
+        if (!IsKtane || !that.HasRead)
             return that;
 
         AssemblyLog(@$"Writing to file ""{that.FilePath}"" the following contents: {value}");
@@ -91,7 +91,7 @@ public static class Config
     )
         where T : new()
     {
-        if (that.FilePath.SuppressIO(File.ReadAllText) is not { } file)
+        if (!IsKtane || that.FilePath.SuppressIO(File.ReadAllText) is not { } file)
             return that;
 
         JObject
@@ -122,7 +122,7 @@ public static class Config
     [NotNull, PublicAPI]
     public static T Read<T>([NotNull] this Config<T> that)
         where T : new() =>
-        that.SuppressIO(Deserialized) ?? new();
+        IsKtane ? that.SuppressIO(Deserialized) ?? new() : new();
 
     static void Lint([NotNull] this JObject toMerge, [NotNull] in JObject content)
     {
