@@ -1,21 +1,21 @@
-### [Wawa.Callbacks](Wawa.Callbacks.md 'Wawa.Callbacks').[Generator](Generator.md 'Wawa.Callbacks.Generator')
+### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[Generator](Generator.md 'Wawa.Recall.Generator')
 
 ## Generator.Logger(this IVanilla, string) Method
 
-Gets the logger of the [IVanilla](IVanilla.md 'Wawa.Callbacks.IVanilla').
+Gets the logger of the [IVanilla](IVanilla.md 'Wawa.Recall.IVanilla').
 
 ```csharp
-public static System.Action Logger(this Wawa.Callbacks.IVanilla vanilla, string label=null);
+public static System.Action Logger(this Wawa.Recall.IVanilla vanilla, string label=null);
 ```
 #### Parameters
 
-<a name='Wawa.Callbacks.Generator.Logger(thisWawa.Callbacks.IVanilla,string).vanilla'></a>
+<a name='Wawa.Recall.Generator.Logger(thisWawa.Recall.IVanilla,string).vanilla'></a>
 
-`vanilla` [IVanilla](IVanilla.md 'Wawa.Callbacks.IVanilla')
+`vanilla` [IVanilla](IVanilla.md 'Wawa.Recall.IVanilla')
 
-The current [IVanilla](IVanilla.md 'Wawa.Callbacks.IVanilla').
+The current [IVanilla](IVanilla.md 'Wawa.Recall.IVanilla').
 
-<a name='Wawa.Callbacks.Generator.Logger(thisWawa.Callbacks.IVanilla,string).label'></a>
+<a name='Wawa.Recall.Generator.Logger(thisWawa.Recall.IVanilla,string).label'></a>
 
 `label` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 

@@ -1,4 +1,4 @@
-### [Wawa.Callbacks](Wawa.Callbacks.md 'Wawa.Callbacks').[IVanilla](IVanilla.md 'Wawa.Callbacks.IVanilla')
+### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[IVanilla](IVanilla.md 'Wawa.Recall.IVanilla')
 
 ## IVanilla.IsModded Property
 

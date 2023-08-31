@@ -1,22 +1,22 @@
-### [Wawa.Callbacks](Wawa.Callbacks.md 'Wawa.Callbacks').[SelectedCore](SelectedCore.md 'Wawa.Callbacks.SelectedCore')
+### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[SelectedCore](SelectedCore.md 'Wawa.Recall.SelectedCore')
 
 ## SelectedCore.ToEntity(this Selected) Method
 
-Gets the [Entity](Entity.md 'Wawa.Callbacks.Entity') of this [Selected](Selected.md 'Wawa.Callbacks.Selected').  
-An empty value is given if there is no attached [Entity](Entity.md 'Wawa.Callbacks.Entity') on the [Selected](Selected.md 'Wawa.Callbacks.Selected').
+Gets the [Entity](Entity.md 'Wawa.Recall.Entity') of this [Selected](Selected.md 'Wawa.Recall.Selected').  
+An empty value is given if there is no attached [Entity](Entity.md 'Wawa.Recall.Entity') on the [Selected](Selected.md 'Wawa.Recall.Selected').
 
 ```csharp
-public static Wawa.Optionals.Maybe<Wawa.Callbacks.Entity> ToEntity(this Wawa.Callbacks.Selected that);
+public static Wawa.Optionals.Maybe<Wawa.Recall.Entity> ToEntity(this Wawa.Recall.Selected that);
 ```
 #### Parameters
 
-<a name='Wawa.Callbacks.SelectedCore.ToEntity(thisWawa.Callbacks.Selected).that'></a>
+<a name='Wawa.Recall.SelectedCore.ToEntity(thisWawa.Recall.Selected).that'></a>
 
-`that` [Selected](Selected.md 'Wawa.Callbacks.Selected')
+`that` [Selected](Selected.md 'Wawa.Recall.Selected')
 
-This instance of [Selected](Selected.md 'Wawa.Callbacks.Selected').
+This instance of [Selected](Selected.md 'Wawa.Recall.Selected').
 
 #### Returns
-[Wawa.Optionals.Maybe&lt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe-1 'Wawa.Optionals.Maybe`1')[Entity](Entity.md 'Wawa.Callbacks.Entity')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe-1 'Wawa.Optionals.Maybe`1')  
-A [Wawa.Optionals.Maybe&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe-1 'Wawa.Optionals.Maybe`1'), consisting of either a [Entity](Entity.md 'Wawa.Callbacks.Entity')  
+[Wawa.Optionals.Maybe&lt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe-1 'Wawa.Optionals.Maybe`1')[Entity](Entity.md 'Wawa.Recall.Entity')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe-1 'Wawa.Optionals.Maybe`1')  
+A [Wawa.Optionals.Maybe&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe-1 'Wawa.Optionals.Maybe`1'), consisting of either a [Entity](Entity.md 'Wawa.Recall.Entity')  
 that is attached to this instance, or [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default').

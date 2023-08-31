@@ -1,23 +1,23 @@
-### [Wawa.Callbacks](Wawa.Callbacks.md 'Wawa.Callbacks').[Highlighted](Highlighted.md 'Wawa.Callbacks.Highlighted')
+### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[Highlighted](Highlighted.md 'Wawa.Recall.Highlighted')
 
 ## Highlighted.operator ==(Highlighted, Highlighted) Operator
 
 Determines whether both instances point to the same component.
 
 ```csharp
-public static bool operator ==(Wawa.Callbacks.Highlighted left, Wawa.Callbacks.Highlighted right);
+public static bool operator ==(Wawa.Recall.Highlighted left, Wawa.Recall.Highlighted right);
 ```
 #### Parameters
 
-<a name='Wawa.Callbacks.Highlighted.op_Equality(Wawa.Callbacks.Highlighted,Wawa.Callbacks.Highlighted).left'></a>
+<a name='Wawa.Recall.Highlighted.op_Equality(Wawa.Recall.Highlighted,Wawa.Recall.Highlighted).left'></a>
 
-`left` [Highlighted](Highlighted.md 'Wawa.Callbacks.Highlighted')
+`left` [Highlighted](Highlighted.md 'Wawa.Recall.Highlighted')
 
 The left-hand side.
 
-<a name='Wawa.Callbacks.Highlighted.op_Equality(Wawa.Callbacks.Highlighted,Wawa.Callbacks.Highlighted).right'></a>
+<a name='Wawa.Recall.Highlighted.op_Equality(Wawa.Recall.Highlighted,Wawa.Recall.Highlighted).right'></a>
 
-`right` [Highlighted](Highlighted.md 'Wawa.Callbacks.Highlighted')
+`right` [Highlighted](Highlighted.md 'Wawa.Recall.Highlighted')
 
 The right-hand side.
 

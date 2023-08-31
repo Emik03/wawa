@@ -1,34 +1,34 @@
-### [Wawa.Callbacks](Wawa.Callbacks.md 'Wawa.Callbacks').[Generator](Generator.md 'Wawa.Callbacks.Generator')
+### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[Generator](Generator.md 'Wawa.Recall.Generator')
 
 ## Generator.RemoveRaw<T>(this HookDef<T>, T) Method
 
-Removes the parameter [value](Generator.RemoveRaw{T}(HookDef{T},T).md#Wawa.Callbacks.Generator.RemoveRaw_T_(thisWawa.Callbacks.HookDef_T_,T).value 'Wawa.Callbacks.Generator.RemoveRaw<T>(this Wawa.Callbacks.HookDef<T>, T).value') from the inner value.
+Removes the parameter [value](Generator.RemoveRaw{T}(HookDef{T},T).md#Wawa.Recall.Generator.RemoveRaw_T_(thisWawa.Recall.HookDef_T_,T).value 'Wawa.Recall.Generator.RemoveRaw<T>(this Wawa.Recall.HookDef<T>, T).value') from the inner value.
 
 ```csharp
-public static Wawa.Callbacks.HookDef<T> RemoveRaw<T>(this Wawa.Callbacks.HookDef<T> that, T value)
+public static Wawa.Recall.HookDef<T> RemoveRaw<T>(this Wawa.Recall.HookDef<T> that, T value)
     where T : System.Delegate;
 ```
 #### Type parameters
 
-<a name='Wawa.Callbacks.Generator.RemoveRaw_T_(thisWawa.Callbacks.HookDef_T_,T).T'></a>
+<a name='Wawa.Recall.Generator.RemoveRaw_T_(thisWawa.Recall.HookDef_T_,T).T'></a>
 
 `T`
 
-The type parameter of [Prop&lt;T&gt;](Prop{T}.md 'Wawa.Callbacks.Prop<T>').
+The type parameter of [Prop&lt;T&gt;](Prop{T}.md 'Wawa.Recall.Prop<T>').
 #### Parameters
 
-<a name='Wawa.Callbacks.Generator.RemoveRaw_T_(thisWawa.Callbacks.HookDef_T_,T).that'></a>
+<a name='Wawa.Recall.Generator.RemoveRaw_T_(thisWawa.Recall.HookDef_T_,T).that'></a>
 
-`that` [Wawa.Callbacks.HookDef&lt;](HookDef{T}.md 'Wawa.Callbacks.HookDef<T>')[T](Generator.RemoveRaw{T}(HookDef{T},T).md#Wawa.Callbacks.Generator.RemoveRaw_T_(thisWawa.Callbacks.HookDef_T_,T).T 'Wawa.Callbacks.Generator.RemoveRaw<T>(this Wawa.Callbacks.HookDef<T>, T).T')[&gt;](HookDef{T}.md 'Wawa.Callbacks.HookDef<T>')
+`that` [Wawa.Recall.HookDef&lt;](HookDef{T}.md 'Wawa.Recall.HookDef<T>')[T](Generator.RemoveRaw{T}(HookDef{T},T).md#Wawa.Recall.Generator.RemoveRaw_T_(thisWawa.Recall.HookDef_T_,T).T 'Wawa.Recall.Generator.RemoveRaw<T>(this Wawa.Recall.HookDef<T>, T).T')[&gt;](HookDef{T}.md 'Wawa.Recall.HookDef<T>')
 
-This instance of [Prop&lt;T&gt;](Prop{T}.md 'Wawa.Callbacks.Prop<T>').
+This instance of [Prop&lt;T&gt;](Prop{T}.md 'Wawa.Recall.Prop<T>').
 
-<a name='Wawa.Callbacks.Generator.RemoveRaw_T_(thisWawa.Callbacks.HookDef_T_,T).value'></a>
+<a name='Wawa.Recall.Generator.RemoveRaw_T_(thisWawa.Recall.HookDef_T_,T).value'></a>
 
-`value` [T](Generator.RemoveRaw{T}(HookDef{T},T).md#Wawa.Callbacks.Generator.RemoveRaw_T_(thisWawa.Callbacks.HookDef_T_,T).T 'Wawa.Callbacks.Generator.RemoveRaw<T>(this Wawa.Callbacks.HookDef<T>, T).T')
+`value` [T](Generator.RemoveRaw{T}(HookDef{T},T).md#Wawa.Recall.Generator.RemoveRaw_T_(thisWawa.Recall.HookDef_T_,T).T 'Wawa.Recall.Generator.RemoveRaw<T>(this Wawa.Recall.HookDef<T>, T).T')
 
 The value to set the inner value with.
 
 #### Returns
-[Wawa.Callbacks.HookDef&lt;](HookDef{T}.md 'Wawa.Callbacks.HookDef<T>')[T](Generator.RemoveRaw{T}(HookDef{T},T).md#Wawa.Callbacks.Generator.RemoveRaw_T_(thisWawa.Callbacks.HookDef_T_,T).T 'Wawa.Callbacks.Generator.RemoveRaw<T>(this Wawa.Callbacks.HookDef<T>, T).T')[&gt;](HookDef{T}.md 'Wawa.Callbacks.HookDef<T>')  
-The parameter [that](Generator.RemoveRaw{T}(HookDef{T},T).md#Wawa.Callbacks.Generator.RemoveRaw_T_(thisWawa.Callbacks.HookDef_T_,T).that 'Wawa.Callbacks.Generator.RemoveRaw<T>(this Wawa.Callbacks.HookDef<T>, T).that').
+[Wawa.Recall.HookDef&lt;](HookDef{T}.md 'Wawa.Recall.HookDef<T>')[T](Generator.RemoveRaw{T}(HookDef{T},T).md#Wawa.Recall.Generator.RemoveRaw_T_(thisWawa.Recall.HookDef_T_,T).T 'Wawa.Recall.Generator.RemoveRaw<T>(this Wawa.Recall.HookDef<T>, T).T')[&gt;](HookDef{T}.md 'Wawa.Recall.HookDef<T>')  
+The parameter [that](Generator.RemoveRaw{T}(HookDef{T},T).md#Wawa.Recall.Generator.RemoveRaw_T_(thisWawa.Recall.HookDef_T_,T).that 'Wawa.Recall.Generator.RemoveRaw<T>(this Wawa.Recall.HookDef<T>, T).that').

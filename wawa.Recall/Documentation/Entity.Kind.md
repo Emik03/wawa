@@ -1,13 +1,13 @@
-### [Wawa.Callbacks](Wawa.Callbacks.md 'Wawa.Callbacks').[Entity](Entity.md 'Wawa.Callbacks.Entity')
+### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[Entity](Entity.md 'Wawa.Recall.Entity')
 
 ## Entity.Kind Property
 
 Gets the type of component, to differentiate the different kinds of vanilla modules.  
-Modded modules are grouped as [Mod](Modules.md#Wawa.Callbacks.Modules.Mod 'Wawa.Callbacks.Modules.Mod') or [NeedyMod](Modules.md#Wawa.Callbacks.Modules.NeedyMod 'Wawa.Callbacks.Modules.NeedyMod') depending on type.
+Modded modules are grouped as [Mod](Modules.md#Wawa.Recall.Modules.Mod 'Wawa.Recall.Modules.Mod') or [NeedyMod](Modules.md#Wawa.Recall.Modules.NeedyMod 'Wawa.Recall.Modules.NeedyMod') depending on type.
 
 ```csharp
-public Wawa.Callbacks.Modules Kind { get; }
+public Wawa.Recall.Modules Kind { get; }
 ```
 
 #### Property Value
-[Modules](Modules.md 'Wawa.Callbacks.Modules')
+[Modules](Modules.md 'Wawa.Recall.Modules')

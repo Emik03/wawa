@@ -1,4 +1,4 @@
-### [Wawa.Callbacks](Wawa.Callbacks.md 'Wawa.Callbacks').[Entity](Entity.md 'Wawa.Callbacks.Entity')
+### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[Entity](Entity.md 'Wawa.Recall.Entity')
 
 ## Entity.IsVanillaModule Property
 
@@ -13,4 +13,4 @@ public bool IsVanillaModule { get; }
 
 ### Remarks
   
-This excludes [Empty](Modules.md#Wawa.Callbacks.Modules.Empty 'Wawa.Callbacks.Modules.Empty') and [Timer](Modules.md#Wawa.Callbacks.Modules.Timer 'Wawa.Callbacks.Modules.Timer').
+This excludes [Empty](Modules.md#Wawa.Recall.Modules.Empty 'Wawa.Recall.Modules.Empty') and [Timer](Modules.md#Wawa.Recall.Modules.Timer 'Wawa.Recall.Modules.Timer').

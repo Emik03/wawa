@@ -1,31 +1,31 @@
-### [Wawa.Callbacks](Wawa.Callbacks.md 'Wawa.Callbacks').[Generator](Generator.md 'Wawa.Callbacks.Generator')
+### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[Generator](Generator.md 'Wawa.Recall.Generator')
 
 ## Generator.TryRemove<T>(this HookMay<T>, T) Method
 
-Attempts to remove the parameter [value](Generator.TryRemove{T}(HookMay{T},T).md#Wawa.Callbacks.Generator.TryRemove_T_(thisWawa.Callbacks.HookMay_T_,T).value 'Wawa.Callbacks.Generator.TryRemove<T>(this Wawa.Callbacks.HookMay<T>, T).value') from the inner value.
+Attempts to remove the parameter [value](Generator.TryRemove{T}(HookMay{T},T).md#Wawa.Recall.Generator.TryRemove_T_(thisWawa.Recall.HookMay_T_,T).value 'Wawa.Recall.Generator.TryRemove<T>(this Wawa.Recall.HookMay<T>, T).value') from the inner value.
 
 ```csharp
-public static bool TryRemove<T>(this Wawa.Callbacks.HookMay<T>? that, T value)
+public static bool TryRemove<T>(this Wawa.Recall.HookMay<T>? that, T value)
     where T : System.Delegate;
 ```
 #### Type parameters
 
-<a name='Wawa.Callbacks.Generator.TryRemove_T_(thisWawa.Callbacks.HookMay_T_,T).T'></a>
+<a name='Wawa.Recall.Generator.TryRemove_T_(thisWawa.Recall.HookMay_T_,T).T'></a>
 
 `T`
 
-The type parameter of [Prop&lt;T&gt;](Prop{T}.md 'Wawa.Callbacks.Prop<T>').
+The type parameter of [Prop&lt;T&gt;](Prop{T}.md 'Wawa.Recall.Prop<T>').
 #### Parameters
 
-<a name='Wawa.Callbacks.Generator.TryRemove_T_(thisWawa.Callbacks.HookMay_T_,T).that'></a>
+<a name='Wawa.Recall.Generator.TryRemove_T_(thisWawa.Recall.HookMay_T_,T).that'></a>
 
-`that` [Wawa.Callbacks.HookMay&lt;](HookMay{T}.md 'Wawa.Callbacks.HookMay<T>')[T](Generator.TryRemove{T}(HookMay{T},T).md#Wawa.Callbacks.Generator.TryRemove_T_(thisWawa.Callbacks.HookMay_T_,T).T 'Wawa.Callbacks.Generator.TryRemove<T>(this Wawa.Callbacks.HookMay<T>, T).T')[&gt;](HookMay{T}.md 'Wawa.Callbacks.HookMay<T>')
+`that` [Wawa.Recall.HookMay&lt;](HookMay{T}.md 'Wawa.Recall.HookMay<T>')[T](Generator.TryRemove{T}(HookMay{T},T).md#Wawa.Recall.Generator.TryRemove_T_(thisWawa.Recall.HookMay_T_,T).T 'Wawa.Recall.Generator.TryRemove<T>(this Wawa.Recall.HookMay<T>, T).T')[&gt;](HookMay{T}.md 'Wawa.Recall.HookMay<T>')
 
-This instance of [Prop&lt;T&gt;](Prop{T}.md 'Wawa.Callbacks.Prop<T>').
+This instance of [Prop&lt;T&gt;](Prop{T}.md 'Wawa.Recall.Prop<T>').
 
-<a name='Wawa.Callbacks.Generator.TryRemove_T_(thisWawa.Callbacks.HookMay_T_,T).value'></a>
+<a name='Wawa.Recall.Generator.TryRemove_T_(thisWawa.Recall.HookMay_T_,T).value'></a>
 
-`value` [T](Generator.TryRemove{T}(HookMay{T},T).md#Wawa.Callbacks.Generator.TryRemove_T_(thisWawa.Callbacks.HookMay_T_,T).T 'Wawa.Callbacks.Generator.TryRemove<T>(this Wawa.Callbacks.HookMay<T>, T).T')
+`value` [T](Generator.TryRemove{T}(HookMay{T},T).md#Wawa.Recall.Generator.TryRemove_T_(thisWawa.Recall.HookMay_T_,T).T 'Wawa.Recall.Generator.TryRemove<T>(this Wawa.Recall.HookMay<T>, T).T')
 
 The value to set the inner value with.
 

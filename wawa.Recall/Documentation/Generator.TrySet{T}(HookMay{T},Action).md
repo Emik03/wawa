@@ -1,29 +1,29 @@
-### [Wawa.Callbacks](Wawa.Callbacks.md 'Wawa.Callbacks').[Generator](Generator.md 'Wawa.Callbacks.Generator')
+### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[Generator](Generator.md 'Wawa.Recall.Generator')
 
 ## Generator.TrySet<T>(this HookMay<T>, Action) Method
 
-Attempts to set the inner value to the parameter [value](Generator.TrySet{T}(HookMay{T},Action).md#Wawa.Callbacks.Generator.TrySet_T_(thisWawa.Callbacks.HookMay_T_,System.Action).value 'Wawa.Callbacks.Generator.TrySet<T>(this Wawa.Callbacks.HookMay<T>, System.Action).value').
+Attempts to set the inner value to the parameter [value](Generator.TrySet{T}(HookMay{T},Action).md#Wawa.Recall.Generator.TrySet_T_(thisWawa.Recall.HookMay_T_,System.Action).value 'Wawa.Recall.Generator.TrySet<T>(this Wawa.Recall.HookMay<T>, System.Action).value').
 
 ```csharp
-public static bool TrySet<T>(this Wawa.Callbacks.HookMay<T>? that, System.Action? value)
+public static bool TrySet<T>(this Wawa.Recall.HookMay<T>? that, System.Action? value)
     where T : System.Delegate;
 ```
 #### Type parameters
 
-<a name='Wawa.Callbacks.Generator.TrySet_T_(thisWawa.Callbacks.HookMay_T_,System.Action).T'></a>
+<a name='Wawa.Recall.Generator.TrySet_T_(thisWawa.Recall.HookMay_T_,System.Action).T'></a>
 
 `T`
 
-The type parameter of [Prop&lt;T&gt;](Prop{T}.md 'Wawa.Callbacks.Prop<T>').
+The type parameter of [Prop&lt;T&gt;](Prop{T}.md 'Wawa.Recall.Prop<T>').
 #### Parameters
 
-<a name='Wawa.Callbacks.Generator.TrySet_T_(thisWawa.Callbacks.HookMay_T_,System.Action).that'></a>
+<a name='Wawa.Recall.Generator.TrySet_T_(thisWawa.Recall.HookMay_T_,System.Action).that'></a>
 
-`that` [Wawa.Callbacks.HookMay&lt;](HookMay{T}.md 'Wawa.Callbacks.HookMay<T>')[T](Generator.TrySet{T}(HookMay{T},Action).md#Wawa.Callbacks.Generator.TrySet_T_(thisWawa.Callbacks.HookMay_T_,System.Action).T 'Wawa.Callbacks.Generator.TrySet<T>(this Wawa.Callbacks.HookMay<T>, System.Action).T')[&gt;](HookMay{T}.md 'Wawa.Callbacks.HookMay<T>')
+`that` [Wawa.Recall.HookMay&lt;](HookMay{T}.md 'Wawa.Recall.HookMay<T>')[T](Generator.TrySet{T}(HookMay{T},Action).md#Wawa.Recall.Generator.TrySet_T_(thisWawa.Recall.HookMay_T_,System.Action).T 'Wawa.Recall.Generator.TrySet<T>(this Wawa.Recall.HookMay<T>, System.Action).T')[&gt;](HookMay{T}.md 'Wawa.Recall.HookMay<T>')
 
-This instance of [Prop&lt;T&gt;](Prop{T}.md 'Wawa.Callbacks.Prop<T>').
+This instance of [Prop&lt;T&gt;](Prop{T}.md 'Wawa.Recall.Prop<T>').
 
-<a name='Wawa.Callbacks.Generator.TrySet_T_(thisWawa.Callbacks.HookMay_T_,System.Action).value'></a>
+<a name='Wawa.Recall.Generator.TrySet_T_(thisWawa.Recall.HookMay_T_,System.Action).value'></a>
 
 `value` [System.Action](https://docs.microsoft.com/en-us/dotnet/api/System.Action 'System.Action')
 

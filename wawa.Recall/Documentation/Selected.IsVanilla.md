@@ -1,4 +1,4 @@
-### [Wawa.Callbacks](Wawa.Callbacks.md 'Wawa.Callbacks').[Selected](Selected.md 'Wawa.Callbacks.Selected')
+### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[Selected](Selected.md 'Wawa.Recall.Selected')
 
 ## Selected.IsVanilla Property
 
@@ -8,7 +8,7 @@ Gets a value indicating whether this instance contains a vanilla selectable.
 public bool IsVanilla { get; }
 ```
 
-Implements [IsVanilla](IVanilla.IsVanilla.md 'Wawa.Callbacks.IVanilla.IsVanilla')
+Implements [IsVanilla](IVanilla.IsVanilla.md 'Wawa.Recall.IVanilla.IsVanilla')
 
 #### Property Value
 [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')

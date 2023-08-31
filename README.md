@@ -27,13 +27,13 @@ Whichever method is used, wait for Unity to reload, and a new tab should appear 
 
 ## Libraries
 
-- [wawa.Callbacks](https://github.com/Emik03/wawa/tree/main/wawa.DDL) - Allows hooking onto other vanilla/modded modules and/or selectables. Useful for modules that require context of other modules.
 - [wawa.DDL](https://github.com/Emik03/wawa/tree/main/wawa.DDL) - Implements the [DDL pattern](https://github.com/Emik03/.DDL#chapter-23-the-ddl-pattern) to safely expose game values, such as missions or strikes.
 - [wawa.Editors](https://github.com/Emik03/wawa/tree/main/wawa.Editors) - Editor-only assembly that adds a scaffolder to quickly create new modules, and an updater/downloader.
 - [wawa.Extensions](https://github.com/Emik03/wawa/tree/main/wawa.Extensions) - Adds extension methods for `KMFramework` types to make hooking easier.
 - [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO) - Adds methods for KTaNE-related IO operations, such as Mod Settings, loading AssetBundles from the mod directory, or loading external libraries.
 - [wawa.Modules](https://github.com/Emik03/wawa/tree/main/wawa.Modules) - Adds `ModdedModule`, a base class that implements essential module behavior.
 - [wawa.Optionals](https://github.com/Emik03/wawa/tree/main/wawa.Optionals) - Shared `Maybe` type. These libraries don't return `null` without wrapping it in this type.
+- [wawa.Recalls](https://github.com/Emik03/wawa/tree/main/wawa.Recalls) - Allows hooking onto other vanilla/modded modules and/or selectables. Useful for modules that require context of other modules.
 - [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) - Adds `Twitch`, a base class that hooks on a `ModdedModule` to add essential TwitchPlays behavior.
 - [wawa.Unity](https://github.com/Emik03/wawa/tree/main/wawa.Unity) - Adds `CachedBehavior`, eliminates overhead of Unity API calls without the need for explicit fields.
 

@@ -1,23 +1,23 @@
-### [Wawa.Callbacks](Wawa.Callbacks.md 'Wawa.Callbacks').[Selected](Selected.md 'Wawa.Callbacks.Selected')
+### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[Selected](Selected.md 'Wawa.Recall.Selected')
 
 ## Selected.operator !=(Selected, Selected) Operator
 
 Determines whether both instances do not point to the same component.
 
 ```csharp
-public static bool operator !=(Wawa.Callbacks.Selected? left, Wawa.Callbacks.Selected? right);
+public static bool operator !=(Wawa.Recall.Selected? left, Wawa.Recall.Selected? right);
 ```
 #### Parameters
 
-<a name='Wawa.Callbacks.Selected.op_Inequality(Wawa.Callbacks.Selected,Wawa.Callbacks.Selected).left'></a>
+<a name='Wawa.Recall.Selected.op_Inequality(Wawa.Recall.Selected,Wawa.Recall.Selected).left'></a>
 
-`left` [Selected](Selected.md 'Wawa.Callbacks.Selected')
+`left` [Selected](Selected.md 'Wawa.Recall.Selected')
 
 The left-hand side.
 
-<a name='Wawa.Callbacks.Selected.op_Inequality(Wawa.Callbacks.Selected,Wawa.Callbacks.Selected).right'></a>
+<a name='Wawa.Recall.Selected.op_Inequality(Wawa.Recall.Selected,Wawa.Recall.Selected).right'></a>
 
-`right` [Selected](Selected.md 'Wawa.Callbacks.Selected')
+`right` [Selected](Selected.md 'Wawa.Recall.Selected')
 
 The right-hand side.
 
