@@ -129,10 +129,18 @@ public abstract class ModdedModule : CachedBehaviour
         Application.logMessageReceived += CheckForException;
 
         if (Solvable)
+        {
             Solvable.OnActivate += OnActivate;
+            Solvable.OnPass += OnPass;
+            Solvable.OnStrike -= OnStrike;
+        }
 
-        if (Needy)
-            Needy.OnActivate += OnActivate;
+        if (!Needy)
+            return;
+
+        Needy.OnActivate += OnActivate;
+        Needy.OnPass += OnPass;
+        Needy.OnStrike += OnStrike;
     }
 
     /// <summary>
@@ -144,10 +152,18 @@ public abstract class ModdedModule : CachedBehaviour
         Application.logMessageReceived -= CheckForException;
 
         if (Solvable)
+        {
             Solvable.OnActivate -= OnActivate;
+            Solvable.OnPass -= OnPass;
+            Solvable.OnStrike -= OnStrike;
+        }
 
-        if (Needy)
-            Needy.OnActivate -= OnActivate;
+        if (!Needy)
+            return;
+
+        Needy.OnActivate -= OnActivate;
+        Needy.OnPass -= OnPass;
+        Needy.OnStrike -= OnStrike;
     }
 
     /// <inheritdoc/>
@@ -240,13 +256,11 @@ public abstract class ModdedModule : CachedBehaviour
         if (Status.IsSolved)
             return default;
 
-        if (Status.HasException && IsKtane)
-            Parent<KMBomb>().SetStrikes(Status.Strikes);
+        if (Status.HasException && IsKtane && Parent<KMBomb>() is var bomb)
+            bomb.SetStrikes(bomb.GetStrikes() - Status.Strikes);
 
         if (format is not null)
             Log(format, args);
-
-        Status.IsSolved = true;
 
         if (Solvable)
             Solvable.HandlePass();
@@ -272,9 +286,6 @@ public abstract class ModdedModule : CachedBehaviour
 
         if (format is not null)
             Log(format, args);
-
-        Status.HasStruck = true;
-        Status.Strikes++;
 
         if (Solvable)
             Solvable.HandleStrike();
@@ -440,6 +451,19 @@ public abstract class ModdedModule : CachedBehaviour
         var message = $"{condition}{spacing}{innerExceptions}";
 
         OnException(message);
+    }
+
+    bool OnPass()
+    {
+        Status.IsSolved = true;
+        return false;
+    }
+
+    bool OnStrike()
+    {
+        Status.HasStruck = true;
+        Status.Strikes++;
+        return false;
     }
 
     [NotNull]
