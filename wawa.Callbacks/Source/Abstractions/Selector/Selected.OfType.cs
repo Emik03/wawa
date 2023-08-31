@@ -34,7 +34,7 @@ public sealed partial class Selected
     /// <summary>
     /// Gets the number of children the selectable has. Calling <see cref="ChildLength"/> is more efficient
     /// than <see cref="Children"/> then using <see cref="ReadOnlyCollection{T}.Count"/> because
-    /// <see cref="Children"/> constructs a new <see cref="ReadOnlyCollection{T}"/> when called.
+    /// <see cref="Children"/> constructs a new <see cref="ReadOnlyCollection{T}"/> every time.
     /// </summary>
     [NonNegativeValue, PublicAPI]
     public int ChildLength
