@@ -1,8 +1,8 @@
-# wawa.Callbacks
+# wawa.Recall
 
 Allows for hooking and unhooking of module controllers and its selectables. Supports hooking vanilla and modded components under the same API.
 
-### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.Callbacks/Documentation/Wawa.Callbacks.md)
+### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.Recall/Documentation/Wawa.Recall.md)
 
 ---
 
@@ -30,7 +30,7 @@ Allows for hooking and unhooking of module controllers and its selectables. Supp
 
 ```csharp
 using UnityEngine;
-using Wawa.Callbacks;
+using Wawa.Recall;
 
 var allModules = GetComponent<KMBomb>().ToEntities();
 var hasVanillaKeypad = allModules.Any(x => x.Kind is Modules.Keypad);
