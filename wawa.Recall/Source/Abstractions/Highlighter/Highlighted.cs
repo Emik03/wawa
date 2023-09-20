@@ -37,7 +37,7 @@ public sealed partial class Highlighted : ICloneable, IEquatable<Highlighted>, I
     public static bool operator ==(
         [AllowNull, CanBeNull] Highlighted left,
         [AllowNull, CanBeNull] Highlighted right
-    ) =>
+    ) => // ReSharper disable once AssignNullToNotNullAttribute
         left?.Equals(right) ?? right is null;
 
     /// <summary>
@@ -85,7 +85,7 @@ public sealed partial class Highlighted : ICloneable, IEquatable<Highlighted>, I
             IsKtane ? ToHighlightableInner(component) : default;
 
     /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-    [PublicAPI, Pure]
+    [PublicAPI, Pure] // ReSharper disable once ConstantConditionalAccessQualifier
     public bool Equals([AllowNull] Highlighted other) => Value == other?.Value;
 
     /// <inheritdoc cref="IEqualityComparer{T}.Equals(T, T)"/>
@@ -101,7 +101,7 @@ public sealed partial class Highlighted : ICloneable, IEquatable<Highlighted>, I
     public object Clone() => new Highlighted(Value);
 
     /// <inheritdoc cref="object.Equals(object)"/>
-    [PublicAPI, Pure]
+    [PublicAPI, Pure] // ReSharper disable once AssignNullToNotNullAttribute
     public override bool Equals([AllowNull] object? obj) => Equals(obj as Highlighted);
 
     /// <inheritdoc/>
