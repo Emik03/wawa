@@ -61,13 +61,6 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
     public Config([NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] string fileName)
     {
         FilePath = Path.Combine(s_folder, fileName);
-
-        if (!IsKtane)
-            return;
-
-        if (!File.Exists(FilePath))
-            File.Create(FilePath).Dispose();
-
         this.Merge(new());
     }
 

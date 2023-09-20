@@ -67,9 +67,9 @@ public static class Config
     /// <param name="value">The value to overwrite the settings file with.</param>
     /// <returns>The value <see langword="default"/>.</returns>
     [NotNull, PublicAPI]
-    public static Config<T> Write<T>([NotNull] this Config<T> that, [DisallowNull, NotNull] T value)
-        where T : new() =>
-        that.Write(Serialize(value));
+    public static Config<T> Write<T>([NotNull] this Config<T> that, [AllowNull, CanBeNull] T value)
+        where T : new() => // ReSharper disable once ConstantNullCoalescingCondition
+        that.Write(Serialize(value ?? new()));
 
     /// <summary>Reads, merges, and writes the settings to the settings file.</summary>
     /// <remarks><para>
@@ -80,23 +80,26 @@ public static class Config
     /// <typeparam name="T">The generic used in <paramref name="that"/>.</typeparam>
     /// <param name="that">This instance of <see cref="Config{T}"/>.</param>
     /// <param name="value">The value to merge the file with.</param>
-    /// <param name="isDiscarding">Determines whether it should remove values from the original
-    /// file that isn't contained within the type, or has the incorrect type.</param>
+    /// <param name="isDiscarding">
+    /// Determines whether it should remove values from the original
+    /// file that isn't contained within the type, or has the incorrect type.
+    /// </param>
     /// <returns>The parameter <paramref name="that"/>.</returns>
     [NotNull, PublicAPI]
     public static Config<T> Merge<T>(
         [NotNull] this Config<T> that,
-        [DisallowNull, NotNull] T value,
+        [AllowNull, CanBeNull] T value,
         [InstantHandle] bool isDiscarding = false
     )
         where T : new()
     {
-        if (!IsKtane || that.FilePath.SuppressIO(File.ReadAllText) is not { } file)
+        if (TryCreateNewFile(that) || that.FilePath.SuppressIO(File.ReadAllText) is not { } contents)
             return that;
 
+        // ReSharper disable once ConstantNullCoalescingCondition
         JObject
-            toMerge = Parse(Serialize(value)),
-            content = Parse(file);
+            toMerge = Parse(Serialize(value ?? new())),
+            content = Parse(contents);
 
         toMerge.Merge(content, new());
 
@@ -136,6 +139,23 @@ public static class Config
         }
     }
 
+    static bool TryCreateNewFile<T>([NotNull] Config<T> that)
+        where T : new()
+    {
+        if (IsKtane)
+        {
+            AssemblyLog("In the editor; Nothing will be performed on the file system.");
+            return true;
+        }
+
+        if (File.Exists(that.FilePath))
+            return false;
+
+        AssemblyLog(@$"File ""{that.FilePath}"" doesn't exist, writing default new instance.");
+        File.WriteAllText(that.FilePath, Serialize(new T()));
+        return true;
+    }
+
     [NotNull, Pure]
     static JObject Parse(string file)
     {
@@ -150,22 +170,18 @@ public static class Config
     }
 
     [NotNull]
-    static T Deserialized<T>([NotNull] Config<T> these)
+    static T Deserialized<T>([NotNull] Config<T> that)
         where T : new()
     {
-        these.HasRead = false;
+        that.HasRead = false;
 
-        if (!File.Exists(these.FilePath))
-        {
-            AssemblyLog(@$"File ""{these.FilePath}"" doesn't exist, writing default new instance.");
-            File.WriteAllText(these.FilePath, Serialize(new T()));
+        if (TryCreateNewFile(that))
             return new();
-        }
 
-        var contents = File.ReadAllText(these.FilePath);
+        var contents = File.ReadAllText(that.FilePath);
         var deserialized = JsonConvert.DeserializeObject<T>(contents, new JsonSerializerSettings()) ?? new();
 
-        these.HasRead = true;
+        that.HasRead = true;
 
         var message = typeof(T).GetMethod(nameof(ToString), Type.EmptyTypes)?.DeclaringType == typeof(T)
             ? deserialized.ToString()
