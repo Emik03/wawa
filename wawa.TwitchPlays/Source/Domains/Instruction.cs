@@ -68,7 +68,6 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     [NotNull]
     internal object Value { [Pure] get; }
 #pragma warning restore IDISP008
-
     /// <inheritdoc/>
     [Pure]
     public object Clone() => this;
@@ -188,14 +187,13 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// Converts the <see cref="KMSelectable"/> <see cref="Array"/>
     /// to a <see langword="new"/> <see cref="Instruction"/>.
     /// </summary>
-    /// <param name="selectable">The <see cref="KMSelectable"/> <see cref="Array"/> instance to convert.</param>
+    /// <param name="selectables">The <see cref="KMSelectable"/> <see cref="Array"/> instance to convert.</param>
     /// <returns>
-    /// A <see langword="new"/> <see cref="Instruction"/> instance encapsulating <paramref name="selectable"/>.
+    /// A <see langword="new"/> <see cref="Instruction"/> instance encapsulating <paramref name="selectables"/>.
     /// </returns>
-    [CLSCompliant(false), NotNull, Pure]
-
-    // ReSharper disable once InconsistentNaming
-    public static Instruction FromKMSelectableArray([ItemCanBeNull, NotNull] KMSelectable[] selectable) => selectable;
+    [CLSCompliant(false), NotNull, Pure] // ReSharper disable once InconsistentNaming
+    public static Instruction FromKMSelectableArray([ItemCanBeNull, NotNull] params KMSelectable[] selectables) =>
+        selectables;
 
     /// <summary>Converts the <see cref="Quaternion"/> to a <see langword="new"/> <see cref="Instruction"/>.</summary>
     /// <param name="orientation">The <see cref="Quaternion"/> instance to convert.</param>
