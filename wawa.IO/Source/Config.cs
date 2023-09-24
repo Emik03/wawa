@@ -93,10 +93,11 @@ public static class Config
     )
         where T : new()
     {
+        that.HasRead = false;
+
         if (TryCreateNewFile(that) || that.FilePath.SuppressIO(File.ReadAllText) is not { } contents)
             return that;
 
-        // ReSharper disable once ConstantNullCoalescingCondition
         JObject
             toMerge = Parse(Serialize(value ?? new())),
             content = Parse(contents);
@@ -107,6 +108,7 @@ public static class Config
             toMerge.Lint(content);
 
         that.Write(toMerge.ToString());
+        that.HasRead = true;
         return that;
     }
 
@@ -125,7 +127,7 @@ public static class Config
     [NotNull, PublicAPI]
     public static T Read<T>([NotNull] this Config<T> that)
         where T : new() =>
-        IsKtane ? that.SuppressIO(Deserialized) ?? new() : new();
+        that.SuppressIO(Deserialized) ?? new();
 
     static void Lint([NotNull] this JObject toMerge, [NotNull] in JObject content)
     {
@@ -142,7 +144,7 @@ public static class Config
     static bool TryCreateNewFile<T>([NotNull] Config<T> that)
         where T : new()
     {
-        if (IsKtane)
+        if (!IsKtane)
         {
             AssemblyLog("In the editor; Nothing will be performed on the file system.");
             return true;
@@ -181,13 +183,12 @@ public static class Config
         var contents = File.ReadAllText(that.FilePath);
         var deserialized = JsonConvert.DeserializeObject<T>(contents, new JsonSerializerSettings()) ?? new();
 
-        that.HasRead = true;
-
         var message = typeof(T).GetMethod(nameof(ToString), Type.EmptyTypes)?.DeclaringType == typeof(T)
             ? deserialized.ToString()
             : Serialize(deserialized);
 
         AssemblyLog($"Read was successful: {message}");
+        that.HasRead = true;
         return deserialized;
     }
 }
