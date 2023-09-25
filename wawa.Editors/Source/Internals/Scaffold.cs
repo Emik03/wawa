@@ -384,9 +384,7 @@ public sealed class {name}{FileTwitch} : Twitch<{name}>
     [return: AllowNull]
     static T Load<T>([NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] this string pattern)
         where T : Object =>
-#pragma warning disable RCS1077
-        AssetDatabase.GetAllAssetPaths().FirstOrDefault(x => x.EndsWith(pattern, Ordinal)) is { } path
-#pragma warning restore RCS1077
+        Array.Find(AssetDatabase.GetAllAssetPaths(), x => x.EndsWith(pattern, Ordinal)) is { } path
             ? AssetDatabase.LoadAssetAtPath<T>(path)
             : null;
 }
