@@ -26,6 +26,10 @@ static class Globals
         ver is { Revision: 0 } ? $"v{ver.Major}.{ver.Minor}.{ver.Build}" :
         $"v{ver.Major}.{ver.Minor}.{ver.Build}.{ver.Revision}";
 
+    /// <summary>Logs a message to the Unity Console with the assembly's name that called this as an error.</summary>
+    /// <param name="message">The message to log as an error.</param>
+    internal static void AssemblyError([NotNull] string message) => Debug.LogError(Assembly(message));
+
     /// <summary>Logs a message to the Unity Console with the assembly's name that called this.</summary>
     /// <param name="message">The message to log.</param>
     internal static void AssemblyLog([NotNull] string message) => Debug.Log(Assembly(message));
@@ -40,19 +44,15 @@ static class Globals
     {
         var error = web.error;
         var code = web.responseCode;
-        data = web.downloadHandler.data;
+        var downloadHandler = web.downloadHandler;
+        data = downloadHandler.data;
 
         if (error is null &&
             code is >= 200 and < 300 &&
             data is { Length: not 0 })
             return false;
 
-        string text = web.downloadHandler.text,
-            log = @$"Received {code} response code ({error})
-{text}",
-            asm = log.Assembly();
-
-        Debug.LogError(asm);
+        AssemblyError($"Received {code} response code ({error})\n{downloadHandler.text}");
 
         data = s_emptyBytes;
         return true;

@@ -38,11 +38,11 @@ static class Update
 
         AssemblyLog($"{Prep}{displayed}");
 
-        var mono = Object.FindObjectOfType<MonoBehaviour>() ??
-            new GameObject(nameof(DeleteMe), typeof(DeleteMe)).GetComponent<DeleteMe>();
+        var mono = Object.FindObjectOfType<MonoBehaviour>() is var be && be ? be :
+            new GameObject(nameof(DeleteMe)) is var obj && obj.AddComponent<DeleteMe>() is var del && del ? del :
+            obj.AddComponent<NetworkMatch>();
 
         var requests = Latest(mono, fetches);
-
         mono.StartCoroutine(requests);
     }
 
