@@ -17,8 +17,8 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <param name="reason">The optional reason for the explosion.</param>
     /// <param name="moduleName">The override of the module name that caused the explosion.</param>
     public Instruction([AllowNull, CanBeNull] string reason = null, [AllowNull, CanBeNull] string moduleName = null) =>
-        Value = reason is null ? [Detonate] :
-            moduleName is null ? [Detonate, reason] : [Detonate, reason, moduleName];
+        Value = (string[])(reason is null ? [Detonate] :
+            moduleName is null ? [Detonate, reason] : [Detonate, reason, moduleName]);
 
     /// <summary>Initializes a new instance of the <see cref="Instruction"/> class.</summary>
     /// <remarks><para>Provides a nested enumeration.</para></remarks>

@@ -54,7 +54,7 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 | [NormalTimerBeep](Sound.NormalTimerBeep.md 'Wawa.Modules.Sound.NormalTimerBeep') | Gets the sound that plays when the bomb has no strikes. |
 | [PageTurn](Sound.PageTurn.md 'Wawa.Modules.Sound.PageTurn') | Gets the sound that plays when a page is turned in the Missions binder. |
 | [Reference](Sound.Reference.md 'Wawa.Modules.Sound.Reference') | Gets the instance of the [KMAudio.KMAudioRef](https://docs.microsoft.com/en-us/dotnet/api/KMAudio.KMAudioRef 'KMAudio.KMAudioRef') created from playing a sound. |
-| [SelectionTick](Sound.SelectionTick.md 'Wawa.Modules.Sound.SelectionTick') | Gets the sound that plays as you hover over something interactable. |
+| [SelectionTick](Sound.SelectionTick.md 'Wawa.Modules.Sound.SelectionTick') | Gets the sound that plays as you hover over something that can be interacted with. |
 | [Stamp](Sound.Stamp.md 'Wawa.Modules.Sound.Stamp') | Gets the sound that plays during the post game screen, when either the defused<br/>or exploded text is stamped onto the binder. |
 | [Strike](Sound.Strike.md 'Wawa.Modules.Sound.Strike') | Gets the sound that plays when you get a strike. |
 | [Switch](Sound.Switch.md 'Wawa.Modules.Sound.Switch') | Gets the sound that plays when a switch is toggled. |

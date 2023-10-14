@@ -2,7 +2,7 @@
 
 ## Sound.SelectionTick Property
 
-Gets the sound that plays as you hover over something interactable.
+Gets the sound that plays as you hover over something that can be interacted with.
 
 ```csharp
 public static Wawa.Modules.Sound SelectionTick { get; }
