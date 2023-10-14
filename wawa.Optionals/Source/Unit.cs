@@ -5,7 +5,9 @@ namespace Wawa.Optionals;
 /// A type that has exactly one value, and is used when there is no other meaningful value that could be returned.
 /// </summary>
 [PublicAPI]
+#pragma warning disable CA1710
 public readonly struct Unit : IComparable<Unit>,
+#pragma warning restore CA1710
     IComparer<Unit>,
     ICloneable,
     IEnumerable<Unit>,
