@@ -146,8 +146,8 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     }
 
     /// <inheritdoc />
-    [PublicAPI, Pure]
-    public IEnumerator ProcessTwitchCommand(string? command)
+    [PublicAPI, Pure] // ReSharper disable once AnnotationRedundancyInHierarchy
+    public IEnumerator ProcessTwitchCommand([AllowNull, CanBeNull] string command)
     {
         if (command is null || Match(command, out var isEmpty) is not { } match)
             yield break;
