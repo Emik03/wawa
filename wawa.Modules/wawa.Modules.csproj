@@ -16,6 +16,7 @@
         <Compile Include="$(Morsels)/Compile/Source/References/Emik/Numerics/DigitCounter.cs" Link="Source/References/Emik/Numerics/DigitCounter.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/Emik/VersionDeconstructors.cs" Link="Source/References/Emik/VersionDeconstructors.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/System/Int32TryFormatPolyfill.cs" Link="Source/References/System/Int32TryFormatPolyfill.cs"/>
+        <Compile Include="$(Morsels)/Compile/Source/References/Emik/Collections/Immutable/Bits.cs" Link="Source/References/Emik/Collections/Immutable/Bits.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/Emik/Collections/Generics/Matrix.cs" Link="Source/References/Emik/Collections/Generics/Matrix.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/System/Diagnostics/MethodImplOptions.cs" Link="Source/References/System/Diagnostics/MethodImplOptions.cs"/>
     </ItemGroup>
