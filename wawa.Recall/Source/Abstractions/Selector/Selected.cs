@@ -22,7 +22,7 @@ public sealed partial class Selected : ICloneable, IEquatable<Selected>, IEquali
     internal Selected(MonoBehaviour selectable) => Value = selectable;
 
     /// <summary>Gets the value which is guaranteed to be a <see cref="MonoBehaviour"/>.</summary>
-    [PublicAPI]
+    [CLSCompliant(false), PublicAPI]
     public MonoBehaviour Value { [Pure] get; }
 
     /// <summary>Determines whether both instances point to the same component.</summary>

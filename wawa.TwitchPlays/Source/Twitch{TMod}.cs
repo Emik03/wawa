@@ -140,11 +140,14 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     }
 
     /// <inheritdoc />
-    ModdedModule ITwitchDeclarable.Inner => Module;
+    ModdedModule ITwitchDeclarable.Inner
+    {
+        [Pure] get => Module;
+    }
 
     /// <inheritdoc />
     [PublicAPI, Pure]
-    public IEnumerator ProcessTwitchCommand(string command)
+    public IEnumerator ProcessTwitchCommand(string? command)
     {
         if (command is null || Match(command, out var isEmpty) is not { } match)
             yield break;
@@ -177,7 +180,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
 
         while (enumerator.MoveNext())
         {
-            var current = enumerator.Current;
+            var current = enumerator.Current; // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
             OnYield(this, new(current));
             yield return current?.Value;
         }
@@ -203,7 +206,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     void ITwitchMutable.SetIsZen(in bool value) => ZenModeActive = value;
 
     /// <inheritdoc/>
-    [PublicAPI, Pure]
+    [PublicAPI, Pure] // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
     IEnumerator ISolvable.ForceTPSolve() => TwitchHandleForcedSolve();
 
     /// <summary>
@@ -214,7 +217,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     public event EventHandler<YieldEventArgs> OnYield = static (_, _) => { };
 
     /// <inheritdoc/>
-    [Pure, PublicAPI]
+    [PublicAPI, Pure]
     public override string ToString() => Module.ToString();
 
     /// <summary>
@@ -225,7 +228,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// Repeatedly <see langword="true"/>, halting when <see cref="Modules.State.IsSolved"/>
     /// from <see cref="Module"/> is <see langword="true"/>.
     /// </returns>
-    [NotNull, PublicAPI]
+    [NotNull, PublicAPI, Pure]
     public IEnumerable<Instruction> UntilSolve()
     {
         while (!Module.Status.IsSolved)
@@ -240,7 +243,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// Repeatedly <see langword="true"/>, halting when <see cref="Modules.State.HasStruck"/>
     /// from <see cref="Module"/> is <see langword="true"/>.
     /// </returns>
-    [NotNull, PublicAPI]
+    [NotNull, PublicAPI, Pure]
     public IEnumerable<Instruction> UntilStrike()
     {
         while (!Module.Status.HasStruck)
@@ -257,7 +260,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <param name="selectables">The array of selectables to interact with.</param>
     /// <param name="duration">The delay between each button press in seconds.</param>
     /// <returns>A sequence of button presses for Twitch Plays to process.</returns>
-    [ItemNotNull, NotNull, PublicAPI]
+    [ItemNotNull, NotNull, PublicAPI, Pure]
     public IEnumerable<Instruction> Sequence(
         [ItemCanBeNull, NotNull] IEnumerable<KMSelectable> selectables,
         float duration
@@ -283,13 +286,13 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <param name="duration">The delay between each button press in seconds.</param>
     /// <param name="indices">The indices to press within the list <paramref name="selectables"/>.</param>
     /// <returns>A sequence of button presses for Twitch Plays to process.</returns>
-    [ItemNotNull, NotNull, PublicAPI]
+    [ItemNotNull, NotNull, PublicAPI, Pure]
     public IEnumerable<Instruction> IndexedSequence(
         [ItemCanBeNull, NotNull] IList<KMSelectable> selectables,
         float duration,
         [NotNull] params int[] indices
     ) =>
-        indices.Any(index => index < 0 || index < selectables.Count)
+        Array.Exists(indices, index => index < 0 || index < selectables.Count)
             ? Enumerable.Empty<Instruction>()
             : Sequence(indices.Select(x => selectables[x]), duration);
 
@@ -302,7 +305,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <param name="duration">The delay between each button press in seconds.</param>
     /// <param name="indices">The indices to press within the list <paramref name="selectables"/>.</param>
     /// <returns>A sequence of button presses for Twitch Plays to process.</returns>
-    [ItemNotNull, NotNull, PublicAPI]
+    [ItemNotNull, NotNull, PublicAPI, Pure]
     public IEnumerable<Instruction> IndexedSequence(
         [ItemCanBeNull, NotNull] IList<KMSelectable> selectables,
         float duration,
@@ -320,7 +323,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <returns>
     /// <paramref name="item"/> continuously until <paramref name="condition"/> is <see langword="false"/>.
     /// </returns>
-    [ItemNotNull, NotNull, PublicAPI]
+    [ItemNotNull, NotNull, PublicAPI, Pure]
     protected static IEnumerable<T> YieldWhile<T>(
         [DisallowNull, NotNull] T item,
         [InstantHandle, NotNull] Func<bool> condition
@@ -340,7 +343,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// <returns>
     /// <paramref name="item"/> continuously until <paramref name="condition"/> is <see langword="true"/>.
     /// </returns>
-    [ItemNotNull, NotNull, PublicAPI]
+    [ItemNotNull, NotNull, PublicAPI, Pure]
     protected static IEnumerable<T> YieldUntil<T>(
         [DisallowNull, NotNull] T item,
         [InstantHandle, NotNull] Func<bool> condition
@@ -359,11 +362,11 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     /// An <see cref="Array"/> of <see cref="string"/> values which are substrings of <paramref name="instance"/>
     /// based on <paramref name="separator"/>. Empty entries are omitted.
     /// </returns>
-    [NotNull, PublicAPI]
+    [NotNull, PublicAPI, Pure]
     protected static IList<string> Split([NotNull] string instance, [NotNull] string separator = " ") =>
         instance.Split(separator.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
-    [CanBeNull]
+    [CanBeNull, MustUseReturnValue]
     [return: AllowNull]
     static object Parse([NotNull] string value, [NotNull] Type type)
     {
@@ -400,7 +403,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         return ret ? args[1] : ParseError.NoMatch;
     }
 
-    [NotNull]
+    [NotNull, Pure]
     static IEnumerator<Instruction?> Flatten([NotNull] IEnumerator<Instruction> source)
     {
         while (source.MoveNext())
@@ -426,7 +429,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     static IEnumerable<Instruction> FromFail([NotNull] in string reason) =>
         Enumerable.Repeat<Instruction>(TwitchString.SendToChatError(reason), 1);
 
-    [ItemNotNull, NotNull]
+    [ItemNotNull, MustUseReturnValue, NotNull]
     static IEnumerable<Instruction> FromFail(
         in int fail,
         [ItemNotNull, NotNull] in IList<object> args,
@@ -441,7 +444,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     void OnPrint([NotNull] object sender, [NotNull] YieldEventArgs args) =>
         Module.Log(Stringifier.Stringify(args.Query));
 
-    [NotNull]
+    [NotNull, Pure]
     string GenerateHelp()
     {
         [NotNull, Pure]
@@ -458,28 +461,33 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         return Stringifier.Conjoin(Commands.Select(Selector), Separator).Trim();
     }
 
-    [CanBeNull, ItemNotNull]
+    [CanBeNull, ItemNotNull, MustUseReturnValue]
     [return: AllowNull]
     IEnumerable<Instruction> Match([NotNull] string command, out bool isQueryEmpty)
     {
         var trimmed = command.Trim();
         var temp = true;
 
+        [CanBeNull, ItemNotNull]
+        [return: AllowNull]
+        IEnumerable<Instruction> Locate(CommandInfo query)
+        {
+            var prefix = query.Prefix;
+            temp = prefix is "";
+            var after = trimmed.Substring(prefix.Length);
+            return ProcessCommand(query, after);
+        }
+
         var ret = Commands
            .Where(query => trimmed.StartsWith(query.Prefix, OrdinalIgnoreCase))
-           .Select(
-                query => ProcessCommand( // ReSharper disable once ConditionalTernaryEqualBranch
-                    (temp = string.IsNullOrEmpty(query.Prefix)) ? query : query,
-                    trimmed.Substring(query.Prefix.Length)
-                )
-            )
+           .Select(Locate)
            .FirstOrDefault();
 
         isQueryEmpty = temp;
         return ret;
     }
 
-    [CanBeNull, ItemNotNull]
+    [CanBeNull, ItemNotNull, MustUseReturnValue]
     [return: AllowNull]
     IEnumerable<Instruction> ProcessCommand([NotNull] CommandInfo query, [NotNull] string message)
     {
@@ -493,7 +501,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         var split = Split(message);
         var parameters = method.GetParameters();
 
-        if (split.Count > parameters.Length && !parameters.Any(IsParams))
+        if (split.Count > parameters.Length && !Array.Exists(parameters, IsParams))
             return FromFail($"Too many parameters, expected {parameters.Length}.");
 
         [NotNull]

@@ -32,7 +32,7 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
     internal Entity([NotNull] MonoBehaviour bombComponent) => Value = bombComponent;
 
     /// <summary>Gets the value which is guaranteed to be a <see cref="MonoBehaviour"/>.</summary>
-    [PublicAPI]
+    [CLSCompliant(false), PublicAPI]
     public MonoBehaviour Value { [Pure] get; }
 
     [AllowNull, CanBeNull]

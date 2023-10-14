@@ -78,7 +78,7 @@ public sealed partial class Highlighted
     /// Gets the value that if true, the highlight would only activate directly: it will not
     /// be activated when a parent highlight is activated. Vanilla Only.
     /// </summary>
-    [NotNull, PublicAPI]
+    [CLSCompliant(false), NotNull, PublicAPI]
     public PropMay<Material> Override
     {
         [Pure] get => _override ??= new(Value, nameof(Highlightable.MaterialOverride));

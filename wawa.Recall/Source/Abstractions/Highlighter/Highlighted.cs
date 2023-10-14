@@ -24,7 +24,7 @@ public sealed partial class Highlighted : ICloneable, IEquatable<Highlighted>, I
     internal Highlighted([NotNull] MonoBehaviour highlightable) => Value = highlightable;
 
     /// <summary>Gets the value which is guaranteed to be a <see cref="MonoBehaviour"/>.</summary>
-    [PublicAPI]
+    [CLSCompliant(false), PublicAPI]
     public MonoBehaviour Value { [Pure] get; }
 
     /// <summary>

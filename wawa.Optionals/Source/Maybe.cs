@@ -21,9 +21,7 @@ public static class Maybe
         [InstantHandle] this Maybe<T> that,
         [AllowNull, CanBeNull, NotNullWhen(true)] out T result
     ) =>
-        that.IsSome
-            ? (result = that.Value) is var _
-            : !((result = default) is var _);
+        that.IsSome ? (result = that.Value) is var _ : !((result = default) is var _);
 
     /// <summary>Gets an empty <see cref="Maybe{T}"/> of the desired type.</summary>
     /// <typeparam name="T">The generic in <see cref="Maybe{T}"/>.</typeparam>

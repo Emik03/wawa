@@ -288,12 +288,12 @@ public static class Generator
     /// <param name="vanilla">The current <see cref="IVanilla"/>.</param>
     /// <param name="label">An additional label to attach to the end.</param>
     /// <returns>The callable function that logs the current path of the encapsulated value.</returns>
-    [NotNull, PublicAPI, Pure]
+    [CLSCompliant(false), NotNull, PublicAPI, Pure]
     public static Action Logger([NotNull] this IVanilla vanilla, [AllowNull, CanBeNull] string label = null) =>
         () => Debug.LogFormat(vanilla.Value.GetPath(label));
 
     /// <inheritdoc cref="Do{T}(T, Action{T})"/>
-    [NotNull]
+    [CLSCompliant(false), NotNull]
     public static IEnumerable<T> Do<T>(
         [AllowNull, CanBeNull, InstantHandle] this IEnumerable<T>? that,
         [InstantHandle] Action<T> action
@@ -319,7 +319,7 @@ public static class Generator
     /// <param name="that">The value to pass into the callback.</param>
     /// <param name="action">The callback.</param>
     /// <returns>The parameter <paramref name="that"/>.</returns>
-    [NotNull]
+    [CLSCompliant(false), NotNull]
     public static T Do<T>([NotNull] this T that, [InstantHandle] Action<T> action)
         where T : IVanilla
     {
