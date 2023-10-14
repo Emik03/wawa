@@ -21,5 +21,7 @@
         <Compile Include="$(Morsels)/Compile/Source/References/Emik/Collections/Generics/Matrix.cs" Link="Source/References/Emik/Collections/Generics/Matrix.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/System/Diagnostics/MethodImplOptions.cs" Link="Source/References/System/Diagnostics/MethodImplOptions.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/Emik/Collections/Immutable/Bits.Count.cs" Link="Source/References/Emik/Collections/Immutable/Bits.Count.cs"/>
+        <Compile Include="$(Morsels)/Compile/Source/References/System/Collections/Generics/IReadOnly.cs" Link="Source/References/System/Collections/Generics/IReadOnly.cs"/>
+        <Compile Include="$(Morsels)/Compile/Source/References/Emik/Collections/Immutable/Bits.Overlaps.cs" Link="Source/References/Emik/Collections/Immutable/Bits.Overlaps.cs"/>
     </ItemGroup>
 </Project>
