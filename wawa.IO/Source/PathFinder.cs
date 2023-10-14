@@ -216,7 +216,6 @@ public static class PathFinder
         if (architecture is null || platform is null)
         {
             AssemblyLog($"{IntPtr.Size * BitsInByte}-bit {Application.platform} is unsupported.");
-
             return null;
         }
 
@@ -224,8 +223,8 @@ public static class PathFinder
 
         Directory.CreateDirectory(directory);
 
-        if (Directory.GetFiles(directory, $"{file}*").SingleOrDefault() is { } source && File.Exists(source))
-            return source;
+        if (Directory.GetFiles(directory, $"{file}*") is { Length: 1 } source && File.Exists(source[0]))
+            return source[0];
 
         AssemblyLog($"{nameof(FindLibrary)} Error: Couldn't find {file} library in directory {directory}.");
 
@@ -330,9 +329,7 @@ public static class PathFinder
         var returnType = invoke.ReturnType;
 
         module.DefineMethod(dllName, name, returnType, parameters).CreateGlobalFunctions();
-
         var method = module.GetMethod(name);
-
         return Delegate.CreateDelegate(typeof(T), method, false) as T;
     }
 }
