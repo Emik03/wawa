@@ -162,14 +162,13 @@ using Wawa.Modules;",
         bool isSolvable
     )
     {
-        var hasWawaModules = s_assemblies.Any(static x => x.GetName().Name is Modules);
-        var hasWawaTwitchPlays = s_assemblies.Any(static x => x.GetName().Name is TwitchPlays);
+        var hasWawaModules = Array.Exists(s_assemblies, x => x.GetName().Name is Modules);
+        var hasWawaTwitchPlays = Array.Exists(s_assemblies, x => x.GetName().Name is TwitchPlays);
 
-        var query =
-            name
-               .Where(static x => x is >= 'A' and <= 'Z' or >= 'a' and <= 'z' or '_')
-               .Select(static x => x.ToString())
-               .ToArray();
+        var query = name
+           .Where(x => x is >= 'A' and <= 'Z' or >= 'a' and <= 'z' or '_')
+           .Select(x => x.ToString())
+           .ToArray();
 
         string
             compliant = string.Join("", query),
