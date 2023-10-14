@@ -447,7 +447,7 @@ public abstract class ModdedModule : CachedBehaviour
         var typeName = GetType().Name;
         var traces = stackTrace.Split('\n');
 
-        if (traces.Any(x => x.StartsWith(typeName, Ordinal)))
+        if (Array.Exists(traces, x => x.StartsWith(typeName, Ordinal)))
             PrepareException(condition, traces);
     }
 
