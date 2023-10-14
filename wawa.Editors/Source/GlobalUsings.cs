@@ -3,5 +3,4 @@ global using static Wawa.Editors.Internals.Globals;
 global using static Wawa.Editors.Internals.Scaffold;
 global using static Wawa.Editors.Internals.Update;
 global using AnimatorController = UnityEditor.Animations.AnimatorController;
-global using Application = UnityEngine.Application;
 global using Assembly = System.Reflection.Assembly;

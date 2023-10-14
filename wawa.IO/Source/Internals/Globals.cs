@@ -8,7 +8,7 @@ static class Globals
     internal const StringComparison Ordinal = StringComparison.Ordinal;
 
     [NotNull]
-    static readonly Dictionary<MethodBase, IDictionary> s_cache = new();
+    static readonly Dictionary<MethodBase, IDictionary> s_cache = [];
 
     /// <summary>Runs and catches various exception types found in IO operations.</summary>
     /// <typeparam name="T">The type of parameter.</typeparam>

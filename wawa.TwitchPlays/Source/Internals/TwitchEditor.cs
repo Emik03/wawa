@@ -2,6 +2,7 @@
 namespace Wawa.TwitchPlays.Internals;
 
 /// <summary>Custom inspector for <see cref="Twitch{TMod}"/>.</summary>
+// ReSharper disable Unity.PerformanceCriticalCodeInvocation
 [CanEditMultipleObjects, CustomEditor(typeof(Twitch<>), true), UsedImplicitly]
 #pragma warning disable CA1812
 sealed class TwitchEditor : Editor

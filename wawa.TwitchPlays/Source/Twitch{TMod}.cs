@@ -568,7 +568,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     string TwitchManualCode = "";
 
     [ItemCanBeNull, NotNull, SerializeField, UsedImplicitly]
-    List<KMBombModule> TwitchAbandonModule = new();
+    List<KMBombModule> TwitchAbandonModule = [];
 
     // ReSharper restore InconsistentNaming ReplaceWithFieldKeyword
 #pragma warning restore IDE0044, SA1306

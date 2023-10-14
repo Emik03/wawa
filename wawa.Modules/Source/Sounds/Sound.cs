@@ -5,7 +5,7 @@ namespace Wawa.Modules;
 /// Encapsulates a modded or vanilla sound effect, with methods to play the sound, and allowing you to extend
 /// into the <see cref="KMAudio.KMAudioRef"/> instance that spawns from playing a sound effect.
 /// </summary>
-[CLSCompliant(false), PublicAPI]
+[CLSCompliant(false), PublicAPI] // ReSharper disable RedundantExtendsListEntry
 public sealed partial class Sound : ICloneable, IEquatable<Sound>, IEqualityComparer<Sound>
 {
     /// <summary>Initializes a new instance of the <see cref="Sound"/> class.</summary>

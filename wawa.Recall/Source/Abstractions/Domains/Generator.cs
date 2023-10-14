@@ -8,13 +8,13 @@ public static class Generator
 {
     [NotNull]
     static readonly Dictionary<FieldInfo, Delegate>
-        s_adders = new(),
-        s_getters = new(),
-        s_setters = new(),
-        s_removers = new();
+        s_adders = [],
+        s_getters = [],
+        s_setters = [],
+        s_removers = [];
 
     [NotNull]
-    static readonly Dictionary<Type, Delegate> s_casters = new();
+    static readonly Dictionary<Type, Delegate> s_casters = [];
 
     [NotNull]
     static readonly MethodInfo
@@ -491,7 +491,7 @@ public static class Generator
     [NotNull]
     static Action<object, T> GenerateSetter<T>([NotNull] this FieldInfo field)
     {
-        var m = new DynamicMethod(nameof(GenerateSetter), typeof(void), new[] { typeof(object), typeof(T) });
+        var m = new DynamicMethod(nameof(GenerateSetter), typeof(void), [typeof(object), typeof(T)]);
         var cg = m.GetILGenerator();
 
         // arg0.<field> = arg1

@@ -10,13 +10,13 @@ sealed class Chest : ICloneable, IEnumerable<Delegate>
         KeyValueSeparator = ": ";
 
     [NotNull]
-    readonly Dictionary<Delegate, Delegate> _dictionary = new();
+    readonly Dictionary<Delegate, Delegate> _dictionary = [];
 
     /// <inheritdoc/>
     [Pure]
     public object Clone()
     {
-        Chest instance = new();
+        Chest instance = [];
 
         foreach (var item in _dictionary)
             instance._dictionary[item.Key] = item.Value;

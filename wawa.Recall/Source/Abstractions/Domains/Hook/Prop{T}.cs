@@ -11,7 +11,7 @@ public abstract class Prop<T> : ICloneable
     const string Null = "null";
 
     [NotNull]
-    static readonly Dictionary<Type, Dictionary<string, FieldInfo>> s_fields = new();
+    static readonly Dictionary<Type, Dictionary<string, FieldInfo>> s_fields = [];
 
     /// <summary>Initializes a new instance of the <see cref="Prop{T}"/> class.</summary>
     /// <param name="instance">The instance to get the value from.</param>

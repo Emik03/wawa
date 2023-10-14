@@ -13,9 +13,7 @@ static class ModBundle
         Tags = "tags";
 
     [DidReloadScripts, UsedImplicitly]
-#pragma warning disable IDE0051
     static void Create()
-#pragma warning restore IDE0051
     {
         if (AssetDatabase.LoadAllAssetsAtPath(TagManager) is not { Length: > 0 } asset)
             return;

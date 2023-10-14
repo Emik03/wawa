@@ -9,7 +9,7 @@ namespace Wawa.Unity;
 public abstract class CachedBehaviour : MonoBehaviour
 {
     [NotNull, ProvidesContext]
-    readonly Dictionary<Type, object> _cache = new();
+    readonly Dictionary<Type, object> _cache = [];
 
     /// <summary>Clears the cache.</summary>
     [PublicAPI]

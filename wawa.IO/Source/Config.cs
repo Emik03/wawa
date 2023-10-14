@@ -167,7 +167,7 @@ public static class Config
         }
         catch (JsonReaderException)
         {
-            return new();
+            return [];
         }
     }
 

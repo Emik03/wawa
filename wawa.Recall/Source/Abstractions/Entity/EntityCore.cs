@@ -260,7 +260,7 @@ public static class EntityCore
     /// <returns>A <see cref="ReadOnlyCollection{T}"/> of type <see cref="Entity"/> which contains every module from <paramref name="bomb"/>.</returns>
     [CLSCompliant(false), MustUseReturnValue, NotNull]
     public static ReadOnlyCollection<Entity> ToEntities([AllowNull, CanBeNull] this KMBomb bomb) =>
-        bomb ? bomb.gameObject.GetChildren() : Lot<Entity>.Empty;
+        bomb ? GetChildren(bomb.gameObject) : Lot<Entity>.Empty;
 
     /// <summary>Creates an <see cref="ReadOnlyCollection{T}"/> where each element has been converted.</summary>
     /// <param name="solvables">The collection.</param>

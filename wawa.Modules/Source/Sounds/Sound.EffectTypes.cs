@@ -241,7 +241,7 @@ public sealed partial class Sound
         [Pure] get => new(SoundEffect.PageTurn);
     }
 
-    /// <summary>Gets the sound that plays as you hover over something interactable.</summary>
+    /// <summary>Gets the sound that plays as you hover over something that can be interacted with.</summary>
     [NotNull, PublicAPI]
     public static Sound SelectionTick
     {
