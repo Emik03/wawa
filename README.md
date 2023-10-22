@@ -1,6 +1,6 @@
 # wawa
 
-[![Release](https://img.shields.io/github/v/release/Emik03/wawa.svg?color=f8f9f2&style=for-the-badge)](https://github.com/Emik03/wawa/blob/main/LICENSE)
+[![Release](https://img.shields.io/github/v/release/Emik03/wawa.svg?color=f8f9f2&logo=GitHub&style=for-the-badge)](https://github.com/Emik03/wawa/blob/main/LICENSE)
 [![License](https://img.shields.io/github/license/Emik03/wawa.svg?color=6272a4&style=for-the-badge)](https://github.com/Emik03/wawa/blob/main/LICENSE)
 
 A collection of libraries to help with the creation of mods in the game [Keep Talking and Nobody Explodes](https://keeptalkinggame.com/).
