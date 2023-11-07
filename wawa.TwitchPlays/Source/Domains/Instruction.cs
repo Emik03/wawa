@@ -16,6 +16,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <remarks><para>Detonates the bomb when yielded.</para></remarks>
     /// <param name="reason">The optional reason for the explosion.</param>
     /// <param name="moduleName">The override of the module name that caused the explosion.</param>
+    [PublicAPI] // ReSharper disable ConditionIsAlwaysTrueOrFalse
     public Instruction([AllowNull, CanBeNull] string reason = null, [AllowNull, CanBeNull] string moduleName = null) =>
         Value = (string[])(reason is null ? [Detonate] :
             moduleName is null ? [Detonate, reason] : [Detonate, reason, moduleName]);
@@ -23,25 +24,31 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <summary>Initializes a new instance of the <see cref="Instruction"/> class.</summary>
     /// <remarks><para>Provides a nested enumeration.</para></remarks>
     /// <param name="enumerator">The value to pass in.</param>
+    [PublicAPI]
     public Instruction([ItemCanBeNull, NotNull] IEnumerable<Instruction> enumerator) =>
         Value = enumerator.GetEnumerator();
 
     /// <summary>Initializes a new instance of the <see cref="Instruction"/> class.</summary>
     /// <remarks><para>Provides a nested enumeration.</para></remarks>
     /// <param name="enumerator">The value to pass in.</param>
+    [PublicAPI]
     public Instruction([NotNull] IEnumerator<Instruction> enumerator) => Value = enumerator;
 
     /// <summary>Initializes a new instance of the <see cref="Instruction"/> class.</summary>
     /// <remarks><para>Changes the orientation of the bomb when yielded.</para></remarks>
     /// <param name="first">
-    /// For the Bomb. The form of <c>(Quaternion.Euler(x, 0, 0) * Quaternion.Euler(0, y, 0) * (Quaternion.Euler(0, 0, z))</c>.
+    /// For the Bomb. The form of
+    /// <c>(Quaternion.Euler(x, 0, 0) * Quaternion.Euler(0, y, 0) * (Quaternion.Euler(0, 0, z))</c>.
     /// </param>
-    /// <param name="second">For the camera side view. The second one in the form of <c>Quaternion.Euler(x, y, z)</c>.</param>
-    [CLSCompliant(false)]
+    /// <param name="second">
+    /// For the camera side view. The second one in the form of <c>Quaternion.Euler(x, y, z)</c>.
+    /// </param>
+    [CLSCompliant(false), PublicAPI]
     public Instruction(Quaternion first, Quaternion second) => Value = new[] { first, second };
 
     /// <summary>Initializes a new instance of the <see cref="Instruction"/> class.</summary>
     /// <param name="value">The value to pass in.</param>
+    [PublicAPI]
     public Instruction(TwitchString value) => Value = value.Message;
 
     /// <summary>Initializes a new instance of the <see cref="Instruction"/> class.</summary>
@@ -50,77 +57,76 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
 
     /// <summary>Gets the value that can be yielded to wait for the next frame.</summary>
     /// <remarks><para>This value is always null. Do not dereference.</para></remarks>
-    [AllowNull, CanBeNull]
+    [AllowNull, CanBeNull, PublicAPI]
     public static Instruction FrameAdvance
     {
         [Pure] get => null;
     }
 
     /// <summary>Gets the value that can be yielded to allow other modules to be processed in Twitch Plays.</summary>
-    [NotNull]
+    [NotNull, PublicAPI]
     public static Instruction Pause { [Pure] get; } = new(true);
 
     /// <summary>
     /// Gets a value indicating whether Twitch Plays should allow
     /// other modules to be interacted with for the current frame.
     /// </summary>
-#pragma warning disable IDISP008
-    [NotNull]
+    [NotNull, PublicAPI]
     internal object Value { [Pure] get; }
-#pragma warning restore IDISP008
+
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public object Clone() => this;
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public bool Equals([AllowNull] Instruction x, [AllowNull] Instruction y) => x == y;
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public int GetHashCode([AllowNull, CanBeNull] Instruction obj) => obj?.GetHashCode() ?? 0;
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public bool Equals([AllowNull] Instruction other) => this == other;
 
     /// <summary>Implicitly calls the constructor.</summary>
     /// <param name="customYield">The <see cref="CustomYieldInstruction"/> to pass in to the constructor.</param>
-    [CLSCompliant(false), NotNull, Pure]
+    [CLSCompliant(false), NotNull, PublicAPI, Pure]
     public static implicit operator Instruction([NotNull] CustomYieldInstruction customYield) => new(customYield);
 
     /// <summary>Implicitly calls the constructor.</summary>
     /// <param name="selectable">The <see cref="KMSelectable"/> to pass in to the constructor.</param>
-    [CLSCompliant(false), NotNull, Pure]
+    [CLSCompliant(false), NotNull, PublicAPI, Pure]
     public static implicit operator Instruction([NotNull] KMSelectable selectable) => new(selectable);
 
     /// <summary>Implicitly calls the constructor.</summary>
     /// <param name="selectables">
     /// The <see cref="KMSelectable"/> <see cref="Array"/> to pass in to the constructor.
     /// </param>
-    [CLSCompliant(false), NotNull, Pure]
+    [CLSCompliant(false), NotNull, PublicAPI, Pure]
     public static implicit operator Instruction([NotNull] KMSelectable[] selectables) => new(selectables);
 
     /// <summary>Implicitly calls the constructor.</summary>
     /// <param name="orientation">The <see cref="Quaternion"/> to pass in to the constructor.</param>
-    [CLSCompliant(false), NotNull, Pure]
+    [CLSCompliant(false), NotNull, PublicAPI, Pure]
     public static implicit operator Instruction(Quaternion orientation) => new(orientation);
 
     /// <summary>Implicitly calls the constructor.</summary>
     /// <param name="query">The <see cref="TwitchString"/> to pass in to the constructor.</param>
-    [CLSCompliant(false), NotNull, Pure]
+    [CLSCompliant(false), NotNull, PublicAPI, Pure]
     public static implicit operator Instruction(TwitchString query) => new(query);
 
     /// <summary>Implicitly calls the constructor.</summary>
     /// <param name="yield">The <see cref="YieldInstruction"/> to pass in to the constructor.</param>
-    [CLSCompliant(false), NotNull, Pure]
+    [CLSCompliant(false), NotNull, PublicAPI, Pure]
     public static implicit operator Instruction([NotNull] YieldInstruction yield) => new(yield);
 
     /// <summary>Determines whether both instances contain the same values.</summary>
     /// <param name="left">The left-hand side.</param>
     /// <param name="right">The right-hand side.</param>
     /// <returns>The value <see langword="true"/> if both instances contain the same values.</returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static bool operator ==([AllowNull, CanBeNull] Instruction left, [AllowNull, CanBeNull] Instruction right) =>
         left is null ? right is null : right is not null && left.Value == right.Value;
 
@@ -128,7 +134,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <param name="left">The left-hand side.</param>
     /// <param name="right">The right-hand side.</param>
     /// <returns>The value <see langword="true"/> if both instances do not contain the same values.</returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static bool operator !=([AllowNull, CanBeNull] Instruction left, [AllowNull, CanBeNull] Instruction right) =>
         !(left == right);
 
@@ -139,7 +145,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <returns>
     /// A <see langword="new"/> <see cref="Instruction"/> instance encapsulating <paramref name="customYield"/>.
     /// </returns>
-    [CLSCompliant(false), NotNull, Pure]
+    [CLSCompliant(false), NotNull, PublicAPI, Pure]
     public static Instruction FromCustomYieldInstruction([NotNull] CustomYieldInstruction customYield) => customYield;
 
     /// <summary>
@@ -149,7 +155,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <returns>
     /// A <see langword="new"/> <see cref="Instruction"/> instance encapsulating <paramref name="enumerable"/>.
     /// </returns>
-    [NotNull, Pure]
+    [NotNull, PublicAPI, Pure]
     public static Instruction FromInstructions([ItemCanBeNull, NotNull] IEnumerable<Instruction> enumerable) =>
         new(enumerable);
 
@@ -160,7 +166,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <returns>
     /// A <see langword="new"/> <see cref="Instruction"/> instance encapsulating <paramref name="enumerator"/>.
     /// </returns>
-    [NotNull, Pure]
+    [NotNull, PublicAPI, Pure]
     public static Instruction FromInstructions([NotNull] IEnumerator<Instruction> enumerator) => new(enumerator);
 
     /// <summary>
@@ -170,7 +176,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <returns>
     /// A <see langword="new"/> <see cref="Instruction"/> instance encapsulating <paramref name="array"/>.
     /// </returns>
-    [NotNull, Pure]
+    [NotNull, PublicAPI, Pure]
     public static Instruction FromInstructions([NotNull] params Instruction[] array) => new(array);
 
     /// <summary>Converts the <see cref="KMSelectable"/> to a <see langword="new"/> <see cref="Instruction"/>.</summary>
@@ -178,7 +184,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <returns>
     /// A <see langword="new"/> <see cref="Instruction"/> instance encapsulating <paramref name="selectable"/>.
     /// </returns>
-    [CLSCompliant(false), NotNull, Pure]
+    [CLSCompliant(false), NotNull, PublicAPI, Pure]
 
     // ReSharper disable once InconsistentNaming
     public static Instruction FromKMSelectable([NotNull] KMSelectable selectable) => selectable;
@@ -191,7 +197,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <returns>
     /// A <see langword="new"/> <see cref="Instruction"/> instance encapsulating <paramref name="selectables"/>.
     /// </returns>
-    [CLSCompliant(false), NotNull, Pure] // ReSharper disable once InconsistentNaming
+    [CLSCompliant(false), NotNull, PublicAPI, Pure] // ReSharper disable once InconsistentNaming
     public static Instruction FromKMSelectableArray([ItemCanBeNull, NotNull] params KMSelectable[] selectables) =>
         selectables;
 
@@ -200,7 +206,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <returns>
     /// A <see langword="new"/> <see cref="Instruction"/> instance encapsulating <paramref name="orientation"/>.
     /// </returns>
-    [CLSCompliant(false), NotNull, Pure]
+    [CLSCompliant(false), NotNull, PublicAPI, Pure]
     public static Instruction FromQuaternion(Quaternion orientation) => orientation;
 
     /// <summary>
@@ -210,7 +216,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <returns>
     /// A <see langword="new"/> <see cref="Instruction"/> instance encapsulating <paramref name="query"/>.
     /// </returns>
-    [CLSCompliant(false), NotNull, Pure]
+    [CLSCompliant(false), NotNull, PublicAPI, Pure]
     public static Instruction FromTwitchString(TwitchString query) => query;
 
     /// <summary>
@@ -220,18 +226,18 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <returns>
     /// A <see langword="new"/> <see cref="Instruction"/> instance encapsulating <paramref name="yield"/>.
     /// </returns>
-    [CLSCompliant(false), NotNull, Pure]
+    [CLSCompliant(false), NotNull, PublicAPI, Pure]
     public static Instruction FromYieldInstruction([NotNull] YieldInstruction yield) => yield;
 
     /// <inheritdoc/>
-    [Pure] // ReSharper disable once AssignNullToNotNullAttribute
+    [PublicAPI, Pure] // ReSharper disable once AssignNullToNotNullAttribute
     public override bool Equals([AllowNull] object obj) => Equals(obj as Instruction);
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public override int GetHashCode() => Value.GetHashCode();
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public override string ToString() => Stringifier.Stringify(Value);
 }

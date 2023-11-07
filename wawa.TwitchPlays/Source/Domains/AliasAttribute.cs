@@ -14,6 +14,7 @@ public sealed class AliasAttribute([ItemCanBeNull, NotNull] IList<string> aliase
     IEqualityComparer<AliasAttribute>,
     IFormattable
 {
+    [NotNull]
     const string Whitespace =
         "One or more aliases contain whitespace or is null. " +
         "Since commands are split by whitespace, this makes those aliases unreachable.";
@@ -24,33 +25,35 @@ public sealed class AliasAttribute([ItemCanBeNull, NotNull] IList<string> aliase
     /// according to <see cref="char.IsWhiteSpace(char)"/>.
     /// </exception>
     /// <param name="aliases">The prefix of this command.</param>
+    [PublicAPI]
     public AliasAttribute([NotNull] params string[] aliases)
         : this((IList<string>)aliases) { }
 
     /// <summary>Gets the alternative representations.</summary>
     // ReSharper disable ConstantConditionalAccessQualifier ConstantNullCoalescingCondition
-    [ItemNotNull, NotNull]
+    [ItemNotNull, NotNull, PublicAPI]
     public IList<string> Aliases { [Pure] get; } = aliases.Any(static x => x?.Any(char.IsWhiteSpace) ?? false)
         ? throw new InvalidOperationException(Whitespace)
         : aliases;
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public object Clone() => new AliasAttribute(Aliases);
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public bool Equals([AllowNull] AliasAttribute x, [AllowNull] AliasAttribute y) => x == y;
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public int GetHashCode([AllowNull, CanBeNull] AliasAttribute obj) => obj?.GetHashCode() ?? 0;
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public bool Equals([AllowNull] AliasAttribute other) => this == other;
 
     /// <inheritdoc />
+    [PublicAPI, Pure]
     public string ToString([NotNull] string format, [AllowNull, CanBeNull] IFormatProvider formatProvider) =>
         ToString(format);
 
@@ -60,7 +63,7 @@ public sealed class AliasAttribute([ItemCanBeNull, NotNull] IList<string> aliase
     /// <returns>
     /// The value <see langword="true"/> if both of them contain the same values,
     /// otherwise <see langword="false"/>.</returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static bool operator ==(
         [AllowNull, CanBeNull] AliasAttribute left,
         [AllowNull, CanBeNull] AliasAttribute right
@@ -76,7 +79,7 @@ public sealed class AliasAttribute([ItemCanBeNull, NotNull] IList<string> aliase
     /// The value <see langword="true"/> if both of them do not contain the same values,
     /// otherwise <see langword="false"/>.
     /// </returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static bool operator !=(
         [AllowNull, CanBeNull] AliasAttribute left,
         [AllowNull, CanBeNull] AliasAttribute right
@@ -86,26 +89,26 @@ public sealed class AliasAttribute([ItemCanBeNull, NotNull] IList<string> aliase
     /// <summary>Gets a <see langword="string"/> representation showing every alias.</summary>
     /// <param name="x">The field.</param>
     /// <returns>A concatenation of the parameter <paramref name="x"/> with <see cref="Aliases"/>.</returns>
-    [NotNull]
+    [MustUseReturnValue, NotNull, PublicAPI]
     public static string ToString([NotNull] FieldInfo x) =>
         x.GetCustomAttributes(true).OfType<AliasAttribute>().FirstOrDefault()?.ToString(x.Name) ?? x.Name;
 
     /// <inheritdoc/>
-    [Pure] // ReSharper disable once AssignNullToNotNullAttribute
+    [PublicAPI, Pure] // ReSharper disable once AssignNullToNotNullAttribute
     public override bool Equals([AllowNull] object obj) => Equals(obj as AliasAttribute);
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public override int GetHashCode() =>
         Aliases.Aggregate(0, static (x, y) => x ^ StringComparer.OrdinalIgnoreCase.GetHashCode(y));
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public override string ToString() => Stringifier.Stringify(Aliases);
 
     /// <summary>Gets a <see langword="string"/> representation showing every alias.</summary>
     /// <param name="x">The original name of the field.</param>
     /// <returns>A concatenation of the parameter <paramref name="x"/> with <see cref="Aliases"/>.</returns>
-    [NotNull]
+    [MustUseReturnValue, NotNull, PublicAPI]
     public string ToString([NotNull] string x) => Stringifier.Conjoin(Enumerable.Repeat(x, 1).Concat(Aliases), '/');
 }

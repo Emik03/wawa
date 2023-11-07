@@ -11,13 +11,35 @@ public static class InstructionCore
     /// An <see cref="IEnumerator{T}"/> of <see cref="object"/> that is friendly to be used for coroutines,
     /// containing the values from <paramref name="that"/>.
     /// </returns>
-    [NotNull, Pure]
+    [NotNull, PublicAPI, Pure]
     public static IEnumerator<object> Flatten(
         [InstantHandle, ItemCanBeNull, NotNull] this IEnumerable<Instruction> that
     )
     {
         using var e = that.GetEnumerator();
         return e.Recursive();
+    }
+
+    [NotNull, Pure]
+    internal static IEnumerator<Instruction?> Flatten([NotNull] this IEnumerator<Instruction> source)
+    {
+        while (source.MoveNext())
+        {
+            var current = source.Current;
+            var value = current?.Value;
+
+            if (value is not IEnumerator<Instruction> nested)
+            {
+                yield return current;
+
+                continue;
+            }
+
+            using var result = Flatten(nested);
+
+            while (result.MoveNext())
+                yield return result.Current;
+        }
     }
 
     [NotNull, Pure]

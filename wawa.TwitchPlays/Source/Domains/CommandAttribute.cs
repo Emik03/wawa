@@ -13,28 +13,31 @@ public sealed class CommandAttribute([AllowNull, CanBeNull] string prefix = null
     IEquatable<CommandAttribute>,
     IEqualityComparer<CommandAttribute>
 {
+    [NotNull]
     const string Null = "<inferred>";
 
     /// <summary>Gets the priority. Higher means evaluated sooner.</summary>
+    [PublicAPI]
     public int Priority { [Pure] get; } = priority;
 
     /// <summary>Gets the prefix of this command. If <see cref="Maybe.None{T}"/>, the prefix is inferred.</summary>
+    [PublicAPI]
     public Maybe<string> Prefix { [Pure] get; } = prefix;
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public object Clone() => new CommandAttribute(Prefix.Value, Priority);
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public bool Equals(CommandAttribute x, CommandAttribute y) => x == y;
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public int GetHashCode([AllowNull, CanBeNull] CommandAttribute obj) => obj?.GetHashCode() ?? 0;
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public bool Equals([AllowNull] CommandAttribute other) => this == other;
 
     /// <summary>Determines whether both have the same values.</summary>
@@ -43,7 +46,7 @@ public sealed class CommandAttribute([AllowNull, CanBeNull] string prefix = null
     /// <returns>
     /// The value <see langword="true"/> if both of them contain the same values,
     /// otherwise <see langword="false"/>.</returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static bool operator ==(
         [AllowNull, CanBeNull] CommandAttribute left,
         [AllowNull, CanBeNull] CommandAttribute right
@@ -57,7 +60,7 @@ public sealed class CommandAttribute([AllowNull, CanBeNull] string prefix = null
     /// The value <see langword="true"/> if both of them do not contain the same values,
     /// otherwise <see langword="false"/>.
     /// </returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static bool operator !=(
         [AllowNull, CanBeNull] CommandAttribute left,
         [AllowNull, CanBeNull] CommandAttribute right
@@ -65,14 +68,14 @@ public sealed class CommandAttribute([AllowNull, CanBeNull] string prefix = null
         !(left == right);
 
     /// <inheritdoc/>
-    [Pure] // ReSharper disable once AssignNullToNotNullAttribute
+    [PublicAPI, Pure] // ReSharper disable once AssignNullToNotNullAttribute
     public override bool Equals([AllowNull] object obj) => Equals(obj as CommandAttribute);
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public override int GetHashCode() => Prefix.GetHashCode() + Priority;
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public override string ToString() => Prefix.UnwrapOr(Null);
 }

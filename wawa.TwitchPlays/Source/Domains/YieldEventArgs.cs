@@ -17,22 +17,23 @@ public sealed class YieldEventArgs : EventArgs,
     /// A <see langword="null"/> <see cref="Instruction"/> is a completely valid query,
     /// so this value is therefore around a <see cref="Maybe{T}"/>.
     /// </para></remarks>
+    [PublicAPI]
     public Maybe<Instruction> Query { [Pure] get; }
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public object Clone() => new YieldEventArgs(Query.Value);
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public bool Equals([AllowNull] YieldEventArgs x, [AllowNull] YieldEventArgs y) => x == y;
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public int GetHashCode([AllowNull, CanBeNull] YieldEventArgs obj) => obj?.GetHashCode() ?? 0;
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public bool Equals([AllowNull] YieldEventArgs other) => this == other;
 
     /// <summary>Determines whether both instances point to the same component.</summary>
@@ -41,7 +42,7 @@ public sealed class YieldEventArgs : EventArgs,
     /// <returns>
     /// The value <see langword="true"/> if both of them point to the same component, otherwise <see langword="false"/>.
     /// </returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static bool operator ==(
         [AllowNull, CanBeNull] YieldEventArgs left,
         [AllowNull, CanBeNull] YieldEventArgs right
@@ -55,7 +56,7 @@ public sealed class YieldEventArgs : EventArgs,
     /// The value <see langword="true"/> if both of them do not point to the same component,
     /// otherwise <see langword="false"/>.
     /// </returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static bool operator !=(
         [AllowNull, CanBeNull] YieldEventArgs left,
         [AllowNull, CanBeNull] YieldEventArgs right
@@ -63,15 +64,15 @@ public sealed class YieldEventArgs : EventArgs,
         !(left == right);
 
     /// <inheritdoc/>
-    [Pure] // ReSharper disable once AssignNullToNotNullAttribute
+    [PublicAPI, Pure] // ReSharper disable once AssignNullToNotNullAttribute
     public override bool Equals([AllowNull] object obj) => Equals(obj as YieldEventArgs);
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public override int GetHashCode() => Query.GetHashCode();
 
     /// <summary>Uses <see cref="Stringifier.Stringify{T}(T)"/> on <see cref="Query"/>.</summary>
     /// <returns>A <see cref="string"/> representation of <see cref="Query"/>.</returns>
-    [Pure]
+    [PublicAPI, Pure]
     public override string ToString() => Stringifier.Stringify(Query);
 }

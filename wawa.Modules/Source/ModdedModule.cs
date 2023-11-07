@@ -477,7 +477,7 @@ public abstract class ModdedModule : CachedBehaviour
         return false;
     }
 
-    [NotNull]
+    [NotNull, Pure]
     IEnumerator WaitForSolve()
     {
         Solve();
