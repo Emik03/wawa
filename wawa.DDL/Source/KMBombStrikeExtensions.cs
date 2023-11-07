@@ -21,7 +21,8 @@ public static class KMBombStrikeExtensions
     /// <remarks><para>In the editor, this value always returns 1.</para></remarks>
     /// <param name="that">The <see cref="KMBomb"/> module instance to grab the rate from.</param>
     /// <param name="signFlip">
-    /// When true, invert the returned value when the component from <paramref name="that"/> ticks backwards.
+    /// When <see langword="true"/>, invert the returned value when
+    /// the component from <paramref name="that"/> ticks backwards.
     /// </param>
     /// <returns>The speed of the ticking.</returns>
     [CLSCompliant(false), PublicAPI]
@@ -33,7 +34,8 @@ public static class KMBombStrikeExtensions
     /// <param name="that">The <see cref="KMBomb"/> module instance to grab the rate from.</param>
     /// <param name="value">The value to set it to.</param>
     /// <param name="signFlip">
-    /// When true, invert <paramref name="value"/> when the component from <paramref name="that"/> ticks backwards.
+    /// When <see langword="true"/>, invert <paramref name="value"/> when
+    /// the component from <paramref name="that"/> ticks backwards.
     /// </param>
     /// <returns>The parameter <see cref="KMBomb"/>.</returns>
     [CLSCompliant(false), NotNull, PublicAPI]
