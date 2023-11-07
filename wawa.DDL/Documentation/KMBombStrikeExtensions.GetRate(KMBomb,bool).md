@@ -19,7 +19,8 @@ The [KMBomb](https://docs.microsoft.com/en-us/dotnet/api/KMBomb 'KMBomb') module
 
 `signFlip` [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')
 
-When true, invert the returned value when the component from [that](KMBombStrikeExtensions.GetRate(KMBomb,bool).md#Wawa.DDL.KMBombStrikeExtensions.GetRate(thisKMBomb,bool).that 'Wawa.DDL.KMBombStrikeExtensions.GetRate(this KMBomb, bool).that') ticks backwards.
+When [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool'), invert the returned value when  
+the component from [that](KMBombStrikeExtensions.GetRate(KMBomb,bool).md#Wawa.DDL.KMBombStrikeExtensions.GetRate(thisKMBomb,bool).that 'Wawa.DDL.KMBombStrikeExtensions.GetRate(this KMBomb, bool).that') ticks backwards.
 
 #### Returns
 [System.Single](https://docs.microsoft.com/en-us/dotnet/api/System.Single 'System.Single')  

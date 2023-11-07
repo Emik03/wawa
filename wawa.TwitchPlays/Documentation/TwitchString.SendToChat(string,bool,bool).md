@@ -1,0 +1,42 @@
+#### [wawa.TwitchPlays](index.md 'index')
+### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')
+
+## TwitchString.SendToChat(string, bool, bool) Method
+
+Yield return this to send a chat directly to twitch chat.
+
+```csharp
+public static Wawa.TwitchPlays.Domains.TwitchString SendToChat(string message, bool format=true, bool halt=false);
+```
+#### Parameters
+
+<a name='Wawa.TwitchPlays.Domains.TwitchString.SendToChat(string,bool,bool).message'></a>
+
+`message` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+
+The message to send.
+
+<a name='Wawa.TwitchPlays.Domains.TwitchString.SendToChat(string,bool,bool).format'></a>
+
+`format` [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')
+
+When false, treats `{` and `}` as plaintext.
+
+<a name='Wawa.TwitchPlays.Domains.TwitchString.SendToChat(string,bool,bool).halt'></a>
+
+`halt` [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')
+
+When [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool'), halts the command processing after the message is sent.
+
+#### Returns
+[TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')  
+A formatted string for Twitch Plays.
+
+### Remarks
+  
+By default, the parameter [message](TwitchString.SendToChat(string,bool,bool).md#Wawa.TwitchPlays.Domains.TwitchString.SendToChat(string,bool,bool).message 'Wawa.TwitchPlays.Domains.TwitchString.SendToChat(string, bool, bool).message') is considered  
+to be a message template in accordance to the following table:  
+  
+|  
+  
+If you wish to have `{` or `}` as part of your message directly, refer to [format](TwitchString.SendToChat(string,bool,bool).md#Wawa.TwitchPlays.Domains.TwitchString.SendToChat(string,bool,bool).format 'Wawa.TwitchPlays.Domains.TwitchString.SendToChat(string, bool, bool).format').

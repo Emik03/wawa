@@ -33,6 +33,7 @@ https://github.com/samfundev/KtaneTwitchPlays/wiki/External-Mod-Module-Support#a
 | :--- | :--- |
 | [FrameAdvance](Instruction.FrameAdvance.md 'Wawa.TwitchPlays.Domains.Instruction.FrameAdvance') | Gets the value that can be yielded to wait for the next frame. |
 | [Pause](Instruction.Pause.md 'Wawa.TwitchPlays.Domains.Instruction.Pause') | Gets the value that can be yielded to allow other modules to be processed in Twitch Plays. |
+| [UsableInForcedSolve](Instruction.UsableInForcedSolve.md 'Wawa.TwitchPlays.Domains.Instruction.UsableInForcedSolve') | Gets a value indicating whether this current instance contains a value that can be<br/>evaluated by both the Twitch Plays command processor for users, and the forced solver,<br/>or whether it can only be strictly used for the Twitch Plays command processor. |
 
 | Methods | |
 | :--- | :--- |

@@ -14,4 +14,4 @@ public static Wawa.TwitchPlays.Domains.TwitchString AutoSolve { get; }
 
 ### Remarks
   
-Yield return this to indicate automatically solving the module, as if it threw an exception while solving.
+Yield return this to indicate solving the module automatically, as if it threw an exception while solving.

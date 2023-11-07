@@ -14,7 +14,8 @@ public Instruction(Quaternion first, Quaternion second);
 
 `first` [UnityEngine.Quaternion](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Quaternion 'UnityEngine.Quaternion')
 
-For the Bomb. The form of `(Quaternion.Euler(x, 0, 0) * Quaternion.Euler(0, y, 0) * (Quaternion.Euler(0, 0, z))`.
+For the Bomb. The form of  
+`(Quaternion.Euler(x, 0, 0) * Quaternion.Euler(0, y, 0) * (Quaternion.Euler(0, 0, z))`.
 
 <a name='Wawa.TwitchPlays.Domains.Instruction.Instruction(Quaternion,Quaternion).second'></a>
 

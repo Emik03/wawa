@@ -25,7 +25,8 @@ The value to set it to.
 
 `signFlip` [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')
 
-When true, invert [value](KMBombStrikeExtensions.SetRate(KMBomb,float,bool).md#Wawa.DDL.KMBombStrikeExtensions.SetRate(thisKMBomb,float,bool).value 'Wawa.DDL.KMBombStrikeExtensions.SetRate(this KMBomb, float, bool).value') when the component from [that](KMBombStrikeExtensions.SetRate(KMBomb,float,bool).md#Wawa.DDL.KMBombStrikeExtensions.SetRate(thisKMBomb,float,bool).that 'Wawa.DDL.KMBombStrikeExtensions.SetRate(this KMBomb, float, bool).that') ticks backwards.
+When [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool'), invert [value](KMBombStrikeExtensions.SetRate(KMBomb,float,bool).md#Wawa.DDL.KMBombStrikeExtensions.SetRate(thisKMBomb,float,bool).value 'Wawa.DDL.KMBombStrikeExtensions.SetRate(this KMBomb, float, bool).value') when  
+the component from [that](KMBombStrikeExtensions.SetRate(KMBomb,float,bool).md#Wawa.DDL.KMBombStrikeExtensions.SetRate(thisKMBomb,float,bool).that 'Wawa.DDL.KMBombStrikeExtensions.SetRate(this KMBomb, float, bool).that') ticks backwards.
 
 #### Returns
 [KMBomb](https://docs.microsoft.com/en-us/dotnet/api/KMBomb 'KMBomb')  
