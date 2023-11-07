@@ -68,6 +68,21 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     public static Instruction Pause { [Pure] get; } = new(true);
 
     /// <summary>
+    /// Gets a value indicating whether this current instance contains a value that can be
+    /// evaluated by both the Twitch Plays command processor for users, and the forced solver,
+    /// or whether it can only be strictly used for the Twitch Plays command processor.
+    /// </summary>
+    /// <remarks><para>
+    /// Currently supports <see cref="Pause"/>, and values that Unity already natively supports: <see langword="null"/>
+    /// / <see cref="FrameAdvance"/>, <see cref="CustomYieldInstruction"/>, and <see cref="YieldInstruction"/>.
+    /// </para></remarks>
+    [PublicAPI]
+    public bool UsableInForcedSolve
+    {
+        [Pure] get => Value is true or CustomYieldInstruction or YieldInstruction;
+    }
+
+    /// <summary>
     /// Gets a value indicating whether Twitch Plays should allow
     /// other modules to be interacted with for the current frame.
     /// </summary>
