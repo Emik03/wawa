@@ -8,7 +8,7 @@ namespace Wawa.Recall;
 [PublicAPI]
 public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityComparer<Entity>, IVanilla
 {
-    static readonly Dictionary<GameObject, ReadOnlyCollection<Entity>> s_allModules = new();
+    static readonly Dictionary<GameObject, ReadOnlyCollection<Entity>> s_allModules = [];
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Entity"/> class.
@@ -133,7 +133,7 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
     [NotNull, PublicAPI]
     public static ReadOnlyCollection<ReadOnlyCollection<Entity>> LogEverything()
     {
-        HashSet<MonoBehaviour> set = new();
+        HashSet<MonoBehaviour> set = [];
 
         Unit Enumerate([NotNull] Selected next)
         {
