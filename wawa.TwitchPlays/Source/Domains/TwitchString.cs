@@ -5,18 +5,22 @@ namespace Wawa.TwitchPlays.Domains;
 [PublicAPI]
 public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqualityComparer<TwitchString>
 {
-    TwitchString([NotNull] string message) => Message = message;
+    readonly string _message = "";
+
+    TwitchString([NotNull] string message) => _message = message;
 
     /// <summary>Gets the auto-solving Twitch Plays query.</summary>
     /// <remarks><para>
-    /// Yield return this to indicate automatically solving the module, as if it threw an exception while solving.
+    /// Yield return this to indicate solving the module automatically, as if it threw an exception while solving.
     /// </para></remarks>
+    [PublicAPI]
     public static TwitchString AutoSolve { [Pure] get; } = new("autosolve");
 
     /// <summary>Gets the cancellation-of-detonation Twitch Plays query.</summary>
     /// <remarks><para>
     /// Yield return this to indicate cancelling a previously issued delayed detonation command on the same module.
     /// </para></remarks>
+    [PublicAPI]
     public static TwitchString CancelDetonate { [Pure] get; } = new("cancel detonate");
 
     /// <summary>Gets the cancellation-of-processing Twitch Plays query.</summary>
@@ -24,6 +28,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// Yield return this to indicate that you have stopped processing the command in response to the
     /// <see cref="Twitch{TMod}.TwitchShouldCancelCommand"/> bool being set to <see langword="true"/>.
     /// </para></remarks>
+    [PublicAPI]
     public static TwitchString Cancelled { [Pure] get; } = new("cancelled");
 
     /// <summary>Gets the strike enabler Twitch Plays query.</summary>
@@ -36,10 +41,12 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// Likewise, if the module was solved at the time this command is issued,
     /// the processing will be stopped as of that point as well.
     /// </para></remarks>
+    [PublicAPI]
     public static TwitchString EndMultipleStrikes { [Pure] get; } = new("end multiple strikes");
 
     /// <summary>Gets the cancellation-of-music Twitch Plays query.</summary>
     /// <remarks><para>Yield return this to indicate stopping the waiting music mid-command.</para></remarks>
+    [PublicAPI]
     public static TwitchString EndWaitingMusic { [Pure] get; } = new("end waiting music");
 
     /// <summary>Gets the camera hider Twitch Plays query.</summary>
@@ -47,6 +54,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// Yield return this to hide the heads-up display and cameras while doing quaternion rotations,
     /// if it is expected that the camera/hud will get in the way.
     /// </para></remarks>
+    [PublicAPI]
     public static TwitchString HideCamera { [Pure] get; } = new("hide camera");
 
     /// <summary>Gets the strike disabler Twitch Plays query.</summary>
@@ -57,6 +65,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// This also disables the internal solve tracker as well. This allows for sending
     /// additional messages or continue processing commands regardless of the solve/strike state.
     /// </para></remarks>
+    [PublicAPI]
     public static TwitchString MultipleStrikes { [Pure] get; } = new("multiple strikes");
 
     /// <summary>Gets the solving Twitch Plays query.</summary>
@@ -64,6 +73,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// Yield return this to indicate that this command will solve the module at some later point;
     /// all this does is tell Twitch Plays to attribute the solve to the author of this command.
     /// </para></remarks>
+    [PublicAPI]
     public static TwitchString Solve { [Pure] get; } = new("solve");
 
     /// <summary>Gets the striking Twitch Plays query.</summary>
@@ -71,10 +81,12 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// Yield return this to indicate that this command will cause a strike at some later point;
     /// all this does is tell Twitch Plays to attribute the strike to the author of this command.
     /// </para></remarks>
+    [PublicAPI]
     public static TwitchString Strike { [Pure] get; } = new("strike");
 
     /// <summary>Gets the music toggle Twitch Plays query.</summary>
     /// <remarks><para>Yield return this to toggle the waiting music on and off mid-command.</para></remarks>
+    [PublicAPI]
     public static TwitchString ToggleWaitingMusic { [Pure] get; } = new("toggle waiting music");
 
     /// <summary>Gets the allow cancel Twitch Plays query.</summary>
@@ -82,6 +94,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// Yield return this to indicate that the <c>KMSelectable[]</c> sequence that follows this command should be
     /// cancelled if a "<c>!cancel</c>" or "<c>!stop</c>" is issued mid-way through that sequence.
     /// </para></remarks>
+    [PublicAPI]
     public static TwitchString TryCancelSequence { [Pure] get; } = new("trycancelsequence");
 
     /// <summary>Gets the unsubmittable penalty Twitch Plays query.</summary>
@@ -89,28 +102,42 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// Yield return this to indicate that the command couldn't submit an answer and should only be used to prevent
     /// users from guessing the answer. This should not be used if an answer could never be submittable for a module.
     /// </para></remarks>
+    [PublicAPI]
     public static TwitchString UnsubmittablePenalty { [Pure] get; } = new("unsubmittablepenalty");
 
     /// <summary>Gets the music Twitch Plays query.</summary>
     /// <remarks><para>
     /// Yield return this to indicate playing the waiting music if a command will take long to finish.
     /// </para></remarks>
+    [PublicAPI]
     public static TwitchString WaitingMusic { [Pure] get; } = new("waiting music");
 
+    /// <summary>
+    /// Gets a value indicating whether this instance contains an instruction to send a message to the Twitch chat.
+    /// </summary>
+    [PublicAPI]
+    public bool IsSendMessage
+    {
+        [Pure] get => Message.StartsWith("sendtochat");
+    }
+
     /// <summary>Gets the message to send to Twitch Plays.</summary>
-    [NotNull]
-    public string Message { [Pure] get; } = "";
+    [NotNull, PublicAPI]
+    public string Message
+    {
+        [Pure] get => _message ?? "";
+    }
 
     /// <summary>Implicitly calls the property <see cref="Message"/>.</summary>
     /// <param name="query">The <see cref="TwitchString"/> to access the property from.</param>
-    [NotNull, Pure]
+    [NotNull, PublicAPI, Pure]
     public static implicit operator string(TwitchString query) => query.Message;
 
     /// <summary>Determines whether both instances contain the same values.</summary>
     /// <param name="left">The left-hand side.</param>
     /// <param name="right">The right-hand side.</param>
     /// <returns>The value <see langword="true"/> if both instances contain the same values.</returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static bool operator ==([InstantHandle] TwitchString left, [InstantHandle] TwitchString right) =>
         left.Message.Equals(right.Message, Ordinal);
 
@@ -118,15 +145,32 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// <param name="left">The left-hand side.</param>
     /// <param name="right">The right-hand side.</param>
     /// <returns>The value <see langword="true"/> if both instances do not contain the same values.</returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static bool operator !=([InstantHandle] TwitchString left, [InstantHandle] TwitchString right) =>
         !(left == right);
 
     /// <summary>Yield return this to allow you to tell the user why they got a strike if it isn't clear.</summary>
+    /// <remarks><para>
+    /// By default, the parameter <paramref name="message"/> is considered
+    /// to be a message template in accordance to the following table:
+    /// </para><list type="table"><item><term><c>
+    /// {0}
+    /// </c></term><description>
+    /// The username of the person who initiated the command.
+    /// </description></item><item><term><c>
+    /// {1}
+    /// </c></term><description>
+    /// The Twitch Plays ID that represents the current module.
+    /// </description></item></list><para>
+    /// If you wish to have <c>{</c> or <c>}</c> as part of your message directly, refer to <paramref name="format"/>.
+    /// </para></remarks>
     /// <param name="message">The message to send.</param>
+    /// <param name="format">When <see langword="false"/>, treats <c>{</c> and <c>}</c> as plaintext.</param>
+    /// <param name="halt">When <see langword="true"/>, halts the command processing after the message is sent.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
-    [Pure]
-    public static TwitchString StrikeMessage([NotNull] string message) => new($"strikemessage {message}");
+    [PublicAPI, Pure]
+    public static TwitchString StrikeMessage([NotNull] string message, bool format = true, bool halt = false) =>
+        new($"strikemessage {message}");
 
     /// <summary>
     /// Yield return this to indicate that this command is allowed to be cancelled at the given time of the yield.
@@ -137,7 +181,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// </para></remarks>
     /// <param name="message">The message to send.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static TwitchString TryCancel([AllowNull, CanBeNull] string message = null) =>
         new(message is null ? "trycancel" : $"trycancel {message}");
 
@@ -152,29 +196,84 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// <param name="time">The amount of time to wait.</param>
     /// <param name="message">The message to send.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static TwitchString TryWaitCancel(float time, [AllowNull, CanBeNull] string message = null) =>
         new(message is null ? $"trywaitcancel {time}" : $"trywaitcancel {time} {message}");
 
     /// <summary>Yield return this to send a chat directly to twitch chat.</summary>
+    /// <remarks><para>
+    /// By default, the parameter <paramref name="message"/> is considered
+    /// to be a message template in accordance to the following table:
+    /// </para><list type="table"><item><term><c>
+    /// {0}
+    /// </c></term><description>
+    /// The username of the person who initiated the command.
+    /// </description></item><item><term><c>
+    /// {1}
+    /// </c></term><description>
+    /// The Twitch Plays ID that represents the current module.
+    /// </description></item></list><para>
+    /// If you wish to have <c>{</c> or <c>}</c> as part of your message directly, refer to <paramref name="format"/>.
+    /// </para></remarks>
     /// <param name="message">The message to send.</param>
+    /// <param name="format">When false, treats <c>{</c> and <c>}</c> as plaintext.</param>
+    /// <param name="halt">When <see langword="true"/>, halts the command processing after the message is sent.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
-    [Pure]
-    public static TwitchString SendToChat([NotNull] string message) => new($"sendtochat {message}");
+    [PublicAPI, Pure]
+    public static TwitchString SendToChat([NotNull] string message, bool format = true, bool halt = false) =>
+        new($"sendtochat{Flags(format, halt)} {message}");
 
     /// <summary>Yield return this to send a message to the chat about why a users' command was invalid.</summary>
+    /// <remarks><para>
+    /// By default, the parameter <paramref name="message"/> is considered
+    /// to be a message template in accordance to the following table:
+    /// </para><list type="table"><item><term><c>
+    /// {0}
+    /// </c></term><description>
+    /// The username of the person who initiated the command.
+    /// </description></item><item><term><c>
+    /// {1}
+    /// </c></term><description>
+    /// The Twitch Plays ID that represents the current module.
+    /// </description></item></list><para>
+    /// If you wish to have <c>{</c> or <c>}</c> as part of your message directly, refer to <paramref name="format"/>.
+    /// </para></remarks>
     /// <param name="message">The message to send.</param>
+    /// <param name="format">When <see langword="false"/>, treats <c>{</c> and <c>}</c> as plaintext.</param>
+    /// <param name="halt">When <see langword="true"/>, halts the command processing after the message is sent.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
-    [Pure]
-    public static TwitchString SendToChatError([NotNull] string message) => new($"sendtochaterror {message}");
+    [PublicAPI, Pure]
+    public static TwitchString SendToChatError([NotNull] string message, bool format = true, bool halt = false) =>
+        new($"sendtochaterror{Flags(format, halt)} {message}");
 
     /// <summary>Yield return this to send a message to chat after <paramref name="time"/> seconds.</summary>
+    /// <remarks><para>
+    /// By default, the parameter <paramref name="message"/> is considered
+    /// to be a message template in accordance to the following table:
+    /// </para><list type="table"><item><term><c>
+    /// {0}
+    /// </c></term><description>
+    /// The username of the person who initiated the command.
+    /// </description></item><item><term><c>
+    /// {1}
+    /// </c></term><description>
+    /// The Twitch Plays ID that represents the current module.
+    /// </description></item></list><para>
+    /// If you wish to have <c>{</c> or <c>}</c> as part of your message directly, refer to <paramref name="format"/>.
+    /// </para></remarks>
     /// <param name="time">The amount of time to wait before the message gets sent.</param>
     /// <param name="message">The message to send.</param>
+    /// <param name="format">When <see langword="false"/>, treats <c>{</c> and <c>}</c> as plaintext.</param>
+    /// <param name="halt">When <see langword="true"/>, halts the command processing after the message is sent.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
-    [Pure]
-    public static TwitchString SendDelayedMessage(float time, [NotNull] string message) =>
-        new($"sendtochat {time} {message}");
+    [PublicAPI, Pure]
+    public static TwitchString SendDelayedMessage(
+        float time,
+        [NotNull] string message,
+        bool format = true,
+        bool halt = false
+    ) =>
+        new($"senddelayedmessage{Flags(format, halt)} {time} {message}");
 
     /// <summary>Yield return this to explode the bomb instantly.</summary>
     /// <remarks><para>
@@ -187,7 +286,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// <param name="time">The amount of time before the bomb blows up.</param>
     /// <param name="message">The message to send.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static TwitchString Detonate(float? time = null, [AllowNull, CanBeNull] string message = null) =>
         new($"detonate {time} {message}");
 
@@ -202,7 +301,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// </para></remarks>
     /// <param name="seconds">The time to skip to in seconds.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static TwitchString SkipTime(float seconds) => new($"skiptime {seconds}");
 
     /// <summary>Yield return this to award the user that sent the command points directly.</summary>
@@ -211,7 +310,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// </para></remarks>
     /// <param name="points">The amount of points to award. Negatives supported.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static TwitchString AwardPoints(int points) => new($"awardpoints {points}");
 
     /// <summary>
@@ -224,34 +323,39 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// </para></remarks>
     /// <param name="points">The amount of points to award. Negatives supported.</param>
     /// <returns>A formatted string for Twitch Plays.</returns>
-    [Pure]
+    [PublicAPI, Pure]
     public static TwitchString AwardPointsOnSolve(int points) => new($"awardpointsonsolve {points}");
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public bool Equals(TwitchString other) => this == other;
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public bool Equals(TwitchString x, TwitchString y) => x == y;
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public override bool Equals([AllowNull] object obj) => obj is TwitchString query && Equals(query);
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public int GetHashCode(TwitchString obj) => obj.GetHashCode();
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public override int GetHashCode() => StringComparer.Ordinal.GetHashCode(Message);
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public override string ToString() => Message;
 
     /// <inheritdoc/>
-    [Pure]
+    [PublicAPI, Pure]
     public object Clone() => this;
+
+    [Pure]
+    static string Flags(bool format, bool halt) =>
+        format ? halt ? "!h" : "" :
+        halt ? "!fh" : "!f";
 }
