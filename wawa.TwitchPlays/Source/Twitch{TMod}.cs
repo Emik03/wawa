@@ -8,15 +8,22 @@ namespace Wawa.TwitchPlays;
 /// <typeparam name="TMod">
 /// The <see cref="Type"/> of <see cref="Mod"/> to implement Twitch Plays support for.
 /// </typeparam>
+// ReSharper disable Unity.PerformanceCriticalCodeInvocation
 [CLSCompliant(false), PublicAPI, RequireComponent(typeof(ModdedModule)), Serializable]
 public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     where TMod : ModdedModule
 {
     [NotNull]
     const string
+        MessageThenCancel = $"The first yield of the command is a {nameof(TwitchString)} that is true on " +
+            $"{nameof(TwitchString.IsSendMessage)}. This is usually an indication that the command was invalid, and " +
+            "therefore the command will stop processing. If this behavior is undesired, then yield return null, " +
+            $"{nameof(Instruction.FrameAdvance)}, or anything else before the afforementioned {nameof(TwitchString)}.",
         None = "There is no suitable method! Make sure you have at least one method with a return type " +
             $"{nameof(IEnumerable)} of {nameof(Instruction)} and a {nameof(CommandAttribute)} attached to said method!",
-        Separator = " | ";
+        Separator = " | ",
+        WrongType = "A value was yielded in which the Twitch Plays autosolver currently doesn't support. " +
+            "You will need to use a workaround, such as modifying the transform directly or invoking the callback.";
 
     [CanBeNull]
     static string s_autoImplementedHelp;
@@ -146,29 +153,53 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     }
 
     /// <inheritdoc />
-    [PublicAPI, Pure] // ReSharper disable once AnnotationRedundancyInHierarchy
+    [PublicAPI, Pure] // ReSharper disable once AnnotationRedundancyInHierarchy CognitiveComplexity
     public IEnumerator ProcessTwitchCommand([AllowNull, CanBeNull] string command)
     {
         if (command is null || Match(command, out var isEmpty) is not { } match)
             yield break;
 
         using var e = match.GetEnumerator();
-        var query = Flatten(e);
+        var query = e.Flatten();
 
-        if (!isEmpty)
+        if (!query.MoveNext())
+        {
+            if (isEmpty)
+                yield break;
+
+            OnYield(this, new(null));
             yield return null;
 
-        while (query.MoveNext())
+            yield break;
+        }
+
+        if (query.Current?.Value is TwitchString { IsSendMessage: true })
         {
+            if (!Access.IsKtane)
+                AssemblyLog(MessageThenCancel);
+
+            yield break;
+        }
+
+        if (!isEmpty)
+        {
+            OnYield(this, new(null));
+            yield return null;
+        }
+
+        do
+        {
+            if (isEmpty)
+            {
+                isEmpty = false;
+                OnYield(this, new(null));
+                yield return null;
+            }
+
             var current = query.Current;
             OnYield(this, new(current));
-
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-            if (isEmpty && !(isEmpty = false))
-                yield return null;
-
             yield return current?.Value;
-        }
+        } while (query.MoveNext());
     }
 
     /// <inheritdoc />
@@ -176,11 +207,14 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     public IEnumerator TwitchHandleForcedSolve()
     {
         using var e = ForceSolve().GetEnumerator();
-        using var enumerator = Flatten(e);
+        using var enumerator = e.Flatten();
 
         while (enumerator.MoveNext())
         {
-            var current = enumerator.Current; // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
+            if (!Access.IsKtane && enumerator.Current is { UsableInForcedSolve: false })
+                AssemblyLog(WrongType);
+
+            var current = enumerator.Current;
             OnYield(this, new(current));
             yield return current?.Value;
         }
@@ -206,7 +240,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     void ITwitchMutable.SetIsZen(in bool value) => ZenModeActive = value;
 
     /// <inheritdoc/>
-    [PublicAPI, Pure] // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
+    [PublicAPI, Pure]
     IEnumerator ISolvable.ForceTPSolve() => TwitchHandleForcedSolve();
 
     /// <summary>
@@ -268,7 +302,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     {
         Module.Status.HasStruck = false;
 
-        foreach (var selectable in selectables.Where(x => x))
+        foreach (var selectable in selectables.Where(x => x).TakeWhile(_ => !Module.Status.HasStruck))
         {
             selectable.OnInteract();
             yield return new(duration);
@@ -312,6 +346,18 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         [NotNull] IEnumerable<int> indices
     ) =>
         IndexedSequence(selectables, duration, indices.ToArray());
+
+    /// <summary>Determines whether two strings are equal, without accounting for case.</summary>
+    /// <param name="left">The left-hand side.</param>
+    /// <param name="right">The right-hand side.</param>
+    /// <returns>
+    /// The value <see langword="true"/> if the parameters <paramref name="left"/> and
+    /// <paramref name="right"/> are equal to each other according to the comparison type
+    /// <see cref="StringComparison.OrdinalIgnoreCase"/>; otherwise, <see langword="false"/>.
+    /// </returns>
+    [PublicAPI, Pure]
+    protected static bool Equal([AllowNull, CanBeNull] string left, [AllowNull, CanBeNull] string right) =>
+        string.Equals(left, right, StringComparison.OrdinalIgnoreCase);
 
     /// <summary>
     /// You can <see langword="yield"/> <see langword="return"/> this to repeatedly
@@ -403,28 +449,6 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         return ret ? args[1] : ParseError.NoMatch;
     }
 
-    [NotNull, Pure]
-    static IEnumerator<Instruction?> Flatten([NotNull] IEnumerator<Instruction> source)
-    {
-        while (source.MoveNext())
-        {
-            var current = source.Current;
-            var value = current?.Value;
-
-            if (value is not IEnumerator<Instruction> nested)
-            {
-                yield return current;
-
-                continue;
-            }
-
-            using var result = Flatten(nested);
-
-            while (result.MoveNext())
-                yield return result.Current;
-        }
-    }
-
     [ItemNotNull, NotNull]
     static IEnumerable<Instruction> FromFail([NotNull] in string reason) =>
         Enumerable.Repeat<Instruction>(TwitchString.SendToChatError(reason), 1);
@@ -440,7 +464,6 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
             ((ParseError)args[fail]).Reason(parameters[fail].ParameterType)
         );
 
-    // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
     void OnPrint([NotNull] object sender, [NotNull] YieldEventArgs args) =>
         Module.Log(Stringifier.Stringify(args.Query));
 
