@@ -153,49 +153,39 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     }
 
     /// <inheritdoc />
-    [PublicAPI, Pure] // ReSharper disable once AnnotationRedundancyInHierarchy CognitiveComplexity
+    [PublicAPI, Pure] // ReSharper disable once AnnotationRedundancyInHierarchy
     public IEnumerator ProcessTwitchCommand([AllowNull, CanBeNull] string command)
     {
-        if (command is null || Match(command, out var isEmpty) is not { } match)
+        if (command is null || Match(command, out var isWildcard) is not { } match)
             yield break;
 
         using var e = match.GetEnumerator();
         var query = e.Flatten();
 
-        if (!query.MoveNext())
+        switch (query.Current?.Value)
         {
-            if (isEmpty)
+            case var _ when !query.MoveNext():
+                if (!isWildcard)
+                    yield break;
+
+                OnYield(this, new(null));
+                yield return null;
+
                 yield break;
+            case TwitchString { IsSendMessage: true }:
+                if (!Access.IsKtane)
+                    AssemblyLog(MessageThenCancel);
 
-            OnYield(this, new(null));
-            yield return null;
+                yield break;
+            case not null:
+                OnYield(this, new(null));
+                yield return null;
 
-            yield break;
-        }
-
-        if (query.Current?.Value is TwitchString { IsSendMessage: true })
-        {
-            if (!Access.IsKtane)
-                AssemblyLog(MessageThenCancel);
-
-            yield break;
-        }
-
-        if (!isEmpty)
-        {
-            OnYield(this, new(null));
-            yield return null;
+                break;
         }
 
         do
         {
-            if (isEmpty)
-            {
-                isEmpty = false;
-                OnYield(this, new(null));
-                yield return null;
-            }
-
             var current = query.Current;
             OnYield(this, new(current));
             yield return current?.Value;
@@ -486,7 +476,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
 
     [CanBeNull, ItemNotNull, MustUseReturnValue]
     [return: AllowNull]
-    IEnumerable<Instruction> Match([NotNull] string command, out bool isQueryEmpty)
+    IEnumerable<Instruction> Match([NotNull] string command, out bool isWildcard)
     {
         var trimmed = command.Trim();
         var temp = true;
@@ -506,7 +496,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
            .Select(Locate)
            .FirstOrDefault();
 
-        isQueryEmpty = temp;
+        isWildcard = temp;
         return ret;
     }
 
