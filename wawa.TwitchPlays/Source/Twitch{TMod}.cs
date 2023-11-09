@@ -159,12 +159,12 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         if (command is null || Match(command, out var isWildcard) is not { } match)
             yield break;
 
-        using var e = match.GetEnumerator();
-        var query = e.Flatten();
+        using var enumerator = match.GetEnumerator();
+        using var flattened = enumerator.Flatten();
 
-        switch (query.Current?.Value)
+        switch (flattened.Current?.Value)
         {
-            case var _ when !query.MoveNext():
+            case var _ when !flattened.MoveNext():
                 if (!isWildcard)
                     yield break;
 
@@ -186,25 +186,25 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
 
         do
         {
-            var current = query.Current;
+            var current = flattened.Current;
             OnYield(this, new(current));
             yield return current?.Value;
-        } while (query.MoveNext());
+        } while (flattened.MoveNext());
     }
 
     /// <inheritdoc />
     [PublicAPI, Pure]
     public IEnumerator TwitchHandleForcedSolve()
     {
-        using var e = ForceSolve().GetEnumerator();
-        using var enumerator = e.Flatten();
+        using var enumerator = ForceSolve().GetEnumerator();
+        using var flattened = enumerator.Flatten();
 
-        while (enumerator.MoveNext())
+        while (flattened.MoveNext())
         {
-            if (!Access.IsKtane && enumerator.Current is { UsableInForcedSolve: false })
+            if (!Access.IsKtane && flattened.Current is { UsableInForcedSolve: false })
                 AssemblyLog(WrongType);
 
-            var current = enumerator.Current;
+            var current = flattened.Current;
             OnYield(this, new(current));
             yield return current?.Value;
         }
