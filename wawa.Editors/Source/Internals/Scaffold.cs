@@ -11,6 +11,7 @@ static class Scaffold
         CSharpStringSyntax = "csharp", // EditorAssembly = "Assembly-CSharp",
         FileTwitch = "Twitch",
         Highlight = "Component_Highlight",
+        KMAssets = "https://github.com/Qkrisi/ktanemodkit/tree/master/Assets/KMAssets",
         NeedyBackground = "Component_Needy_Background",
         Material = ".mat",
         Mesh = ".fbx",
@@ -149,11 +150,11 @@ using Wawa.Modules;",
         var bg = go.Add(name);
         var renderer = bg.AddComponent<MeshRenderer>();
 
-        bg.AddComponent<MeshFilter>().mesh = $"{name}{Mesh}".Load<Mesh>();
+        bg.AddComponent<MeshFilter>().mesh = Load<Mesh>($"{name}{Mesh}");
 
         bg.transform.localRotation = s_puzzleBackground;
         renderer.allowOcclusionWhenDynamic = true;
-        renderer.material = $"{name}{Material}".Load<Material>();
+        renderer.material = Load<Material>($"{name}{Material}");
     }
 
     static void AddSources(
@@ -203,7 +204,6 @@ using Wawa.Modules;",
     )
     {
         var twitchContents = compliant.SourceTwitch();
-
         File.WriteAllText(location, twitchContents);
     }
 
@@ -373,17 +373,19 @@ public sealed class {name}{FileTwitch} : Twitch<{name}>
     static KMHighlightable AddHighlightable([NotNull] this GameObject go)
     {
         var highlighter = go.Add(Highlight);
-
-        highlighter.AddComponent<MeshFilter>().mesh = $"{Highlight}{Mesh}".Load<Mesh>();
-
+        highlighter.AddComponent<MeshFilter>().mesh = Load<Mesh>($"{Highlight}{Mesh}");
         return highlighter.AddComponent<KMHighlightable>();
     }
 
     [CanBeNull]
     [return: AllowNull]
-    static T Load<T>([NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] this string pattern)
-        where T : Object =>
-        Array.Find(AssetDatabase.GetAllAssetPaths(), x => x.EndsWith(pattern, Ordinal)) is { } path
-            ? AssetDatabase.LoadAssetAtPath<T>(path)
-            : null;
+    static T Load<T>([NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] string pattern)
+        where T : Object
+    {
+        if (Array.Find(AssetDatabase.GetAllAssetPaths(), x => x.EndsWith(pattern, Ordinal)) is { } path)
+            return AssetDatabase.LoadAssetAtPath<T>(path);
+
+        AssemblyError($"Missing asset \"{pattern}\" for the {typeof(T).Name}. Please import KMAssets: {KMAssets}");
+        return null;
+    }
 }
