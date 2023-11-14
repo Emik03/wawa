@@ -118,7 +118,15 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     [PublicAPI]
     public bool IsSendMessage
     {
-        [Pure] get => Message.StartsWith("sendtochat");
+        // Includes:
+        // - sendtochat
+        // - sendtochaterror
+        // - senddelayedmessage
+        // - strikemessage
+        // Excludes:
+        // - solve
+        // - strike
+        [Pure] get => Message is { Length: > 6 } && Message[0] is 's';
     }
 
     /// <summary>Gets the message to send to Twitch Plays.</summary>
