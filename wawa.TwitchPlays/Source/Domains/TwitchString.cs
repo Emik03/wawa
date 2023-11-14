@@ -178,7 +178,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     /// <returns>A formatted string for Twitch Plays.</returns>
     [PublicAPI, Pure]
     public static TwitchString StrikeMessage([NotNull] string message, bool format = true, bool halt = false) =>
-        new($"strikemessage {message}");
+        new($"strikemessage{Flags(format, halt)} {message}");
 
     /// <summary>
     /// Yield return this to indicate that this command is allowed to be cancelled at the given time of the yield.
