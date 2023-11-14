@@ -119,9 +119,9 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     public bool IsSendMessage
     {
         // Includes:
+        // - senddelayedmessage
         // - sendtochat
         // - sendtochaterror
-        // - senddelayedmessage
         // - strikemessage
         // Excludes:
         // - solve
