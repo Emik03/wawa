@@ -215,19 +215,19 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     public abstract IEnumerable<Instruction?> ForceSolve();
 
     /// <inheritdoc />
-    void ITwitchMutable.SetIsCancelCommand(in bool value) => TwitchShouldCancelCommand = value;
+    void ITwitchMutable.SetIsCancelCommand(bool value) => TwitchShouldCancelCommand = value;
 
     /// <inheritdoc />
-    void ITwitchMutable.SetIsTime(in bool value) => TimeModeActive = value;
+    void ITwitchMutable.SetIsTime(bool value) => TimeModeActive = value;
 
     /// <inheritdoc />
-    void ITwitchMutable.SetIsTimeSkippable(in bool value) => TwitchPlaysSkipTimeAllowed = value;
+    void ITwitchMutable.SetIsTimeSkippable(bool value) => TwitchPlaysSkipTimeAllowed = value;
 
     /// <inheritdoc />
-    void ITwitchMutable.SetIsTP(in bool value) => TwitchPlaysActive = value;
+    void ITwitchMutable.SetIsTP(bool value) => TwitchPlaysActive = value;
 
     /// <inheritdoc />
-    void ITwitchMutable.SetIsZen(in bool value) => ZenModeActive = value;
+    void ITwitchMutable.SetIsZen(bool value) => ZenModeActive = value;
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
@@ -445,7 +445,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
 
     [ItemNotNull, MustUseReturnValue, NotNull]
     static IEnumerable<Instruction> FromFail(
-        in int fail,
+        int fail,
         [ItemNotNull, NotNull] in IList<object> args,
         [ItemNotNull, NotNull] in IList<ParameterInfo> parameters
     ) =>

@@ -145,7 +145,7 @@ public abstract class CachedBehaviour : MonoBehaviour
         o as T ?? throw new MissingComponentException($"Could not find {Element<T>().Name} in {this}.");
 
     [NotNull]
-    TTo Create<TFrom, TTo>([NotNull] in TFrom[] input, [InstantHandle] in bool includeSelf)
+    TTo Create<TFrom, TTo>([NotNull] in TFrom[] input, [InstantHandle] bool includeSelf)
     {
         var type = Element<TTo>();
 
