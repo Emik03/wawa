@@ -11,6 +11,7 @@
         <ProjectReference Include="../wawa.Optionals/wawa.Optionals.csproj"/>
         <Compile Include="$(Morsels)/Compile/Source/References/System/Span.cs" Link="Source/References/System/Span.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/Emik/Linq/Force.cs" Link="Source/References/Emik/Linq/Force.cs"/>
+        <Compile Include="$(Morsels)/Compile/Source/References/Fody/InlineAttribute.cs" Link="Source/References/Fody/InlineAttribute.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/Emik/Text/Stringifier.cs" Link="Source/References/Emik/Text/Stringifier.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/Emik/Numerics/EnumMath.cs" Link="Source/References/Emik/Numerics/EnumMath.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/Emik/Numerics/DigitCounter.cs" Link="Source/References/Emik/Numerics/DigitCounter.cs"/>
