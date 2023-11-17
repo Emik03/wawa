@@ -146,17 +146,18 @@ public abstract class ModdedModule : CachedBehaviour
 
         if (Solvable)
         {
-            Solvable.OnActivate -= OnActivate;
             Solvable.OnPass -= OnPass;
             Solvable.OnStrike -= OnStrike;
+            Solvable.OnActivate -= OnActivate;
         }
 
         if (!Needy)
             return;
 
-        Needy.OnActivate -= OnActivate;
         Needy.OnPass -= OnPass;
         Needy.OnStrike -= OnStrike;
+        Needy.OnActivate -= OnActivate;
+        Needy.OnNeedyActivation -= Revert;
     }
 
     /// <summary>
@@ -170,17 +171,18 @@ public abstract class ModdedModule : CachedBehaviour
 
         if (Solvable)
         {
-            Solvable.OnActivate += OnActivate;
             Solvable.OnPass += OnPass;
             Solvable.OnStrike += OnStrike;
+            Solvable.OnActivate += OnActivate;
         }
 
         if (!Needy)
             return;
 
-        Needy.OnActivate += OnActivate;
         Needy.OnPass += OnPass;
         Needy.OnStrike += OnStrike;
+        Needy.OnActivate += OnActivate;
+        Needy.OnNeedyActivation += Revert;
     }
 
     /// <inheritdoc/>
@@ -236,7 +238,6 @@ public abstract class ModdedModule : CachedBehaviour
         };
 
         var local = location ? location : transform;
-
         return Play(local, sounds, source);
     }
 
@@ -253,10 +254,8 @@ public abstract class ModdedModule : CachedBehaviour
     )
     {
         var location = selectable.transform;
-
         selectable.AddInteractionPunch(intensityModifier);
         Play(location, sounds);
-
         return selectable;
     }
 
@@ -270,7 +269,7 @@ public abstract class ModdedModule : CachedBehaviour
         [ItemCanBeNull, NotNull] params object[] args
     )
     {
-        if (Status.IsSolved)
+        if (Status.IsSolved && Solvable)
             return default;
 
         if (Status.HasException && IsKtane && Parent<KMBomb>() is var bomb)
@@ -327,9 +326,7 @@ public abstract class ModdedModule : CachedBehaviour
         var id = Status.Id;
         var stringify = Stringifier.Stringify(format);
         var message = $"[{Name} #{id}] {stringify}";
-
         Debug.unityLogger.Log(logType, message);
-
         return format;
     }
 
@@ -351,9 +348,7 @@ public abstract class ModdedModule : CachedBehaviour
         var stringify = Stringifier.Stringify(format);
         var provider = CultureInfo.InvariantCulture;
         var message = string.Format(provider, stringify, convertAll);
-
         Log(message);
-
         return format;
     }
 
@@ -369,9 +364,7 @@ public abstract class ModdedModule : CachedBehaviour
     public T LogLower<T>([AllowNull, CanBeNull] T format = default, LogType logType = LogType.Log)
     {
         var message = $"<{Name} #{Status.Id}> {Stringifier.Stringify(format)}";
-
         Log(format, message, logType);
-
         return format;
     }
 
@@ -393,9 +386,7 @@ public abstract class ModdedModule : CachedBehaviour
         var stringify = Stringifier.Stringify(format);
         var provider = CultureInfo.InvariantCulture;
         var message = string.Format(provider, stringify, convertAll);
-
         LogLower(message);
-
         return format;
     }
 
@@ -410,7 +401,6 @@ public abstract class ModdedModule : CachedBehaviour
     protected virtual void OnException([NotNull] string message)
     {
         var formatted = $"Unhandled: {message}";
-
         Log(formatted, LogType.Warning);
 
         if (GetComponent<ISolvable>()?.IsTP ?? false)
@@ -455,14 +445,14 @@ public abstract class ModdedModule : CachedBehaviour
     {
         Application.logMessageReceived -= CheckForException;
         Status.HasException = true;
-
         var rethrows = traces.TakeWhile(static s => s.StartsWith(ExceptionStackTrace, Ordinal)).ToArray();
         var innerExceptions = string.Join(Prefix, rethrows);
         var spacing = innerExceptions is "" ? "" : Prefix;
         var message = $"{condition}{spacing}{innerExceptions}";
-
         OnException(message);
     }
+
+    void Revert() => Status.IsSolved = true;
 
     bool OnPass()
     {
@@ -482,7 +472,9 @@ public abstract class ModdedModule : CachedBehaviour
     {
         Solve();
 
-        // ReSharper disable once SuspiciousTypeConversion.Global
+        if (Needy)
+            Needy.OnNeedyActivation += Needy.HandlePass;
+
         if (GetComponent<ISolvable>() is var solver && solver as Object)
             yield return solver.ForceTPSolve();
     }
