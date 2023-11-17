@@ -18,9 +18,7 @@ public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<Sta
     /// <param name="name">
     /// The <see cref="string"/> containing the module id which is used to assign <see cref="Id"/>.
     /// </param>
-#pragma warning disable CA1854
-    internal State([NotNull] string name) => Id = s_ids.ContainsKey(_name = name) ? ++s_ids[name] : s_ids[name] = 1;
-#pragma warning restore CA1854
+    internal State([NotNull] string name) => s_ids[name] = Id = s_ids.TryGetValue(_name = name, out var x) ? x + 1 : 1;
 
     /// <summary>
     /// Gets or sets a value indicating whether the module has ever called <see cref="ModdedModule.Strike"/>.
@@ -29,6 +27,7 @@ public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<Sta
     public bool HasStruck { [Pure] get; set; }
 
     /// <summary>Gets a value indicating whether the module is solved.</summary>
+    /// <remarks><para>For needy modules, a module is considered solved any time it is not active.</para></remarks>
     [PublicAPI]
     public bool IsSolved { [Pure] get; internal set; }
 
