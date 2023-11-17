@@ -374,7 +374,9 @@ public sealed class {name}{FileTwitch} : Twitch<{name}>
     {
         var highlighter = go.Add(Highlight);
         highlighter.AddComponent<MeshFilter>().mesh = Load<Mesh>($"{Highlight}{Mesh}");
-        return highlighter.AddComponent<KMHighlightable>();
+        var output = highlighter.AddComponent<KMHighlightable>();
+        output.HighlightScale = Vector3.one;
+        return output;
     }
 
     [CanBeNull]
