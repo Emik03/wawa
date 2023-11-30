@@ -155,16 +155,6 @@ On the Subject of Who's on First.
   
 Manual: https://ktane.timwi.de/HTML/Who's%20On%20First.html.
 
-<a name='Wawa.Recall.Modules.Wires'></a>
-
-`Wires` 2
-
-On the Subject of Wires.
-
-### Remarks
-  
-Manual: https://ktane.timwi.de/HTML/Wires.html.
-
 <a name='Wawa.Recall.Modules.WireSequence'></a>
 
 `WireSequence` 10
@@ -174,6 +164,16 @@ On the Subject of Wire Sequences.
 ### Remarks
   
 Manual: https://ktane.timwi.de/HTML/Wire%20Sequences.html.
+
+<a name='Wawa.Recall.Modules.Wires'></a>
+
+`Wires` 2
+
+On the Subject of Wires.
+
+### Remarks
+  
+Manual: https://ktane.timwi.de/HTML/Wires.html.
 
 ### Remarks
   

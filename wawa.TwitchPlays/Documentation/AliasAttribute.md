@@ -25,8 +25,8 @@ according to [System.Char.IsWhiteSpace(System.Char)](https://docs.microsoft.com/
 
 | Constructors | |
 | :--- | :--- |
-| [AliasAttribute(string[])](AliasAttribute..ctor(string[]).md 'Wawa.TwitchPlays.Domains.AliasAttribute.AliasAttribute(string[])') | Initializes a new instance of the [AliasAttribute](AliasAttribute.md 'Wawa.TwitchPlays.Domains.AliasAttribute') class. |
 | [AliasAttribute(IList&lt;string&gt;)](AliasAttribute..ctor(IList{string}).md 'Wawa.TwitchPlays.Domains.AliasAttribute.AliasAttribute(System.Collections.Generic.IList<string>)') | An [System.Attribute](https://docs.microsoft.com/en-us/dotnet/api/System.Attribute 'System.Attribute') to attach to a field to signify alternative ways to spell it. |
+| [AliasAttribute(string[])](AliasAttribute..ctor(string[]).md 'Wawa.TwitchPlays.Domains.AliasAttribute.AliasAttribute(string[])') | Initializes a new instance of the [AliasAttribute](AliasAttribute.md 'Wawa.TwitchPlays.Domains.AliasAttribute') class. |
 
 | Properties | |
 | :--- | :--- |
@@ -34,8 +34,8 @@ according to [System.Char.IsWhiteSpace(System.Char)](https://docs.microsoft.com/
 
 | Methods | |
 | :--- | :--- |
-| [ToString(string)](AliasAttribute.ToString(string).md 'Wawa.TwitchPlays.Domains.AliasAttribute.ToString(string)') | Gets a [string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string') representation showing every alias. |
 | [ToString(FieldInfo)](AliasAttribute.ToString(FieldInfo).md 'Wawa.TwitchPlays.Domains.AliasAttribute.ToString(System.Reflection.FieldInfo)') | Gets a [string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string') representation showing every alias. |
+| [ToString(string)](AliasAttribute.ToString(string).md 'Wawa.TwitchPlays.Domains.AliasAttribute.ToString(string)') | Gets a [string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string') representation showing every alias. |
 
 | Operators | |
 | :--- | :--- |
