@@ -51,7 +51,7 @@ public static class PathFinder
 
     /// <summary>Logs a message to the Unity Console with the assembly's name that called this.</summary>
     /// <param name="message">The message to log.</param>
-    [PublicAPI]
+    [PublicAPI] // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
     public static void AssemblyLog([NotNull] string message) => Debug.Log($"[{Who} ({Which})] {message}");
 
     /// <summary>Gets the absolute directory of the mod.</summary>
