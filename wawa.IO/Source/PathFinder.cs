@@ -27,6 +27,9 @@ public static class PathFinder
         InstanceBindings = DeclaredOnly | Static | Public,
         ToJsonBindings = DeclaredOnly | Instance | Public;
 
+    // Mods are guaranteed to be populated: The default value 0 will always be unequal to Mods.Count.
+    static int s_modCount;
+
     [CanBeNull]
     static IDictionary<string, string> s_directories;
 
@@ -70,9 +73,9 @@ public static class PathFinder
     public static Maybe<string> GetDirectory([AllowNull, CanBeNull] string modId = null) =>
         (modId ?? Who).Get(
             static asm =>
-                (s_directories?.Count == Mods.Count
-                    ? s_directories
-                    : s_directories = CreateModIdToDirectoryMapping())?[asm]
+                (s_modCount == Mods.Count
+                    ? s_directories // ReSharper disable once NullableWarningSuppressionIsUsed
+                    : s_directories = CreateModIdToDirectoryMapping(s_modCount = Mods.Count))![asm]
         );
 
     /// <summary>Gets the absolute directory of the file located inside the mod directory.</summary>
@@ -117,7 +120,7 @@ public static class PathFinder
     [PublicAPI, Pure]
     public static Maybe<ModInfo> GetModInfo([AllowNull, CanBeNull] string modId = null) =>
         (modId ?? Who).Get(
-            static asm => GetDirectory(asm).Value is { } dir &&
+            static x => GetDirectory(x).Value is { } dir &&
                 ModManager.Instance.InstalledModInfos.TryGetValue(dir, out var value)
                     ? ModInfo.FromInternalModInfo(value)
                     : null,
@@ -183,6 +186,9 @@ public static class PathFinder
                     ? key.LibPath.FindLibrary(directory)?.CreateUnmanagedMethod<T>(key.FFIMethodName)
                     : null
             );
+
+    [Pure]
+    static bool IsModLoaded([NotNull] ValueType x) => ((KeyValuePair<string, Mod>)x).Value.ModObjects.Count is not 0;
 
     [NotNull]
     static string Join(
@@ -250,8 +256,9 @@ public static class PathFinder
     // Boxing required; Avoids creating closures with the 'Mod' type.
     // Collected as list due to multiple enumerations.
     [NotNull]
-    static Dictionary<string, string> CreateModIdToDirectoryMapping() =>
-        Mods.Cast<ValueType>().ToList() is var mods && mods.CollectModsWithNullIds() is { Length: > 0 } filteredByNull ?
+    static Dictionary<string, string> CreateModIdToDirectoryMapping(int _) =>
+        Mods.Cast<ValueType>().Where(IsModLoaded).ToList() is var mods &&
+        mods.CollectModsWithNullIds() is { Length: > 0 } filteredByNull ?
             throw filteredByNull.InvalidBecause(NullReason) :
             mods.CollectModsWithDuplicateIds() is { Length: > 0 } filteredByDuplicate ?
                 throw filteredByDuplicate.InvalidBecause(DuplicateReason) :
