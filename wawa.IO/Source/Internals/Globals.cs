@@ -8,7 +8,7 @@ static class Globals
     internal const StringComparison Ordinal = StringComparison.Ordinal;
 
     [NotNull]
-    static readonly Dictionary<MethodBase, IDictionary> s_cache = [];
+    static readonly Dictionary<string, IDictionary> s_cache = [];
 
     /// <summary>Runs and catches various exception types found in IO operations.</summary>
     /// <typeparam name="T">The type of parameter.</typeparam>
@@ -43,31 +43,38 @@ static class Globals
         string.Equals(left, right, Ordinal);
 
     /// <summary>Computes an expensive computation, then caches it in subsequent calls.</summary>
+    /// <remarks><para>This method assumes that every caller member's name is unique from each other.</para></remarks>
     /// <typeparam name="T">The type of the parameter.</typeparam>
     /// <typeparam name="TResult">The type of return.</typeparam>
     /// <param name="key">The parameter of the method.</param>
     /// <param name="factory">The expensive callback.</param>
     /// <param name="editor">The expensive callback exclusive to the editor.</param>
+    /// <param name="caller">The caller member name.</param>
     /// <returns>The value from the first time <paramref name="factory" /> was invoked.</returns>
     [CanBeNull, Pure]
     [return: AllowNull]
     internal static TResult Get<T, TResult>(
         [NotNull] this T key,
         [InstantHandle, NotNull] in Func<T, TResult> factory,
-        [AllowNull, CanBeNull, InstantHandle, RequireStaticDelegate(IsError = true)] in Func<T, TResult> editor = null
+        [AllowNull, CanBeNull, InstantHandle, RequireStaticDelegate(IsError = true)] in Func<T, TResult> editor = null,
+        [CallerMemberName, NotNull] string caller = ""
     )
-        where T : class
         where TResult : class
     {
-        var caller = new StackFrame(1).GetMethod();
-        var dict = s_cache.TryGetValue(caller, out var d) ? d : s_cache[caller] = new Dictionary<T, TResult>();
+        if (!s_cache.TryGetValue(caller, out var dictionary))
+        {
+            var first = factory(key);
+            s_cache[caller] = new Dictionary<T, TResult> { [key] = first };
+            return first;
+        }
 
-        if (dict.Contains(key))
-            return dict[key] as TResult;
+        var cast = (Dictionary<T, TResult>)dictionary;
 
-        var value = IsKtane ? factory(key) : editor?.Invoke(key);
-        dict[key] = value;
+        if (cast.TryGetValue(key, out var cached))
+            return cached;
 
+        var value = Invoke(key, factory, editor);
+        cast[key] = value;
         return value;
     }
 
@@ -121,4 +128,14 @@ static class Globals
             InvalidOperationException or
             NotSupportedException or
             UnauthorizedAccessException;
+
+    [CanBeNull, Pure]
+    [return: AllowNull]
+    static TResult Invoke<T, TResult>(
+        [NotNull] in T key,
+        [InstantHandle, NotNull] in Func<T, TResult> factory,
+        [AllowNull, CanBeNull, InstantHandle, RequireStaticDelegate(IsError = true)] in Func<T, TResult>? editor
+    )
+        where TResult : class =>
+        IsKtane ? factory(key) : editor?.Invoke(key);
 }
