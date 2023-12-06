@@ -2,6 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net35</TargetFramework>
+        <UseUnityCoreModule>true</UseUnityCoreModule>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="../wawa.DDL/wawa.DDL.csproj"/>
