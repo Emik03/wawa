@@ -27,8 +27,8 @@ public static class PathFinder
         InstanceBindings = DeclaredOnly | Static | Public,
         ToJsonBindings = DeclaredOnly | Instance | Public;
 
-    // Mods are guaranteed to be populated: The default value 0 will always be unequal to Mods.Count.
-    static int s_modCount;
+    // There must be at least one loaded mod; The default value 0 will always be unequal to the amount of mods loaded.
+    static int s_loadedMods;
 
     [CanBeNull]
     static IDictionary<string, string> s_directories;
@@ -71,12 +71,7 @@ public static class PathFinder
     /// </returns>
     [PublicAPI, Pure]
     public static Maybe<string> GetDirectory([AllowNull, CanBeNull] string modId = null) =>
-        (modId ?? Who).Get(
-            static asm =>
-                (s_modCount == Mods.Count
-                    ? s_directories // ReSharper disable once NullableWarningSuppressionIsUsed
-                    : s_directories = CreateModIdToDirectoryMapping(s_modCount = Mods.Count))![asm]
-        );
+        (modId ?? Who).Get(static asm => (MapNeedsUpdating() ? UpdateModIdToDirectoryMapping() : s_directories)[asm]);
 
     /// <summary>Gets the absolute directory of the file located inside the mod directory.</summary>
     /// <param name="filePath">The file located inside folder mod directory.</param>
@@ -190,6 +185,27 @@ public static class PathFinder
     [Pure]
     static bool IsModLoaded([NotNull] ValueType x) => ((KeyValuePair<string, Mod>)x).Value.ModObjects.Count is not 0;
 
+    [MemberNotNullWhen(false, nameof(s_directories)), MustUseReturnValue]
+    static bool MapNeedsUpdating()
+    {
+        // Prevents double enumeration on the first call.
+        if (s_directories is null)
+            return true;
+
+        var loadedMods = 0;
+
+        // Inlined version of 'IsModLoaded' to keep the hot path allocation-free,
+        // even if this results in the false branch eventually requiring double enumeration.
+        // ReSharper disable once ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
+        foreach (var i in (Dictionary<string, Mod>)Mods)
+            if (i.Value.ModObjects.Count is not 0)
+                loadedMods++;
+
+        var ret = loadedMods != s_loadedMods;
+        s_loadedMods = loadedMods;
+        return ret;
+    }
+
     [NotNull]
     static string Join(
         [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] this string root,
@@ -246,25 +262,14 @@ public static class PathFinder
            .Select(x => x.Key)
            .ToArray();
 
-    [NotNull, ItemNotNull]
+    [NotNull, ItemNotNull, Pure]
     static string[] CollectModsWithNullIds([NotNull, ItemNotNull] this IEnumerable<ValueType> mods) =>
         mods
            .Where(static x => ((KeyValuePair<string, Mod>)x).Value.ModID is null)
            .Select(static x => ((KeyValuePair<string, Mod>)x).Key)
            .ToArray();
 
-    // Boxing required; Avoids creating closures with the 'Mod' type.
-    // Collected as list due to multiple enumerations.
-    [NotNull]
-    static Dictionary<string, string> CreateModIdToDirectoryMapping(int _) =>
-        Mods.Cast<ValueType>().Where(IsModLoaded).ToList() is var mods &&
-        mods.CollectModsWithNullIds() is { Length: > 0 } filteredByNull ?
-            throw filteredByNull.InvalidBecause(NullReason) :
-            mods.CollectModsWithDuplicateIds() is { Length: > 0 } filteredByDuplicate ?
-                throw filteredByDuplicate.InvalidBecause(DuplicateReason) :
-                mods.InvertModDictionary();
-
-    [NotNull]
+    [NotNull, Pure]
     static Dictionary<string, string> InvertModDictionary([NotNull, ItemNotNull] this IEnumerable<ValueType> mods) =>
         mods.ToDictionary(
             static x => ((KeyValuePair<string, Mod>)x).Value.ModID,
@@ -272,7 +277,18 @@ public static class PathFinder
             StringComparer.Ordinal
         );
 
-    [NotNull]
+    // Boxing required; Avoids creating closures with the 'Mod' type.
+    // Collected as list due to multiple enumerations.
+    [NotNull, Pure]
+    static IDictionary<string, string> UpdateModIdToDirectoryMapping() =>
+        s_directories = Mods.Cast<ValueType>().Where(IsModLoaded).ToList() is var mods &&
+            mods.CollectModsWithNullIds() is { Length: > 0 } filteredByNull ?
+                throw filteredByNull.InvalidBecause(NullReason) :
+                mods.CollectModsWithDuplicateIds() is { Length: > 0 } filteredByDuplicate ?
+                    throw filteredByDuplicate.InvalidBecause(DuplicateReason) :
+                    mods.InvertModDictionary();
+
+    [NotNull, Pure]
     static InvalidOperationException InvalidBecause(
         [NotNull, ItemNotNull] this string[] ids,
         [NotNull] string reason
