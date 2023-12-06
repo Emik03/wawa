@@ -17,15 +17,18 @@ public static class InstructionCore
     )
     {
         using var e = that.GetEnumerator();
-        return e.Recursive();
+        return Recursive(e);
     }
 
+    /// <summary>Flattens nested enumerators into one long enumerator.</summary>
+    /// <param name="that">This instance of <see cref="IEnumerable{T}"/>.</param>
+    /// <returns>The flattened enumerator of the parameter <paramref name="that"/>.</returns>
     [NotNull, Pure]
-    internal static IEnumerator<Instruction?> Flatten([NotNull] this IEnumerator<Instruction> source)
+    internal static IEnumerator<Instruction?> Flatten([NotNull] this IEnumerator<Instruction> that)
     {
-        while (source.MoveNext())
+        while (that.MoveNext())
         {
-            var current = source.Current;
+            var current = that.Current;
             var value = current?.Value;
 
             if (value is not IEnumerator<Instruction> nested)
@@ -43,7 +46,7 @@ public static class InstructionCore
     }
 
     [NotNull, Pure]
-    static IEnumerator<object?> Recursive([AllowNull, CanBeNull] this IEnumerator<Instruction> that)
+    static IEnumerator<object?> Recursive([AllowNull, CanBeNull] IEnumerator<Instruction> that)
     {
         if (that is null)
             yield break;
@@ -57,7 +60,7 @@ public static class InstructionCore
                 continue;
             }
 
-            var these = enumerable.Recursive();
+            var these = Recursive(enumerable);
 
             while (these.MoveNext())
                 yield return these.Current;
