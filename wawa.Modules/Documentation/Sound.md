@@ -39,8 +39,8 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 | [CorrectChime](Sound.CorrectChime.md 'Wawa.Modules.Sound.CorrectChime') | Gets the sound that plays in the tutorial for completing a step correctly. |
 | [DossierOptionPressed](Sound.DossierOptionPressed.md 'Wawa.Modules.Sound.DossierOptionPressed') | Gets the sound that plays when you change a setting in the menu folder. |
 | [EmergencyAlarm](Sound.EmergencyAlarm.md 'Wawa.Modules.Sound.EmergencyAlarm') | Gets the sound that plays when there is less than a minute left on the bomb, this sound loops. |
-| [FastTimerBeep](Sound.FastTimerBeep.md 'Wawa.Modules.Sound.FastTimerBeep') | Gets the sound that plays when the bomb has 1 strike. |
 | [FastestTimerBeep](Sound.FastestTimerBeep.md 'Wawa.Modules.Sound.FastestTimerBeep') | Gets the sound that plays when the bomb has at least 2 or more strikes. |
+| [FastTimerBeep](Sound.FastTimerBeep.md 'Wawa.Modules.Sound.FastTimerBeep') | Gets the sound that plays when the bomb has 1 strike. |
 | [FreeplayDeviceDrop](Sound.FreeplayDeviceDrop.md 'Wawa.Modules.Sound.FreeplayDeviceDrop') | Gets the sound that plays as the freeplay briefcase hits the desk. |
 | [GameOverFanfare](Sound.GameOverFanfare.md 'Wawa.Modules.Sound.GameOverFanfare') | Gets the sound that plays when all bombs are defused. Finishes before the post game screen. |
 | [LightBuzz](Sound.LightBuzz.md 'Wawa.Modules.Sound.LightBuzz') | Gets the sound that plays when the lights go out. |
