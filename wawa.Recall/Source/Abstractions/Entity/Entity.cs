@@ -5,7 +5,7 @@ namespace Wawa.Recall;
 /// Encapsulates a solvable or needy module in either its vanilla or modded counterpart,
 /// and extends functionality to get or mutate its inner values and events without worrying the kind of module it is.
 /// </summary>
-[PublicAPI]
+[PublicAPI] // ReSharper disable once RedundantExtendsListEntry
 public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityComparer<Entity>, IVanilla
 {
     static readonly Dictionary<GameObject, ReadOnlyCollection<Entity>> s_allModules = [];
@@ -208,6 +208,19 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
     [PublicAPI, Pure]
     public object Clone() => new Entity(Value);
 
+    /// <summary>Alters the status light to <paramref name="lights"/>.</summary>
+    /// <remarks><para>In the editor, this method does nothing.</para></remarks>
+    /// <param name="lights">The status lights to enable.</param>
+    /// <returns>The instance itself.</returns>
+    [PublicAPI]
+    public Entity Change(StatusLights lights) => IsKtane ? ChangeInner(this, lights) : this;
+
+    /// <summary>Plays the strike sound effect and flashes the status light red, without registering a strike.</summary>
+    /// <remarks><para>In the editor, this method does nothing.</para></remarks>
+    /// <returns>The instance itself.</returns>
+    [PublicAPI]
+    public Entity FakeStrike() => IsKtane ? FakeStrikeInner(this) : this;
+
     /// <inheritdoc cref="object.Equals(object)"/>
     [PublicAPI, Pure]
     public override bool Equals([AllowNull] object obj) => Equals(obj as Entity);
@@ -219,6 +232,37 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
     /// <inheritdoc/>
     [PublicAPI, Pure]
     public override string ToString() => $"{Name.Value} ({Id.Value})";
+
+    [MustUseReturnValue]
+    static Entity ChangeInner([NotNull] Entity entity, StatusLights lights)
+    {
+        [Pure]
+        static bool HasFlag(StatusLights lights, StatusLights filter) => (lights & filter) is not StatusLights.None;
+
+        var core = entity.Value.Core();
+
+        if ((core as BombComponent ?? core.GetComponent<BombComponent>()) is var value && !value)
+            return entity;
+
+        var light = value.StatusLightParent.StatusLight;
+        light.StopAllCoroutines();
+        light.InactiveLight.SetActive(HasFlag(lights, StatusLights.Off));
+        light.PassLight.SetActive(HasFlag(lights, StatusLights.Solve));
+        light.StrikeLight.SetActive(HasFlag(lights, StatusLights.Strike));
+        return entity;
+    }
+
+    [MustUseReturnValue]
+    static Entity FakeStrikeInner([NotNull] Entity entity)
+    {
+        var core = entity.Value.Core();
+        MasterAudio.PlaySound3DAtTransformAndForget("strike", core.transform);
+
+        if ((core as BombComponent ?? core.GetComponent<BombComponent>()) is var value && value)
+            value.StatusLightParent.StatusLight.FlashStrike();
+
+        return entity;
+    }
 
     [MustUseReturnValue, NotNull]
     static IEnumerable Vanillas([NotNull] in GameObject gameObject) =>
