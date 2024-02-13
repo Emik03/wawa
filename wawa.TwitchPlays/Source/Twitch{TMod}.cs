@@ -446,8 +446,8 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     [ItemNotNull, MustUseReturnValue, NotNull]
     static IEnumerable<Instruction> FromFail(
         int fail,
-        [ItemNotNull, NotNull] in IList<object> args,
-        [ItemNotNull, NotNull] in IList<ParameterInfo> parameters
+        [ItemNotNull, NotNull] in object[] args,
+        [ItemNotNull, NotNull] in ParameterInfo[] parameters
     ) =>
         FromFail(
             @$"Invalid {Stringifier.Nth(fail, true)} parameter ""{parameters[fail].Name}"": " +
