@@ -5,7 +5,7 @@ namespace Wawa.Recall;
 /// Encapsulates a vanilla or modded selectable, and extends functionality to get or
 /// mutate its inner values and events without worrying the kind of selectable it is.
 /// </summary>
-[PublicAPI]
+[PublicAPI] // ReSharper disable once RedundantExtendsListEntry
 public sealed partial class Selected : ICloneable, IEquatable<Selected>, IEqualityComparer<Selected>, IVanilla
 {
     /// <summary>

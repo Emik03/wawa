@@ -5,7 +5,7 @@ namespace Wawa.Recall;
 /// Encapsulates a vanilla or modded highlight, and extends functionality to get or
 /// mutate its inner values and events without worrying the kind of highlight it is.
 /// </summary>
-[PublicAPI]
+[PublicAPI] // ReSharper disable once RedundantExtendsListEntry
 public sealed partial class Highlighted : ICloneable, IEquatable<Highlighted>, IEqualityComparer<Highlighted>, IVanilla
 {
     /// <summary>
