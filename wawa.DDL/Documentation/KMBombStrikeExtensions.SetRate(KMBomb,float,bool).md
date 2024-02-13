@@ -30,7 +30,7 @@ the component from [that](KMBombStrikeExtensions.SetRate(KMBomb,float,bool).md#W
 
 #### Returns
 [KMBomb](https://docs.microsoft.com/en-us/dotnet/api/KMBomb 'KMBomb')  
-The parameter [KMBomb](https://docs.microsoft.com/en-us/dotnet/api/KMBomb 'KMBomb').
+The parameter [that](KMBombStrikeExtensions.SetRate(KMBomb,float,bool).md#Wawa.DDL.KMBombStrikeExtensions.SetRate(thisKMBomb,float,bool).that 'Wawa.DDL.KMBombStrikeExtensions.SetRate(this KMBomb, float, bool).that').
 
 ### Remarks
   

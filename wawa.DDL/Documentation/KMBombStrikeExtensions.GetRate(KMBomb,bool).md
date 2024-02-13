@@ -28,4 +28,4 @@ The speed of the ticking.
 
 ### Remarks
   
-In the editor, this value always returns 1.
+In the editor, this value always returns `1`.

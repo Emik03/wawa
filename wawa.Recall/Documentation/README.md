@@ -24,3 +24,4 @@
 | Enums | |
 | :--- | :--- |
 | [Modules](Modules.md 'Wawa.Recall.Modules') | The different types of modules in the game used to discern the type of vanilla module.<br/>Modded modules are grouped as [Mod](Modules.md#Wawa.Recall.Modules.Mod 'Wawa.Recall.Modules.Mod') and [NeedyMod](Modules.md#Wawa.Recall.Modules.NeedyMod 'Wawa.Recall.Modules.NeedyMod') depending on<br/>whether they have a [KMBombModule](https://docs.microsoft.com/en-us/dotnet/api/KMBombModule 'KMBombModule') and [KMNeedyModule](https://docs.microsoft.com/en-us/dotnet/api/KMNeedyModule 'KMNeedyModule') respectively. |
+| [StatusLights](StatusLights.md 'Wawa.Recall.StatusLights') | The different kinds of status lights. |

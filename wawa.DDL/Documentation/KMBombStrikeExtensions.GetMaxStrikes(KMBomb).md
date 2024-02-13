@@ -1,23 +1,23 @@
 ### [Wawa.DDL](Wawa.DDL.md 'Wawa.DDL').[KMBombStrikeExtensions](KMBombStrikeExtensions.md 'Wawa.DDL.KMBombStrikeExtensions')
 
-## KMBombStrikeExtensions.GetStrikes(this KMBomb) Method
+## KMBombStrikeExtensions.GetMaxStrikes(this KMBomb) Method
 
-Gets the number of strikes.
+Gets the number of max strikes.
 
 ```csharp
-public static int GetStrikes(this KMBomb that);
+public static int GetMaxStrikes(this KMBomb that);
 ```
 #### Parameters
 
-<a name='Wawa.DDL.KMBombStrikeExtensions.GetStrikes(thisKMBomb).that'></a>
+<a name='Wawa.DDL.KMBombStrikeExtensions.GetMaxStrikes(thisKMBomb).that'></a>
 
 `that` [KMBomb](https://docs.microsoft.com/en-us/dotnet/api/KMBomb 'KMBomb')
 
-The [KMBomb](https://docs.microsoft.com/en-us/dotnet/api/KMBomb 'KMBomb') module instance to grab strikes from.
+The [KMBomb](https://docs.microsoft.com/en-us/dotnet/api/KMBomb 'KMBomb') module instance to grab max strikes from.
 
 #### Returns
 [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')  
-The number of strikes.
+The number of max strikes.
 
 ### Remarks
   
