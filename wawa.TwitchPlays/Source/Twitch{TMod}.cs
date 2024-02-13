@@ -427,16 +427,14 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         if (type == typeof(string) || type == typeof(object))
             return value;
 
-        var arr = new[] { typeof(string), type.MakeByRefType() };
+        Type[] signature = [typeof(string), type.MakeByRefType()];
 
-        if (type.GetMethod(nameof(int.TryParse), arr) is not { IsStatic: true } method ||
+        if (type.GetMethod(nameof(int.TryParse), signature) is not { IsStatic: true } method ||
             method.ReturnType != typeof(bool))
             return Field();
 
-        var args = new object[] { value, null };
-        var ret = (bool)method.Invoke(null, args);
-
-        return ret ? args[1] : ParseError.NoMatch;
+        object[] args = [value, null];
+        return method.Invoke(null, args) is true ? args[1] : ParseError.NoMatch;
     }
 
     [ItemNotNull, NotNull]

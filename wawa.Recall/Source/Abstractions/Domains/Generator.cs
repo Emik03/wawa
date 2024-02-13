@@ -22,9 +22,6 @@ public static class Generator
         s_combine = ((Func<Delegate, Delegate, Delegate>)Delegate.Combine).Method,
         s_remove = ((Delegate)Delegate.Remove).Method;
 
-    [NotNull]
-    static readonly ParameterExpression[] s_parameterless = new ParameterExpression[0];
-
     /// <inheritdoc cref="TrySet{T}(Hook{T}, T)"/>
     [PublicAPI]
     public static bool TrySet<T>(
@@ -530,7 +527,7 @@ public static class Generator
         var exParameter = Expression.Parameter(typeof(T), nameof(T));
         var method = type.GetMethod(nameof(Action.Invoke))!;
         var exArgs = method.GetParameters().Select((x, i) => Expression.Parameter(x.ParameterType, $"a{i}")).ToArray();
-        var exDest = typeof(T).GetMethod(nameof(Action.Invoke))!.GetParameters().Length is 0 ? s_parameterless : exArgs;
+        var exDest = typeof(T).GetMethod(nameof(Action.Invoke))!.GetParameters().Length is 0 ? [] : exArgs;
         var exInvoke = Expression.Invoke(exParameter, exDest.Cast<Expression>());
         var exLambda = Expression.Lambda(type, exInvoke, exArgs);
         var exIsNull = Expression.Equal(exParameter, exNull);

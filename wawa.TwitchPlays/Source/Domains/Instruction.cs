@@ -44,7 +44,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// For the camera side view. The second one in the form of <c>Quaternion.Euler(x, y, z)</c>.
     /// </param>
     [CLSCompliant(false), PublicAPI]
-    public Instruction(Quaternion first, Quaternion second) => Value = new[] { first, second };
+    public Instruction(Quaternion first, Quaternion second) => Value = (Quaternion[])[first, second];
 
     /// <summary>Initializes a new instance of the <see cref="Instruction"/> class.</summary>
     /// <param name="value">The value to pass in.</param>

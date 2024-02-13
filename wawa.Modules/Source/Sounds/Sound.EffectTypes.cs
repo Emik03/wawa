@@ -7,8 +7,7 @@ public sealed partial class Sound
     /// <summary>Gets all vanilla sounds from the base game.</summary>
     [NotNull, PublicAPI]
     public static ReadOnlyCollection<Sound> Vanillas { [Pure] get; } = new(
-        new[]
-        {
+        [
             AlarmClockBeep,
             AlarmClockSnooze,
             BigButtonPress,
@@ -37,7 +36,7 @@ public sealed partial class Sound
             TypewriterKey,
             WireSequenceMechanism,
             WireSnip,
-        }
+        ]
     );
 
     /// <summary>Gets the sound that plays when the alarm clock goes off. This sound loops.</summary>

@@ -21,7 +21,7 @@ static class Globals
         public static Func<T, T> Id => x => x;
 
         /// <summary>Gets the empty set.</summary>
-        public static ReadOnlyCollection<T> Empty { [Pure] get; } = new(new T[0]);
+        public static ReadOnlyCollection<T> Empty { [Pure] get; } = new([]);
     }
 
     /// <summary>Gets the <see cref="AssemblyName"/> of the caller that invoked the method calling this.</summary>
