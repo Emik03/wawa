@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MPL-2.0
 namespace Wawa.IO.Internals;
 
 /// <summary>Provides an <see cref="IEqualityComparer{T}"/> for <see cref="KeyValuePair{T, Type}"/>.</summary>
@@ -7,7 +8,9 @@ sealed class TypePairEqualityComparer<T> : IEqualityComparer<KeyValuePair<T, Typ
     TypePairEqualityComparer() { }
 
     /// <summary>Gets the singleton instance.</summary>
-    internal static IEqualityComparer<KeyValuePair<T, Type>> Instance { get; } = new TypePairEqualityComparer<T>();
+    [NotNull]
+    internal static IEqualityComparer<KeyValuePair<T, Type>> Instance { [Pure] get; } =
+        new TypePairEqualityComparer<T>();
 
     /// <inheritdoc />
     [Pure]
