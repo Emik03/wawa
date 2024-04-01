@@ -61,20 +61,25 @@ static class Globals
     )
         where TResult : class
     {
+        KeyValuePair<T, Type> k = new(key, typeof(TResult));
+
         if (!s_cache.TryGetValue(caller, out var dictionary))
         {
             var first = factory(key);
-            s_cache[caller] = new Dictionary<T, TResult> { [key] = first };
+
+            s_cache[caller] =
+                new Dictionary<KeyValuePair<T, Type>, object>(TypePairEqualityComparer<T>.Instance) { [k] = first };
+
             return first;
         }
 
-        var cast = (Dictionary<T, TResult>)dictionary;
+        var cast = (Dictionary<KeyValuePair<T, Type>, object>)dictionary;
 
-        if (cast.TryGetValue(key, out var cached))
-            return cached;
+        if (cast.TryGetValue(k, out var cached))
+            return (TResult)cached;
 
         var value = Invoke(key, factory, editor);
-        cast[key] = value;
+        cast[k] = value;
         return value;
     }
 
