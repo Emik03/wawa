@@ -18,13 +18,9 @@
         <Compile Include="$(Morsels)/Compile/Source/References/Emik/VersionDeconstructors.cs" Link="Source/References/Emik/VersionDeconstructors.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/System/Int32TryFormatPolyfill.cs" Link="Source/References/System/Int32TryFormatPolyfill.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/System/Numerics/BitOperations.cs" Link="Source/References/System/Numerics/BitOperations.cs"/>
-        <Compile Include="$(Morsels)/Compile/Source/References/Emik/Collections/Immutable/Bits.cs" Link="Source/References/Emik/Collections/Immutable/Bits.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/Emik/Collections/Generics/Matrix.cs" Link="Source/References/Emik/Collections/Generics/Matrix.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/System/Diagnostics/MethodImplOptions.cs" Link="Source/References/System/Diagnostics/MethodImplOptions.cs"/>
-        <Compile Include="$(Morsels)/Compile/Source/References/Emik/Collections/Immutable/Bits.Count.cs" Link="Source/References/Emik/Collections/Immutable/Bits.Count.cs"/>
-        <Compile Include="$(Morsels)/Compile/Source/References/Emik/Collections/Immutable/Bits.Logic.cs" Link="Source/References/Emik/Collections/Immutable/Bits.Logic.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/System/Collections/Generics/IReadOnly.cs" Link="Source/References/System/Collections/Generics/IReadOnly.cs"/>
-        <Compile Include="$(Morsels)/Compile/Source/References/Emik/Collections/Immutable/Bits.Overlaps.cs" Link="Source/References/Emik/Collections/Immutable/Bits.Overlaps.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/System/TypeGetEnumUnderlyingTypePolyfill.cs" Link="Source/References/System/TypeGetEnumUnderlyingTypePolyfill.cs"/>
     </ItemGroup>
 </Project>
