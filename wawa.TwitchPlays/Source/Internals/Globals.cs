@@ -6,7 +6,7 @@ static class Globals
 {
     /// <summary>The default binding flags throughout the library.</summary>
     internal const BindingFlags
-        Bindings = Instance | Static | Public | NonPublic,
+        Bindings = Instance | Static | Public | NonPublic | FlattenHierarchy,
         FieldBindings = Instance ^ Bindings;
 
     /// <summary>The default string comparison throughout the library.</summary>
