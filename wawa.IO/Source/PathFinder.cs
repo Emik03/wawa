@@ -47,10 +47,14 @@ public static class PathFinder
     /// <summary>Gets the version of <see cref="Caller"/>.</summary>
     [NotNull]
     static string Which =>
-        Caller.Version is var ver && ver is { Minor: 0, Build: 0, Revision: 0 } ? $"v{ver.Major}" :
-        ver is { Build: 0, Revision: 0 } ? $"v{ver.Major}.{ver.Minor}" :
-        ver is { Revision: 0 } ? $"v{ver.Major}.{ver.Minor}.{ver.Build}" :
-        $"v{ver.Major}.{ver.Minor}.{ver.Build}.{ver.Revision}";
+        Caller.Version switch
+        {
+            { Minor: 0, Build: 0, Revision: 0 } v => $"v{v.Major}",
+            { Build: 0, Revision: 0 } v => $"v{v.Major}.{v.Minor}",
+            { Revision: 0 } v => $"v{v.Major}.{v.Minor}.{v.Build}",
+            { } v => $"v{v.Major}.{v.Minor}.{v.Build}.{v.Revision}",
+            _ => "v0",
+        };
 
     /// <summary>Logs a message to the Unity Console with the assembly's name that called this.</summary>
     /// <param name="message">The message to log.</param>
@@ -71,7 +75,7 @@ public static class PathFinder
     /// </returns>
     [PublicAPI, Pure]
     public static Maybe<string> GetDirectory([AllowNull, CanBeNull] string modId = null) =>
-        (modId ?? Who).Get(static asm => (MapNeedsUpdating() ? UpdateModIdToDirectoryMapping() : s_directories)[asm]);
+        (modId ?? Who).Get(static key => (MapNeedsUpdating() ? UpdateModIdToDirectoryMapping() : s_directories)[key]);
 
     /// <summary>Gets the absolute directory of the file located inside the mod directory.</summary>
     /// <param name="filePath">The file located inside folder mod directory.</param>
