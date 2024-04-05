@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MPL-2.0
 namespace Wawa.Editors.Internals;
-
+#pragma warning disable RCS1266
 /// <summary>Source generator.</summary>
 static class Scaffold
 {
@@ -361,13 +361,7 @@ public sealed class {name}{FileTwitch} : Twitch<{name}>
 
     [NotNull]
     static GameObject Add([NotNull] this GameObject go, [NotNull] string name, [NotNull] params Type[] components) =>
-        new(name, components)
-        {
-            transform =
-            {
-                parent = go.transform,
-            },
-        };
+        new(name, components) { transform = { parent = go.transform } };
 
     [NotNull]
     static KMHighlightable AddHighlightable([NotNull] this GameObject go)
