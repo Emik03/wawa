@@ -8,7 +8,7 @@ static class Globals
     internal const StringComparison Ordinal = StringComparison.Ordinal;
 
     [NotNull]
-    static readonly Dictionary<string, IDictionary> s_cache = [];
+    static readonly Dictionary<int, IDictionary> s_cache = [];
 
     /// <summary>Runs and catches various exception types found in IO operations.</summary>
     /// <typeparam name="T">The type of parameter.</typeparam>
@@ -55,9 +55,9 @@ static class Globals
     [return: AllowNull]
     internal static TResult Get<T, TResult>(
         [NotNull] this T key,
-        [InstantHandle, NotNull] in Func<T, TResult> factory,
+        [InstantHandle, NotNull, RequireStaticDelegate(IsError = true)] in Func<T, TResult> factory,
         [AllowNull, CanBeNull, InstantHandle, RequireStaticDelegate(IsError = true)] in Func<T, TResult> editor = null,
-        [CallerMemberName, NotNull] string caller = ""
+        [CallerLineNumber, NonNegativeValue] int caller = 0
     )
         where TResult : class
     {
@@ -65,7 +65,7 @@ static class Globals
 
         if (!s_cache.TryGetValue(caller, out var dictionary))
         {
-            var first = factory(key);
+            var first = Invoke(key, factory, editor);
 
             s_cache[caller] =
                 new Dictionary<KeyValuePair<T, Type>, object>(TypePairEqualityComparer<T>.Instance) { [k] = first };
@@ -138,8 +138,8 @@ static class Globals
     [return: AllowNull]
     static TResult Invoke<T, TResult>(
         [NotNull] in T key,
-        [InstantHandle, NotNull] in Func<T, TResult> factory,
-        [AllowNull, CanBeNull, InstantHandle, RequireStaticDelegate(IsError = true)] in Func<T, TResult>? editor
+        [InstantHandle, NotNull, RequireStaticDelegate(IsError = true)] in Func<T, TResult> factory,
+        [AllowNull, CanBeNull, InstantHandle, RequireStaticDelegate(IsError = true)] in Func<T, TResult> editor
     )
         where TResult : class =>
         IsKtane ? factory(key) : editor?.Invoke(key);
