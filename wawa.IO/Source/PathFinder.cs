@@ -288,7 +288,7 @@ public static class PathFinder
                     AssemblyLog($"Duplicate mod id found. \"{value}\" conflicts with \"{kvp.Key}\".", LogType.Warning);
                     break;
                 case var key:
-                    s_directories.Add(key, kvp.Key);
+                    s_directories[key] = kvp.Key;
                     break;
             }
 
