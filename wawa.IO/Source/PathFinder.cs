@@ -279,13 +279,20 @@ public static class PathFinder
             switch (kvp.Value.ModID)
             {
                 case null:
-                    AssemblyLog($"Null mod id found: {kvp.Key}", LogType.Warning);
+                    AssemblyLog($"A null mod id found: {kvp.Key}", LogType.Warning);
                     break;
                 case "":
-                    AssemblyLog($"Empty mod id found: {kvp.Key}", LogType.Warning);
+                    AssemblyLog($"An empty mod id found: {kvp.Key}", LogType.Warning);
                     break;
                 case var key when s_directories.TryGetValue(key, out var value):
-                    AssemblyLog($"Duplicate mod id found. \"{value}\" conflicts with \"{kvp.Key}\".", LogType.Warning);
+                    AssemblyLog(
+                        value is null
+                            ? @$"An additional duplicate mod id has been found for ""{key}"": {kvp.Key}"
+                            : @$"A duplicate mod id found for ""{key}"": ""{value}"" conflicts with ""{kvp.Key}"".",
+                        LogType.Warning
+                    );
+
+                    s_directories[key] = null;
                     break;
                 case var key:
                     s_directories[key] = kvp.Key;
