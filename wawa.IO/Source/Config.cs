@@ -45,7 +45,7 @@ public static class Config
         if (!IsKtane || !that.HasRead)
             return that;
 
-        AssemblyLog(@$"Writing to file ""{that.FilePath}"" the following contents: {value}");
+        AssemblyLog(@$"Writing to the file ""{that.FilePath}"" with the following contents: {value}");
 
         new
         {
@@ -137,7 +137,7 @@ public static class Config
                 continue;
 
             toMerge.Remove(kvp.Key);
-            AssemblyLog(@$"The original file has a redundant key ""{kvp.Key}"" which will be automatically removed.");
+            AssemblyLog(@$"The original file has a redundant key ""{kvp.Key}"" which has been removed.");
         }
     }
 
@@ -153,7 +153,7 @@ public static class Config
         if (File.Exists(that.FilePath))
             return false;
 
-        AssemblyLog(@$"File ""{that.FilePath}"" doesn't exist, writing default new instance.");
+        AssemblyLog(@$"The file ""{that.FilePath}"" doesn't exist, writing new instance.");
         File.WriteAllText(that.FilePath, Serialize(new T()));
         return true;
     }

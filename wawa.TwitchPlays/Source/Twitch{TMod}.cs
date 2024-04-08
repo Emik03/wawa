@@ -16,8 +16,8 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     [NotNull]
     const string
         MessageThenCancel = $"The first yield of the command is a {nameof(TwitchString)} that is true on " +
-            $"{nameof(TwitchString.IsSendMessage)}. This is usually an indication that the command was invalid, and " +
-            "therefore the command will stop processing. If this behavior is undesired, then yield return null, " +
+            $"{nameof(TwitchString.IsSendMessage)}. This is usually an indication that the command was invalid, " +
+            "and therefore the command will stop processing. If this behavior is undesired, then yield return null, " +
             $"{nameof(Instruction.FrameAdvance)}, or anything else before the afforementioned {nameof(TwitchString)}.",
         None = "There is no suitable method! Make sure you have at least one method with a return type " +
             $"{nameof(IEnumerable)} of {nameof(Instruction)} and a {nameof(CommandAttribute)} attached to said method!",
@@ -28,8 +28,8 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     [CanBeNull]
     static string s_autoImplementedHelp;
 
-    [CanBeNull, ItemNotNull, ProvidesContext]
-    static IEnumerable<CommandInfo> s_commands;
+    [CanBeNull, ItemNotNull]
+    static CommandInfo[] s_commands;
 
     bool _isPrintingYields;
 
@@ -45,16 +45,28 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     }
 
     [ItemNotNull, NotNull]
-    IEnumerable<CommandInfo> Commands =>
-        s_commands ??=
-            GetType()
-               .GetMethods(Bindings)
-               .Select(CommandInfo.TryFrom)
-               .Where(static c => c is not null)
-               .OrderByDescending(static c => c.Command.Priority)
-               .ToArray() is { Length: > 0 } query
-                ? query
-                : throw new MissingMethodException(None);
+    IList<CommandInfo> Commands
+    {
+        get
+        {
+            if (s_commands is not null)
+                return s_commands;
+
+            s_commands =
+            [
+                ..GetType()
+                   .GetMethods(Bindings)
+                   .Select(CommandInfo.TryFrom)
+                   .Where(static c => c is not null)
+                   .OrderByDescending(static c => c.Command.Priority),
+            ];
+
+            if (s_commands.Length is 0)
+                AssemblyLog(None, LogType.Error);
+
+            return s_commands;
+        }
+    }
 
     /// <summary>
     /// Logs version numbers and automatically sets <see cref="Help"/>.
@@ -202,7 +214,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         while (flattened.MoveNext())
         {
             if (!Access.IsKtane && flattened.Current is { UsableInForcedSolve: false })
-                AssemblyLog(WrongType);
+                AssemblyLog(WrongType, LogType.Error);
 
             var current = flattened.Current;
             OnYield(this, new(current));
@@ -506,9 +518,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
             x.GetCustomAttributes(typeof(ParamArrayAttribute), false).Length > 0;
 
         var method = query.Method;
-
         AssemblyLog(@$"Captured ""{method.Name}""; sending ""{message}"".");
-
         var split = Split(message);
         var parameters = method.GetParameters();
 

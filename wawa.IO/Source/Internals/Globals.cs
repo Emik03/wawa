@@ -27,7 +27,7 @@ static class Globals
             if (!ex.IsIO())
                 throw;
 #pragma warning restore RCS1236
-            AssemblyLog($"Caught error of type {ex.GetType().Name}.");
+            AssemblyLog($"Caught the {ex.GetType().Name} while performing IO.", LogType.Warning);
         }
     }
 
@@ -118,7 +118,7 @@ static class Globals
             if (!ex.IsIO())
                 throw;
 #pragma warning restore RCS1236
-            AssemblyLog($"Caught error of type {ex.GetType().Name}, returning no value.");
+            AssemblyLog($"Caught the {ex.GetType().Name} while performing IO. Returning no value.", LogType.Warning);
             return default;
         }
     }

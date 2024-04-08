@@ -9,19 +9,17 @@ public static class PathFinder
 
     [NotNull]
     const string
-        DuplicateReason = "duplicate mod ids",
         Library = "lib",
         Linux = "linux",
         ModInfoEditor = "ModConfig",
         ModInfoSerializerEditor = "ToJson",
         ModInfoInstanceEditor = "Instance",
-        NullReason = "null mod ids",
         OSX = "darwin",
-        Separator = ", ",
         Windows = "win32",
         X86 = "x86",
         X86Wide = "x86_64",
-        UnityAssembly = "Assembly-CSharp-Editor";
+        UnityAssembly = "Assembly-CSharp-Editor",
+        Version0 = "v0";
 
     const BindingFlags
         InstanceBindings = DeclaredOnly | Static | Public,
@@ -31,51 +29,68 @@ public static class PathFinder
     static int s_loadedMods;
 
     [CanBeNull]
-    static IDictionary<string, string> s_directories;
+    static Dictionary<string, string> s_directories;
 
     /// <summary>Gets the <see cref="AssemblyName"/> of the caller that invoked the method calling this.</summary>
     /// <remarks><para>This is used by the library to log itself, and obtain information about callers.</para></remarks>
     [NotNull, PublicAPI]
+    public static AssemblyName Caller
+    {
 #pragma warning disable CA1065 // ReSharper disable once NullableWarningSuppressionIsUsed
-    public static AssemblyName Caller => new StackFrame(3).GetMethod().ReflectedType?.Assembly.GetName()!;
+        [MustUseReturnValue] get => new StackFrame(3).GetMethod().ReflectedType?.Assembly.GetName()!;
 #pragma warning restore CA1065
+    }
 
     /// <summary>Gets the name of <see cref="Caller"/>.</summary>
     [NotNull]
-    internal static string Who => Caller.Name;
+    internal static string Who
+    {
+        [MustUseReturnValue] get => Caller.Name;
+    }
 
     /// <summary>Gets the version of <see cref="Caller"/>.</summary>
     [NotNull]
-    static string Which =>
-        Caller.Version switch
-        {
-            { Minor: 0, Build: 0, Revision: 0 } v => $"v{v.Major}",
-            { Build: 0, Revision: 0 } v => $"v{v.Major}.{v.Minor}",
-            { Revision: 0 } v => $"v{v.Major}.{v.Minor}.{v.Build}",
-            { } v => $"v{v.Major}.{v.Minor}.{v.Build}.{v.Revision}",
-            _ => "v0",
-        };
+    static string Which
+    {
+        [MustUseReturnValue]
+        get =>
+            Caller.Version switch
+            {
+                { Minor: 0, Build: 0, Revision: 0 } v => $"v{v.Major}",
+                { Build: 0, Revision: 0 } v => $"v{v.Major}.{v.Minor}",
+                { Revision: 0 } v => $"v{v.Major}.{v.Minor}.{v.Build}",
+                { } v => $"v{v.Major}.{v.Minor}.{v.Build}.{v.Revision}",
+                _ => Version0,
+            };
+    }
 
     /// <summary>Logs a message to the Unity Console with the assembly's name that called this.</summary>
     /// <param name="message">The message to log.</param>
+    /// <param name="logType">The log level.</param>
+    /// <param name="member">The caller member.</param>
     [PublicAPI] // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
-    public static void AssemblyLog([NotNull] string message) => Debug.Log($"[{Who} ({Which})] {message}");
+    public static void AssemblyLog(
+        [AllowNull, CanBeNull] string message,
+        LogType logType = LogType.Log,
+        [AllowNull, CanBeNull, CallerMemberName] string member = null
+    ) =>
+        Debug.unityLogger.Log(
+            logType,
+            $"[{Who} ({Which})] {member} {(logType is LogType.Log ? "Trace" : logType)}: {message}"
+        );
 
     /// <summary>Gets the absolute directory of the mod.</summary>
     /// <param name="modId">
     /// The mod id to get the mod directory from.
     /// If <see langword="null" />, implicitly gets the directory of the mod from the file of the assembly.
     /// </param>
-    /// <exception cref="InvalidOperationException">
-    /// A loaded mod has a null mod id, or has an id that conflicts with another loaded mod.
-    /// </exception>
     /// <returns>
     /// A <see cref="Maybe{T}" />, consisting of either folder <see cref="string" /> of the absolute directory
     /// of the file if there is a folder mod id entry within the game's mod dictionary, or <see langword="default" />.
     /// </returns>
-    [PublicAPI, Pure]
+    [MustUseReturnValue, PublicAPI]
     public static Maybe<string> GetDirectory([AllowNull, CanBeNull] string modId = null) =>
-        (modId ?? Who).Get(static key => (MapNeedsUpdating() ? UpdateModIdToDirectoryMapping() : s_directories)[key]);
+        (modId ?? Who).Get(FindDirectory);
 
     /// <summary>Gets the absolute directory of the file located inside the mod directory.</summary>
     /// <param name="filePath">The file located inside folder mod directory.</param>
@@ -83,14 +98,11 @@ public static class PathFinder
     /// The mod id to get the mod directory from.
     /// If <see langword="null" />, implicitly gets the directory of the mod from the file of the assembly.
     /// </param>
-    /// <exception cref="InvalidOperationException">
-    /// A loaded mod has a null mod id, or has an id that conflicts with another loaded mod.
-    /// </exception>
     /// <returns>
     /// A <see cref="Maybe{T}" />, consisting of either folder <see cref="string" /> of the absolute directory
     /// of the file if the mod directory and file were found, or <see langword="default" />.
     /// </returns>
-    [PublicAPI, Pure]
+    [MustUseReturnValue, PublicAPI]
     public static Maybe<string> GetFile(
         [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] string filePath,
         [AllowNull, CanBeNull] string modId = null
@@ -101,9 +113,7 @@ public static class PathFinder
             ModId = modId ?? Who,
         }.Get(
             static key => key.SuppressIO(
-                k => GetDirectory(k.FilePath).Value is { } directory
-                    ? Path.Combine(directory, key.ModId)
-                    : null
+                k => GetDirectory(k.FilePath).Value is { } directory ? Path.Combine(directory, key.ModId) : null
             )
         );
 
@@ -116,7 +126,7 @@ public static class PathFinder
     /// A <see cref="Maybe{T}" />, consisting of either folder <see cref="ModInfo" /> if the file was read
     /// and deserialized successfully, or <see langword="default" />.
     /// </returns>
-    [PublicAPI, Pure]
+    [MustUseReturnValue, PublicAPI]
     public static Maybe<ModInfo> GetModInfo([AllowNull, CanBeNull] string modId = null) =>
         (modId ?? Who).Get(
             static x => GetDirectory(x).Value is { } dir &&
@@ -137,7 +147,7 @@ public static class PathFinder
     /// A <see cref="Maybe{T}" />, consisting of either an <see cref="Array" /> of <typeparamref file="T" />
     /// from the assets in the file specified, or <see langword="default" /> in the event of an error.
     /// </returns>
-    [CLSCompliant(false), PublicAPI]
+    [CLSCompliant(false), MustUseReturnValue, PublicAPI]
     public static Maybe<IList<T>> GetAssets<T>(
         [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] string filePath,
         [AllowNull, CanBeNull] string modId = null
@@ -161,13 +171,10 @@ public static class PathFinder
     /// The mod id to get the mod directory from.
     /// If <see langword="null" />, implicitly gets the directory of the mod from the file of the assembly.
     /// </param>
-    /// <exception cref="InvalidOperationException">
-    /// A loaded mod has a null mod id, or has an id that conflicts with another loaded mod.
-    /// </exception>
     /// <returns>
     /// The value <see langword="true" /> if copying the file was successful, otherwise <see langword="false" />.
     /// </returns>
-    [PublicAPI]
+    [MustUseReturnValue, PublicAPI]
     public static Maybe<T> GetUnmanaged<T>(
         [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] string libPath,
         [NotNull] string ffiMethodName,
@@ -185,9 +192,6 @@ public static class PathFinder
                     ? key.LibPath.FindLibrary(directory)?.CreateUnmanagedMethod<T>(key.FFIMethodName)
                     : null
             );
-
-    [Pure]
-    static bool IsModLoaded([NotNull] ValueType x) => ((KeyValuePair<string, Mod>)x).Value.ModObjects.Count is not 0;
 
     [MemberNotNullWhen(false, nameof(s_directories)), MustUseReturnValue]
     static bool MapNeedsUpdating()
@@ -210,14 +214,25 @@ public static class PathFinder
         return ret;
     }
 
-    [NotNull]
+    [MustUseReturnValue, NotNull]
     static string Join(
         [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] this string root,
         [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] in string folder
     ) =>
         Path.Combine(root, folder) is var first && Directory.Exists(first) ? first : root;
 
-    [CanBeNull]
+    [CanBeNull, MustUseReturnValue]
+    [return: AllowNull]
+    static string FindDirectory([NotNull] string key)
+    {
+        if ((MapNeedsUpdating() ? UpdateModIdToDirectoryMapping() : s_directories).TryGetValue(key, out var value))
+            return value;
+
+        AssemblyLog($"The following mod id was not found in the mod dictionary: {key}", LogType.Error);
+        return null;
+    }
+
+    [CanBeNull, MustUseReturnValue]
     [return: AllowNull]
     static string FindLibrary(
         [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] this string file,
@@ -241,65 +256,58 @@ public static class PathFinder
 
         if (architecture is null || platform is null)
         {
-            AssemblyLog($"{IntPtr.Size * BitsInByte}-bit {Application.platform} is unsupported.");
+            AssemblyLog($"{IntPtr.Size * BitsInByte}-bit {Application.platform} is unsupported.", LogType.Error);
             return null;
         }
 
         var directory = root.Join(Library).Join(platform).Join(architecture);
-
         Directory.CreateDirectory(directory);
 
-        if (Directory.GetFiles(directory, $"{file}*") is { Length: 1 } source && File.Exists(source[0]))
-            return source[0];
+        if (Directory.GetFiles(directory, $"{file}*") is var source && source.Length is 0 || File.Exists(source[0]))
+        {
+            AssemblyLog(@$"Couldn't find the library ""{file}"" in the directory ""{directory}"".", LogType.Error);
+            return null;
+        }
 
-        AssemblyLog($"{nameof(FindLibrary)} Error: Couldn't find {file} library in directory {directory}.");
+#pragma warning disable CI0003
+        if (source.Length > 1 && string.Join(@""", """, source.Skip(1).ToArray()) is var others)
+#pragma warning restore CI0003
+            AssemblyLog(
+                @$"Multiple binaries were found, assuming ""{source[0]}"", but could have also used ""{others}"".",
+                LogType.Error
+            );
 
-        return null;
+        return source[0];
     }
-
-    [NotNull, ItemNotNull]
-    static string[] CollectModsWithDuplicateIds([NotNull, ItemNotNull] this IEnumerable<ValueType> mods) =>
-        mods
-           .Select(static x => ((KeyValuePair<string, Mod>)x).Value.ModID)
-           .GroupBy(x => x, StringComparer.Ordinal)
-           .Where(x => x.Skip(1).Any())
-           .Select(x => x.Key)
-           .ToArray();
-
-    [NotNull, ItemNotNull, Pure]
-    static string[] CollectModsWithNullIds([NotNull, ItemNotNull] this IEnumerable<ValueType> mods) =>
-        mods
-           .Where(static x => ((KeyValuePair<string, Mod>)x).Value.ModID is null)
-           .Select(static x => ((KeyValuePair<string, Mod>)x).Key)
-           .ToArray();
-
-    [NotNull, Pure]
-    static Dictionary<string, string> InvertModDictionary([NotNull, ItemNotNull] this IEnumerable<ValueType> mods) =>
-        mods.ToDictionary(
-            static x => ((KeyValuePair<string, Mod>)x).Value.ModID,
-            static x => ((KeyValuePair<string, Mod>)x).Key,
-            StringComparer.Ordinal
-        );
 
     // Boxing required; Avoids creating closures with the 'Mod' type.
     // Collected as list due to multiple enumerations.
-    [NotNull, Pure]
-    static IDictionary<string, string> UpdateModIdToDirectoryMapping() =>
-        s_directories = Mods.Cast<ValueType>().Where(IsModLoaded).ToList() is var mods &&
-            mods.CollectModsWithNullIds() is { Length: > 0 } filteredByNull ?
-                throw filteredByNull.InvalidBecause(NullReason) :
-                mods.CollectModsWithDuplicateIds() is { Length: > 0 } filteredByDuplicate ?
-                    throw filteredByDuplicate.InvalidBecause(DuplicateReason) :
-                    mods.InvertModDictionary();
+    [MustUseReturnValue, NotNull, Pure]
+    static Dictionary<string, string> UpdateModIdToDirectoryMapping()
+    {
+        s_directories = new(StringComparer.Ordinal);
 
-    [NotNull, Pure]
-    static InvalidOperationException InvalidBecause(
-        [NotNull, ItemNotNull] this string[] ids,
-        [NotNull] string reason
-    ) =>
-        new($"The following mod directories have {reason}: {string.Join(Separator, ids)}");
+        foreach (var kvp in (Dictionary<string, Mod>)Mods)
+            switch (kvp.Value.ModID)
+            {
+                case null:
+                    AssemblyLog($"Null mod id found: {kvp.Key}", LogType.Warning);
+                    break;
+                case "":
+                    AssemblyLog($"Empty mod id found: {kvp.Key}", LogType.Warning);
+                    break;
+                case var key when s_directories.TryGetValue(key, out var value):
+                    AssemblyLog($"Duplicate mod id found. \"{value}\" conflicts with \"{kvp.Key}\".", LogType.Warning);
+                    break;
+                case var key:
+                    s_directories.Add(key, kvp.Key);
+                    break;
+            }
 
-    [CanBeNull]
+        return s_directories;
+    }
+
+    [CanBeNull, MustUseReturnValue]
     [return: AllowNull]
     static ModInfo GetEditorModInfo() =>
         Array.Find(AppDomain.CurrentDomain.GetAssemblies(), static a => a.GetName().Name is UnityAssembly)
@@ -309,7 +317,7 @@ public static class PathFinder
             ? ModInfo.Deserialize(s).Value
             : null;
 
-    [NotNull]
+    [NotNull, MustUseReturnValue]
     static ModuleBuilder DefineMethod(
         [NotNull] this ModuleBuilder dynamicMod,
         [NotNull] in string dllName,
@@ -339,7 +347,7 @@ public static class PathFinder
         return dynamicMod;
     }
 
-    [CanBeNull]
+    [CanBeNull, MustUseReturnValue]
     [return: AllowNull]
     static T CreateUnmanagedMethod<T>(
         [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] this string dllName,

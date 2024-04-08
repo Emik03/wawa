@@ -19,7 +19,7 @@ public abstract class ModdedModule : CachedBehaviour
             "that the matrix can be instantiated properly.",
         Prefix = @"
 | ",
-        TooFewAudioSources = $"You need a {nameof(KMAudio)} component to play a sound. " +
+        TooFewAudioSources = $"{nameof(PlayEnum)} Error: You need a {nameof(KMAudio)} component to play a sound. " +
             "It cannot be instantiated by this library, since the game could hook before this library can create one.",
         TooManyAudioSources =
             $"There is more than one {nameof(KMAudio)} component. " +
@@ -109,19 +109,16 @@ public abstract class ModdedModule : CachedBehaviour
     [AllowNull, CanBeNull]
     KMBombModule Solvable
     {
-        [Pure] get => _solvable ??= GetComponent<KMBombModule>();
+        [Pure] get => _solvable ? _solvable : _solvable = GetComponent<KMBombModule>();
     }
 
     [AllowNull, CanBeNull]
     KMNeedyModule Needy
     {
-        [Pure] get => _needy ??= GetComponent<KMNeedyModule>();
+        [Pure] get => _needy ? _needy : _needy = GetComponent<KMNeedyModule>();
     }
 
     /// <summary>Logs version numbers. Be sure to call this method if you are implementing Awake.</summary>
-    /// <exception cref="InvalidOperationException">
-    /// A loaded mod has a null mod id, or has an id that conflicts with another loaded mod.
-    /// </exception>
     protected virtual void Awake()
     {
         var version = $"Version: {GetModInfo(Id).Value?.Version switch
@@ -190,9 +187,6 @@ public abstract class ModdedModule : CachedBehaviour
     public override string ToString() => Name;
 
     /// <summary>Plays one or more sounds from the module <see cref="Transform"/>.</summary>
-    /// <exception cref="InvalidOperationException">
-    /// There isn't exactly 1 <see cref="KMAudio"/> <see cref="Component"/> attached to this <see cref="GameObject"/>.
-    /// </exception>
     /// <param name="sounds">The sounds to play.</param>
     /// <returns>The parameter <paramref name="sounds"/>.</returns>
     [ItemCanBeNull, NotNull]
@@ -200,9 +194,6 @@ public abstract class ModdedModule : CachedBehaviour
         PlayEnum(sounds, transform);
 
     /// <summary>Plays one or more sounds from a specified <see cref="Transform"/>.</summary>
-    /// <exception cref="InvalidOperationException">
-    /// There isn't exactly 1 <see cref="KMAudio"/> <see cref="Component"/> attached to this <see cref="GameObject"/>.
-    /// </exception>
     /// <param name="location">The source of the sound.</param>
     /// <param name="sounds">The sounds to play.</param>
     /// <returns>The parameter <paramref name="sounds"/>.</returns>
@@ -215,9 +206,6 @@ public abstract class ModdedModule : CachedBehaviour
 
     /// <summary>Plays one or more sounds from a specified <see cref="Transform"/>.</summary>
     /// <typeparam name="T">The type of iterator.</typeparam>
-    /// <exception cref="InvalidOperationException">
-    /// There isn't exactly 1 <see cref="KMAudio"/> <see cref="Component"/> attached to this <see cref="GameObject"/>.
-    /// </exception>
     /// <param name="sounds">The sounds to play.</param>
     /// <param name="location">The source of the sound.</param>
     /// <returns>The parameter <paramref name="sounds"/>.</returns>
@@ -230,15 +218,14 @@ public abstract class ModdedModule : CachedBehaviour
     {
         var sources = Get<KMAudio[]>();
 
-        var source = sources.Length switch
+        if (sources.Length is not 1)
         {
-            0 => throw new InvalidOperationException(TooFewAudioSources),
-            1 => sources[0],
-            _ => throw new InvalidOperationException(TooManyAudioSources),
-        };
+            AssemblyLog(sources.Length is 0 ? TooFewAudioSources : TooManyAudioSources, LogType.Error);
+            return sounds;
+        }
 
         var local = location ? location : transform;
-        return Play(local, sounds, source);
+        return Play(local, sounds, sources[0]);
     }
 
     /// <summary>Plays sounds and shakes the bomb from a selectable.</summary>
@@ -315,6 +302,20 @@ public abstract class ModdedModule : CachedBehaviour
     /// <summary>
     /// Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer.
     /// </summary>
+    /// <param name="format">The value to log.</param>
+    /// <returns>The parameter <paramref name="format"/>.</returns>
+    [CanBeNull]
+    [return: AllowNull]
+    public string Log([AllowNull, CanBeNull] string format = default)
+    {
+        var message = $"[{Name} #{Status.Id}] {format}";
+        Debug.unityLogger.Log(LogType.Log, message);
+        return format;
+    }
+
+    /// <summary>
+    /// Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer.
+    /// </summary>
     /// <typeparam name="T">The type of the value to log.</typeparam>
     /// <param name="format">The value to log.</param>
     /// <param name="logType">The kind of logging method to invoke.</param>
@@ -323,9 +324,8 @@ public abstract class ModdedModule : CachedBehaviour
     [return: AllowNull]
     public T Log<T>([AllowNull, CanBeNull] T format = default, LogType logType = LogType.Log)
     {
-        var id = Status.Id;
-        var stringify = Stringifier.Stringify(format);
-        var message = $"[{Name} #{id}] {stringify}";
+        var stringified = Stringifier.Stringify(format);
+        var message = $"[{Name} #{Status.Id}] {stringified}";
         Debug.unityLogger.Log(logType, message);
         return format;
     }
@@ -345,10 +345,24 @@ public abstract class ModdedModule : CachedBehaviour
     )
     {
         var convertAll = Array.ConvertAll(args, static o => (object)Stringifier.Stringify(o));
-        var stringify = Stringifier.Stringify(format);
+        var stringified = Stringifier.Stringify(format);
         var provider = CultureInfo.InvariantCulture;
-        var message = string.Format(provider, stringify, convertAll);
+        var message = string.Format(provider, stringified, convertAll);
         Log(message);
+        return format;
+    }
+
+    /// <summary>
+    /// Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer.
+    /// </summary>
+    /// <param name="format">The value to log.</param>
+    /// <returns>The parameter <paramref name="format"/>.</returns>
+    [CanBeNull]
+    [return: AllowNull]
+    public string LogLower([AllowNull, CanBeNull] string format = null)
+    {
+        var message = $"<{Name} #{Status.Id}> {format}";
+        Debug.unityLogger.Log(LogType.Log, (object)message, this);
         return format;
     }
 
@@ -363,8 +377,9 @@ public abstract class ModdedModule : CachedBehaviour
     [return: AllowNull]
     public T LogLower<T>([AllowNull, CanBeNull] T format = default, LogType logType = LogType.Log)
     {
-        var message = $"<{Name} #{Status.Id}> {Stringifier.Stringify(format)}";
-        Log(format, message, logType);
+        var stringified = Stringifier.Stringify(format);
+        var message = $"<{Name} #{Status.Id}> {stringified}";
+        Debug.unityLogger.Log(logType, (object)message, this);
         return format;
     }
 
