@@ -20,3 +20,7 @@ This instance of [System.Collections.Generic.IEnumerable&lt;&gt;](https://docs.m
 [System.Collections.Generic.IEnumerator&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerator-1 'System.Collections.Generic.IEnumerator`1')[System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerator-1 'System.Collections.Generic.IEnumerator`1')  
 An [System.Collections.Generic.IEnumerator&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerator-1 'System.Collections.Generic.IEnumerator`1') of [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') that is friendly to be used for coroutines,  
 containing the values from [that](InstructionCore.Flatten(IEnumerable{Instruction}).md#Wawa.TwitchPlays.Domains.InstructionCore.Flatten(thisSystem.Collections.Generic.IEnumerable_Wawa.TwitchPlays.Domains.Instruction_).that 'Wawa.TwitchPlays.Domains.InstructionCore.Flatten(this System.Collections.Generic.IEnumerable<Wawa.TwitchPlays.Domains.Instruction>).that').
+
+### Remarks
+  
+The caller is responsible for disposing the returned enumerator.
