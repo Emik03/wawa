@@ -68,7 +68,7 @@ public static class PathFinder
     /// <param name="message">The message to log.</param>
     /// <param name="logType">The log level.</param>
     /// <param name="member">The caller member.</param>
-    [PublicAPI] // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
+    [CLSCompliant(false), PublicAPI]
     public static void AssemblyLog(
         [AllowNull, CanBeNull] string message,
         LogType logType = LogType.Log,
@@ -107,11 +107,7 @@ public static class PathFinder
         [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] string filePath,
         [AllowNull, CanBeNull] string modId = null
     ) =>
-        new
-        {
-            FilePath = filePath,
-            ModId = modId ?? Who,
-        }.Get(
+        new { FilePath = filePath, ModId = modId ?? Who }.Get(
             static key => key.SuppressIO(
                 k => GetDirectory(k.FilePath).Value is { } directory ? Path.Combine(directory, key.ModId) : null
             )
@@ -153,11 +149,7 @@ public static class PathFinder
         [AllowNull, CanBeNull] string modId = null
     )
         where T : Object =>
-        new
-        {
-            FilePath = filePath,
-            ModId = modId ?? Who,
-        }.Get(
+        new { FilePath = filePath, ModId = modId ?? Who }.Get(
             static key => GetFile(key.FilePath, key.ModId).Value is { } path
                 ? AssetBundle.LoadFromFile(path)?.LoadAllAssets<T>()
                 : null
@@ -181,12 +173,7 @@ public static class PathFinder
         [AllowNull, CanBeNull] string modId = null
     )
         where T : Delegate =>
-        new
-            {
-                LibPath = libPath,
-                FFIMethodName = ffiMethodName,
-                ModId = modId ?? Who,
-            }
+        new { LibPath = libPath, FFIMethodName = ffiMethodName, ModId = modId ?? Who }
            .Get(
                 static key => GetDirectory(key.ModId).Value is { } directory
                     ? key.LibPath.FindLibrary(directory)?.CreateUnmanagedMethod<T>(key.FFIMethodName)
