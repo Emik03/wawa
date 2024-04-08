@@ -109,7 +109,7 @@ public static class PathFinder
     ) =>
         new { FilePath = filePath, ModId = modId ?? Who }.Get(
             static key => key.SuppressIO(
-                k => GetDirectory(k.FilePath).Value is { } directory ? Path.Combine(directory, key.ModId) : null
+                k => GetDirectory(k.ModId).Value is { } directory ? Path.Combine(directory, key.FilePath) : null
             )
         );
 
