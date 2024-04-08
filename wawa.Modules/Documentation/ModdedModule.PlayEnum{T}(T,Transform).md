@@ -32,8 +32,3 @@ The source of the sound.
 #### Returns
 [T](ModdedModule.PlayEnum{T}(T,Transform).md#Wawa.Modules.ModdedModule.PlayEnum_T_(T,Transform).T 'Wawa.Modules.ModdedModule.PlayEnum<T>(T, Transform).T')  
 The parameter [sounds](ModdedModule.PlayEnum{T}(T,Transform).md#Wawa.Modules.ModdedModule.PlayEnum_T_(T,Transform).sounds 'Wawa.Modules.ModdedModule.PlayEnum<T>(T, Transform).sounds').
-
-#### Exceptions
-
-[System.InvalidOperationException](https://docs.microsoft.com/en-us/dotnet/api/System.InvalidOperationException 'System.InvalidOperationException')  
-There isn't exactly 1 [KMAudio](https://docs.microsoft.com/en-us/dotnet/api/KMAudio 'KMAudio')[UnityEngine.Component](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Component 'UnityEngine.Component') attached to this [UnityEngine.GameObject](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.GameObject 'UnityEngine.GameObject').

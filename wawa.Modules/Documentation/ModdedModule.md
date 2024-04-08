@@ -20,8 +20,10 @@ Inheritance [UnityEngine.MonoBehaviour](https://docs.microsoft.com/en-us/dotnet/
 | Methods | |
 | :--- | :--- |
 | [Awake()](ModdedModule.Awake.md 'Wawa.Modules.ModdedModule.Awake()') | Logs version numbers. Be sure to call this method if you are implementing Awake. |
+| [Log(string)](ModdedModule.Log(string).md 'Wawa.Modules.ModdedModule.Log(string)') | Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer. |
 | [Log&lt;T&gt;(T, LogType)](ModdedModule.Log{T}(T,LogType).md 'Wawa.Modules.ModdedModule.Log<T>(T, LogType)') | Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer. |
 | [Log&lt;T&gt;(T, object[])](ModdedModule.Log{T}(T,object[]).md 'Wawa.Modules.ModdedModule.Log<T>(T, object[])') | Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer. |
+| [LogLower(string)](ModdedModule.LogLower(string).md 'Wawa.Modules.ModdedModule.LogLower(string)') | Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer. |
 | [LogLower&lt;T&gt;(T, LogType)](ModdedModule.LogLower{T}(T,LogType).md 'Wawa.Modules.ModdedModule.LogLower<T>(T, LogType)') | Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer. |
 | [LogLower&lt;T&gt;(T, object[])](ModdedModule.LogLower{T}(T,object[]).md 'Wawa.Modules.ModdedModule.LogLower<T>(T, object[])') | Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer. |
 | [OnActivate()](ModdedModule.OnActivate.md 'Wawa.Modules.ModdedModule.OnActivate()') | The method that is called when the lights are turned on. Automatically hooked in Awake. |
