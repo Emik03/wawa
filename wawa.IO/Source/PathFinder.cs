@@ -177,7 +177,8 @@ public static class PathFinder
            .Get(
                 static key => GetDirectory(key.ModId).Value is { } directory
                     ? key.LibPath.FindLibrary(directory)?.CreateUnmanagedMethod<T>(key.FFIMethodName)
-                    : null
+                    : null,
+                static key => key.LibPath.CreateUnmanagedMethod<T>(key.FFIMethodName)
             );
 
     [MemberNotNullWhen(false, nameof(s_directories)), MustUseReturnValue]
