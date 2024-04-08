@@ -6,19 +6,17 @@ namespace Wawa.TwitchPlays.Domains;
 public static class InstructionCore
 {
     /// <summary>Flattens the enumeration for coroutine use.</summary>
+    /// <remarks><para>The caller is responsible for disposing the returned enumerator.</para></remarks>
     /// <param name="that">This instance of <see cref="IEnumerable{T}"/>.</param>
     /// <returns>
     /// An <see cref="IEnumerator{T}"/> of <see cref="object"/> that is friendly to be used for coroutines,
     /// containing the values from <paramref name="that"/>.
     /// </returns>
-    [NotNull, PublicAPI, Pure]
+    [MustDisposeResource, NotNull, PublicAPI, Pure]
     public static IEnumerator<object> Flatten(
         [InstantHandle, ItemCanBeNull, NotNull] this IEnumerable<Instruction> that
-    )
-    {
-        using var e = that.GetEnumerator();
-        return Recursive(e);
-    }
+    ) =>
+        Recursive(that.GetEnumerator());
 
     /// <summary>Flattens nested enumerators into one long enumerator.</summary>
     /// <param name="that">This instance of <see cref="IEnumerable{T}"/>.</param>
@@ -38,10 +36,10 @@ public static class InstructionCore
                 continue;
             }
 
-            using var result = Flatten(nested);
+            using var these = Flatten(nested);
 
-            while (result.MoveNext())
-                yield return result.Current;
+            while (these.MoveNext())
+                yield return these.Current;
         }
     }
 
@@ -60,7 +58,7 @@ public static class InstructionCore
                 continue;
             }
 
-            var these = Recursive(enumerable);
+            using var these = Recursive(enumerable);
 
             while (these.MoveNext())
                 yield return these.Current;
