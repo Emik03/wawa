@@ -249,23 +249,25 @@ public static class PathFinder
         }
 
         var directory = root.Join(Library).Join(platform).Join(architecture);
-        Directory.CreateDirectory(directory);
+        var source = Directory.GetFiles(directory, $"{file}*");
 
-        if (Directory.GetFiles(directory, $"{file}*") is var source && source.Length is 0 || File.Exists(source[0]))
+        switch (source.Length)
         {
-            AssemblyLog(@$"Couldn't find the library ""{file}"" in the directory ""{directory}"".", LogType.Error);
-            return null;
-        }
-
+            case 0:
+                AssemblyLog(@$"Couldn't find the library ""{file}"" in the directory ""{directory}"".", LogType.Error);
+                return null;
+            case > 1:
 #pragma warning disable CI0003
-        if (source.Length > 1 && string.Join(@""", """, source.Skip(1).ToArray()) is var others)
+                var others = string.Join(@""", """, source.Skip(1).ToArray());
 #pragma warning restore CI0003
-            AssemblyLog(
-                @$"Multiple binaries were found, assuming ""{source[0]}"", but could have also used ""{others}"".",
-                LogType.Error
-            );
+                AssemblyLog(
+                    @$"Multiple binaries were found, assuming ""{source[0]}"", but could have also used ""{others}"".",
+                    LogType.Warning
+                );
 
-        return source[0];
+                return source[0];
+            default: return source[0];
+        }
     }
 
     // Boxing required; Avoids creating closures with the 'Mod' type.
@@ -350,7 +352,7 @@ public static class PathFinder
     )
         where T : Delegate
     {
-        if (typeof(T).GetMethod(nameof(Action<T>.Invoke)) is not { } invoke)
+        if (typeof(T).GetMethod(nameof(Action.Invoke)) is not { } invoke)
             return null;
 
         var assembly = AppDomain.CurrentDomain.DefineDynamicAssembly(new(name), AssemblyBuilderAccess.Run);
