@@ -30,7 +30,7 @@ to explicitly mark optional values.
         <tr>
             <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.DDL">wawa.DDL</a></td>
             <td align="center" colspan="2" rowspan="9" style="text-align: center;">None</td>
-        </tr>s
+        </tr>
         <tr>
             <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.Editors">wawa.Editors</a></td>
         </tr>
