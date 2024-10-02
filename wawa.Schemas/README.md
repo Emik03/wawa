@@ -1,11 +1,8 @@
-# wawa.Optionals
+# wawa.Schemas
 
-Defines the `Maybe<T>` type, which is used throughout these libraries to represent a value that may be optional.
+Provides a simple fluent builder API for building the `TweaksEditorSettings` schema object that Tweaks can use to format your mod settings.
 
-All returned values from these libraries can be assumed to be always non-null, as a fallback value, or this type is used
-to explicitly mark optional values.
-
-### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.Optionals/Documentation/wawa.Optionals.md)
+### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.Schemas/Documentation/wawa.Schemas.md)
 
 ---
 

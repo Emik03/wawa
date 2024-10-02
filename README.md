@@ -35,6 +35,7 @@ Whichever method is used, wait for Unity to reload, and a new tab should appear 
 - [wawa.Modules](https://github.com/Emik03/wawa/tree/main/wawa.Modules) - Adds `ModdedModule`, a base class that implements essential module behavior.
 - [wawa.Optionals](https://github.com/Emik03/wawa/tree/main/wawa.Optionals) - Shared `Maybe` type. These libraries don't return `null` without wrapping it in this type.
 - [wawa.Recall](https://github.com/Emik03/wawa/tree/main/wawa.Recall) - Allows hooking onto other vanilla/modded modules and/or selectables. Useful for modules that require context of other modules.
+- [wawa.Schemas](https://github.com/Emik03/wawa/tree/main/wawa.Schemas) - Adds a fluent builder for `TweaksEditorSettings`, which is what Tweaks uses to format mod settings.
 - [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) - Adds `Twitch`, a base class that hooks on a `ModdedModule` to add essential TwitchPlays behavior.
 - [wawa.Unity](https://github.com/Emik03/wawa/tree/main/wawa.Unity) - Adds `CachedBehavior`, eliminates overhead of Unity API calls without the need for explicit fields.
 
