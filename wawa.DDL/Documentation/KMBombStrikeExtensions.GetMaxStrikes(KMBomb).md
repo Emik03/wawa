@@ -1,4 +1,4 @@
-### [Wawa.DDL](Wawa.DDL.md 'Wawa.DDL').[KMBombStrikeExtensions](KMBombStrikeExtensions.md 'Wawa.DDL.KMBombStrikeExtensions')
+### [wawa.DDL](wawa.DDL.md 'wawa.DDL').[KMBombStrikeExtensions](KMBombStrikeExtensions.md 'wawa.DDL.KMBombStrikeExtensions')
 
 ## KMBombStrikeExtensions.GetMaxStrikes(this KMBomb) Method
 
@@ -9,7 +9,7 @@ public static int GetMaxStrikes(this KMBomb that);
 ```
 #### Parameters
 
-<a name='Wawa.DDL.KMBombStrikeExtensions.GetMaxStrikes(thisKMBomb).that'></a>
+<a name='wawa.DDL.KMBombStrikeExtensions.GetMaxStrikes(thisKMBomb).that'></a>
 
 `that` [KMBomb](https://docs.microsoft.com/en-us/dotnet/api/KMBomb 'KMBomb')
 

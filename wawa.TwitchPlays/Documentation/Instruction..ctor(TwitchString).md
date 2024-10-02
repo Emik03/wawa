@@ -1,17 +1,17 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[Instruction](Instruction.md 'Wawa.TwitchPlays.Domains.Instruction')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains').[Instruction](Instruction.md 'wawa.TwitchPlays.Domains.Instruction')
 
 ## Instruction(TwitchString) Constructor
 
-Initializes a new instance of the [Instruction](Instruction.md 'Wawa.TwitchPlays.Domains.Instruction') class.
+Initializes a new instance of the [Instruction](Instruction.md 'wawa.TwitchPlays.Domains.Instruction') class.
 
 ```csharp
-public Instruction(Wawa.TwitchPlays.Domains.TwitchString value);
+public Instruction(wawa.TwitchPlays.Domains.TwitchString value);
 ```
 #### Parameters
 
-<a name='Wawa.TwitchPlays.Domains.Instruction.Instruction(Wawa.TwitchPlays.Domains.TwitchString).value'></a>
+<a name='wawa.TwitchPlays.Domains.Instruction.Instruction(wawa.TwitchPlays.Domains.TwitchString).value'></a>
 
-`value` [TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')
+`value` [TwitchString](TwitchString.md 'wawa.TwitchPlays.Domains.TwitchString')
 
 The value to pass in.

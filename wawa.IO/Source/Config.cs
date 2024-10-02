@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.IO;
+namespace wawa.IO;
 
 /// <summary>Implementations for <see cref="Config{TSerialize}"/>.</summary>
 [PublicAPI]

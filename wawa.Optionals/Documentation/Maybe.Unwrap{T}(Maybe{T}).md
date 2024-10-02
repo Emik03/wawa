@@ -1,4 +1,4 @@
-### [Wawa.Optionals](Wawa.Optionals.md 'Wawa.Optionals').[Maybe](Maybe.md 'Wawa.Optionals.Maybe')
+### [wawa.Optionals](wawa.Optionals.md 'wawa.Optionals').[Maybe](Maybe.md 'wawa.Optionals.Maybe')
 
 ## Maybe.Unwrap<T>(this Maybe<T>) Method
 
@@ -6,28 +6,28 @@ Gets the value that is encapsulated. This value returned will not be [null](http
 and consequentially if it is.
 
 ```csharp
-public static T Unwrap<T>(this Wawa.Optionals.Maybe<T> that);
+public static T Unwrap<T>(this wawa.Optionals.Maybe<T> that);
 ```
 #### Type parameters
 
-<a name='Wawa.Optionals.Maybe.Unwrap_T_(thisWawa.Optionals.Maybe_T_).T'></a>
+<a name='wawa.Optionals.Maybe.Unwrap_T_(thiswawa.Optionals.Maybe_T_).T'></a>
 
 `T`
 
-The type of value stored within [that](Maybe.Unwrap{T}(Maybe{T}).md#Wawa.Optionals.Maybe.Unwrap_T_(thisWawa.Optionals.Maybe_T_).that 'Wawa.Optionals.Maybe.Unwrap<T>(this Wawa.Optionals.Maybe<T>).that').
+The type of value stored within [that](Maybe.Unwrap{T}(Maybe{T}).md#wawa.Optionals.Maybe.Unwrap_T_(thiswawa.Optionals.Maybe_T_).that 'wawa.Optionals.Maybe.Unwrap<T>(this wawa.Optionals.Maybe<T>).that').
 #### Parameters
 
-<a name='Wawa.Optionals.Maybe.Unwrap_T_(thisWawa.Optionals.Maybe_T_).that'></a>
+<a name='wawa.Optionals.Maybe.Unwrap_T_(thiswawa.Optionals.Maybe_T_).that'></a>
 
-`that` [Wawa.Optionals.Maybe&lt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')[T](Maybe.Unwrap{T}(Maybe{T}).md#Wawa.Optionals.Maybe.Unwrap_T_(thisWawa.Optionals.Maybe_T_).T 'Wawa.Optionals.Maybe.Unwrap<T>(this Wawa.Optionals.Maybe<T>).T')[&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')
+`that` [wawa.Optionals.Maybe&lt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[T](Maybe.Unwrap{T}(Maybe{T}).md#wawa.Optionals.Maybe.Unwrap_T_(thiswawa.Optionals.Maybe_T_).T 'wawa.Optionals.Maybe.Unwrap<T>(this wawa.Optionals.Maybe<T>).T')[&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')
 
-This instance of [Maybe&lt;T&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>').
+This instance of [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').
 
 #### Returns
-[T](Maybe.Unwrap{T}(Maybe{T}).md#Wawa.Optionals.Maybe.Unwrap_T_(thisWawa.Optionals.Maybe_T_).T 'Wawa.Optionals.Maybe.Unwrap<T>(this Wawa.Optionals.Maybe<T>).T')  
+[T](Maybe.Unwrap{T}(Maybe{T}).md#wawa.Optionals.Maybe.Unwrap_T_(thiswawa.Optionals.Maybe_T_).T 'wawa.Optionals.Maybe.Unwrap<T>(this wawa.Optionals.Maybe<T>).T')  
 The inner value.
 
 #### Exceptions
 
 [System.InvalidOperationException](https://docs.microsoft.com/en-us/dotnet/api/System.InvalidOperationException 'System.InvalidOperationException')  
-The parameter [that](Maybe.Unwrap{T}(Maybe{T}).md#Wawa.Optionals.Maybe.Unwrap_T_(thisWawa.Optionals.Maybe_T_).that 'Wawa.Optionals.Maybe.Unwrap<T>(this Wawa.Optionals.Maybe<T>).that') has [IsSome](Maybe{T}.IsSome.md 'Wawa.Optionals.Maybe<T>.IsSome') set to [false](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').
+The parameter [that](Maybe.Unwrap{T}(Maybe{T}).md#wawa.Optionals.Maybe.Unwrap_T_(thiswawa.Optionals.Maybe_T_).that 'wawa.Optionals.Maybe.Unwrap<T>(this wawa.Optionals.Maybe<T>).that') has [IsSome](Maybe{T}.IsSome.md 'wawa.Optionals.Maybe<T>.IsSome') set to [false](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').

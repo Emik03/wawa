@@ -1,23 +1,23 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains').[TwitchString](TwitchString.md 'wawa.TwitchPlays.Domains.TwitchString')
 
 ## TwitchString.AwardPointsOnSolve(int) Method
 
 Yield return this to award the last user that sent the command points when the module is solved.
 
 ```csharp
-public static Wawa.TwitchPlays.Domains.TwitchString AwardPointsOnSolve(int points);
+public static wawa.TwitchPlays.Domains.TwitchString AwardPointsOnSolve(int points);
 ```
 #### Parameters
 
-<a name='Wawa.TwitchPlays.Domains.TwitchString.AwardPointsOnSolve(int).points'></a>
+<a name='wawa.TwitchPlays.Domains.TwitchString.AwardPointsOnSolve(int).points'></a>
 
 `points` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
 
 The amount of points to award. Negatives supported.
 
 #### Returns
-[TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')  
+[TwitchString](TwitchString.md 'wawa.TwitchPlays.Domains.TwitchString')  
 A formatted string for Twitch Plays.
 
 ### Remarks

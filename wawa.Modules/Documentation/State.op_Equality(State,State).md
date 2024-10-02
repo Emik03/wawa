@@ -1,23 +1,23 @@
-### [Wawa.Modules](Wawa.Modules.md 'Wawa.Modules').[State](State.md 'Wawa.Modules.State')
+### [wawa.Modules](wawa.Modules.md 'wawa.Modules').[State](State.md 'wawa.Modules.State')
 
 ## State.operator ==(State, State) Operator
 
 Determines whether both instances contain the same values.
 
 ```csharp
-public static bool operator ==(Wawa.Modules.State left, Wawa.Modules.State right);
+public static bool operator ==(wawa.Modules.State left, wawa.Modules.State right);
 ```
 #### Parameters
 
-<a name='Wawa.Modules.State.op_Equality(Wawa.Modules.State,Wawa.Modules.State).left'></a>
+<a name='wawa.Modules.State.op_Equality(wawa.Modules.State,wawa.Modules.State).left'></a>
 
-`left` [State](State.md 'Wawa.Modules.State')
+`left` [State](State.md 'wawa.Modules.State')
 
 The left-hand side.
 
-<a name='Wawa.Modules.State.op_Equality(Wawa.Modules.State,Wawa.Modules.State).right'></a>
+<a name='wawa.Modules.State.op_Equality(wawa.Modules.State,wawa.Modules.State).right'></a>
 
-`right` [State](State.md 'Wawa.Modules.State')
+`right` [State](State.md 'wawa.Modules.State')
 
 The right-hand side.
 

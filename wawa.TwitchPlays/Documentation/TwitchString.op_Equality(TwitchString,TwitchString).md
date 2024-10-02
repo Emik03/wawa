@@ -1,24 +1,24 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains').[TwitchString](TwitchString.md 'wawa.TwitchPlays.Domains.TwitchString')
 
 ## TwitchString.operator ==(TwitchString, TwitchString) Operator
 
 Determines whether both instances contain the same values.
 
 ```csharp
-public static bool operator ==(Wawa.TwitchPlays.Domains.TwitchString left, Wawa.TwitchPlays.Domains.TwitchString right);
+public static bool operator ==(wawa.TwitchPlays.Domains.TwitchString left, wawa.TwitchPlays.Domains.TwitchString right);
 ```
 #### Parameters
 
-<a name='Wawa.TwitchPlays.Domains.TwitchString.op_Equality(Wawa.TwitchPlays.Domains.TwitchString,Wawa.TwitchPlays.Domains.TwitchString).left'></a>
+<a name='wawa.TwitchPlays.Domains.TwitchString.op_Equality(wawa.TwitchPlays.Domains.TwitchString,wawa.TwitchPlays.Domains.TwitchString).left'></a>
 
-`left` [TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')
+`left` [TwitchString](TwitchString.md 'wawa.TwitchPlays.Domains.TwitchString')
 
 The left-hand side.
 
-<a name='Wawa.TwitchPlays.Domains.TwitchString.op_Equality(Wawa.TwitchPlays.Domains.TwitchString,Wawa.TwitchPlays.Domains.TwitchString).right'></a>
+<a name='wawa.TwitchPlays.Domains.TwitchString.op_Equality(wawa.TwitchPlays.Domains.TwitchString,wawa.TwitchPlays.Domains.TwitchString).right'></a>
 
-`right` [TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')
+`right` [TwitchString](TwitchString.md 'wawa.TwitchPlays.Domains.TwitchString')
 
 The right-hand side.
 

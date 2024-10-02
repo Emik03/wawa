@@ -1,12 +1,12 @@
-### [Wawa.Modules](Wawa.Modules.md 'Wawa.Modules').[Sound](Sound.md 'Wawa.Modules.Sound')
+### [wawa.Modules](wawa.Modules.md 'wawa.Modules').[Sound](Sound.md 'wawa.Modules.Sound')
 
 ## Sound.ButtonPress Property
 
 Gets the sound that plays when pressing down a button.
 
 ```csharp
-public static Wawa.Modules.Sound ButtonPress { get; }
+public static wawa.Modules.Sound ButtonPress { get; }
 ```
 
 #### Property Value
-[Sound](Sound.md 'Wawa.Modules.Sound')
+[Sound](Sound.md 'wawa.Modules.Sound')

@@ -1,4 +1,4 @@
-### [Wawa.DDL](Wawa.DDL.md 'Wawa.DDL').[Access](Access.md 'Wawa.DDL.Access')
+### [wawa.DDL](wawa.DDL.md 'wawa.DDL').[Access](Access.md 'wawa.DDL.Access')
 
 ## Access.IsKtane Property
 
@@ -10,7 +10,3 @@ public static bool IsKtane { get; }
 
 #### Property Value
 [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')
-
-### Remarks
-  
-Opposite of [UnityEngine.Application.isEditor](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Application.isEditor 'UnityEngine.Application.isEditor'), but as a pure getter.

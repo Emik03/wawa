@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.TwitchPlays.Domains;
+namespace wawa.TwitchPlays.Domains;
 
 /// <summary>An <see cref="Attribute"/> to attach to a field to signify alternative ways to spell it.</summary>
 /// <param name="aliases">The prefix of this command.</param>

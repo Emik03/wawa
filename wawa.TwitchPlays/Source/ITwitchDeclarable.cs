@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.TwitchPlays;
+namespace wawa.TwitchPlays;
 
 /// <summary>Interface for non-generic <see cref="Twitch{TModule}"/>.</summary>
 [CLSCompliant(false), PublicAPI]

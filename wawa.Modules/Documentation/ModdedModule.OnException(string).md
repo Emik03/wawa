@@ -1,4 +1,4 @@
-### [Wawa.Modules](Wawa.Modules.md 'Wawa.Modules').[ModdedModule](ModdedModule.md 'Wawa.Modules.ModdedModule')
+### [wawa.Modules](wawa.Modules.md 'wawa.Modules').[ModdedModule](ModdedModule.md 'wawa.Modules.ModdedModule')
 
 ## ModdedModule.OnException(string) Method
 
@@ -9,7 +9,7 @@ protected virtual void OnException(string message);
 ```
 #### Parameters
 
-<a name='Wawa.Modules.ModdedModule.OnException(string).message'></a>
+<a name='wawa.Modules.ModdedModule.OnException(string).message'></a>
 
 `message` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 

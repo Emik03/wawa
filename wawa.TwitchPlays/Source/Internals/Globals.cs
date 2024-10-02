@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MPL-2.0
-namespace Wawa.TwitchPlays.Internals;
+namespace wawa.TwitchPlays.Internals;
 
 /// <summary>Contains static methods able to be accessed from anywhere within this library.</summary>
 static class Globals

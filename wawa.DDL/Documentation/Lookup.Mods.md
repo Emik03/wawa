@@ -1,4 +1,4 @@
-### [Wawa.DDL](Wawa.DDL.md 'Wawa.DDL').[Lookup](Lookup.md 'Wawa.DDL.Lookup')
+### [wawa.DDL](wawa.DDL.md 'wawa.DDL').[Lookup](Lookup.md 'wawa.DDL.Lookup')
 
 ## Lookup.Mods Property
 

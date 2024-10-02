@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Recall;
+namespace wawa.Recall;
 
 /// <summary>
 /// Encapsulates a getter <see cref="Delegate"/> and a setter <see cref="Delegate"/> to get and set an inner value to

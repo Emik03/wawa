@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Optionals;
+namespace wawa.Optionals;
 
 using static CollectionAccessType;
 

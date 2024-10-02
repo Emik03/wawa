@@ -1,4 +1,4 @@
-### [Wawa.Modules](Wawa.Modules.md 'Wawa.Modules').[ModdedModule](ModdedModule.md 'Wawa.Modules.ModdedModule')
+### [wawa.Modules](wawa.Modules.md 'wawa.Modules').[ModdedModule](ModdedModule.md 'wawa.Modules.ModdedModule')
 
 ## ModdedModule.LogLower(string) Method
 
@@ -9,7 +9,7 @@ public virtual string LogLower(string format=null);
 ```
 #### Parameters
 
-<a name='Wawa.Modules.ModdedModule.LogLower(string).format'></a>
+<a name='wawa.Modules.ModdedModule.LogLower(string).format'></a>
 
 `format` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
@@ -17,4 +17,4 @@ The value to log.
 
 #### Returns
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
-The parameter [format](ModdedModule.LogLower(string).md#Wawa.Modules.ModdedModule.LogLower(string).format 'Wawa.Modules.ModdedModule.LogLower(string).format').
+The parameter [format](ModdedModule.LogLower(string).md#wawa.Modules.ModdedModule.LogLower(string).format 'wawa.Modules.ModdedModule.LogLower(string).format').

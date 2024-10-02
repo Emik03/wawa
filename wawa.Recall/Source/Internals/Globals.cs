@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Recall.Internals;
+namespace wawa.Recall.Internals;
 
 /// <summary>Contains static methods able to be accessed from anywhere within this library.</summary>
 static class Globals
@@ -83,7 +83,7 @@ static class Globals
     /// <param name="that">The object to convert.</param>
     /// <returns><paramref name="that"/> <see langword="as"/> <see cref="MonoBehaviour"/>.</returns>
     // ReSharper disable SuspiciousTypeConversion.Global
-    [InlineMethod.Inline, NotNull, Pure]
+    [NotNull, Pure]
     public static MonoBehaviour Core([NotNull] this KMSelectable that) => (MonoBehaviour)(object)that;
 
     /// <summary>Gets the path of the current <see cref="Transform"/>.</summary>

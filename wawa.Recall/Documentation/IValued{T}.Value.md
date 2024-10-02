@@ -1,4 +1,4 @@
-### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[IValued&lt;T&gt;](IValued{T}.md 'Wawa.Recall.IValued<T>')
+### [wawa.Recall](wawa.Recall.md 'wawa.Recall').[IValued&lt;T&gt;](IValued{T}.md 'wawa.Recall.IValued<T>')
 
 ## IValued<T>.Value Property
 
@@ -9,4 +9,4 @@ T Value { get; }
 ```
 
 #### Property Value
-[T](IValued{T}.md#Wawa.Recall.IValued_T_.T 'Wawa.Recall.IValued<T>.T')
+[T](IValued{T}.md#wawa.Recall.IValued_T_.T 'wawa.Recall.IValued<T>.T')

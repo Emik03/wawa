@@ -1,16 +1,16 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[Instruction](Instruction.md 'Wawa.TwitchPlays.Domains.Instruction')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains').[Instruction](Instruction.md 'wawa.TwitchPlays.Domains.Instruction')
 
 ## Instruction.FrameAdvance Property
 
 Gets the value that can be yielded to wait for the next frame.
 
 ```csharp
-public static Wawa.TwitchPlays.Domains.Instruction FrameAdvance { get; }
+public static wawa.TwitchPlays.Domains.Instruction FrameAdvance { get; }
 ```
 
 #### Property Value
-[Instruction](Instruction.md 'Wawa.TwitchPlays.Domains.Instruction')
+[Instruction](Instruction.md 'wawa.TwitchPlays.Domains.Instruction')
 
 ### Remarks
   

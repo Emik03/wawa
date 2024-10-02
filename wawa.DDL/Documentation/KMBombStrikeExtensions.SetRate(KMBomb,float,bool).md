@@ -1,4 +1,4 @@
-### [Wawa.DDL](Wawa.DDL.md 'Wawa.DDL').[KMBombStrikeExtensions](KMBombStrikeExtensions.md 'Wawa.DDL.KMBombStrikeExtensions')
+### [wawa.DDL](wawa.DDL.md 'wawa.DDL').[KMBombStrikeExtensions](KMBombStrikeExtensions.md 'wawa.DDL.KMBombStrikeExtensions')
 
 ## KMBombStrikeExtensions.SetRate(this KMBomb, float, bool) Method
 
@@ -9,28 +9,28 @@ public static KMBomb SetRate(this KMBomb that, float value, bool signFlip=false)
 ```
 #### Parameters
 
-<a name='Wawa.DDL.KMBombStrikeExtensions.SetRate(thisKMBomb,float,bool).that'></a>
+<a name='wawa.DDL.KMBombStrikeExtensions.SetRate(thisKMBomb,float,bool).that'></a>
 
 `that` [KMBomb](https://docs.microsoft.com/en-us/dotnet/api/KMBomb 'KMBomb')
 
 The [KMBomb](https://docs.microsoft.com/en-us/dotnet/api/KMBomb 'KMBomb') module instance to grab the rate from.
 
-<a name='Wawa.DDL.KMBombStrikeExtensions.SetRate(thisKMBomb,float,bool).value'></a>
+<a name='wawa.DDL.KMBombStrikeExtensions.SetRate(thisKMBomb,float,bool).value'></a>
 
 `value` [System.Single](https://docs.microsoft.com/en-us/dotnet/api/System.Single 'System.Single')
 
 The value to set it to.
 
-<a name='Wawa.DDL.KMBombStrikeExtensions.SetRate(thisKMBomb,float,bool).signFlip'></a>
+<a name='wawa.DDL.KMBombStrikeExtensions.SetRate(thisKMBomb,float,bool).signFlip'></a>
 
 `signFlip` [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')
 
-When [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool'), invert [value](KMBombStrikeExtensions.SetRate(KMBomb,float,bool).md#Wawa.DDL.KMBombStrikeExtensions.SetRate(thisKMBomb,float,bool).value 'Wawa.DDL.KMBombStrikeExtensions.SetRate(this KMBomb, float, bool).value') when  
-the component from [that](KMBombStrikeExtensions.SetRate(KMBomb,float,bool).md#Wawa.DDL.KMBombStrikeExtensions.SetRate(thisKMBomb,float,bool).that 'Wawa.DDL.KMBombStrikeExtensions.SetRate(this KMBomb, float, bool).that') ticks backwards.
+When [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool'), invert [value](KMBombStrikeExtensions.SetRate(KMBomb,float,bool).md#wawa.DDL.KMBombStrikeExtensions.SetRate(thisKMBomb,float,bool).value 'wawa.DDL.KMBombStrikeExtensions.SetRate(this KMBomb, float, bool).value') when  
+the component from [that](KMBombStrikeExtensions.SetRate(KMBomb,float,bool).md#wawa.DDL.KMBombStrikeExtensions.SetRate(thisKMBomb,float,bool).that 'wawa.DDL.KMBombStrikeExtensions.SetRate(this KMBomb, float, bool).that') ticks backwards.
 
 #### Returns
 [KMBomb](https://docs.microsoft.com/en-us/dotnet/api/KMBomb 'KMBomb')  
-The parameter [that](KMBombStrikeExtensions.SetRate(KMBomb,float,bool).md#Wawa.DDL.KMBombStrikeExtensions.SetRate(thisKMBomb,float,bool).that 'Wawa.DDL.KMBombStrikeExtensions.SetRate(this KMBomb, float, bool).that').
+The parameter [that](KMBombStrikeExtensions.SetRate(KMBomb,float,bool).md#wawa.DDL.KMBombStrikeExtensions.SetRate(thisKMBomb,float,bool).that 'wawa.DDL.KMBombStrikeExtensions.SetRate(this KMBomb, float, bool).that').
 
 ### Remarks
   

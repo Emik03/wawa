@@ -1,24 +1,24 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[AliasAttribute](AliasAttribute.md 'Wawa.TwitchPlays.Domains.AliasAttribute')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains').[AliasAttribute](AliasAttribute.md 'wawa.TwitchPlays.Domains.AliasAttribute')
 
 ## AliasAttribute.operator ==(AliasAttribute, AliasAttribute) Operator
 
 Determines whether both have the same values.
 
 ```csharp
-public static bool operator ==(Wawa.TwitchPlays.Domains.AliasAttribute left, Wawa.TwitchPlays.Domains.AliasAttribute right);
+public static bool operator ==(wawa.TwitchPlays.Domains.AliasAttribute left, wawa.TwitchPlays.Domains.AliasAttribute right);
 ```
 #### Parameters
 
-<a name='Wawa.TwitchPlays.Domains.AliasAttribute.op_Equality(Wawa.TwitchPlays.Domains.AliasAttribute,Wawa.TwitchPlays.Domains.AliasAttribute).left'></a>
+<a name='wawa.TwitchPlays.Domains.AliasAttribute.op_Equality(wawa.TwitchPlays.Domains.AliasAttribute,wawa.TwitchPlays.Domains.AliasAttribute).left'></a>
 
-`left` [AliasAttribute](AliasAttribute.md 'Wawa.TwitchPlays.Domains.AliasAttribute')
+`left` [AliasAttribute](AliasAttribute.md 'wawa.TwitchPlays.Domains.AliasAttribute')
 
 The left-hand side.
 
-<a name='Wawa.TwitchPlays.Domains.AliasAttribute.op_Equality(Wawa.TwitchPlays.Domains.AliasAttribute,Wawa.TwitchPlays.Domains.AliasAttribute).right'></a>
+<a name='wawa.TwitchPlays.Domains.AliasAttribute.op_Equality(wawa.TwitchPlays.Domains.AliasAttribute,wawa.TwitchPlays.Domains.AliasAttribute).right'></a>
 
-`right` [AliasAttribute](AliasAttribute.md 'Wawa.TwitchPlays.Domains.AliasAttribute')
+`right` [AliasAttribute](AliasAttribute.md 'wawa.TwitchPlays.Domains.AliasAttribute')
 
 The right-hand side.
 

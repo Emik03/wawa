@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Modules;
+namespace wawa.Modules;
 
 /// <summary>
 /// The <see cref="Component"/> that handles general Keep Talking and Nobody Explodes modded module behaviour.

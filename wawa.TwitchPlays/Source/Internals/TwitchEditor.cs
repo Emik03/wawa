@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.TwitchPlays.Internals;
+namespace wawa.TwitchPlays.Internals;
 
 /// <summary>Custom inspector for <see cref="Twitch{TMod}"/>.</summary>
 // ReSharper disable Unity.PerformanceCriticalCodeInvocation

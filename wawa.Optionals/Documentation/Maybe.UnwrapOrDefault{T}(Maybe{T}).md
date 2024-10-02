@@ -1,28 +1,28 @@
-### [Wawa.Optionals](Wawa.Optionals.md 'Wawa.Optionals').[Maybe](Maybe.md 'Wawa.Optionals.Maybe')
+### [wawa.Optionals](wawa.Optionals.md 'wawa.Optionals').[Maybe](Maybe.md 'wawa.Optionals.Maybe')
 
 ## Maybe.UnwrapOrDefault<T>(this Maybe<T>) Method
 
 Gives the inner value, or [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default').
 
 ```csharp
-public static T UnwrapOrDefault<T>(this Wawa.Optionals.Maybe<T> that)
+public static T UnwrapOrDefault<T>(this wawa.Optionals.Maybe<T> that)
     where T : struct, System.ValueType, System.ValueType;
 ```
 #### Type parameters
 
-<a name='Wawa.Optionals.Maybe.UnwrapOrDefault_T_(thisWawa.Optionals.Maybe_T_).T'></a>
+<a name='wawa.Optionals.Maybe.UnwrapOrDefault_T_(thiswawa.Optionals.Maybe_T_).T'></a>
 
 `T`
 
-The type of value stored within [that](Maybe.UnwrapOrDefault{T}(Maybe{T}).md#Wawa.Optionals.Maybe.UnwrapOrDefault_T_(thisWawa.Optionals.Maybe_T_).that 'Wawa.Optionals.Maybe.UnwrapOrDefault<T>(this Wawa.Optionals.Maybe<T>).that').
+The type of value stored within [that](Maybe.UnwrapOrDefault{T}(Maybe{T}).md#wawa.Optionals.Maybe.UnwrapOrDefault_T_(thiswawa.Optionals.Maybe_T_).that 'wawa.Optionals.Maybe.UnwrapOrDefault<T>(this wawa.Optionals.Maybe<T>).that').
 #### Parameters
 
-<a name='Wawa.Optionals.Maybe.UnwrapOrDefault_T_(thisWawa.Optionals.Maybe_T_).that'></a>
+<a name='wawa.Optionals.Maybe.UnwrapOrDefault_T_(thiswawa.Optionals.Maybe_T_).that'></a>
 
-`that` [Wawa.Optionals.Maybe&lt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')[T](Maybe.UnwrapOrDefault{T}(Maybe{T}).md#Wawa.Optionals.Maybe.UnwrapOrDefault_T_(thisWawa.Optionals.Maybe_T_).T 'Wawa.Optionals.Maybe.UnwrapOrDefault<T>(this Wawa.Optionals.Maybe<T>).T')[&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')
+`that` [wawa.Optionals.Maybe&lt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[T](Maybe.UnwrapOrDefault{T}(Maybe{T}).md#wawa.Optionals.Maybe.UnwrapOrDefault_T_(thiswawa.Optionals.Maybe_T_).T 'wawa.Optionals.Maybe.UnwrapOrDefault<T>(this wawa.Optionals.Maybe<T>).T')[&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')
 
-This instance of [Maybe&lt;T&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>').
+This instance of [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').
 
 #### Returns
-[T](Maybe.UnwrapOrDefault{T}(Maybe{T}).md#Wawa.Optionals.Maybe.UnwrapOrDefault_T_(thisWawa.Optionals.Maybe_T_).T 'Wawa.Optionals.Maybe.UnwrapOrDefault<T>(this Wawa.Optionals.Maybe<T>).T')  
+[T](Maybe.UnwrapOrDefault{T}(Maybe{T}).md#wawa.Optionals.Maybe.UnwrapOrDefault_T_(thiswawa.Optionals.Maybe_T_).T 'wawa.Optionals.Maybe.UnwrapOrDefault<T>(this wawa.Optionals.Maybe<T>).T')  
 The inner value, or [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default').

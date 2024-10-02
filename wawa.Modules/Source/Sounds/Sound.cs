@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Modules;
+namespace wawa.Modules;
 
 /// <summary>
 /// Encapsulates a modded or vanilla sound effect, with methods to play the sound, and allowing you to extend

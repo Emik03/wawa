@@ -1,24 +1,24 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[Instruction](Instruction.md 'Wawa.TwitchPlays.Domains.Instruction')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains').[Instruction](Instruction.md 'wawa.TwitchPlays.Domains.Instruction')
 
 ## Instruction.operator ==(Instruction, Instruction) Operator
 
 Determines whether both instances contain the same values.
 
 ```csharp
-public static bool operator ==(Wawa.TwitchPlays.Domains.Instruction left, Wawa.TwitchPlays.Domains.Instruction right);
+public static bool operator ==(wawa.TwitchPlays.Domains.Instruction left, wawa.TwitchPlays.Domains.Instruction right);
 ```
 #### Parameters
 
-<a name='Wawa.TwitchPlays.Domains.Instruction.op_Equality(Wawa.TwitchPlays.Domains.Instruction,Wawa.TwitchPlays.Domains.Instruction).left'></a>
+<a name='wawa.TwitchPlays.Domains.Instruction.op_Equality(wawa.TwitchPlays.Domains.Instruction,wawa.TwitchPlays.Domains.Instruction).left'></a>
 
-`left` [Instruction](Instruction.md 'Wawa.TwitchPlays.Domains.Instruction')
+`left` [Instruction](Instruction.md 'wawa.TwitchPlays.Domains.Instruction')
 
 The left-hand side.
 
-<a name='Wawa.TwitchPlays.Domains.Instruction.op_Equality(Wawa.TwitchPlays.Domains.Instruction,Wawa.TwitchPlays.Domains.Instruction).right'></a>
+<a name='wawa.TwitchPlays.Domains.Instruction.op_Equality(wawa.TwitchPlays.Domains.Instruction,wawa.TwitchPlays.Domains.Instruction).right'></a>
 
-`right` [Instruction](Instruction.md 'Wawa.TwitchPlays.Domains.Instruction')
+`right` [Instruction](Instruction.md 'wawa.TwitchPlays.Domains.Instruction')
 
 The right-hand side.
 

@@ -1,5 +1,5 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays](Wawa.TwitchPlays.md 'Wawa.TwitchPlays').[Twitch&lt;TMod&gt;](Twitch{TMod}.md 'Wawa.TwitchPlays.Twitch<TMod>')
+### [wawa.TwitchPlays](wawa.TwitchPlays.md 'wawa.TwitchPlays').[Twitch&lt;TMod&gt;](Twitch{TMod}.md 'wawa.TwitchPlays.Twitch<TMod>')
 
 ## Twitch<TMod>.Abandons Property
 
@@ -9,7 +9,7 @@ Gets the list that contains modules that it should stop processing.
 public virtual System.Collections.ObjectModel.ReadOnlyCollection<KMBombModule> Abandons { get; }
 ```
 
-Implements [Abandons](ITwitchDeclarable.Abandons.md 'Wawa.TwitchPlays.ITwitchDeclarable.Abandons')
+Implements [Abandons](ITwitchDeclarable.Abandons.md 'wawa.TwitchPlays.ITwitchDeclarable.Abandons')
 
 #### Property Value
 [System.Collections.ObjectModel.ReadOnlyCollection&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.ObjectModel.ReadOnlyCollection-1 'System.Collections.ObjectModel.ReadOnlyCollection`1')[KMBombModule](https://docs.microsoft.com/en-us/dotnet/api/KMBombModule 'KMBombModule')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.ObjectModel.ReadOnlyCollection-1 'System.Collections.ObjectModel.ReadOnlyCollection`1')

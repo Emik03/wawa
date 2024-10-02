@@ -1,5 +1,5 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays](Wawa.TwitchPlays.md 'Wawa.TwitchPlays').[Twitch&lt;TMod&gt;](Twitch{TMod}.md 'Wawa.TwitchPlays.Twitch<TMod>')
+### [wawa.TwitchPlays](wawa.TwitchPlays.md 'wawa.TwitchPlays').[Twitch&lt;TMod&gt;](Twitch{TMod}.md 'wawa.TwitchPlays.Twitch<TMod>')
 
 ## Twitch<TMod>.TwitchHandleForcedSolve() Method
 
@@ -10,7 +10,7 @@ is unhandled, a votesolve/solvebomb is performed, or when an admin forces this m
 public virtual System.Collections.IEnumerator TwitchHandleForcedSolve();
 ```
 
-Implements [TwitchHandleForcedSolve()](ITwitchSupportable.TwitchHandleForcedSolve.md 'Wawa.TwitchPlays.Domains.ITwitchSupportable.TwitchHandleForcedSolve()')
+Implements [TwitchHandleForcedSolve()](ITwitchSupportable.TwitchHandleForcedSolve.md 'wawa.TwitchPlays.Domains.ITwitchSupportable.TwitchHandleForcedSolve()')
 
 #### Returns
 [System.Collections.IEnumerator](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.IEnumerator 'System.Collections.IEnumerator')  

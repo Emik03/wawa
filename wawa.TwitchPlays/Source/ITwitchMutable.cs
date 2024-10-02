@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.TwitchPlays;
+namespace wawa.TwitchPlays;
 
 /// <summary>Interface to access internal editing of boolean values.</summary>
 interface ITwitchMutable : ITwitchDeclarable

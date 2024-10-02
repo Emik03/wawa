@@ -1,33 +1,33 @@
-### [Wawa.Optionals](Wawa.Optionals.md 'Wawa.Optionals').[Maybe](Maybe.md 'Wawa.Optionals.Maybe')
+### [wawa.Optionals](wawa.Optionals.md 'wawa.Optionals').[Maybe](Maybe.md 'wawa.Optionals.Maybe')
 
 ## Maybe.Or<T>(this Maybe<T>, Maybe<T>) Method
 
 Gives itself, or the parameter.
 
 ```csharp
-public static Wawa.Optionals.Maybe<T> Or<T>(this Wawa.Optionals.Maybe<T> that, Wawa.Optionals.Maybe<T> otherwise);
+public static wawa.Optionals.Maybe<T> Or<T>(this wawa.Optionals.Maybe<T> that, wawa.Optionals.Maybe<T> otherwise);
 ```
 #### Type parameters
 
-<a name='Wawa.Optionals.Maybe.Or_T_(thisWawa.Optionals.Maybe_T_,Wawa.Optionals.Maybe_T_).T'></a>
+<a name='wawa.Optionals.Maybe.Or_T_(thiswawa.Optionals.Maybe_T_,wawa.Optionals.Maybe_T_).T'></a>
 
 `T`
 
-The type of value stored within [that](Maybe.Or{T}(Maybe{T},Maybe{T}).md#Wawa.Optionals.Maybe.Or_T_(thisWawa.Optionals.Maybe_T_,Wawa.Optionals.Maybe_T_).that 'Wawa.Optionals.Maybe.Or<T>(this Wawa.Optionals.Maybe<T>, Wawa.Optionals.Maybe<T>).that').
+The type of value stored within [that](Maybe.Or{T}(Maybe{T},Maybe{T}).md#wawa.Optionals.Maybe.Or_T_(thiswawa.Optionals.Maybe_T_,wawa.Optionals.Maybe_T_).that 'wawa.Optionals.Maybe.Or<T>(this wawa.Optionals.Maybe<T>, wawa.Optionals.Maybe<T>).that').
 #### Parameters
 
-<a name='Wawa.Optionals.Maybe.Or_T_(thisWawa.Optionals.Maybe_T_,Wawa.Optionals.Maybe_T_).that'></a>
+<a name='wawa.Optionals.Maybe.Or_T_(thiswawa.Optionals.Maybe_T_,wawa.Optionals.Maybe_T_).that'></a>
 
-`that` [Wawa.Optionals.Maybe&lt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')[T](Maybe.Or{T}(Maybe{T},Maybe{T}).md#Wawa.Optionals.Maybe.Or_T_(thisWawa.Optionals.Maybe_T_,Wawa.Optionals.Maybe_T_).T 'Wawa.Optionals.Maybe.Or<T>(this Wawa.Optionals.Maybe<T>, Wawa.Optionals.Maybe<T>).T')[&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')
+`that` [wawa.Optionals.Maybe&lt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[T](Maybe.Or{T}(Maybe{T},Maybe{T}).md#wawa.Optionals.Maybe.Or_T_(thiswawa.Optionals.Maybe_T_,wawa.Optionals.Maybe_T_).T 'wawa.Optionals.Maybe.Or<T>(this wawa.Optionals.Maybe<T>, wawa.Optionals.Maybe<T>).T')[&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')
 
-This instance of [Maybe&lt;T&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>').
+This instance of [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').
 
-<a name='Wawa.Optionals.Maybe.Or_T_(thisWawa.Optionals.Maybe_T_,Wawa.Optionals.Maybe_T_).otherwise'></a>
+<a name='wawa.Optionals.Maybe.Or_T_(thiswawa.Optionals.Maybe_T_,wawa.Optionals.Maybe_T_).otherwise'></a>
 
-`otherwise` [Wawa.Optionals.Maybe&lt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')[T](Maybe.Or{T}(Maybe{T},Maybe{T}).md#Wawa.Optionals.Maybe.Or_T_(thisWawa.Optionals.Maybe_T_,Wawa.Optionals.Maybe_T_).T 'Wawa.Optionals.Maybe.Or<T>(this Wawa.Optionals.Maybe<T>, Wawa.Optionals.Maybe<T>).T')[&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')
+`otherwise` [wawa.Optionals.Maybe&lt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[T](Maybe.Or{T}(Maybe{T},Maybe{T}).md#wawa.Optionals.Maybe.Or_T_(thiswawa.Optionals.Maybe_T_,wawa.Optionals.Maybe_T_).T 'wawa.Optionals.Maybe.Or<T>(this wawa.Optionals.Maybe<T>, wawa.Optionals.Maybe<T>).T')[&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')
 
-The value to return if [IsSome](Maybe{T}.IsSome.md 'Wawa.Optionals.Maybe<T>.IsSome') is [false](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').
+The value to return if [IsSome](Maybe{T}.IsSome.md 'wawa.Optionals.Maybe<T>.IsSome') is [false](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').
 
 #### Returns
-[Wawa.Optionals.Maybe&lt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')[T](Maybe.Or{T}(Maybe{T},Maybe{T}).md#Wawa.Optionals.Maybe.Or_T_(thisWawa.Optionals.Maybe_T_,Wawa.Optionals.Maybe_T_).T 'Wawa.Optionals.Maybe.Or<T>(this Wawa.Optionals.Maybe<T>, Wawa.Optionals.Maybe<T>).T')[&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')  
-The inner value, or the parameter [otherwise](Maybe.Or{T}(Maybe{T},Maybe{T}).md#Wawa.Optionals.Maybe.Or_T_(thisWawa.Optionals.Maybe_T_,Wawa.Optionals.Maybe_T_).otherwise 'Wawa.Optionals.Maybe.Or<T>(this Wawa.Optionals.Maybe<T>, Wawa.Optionals.Maybe<T>).otherwise').
+[wawa.Optionals.Maybe&lt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[T](Maybe.Or{T}(Maybe{T},Maybe{T}).md#wawa.Optionals.Maybe.Or_T_(thiswawa.Optionals.Maybe_T_,wawa.Optionals.Maybe_T_).T 'wawa.Optionals.Maybe.Or<T>(this wawa.Optionals.Maybe<T>, wawa.Optionals.Maybe<T>).T')[&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')  
+The inner value, or the parameter [otherwise](Maybe.Or{T}(Maybe{T},Maybe{T}).md#wawa.Optionals.Maybe.Or_T_(thiswawa.Optionals.Maybe_T_,wawa.Optionals.Maybe_T_).otherwise 'wawa.Optionals.Maybe.Or<T>(this wawa.Optionals.Maybe<T>, wawa.Optionals.Maybe<T>).otherwise').

@@ -1,4 +1,4 @@
-### [Wawa.DDL](Wawa.DDL.md 'Wawa.DDL')
+### [wawa.DDL](wawa.DDL.md 'wawa.DDL')
 
 ## Lookup Class
 
@@ -12,9 +12,9 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Properties | |
 | :--- | :--- |
-| [Mods](Lookup.Mods.md 'Wawa.DDL.Lookup.Mods') | Gets the dictionary of loaded mods. |
+| [Mods](Lookup.Mods.md 'wawa.DDL.Lookup.Mods') | Gets the dictionary of loaded mods. |
 
 | Methods | |
 | :--- | :--- |
-| [Localized(string)](Lookup.Localized(string).md 'Wawa.DDL.Lookup.Localized(string)') | Gets the localized value of a [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') term. |
-| [ModNameOf(Component)](Lookup.ModNameOf(Component).md 'Wawa.DDL.Lookup.ModNameOf(Component)') | Gets the mod name attached to the component. |
+| [Localized(string)](Lookup.Localized(string).md 'wawa.DDL.Lookup.Localized(string)') | Gets the localized value of a [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') term. |
+| [ModNameOf(Component)](Lookup.ModNameOf(Component).md 'wawa.DDL.Lookup.ModNameOf(Component)') | Gets the mod name attached to the component. |

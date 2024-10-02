@@ -1,4 +1,4 @@
-### [Wawa.DDL](Wawa.DDL.md 'Wawa.DDL').[Preferences](Preferences.md 'Wawa.DDL.Preferences')
+### [wawa.DDL](wawa.DDL.md 'wawa.DDL').[Preferences](Preferences.md 'wawa.DDL.Preferences')
 
 ## Preferences.MaxVolume Field
 

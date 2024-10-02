@@ -1,4 +1,4 @@
-### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall')
+### [wawa.Recall](wawa.Recall.md 'wawa.Recall')
 
 ## StatusLights Enum
 
@@ -9,25 +9,25 @@ public enum StatusLights
 ```
 ### Fields
 
-<a name='Wawa.Recall.StatusLights.None'></a>
+<a name='wawa.Recall.StatusLights.None'></a>
 
 `None` 0
 
 No status light.
 
-<a name='Wawa.Recall.StatusLights.Off'></a>
+<a name='wawa.Recall.StatusLights.Off'></a>
 
 `Off` 1
 
 The status light that is off.
 
-<a name='Wawa.Recall.StatusLights.Solve'></a>
+<a name='wawa.Recall.StatusLights.Solve'></a>
 
 `Solve` 2
 
 The status light that is green, representing a solve.
 
-<a name='Wawa.Recall.StatusLights.Strike'></a>
+<a name='wawa.Recall.StatusLights.Strike'></a>
 
 `Strike` 4
 

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MPL-2.0
-namespace Wawa.DDL;
+namespace wawa.DDL;
 
 extern alias core;
 using static Math;

@@ -1,4 +1,4 @@
-### [Wawa.IO](Wawa.IO.md 'Wawa.IO').[Config](Config.md 'Wawa.IO.Config')
+### [wawa.IO](wawa.IO.md 'wawa.IO').[Config](Config.md 'wawa.IO.Config')
 
 ## Config.Serialize<TSerialize>(TSerialize) Method
 
@@ -9,19 +9,19 @@ public static string Serialize<TSerialize>(TSerialize value);
 ```
 #### Type parameters
 
-<a name='Wawa.IO.Config.Serialize_TSerialize_(TSerialize).TSerialize'></a>
+<a name='wawa.IO.Config.Serialize_TSerialize_(TSerialize).TSerialize'></a>
 
 `TSerialize`
 
 The type to serialize the value.
 #### Parameters
 
-<a name='Wawa.IO.Config.Serialize_TSerialize_(TSerialize).value'></a>
+<a name='wawa.IO.Config.Serialize_TSerialize_(TSerialize).value'></a>
 
-`value` [TSerialize](Config.Serialize{TSerialize}(TSerialize).md#Wawa.IO.Config.Serialize_TSerialize_(TSerialize).TSerialize 'Wawa.IO.Config.Serialize<TSerialize>(TSerialize).TSerialize')
+`value` [TSerialize](Config.Serialize{TSerialize}(TSerialize).md#wawa.IO.Config.Serialize_TSerialize_(TSerialize).TSerialize 'wawa.IO.Config.Serialize<TSerialize>(TSerialize).TSerialize')
 
 The value to serialize.
 
 #### Returns
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
-A [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') representation of [value](Config.Serialize{TSerialize}(TSerialize).md#Wawa.IO.Config.Serialize_TSerialize_(TSerialize).value 'Wawa.IO.Config.Serialize<TSerialize>(TSerialize).value') by serializing it as JSON.
+A [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') representation of [value](Config.Serialize{TSerialize}(TSerialize).md#wawa.IO.Config.Serialize_TSerialize_(TSerialize).value 'wawa.IO.Config.Serialize<TSerialize>(TSerialize).value') by serializing it as JSON.

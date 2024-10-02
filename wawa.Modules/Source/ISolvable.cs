@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Modules;
+namespace wawa.Modules;
 
 /// <summary>
 /// Interface for Twitch Plays auto-solvers. Used by <see cref="Module"/> to abstractly communicate

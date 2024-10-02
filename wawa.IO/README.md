@@ -2,7 +2,7 @@
 
 Adds types for KTaNE-related IO operations.
 
-### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.IO/Documentation/Wawa.IO.md)
+### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.IO/Documentation/wawa.IO.md)
 
 ---
 
@@ -31,7 +31,7 @@ Adds types for KTaNE-related IO operations.
 ```csharp
 using System;
 using UnityEngine;
-using Wawa.IO;
+using wawa.IO;
 
 ModInfo m = PathFinder.GetModInfo();
 

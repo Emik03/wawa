@@ -1,27 +1,27 @@
-### [Wawa.Optionals](Wawa.Optionals.md 'Wawa.Optionals').[Maybe](Maybe.md 'Wawa.Optionals.Maybe')
+### [wawa.Optionals](wawa.Optionals.md 'wawa.Optionals').[Maybe](Maybe.md 'wawa.Optionals.Maybe')
 
 ## Maybe.Flatten<T>(this Maybe<Maybe<Maybe<T>>>) Method
 
-Flattens a nested [Maybe&lt;T&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>').
+Flattens a nested [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').
 
 ```csharp
-public static Wawa.Optionals.Maybe<T> Flatten<T>(this Wawa.Optionals.Maybe<Wawa.Optionals.Maybe<Wawa.Optionals.Maybe<T>>> that);
+public static wawa.Optionals.Maybe<T> Flatten<T>(this wawa.Optionals.Maybe<wawa.Optionals.Maybe<wawa.Optionals.Maybe<T>>> that);
 ```
 #### Type parameters
 
-<a name='Wawa.Optionals.Maybe.Flatten_T_(thisWawa.Optionals.Maybe_Wawa.Optionals.Maybe_Wawa.Optionals.Maybe_T___).T'></a>
+<a name='wawa.Optionals.Maybe.Flatten_T_(thiswawa.Optionals.Maybe_wawa.Optionals.Maybe_wawa.Optionals.Maybe_T___).T'></a>
 
 `T`
 
-The type of value stored within [that](Maybe.Flatten{T}(Maybe{Maybe{Maybe{T}}}).md#Wawa.Optionals.Maybe.Flatten_T_(thisWawa.Optionals.Maybe_Wawa.Optionals.Maybe_Wawa.Optionals.Maybe_T___).that 'Wawa.Optionals.Maybe.Flatten<T>(this Wawa.Optionals.Maybe<Wawa.Optionals.Maybe<Wawa.Optionals.Maybe<T>>>).that').
+The type of value stored within [that](Maybe.Flatten{T}(Maybe{Maybe{Maybe{T}}}).md#wawa.Optionals.Maybe.Flatten_T_(thiswawa.Optionals.Maybe_wawa.Optionals.Maybe_wawa.Optionals.Maybe_T___).that 'wawa.Optionals.Maybe.Flatten<T>(this wawa.Optionals.Maybe<wawa.Optionals.Maybe<wawa.Optionals.Maybe<T>>>).that').
 #### Parameters
 
-<a name='Wawa.Optionals.Maybe.Flatten_T_(thisWawa.Optionals.Maybe_Wawa.Optionals.Maybe_Wawa.Optionals.Maybe_T___).that'></a>
+<a name='wawa.Optionals.Maybe.Flatten_T_(thiswawa.Optionals.Maybe_wawa.Optionals.Maybe_wawa.Optionals.Maybe_T___).that'></a>
 
-`that` [Wawa.Optionals.Maybe&lt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')[Wawa.Optionals.Maybe&lt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')[Wawa.Optionals.Maybe&lt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')[T](Maybe.Flatten{T}(Maybe{Maybe{Maybe{T}}}).md#Wawa.Optionals.Maybe.Flatten_T_(thisWawa.Optionals.Maybe_Wawa.Optionals.Maybe_Wawa.Optionals.Maybe_T___).T 'Wawa.Optionals.Maybe.Flatten<T>(this Wawa.Optionals.Maybe<Wawa.Optionals.Maybe<Wawa.Optionals.Maybe<T>>>).T')[&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')[&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')[&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')
+`that` [wawa.Optionals.Maybe&lt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[wawa.Optionals.Maybe&lt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[wawa.Optionals.Maybe&lt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[T](Maybe.Flatten{T}(Maybe{Maybe{Maybe{T}}}).md#wawa.Optionals.Maybe.Flatten_T_(thiswawa.Optionals.Maybe_wawa.Optionals.Maybe_wawa.Optionals.Maybe_T___).T 'wawa.Optionals.Maybe.Flatten<T>(this wawa.Optionals.Maybe<wawa.Optionals.Maybe<wawa.Optionals.Maybe<T>>>).T')[&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')
 
-This instance of [Maybe&lt;T&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>').
+This instance of [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').
 
 #### Returns
-[Wawa.Optionals.Maybe&lt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')[T](Maybe.Flatten{T}(Maybe{Maybe{Maybe{T}}}).md#Wawa.Optionals.Maybe.Flatten_T_(thisWawa.Optionals.Maybe_Wawa.Optionals.Maybe_Wawa.Optionals.Maybe_T___).T 'Wawa.Optionals.Maybe.Flatten<T>(this Wawa.Optionals.Maybe<Wawa.Optionals.Maybe<Wawa.Optionals.Maybe<T>>>).T')[&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')  
-The nested [Maybe&lt;T&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>'), or [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default').
+[wawa.Optionals.Maybe&lt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[T](Maybe.Flatten{T}(Maybe{Maybe{Maybe{T}}}).md#wawa.Optionals.Maybe.Flatten_T_(thiswawa.Optionals.Maybe_wawa.Optionals.Maybe_wawa.Optionals.Maybe_T___).T 'wawa.Optionals.Maybe.Flatten<T>(this wawa.Optionals.Maybe<wawa.Optionals.Maybe<wawa.Optionals.Maybe<T>>>).T')[&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')  
+The nested [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>'), or [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default').

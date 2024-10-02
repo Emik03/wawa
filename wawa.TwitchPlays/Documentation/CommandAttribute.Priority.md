@@ -1,5 +1,5 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[CommandAttribute](CommandAttribute.md 'Wawa.TwitchPlays.Domains.CommandAttribute')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains').[CommandAttribute](CommandAttribute.md 'wawa.TwitchPlays.Domains.CommandAttribute')
 
 ## CommandAttribute.Priority Property
 

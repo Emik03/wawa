@@ -1,23 +1,23 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[CommandAttribute](CommandAttribute.md 'Wawa.TwitchPlays.Domains.CommandAttribute')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains').[CommandAttribute](CommandAttribute.md 'wawa.TwitchPlays.Domains.CommandAttribute')
 
 ## CommandAttribute(string, int) Constructor
 
 An [System.Attribute](https://docs.microsoft.com/en-us/dotnet/api/System.Attribute 'System.Attribute') to attach to methods to signify that  
-the command should be processed by [Twitch&lt;TMod&gt;](Twitch{TMod}.md 'Wawa.TwitchPlays.Twitch<TMod>').
+the command should be processed by [Twitch&lt;TMod&gt;](Twitch{TMod}.md 'wawa.TwitchPlays.Twitch<TMod>').
 
 ```csharp
 public CommandAttribute(string prefix=null, int priority=0);
 ```
 #### Parameters
 
-<a name='Wawa.TwitchPlays.Domains.CommandAttribute.CommandAttribute(string,int).prefix'></a>
+<a name='wawa.TwitchPlays.Domains.CommandAttribute.CommandAttribute(string,int).prefix'></a>
 
 `prefix` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
 The prefix of this command.
 
-<a name='Wawa.TwitchPlays.Domains.CommandAttribute.CommandAttribute(string,int).priority'></a>
+<a name='wawa.TwitchPlays.Domains.CommandAttribute.CommandAttribute(string,int).priority'></a>
 
 `priority` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
 

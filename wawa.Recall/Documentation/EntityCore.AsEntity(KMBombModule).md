@@ -1,20 +1,20 @@
-### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[EntityCore](EntityCore.md 'Wawa.Recall.EntityCore')
+### [wawa.Recall](wawa.Recall.md 'wawa.Recall').[EntityCore](EntityCore.md 'wawa.Recall.EntityCore')
 
 ## EntityCore.AsEntity(this KMBombModule) Method
 
-Creates an instance of [Entity](Entity.md 'Wawa.Recall.Entity') where [Solvable](Entity.Solvable.md 'Wawa.Recall.Entity.Solvable') is set.
+Creates an instance of [Entity](Entity.md 'wawa.Recall.Entity') where [Solvable](Entity.Solvable.md 'wawa.Recall.Entity.Solvable') is set.
 
 ```csharp
-public static Wawa.Recall.Entity AsEntity(this KMBombModule solvable);
+public static wawa.Recall.Entity AsEntity(this KMBombModule solvable);
 ```
 #### Parameters
 
-<a name='Wawa.Recall.EntityCore.AsEntity(thisKMBombModule).solvable'></a>
+<a name='wawa.Recall.EntityCore.AsEntity(thisKMBombModule).solvable'></a>
 
 `solvable` [KMBombModule](https://docs.microsoft.com/en-us/dotnet/api/KMBombModule 'KMBombModule')
 
-The [KMBombModule](https://docs.microsoft.com/en-us/dotnet/api/KMBombModule 'KMBombModule') to pass in [Entity](Entity.md 'Wawa.Recall.Entity').
+The [KMBombModule](https://docs.microsoft.com/en-us/dotnet/api/KMBombModule 'KMBombModule') to pass in [Entity](Entity.md 'wawa.Recall.Entity').
 
 #### Returns
-[Entity](Entity.md 'Wawa.Recall.Entity')  
-A new instance of [Entity](Entity.md 'Wawa.Recall.Entity') which encapsulates [solvable](EntityCore.AsEntity(KMBombModule).md#Wawa.Recall.EntityCore.AsEntity(thisKMBombModule).solvable 'Wawa.Recall.EntityCore.AsEntity(this KMBombModule).solvable').
+[Entity](Entity.md 'wawa.Recall.Entity')  
+A new instance of [Entity](Entity.md 'wawa.Recall.Entity') which encapsulates [solvable](EntityCore.AsEntity(KMBombModule).md#wawa.Recall.EntityCore.AsEntity(thisKMBombModule).solvable 'wawa.Recall.EntityCore.AsEntity(this KMBombModule).solvable').

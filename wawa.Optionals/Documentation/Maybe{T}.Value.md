@@ -1,4 +1,4 @@
-### [Wawa.Optionals](Wawa.Optionals.md 'Wawa.Optionals').[Maybe&lt;T&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')
+### [wawa.Optionals](wawa.Optionals.md 'wawa.Optionals').[Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')
 
 ## Maybe<T>.Value Property
 
@@ -9,4 +9,4 @@ public T Value { get; }
 ```
 
 #### Property Value
-[T](Maybe{T}.md#Wawa.Optionals.Maybe_T_.T 'Wawa.Optionals.Maybe<T>.T')
+[T](Maybe{T}.md#wawa.Optionals.Maybe_T_.T 'wawa.Optionals.Maybe<T>.T')

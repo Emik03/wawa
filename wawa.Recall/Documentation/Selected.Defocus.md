@@ -1,4 +1,4 @@
-### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[Selected](Selected.md 'Wawa.Recall.Selected')
+### [wawa.Recall](wawa.Recall.md 'wawa.Recall').[Selected](Selected.md 'wawa.Recall.Selected')
 
 ## Selected.Defocus Property
 
@@ -6,8 +6,8 @@ Gets the [System.Action](https://docs.microsoft.com/en-us/dotnet/api/System.Acti
 this is when a different selectable becomes the focus or the module has been backed out of.
 
 ```csharp
-public Wawa.Recall.HookDef<System.Action> Defocus { get; }
+public wawa.Recall.HookDef<System.Action> Defocus { get; }
 ```
 
 #### Property Value
-[Wawa.Recall.HookDef&lt;](HookDef{T}.md 'Wawa.Recall.HookDef<T>')[System.Action](https://docs.microsoft.com/en-us/dotnet/api/System.Action 'System.Action')[&gt;](HookDef{T}.md 'Wawa.Recall.HookDef<T>')
+[wawa.Recall.HookDef&lt;](HookDef{T}.md 'wawa.Recall.HookDef<T>')[System.Action](https://docs.microsoft.com/en-us/dotnet/api/System.Action 'System.Action')[&gt;](HookDef{T}.md 'wawa.Recall.HookDef<T>')

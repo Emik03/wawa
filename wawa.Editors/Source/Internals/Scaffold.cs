@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Editors.Internals;
+namespace wawa.Editors.Internals;
 #pragma warning disable RCS1266
 /// <summary>Source generator.</summary>
 static class Scaffold
@@ -38,7 +38,7 @@ using System.Collections;
 using System.Collections.Generic;",
         Greeting = "Log(\"Hello, World! ma o, toki!\");",
         ModulesNamespace = @"
-using Wawa.Modules;",
+using wawa.Modules;",
         NeedyDeclaration = $"{nameof(KMNeedyModule)} {NeedyVar}",
         NotImplemented = $"throw new {nameof(NotImplementedException)}();",
         SolvableDeclaration = $"{nameof(KMBombModule)} {SolvableVar}",
@@ -274,7 +274,7 @@ using Wawa.Modules;",
             Prefab
         );
 
-    /// <summary>Generates the source template without any other <see cref="Wawa"/> references.</summary>
+    /// <summary>Generates the source template without any other <see cref="wawa"/> references.</summary>
     /// <param name="isSolvable">Whether the module is solvable, or a needy.</param>
     /// <returns>The source template.</returns>
     [NotNull]
@@ -342,8 +342,8 @@ using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
-using Wawa.TwitchPlays;
-using Wawa.TwitchPlays.Domains;
+using wawa.TwitchPlays;
+using wawa.TwitchPlays.Domains;
 using Random = UnityEngine.Random;
 
 /// <summary>Implements Twitch Plays support for <see cref=""{name}""/>.</summary>

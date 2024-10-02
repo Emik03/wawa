@@ -1,5 +1,5 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays](Wawa.TwitchPlays.md 'Wawa.TwitchPlays').[ITwitchDeclarable](ITwitchDeclarable.md 'Wawa.TwitchPlays.ITwitchDeclarable')
+### [wawa.TwitchPlays](wawa.TwitchPlays.md 'wawa.TwitchPlays').[ITwitchDeclarable](ITwitchDeclarable.md 'wawa.TwitchPlays.ITwitchDeclarable')
 
 ## ITwitchDeclarable.Help Property
 

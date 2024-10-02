@@ -1,5 +1,5 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[ITwitchSupportable](ITwitchSupportable.md 'Wawa.TwitchPlays.Domains.ITwitchSupportable')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains').[ITwitchSupportable](ITwitchSupportable.md 'wawa.TwitchPlays.Domains.ITwitchSupportable')
 
 ## ITwitchSupportable.TwitchHandleForcedSolve() Method
 

@@ -1,12 +1,12 @@
-### [Wawa.Modules](Wawa.Modules.md 'Wawa.Modules').[Sound](Sound.md 'Wawa.Modules.Sound')
+### [wawa.Modules](wawa.Modules.md 'wawa.Modules').[Sound](Sound.md 'wawa.Modules.Sound')
 
 ## Sound.FastestTimerBeep Property
 
 Gets the sound that plays when the bomb has at least 2 or more strikes.
 
 ```csharp
-public static Wawa.Modules.Sound FastestTimerBeep { get; }
+public static wawa.Modules.Sound FastestTimerBeep { get; }
 ```
 
 #### Property Value
-[Sound](Sound.md 'Wawa.Modules.Sound')
+[Sound](Sound.md 'wawa.Modules.Sound')

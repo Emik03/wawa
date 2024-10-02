@@ -1,23 +1,23 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains').[TwitchString](TwitchString.md 'wawa.TwitchPlays.Domains.TwitchString')
 
 ## TwitchString.TryCancel(string) Method
 
 Yield return this to indicate that this command is allowed to be cancelled at the given time of the yield.
 
 ```csharp
-public static Wawa.TwitchPlays.Domains.TwitchString TryCancel(string message=null);
+public static wawa.TwitchPlays.Domains.TwitchString TryCancel(string message=null);
 ```
 #### Parameters
 
-<a name='Wawa.TwitchPlays.Domains.TwitchString.TryCancel(string).message'></a>
+<a name='wawa.TwitchPlays.Domains.TwitchString.TryCancel(string).message'></a>
 
 `message` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
 The message to send.
 
 #### Returns
-[TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')  
+[TwitchString](TwitchString.md 'wawa.TwitchPlays.Domains.TwitchString')  
 A formatted string for Twitch Plays.
 
 ### Remarks

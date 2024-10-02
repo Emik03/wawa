@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.TwitchPlays.Domains;
+namespace wawa.TwitchPlays.Domains;
 
 /// <summary>Represents a <see cref="string"/> query to send to Twitch Plays.</summary>
 [PublicAPI]

@@ -1,23 +1,23 @@
-### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[Selected](Selected.md 'Wawa.Recall.Selected')
+### [wawa.Recall](wawa.Recall.md 'wawa.Recall').[Selected](Selected.md 'wawa.Recall.Selected')
 
 ## Selected.operator ==(Selected, Selected) Operator
 
 Determines whether both instances point to the same component.
 
 ```csharp
-public static bool operator ==(Wawa.Recall.Selected? left, Wawa.Recall.Selected? right);
+public static bool operator ==(wawa.Recall.Selected? left, wawa.Recall.Selected? right);
 ```
 #### Parameters
 
-<a name='Wawa.Recall.Selected.op_Equality(Wawa.Recall.Selected,Wawa.Recall.Selected).left'></a>
+<a name='wawa.Recall.Selected.op_Equality(wawa.Recall.Selected,wawa.Recall.Selected).left'></a>
 
-`left` [Selected](Selected.md 'Wawa.Recall.Selected')
+`left` [Selected](Selected.md 'wawa.Recall.Selected')
 
 The left-hand side.
 
-<a name='Wawa.Recall.Selected.op_Equality(Wawa.Recall.Selected,Wawa.Recall.Selected).right'></a>
+<a name='wawa.Recall.Selected.op_Equality(wawa.Recall.Selected,wawa.Recall.Selected).right'></a>
 
-`right` [Selected](Selected.md 'Wawa.Recall.Selected')
+`right` [Selected](Selected.md 'wawa.Recall.Selected')
 
 The right-hand side.
 

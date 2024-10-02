@@ -1,12 +1,12 @@
-### [Wawa.Modules](Wawa.Modules.md 'Wawa.Modules').[Sound](Sound.md 'Wawa.Modules.Sound')
+### [wawa.Modules](wawa.Modules.md 'wawa.Modules').[Sound](Sound.md 'wawa.Modules.Sound')
 
 ## Sound.LightBuzz Property
 
 Gets the sound that plays when the lights go out.
 
 ```csharp
-public static Wawa.Modules.Sound LightBuzz { get; }
+public static wawa.Modules.Sound LightBuzz { get; }
 ```
 
 #### Property Value
-[Sound](Sound.md 'Wawa.Modules.Sound')
+[Sound](Sound.md 'wawa.Modules.Sound')

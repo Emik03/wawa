@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Extensions;
+namespace wawa.Extensions;
 
 using static KMAudio;
 using State = KMGameInfo.State;

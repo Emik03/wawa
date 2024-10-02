@@ -360,14 +360,14 @@ global using global::UnityEngine.iOS;
 global using global::UnityEngineInternal;
 global using global::UnityEngineInternal.Input;
 global using global::VirtualDeviceExample;
-global using global::Wawa;
-global using global::Wawa.Optionals;
-global using global::Wawa.Recall;
-global using global::Wawa.Recall.Internals;
 global using global::nn;
 global using global::nn.nifm;
 global using global::proto;
 global using global::proto.Proto;
+global using global::wawa;
+global using global::wawa.Optionals;
+global using global::wawa.Recall;
+global using global::wawa.Recall.Internals;
 
 // Polyfills of namespaces in case dependencies are conditional.
 namespace System { }
@@ -1088,14 +1088,6 @@ namespace UnityEngineInternal.Input { }
 
 namespace VirtualDeviceExample { }
 
-namespace Wawa { }
-
-namespace Wawa.Optionals { }
-
-namespace Wawa.Recall { }
-
-namespace Wawa.Recall.Internals { }
-
 namespace nn { }
 
 namespace nn.nifm { }
@@ -1103,3 +1095,11 @@ namespace nn.nifm { }
 namespace proto { }
 
 namespace proto.Proto { }
+
+namespace wawa { }
+
+namespace wawa.Optionals { }
+
+namespace wawa.Recall { }
+
+namespace wawa.Recall.Internals { }

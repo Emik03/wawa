@@ -1,4 +1,4 @@
-### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[IVanilla](IVanilla.md 'Wawa.Recall.IVanilla')
+### [wawa.Recall](wawa.Recall.md 'wawa.Recall').[IVanilla](IVanilla.md 'wawa.Recall.IVanilla')
 
 ## IVanilla.Value Property
 

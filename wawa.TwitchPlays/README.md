@@ -33,8 +33,8 @@ using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
-using Wawa.TwitchPlays;
-using Wawa.TwitchPlays.Domains;
+using wawa.TwitchPlays;
+using wawa.TwitchPlays.Domains;
 
 /// <summary>Implements Twitch Plays support for <see cref="Foo"/>.</summary>
 public sealed class FooTwitch : Twitch<Foo>

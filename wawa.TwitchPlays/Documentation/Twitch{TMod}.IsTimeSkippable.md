@@ -1,5 +1,5 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays](Wawa.TwitchPlays.md 'Wawa.TwitchPlays').[Twitch&lt;TMod&gt;](Twitch{TMod}.md 'Wawa.TwitchPlays.Twitch<TMod>')
+### [wawa.TwitchPlays](wawa.TwitchPlays.md 'wawa.TwitchPlays').[Twitch&lt;TMod&gt;](Twitch{TMod}.md 'wawa.TwitchPlays.Twitch<TMod>')
 
 ## Twitch<TMod>.IsTimeSkippable Property
 
@@ -10,7 +10,7 @@ as well as any other modules that would like to skip time, are the only unsolved
 public virtual bool IsTimeSkippable { get; }
 ```
 
-Implements [IsTimeSkippable](ITwitchDeclarable.IsTimeSkippable.md 'Wawa.TwitchPlays.ITwitchDeclarable.IsTimeSkippable')
+Implements [IsTimeSkippable](ITwitchDeclarable.IsTimeSkippable.md 'wawa.TwitchPlays.ITwitchDeclarable.IsTimeSkippable')
 
 #### Property Value
 [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')

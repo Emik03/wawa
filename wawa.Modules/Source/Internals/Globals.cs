@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Modules.Internals;
+namespace wawa.Modules.Internals;
 
 /// <summary>Contains static methods able to be accessed from anywhere within this library.</summary>
 static class Globals

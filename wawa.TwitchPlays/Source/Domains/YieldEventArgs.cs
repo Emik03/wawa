@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.TwitchPlays.Domains;
+namespace wawa.TwitchPlays.Domains;
 
 /// <summary>An <see cref="EventArgs"/> for yielded items.</summary>
 [PublicAPI]

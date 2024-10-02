@@ -1,4 +1,4 @@
-### [Wawa.Modules](Wawa.Modules.md 'Wawa.Modules').[ModdedModule](ModdedModule.md 'Wawa.Modules.ModdedModule')
+### [wawa.Modules](wawa.Modules.md 'wawa.Modules').[ModdedModule](ModdedModule.md 'wawa.Modules.ModdedModule')
 
 ## ModdedModule.LogLower<T>(T, object[]) Method
 
@@ -9,25 +9,25 @@ public virtual T LogLower<T>(T format=default(T), params object[] args);
 ```
 #### Type parameters
 
-<a name='Wawa.Modules.ModdedModule.LogLower_T_(T,object[]).T'></a>
+<a name='wawa.Modules.ModdedModule.LogLower_T_(T,object[]).T'></a>
 
 `T`
 
 The type of the value to log.
 #### Parameters
 
-<a name='Wawa.Modules.ModdedModule.LogLower_T_(T,object[]).format'></a>
+<a name='wawa.Modules.ModdedModule.LogLower_T_(T,object[]).format'></a>
 
-`format` [T](ModdedModule.LogLower{T}(T,object[]).md#Wawa.Modules.ModdedModule.LogLower_T_(T,object[]).T 'Wawa.Modules.ModdedModule.LogLower<T>(T, object[]).T')
+`format` [T](ModdedModule.LogLower{T}(T,object[]).md#wawa.Modules.ModdedModule.LogLower_T_(T,object[]).T 'wawa.Modules.ModdedModule.LogLower<T>(T, object[]).T')
 
 The value to log.
 
-<a name='Wawa.Modules.ModdedModule.LogLower_T_(T,object[]).args'></a>
+<a name='wawa.Modules.ModdedModule.LogLower_T_(T,object[]).args'></a>
 
 `args` [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
 
 The arguments to hook into format.
 
 #### Returns
-[T](ModdedModule.LogLower{T}(T,object[]).md#Wawa.Modules.ModdedModule.LogLower_T_(T,object[]).T 'Wawa.Modules.ModdedModule.LogLower<T>(T, object[]).T')  
-The parameter [format](ModdedModule.LogLower{T}(T,object[]).md#Wawa.Modules.ModdedModule.LogLower_T_(T,object[]).format 'Wawa.Modules.ModdedModule.LogLower<T>(T, object[]).format').
+[T](ModdedModule.LogLower{T}(T,object[]).md#wawa.Modules.ModdedModule.LogLower_T_(T,object[]).T 'wawa.Modules.ModdedModule.LogLower<T>(T, object[]).T')  
+The parameter [format](ModdedModule.LogLower{T}(T,object[]).md#wawa.Modules.ModdedModule.LogLower_T_(T,object[]).format 'wawa.Modules.ModdedModule.LogLower<T>(T, object[]).format').

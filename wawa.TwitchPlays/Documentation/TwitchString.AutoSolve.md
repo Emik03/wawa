@@ -1,16 +1,16 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains').[TwitchString](TwitchString.md 'wawa.TwitchPlays.Domains.TwitchString')
 
 ## TwitchString.AutoSolve Property
 
 Gets the auto-solving Twitch Plays query.
 
 ```csharp
-public static Wawa.TwitchPlays.Domains.TwitchString AutoSolve { get; }
+public static wawa.TwitchPlays.Domains.TwitchString AutoSolve { get; }
 ```
 
 #### Property Value
-[TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')
+[TwitchString](TwitchString.md 'wawa.TwitchPlays.Domains.TwitchString')
 
 ### Remarks
   

@@ -1,16 +1,16 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains').[TwitchString](TwitchString.md 'wawa.TwitchPlays.Domains.TwitchString')
 
 ## TwitchString.EndMultipleStrikes Property
 
 Gets the strike enabler Twitch Plays query.
 
 ```csharp
-public static Wawa.TwitchPlays.Domains.TwitchString EndMultipleStrikes { get; }
+public static wawa.TwitchPlays.Domains.TwitchString EndMultipleStrikes { get; }
 ```
 
 #### Property Value
-[TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')
+[TwitchString](TwitchString.md 'wawa.TwitchPlays.Domains.TwitchString')
 
 ### Remarks
   

@@ -1,8 +1,8 @@
-### [Wawa.Optionals](Wawa.Optionals.md 'Wawa.Optionals').[Unit](Unit.md 'Wawa.Optionals.Unit')
+### [wawa.Optionals](wawa.Optionals.md 'wawa.Optionals').[Unit](Unit.md 'wawa.Optionals.Unit')
 
 ## Unit.AsString Field
 
-Gets the string representation of [Unit](Unit.md 'Wawa.Optionals.Unit').
+Gets the string representation of [Unit](Unit.md 'wawa.Optionals.Unit').
 
 ```csharp
 public const string AsString = "()";

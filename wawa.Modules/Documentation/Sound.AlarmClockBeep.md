@@ -1,12 +1,12 @@
-### [Wawa.Modules](Wawa.Modules.md 'Wawa.Modules').[Sound](Sound.md 'Wawa.Modules.Sound')
+### [wawa.Modules](wawa.Modules.md 'wawa.Modules').[Sound](Sound.md 'wawa.Modules.Sound')
 
 ## Sound.AlarmClockBeep Property
 
 Gets the sound that plays when the alarm clock goes off. This sound loops.
 
 ```csharp
-public static Wawa.Modules.Sound AlarmClockBeep { get; }
+public static wawa.Modules.Sound AlarmClockBeep { get; }
 ```
 
 #### Property Value
-[Sound](Sound.md 'Wawa.Modules.Sound')
+[Sound](Sound.md 'wawa.Modules.Sound')

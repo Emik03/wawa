@@ -1,5 +1,5 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays](Wawa.TwitchPlays.md 'Wawa.TwitchPlays').[Twitch&lt;TMod&gt;](Twitch{TMod}.md 'Wawa.TwitchPlays.Twitch<TMod>')
+### [wawa.TwitchPlays](wawa.TwitchPlays.md 'wawa.TwitchPlays').[Twitch&lt;TMod&gt;](Twitch{TMod}.md 'wawa.TwitchPlays.Twitch<TMod>')
 
 ## Twitch<TMod>.YieldWhile<T>(T, Func<bool>) Method
 
@@ -11,25 +11,25 @@ protected static System.Collections.Generic.IEnumerable<T> YieldWhile<T>(T item,
 ```
 #### Type parameters
 
-<a name='Wawa.TwitchPlays.Twitch_TMod_.YieldWhile_T_(T,System.Func_bool_).T'></a>
+<a name='wawa.TwitchPlays.Twitch_TMod_.YieldWhile_T_(T,System.Func_bool_).T'></a>
 
 `T`
 
 The [System.Type](https://docs.microsoft.com/en-us/dotnet/api/System.Type 'System.Type') of the items that are yielded.
 #### Parameters
 
-<a name='Wawa.TwitchPlays.Twitch_TMod_.YieldWhile_T_(T,System.Func_bool_).item'></a>
+<a name='wawa.TwitchPlays.Twitch_TMod_.YieldWhile_T_(T,System.Func_bool_).item'></a>
 
-`item` [T](Twitch{TMod}.YieldWhile{T}(T,Func{bool}).md#Wawa.TwitchPlays.Twitch_TMod_.YieldWhile_T_(T,System.Func_bool_).T 'Wawa.TwitchPlays.Twitch<TMod>.YieldWhile<T>(T, System.Func<bool>).T')
+`item` [T](Twitch{TMod}.YieldWhile{T}(T,Func{bool}).md#wawa.TwitchPlays.Twitch_TMod_.YieldWhile_T_(T,System.Func_bool_).T 'wawa.TwitchPlays.Twitch<TMod>.YieldWhile<T>(T, System.Func<bool>).T')
 
 The item to yield repeatedly.
 
-<a name='Wawa.TwitchPlays.Twitch_TMod_.YieldWhile_T_(T,System.Func_bool_).condition'></a>
+<a name='wawa.TwitchPlays.Twitch_TMod_.YieldWhile_T_(T,System.Func_bool_).condition'></a>
 
 `condition` [System.Func&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Func-1 'System.Func`1')[System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Func-1 'System.Func`1')
 
 The condition to repeatedly check until it returns [false](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').
 
 #### Returns
-[System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')[T](Twitch{TMod}.YieldWhile{T}(T,Func{bool}).md#Wawa.TwitchPlays.Twitch_TMod_.YieldWhile_T_(T,System.Func_bool_).T 'Wawa.TwitchPlays.Twitch<TMod>.YieldWhile<T>(T, System.Func<bool>).T')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')  
-[item](Twitch{TMod}.YieldWhile{T}(T,Func{bool}).md#Wawa.TwitchPlays.Twitch_TMod_.YieldWhile_T_(T,System.Func_bool_).item 'Wawa.TwitchPlays.Twitch<TMod>.YieldWhile<T>(T, System.Func<bool>).item') continuously until [condition](Twitch{TMod}.YieldWhile{T}(T,Func{bool}).md#Wawa.TwitchPlays.Twitch_TMod_.YieldWhile_T_(T,System.Func_bool_).condition 'Wawa.TwitchPlays.Twitch<TMod>.YieldWhile<T>(T, System.Func<bool>).condition') is [false](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').
+[System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')[T](Twitch{TMod}.YieldWhile{T}(T,Func{bool}).md#wawa.TwitchPlays.Twitch_TMod_.YieldWhile_T_(T,System.Func_bool_).T 'wawa.TwitchPlays.Twitch<TMod>.YieldWhile<T>(T, System.Func<bool>).T')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')  
+[item](Twitch{TMod}.YieldWhile{T}(T,Func{bool}).md#wawa.TwitchPlays.Twitch_TMod_.YieldWhile_T_(T,System.Func_bool_).item 'wawa.TwitchPlays.Twitch<TMod>.YieldWhile<T>(T, System.Func<bool>).item') continuously until [condition](Twitch{TMod}.YieldWhile{T}(T,Func{bool}).md#wawa.TwitchPlays.Twitch_TMod_.YieldWhile_T_(T,System.Func_bool_).condition 'wawa.TwitchPlays.Twitch<TMod>.YieldWhile<T>(T, System.Func<bool>).condition') is [false](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').

@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Unity;
+namespace wawa.Unity;
 
 /// <summary><see cref="MonoBehaviour"/> with caching methods.</summary>
 [CLSCompliant(false), PublicAPI]

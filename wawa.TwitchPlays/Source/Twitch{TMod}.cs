@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.TwitchPlays;
+namespace wawa.TwitchPlays;
 
 /// <summary>
 /// Base class for TwitchPlays support for solvable and needy modded modules in Keep Talking and Nobody Explodes.
@@ -181,8 +181,8 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     }
 
     /// <inheritdoc />
-    [PublicAPI, Pure]
-    public IEnumerator ProcessTwitchCommand([AllowNull] string command)
+    [PublicAPI, Pure] // ReSharper disable once AnnotationRedundancyInHierarchy
+    public IEnumerator ProcessTwitchCommand([AllowNull, CanBeNull] string command)
     {
         if (command is null || Match(command, out var isWildcard) is not { } match)
             yield break;

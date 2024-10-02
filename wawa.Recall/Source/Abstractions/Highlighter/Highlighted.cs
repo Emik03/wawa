@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Recall;
+namespace wawa.Recall;
 
 /// <summary>
 /// Encapsulates a vanilla or modded highlight, and extends functionality to get or

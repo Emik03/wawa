@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Modules;
+namespace wawa.Modules;
 
 /// <summary>Encapsulation of status conditions for a <see cref="ModdedModule"/>.</summary>
 [PublicAPI]

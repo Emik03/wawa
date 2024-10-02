@@ -1,5 +1,5 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays](Wawa.TwitchPlays.md 'Wawa.TwitchPlays').[Twitch&lt;TMod&gt;](Twitch{TMod}.md 'Wawa.TwitchPlays.Twitch<TMod>')
+### [wawa.TwitchPlays](wawa.TwitchPlays.md 'wawa.TwitchPlays').[Twitch&lt;TMod&gt;](Twitch{TMod}.md 'wawa.TwitchPlays.Twitch<TMod>')
 
 ## Twitch<TMod>.ProcessTwitchCommand(string) Method
 
@@ -10,13 +10,13 @@ public virtual System.Collections.IEnumerator ProcessTwitchCommand(string comman
 ```
 #### Parameters
 
-<a name='Wawa.TwitchPlays.Twitch_TMod_.ProcessTwitchCommand(string).command'></a>
+<a name='wawa.TwitchPlays.Twitch_TMod_.ProcessTwitchCommand(string).command'></a>
 
 `command` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
 The command of the user.
 
-Implements [ProcessTwitchCommand(string)](ITwitchSupportable.ProcessTwitchCommand(string).md 'Wawa.TwitchPlays.Domains.ITwitchSupportable.ProcessTwitchCommand(string)')
+Implements [ProcessTwitchCommand(string)](ITwitchSupportable.ProcessTwitchCommand(string).md 'wawa.TwitchPlays.Domains.ITwitchSupportable.ProcessTwitchCommand(string)')
 
 #### Returns
 [System.Collections.IEnumerator](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.IEnumerator 'System.Collections.IEnumerator')  

@@ -1,4 +1,4 @@
-### [Wawa.IO](Wawa.IO.md 'Wawa.IO').[ModInfo](ModInfo.md 'Wawa.IO.ModInfo')
+### [wawa.IO](wawa.IO.md 'wawa.IO').[ModInfo](ModInfo.md 'wawa.IO.ModInfo')
 
 ## ModInfo.Version Property
 

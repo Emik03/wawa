@@ -2,7 +2,7 @@
 
 Implements convenience extension methods for `KMFramework` types, as well as fixes for broken/buggy ones.
 
-### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.Extensions/Documentation/Wawa.Extensions.md)
+### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.Extensions/Documentation/wawa.Extensions.md)
 
 ---
 
@@ -57,7 +57,7 @@ Completely stand-alone library, and not used as a dependency in another library.
 ## Example
 
 ```csharp
-using Wawa.Extensions;
+using wawa.Extensions;
 
 GetComponents<KMSelectable>().Add(onInteract: Fun);
 

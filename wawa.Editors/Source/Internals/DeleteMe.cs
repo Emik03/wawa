@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Editors.Internals;
+namespace wawa.Editors.Internals;
 
 /// <summary>A temporary <see cref="MonoBehaviour"/> that does nothing other than throw an error in play mode.</summary>
 sealed class DeleteMe : MonoBehaviour

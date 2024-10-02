@@ -1,5 +1,5 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[Instruction](Instruction.md 'Wawa.TwitchPlays.Domains.Instruction')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains').[Instruction](Instruction.md 'wawa.TwitchPlays.Domains.Instruction')
 
 ## Instruction.UsableInForcedSolve Property
 
@@ -16,5 +16,5 @@ public bool UsableInForcedSolve { get; }
 
 ### Remarks
   
-Currently supports [Pause](Instruction.Pause.md 'Wawa.TwitchPlays.Domains.Instruction.Pause'), and values that Unity already natively supports: [null](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null')  
-/ [FrameAdvance](Instruction.FrameAdvance.md 'Wawa.TwitchPlays.Domains.Instruction.FrameAdvance'), [UnityEngine.CustomYieldInstruction](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.CustomYieldInstruction 'UnityEngine.CustomYieldInstruction'), and [UnityEngine.YieldInstruction](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.YieldInstruction 'UnityEngine.YieldInstruction').
+Currently supports [Pause](Instruction.Pause.md 'wawa.TwitchPlays.Domains.Instruction.Pause'), and values that Unity already natively supports: [null](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null')  
+/ [FrameAdvance](Instruction.FrameAdvance.md 'wawa.TwitchPlays.Domains.Instruction.FrameAdvance'), [UnityEngine.CustomYieldInstruction](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.CustomYieldInstruction 'UnityEngine.CustomYieldInstruction'), and [UnityEngine.YieldInstruction](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.YieldInstruction 'UnityEngine.YieldInstruction').

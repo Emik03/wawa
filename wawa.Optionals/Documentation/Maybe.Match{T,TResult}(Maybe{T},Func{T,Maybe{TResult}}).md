@@ -1,39 +1,39 @@
-### [Wawa.Optionals](Wawa.Optionals.md 'Wawa.Optionals').[Maybe](Maybe.md 'Wawa.Optionals.Maybe')
+### [wawa.Optionals](wawa.Optionals.md 'wawa.Optionals').[Maybe](Maybe.md 'wawa.Optionals.Maybe')
 
 ## Maybe.Match<T,TResult>(this Maybe<T>, Func<T,Maybe<TResult>>) Method
 
-Uses the callback corresponding to the inner value of [that](Maybe.Match{T,TResult}(Maybe{T},Func{T,Maybe{TResult}}).md#Wawa.Optionals.Maybe.Match_T,TResult_(thisWawa.Optionals.Maybe_T_,System.Func_T,Wawa.Optionals.Maybe_TResult__).that 'Wawa.Optionals.Maybe.Match<T,TResult>(this Wawa.Optionals.Maybe<T>, System.Func<T,Wawa.Optionals.Maybe<TResult>>).that').
+Uses the callback corresponding to the inner value of [that](Maybe.Match{T,TResult}(Maybe{T},Func{T,Maybe{TResult}}).md#wawa.Optionals.Maybe.Match_T,TResult_(thiswawa.Optionals.Maybe_T_,System.Func_T,wawa.Optionals.Maybe_TResult__).that 'wawa.Optionals.Maybe.Match<T,TResult>(this wawa.Optionals.Maybe<T>, System.Func<T,wawa.Optionals.Maybe<TResult>>).that').
 
 ```csharp
-public static Wawa.Optionals.Maybe<TResult> Match<T,TResult>(this Wawa.Optionals.Maybe<T> that, System.Func<T,Wawa.Optionals.Maybe<TResult>> some);
+public static wawa.Optionals.Maybe<TResult> Match<T,TResult>(this wawa.Optionals.Maybe<T> that, System.Func<T,wawa.Optionals.Maybe<TResult>> some);
 ```
 #### Type parameters
 
-<a name='Wawa.Optionals.Maybe.Match_T,TResult_(thisWawa.Optionals.Maybe_T_,System.Func_T,Wawa.Optionals.Maybe_TResult__).T'></a>
+<a name='wawa.Optionals.Maybe.Match_T,TResult_(thiswawa.Optionals.Maybe_T_,System.Func_T,wawa.Optionals.Maybe_TResult__).T'></a>
 
 `T`
 
-The type of value stored within [that](Maybe.Match{T,TResult}(Maybe{T},Func{T,Maybe{TResult}}).md#Wawa.Optionals.Maybe.Match_T,TResult_(thisWawa.Optionals.Maybe_T_,System.Func_T,Wawa.Optionals.Maybe_TResult__).that 'Wawa.Optionals.Maybe.Match<T,TResult>(this Wawa.Optionals.Maybe<T>, System.Func<T,Wawa.Optionals.Maybe<TResult>>).that').
+The type of value stored within [that](Maybe.Match{T,TResult}(Maybe{T},Func{T,Maybe{TResult}}).md#wawa.Optionals.Maybe.Match_T,TResult_(thiswawa.Optionals.Maybe_T_,System.Func_T,wawa.Optionals.Maybe_TResult__).that 'wawa.Optionals.Maybe.Match<T,TResult>(this wawa.Optionals.Maybe<T>, System.Func<T,wawa.Optionals.Maybe<TResult>>).that').
 
-<a name='Wawa.Optionals.Maybe.Match_T,TResult_(thisWawa.Optionals.Maybe_T_,System.Func_T,Wawa.Optionals.Maybe_TResult__).TResult'></a>
+<a name='wawa.Optionals.Maybe.Match_T,TResult_(thiswawa.Optionals.Maybe_T_,System.Func_T,wawa.Optionals.Maybe_TResult__).TResult'></a>
 
 `TResult`
 
 The [return](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/return 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/return') value of both callbacks.
 #### Parameters
 
-<a name='Wawa.Optionals.Maybe.Match_T,TResult_(thisWawa.Optionals.Maybe_T_,System.Func_T,Wawa.Optionals.Maybe_TResult__).that'></a>
+<a name='wawa.Optionals.Maybe.Match_T,TResult_(thiswawa.Optionals.Maybe_T_,System.Func_T,wawa.Optionals.Maybe_TResult__).that'></a>
 
-`that` [Wawa.Optionals.Maybe&lt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')[T](Maybe.Match{T,TResult}(Maybe{T},Func{T,Maybe{TResult}}).md#Wawa.Optionals.Maybe.Match_T,TResult_(thisWawa.Optionals.Maybe_T_,System.Func_T,Wawa.Optionals.Maybe_TResult__).T 'Wawa.Optionals.Maybe.Match<T,TResult>(this Wawa.Optionals.Maybe<T>, System.Func<T,Wawa.Optionals.Maybe<TResult>>).T')[&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')
+`that` [wawa.Optionals.Maybe&lt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[T](Maybe.Match{T,TResult}(Maybe{T},Func{T,Maybe{TResult}}).md#wawa.Optionals.Maybe.Match_T,TResult_(thiswawa.Optionals.Maybe_T_,System.Func_T,wawa.Optionals.Maybe_TResult__).T 'wawa.Optionals.Maybe.Match<T,TResult>(this wawa.Optionals.Maybe<T>, System.Func<T,wawa.Optionals.Maybe<TResult>>).T')[&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')
 
-This instance of [Maybe&lt;T&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>').
+This instance of [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').
 
-<a name='Wawa.Optionals.Maybe.Match_T,TResult_(thisWawa.Optionals.Maybe_T_,System.Func_T,Wawa.Optionals.Maybe_TResult__).some'></a>
+<a name='wawa.Optionals.Maybe.Match_T,TResult_(thiswawa.Optionals.Maybe_T_,System.Func_T,wawa.Optionals.Maybe_TResult__).some'></a>
 
-`some` [System.Func&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Func-2 'System.Func`2')[T](Maybe.Match{T,TResult}(Maybe{T},Func{T,Maybe{TResult}}).md#Wawa.Optionals.Maybe.Match_T,TResult_(thisWawa.Optionals.Maybe_T_,System.Func_T,Wawa.Optionals.Maybe_TResult__).T 'Wawa.Optionals.Maybe.Match<T,TResult>(this Wawa.Optionals.Maybe<T>, System.Func<T,Wawa.Optionals.Maybe<TResult>>).T')[,](https://docs.microsoft.com/en-us/dotnet/api/System.Func-2 'System.Func`2')[Wawa.Optionals.Maybe&lt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')[TResult](Maybe.Match{T,TResult}(Maybe{T},Func{T,Maybe{TResult}}).md#Wawa.Optionals.Maybe.Match_T,TResult_(thisWawa.Optionals.Maybe_T_,System.Func_T,Wawa.Optionals.Maybe_TResult__).TResult 'Wawa.Optionals.Maybe.Match<T,TResult>(this Wawa.Optionals.Maybe<T>, System.Func<T,Wawa.Optionals.Maybe<TResult>>).TResult')[&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Func-2 'System.Func`2')
+`some` [System.Func&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Func-2 'System.Func`2')[T](Maybe.Match{T,TResult}(Maybe{T},Func{T,Maybe{TResult}}).md#wawa.Optionals.Maybe.Match_T,TResult_(thiswawa.Optionals.Maybe_T_,System.Func_T,wawa.Optionals.Maybe_TResult__).T 'wawa.Optionals.Maybe.Match<T,TResult>(this wawa.Optionals.Maybe<T>, System.Func<T,wawa.Optionals.Maybe<TResult>>).T')[,](https://docs.microsoft.com/en-us/dotnet/api/System.Func-2 'System.Func`2')[wawa.Optionals.Maybe&lt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[TResult](Maybe.Match{T,TResult}(Maybe{T},Func{T,Maybe{TResult}}).md#wawa.Optionals.Maybe.Match_T,TResult_(thiswawa.Optionals.Maybe_T_,System.Func_T,wawa.Optionals.Maybe_TResult__).TResult 'wawa.Optionals.Maybe.Match<T,TResult>(this wawa.Optionals.Maybe<T>, System.Func<T,wawa.Optionals.Maybe<TResult>>).TResult')[&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Func-2 'System.Func`2')
 
-The callback to run if [IsSome](Maybe{T}.IsSome.md 'Wawa.Optionals.Maybe<T>.IsSome') is [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').
+The callback to run if [IsSome](Maybe{T}.IsSome.md 'wawa.Optionals.Maybe<T>.IsSome') is [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').
 
 #### Returns
-[Wawa.Optionals.Maybe&lt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')[TResult](Maybe.Match{T,TResult}(Maybe{T},Func{T,Maybe{TResult}}).md#Wawa.Optionals.Maybe.Match_T,TResult_(thisWawa.Optionals.Maybe_T_,System.Func_T,Wawa.Optionals.Maybe_TResult__).TResult 'Wawa.Optionals.Maybe.Match<T,TResult>(this Wawa.Optionals.Maybe<T>, System.Func<T,Wawa.Optionals.Maybe<TResult>>).TResult')[&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')  
+[wawa.Optionals.Maybe&lt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[TResult](Maybe.Match{T,TResult}(Maybe{T},Func{T,Maybe{TResult}}).md#wawa.Optionals.Maybe.Match_T,TResult_(thiswawa.Optionals.Maybe_T_,System.Func_T,wawa.Optionals.Maybe_TResult__).TResult 'wawa.Optionals.Maybe.Match<T,TResult>(this wawa.Optionals.Maybe<T>, System.Func<T,wawa.Optionals.Maybe<TResult>>).TResult')[&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')  
 The value returned from the corresponding callback.

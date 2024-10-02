@@ -1,28 +1,28 @@
-### [Wawa.Optionals](Wawa.Optionals.md 'Wawa.Optionals').[Maybe](Maybe.md 'Wawa.Optionals.Maybe')
+### [wawa.Optionals](wawa.Optionals.md 'wawa.Optionals').[Maybe](Maybe.md 'wawa.Optionals.Maybe')
 
 ## Maybe.From<T>(Nullable<T>) Method
 
-Wraps [T](Maybe.From{T}(T+).md#Wawa.Optionals.Maybe.From_T_(System.Nullable_T_).T 'Wawa.Optionals.Maybe.From<T>(System.Nullable<T>).T') in a [Maybe&lt;T&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>').
+Wraps [T](Maybe.From{T}(T+).md#wawa.Optionals.Maybe.From_T_(System.Nullable_T_).T 'wawa.Optionals.Maybe.From<T>(System.Nullable<T>).T') in a [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').
 
 ```csharp
-public static Wawa.Optionals.Maybe<T> From<T>(System.Nullable<T> that)
+public static wawa.Optionals.Maybe<T> From<T>(System.Nullable<T> that)
     where T : struct, System.ValueType, System.ValueType;
 ```
 #### Type parameters
 
-<a name='Wawa.Optionals.Maybe.From_T_(System.Nullable_T_).T'></a>
+<a name='wawa.Optionals.Maybe.From_T_(System.Nullable_T_).T'></a>
 
 `T`
 
-The type of parameter and generic in [Maybe&lt;T&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>').
+The type of parameter and generic in [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').
 #### Parameters
 
-<a name='Wawa.Optionals.Maybe.From_T_(System.Nullable_T_).that'></a>
+<a name='wawa.Optionals.Maybe.From_T_(System.Nullable_T_).that'></a>
 
-`that` [System.Nullable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Nullable-1 'System.Nullable`1')[T](Maybe.From{T}(T+).md#Wawa.Optionals.Maybe.From_T_(System.Nullable_T_).T 'Wawa.Optionals.Maybe.From<T>(System.Nullable<T>).T')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Nullable-1 'System.Nullable`1')
+`that` [System.Nullable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Nullable-1 'System.Nullable`1')[T](Maybe.From{T}(T+).md#wawa.Optionals.Maybe.From_T_(System.Nullable_T_).T 'wawa.Optionals.Maybe.From<T>(System.Nullable<T>).T')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Nullable-1 'System.Nullable`1')
 
-This instance of [T](Maybe.From{T}(T+).md#Wawa.Optionals.Maybe.From_T_(System.Nullable_T_).T 'Wawa.Optionals.Maybe.From<T>(System.Nullable<T>).T').
+This instance of [T](Maybe.From{T}(T+).md#wawa.Optionals.Maybe.From_T_(System.Nullable_T_).T 'wawa.Optionals.Maybe.From<T>(System.Nullable<T>).T').
 
 #### Returns
-[Wawa.Optionals.Maybe&lt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')[T](Maybe.From{T}(T+).md#Wawa.Optionals.Maybe.From_T_(System.Nullable_T_).T 'Wawa.Optionals.Maybe.From<T>(System.Nullable<T>).T')[&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')  
-A new instance of [Maybe&lt;T&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>').
+[wawa.Optionals.Maybe&lt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[T](Maybe.From{T}(T+).md#wawa.Optionals.Maybe.From_T_(System.Nullable_T_).T 'wawa.Optionals.Maybe.From<T>(System.Nullable<T>).T')[&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')  
+A new instance of [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').

@@ -1,5 +1,5 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays](Wawa.TwitchPlays.md 'Wawa.TwitchPlays').[Twitch&lt;TMod&gt;](Twitch{TMod}.md 'Wawa.TwitchPlays.Twitch<TMod>')
+### [wawa.TwitchPlays](wawa.TwitchPlays.md 'wawa.TwitchPlays').[Twitch&lt;TMod&gt;](Twitch{TMod}.md 'wawa.TwitchPlays.Twitch<TMod>')
 
 ## Twitch<TMod>.IsTime Property
 
@@ -9,7 +9,7 @@ Gets a value indicating whether it is in Time Mode, where solves change the time
 public virtual bool IsTime { get; }
 ```
 
-Implements [IsTime](ITwitchDeclarable.IsTime.md 'Wawa.TwitchPlays.ITwitchDeclarable.IsTime')
+Implements [IsTime](ITwitchDeclarable.IsTime.md 'wawa.TwitchPlays.ITwitchDeclarable.IsTime')
 
 #### Property Value
 [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')

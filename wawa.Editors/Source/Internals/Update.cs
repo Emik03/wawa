@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Editors.Internals;
+namespace wawa.Editors.Internals;
 
 /// <summary>Updates libraries.</summary>
 static class Update

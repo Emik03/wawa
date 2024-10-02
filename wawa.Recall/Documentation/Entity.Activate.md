@@ -1,4 +1,4 @@
-### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[Entity](Entity.md 'Wawa.Recall.Entity')
+### [wawa.Recall](wawa.Recall.md 'wawa.Recall').[Entity](Entity.md 'wawa.Recall.Entity')
 
 ## Entity.Activate Property
 
@@ -6,8 +6,8 @@ Gets the [System.Action](https://docs.microsoft.com/en-us/dotnet/api/System.Acti
 This value is immutable for vanilla modules.
 
 ```csharp
-public Wawa.Recall.HookDef<System.Action> Activate { get; }
+public wawa.Recall.HookDef<System.Action> Activate { get; }
 ```
 
 #### Property Value
-[Wawa.Recall.HookDef&lt;](HookDef{T}.md 'Wawa.Recall.HookDef<T>')[System.Action](https://docs.microsoft.com/en-us/dotnet/api/System.Action 'System.Action')[&gt;](HookDef{T}.md 'Wawa.Recall.HookDef<T>')
+[wawa.Recall.HookDef&lt;](HookDef{T}.md 'wawa.Recall.HookDef<T>')[System.Action](https://docs.microsoft.com/en-us/dotnet/api/System.Action 'System.Action')[&gt;](HookDef{T}.md 'wawa.Recall.HookDef<T>')

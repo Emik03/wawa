@@ -1,35 +1,35 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains').[TwitchString](TwitchString.md 'wawa.TwitchPlays.Domains.TwitchString')
 
 ## TwitchString.Detonate(Nullable<float>, string) Method
 
 Yield return this to explode the bomb instantly.
 
 ```csharp
-public static Wawa.TwitchPlays.Domains.TwitchString Detonate(System.Nullable<float> time=null, string message=null);
+public static wawa.TwitchPlays.Domains.TwitchString Detonate(System.Nullable<float> time=null, string message=null);
 ```
 #### Parameters
 
-<a name='Wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable_float_,string).time'></a>
+<a name='wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable_float_,string).time'></a>
 
 `time` [System.Nullable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Nullable-1 'System.Nullable`1')[System.Single](https://docs.microsoft.com/en-us/dotnet/api/System.Single 'System.Single')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Nullable-1 'System.Nullable`1')
 
 The amount of time before the bomb blows up.
 
-<a name='Wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable_float_,string).message'></a>
+<a name='wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable_float_,string).message'></a>
 
 `message` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
 The message to send.
 
 #### Returns
-[TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')  
+[TwitchString](TwitchString.md 'wawa.TwitchPlays.Domains.TwitchString')  
 A formatted string for Twitch Plays.
 
 ### Remarks
   
-[time](TwitchString.Detonate(float+,string).md#Wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable_float_,string).time 'Wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable<float>, string).time') is specified in number of seconds before the bomb explodes.  
+[time](TwitchString.Detonate(float+,string).md#wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable_float_,string).time 'wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable<float>, string).time') is specified in number of seconds before the bomb explodes.  
             (Note, sending another detonate command will auto-cancel the previous one on  
             the same module if it hasn't happened already.).  
-            [message](TwitchString.Detonate(float+,string).md#Wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable_float_,string).message 'Wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable<float>, string).message') is the message to send to chat upon detonation.  
+            [message](TwitchString.Detonate(float+,string).md#wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable_float_,string).message 'wawa.TwitchPlays.Domains.TwitchString.Detonate(System.Nullable<float>, string).message') is the message to send to chat upon detonation.  
             Both of the parameters are optional.

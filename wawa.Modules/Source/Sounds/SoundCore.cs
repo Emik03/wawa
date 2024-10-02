@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Modules;
+namespace wawa.Modules;
 
 /// <summary>Implementations for <see cref="Sound"/>.</summary>
 [CLSCompliant(false), PublicAPI]
@@ -27,7 +27,7 @@ public static class SoundCore
         {
             return that.Reference = that.Modded.IsSome
                 ? audio.HandlePlaySoundAtTransformWithRef?.Invoke(that.Modded.Value, transform, isLooping)
-                : audio.HandlePlayGameSoundAtTransformWithRef?.Invoke(that.Vanilla.Unwrap(), transform);
+                : audio.HandlePlayGameSoundAtTransformWithRef?.Invoke(that.Vanilla.Value, transform);
         }
         catch (NullReferenceException)
         {

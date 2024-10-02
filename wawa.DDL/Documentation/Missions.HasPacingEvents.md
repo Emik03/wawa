@@ -1,11 +1,11 @@
-### [Wawa.DDL](Wawa.DDL.md 'Wawa.DDL').[Missions](Missions.md 'Wawa.DDL.Missions')
+### [wawa.DDL](wawa.DDL.md 'wawa.DDL').[Missions](Missions.md 'wawa.DDL.Missions')
 
-## Missions.IsPacingEvents Property
+## Missions.HasPacingEvents Property
 
 Gets or sets a value indicating whether pacing events are enabled.
 
 ```csharp
-public static bool IsPacingEvents { get; set; }
+public static bool HasPacingEvents { get; set; }
 ```
 
 #### Property Value

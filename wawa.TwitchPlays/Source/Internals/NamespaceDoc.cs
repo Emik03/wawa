@@ -7,14 +7,14 @@ namespace wawa.TwitchPlays
     struct AssemblyDoc;
 }
 
-namespace Wawa.TwitchPlays
+namespace wawa.TwitchPlays
 {
     /// <summary>Contains <see cref="Twitch{TMod}"/>, and its interfaces.</summary>
     [UsedImplicitly]
     struct NamespaceDoc;
 }
 
-namespace Wawa.TwitchPlays.Domains
+namespace wawa.TwitchPlays.Domains
 {
     /// <summary>Contains domain objects used within <see cref="Twitch{TMod}"/>.</summary>
     [UsedImplicitly]

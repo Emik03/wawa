@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MPL-2.0
-namespace Wawa.DDL;
+namespace wawa.DDL;
 
 /// <summary>A class for accessing things from the game.</summary>
 [PublicAPI]
@@ -52,7 +52,7 @@ public static class Access
     /// <summary>The type that contains the requested overrides.</summary>
     static readonly Type? s_type = AppDomain.CurrentDomain.GetAssemblies()
        .OrderByDescending(x => x.GetName().Name is "Assembly-CSharp")
-       .Select(x => x.GetType("Wawa.DDL.Overrides", false, false))
+       .Select(x => x.GetType("wawa.DDL.Overrides", false, false))
        .FirstOrDefault(x => x is not null);
 
     /// <summary>Gets a value indicating whether the runtime is in a non-official game.</summary>

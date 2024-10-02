@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.DDL;
+namespace wawa.DDL;
 
 /// <summary>Allows access into current mission metadata.</summary>
 // ReSharper disable Unity.PerformanceCriticalCodeInvocation

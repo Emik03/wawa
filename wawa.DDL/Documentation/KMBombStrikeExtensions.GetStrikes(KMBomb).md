@@ -1,4 +1,4 @@
-### [Wawa.DDL](Wawa.DDL.md 'Wawa.DDL').[KMBombStrikeExtensions](KMBombStrikeExtensions.md 'Wawa.DDL.KMBombStrikeExtensions')
+### [wawa.DDL](wawa.DDL.md 'wawa.DDL').[KMBombStrikeExtensions](KMBombStrikeExtensions.md 'wawa.DDL.KMBombStrikeExtensions')
 
 ## KMBombStrikeExtensions.GetStrikes(this KMBomb) Method
 
@@ -9,7 +9,7 @@ public static int GetStrikes(this KMBomb that);
 ```
 #### Parameters
 
-<a name='Wawa.DDL.KMBombStrikeExtensions.GetStrikes(thisKMBomb).that'></a>
+<a name='wawa.DDL.KMBombStrikeExtensions.GetStrikes(thisKMBomb).that'></a>
 
 `that` [KMBomb](https://docs.microsoft.com/en-us/dotnet/api/KMBomb 'KMBomb')
 

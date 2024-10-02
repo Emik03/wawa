@@ -1,12 +1,12 @@
-### [Wawa.Modules](Wawa.Modules.md 'Wawa.Modules').[Sound](Sound.md 'Wawa.Modules.Sound')
+### [wawa.Modules](wawa.Modules.md 'wawa.Modules').[Sound](Sound.md 'wawa.Modules.Sound')
 
 ## Sound.WireSnip Property
 
 Gets the sound that plays when a wire is cut on a module like Complicated Wires.
 
 ```csharp
-public static Wawa.Modules.Sound WireSnip { get; }
+public static wawa.Modules.Sound WireSnip { get; }
 ```
 
 #### Property Value
-[Sound](Sound.md 'Wawa.Modules.Sound')
+[Sound](Sound.md 'wawa.Modules.Sound')

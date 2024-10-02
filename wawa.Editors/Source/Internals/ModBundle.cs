@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Editors.Internals;
+namespace wawa.Editors.Internals;
 
 /// <summary>Contains a method invoked by Unity to add a potentially missing tag.</summary>
 [UsedImplicitly]

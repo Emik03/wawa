@@ -1,9 +1,9 @@
-### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall')
+### [wawa.Recall](wawa.Recall.md 'wawa.Recall')
 
 ## Modules Enum
 
 The different types of modules in the game used to discern the type of vanilla module.  
-Modded modules are grouped as [Mod](Modules.md#Wawa.Recall.Modules.Mod 'Wawa.Recall.Modules.Mod') and [NeedyMod](Modules.md#Wawa.Recall.Modules.NeedyMod 'Wawa.Recall.Modules.NeedyMod') depending on  
+Modded modules are grouped as [Mod](Modules.md#wawa.Recall.Modules.Mod 'wawa.Recall.Modules.Mod') and [NeedyMod](Modules.md#wawa.Recall.Modules.NeedyMod 'wawa.Recall.Modules.NeedyMod') depending on  
 whether they have a [KMBombModule](https://docs.microsoft.com/en-us/dotnet/api/KMBombModule 'KMBombModule') and [KMNeedyModule](https://docs.microsoft.com/en-us/dotnet/api/KMNeedyModule 'KMNeedyModule') respectively.
 
 ```csharp
@@ -11,7 +11,7 @@ public enum Modules
 ```
 ### Fields
 
-<a name='Wawa.Recall.Modules.BigButton'></a>
+<a name='wawa.Recall.Modules.BigButton'></a>
 
 `BigButton` 3
 
@@ -21,13 +21,13 @@ On the Subject of The Button.
   
 Manual: https://ktane.timwi.de/HTML/The%20Button.html.
 
-<a name='Wawa.Recall.Modules.Empty'></a>
+<a name='wawa.Recall.Modules.Empty'></a>
 
 `Empty` 0
 
 No module. Uses the bomb backing component.
 
-<a name='Wawa.Recall.Modules.Keypad'></a>
+<a name='wawa.Recall.Modules.Keypad'></a>
 
 `Keypad` 4
 
@@ -37,7 +37,7 @@ On the Subject of Keypads.
   
 Manual: https://ktane.timwi.de/HTML/Keypad.html.
 
-<a name='Wawa.Recall.Modules.Maze'></a>
+<a name='wawa.Recall.Modules.Maze'></a>
 
 `Maze` 11
 
@@ -47,7 +47,7 @@ On the Subject of Mazes.
   
 Manual: https://ktane.timwi.de/HTML/Maze.html.
 
-<a name='Wawa.Recall.Modules.Memory'></a>
+<a name='wawa.Recall.Modules.Memory'></a>
 
 `Memory` 7
 
@@ -57,13 +57,13 @@ On the Subject of Memory.
   
 Manual: https://ktane.timwi.de/HTML/Memory.html.
 
-<a name='Wawa.Recall.Modules.Mod'></a>
+<a name='wawa.Recall.Modules.Mod'></a>
 
 `Mod` 16
 
 Any solvable modded module which uses a [KMBombModule](https://docs.microsoft.com/en-us/dotnet/api/KMBombModule 'KMBombModule').
 
-<a name='Wawa.Recall.Modules.Morse'></a>
+<a name='wawa.Recall.Modules.Morse'></a>
 
 `Morse` 8
 
@@ -73,7 +73,7 @@ On the Subject of Morse Code.
   
 Manual: https://ktane.timwi.de/HTML/Morse%20Code.html.
 
-<a name='Wawa.Recall.Modules.NeedyCapacitor'></a>
+<a name='wawa.Recall.Modules.NeedyCapacitor'></a>
 
 `NeedyCapacitor` 14
 
@@ -83,7 +83,7 @@ On the Subject of Capacitor Discharge.
   
 Manual: https://ktane.timwi.de/HTML/Capacitor%20Discharge.html.
 
-<a name='Wawa.Recall.Modules.NeedyKnob'></a>
+<a name='wawa.Recall.Modules.NeedyKnob'></a>
 
 `NeedyKnob` 15
 
@@ -93,13 +93,13 @@ On the Subject of Knobs.
   
 Manual: https://ktane.timwi.de/HTML/Knob.html.
 
-<a name='Wawa.Recall.Modules.NeedyMod'></a>
+<a name='wawa.Recall.Modules.NeedyMod'></a>
 
 `NeedyMod` 17
 
 Any needy modded module which uses a [KMNeedyModule](https://docs.microsoft.com/en-us/dotnet/api/KMNeedyModule 'KMNeedyModule').
 
-<a name='Wawa.Recall.Modules.NeedyVentGas'></a>
+<a name='wawa.Recall.Modules.NeedyVentGas'></a>
 
 `NeedyVentGas` 13
 
@@ -109,7 +109,7 @@ On the Subject of Venting Gas.
   
 Manual: https://ktane.timwi.de/HTML/Venting%20Gas.html.
 
-<a name='Wawa.Recall.Modules.Password'></a>
+<a name='wawa.Recall.Modules.Password'></a>
 
 `Password` 12
 
@@ -119,7 +119,7 @@ On the Subject of Passwords.
   
 Manual: https://ktane.timwi.de/HTML/Password.html.
 
-<a name='Wawa.Recall.Modules.Simon'></a>
+<a name='wawa.Recall.Modules.Simon'></a>
 
 `Simon` 5
 
@@ -129,13 +129,13 @@ On the Subject of Simon Says.
   
 Manual: https://ktane.timwi.de/HTML/Simon%20Says.html.
 
-<a name='Wawa.Recall.Modules.Timer'></a>
+<a name='wawa.Recall.Modules.Timer'></a>
 
 `Timer` 1
 
 The vanilla timer component which ticks down the bomb's time.
 
-<a name='Wawa.Recall.Modules.Venn'></a>
+<a name='wawa.Recall.Modules.Venn'></a>
 
 `Venn` 9
 
@@ -145,7 +145,7 @@ On the Subject of Complicated Wires.
   
 Manual: https://ktane.timwi.de/HTML/Complicated%20Wires.html.
 
-<a name='Wawa.Recall.Modules.WhosOnFirst'></a>
+<a name='wawa.Recall.Modules.WhosOnFirst'></a>
 
 `WhosOnFirst` 6
 
@@ -155,7 +155,7 @@ On the Subject of Who's on First.
   
 Manual: https://ktane.timwi.de/HTML/Who's%20On%20First.html.
 
-<a name='Wawa.Recall.Modules.Wires'></a>
+<a name='wawa.Recall.Modules.Wires'></a>
 
 `Wires` 2
 
@@ -165,7 +165,7 @@ On the Subject of Wires.
   
 Manual: https://ktane.timwi.de/HTML/Wires.html.
 
-<a name='Wawa.Recall.Modules.WireSequence'></a>
+<a name='wawa.Recall.Modules.WireSequence'></a>
 
 `WireSequence` 10
 

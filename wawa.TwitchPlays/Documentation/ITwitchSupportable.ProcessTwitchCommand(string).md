@@ -1,5 +1,5 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[ITwitchSupportable](ITwitchSupportable.md 'Wawa.TwitchPlays.Domains.ITwitchSupportable')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains').[ITwitchSupportable](ITwitchSupportable.md 'wawa.TwitchPlays.Domains.ITwitchSupportable')
 
 ## ITwitchSupportable.ProcessTwitchCommand(string) Method
 
@@ -10,7 +10,7 @@ System.Collections.IEnumerator ProcessTwitchCommand(string command);
 ```
 #### Parameters
 
-<a name='Wawa.TwitchPlays.Domains.ITwitchSupportable.ProcessTwitchCommand(string).command'></a>
+<a name='wawa.TwitchPlays.Domains.ITwitchSupportable.ProcessTwitchCommand(string).command'></a>
 
 `command` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 

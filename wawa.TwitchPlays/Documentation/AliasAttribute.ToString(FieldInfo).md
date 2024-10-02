@@ -1,5 +1,5 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[AliasAttribute](AliasAttribute.md 'Wawa.TwitchPlays.Domains.AliasAttribute')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains').[AliasAttribute](AliasAttribute.md 'wawa.TwitchPlays.Domains.AliasAttribute')
 
 ## AliasAttribute.ToString(FieldInfo) Method
 
@@ -10,7 +10,7 @@ public static string ToString(System.Reflection.FieldInfo x);
 ```
 #### Parameters
 
-<a name='Wawa.TwitchPlays.Domains.AliasAttribute.ToString(System.Reflection.FieldInfo).x'></a>
+<a name='wawa.TwitchPlays.Domains.AliasAttribute.ToString(System.Reflection.FieldInfo).x'></a>
 
 `x` [System.Reflection.FieldInfo](https://docs.microsoft.com/en-us/dotnet/api/System.Reflection.FieldInfo 'System.Reflection.FieldInfo')
 
@@ -18,4 +18,4 @@ The field.
 
 #### Returns
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
-A concatenation of the parameter [x](AliasAttribute.ToString(FieldInfo).md#Wawa.TwitchPlays.Domains.AliasAttribute.ToString(System.Reflection.FieldInfo).x 'Wawa.TwitchPlays.Domains.AliasAttribute.ToString(System.Reflection.FieldInfo).x') with [Aliases](AliasAttribute.Aliases.md 'Wawa.TwitchPlays.Domains.AliasAttribute.Aliases').
+A concatenation of the parameter [x](AliasAttribute.ToString(FieldInfo).md#wawa.TwitchPlays.Domains.AliasAttribute.ToString(System.Reflection.FieldInfo).x 'wawa.TwitchPlays.Domains.AliasAttribute.ToString(System.Reflection.FieldInfo).x') with [Aliases](AliasAttribute.Aliases.md 'wawa.TwitchPlays.Domains.AliasAttribute.Aliases').

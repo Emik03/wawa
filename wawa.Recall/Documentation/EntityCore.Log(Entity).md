@@ -1,25 +1,25 @@
-### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[EntityCore](EntityCore.md 'Wawa.Recall.EntityCore')
+### [wawa.Recall](wawa.Recall.md 'wawa.Recall').[EntityCore](EntityCore.md 'wawa.Recall.EntityCore')
 
 ## EntityCore.Log(this Entity) Method
 
 Hooks the logger to each instance.
 
 ```csharp
-public static Wawa.Recall.Entity Log(this Wawa.Recall.Entity that);
+public static wawa.Recall.Entity Log(this wawa.Recall.Entity that);
 ```
 #### Parameters
 
-<a name='Wawa.Recall.EntityCore.Log(thisWawa.Recall.Entity).that'></a>
+<a name='wawa.Recall.EntityCore.Log(thiswawa.Recall.Entity).that'></a>
 
-`that` [Entity](Entity.md 'Wawa.Recall.Entity')
+`that` [Entity](Entity.md 'wawa.Recall.Entity')
 
-This instance of [Selected](Selected.md 'Wawa.Recall.Selected').
+This instance of [Selected](Selected.md 'wawa.Recall.Selected').
 
 #### Returns
-[Entity](Entity.md 'Wawa.Recall.Entity')  
-The parameter [that](EntityCore.Log(Entity).md#Wawa.Recall.EntityCore.Log(thisWawa.Recall.Entity).that 'Wawa.Recall.EntityCore.Log(this Wawa.Recall.Entity).that').
+[Entity](Entity.md 'wawa.Recall.Entity')  
+The parameter [that](EntityCore.Log(Entity).md#wawa.Recall.EntityCore.Log(thiswawa.Recall.Entity).that 'wawa.Recall.EntityCore.Log(this wawa.Recall.Entity).that').
 
 ### Remarks
   
 Since the logger is implicitly created within this function, the logging cannot easily  
-be reversed without using the nuclear option [Clear&lt;T&gt;(this Hook&lt;T&gt;)](Generator.Clear{T}(Hook{T}).md 'Wawa.Recall.Generator.Clear<T>(this Wawa.Recall.Hook<T>)').
+be reversed without using the nuclear option [Clear&lt;T&gt;(this Hook&lt;T&gt;)](Generator.Clear{T}(Hook{T}).md 'wawa.Recall.Generator.Clear<T>(this wawa.Recall.Hook<T>)').

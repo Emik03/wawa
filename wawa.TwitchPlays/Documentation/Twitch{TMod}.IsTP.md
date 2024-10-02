@@ -1,5 +1,5 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays](Wawa.TwitchPlays.md 'Wawa.TwitchPlays').[Twitch&lt;TMod&gt;](Twitch{TMod}.md 'Wawa.TwitchPlays.Twitch<TMod>')
+### [wawa.TwitchPlays](wawa.TwitchPlays.md 'wawa.TwitchPlays').[Twitch&lt;TMod&gt;](Twitch{TMod}.md 'wawa.TwitchPlays.Twitch<TMod>')
 
 ## Twitch<TMod>.IsTP Property
 
@@ -9,7 +9,7 @@ Gets a value indicating whether Twitch Plays is currently active.
 public virtual bool IsTP { get; }
 ```
 
-Implements [IsTP](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Modules.ISolvable.IsTP 'Wawa.Modules.ISolvable.IsTP')
+Implements [IsTP](https://docs.microsoft.com/en-us/dotnet/api/wawa.Modules.ISolvable.IsTP 'wawa.Modules.ISolvable.IsTP')
 
 #### Property Value
 [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')

@@ -1,5 +1,5 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays](Wawa.TwitchPlays.md 'Wawa.TwitchPlays').[Twitch&lt;TMod&gt;](Twitch{TMod}.md 'Wawa.TwitchPlays.Twitch<TMod>')
+### [wawa.TwitchPlays](wawa.TwitchPlays.md 'wawa.TwitchPlays').[Twitch&lt;TMod&gt;](Twitch{TMod}.md 'wawa.TwitchPlays.Twitch<TMod>')
 
 ## Twitch<TMod>.IsZen Property
 
@@ -10,7 +10,7 @@ such as controlling how to sort button release times, or whether there is a low 
 public virtual bool IsZen { get; }
 ```
 
-Implements [IsZen](ITwitchDeclarable.IsZen.md 'Wawa.TwitchPlays.ITwitchDeclarable.IsZen')
+Implements [IsZen](ITwitchDeclarable.IsZen.md 'wawa.TwitchPlays.ITwitchDeclarable.IsZen')
 
 #### Property Value
 [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')

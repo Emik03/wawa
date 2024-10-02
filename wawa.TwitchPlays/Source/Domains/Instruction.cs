@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.TwitchPlays.Domains;
+namespace wawa.TwitchPlays.Domains;
 
 /// <summary>Defines an instruction for Twitch Plays to process.</summary>
 /// <remarks><para>

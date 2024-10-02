@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.TwitchPlays.Domains;
+namespace wawa.TwitchPlays.Domains;
 
 /// <summary>Combines <see cref="CommandAttribute"/> and <see cref="MethodInfo"/> into one data type.</summary>
 sealed class CommandInfo : ICloneable, IEquatable<CommandInfo>, IEqualityComparer<CommandInfo>

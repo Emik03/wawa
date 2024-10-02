@@ -1,12 +1,12 @@
-### [Wawa.Optionals](Wawa.Optionals.md 'Wawa.Optionals').[Unit](Unit.md 'Wawa.Optionals.Unit')
+### [wawa.Optionals](wawa.Optionals.md 'wawa.Optionals').[Unit](Unit.md 'wawa.Optionals.Unit')
 
 ## Unit.Value Property
 
 Gets the singular value.
 
 ```csharp
-public static Wawa.Optionals.Unit Value { get; }
+public static wawa.Optionals.Unit Value { get; }
 ```
 
 #### Property Value
-[Unit](Unit.md 'Wawa.Optionals.Unit')
+[Unit](Unit.md 'wawa.Optionals.Unit')

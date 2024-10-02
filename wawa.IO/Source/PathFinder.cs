@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.IO;
+namespace wawa.IO;
 
 /// <summary>Access to the paths and contents of files within folder mod directory.</summary>
 [PublicAPI]

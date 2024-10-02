@@ -1,4 +1,4 @@
-### [Wawa.Optionals](Wawa.Optionals.md 'Wawa.Optionals').[Maybe&lt;T&gt;](Maybe{T}.md 'Wawa.Optionals.Maybe<T>')
+### [wawa.Optionals](wawa.Optionals.md 'wawa.Optionals').[Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')
 
 ## Maybe<T>.IsNone Property
 

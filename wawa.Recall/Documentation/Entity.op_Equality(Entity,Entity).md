@@ -1,23 +1,23 @@
-### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[Entity](Entity.md 'Wawa.Recall.Entity')
+### [wawa.Recall](wawa.Recall.md 'wawa.Recall').[Entity](Entity.md 'wawa.Recall.Entity')
 
 ## Entity.operator ==(Entity, Entity) Operator
 
 Determines whether both instances point to the same component.
 
 ```csharp
-public static bool operator ==(Wawa.Recall.Entity? left, Wawa.Recall.Entity? right);
+public static bool operator ==(wawa.Recall.Entity? left, wawa.Recall.Entity? right);
 ```
 #### Parameters
 
-<a name='Wawa.Recall.Entity.op_Equality(Wawa.Recall.Entity,Wawa.Recall.Entity).left'></a>
+<a name='wawa.Recall.Entity.op_Equality(wawa.Recall.Entity,wawa.Recall.Entity).left'></a>
 
-`left` [Entity](Entity.md 'Wawa.Recall.Entity')
+`left` [Entity](Entity.md 'wawa.Recall.Entity')
 
 The left-hand side.
 
-<a name='Wawa.Recall.Entity.op_Equality(Wawa.Recall.Entity,Wawa.Recall.Entity).right'></a>
+<a name='wawa.Recall.Entity.op_Equality(wawa.Recall.Entity,wawa.Recall.Entity).right'></a>
 
-`right` [Entity](Entity.md 'Wawa.Recall.Entity')
+`right` [Entity](Entity.md 'wawa.Recall.Entity')
 
 The right-hand side.
 

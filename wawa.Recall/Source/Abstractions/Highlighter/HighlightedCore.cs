@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Recall;
+namespace wawa.Recall;
 
 /// <summary>Implementations for <see cref="Highlighted"/>.</summary>
 [PublicAPI]

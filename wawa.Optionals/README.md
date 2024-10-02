@@ -5,7 +5,7 @@ Defines the `Maybe<T>` type, which is used throughout these libraries to represe
 All returned values from these libraries can be assumed to be always non-null, as a fallback value, or this type is used
 to explicitly mark optional values.
 
-### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.Optionals/Documentation/Wawa.Optionals.md)
+### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.Optionals/Documentation/wawa.Optionals.md)
 
 ---
 
@@ -32,7 +32,7 @@ to explicitly mark optional values.
 ## Example
 
 ```csharp
-using Wawa.Optionals;
+using wawa.Optionals;
 using static System.Diagnostics.Debug;
 
 Maybe<int> some = 2;

@@ -1,9 +1,9 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains')
 
 ## InstructionCore Class
 
-Implementations for [Instruction](Instruction.md 'Wawa.TwitchPlays.Domains.Instruction').
+Implementations for [Instruction](Instruction.md 'wawa.TwitchPlays.Domains.Instruction').
 
 ```csharp
 public static class InstructionCore
@@ -13,4 +13,4 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Methods | |
 | :--- | :--- |
-| [Flatten(this IEnumerable&lt;Instruction&gt;)](InstructionCore.Flatten(IEnumerable{Instruction}).md 'Wawa.TwitchPlays.Domains.InstructionCore.Flatten(this System.Collections.Generic.IEnumerable<Wawa.TwitchPlays.Domains.Instruction>)') | Flattens the enumeration for coroutine use. |
+| [Flatten(this IEnumerable&lt;Instruction&gt;)](InstructionCore.Flatten(IEnumerable{Instruction}).md 'wawa.TwitchPlays.Domains.InstructionCore.Flatten(this System.Collections.Generic.IEnumerable<wawa.TwitchPlays.Domains.Instruction>)') | Flattens the enumeration for coroutine use. |

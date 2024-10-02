@@ -1,5 +1,5 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays](Wawa.TwitchPlays.md 'Wawa.TwitchPlays').[Twitch&lt;TMod&gt;](Twitch{TMod}.md 'Wawa.TwitchPlays.Twitch<TMod>')
+### [wawa.TwitchPlays](wawa.TwitchPlays.md 'wawa.TwitchPlays').[Twitch&lt;TMod&gt;](Twitch{TMod}.md 'wawa.TwitchPlays.Twitch<TMod>')
 
 ## Twitch<TMod>.IsCancelCommand Property
 
@@ -9,7 +9,7 @@ Gets a value indicating whether it should cancel command processing.
 public virtual bool IsCancelCommand { get; }
 ```
 
-Implements [IsCancelCommand](ITwitchDeclarable.IsCancelCommand.md 'Wawa.TwitchPlays.ITwitchDeclarable.IsCancelCommand')
+Implements [IsCancelCommand](ITwitchDeclarable.IsCancelCommand.md 'wawa.TwitchPlays.ITwitchDeclarable.IsCancelCommand')
 
 #### Property Value
 [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')

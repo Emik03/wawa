@@ -1,23 +1,23 @@
-### [Wawa.IO](Wawa.IO.md 'Wawa.IO').[ModInfo](ModInfo.md 'Wawa.IO.ModInfo')
+### [wawa.IO](wawa.IO.md 'wawa.IO').[ModInfo](ModInfo.md 'wawa.IO.ModInfo')
 
 ## ModInfo.operator ==(ModInfo, ModInfo) Operator
 
 Determines whether both instances contain the same values.
 
 ```csharp
-public static bool operator ==(Wawa.IO.ModInfo left, Wawa.IO.ModInfo right);
+public static bool operator ==(wawa.IO.ModInfo left, wawa.IO.ModInfo right);
 ```
 #### Parameters
 
-<a name='Wawa.IO.ModInfo.op_Equality(Wawa.IO.ModInfo,Wawa.IO.ModInfo).left'></a>
+<a name='wawa.IO.ModInfo.op_Equality(wawa.IO.ModInfo,wawa.IO.ModInfo).left'></a>
 
-`left` [ModInfo](ModInfo.md 'Wawa.IO.ModInfo')
+`left` [ModInfo](ModInfo.md 'wawa.IO.ModInfo')
 
 The left-hand side.
 
-<a name='Wawa.IO.ModInfo.op_Equality(Wawa.IO.ModInfo,Wawa.IO.ModInfo).right'></a>
+<a name='wawa.IO.ModInfo.op_Equality(wawa.IO.ModInfo,wawa.IO.ModInfo).right'></a>
 
-`right` [ModInfo](ModInfo.md 'Wawa.IO.ModInfo')
+`right` [ModInfo](ModInfo.md 'wawa.IO.ModInfo')
 
 The right-hand side.
 

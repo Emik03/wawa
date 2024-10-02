@@ -1,12 +1,12 @@
-### [Wawa.Modules](Wawa.Modules.md 'Wawa.Modules').[Sound](Sound.md 'Wawa.Modules.Sound')
+### [wawa.Modules](wawa.Modules.md 'wawa.Modules').[Sound](Sound.md 'wawa.Modules.Sound')
 
 ## Sound.BriefcaseOpen Property
 
 Gets the sound that plays when the freeplay briefcase is opened.
 
 ```csharp
-public static Wawa.Modules.Sound BriefcaseOpen { get; }
+public static wawa.Modules.Sound BriefcaseOpen { get; }
 ```
 
 #### Property Value
-[Sound](Sound.md 'Wawa.Modules.Sound')
+[Sound](Sound.md 'wawa.Modules.Sound')

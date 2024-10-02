@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Modules;
+namespace wawa.Modules;
 
 /// <content>Static properties for each sound effect from the vanilla game.</content>
 public sealed partial class Sound

@@ -1,23 +1,23 @@
-### [Wawa.Modules](Wawa.Modules.md 'Wawa.Modules').[Sound](Sound.md 'Wawa.Modules.Sound')
+### [wawa.Modules](wawa.Modules.md 'wawa.Modules').[Sound](Sound.md 'wawa.Modules.Sound')
 
 ## Sound.operator !=(Sound, Sound) Operator
 
 Determines whether both instances do not contain the same values.
 
 ```csharp
-public static bool operator !=(Wawa.Modules.Sound left, Wawa.Modules.Sound right);
+public static bool operator !=(wawa.Modules.Sound left, wawa.Modules.Sound right);
 ```
 #### Parameters
 
-<a name='Wawa.Modules.Sound.op_Inequality(Wawa.Modules.Sound,Wawa.Modules.Sound).left'></a>
+<a name='wawa.Modules.Sound.op_Inequality(wawa.Modules.Sound,wawa.Modules.Sound).left'></a>
 
-`left` [Sound](Sound.md 'Wawa.Modules.Sound')
+`left` [Sound](Sound.md 'wawa.Modules.Sound')
 
 The left-hand side.
 
-<a name='Wawa.Modules.Sound.op_Inequality(Wawa.Modules.Sound,Wawa.Modules.Sound).right'></a>
+<a name='wawa.Modules.Sound.op_Inequality(wawa.Modules.Sound,wawa.Modules.Sound).right'></a>
 
-`right` [Sound](Sound.md 'Wawa.Modules.Sound')
+`right` [Sound](Sound.md 'wawa.Modules.Sound')
 
 The right-hand side.
 

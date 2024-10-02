@@ -1,4 +1,4 @@
-### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[Entity](Entity.md 'Wawa.Recall.Entity')
+### [wawa.Recall](wawa.Recall.md 'wawa.Recall').[Entity](Entity.md 'wawa.Recall.Entity')
 
 ## Entity.Id Property
 
@@ -6,8 +6,8 @@ Gets the identifier for the module as referenced in missions. e.g. "BigButton" A
 This value is immutable for vanilla modules.
 
 ```csharp
-public Wawa.Recall.PropDef<string> Id { get; }
+public wawa.Recall.PropDef<string> Id { get; }
 ```
 
 #### Property Value
-[Wawa.Recall.PropDef&lt;](PropDef{T}.md 'Wawa.Recall.PropDef<T>')[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')[&gt;](PropDef{T}.md 'Wawa.Recall.PropDef<T>')
+[wawa.Recall.PropDef&lt;](PropDef{T}.md 'wawa.Recall.PropDef<T>')[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')[&gt;](PropDef{T}.md 'wawa.Recall.PropDef<T>')

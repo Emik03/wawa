@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.IO;
+namespace wawa.IO;
 
 /// <summary>Meant for information that needs to be deserialized within the mod settings folder.</summary>
 /// <remarks><para>

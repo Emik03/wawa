@@ -1,18 +1,18 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains').[TwitchString](TwitchString.md 'wawa.TwitchPlays.Domains.TwitchString')
 
 ## TwitchString.Cancelled Property
 
 Gets the cancellation-of-processing Twitch Plays query.
 
 ```csharp
-public static Wawa.TwitchPlays.Domains.TwitchString Cancelled { get; }
+public static wawa.TwitchPlays.Domains.TwitchString Cancelled { get; }
 ```
 
 #### Property Value
-[TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')
+[TwitchString](TwitchString.md 'wawa.TwitchPlays.Domains.TwitchString')
 
 ### Remarks
   
 Yield return this to indicate that you have stopped processing the command in response to the  
-[Wawa.TwitchPlays.Twitch&lt;&gt;.TwitchShouldCancelCommand](https://docs.microsoft.com/en-us/dotnet/api/Wawa.TwitchPlays.Twitch-1.TwitchShouldCancelCommand 'Wawa.TwitchPlays.Twitch`1.TwitchShouldCancelCommand') bool being set to [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').
+[wawa.TwitchPlays.Twitch&lt;&gt;.TwitchShouldCancelCommand](https://docs.microsoft.com/en-us/dotnet/api/wawa.TwitchPlays.Twitch-1.TwitchShouldCancelCommand 'wawa.TwitchPlays.Twitch`1.TwitchShouldCancelCommand') bool being set to [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').

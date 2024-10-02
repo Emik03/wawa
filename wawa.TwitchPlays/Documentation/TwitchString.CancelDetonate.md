@@ -1,16 +1,16 @@
 #### [wawa.TwitchPlays](index.md 'index')
-### [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains').[TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')
+### [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains').[TwitchString](TwitchString.md 'wawa.TwitchPlays.Domains.TwitchString')
 
 ## TwitchString.CancelDetonate Property
 
 Gets the cancellation-of-detonation Twitch Plays query.
 
 ```csharp
-public static Wawa.TwitchPlays.Domains.TwitchString CancelDetonate { get; }
+public static wawa.TwitchPlays.Domains.TwitchString CancelDetonate { get; }
 ```
 
 #### Property Value
-[TwitchString](TwitchString.md 'Wawa.TwitchPlays.Domains.TwitchString')
+[TwitchString](TwitchString.md 'wawa.TwitchPlays.Domains.TwitchString')
 
 ### Remarks
   

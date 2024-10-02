@@ -1,4 +1,4 @@
-### [Wawa.IO](Wawa.IO.md 'Wawa.IO').[Config&lt;T&gt;](Config{T}.md 'Wawa.IO.Config<T>')
+### [wawa.IO](wawa.IO.md 'wawa.IO').[Config&lt;T&gt;](Config{T}.md 'wawa.IO.Config<T>')
 
 ## Config<T>.HasRead Property
 

@@ -1,14 +1,14 @@
-### [Wawa.Recall](Wawa.Recall.md 'Wawa.Recall').[PropMay&lt;T&gt;](PropMay{T}.md 'Wawa.Recall.PropMay<T>')
+### [wawa.Recall](wawa.Recall.md 'wawa.Recall').[PropMay&lt;T&gt;](PropMay{T}.md 'wawa.Recall.PropMay<T>')
 
 ## PropMay<T>.Value Property
 
 Gets the value.
 
 ```csharp
-public Wawa.Optionals.Maybe<T> Value { get; }
+public wawa.Optionals.Maybe<T> Value { get; }
 ```
 
-Implements [Value](IValued{T}.Value.md 'Wawa.Recall.IValued<T>.Value')
+Implements [Value](IValued{T}.Value.md 'wawa.Recall.IValued<T>.Value')
 
 #### Property Value
-[Wawa.Optionals.Maybe&lt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe-1 'Wawa.Optionals.Maybe`1')[T](PropMay{T}.md#Wawa.Recall.PropMay_T_.T 'Wawa.Recall.PropMay<T>.T')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/Wawa.Optionals.Maybe-1 'Wawa.Optionals.Maybe`1')
+[wawa.Optionals.Maybe&lt;](https://docs.microsoft.com/en-us/dotnet/api/wawa.Optionals.Maybe-1 'wawa.Optionals.Maybe`1')[T](PropMay{T}.md#wawa.Recall.PropMay_T_.T 'wawa.Recall.PropMay<T>.T')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/wawa.Optionals.Maybe-1 'wawa.Optionals.Maybe`1')

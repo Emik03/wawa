@@ -6,5 +6,5 @@ Adds an extensive system for creating Twitch Plays components that are attached 
 
 | Namespaces | |
 | :--- | :--- |
-| [Wawa.TwitchPlays](Wawa.TwitchPlays.md 'Wawa.TwitchPlays') | Contains [Twitch&lt;TMod&gt;](Twitch{TMod}.md 'Wawa.TwitchPlays.Twitch<TMod>'), and its interfaces. |
-| [Wawa.TwitchPlays.Domains](Wawa.TwitchPlays.Domains.md 'Wawa.TwitchPlays.Domains') | Contains domain objects used within [Twitch&lt;TMod&gt;](Twitch{TMod}.md 'Wawa.TwitchPlays.Twitch<TMod>'). |
+| [wawa.TwitchPlays](wawa.TwitchPlays.md 'wawa.TwitchPlays') | Contains [Twitch&lt;TMod&gt;](Twitch{TMod}.md 'wawa.TwitchPlays.Twitch<TMod>'), and its interfaces. |
+| [wawa.TwitchPlays.Domains](wawa.TwitchPlays.Domains.md 'wawa.TwitchPlays.Domains') | Contains domain objects used within [Twitch&lt;TMod&gt;](Twitch{TMod}.md 'wawa.TwitchPlays.Twitch<TMod>'). |

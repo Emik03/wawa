@@ -1,4 +1,4 @@
-### [Wawa.Modules](Wawa.Modules.md 'Wawa.Modules').[ISolvable](ISolvable.md 'Wawa.Modules.ISolvable')
+### [wawa.Modules](wawa.Modules.md 'wawa.Modules').[ISolvable](ISolvable.md 'wawa.Modules.ISolvable')
 
 ## ISolvable.IsTP Property
 

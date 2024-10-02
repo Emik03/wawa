@@ -2,7 +2,7 @@
 
 Adds a base type for modules.
 
-### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.Modules/Documentation/Wawa.Modules.md)
+### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.Modules/Documentation/wawa.Modules.md)
 
 ---
 
@@ -30,7 +30,7 @@ Adds a base type for modules.
 
 ```csharp
 using UnityEngine;
-using Wawa.Modules;
+using wawa.Modules;
 
 /// <summary>On the Subject of <see cref="Foo"/>.</summary>
 public sealed class Foo : ModdedModule

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MPL-2.0
-namespace Wawa.IO.Internals;
+namespace wawa.IO.Internals;
 
 /// <summary>Provides an <see cref="IEqualityComparer{T}"/> for <see cref="KeyValuePair{T, Type}"/>.</summary>
 /// <typeparam name="T">The key type.</typeparam>

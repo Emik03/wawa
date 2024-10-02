@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-namespace Wawa.Optionals;
+namespace wawa.Optionals;
 
 /// <summary>
 /// A type that has exactly one value, and is used when there is no other meaningful value that could be returned.

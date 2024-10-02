@@ -1,4 +1,4 @@
-### [Wawa.DDL](Wawa.DDL.md 'Wawa.DDL').[KMBombStrikeExtensions](KMBombStrikeExtensions.md 'Wawa.DDL.KMBombStrikeExtensions')
+### [wawa.DDL](wawa.DDL.md 'wawa.DDL').[KMBombStrikeExtensions](KMBombStrikeExtensions.md 'wawa.DDL.KMBombStrikeExtensions')
 
 ## KMBombStrikeExtensions.Detonate(this KMBomb) Method
 
@@ -9,7 +9,7 @@ public static KMBomb Detonate(this KMBomb that);
 ```
 #### Parameters
 
-<a name='Wawa.DDL.KMBombStrikeExtensions.Detonate(thisKMBomb).that'></a>
+<a name='wawa.DDL.KMBombStrikeExtensions.Detonate(thisKMBomb).that'></a>
 
 `that` [KMBomb](https://docs.microsoft.com/en-us/dotnet/api/KMBomb 'KMBomb')
 
@@ -17,7 +17,7 @@ The [KMBomb](https://docs.microsoft.com/en-us/dotnet/api/KMBomb 'KMBomb') module
 
 #### Returns
 [KMBomb](https://docs.microsoft.com/en-us/dotnet/api/KMBomb 'KMBomb')  
-The parameter [that](KMBombStrikeExtensions.Detonate(KMBomb).md#Wawa.DDL.KMBombStrikeExtensions.Detonate(thisKMBomb).that 'Wawa.DDL.KMBombStrikeExtensions.Detonate(this KMBomb).that').
+The parameter [that](KMBombStrikeExtensions.Detonate(KMBomb).md#wawa.DDL.KMBombStrikeExtensions.Detonate(thisKMBomb).that 'wawa.DDL.KMBombStrikeExtensions.Detonate(this KMBomb).that').
 
 ### Remarks
   

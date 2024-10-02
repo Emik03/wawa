@@ -1,4 +1,4 @@
-### [Wawa.Extensions](Wawa.Extensions.md 'Wawa.Extensions').[KMExtensions](KMExtensions.md 'Wawa.Extensions.KMExtensions')
+### [wawa.Extensions](wawa.Extensions.md 'wawa.Extensions').[KMExtensions](KMExtensions.md 'wawa.Extensions.KMExtensions')
 
 ## KMExtensions.Set<T>(this T, Action<int>) Method
 
@@ -12,26 +12,26 @@ public static T Set<T>(this T audio, System.Action<int> onStopSound)
 ```
 #### Type parameters
 
-<a name='Wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).T'></a>
+<a name='wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).T'></a>
 
 `T`
 
 The type of [System.Collections.Generic.IEnumerable&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1') containing [KMSelectable](https://docs.microsoft.com/en-us/dotnet/api/KMSelectable 'KMSelectable') instances.
 #### Parameters
 
-<a name='Wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).audio'></a>
+<a name='wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).audio'></a>
 
-`audio` [T](KMExtensions.Set{T}(T,Action{int}).md#Wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).T 'Wawa.Extensions.KMExtensions.Set<T>(this T, System.Action<int>).T')
+`audio` [T](KMExtensions.Set{T}(T,Action{int}).md#wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).T 'wawa.Extensions.KMExtensions.Set<T>(this T, System.Action<int>).T')
 
 The [System.Collections.Generic.IEnumerable&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1') of [KMAudio.KMAudioRef](https://docs.microsoft.com/en-us/dotnet/api/KMAudio.KMAudioRef 'KMAudio.KMAudioRef')  
 instances to invoke [KMAudio.KMAudioRef.StopSound](https://docs.microsoft.com/en-us/dotnet/api/KMAudio.KMAudioRef.StopSound 'KMAudio.KMAudioRef.StopSound').
 
-<a name='Wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).onStopSound'></a>
+<a name='wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).onStopSound'></a>
 
 `onStopSound` [System.Action&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Action-1 'System.Action`1')[System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Action-1 'System.Action`1')
 
 Called when the sound is prematurely stopped.
 
 #### Returns
-[T](KMExtensions.Set{T}(T,Action{int}).md#Wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).T 'Wawa.Extensions.KMExtensions.Set<T>(this T, System.Action<int>).T')  
-The parameter [audio](KMExtensions.Set{T}(T,Action{int}).md#Wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).audio 'Wawa.Extensions.KMExtensions.Set<T>(this T, System.Action<int>).audio').
+[T](KMExtensions.Set{T}(T,Action{int}).md#wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).T 'wawa.Extensions.KMExtensions.Set<T>(this T, System.Action<int>).T')  
+The parameter [audio](KMExtensions.Set{T}(T,Action{int}).md#wawa.Extensions.KMExtensions.Set_T_(thisT,System.Action_int_).audio 'wawa.Extensions.KMExtensions.Set<T>(this T, System.Action<int>).audio').
