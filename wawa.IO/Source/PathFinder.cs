@@ -5,29 +5,39 @@ namespace Wawa.IO;
 [PublicAPI]
 public static class PathFinder
 {
+    /// <summary>The number of bits in a byte.</summary>
     const int BitsInByte = 8;
 
+    /// <summary>The various platforms.</summary>
     [NotNull]
     const string
+        Android = "android",
+        ARM64 = "arm64",
+        ARMv7 = "armv7",
         Library = "lib",
         Linux = "linux",
         ModInfoEditor = "ModConfig",
-        ModInfoSerializerEditor = "ToJson",
         ModInfoInstanceEditor = "Instance",
-        OSX = "darwin",
-        Windows = "win32",
-        X86 = "x86",
-        X86Wide = "x86_64",
+        ModInfoSerializerEditor = "ToJson",
+        OSX = "osx",
         UnityAssembly = "Assembly-CSharp-Editor",
-        Version0 = "v0";
+        Version0 = "v0",
+        Windows = "windows",
+        X86 = "x86",
+        X86_64 = "x86_64";
 
+    /// <summary>The default binding flags.</summary>
     const BindingFlags
         InstanceBindings = DeclaredOnly | Static | Public,
         ToJsonBindings = DeclaredOnly | Instance | Public;
 
-    // There must be at least one loaded mod; The default value 0 will always be unequal to the amount of mods loaded.
+    /// <summary>The number of loaded mods. Used to determine if the directory cache needs to be updated.</summary>
+    /// <remarks><para>
+    /// There must be at least one loaded mod; The default value 0 can never be equal to the amount of mods loaded.
+    /// </para></remarks>
     static int s_loadedMods;
 
+    /// <summary>The loaded mod directories.</summary>
     [CanBeNull]
     static Dictionary<string, string> s_directories;
 
@@ -176,6 +186,8 @@ public static class PathFinder
                 overriden: null
             );
 
+    /// <summary>Counts the number of loaded mods to determine if the directory cache needs to be updated.</summary>
+    /// <returns>Whether the directory cache needs to be updated.</returns>
     [MemberNotNullWhen(false, nameof(s_directories)), MustUseReturnValue]
     static bool MapNeedsUpdating()
     {
@@ -197,6 +209,10 @@ public static class PathFinder
         return ret;
     }
 
+    /// <summary>Enters the subdirectory if it exists.</summary>
+    /// <param name="root">The root directory.</param>
+    /// <param name="folder">The subdirectory.</param>
+    /// <returns>The joined directory, or <paramref name="root"/> if <paramref name="folder"/> does not exist.</returns>
     [MustUseReturnValue, NotNull]
     static string Join(
         [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] this string root,
@@ -204,6 +220,9 @@ public static class PathFinder
     ) =>
         Path.Combine(root, folder) is var first && Directory.Exists(first) ? first : root;
 
+    /// <summary>Finds the directory for the requested mod id.</summary>
+    /// <param name="key">The mod id to find.</param>
+    /// <returns>The directory for the requested mod id, or <see langword="null" /> if not found.</returns>
     [CanBeNull, MustUseReturnValue]
     [return: AllowNull]
     static string FindDirectory([NotNull] string key)
@@ -215,6 +234,10 @@ public static class PathFinder
         return null;
     }
 
+    /// <summary>Finds the full path to the requested library.</summary>
+    /// <param name="file">The name of the library to find.</param>
+    /// <param name="root">The root directory to search from.</param>
+    /// <returns>The full path to the requested library, or <see langword="null" /> if not found.</returns>
     [CanBeNull, MustUseReturnValue]
     [return: AllowNull]
     static string FindLibrary(
@@ -229,21 +252,33 @@ public static class PathFinder
         var architecture = Application.platform switch
         {
             RuntimePlatform.OSXPlayer => OSX,
+            RuntimePlatform.Android => Android,
             RuntimePlatform.LinuxPlayer => Linux,
             RuntimePlatform.WindowsPlayer => Windows,
             _ => null,
         };
 
-        var platform = IntPtr.Size switch
-        {
-            4 => X86,
-            8 => X86Wide,
-            _ => null,
-        };
+        var platform = SystemInfo.processorType.IndexOf("ARM", StringComparison.OrdinalIgnoreCase) >= 0
+            ? IntPtr.Size switch
+            {
+                4 => ARMv7,
+                8 => ARM64,
+                _ => null,
+            }
+            : IntPtr.Size switch
+            {
+                4 => X86,
+                8 => X86_64,
+                _ => null,
+            };
 
         if (architecture is null || platform is null)
         {
-            AssemblyLog($"{IntPtr.Size * BitsInByte}-bit {Application.platform} is unsupported.", LogType.Error);
+            AssemblyLog(
+                $"{IntPtr.Size * BitsInByte}-bit {SystemInfo.processorType} on {Application.platform} is unsupported.",
+                LogType.Error
+            );
+
             return null;
         }
 
@@ -268,6 +303,8 @@ public static class PathFinder
         }
     }
 
+    /// <summary>Updates the directory cache.</summary>
+    /// <returns>The updated directory cache.</returns>
     [MustUseReturnValue, NotNull, Pure]
     static Dictionary<string, string> UpdateModIdToDirectoryMapping()
     {
@@ -300,6 +337,8 @@ public static class PathFinder
         return s_directories;
     }
 
+    /// <summary>Gets the <see cref="ModInfo"/> from the editor.</summary>
+    /// <returns>The <see cref="ModInfo"/> from the editor.</returns>
     [CanBeNull, MustUseReturnValue]
     [return: AllowNull]
     static ModInfo GetEditorModInfo() =>
@@ -310,10 +349,17 @@ public static class PathFinder
             ? ModInfo.Deserialize(s).Value
             : null;
 
+    /// <summary>Creates the external method within the module.</summary>
+    /// <param name="dynamicMod">The module to create the method in.</param>
+    /// <param name="libPath">The path to the unmanaged library.</param>
+    /// <param name="name">The name of the method and entry point.</param>
+    /// <param name="returnType">The return type of the method.</param>
+    /// <param name="parameters">The parameters of the method.</param>
+    /// <returns>The parameter <paramref name="dynamicMod"/>.</returns>
     [NotNull, MustUseReturnValue]
     static ModuleBuilder DefineMethod(
         [NotNull] this ModuleBuilder dynamicMod,
-        [NotNull] in string dllName,
+        [NotNull] in string libPath,
         [NotNull] in string name,
         [NotNull] in Type returnType,
         [NotNull, ItemNotNull] in Type[] parameters
@@ -326,14 +372,19 @@ public static class PathFinder
         const MethodAttributes Attributes =
             MethodAttributes.Static | MethodAttributes.Public | MethodAttributes.PinvokeImpl;
 
-        dynamicMod.DefinePInvokeMethod(name, dllName, Attributes, Convention, returnType, parameters, Call, CharSet);
+        dynamicMod.DefinePInvokeMethod(name, libPath, Attributes, Convention, returnType, parameters, Call, CharSet);
         return dynamicMod;
     }
 
+    /// <summary>Creates the delegate that wraps the external method linking to the unmanaged library.</summary>
+    /// <typeparam name="T">The delegate type.</typeparam>
+    /// <param name="libPath">The path to the library to link to.</param>
+    /// <param name="name">The name of the method and entry point.</param>
+    /// <returns>The delegate to the unmanaged method.</returns>
     [CanBeNull, MustUseReturnValue]
     [return: AllowNull]
     static T CreateUnmanagedMethod<T>(
-        [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] this string dllName,
+        [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] this string libPath,
         [NotNull] in string name
     )
         where T : Delegate
@@ -346,7 +397,7 @@ public static class PathFinder
         var parameters = Array.ConvertAll(invoke.GetParameters(), static x => x.ParameterType);
         var returnType = invoke.ReturnType;
 
-        module.DefineMethod(dllName, name, returnType, parameters).CreateGlobalFunctions();
+        module.DefineMethod(libPath, name, returnType, parameters).CreateGlobalFunctions();
         var method = module.GetMethod(name);
         return Delegate.CreateDelegate(typeof(T), method, false) as T;
     }
