@@ -8,6 +8,7 @@ static class ModBundle
     /// <summary>The tag that indicates that the asset be included in exporting.</summary>
     internal const string Tag = "mod.bundle";
 
+    /// <summary>The key for the <see cref="TagManager"/> asset.</summary>
     const string
         TagManager = "ProjectSettings/TagManager.asset",
         Tags = "tags";

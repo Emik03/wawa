@@ -55,6 +55,22 @@ public static class EntityCore
         return that;
     }
 
+    /// <summary>Alters the status light to <paramref name="lights"/>.</summary>
+    /// <remarks><para>In the editor, this method does nothing.</para></remarks>
+    /// <param name="that">This instance of <see cref="Entity"/>.</param>
+    /// <param name="lights">The status lights to enable.</param>
+    /// <returns>The instance itself.</returns>
+    [PublicAPI]
+    public static Entity Change([NotNull] this Entity that, StatusLights lights) =>
+        IsKtane ? ChangeInner(that, lights) : that;
+
+    /// <summary>Plays the strike sound effect and flashes the status light red, without registering a strike.</summary>
+    /// <remarks><para>In the editor, this method does nothing.</para></remarks>
+    /// <param name="that">This instance of <see cref="Entity"/>.</param>
+    /// <returns>The instance itself.</returns>
+    [PublicAPI]
+    public static Entity FakeStrike([NotNull] this Entity that) => IsKtane ? FakeStrikeInner(that) : that;
+
     /// <summary>Sets the parameter values to the corresponding hooks, when applicable.</summary>
     /// <inheritdoc cref="Add(Entity, Action, Action, Action, Action, Action, Action, Action, Action, Action)"/>
     [NotNull, PublicAPI]
@@ -306,4 +322,35 @@ public static class EntityCore
         [AllowNull, CanBeNull] this IEnumerable<KMBomb> bombs
     ) =>
         bombs is null ? Lot<ReadOnlyCollection<Entity>>.Empty : new(bombs.Select(ToEntities).ToList());
+
+    [MustUseReturnValue]
+    static Entity ChangeInner([NotNull] Entity entity, StatusLights lights)
+    {
+        [Pure]
+        static bool HasFlag(StatusLights lights, StatusLights filter) => (lights & filter) is not StatusLights.None;
+
+        var core = entity.Value.Core();
+
+        if ((core as BombComponent ?? core.GetComponent<BombComponent>()) is var value && !value)
+            return entity;
+
+        var light = value.StatusLightParent.StatusLight;
+        light.StopAllCoroutines();
+        light.InactiveLight.SetActive(HasFlag(lights, StatusLights.Off));
+        light.PassLight.SetActive(HasFlag(lights, StatusLights.Solve));
+        light.StrikeLight.SetActive(HasFlag(lights, StatusLights.Strike));
+        return entity;
+    }
+
+    [MustUseReturnValue]
+    static Entity FakeStrikeInner([NotNull] Entity entity)
+    {
+        var core = entity.Value.Core();
+        MasterAudio.PlaySound3DAtTransformAndForget("strike", core.transform);
+
+        if ((core as BombComponent ?? core.GetComponent<BombComponent>()) is var value && value)
+            value.StatusLightParent.StatusLight.FlashStrike();
+
+        return entity;
+    }
 }

@@ -24,6 +24,7 @@ global using global::System.Deployment;
 global using global::System.Deployment.Internal;
 global using global::System.Diagnostics;
 global using global::System.Diagnostics.CodeAnalysis;
+global using global::System.Diagnostics.Contracts;
 global using global::System.Diagnostics.Eventing;
 global using global::System.Diagnostics.Eventing.Reader;
 global using global::System.Diagnostics.PerformanceData;
@@ -175,7 +176,6 @@ global using global::DigitalOpus.MB;
 global using global::DigitalOpus.MB.Core;
 global using global::Emik;
 global using global::Events;
-global using global::FastGenericNew;
 global using global::Gvr;
 global using global::Gvr.Internal;
 global using global::I2;
@@ -414,6 +414,8 @@ namespace System.Deployment.Internal { }
 namespace System.Diagnostics { }
 
 namespace System.Diagnostics.CodeAnalysis { }
+
+namespace System.Diagnostics.Contracts { }
 
 namespace System.Diagnostics.Eventing { }
 
@@ -716,8 +718,6 @@ namespace DigitalOpus.MB.Core { }
 namespace Emik { }
 
 namespace Events { }
-
-namespace FastGenericNew { }
 
 namespace Gvr { }
 

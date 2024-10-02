@@ -4,6 +4,9 @@ namespace Wawa.TwitchPlays.Domains;
 /// <summary>Combines <see cref="CommandAttribute"/> and <see cref="MethodInfo"/> into one data type.</summary>
 sealed class CommandInfo : ICloneable, IEquatable<CommandInfo>, IEqualityComparer<CommandInfo>
 {
+    /// <summary>Initializes a new instance of the <see cref="CommandInfo"/> class.</summary>
+    /// <param name="method">The <see cref="MethodInfo"/> to allow for invoking.</param>
+    /// <param name="command">The <see cref="CommandAttribute"/> surrounding the <see cref="MethodInfo"/>.</param>
     CommandInfo([NotNull] MethodInfo method, [NotNull] CommandAttribute command)
     {
         Command = command;

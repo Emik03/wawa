@@ -4,10 +4,7 @@ namespace Wawa.Modules.Internals;
 /// <summary>Contains static methods able to be accessed from anywhere within this library.</summary>
 static class Globals
 {
-    /// <summary>The number of bits in a byte.</summary>
-    internal const int BitsInByte = 8;
-
-    /// <summary>The default string comparison throughout the library.</summary>
+    /// <summary>The default string comparison throughout this library.</summary>
     internal const StringComparison Ordinal = StringComparison.Ordinal;
 
     /// <summary>Enumerates a sequence twice with a selector and produces an immutable array of its contents.</summary>

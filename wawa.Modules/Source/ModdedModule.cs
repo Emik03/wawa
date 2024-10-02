@@ -2,12 +2,12 @@
 namespace Wawa.Modules;
 
 /// <summary>
-/// A <see cref="Component"/> that handles general Keep Talking and Nobody Explodes modded module behaviour.
+/// The <see cref="Component"/> that handles general Keep Talking and Nobody Explodes modded module behaviour.
 /// </summary>
-// ReSharper disable Unity.PerformanceCriticalCodeInvocation
 [CLSCompliant(false), PublicAPI]
 public abstract class ModdedModule : CachedBehaviour
 {
+    /// <summary>The message to log.</summary>
     [NotNull]
     const string
         ExceptionStackTrace = "Rethrow as ",
@@ -19,7 +19,7 @@ public abstract class ModdedModule : CachedBehaviour
             "that the matrix can be instantiated properly.",
         Prefix = @"
 | ",
-        TooFewAudioSources = $"{nameof(PlayEnum)} Error: You need a {nameof(KMAudio)} component to play a sound. " +
+        TooFewAudioSources = $"{nameof(Play)} Error: You need a {nameof(KMAudio)} component to play a sound. " +
             "It cannot be instantiated by this library, since the game could hook before this library can create one.",
         TooManyAudioSources =
             $"There is more than one {nameof(KMAudio)} component. " +
@@ -27,18 +27,23 @@ public abstract class ModdedModule : CachedBehaviour
             $"{nameof(KMAudio)} components, which gives no certainty on the {nameof(KMAudio)} having sounds assigned.",
         Unspecified = "There is no version. Press [F5] or go to [Keep Talking ModKit > Configure Mod] to specify one.";
 
+    /// <summary>The id of this <see cref="GameObject"/>.</summary>
     [CanBeNull]
     string _id;
 
+    /// <summary>The matrix attached to this <see cref="GameObject"/>.</summary>
     [CanBeNull]
     IList<IList<KMSelectable>>? _matrix;
 
+    /// <summary>The <see cref="KMNeedyModule"/> attached to this <see cref="GameObject"/>.</summary>
     [CanBeNull]
     KMNeedyModule _needy;
 
+    /// <summary>The <see cref="KMBombModule"/> attached to this <see cref="GameObject"/>.</summary>
     [CanBeNull]
     KMBombModule _solvable;
 
+    /// <summary>The status of the module.</summary>
     [CanBeNull]
     State _status;
 
@@ -58,8 +63,8 @@ public abstract class ModdedModule : CachedBehaviour
     /// it with inference from <see cref="KMSelectable.ChildRowLength"/>.
     /// </para></remarks>
     /// <exception cref="InvalidOperationException">
-    /// The <see cref="KMSelectable"/> <see cref="Component"/> attached to this <see cref="GameObject"/> has a
-    /// <see cref="KMSelectable.ChildRowLength"/> value of 0.
+    /// The <see cref="KMSelectable"/> <see cref="Component"/> attached to this <see cref="GameObject"/>
+    /// has a <see cref="KMSelectable.ChildRowLength"/> value of <c>0</c>.
     /// </exception>
     /// <exception cref="MissingComponentException">
     /// There is no <see cref="KMSelectable"/> <see cref="Component"/> attached to this <see cref="GameObject"/>.
@@ -70,7 +75,7 @@ public abstract class ModdedModule : CachedBehaviour
         [ItemCanBeNull, NotNull, MustUseReturnValue]
         get =>
             _matrix ??= Get<KMSelectable>().ChildRowLength > 0
-                ? new Matrix<KMSelectable>(() => Children, () => Get<KMSelectable>().ChildRowLength)
+                ? new MatrixFactory.Matrix<KMSelectable>(() => Children, () => Get<KMSelectable>().ChildRowLength)
                 : throw new InvalidOperationException(LengthNotSet);
     }
 
@@ -90,13 +95,19 @@ public abstract class ModdedModule : CachedBehaviour
         [MustUseReturnValue] get => _id ??= Lookup.ModNameOf(this).Value ?? GetType().Assembly.GetName().Name;
     }
 
-    // DO NOT REMOVE. The mod 'Tweaks' uses reflection to get any field/property named "moduleId". (case-insensitive)
+    /// <summary>Gets the module id. Unused by the library.</summary>
+    /// <remarks><para>
+    /// <b>DO NOT REMOVE.</b>
+    /// The mod 'Tweaks' uses reflection to get any field or property named "moduleid" case-insensitively.
+    /// </para></remarks>
     [UsedImplicitly]
     int ModuleId
     {
         [Pure] get => Status.Id;
     }
 
+    /// <summary>Gets the name of the module.</summary>
+    /// <exception cref="MissingComponentException"></exception>
     [NotNull]
     string Name
     {
@@ -106,12 +117,14 @@ public abstract class ModdedModule : CachedBehaviour
             Needy ? Needy.ModuleDisplayName : throw new MissingComponentException(NoComponent);
     }
 
+    /// <summary>Gets the <see cref="KMBombModule"/> component.</summary>
     [AllowNull, CanBeNull]
     KMBombModule Solvable
     {
         [Pure] get => _solvable ? _solvable : _solvable = GetComponent<KMBombModule>();
     }
 
+    /// <summary>Gets the <see cref="KMNeedyModule"/> component.</summary>
     [AllowNull, CanBeNull]
     KMNeedyModule Needy
     {
@@ -191,7 +204,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <returns>The parameter <paramref name="sounds"/>.</returns>
     [ItemCanBeNull, NotNull]
     public IList<Sound> Play([InstantHandle, ItemCanBeNull, NotNull] params Sound[] sounds) =>
-        PlayEnum(sounds, transform);
+        Play(sounds, transform);
 
     /// <summary>Plays one or more sounds from a specified <see cref="Transform"/>.</summary>
     /// <param name="location">The source of the sound.</param>
@@ -202,7 +215,7 @@ public abstract class ModdedModule : CachedBehaviour
         [NotNull] Transform location,
         [InstantHandle, ItemCanBeNull, NotNull] params Sound[] sounds
     ) =>
-        PlayEnum(sounds, location);
+        Play(sounds, location);
 
     /// <summary>Plays one or more sounds from a specified <see cref="Transform"/>.</summary>
     /// <typeparam name="T">The type of iterator.</typeparam>
@@ -210,7 +223,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="location">The source of the sound.</param>
     /// <returns>The parameter <paramref name="sounds"/>.</returns>
     [ItemCanBeNull, NotNull]
-    public T PlayEnum<T>(
+    public T Play<T>(
         [InstantHandle, ItemCanBeNull, NotNull] T sounds,
         [AllowNull, CanBeNull] Transform location = null
     )
@@ -314,6 +327,61 @@ public abstract class ModdedModule : CachedBehaviour
     }
 
     /// <summary>
+    /// Converts <paramref name="source"/> into a <see cref="string"/> representation of <paramref name="source"/>.
+    /// </summary>
+    /// <remarks><para>Used for logging, such as <see cref="Log{T}(T, object[])"/>.</para></remarks>
+    /// <typeparam name="T">The type of the source.</typeparam>
+    /// <param name="source">The item to get a <see cref="string"/> representation of.</param>
+    /// <returns><paramref name="source"/> as <see cref="string"/>.</returns>
+    [NotNull, Pure] // ReSharper disable once CognitiveComplexity
+    public virtual string Stringify<T>([AllowNull, CanBeNull] T source)
+    {
+        const int Limit = 500;
+
+        string Dictionary(IDictionary dictionary)
+        {
+            var enumerator = dictionary.GetEnumerator();
+            using var _ = enumerator as IDisposable;
+
+            if (!enumerator.MoveNext())
+                return "{ }";
+
+            StringBuilder sb = new("{ ");
+            sb.Append(Stringify(enumerator.Key)).Append(": ").Append(Stringify(enumerator.Value));
+
+            for (var i = 0; i < Limit && enumerator.MoveNext(); i++)
+                sb.Append(", ").Append(Stringify(enumerator.Key)).Append(": ").Append(Stringify(enumerator.Value));
+
+            return sb.Append(" }").ToString();
+        }
+
+        string Enumerable(IEnumerable enumerable)
+        {
+            var enumerator = enumerable.GetEnumerator();
+            using var _ = enumerator as IDisposable;
+
+            if (!enumerator.MoveNext())
+                return "[]";
+
+            StringBuilder sb = new("[");
+            sb.Append(Stringify(enumerator.Current));
+
+            for (var i = 0; i < Limit && enumerator.MoveNext(); i++)
+                sb.Append(", ").Append(Stringify(enumerator.Current));
+
+            return sb.Append(']').ToString();
+        }
+
+        return source switch
+        {
+            IEnumerable<char> x => x as string ?? new(x.ToArray()),
+            IDictionary x => Dictionary(x),
+            IEnumerable x => Enumerable(x),
+            _ => source?.ToString() ?? "null",
+        };
+    }
+
+    /// <summary>
     /// Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer.
     /// </summary>
     /// <typeparam name="T">The type of the value to log.</typeparam>
@@ -324,7 +392,7 @@ public abstract class ModdedModule : CachedBehaviour
     [return: AllowNull]
     public T Log<T>([AllowNull, CanBeNull] T format = default, LogType logType = LogType.Log)
     {
-        var stringified = Stringifier.Stringify(format);
+        var stringified = Stringify(format);
         var message = $"[{Name} #{Status.Id}] {stringified}";
         Debug.unityLogger.Log(logType, message);
         return format;
@@ -344,8 +412,8 @@ public abstract class ModdedModule : CachedBehaviour
         [ItemCanBeNull, NotNull] params object[] args
     )
     {
-        var convertAll = Array.ConvertAll(args, static o => (object)Stringifier.Stringify(o));
-        var stringified = Stringifier.Stringify(format);
+        var convertAll = Array.ConvertAll<object, object>(args, Stringify);
+        var stringified = Stringify(format);
         var provider = CultureInfo.InvariantCulture;
         var message = string.Format(provider, stringified, convertAll);
         Log(message);
@@ -377,7 +445,7 @@ public abstract class ModdedModule : CachedBehaviour
     [return: AllowNull]
     public T LogLower<T>([AllowNull, CanBeNull] T format = default, LogType logType = LogType.Log)
     {
-        var stringified = Stringifier.Stringify(format);
+        var stringified = Stringify(format);
         var message = $"<{Name} #{Status.Id}> {stringified}";
         Debug.unityLogger.Log(logType, (object)message, this);
         return format;
@@ -397,8 +465,8 @@ public abstract class ModdedModule : CachedBehaviour
         [ItemCanBeNull, NotNull] params object[] args
     )
     {
-        var convertAll = Array.ConvertAll(args, static o => (object)Stringifier.Stringify(o));
-        var stringify = Stringifier.Stringify(format);
+        var convertAll = Array.ConvertAll<object, object>(args, Stringify);
+        var stringify = Stringify(format);
         var provider = CultureInfo.InvariantCulture;
         var message = string.Format(provider, stringify, convertAll);
         LogLower(message);
@@ -434,6 +502,12 @@ public abstract class ModdedModule : CachedBehaviour
         };
     }
 
+    /// <summary>Plays the sounds at the given location.</summary>
+    /// <typeparam name="T">The type of the sounds to play.</typeparam>
+    /// <param name="location">The location to play the sounds at.</param>
+    /// <param name="sounds">The sounds to play.</param>
+    /// <param name="source">The audio source to use.</param>
+    /// <returns>The parameter <paramref name="sounds"/>.</returns>
     [ItemCanBeNull, NotNull]
     static T Play<T>([NotNull] in Transform location, [ItemCanBeNull, NotNull] in T sounds, [NotNull] in KMAudio source)
         where T : IEnumerable<Sound>
@@ -444,6 +518,10 @@ public abstract class ModdedModule : CachedBehaviour
         return sounds;
     }
 
+    /// <summary>Checks if a log message is an exception caused by this module, and prepares accordingly.</summary>
+    /// <param name="condition">The message of the log.</param>
+    /// <param name="stackTrace">The stack traces of the log.</param>
+    /// <param name="type">The type of the log message.</param>
     void CheckForException([NotNull] string condition, [NotNull] string stackTrace, LogType type)
     {
         if (type is not LogType.Exception)
@@ -452,12 +530,9 @@ public abstract class ModdedModule : CachedBehaviour
         var typeName = GetType().Name;
         var traces = stackTrace.Split('\n');
 
-        if (Array.Exists(traces, x => x.StartsWith(typeName, Ordinal)))
-            PrepareException(condition, traces);
-    }
+        if (!Array.Exists(traces, x => x.StartsWith(typeName, Ordinal)))
+            return;
 
-    void PrepareException([NotNull] string condition, [ItemNotNull, NotNull] IEnumerable<string> traces)
-    {
         Application.logMessageReceived -= CheckForException;
         Status.HasException = true;
         var rethrows = traces.TakeWhile(static s => s.StartsWith(ExceptionStackTrace, Ordinal)).ToArray();
@@ -467,14 +542,19 @@ public abstract class ModdedModule : CachedBehaviour
         OnException(message);
     }
 
-    void Revert() => Status.IsSolved = true;
+    /// <summary>Updates <see cref="Status"/> by marking it unsolved.</summary>
+    void Revert() => Status.IsSolved = false;
 
+    /// <summary>Updates <see cref="Status"/> with a solve.</summary>
+    /// <returns>The value <see langword="false"/>.</returns>
     bool OnPass()
     {
         Status.IsSolved = true;
         return false;
     }
 
+    /// <summary>Updates <see cref="Status"/> with a strike.</summary>
+    /// <returns>The value <see langword="false"/>.</returns>
     bool OnStrike()
     {
         Status.HasStruck = true;
@@ -482,6 +562,8 @@ public abstract class ModdedModule : CachedBehaviour
         return false;
     }
 
+    /// <summary>Gets the coroutine for solving the module and running the autosolver.</summary>
+    /// <returns>The coroutine for solving.</returns>
     [NotNull, Pure]
     IEnumerator WaitForSolve()
     {
@@ -490,6 +572,7 @@ public abstract class ModdedModule : CachedBehaviour
         if (Needy)
             Needy.OnNeedyActivation += Needy.HandlePass;
 
+        // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
         if (GetComponent<ISolvable>() is var solver && solver as Object)
             yield return solver.ForceTPSolve();
     }

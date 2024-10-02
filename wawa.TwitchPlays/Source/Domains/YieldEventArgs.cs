@@ -3,10 +3,8 @@ namespace Wawa.TwitchPlays.Domains;
 
 /// <summary>An <see cref="EventArgs"/> for yielded items.</summary>
 [PublicAPI]
-public sealed class YieldEventArgs : EventArgs,
-    ICloneable,
-    IEquatable<YieldEventArgs>,
-    IEqualityComparer<YieldEventArgs>
+public sealed class YieldEventArgs
+    : EventArgs, ICloneable, IEquatable<YieldEventArgs>, IEqualityComparer<YieldEventArgs>
 {
     /// <summary>Initializes a new instance of the <see cref="YieldEventArgs"/> class.</summary>
     /// <param name="query">The value to store.</param>
@@ -71,8 +69,7 @@ public sealed class YieldEventArgs : EventArgs,
     [PublicAPI, Pure]
     public override int GetHashCode() => Query.GetHashCode();
 
-    /// <summary>Uses <see cref="Stringifier.Stringify{T}(T)"/> on <see cref="Query"/>.</summary>
-    /// <returns>A <see cref="string"/> representation of <see cref="Query"/>.</returns>
+    /// <inheritdoc />
     [PublicAPI, Pure]
-    public override string ToString() => Stringifier.Stringify(Query);
+    public override string ToString() => Query.ToString();
 }

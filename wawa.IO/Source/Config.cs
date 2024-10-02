@@ -42,7 +42,7 @@ public static class Config
     )
         where T : new()
     {
-        if (!IsKtane || !that.HasRead)
+        if (!IsKtane && !IsRewritten || !that.HasRead)
             return that;
 
         AssemblyLog(@$"Writing to the file ""{that.FilePath}"" with the following contents: {value}");
@@ -144,7 +144,7 @@ public static class Config
     static bool TryCreateNewFile<T>([NotNull] Config<T> that)
         where T : new()
     {
-        if (!IsKtane)
+        if (!IsKtane && !IsRewritten)
         {
             AssemblyLog("In the editor; Nothing will be performed on the file system.");
             return true;

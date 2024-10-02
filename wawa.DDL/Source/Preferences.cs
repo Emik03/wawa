@@ -14,7 +14,8 @@ public static class Preferences
     [PublicAPI]
     public static bool IsVR
     {
-        [Pure] get => FromGame(0, static _ => KTInputManager.Instance.CurrentControlType is ControlType.Motion);
+        [Pure]
+        get => FromGame(static _ => KTInputManager.Instance.CurrentControlType is ControlType.Motion);
     }
 
     /// <summary>Gets or sets the current music volume from the dossier menu. Ranges 0 to 100.</summary>
@@ -23,7 +24,7 @@ public static class Preferences
     public static byte Music
     {
         [Pure]
-        get => FromGame(0, static _ => (byte)PlayerSettingsManager.Instance.PlayerSettings.MusicVolume, MaxVolume);
+        get => FromGame(static _ => (byte)PlayerSettingsManager.Instance.PlayerSettings.MusicVolume, MaxVolume);
         set => FromGame(value, static v => PlayerSettingsManager.Instance.PlayerSettings.MusicVolume = v);
     }
 
@@ -32,7 +33,8 @@ public static class Preferences
     [PublicAPI, ValueRange(0, MaxVolume)]
     public static byte Sound
     {
-        [Pure] get => FromGame(0, static _ => (byte)PlayerSettingsManager.Instance.PlayerSettings.SFXVolume, MaxVolume);
+        [Pure]
+        get => FromGame(static _ => (byte)PlayerSettingsManager.Instance.PlayerSettings.SFXVolume, MaxVolume);
         set => FromGame(value, static v => PlayerSettingsManager.Instance.PlayerSettings.SFXVolume = v);
     }
 }

@@ -7,8 +7,6 @@ static class Globals
     /// <summary>The default string comparison throughout the library.</summary>
     internal const StringComparison Ordinal = StringComparison.Ordinal;
 
-    static readonly byte[] s_emptyBytes = [];
-
     /// <summary>Gets the name of <see cref="Caller"/>.</summary>
     [NotNull]
     internal static string Who => Caller.Name;
@@ -53,7 +51,7 @@ static class Globals
             return false;
 
         AssemblyError($"Received {code} response code ({error})\n{downloadHandler.text}");
-        data = s_emptyBytes;
+        data = [];
         return true;
     }
 

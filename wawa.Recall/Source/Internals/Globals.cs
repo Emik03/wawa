@@ -79,6 +79,13 @@ static class Globals
     [NotNull, Pure]
     public static MonoBehaviour Core([NotNull] this CoreBehaviour that) => (MonoBehaviour)(object)that;
 
+    /// <summary>Converts this instance to the unity module.</summary>
+    /// <param name="that">The object to convert.</param>
+    /// <returns><paramref name="that"/> <see langword="as"/> <see cref="MonoBehaviour"/>.</returns>
+    // ReSharper disable SuspiciousTypeConversion.Global
+    [InlineMethod.Inline, NotNull, Pure]
+    public static MonoBehaviour Core([NotNull] this KMSelectable that) => (MonoBehaviour)(object)that;
+
     /// <summary>Gets the path of the current <see cref="Transform"/>.</summary>
     /// <param name="current">The current <see cref="Transform"/>.</param>
     /// <returns>The path in the hierarchy to the parameter <paramref name="current"/>.</returns>

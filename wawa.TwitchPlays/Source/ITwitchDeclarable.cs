@@ -97,7 +97,7 @@ public interface ITwitchDeclarable : ISolvable, ITwitchSupportable
     /// <remarks><para>
     /// Make sure that the module is solved before this method closes, otherwise it causes a forced-solve.
     /// </para></remarks>
-    /// <returns>A series of instructions for the Twitch Plays mod to handle in order to guarantee a solve.</returns>
+    /// <returns>A series of instructions for the Twitch Plays mod to handle in order to guarantee solving.</returns>
     [NotNull, ItemCanBeNull, PublicAPI, Pure]
     IEnumerable<Instruction> ForceSolve();
 }

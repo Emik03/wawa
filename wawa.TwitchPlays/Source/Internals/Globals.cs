@@ -21,7 +21,7 @@ static class Globals
     [NotNull]
     const string
         Boolean = "true/false",
-        CannotSerialize = $"This type lacks static fields of itself, and a {nameof(int.TryParse)} that takes a " +
+        CannotSerialize = $"This type lacks static fields of itself, or a {nameof(int.TryParse)} method that takes a " +
             $"{nameof(String)}, has an out parameter of itself, and returns {nameof(Boolean)}.",
         Ellipsis = "\u2026",
         Float = $"<#.#{Ellipsis}>",
@@ -38,21 +38,21 @@ static class Globals
     /// <param name="err">The error to convert.</param>
     /// <param name="type">The type that was used.</param>
     /// <returns>A human-friendly <see langword="string"/> representing the reason for the error.</returns>
-    [NotNull]
+    [NotNull, Pure]
     internal static string Reason([InstantHandle] this ParseError err, [NotNull] in Type type) =>
         err switch
         {
             ParseError.Empty => TooShort,
-            ParseError.Field => $"Expected one of {Stringifier.Conjoin(type.DisplayFields(), ' ')}",
             ParseError.NoMatch => InvalidFormat,
             ParseError.Unserializable => CannotSerialize,
+            ParseError.Field => $"Expected one of {string.Join(" ", type.DisplayFields().ToArray())}",
             _ => throw new ArgumentOutOfRangeException(nameof(err), err, NotImplemented),
         };
 
     /// <summary>Gets a <see cref="string"/> representation of parameters.</summary>
     /// <param name="parameters">The parameters to make a string representation of.</param>
     /// <returns>A <see cref="string"/> representation of the parameter <paramref name="parameters"/>.</returns>
-    [NotNull, Pure]
+    [NotNull, MustUseReturnValue]
     internal static string Show([InstantHandle, NotNull] this IEnumerable<ParameterInfo> parameters)
     {
         [NotNull]
@@ -63,33 +63,30 @@ static class Globals
                 _ when x.GetElementType() is { } y => $"{Display(y)} {Display(y)} {Ellipsis}",
                 _ when x == typeof(bool) => Boolean,
                 _ when x == typeof(char) => Character,
-                _ when x == typeof(string) ||
-                    x == typeof(object) => Text,
-                _ when x == typeof(float) ||
-                    x == typeof(double) ||
-                    x == typeof(decimal) => Float,
-                _ when x == typeof(byte) ||
-                    x == typeof(ushort) ||
-                    x == typeof(uint) ||
-                    x == typeof(ulong) => Unsigned,
-                _ when x == typeof(sbyte) ||
-                    x == typeof(short) ||
-                    x == typeof(int) ||
-                    x == typeof(long) => Signed,
-                _ => $"<{Stringifier.Conjoin(x.DisplayFields(), '/')}>",
+                _ when x == typeof(string) || x == typeof(object) => Text,
+                _ when x == typeof(float) || x == typeof(double) || x == typeof(decimal) => Float,
+                _ when x == typeof(byte) || x == typeof(ushort) || x == typeof(uint) || x == typeof(ulong) => Unsigned,
+                _ when x == typeof(sbyte) || x == typeof(short) || x == typeof(int) || x == typeof(long) => Signed,
+                _ => $"<{string.Join("/", x.DisplayFields().ToArray())}>",
             };
 
-        return Stringifier.Conjoin(parameters.Select(static x => Display(x.ParameterType)), ' ');
+        [NotNull]
+        static string Description([AllowNull, CanBeNull] ParameterInfo x) =>
+            x?.ParameterType
+               .GetCustomAttributes(false)
+               .OfType<DescriptionAttribute>()
+               .FirstOrDefault() is { Description: var description }
+                ? $" ({description})"
+                : "";
+
+        return string.Join(" ", parameters.Select(static x => $"{Display(x.ParameterType)}{Description(x)}").ToArray());
     }
 
-    // ReSharper disable once SuggestBaseTypeForParameter
-    [NotNull, Pure]
+    [NotNull, Pure] // ReSharper disable once SuggestBaseTypeForParameter
     static IEnumerable<string> DisplayFields(this Type reflect) =>
         reflect
            .GetFields(FieldBindings)
            .Where(static x => x.Name is not InternalField)
            .Select(AliasAttribute.ToString)
-#pragma warning disable CA1308
            .Select(static x => x.ToLowerInvariant());
-#pragma warning restore CA1308
 }

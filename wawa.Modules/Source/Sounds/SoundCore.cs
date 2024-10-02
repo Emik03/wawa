@@ -29,9 +29,7 @@ public static class SoundCore
                 ? audio.HandlePlaySoundAtTransformWithRef?.Invoke(that.Modded.Value, transform, isLooping)
                 : audio.HandlePlayGameSoundAtTransformWithRef?.Invoke(that.Vanilla.Unwrap(), transform);
         }
-#pragma warning disable S1696
         catch (NullReferenceException)
-#pragma warning restore S1696
         {
             return null;
         }

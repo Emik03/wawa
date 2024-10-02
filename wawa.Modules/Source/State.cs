@@ -5,9 +5,11 @@ namespace Wawa.Modules;
 [PublicAPI]
 public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<State>
 {
+    /// <summary>The prefix for <see cref="ToString"/>.</summary>
     [NotNull]
     const string Prefix = "id: ";
 
+    /// <summary>Contains the number of times each mod referencing this library has been instantiated.</summary>
     [NotNull]
     static readonly Dictionary<string, int> s_ids = new(StringComparer.Ordinal);
 

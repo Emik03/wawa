@@ -1,14 +1,13 @@
 // SPDX-License-Identifier: MPL-2.0
 namespace Wawa.DDL;
 
+extern alias core;
 using static Math;
 
 /// <summary>Exposes strike-related methods that <see cref="KMBomb"/> instances can act on.</summary>
 [PublicAPI]
 public static class KMBombStrikeExtensions
 {
-    // ReSharper disable NullableWarningSuppressionIsUsed Unity.PerformanceCriticalCodeInvocation
-
     /// <summary>Gets the number of strikes.</summary>
     /// <remarks><para>In the editor, this value always returns <c>0</c>.</para></remarks>
     /// <param name="that">The <see cref="KMBomb"/> module instance to grab strikes from.</param>
@@ -35,7 +34,15 @@ public static class KMBombStrikeExtensions
     /// <returns>The speed of the ticking.</returns>
     [CLSCompliant(false), MustUseReturnValue, PublicAPI]
     public static float GetRate([NotNull] this KMBomb that, bool signFlip = false) =>
-        FromGame(new Dangerous(that, 0, signFlip), static x => x.GetRate(), 1);
+        FromGame(
+            new KeyValuePair<KMBomb, bool>(that, signFlip),
+            static x =>
+            {
+                var rate = x.Key.GetComponent<Bomb>().GetTimer().GetRate();
+                return rate < 0 && x.Value ? -rate : rate;
+            },
+            1
+        );
 
     /// <summary>Detonates the bomb.</summary>
     /// <remarks><para>In the editor, this method does nothing.</para></remarks>
@@ -43,7 +50,15 @@ public static class KMBombStrikeExtensions
     /// <returns>The parameter <paramref name="that"/>.</returns>
     [CLSCompliant(false), NonNegativeValue, NotNull, PublicAPI]
     public static KMBomb Detonate([NotNull] this KMBomb that) =>
-        FromGame(new Dangerous(that), static x => x.Detonate(), that)!;
+        FromGame(
+            that,
+            static x =>
+            {
+                x.GetComponent<Bomb>().Detonate();
+                return x;
+            },
+            that // ReSharper disable NullableWarningSuppressionIsUsed
+        )!;
 
     /// <summary>Sets the rate in which the timer ticks.</summary>
     /// <remarks><para>In the editor, this method does nothing.</para></remarks>
@@ -56,7 +71,16 @@ public static class KMBombStrikeExtensions
     /// <returns>The parameter <paramref name="that"/>.</returns>
     [CLSCompliant(false), NotNull, PublicAPI]
     public static KMBomb SetRate([NotNull] this KMBomb that, float value, bool signFlip = false) =>
-        FromGame(new Dangerous(that, value, signFlip), static x => x.SetRate(), that)!;
+        FromGame(
+            new KeyValuePair<KMBomb, KeyValuePair<float, bool>>(that, new(value, signFlip)),
+            static x =>
+            {
+                var timer = x.Key.GetComponent<Bomb>().GetTimer();
+                timer.SetRateModifier(x.Value.Value && timer.GetRate() < 0 ? -x.Value.Key : x.Value.Key);
+                return x.Key;
+            },
+            that
+        )!;
 
     /// <summary>Sets the number of strikes.</summary>
     /// <remarks><para>In the editor, this method does nothing.</para></remarks>
@@ -66,7 +90,32 @@ public static class KMBombStrikeExtensions
     /// <returns>The parameter <paramref name="that"/>.</returns>
     [CLSCompliant(false), NonNegativeValue, NotNull, PublicAPI]
     public static KMBomb SetStrikes([NotNull] this KMBomb that, int value, bool tryDetonate = false) =>
-        FromGame(new Dangerous(that, value, tryDetonate), static x => x.SetStrikes(), that)!;
+        FromGame(
+            new KeyValuePair<KMBomb, KeyValuePair<int, bool>>(that, new(value, tryDetonate)),
+            static x =>
+            {
+                var inner = x.Key.GetComponent<Bomb>();
+
+                if (x.Value.Value && inner.NumStrikesToLose <= x.Value.Key)
+                {
+                    x.Key.GetComponent<Bomb>().Detonate();
+                    return x.Key;
+                }
+
+                inner.StrikeIndicator.StrikeCount = inner.NumStrikes = x.Value.Key;
+
+                // Reimplementation for tick rate found in [Assembly-CSharp]Bomb.OnStrike(MonoBehaviour)
+                // The sign is set to match the current rate.
+                var sign = Sign(inner.GetTimer().GetRate());
+
+                // Maps 0..4 to 1..2, rounded to the nearest quarter.
+                var clip = Mathf.Clamp(inner.NumStrikes / 4, 0, 1) + 1;
+
+                x.Key.SetRate(clip * sign);
+                return x.Key;
+            },
+            that
+        )!;
 
     /// <summary>Sets the number of max strikes.</summary>
     /// <remarks><para>In the editor, this method does nothing.</para></remarks>
@@ -76,67 +125,21 @@ public static class KMBombStrikeExtensions
     /// <returns>The parameter <paramref name="that"/>.</returns>
     [CLSCompliant(false), NonNegativeValue, NotNull, PublicAPI]
     public static KMBomb SetMaxStrikes([NotNull] this KMBomb that, int value, bool tryDetonate = false) =>
-        FromGame(new Dangerous(that, value, tryDetonate), static x => x.SetMaxStrikes(), that)!;
+        FromGame(
+            new KeyValuePair<KMBomb, KeyValuePair<int, bool>>(that, new(value, tryDetonate)),
+            static x =>
+            {
+                var inner = x.Key.GetComponent<Bomb>();
 
-    [StructLayout(LayoutKind.Auto)]
-    readonly struct Dangerous([NotNull] KMBomb bomb, int value = 0, bool alter = false)
-    {
-        internal Dangerous(KMBomb bomb, float value, bool alter)
-            : this(bomb, BitCast(value), alter) { }
+                if (x.Value.Value && inner.NumStrikesToLose <= x.Value.Key)
+                {
+                    x.Key.GetComponent<Bomb>().Detonate();
+                    return x.Key;
+                }
 
-        internal float GetRate()
-        {
-            var rate = bomb.GetComponent<Bomb>().GetTimer().GetRate();
-            return rate < 0 && alter ? -rate : rate;
-        }
-
-        internal KMBomb Detonate()
-        {
-            bomb.GetComponent<Bomb>().Detonate();
-            return bomb;
-        }
-
-        internal KMBomb SetStrikes()
-        {
-            var inner = bomb.GetComponent<Bomb>();
-
-            if (alter && inner.NumStrikesToLose <= value)
-                return Detonate();
-
-            inner.StrikeIndicator.StrikeCount = inner.NumStrikes = value;
-
-            // Reimplementation for tick rate found in [Assembly-CSharp]Bomb.OnStrike(MonoBehaviour)
-            // The sign is set to match the current rate.
-            var sign = Sign(inner.GetTimer().GetRate());
-
-            // Maps 0..4 to 1..2, rounded to the nearest quarter.
-            var clip = Mathf.Clamp(inner.NumStrikes / 4, 0, 1) + 1;
-
-            bomb.SetRate(clip * sign);
-            return bomb;
-        }
-
-        internal KMBomb SetMaxStrikes()
-        {
-            var inner = bomb.GetComponent<Bomb>();
-
-            if (alter && inner.NumStrikesToLose <= value)
-                return Detonate();
-
-            inner.NumStrikesToLose = value;
-            return bomb;
-        }
-
-        internal KMBomb SetRate()
-        {
-            bomb.GetComponent<Bomb>().GetTimer().SetRateModifier(BitCast(value));
-            return bomb;
-        }
-
-        [Pure]
-        static unsafe int BitCast(float value) => *(int*)&value;
-
-        [Pure]
-        static unsafe float BitCast(int value) => *(float*)&value;
-    }
+                inner.NumStrikesToLose = x.Value.Key;
+                return x.Key;
+            },
+            that
+        )!;
 }

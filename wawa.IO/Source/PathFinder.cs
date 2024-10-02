@@ -36,9 +36,8 @@ public static class PathFinder
     [NotNull, PublicAPI]
     public static AssemblyName Caller
     {
-#pragma warning disable CA1065 // ReSharper disable once NullableWarningSuppressionIsUsed
+        // ReSharper disable once NullableWarningSuppressionIsUsed
         [MustUseReturnValue] get => new StackFrame(3).GetMethod().ReflectedType?.Assembly.GetName()!;
-#pragma warning restore CA1065
     }
 
     /// <summary>Gets the name of <see cref="Caller"/>.</summary>
@@ -107,11 +106,7 @@ public static class PathFinder
         [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] string filePath,
         [AllowNull, CanBeNull] string modId = null
     ) =>
-        new { FilePath = filePath, ModId = modId ?? Who }.Get(
-            static key => key.SuppressIO(
-                k => GetDirectory(k.ModId).Value is { } directory ? Path.Combine(directory, key.FilePath) : null
-            )
-        );
+        (IsKtane || IsRewritten) && GetDirectory(modId).Value is { } dir ? Path.Combine(dir, filePath) : null;
 
     /// <summary>Gets and deserializes the <see cref="ModInfo" /> file located in every mod's root directory.</summary>
     /// <param name="modId">
@@ -149,10 +144,11 @@ public static class PathFinder
         [AllowNull, CanBeNull] string modId = null
     )
         where T : Object =>
-        new { FilePath = filePath, ModId = modId ?? Who }.Get(
-            static key => GetFile(key.FilePath, key.ModId).Value is { } path
+        new KeyValuePair<string, string>(filePath, modId ?? Who).Get(
+            static key => GetFile(key.Key, key.Value).Value is { } path
                 ? AssetBundle.LoadFromFile(path)?.LoadAllAssets<T>()
-                : null
+                : null,
+            overriden: null
         );
 
     /// <summary>Gets an unmanaged function from an external library.</summary>
@@ -173,12 +169,11 @@ public static class PathFinder
         [AllowNull, CanBeNull] string modId = null
     )
         where T : Delegate =>
-        new { LibPath = libPath, FFIMethodName = ffiMethodName, ModId = modId ?? Who }
+        new KeyValuePair<string, KeyValuePair<string, string>>(libPath, new(ffiMethodName, modId ?? Who))
            .Get(
-                static key => GetDirectory(key.ModId).Value is { } directory
-                    ? key.LibPath.FindLibrary(directory)?.CreateUnmanagedMethod<T>(key.FFIMethodName)
-                    : null,
-                static key => key.LibPath.CreateUnmanagedMethod<T>(key.FFIMethodName)
+                static x => x.Value.Key.FindLibrary(GetDirectory(x.Value.Value).Value)?.CreateUnmanagedMethod<T>(x.Key),
+                static x => x.Value.Key.CreateUnmanagedMethod<T>(x.Key),
+                overriden: null
             );
 
     [MemberNotNullWhen(false, nameof(s_directories)), MustUseReturnValue]
@@ -224,13 +219,17 @@ public static class PathFinder
     [return: AllowNull]
     static string FindLibrary(
         [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] this string file,
-        [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] in string root
+        [AllowNull, CanBeNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] in string root
     )
     {
+        // ReSharper disable once ConditionIsAlwaysTrueOrFalse HeuristicUnreachableCode
+        if (root is null)
+            return null;
+
         var architecture = Application.platform switch
         {
-            RuntimePlatform.LinuxPlayer => Linux,
             RuntimePlatform.OSXPlayer => OSX,
+            RuntimePlatform.LinuxPlayer => Linux,
             RuntimePlatform.WindowsPlayer => Windows,
             _ => null,
         };
@@ -257,21 +256,18 @@ public static class PathFinder
                 AssemblyLog(@$"Couldn't find the library ""{file}"" in the directory ""{directory}"".", LogType.Error);
                 return null;
             case > 1:
-#pragma warning disable CI0003
                 var others = string.Join(@""", """, source.Skip(1).ToArray());
-#pragma warning restore CI0003
+
                 AssemblyLog(
                     @$"Multiple binaries were found, assuming ""{source[0]}"", but could have also used ""{others}"".",
                     LogType.Warning
                 );
 
-                return source[0];
+                goto default;
             default: return source[0];
         }
     }
 
-    // Boxing required; Avoids creating closures with the 'Mod' type.
-    // Collected as list due to multiple enumerations.
     [MustUseReturnValue, NotNull, Pure]
     static Dictionary<string, string> UpdateModIdToDirectoryMapping()
     {
@@ -323,24 +319,14 @@ public static class PathFinder
         [NotNull, ItemNotNull] in Type[] parameters
     )
     {
-        const CallingConvention NativeCall = CallingConvention.Cdecl;
         const CallingConventions Convention = CallingConventions.Standard;
-        const CharSet NativeCharSet = CharSet.Ansi;
+        const CallingConvention Call = CallingConvention.Cdecl;
+        const CharSet CharSet = CharSet.Ansi;
 
         const MethodAttributes Attributes =
             MethodAttributes.Static | MethodAttributes.Public | MethodAttributes.PinvokeImpl;
 
-        dynamicMod.DefinePInvokeMethod(
-            name,
-            dllName,
-            Attributes,
-            Convention,
-            returnType,
-            parameters,
-            NativeCall,
-            NativeCharSet
-        );
-
+        dynamicMod.DefinePInvokeMethod(name, dllName, Attributes, Convention, returnType, parameters, Call, CharSet);
         return dynamicMod;
     }
 

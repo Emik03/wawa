@@ -1,13 +1,11 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-
-// Every Unity API call is cached, therefore;
-// ReSharper disable Unity.PerformanceCriticalCodeInvocation
 namespace Wawa.Unity;
 
 /// <summary><see cref="MonoBehaviour"/> with caching methods.</summary>
 [CLSCompliant(false), PublicAPI]
 public abstract class CachedBehaviour : MonoBehaviour
 {
+    /// <summary>Contains the cached components.</summary>
     [NotNull, ProvidesContext]
     readonly Dictionary<Type, object> _cache = [];
 
@@ -43,10 +41,7 @@ public abstract class CachedBehaviour : MonoBehaviour
             ? (T)o
             : Assert<T>(
                 _cache[typeof(T)] = typeof(T).IsArray
-                    ? Create<Component, T>(
-                        GetComponentsInChildren(Element<T>(), includeInactive),
-                        includeSelf
-                    )
+                    ? Create<Component, T>(GetComponentsInChildren(Element<T>(), includeInactive), includeSelf)
                     : GetComponentInChildren(typeof(T), includeInactive)
             );
 
@@ -129,22 +124,19 @@ public abstract class CachedBehaviour : MonoBehaviour
             ? (T)o
             : Assert<T>(
                 _cache[typeof(T)] = typeof(T).IsArray
-                    ? Create<Component, T>(
-                        GetComponentsInParent(Element<T>(), includeInactive),
-                        includeSelf
-                    )
+                    ? Create<Component, T>(GetComponentsInParent(Element<T>(), includeInactive), includeSelf)
                     : GetComponentInParent(typeof(T))
             );
 
-    [NotNull] // ReSharper disable once NullableWarningSuppressionIsUsed
+    [NotNull, Pure] // ReSharper disable once NullableWarningSuppressionIsUsed
     static Type Element<T>() => typeof(T).IsArray ? typeof(T).GetElementType()! : typeof(T);
 
-    [NotNull]
+    [MustUseReturnValue, NotNull]
     T Assert<T>([AllowNull, CanBeNull] in object o)
         where T : class =>
         o as T ?? throw new MissingComponentException($"Could not find {Element<T>().Name} in {this}.");
 
-    [NotNull]
+    [MustUseReturnValue, NotNull]
     TTo Create<TFrom, TTo>([NotNull] in TFrom[] input, [InstantHandle] bool includeSelf)
     {
         var type = Element<TTo>();
@@ -157,15 +149,15 @@ public abstract class CachedBehaviour : MonoBehaviour
 
         var indices = new long[rank];
 
-        for (long l = 0; l < rank; l++)
-            indices[l] = size;
+        for (long i = 0; i < rank; i++)
+            indices[i] = size;
 
         var array = Array.CreateInstance(type, indices);
 
         for (long i = 0; i < length; i++)
         {
-            for (long l = 0; l < rank; l++)
-                indices[l] = i / (long)Math.Pow(size, l) % size;
+            for (long j = 0; j < rank; j++)
+                indices[j] = i / (long)Math.Pow(size, j) % size;
 
             array.SetValue(input[i + start], indices);
         }

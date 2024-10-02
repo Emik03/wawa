@@ -9,18 +9,6 @@
         <ProjectReference Include="../wawa.Unity/wawa.Unity.csproj"/>
         <Compile Remove="$(Morsels)/Compile/Source/References/*/**/*.cs"/>
         <ProjectReference Include="../wawa.Optionals/wawa.Optionals.csproj"/>
-        <Compile Include="$(Morsels)/Compile/Source/References/System/Span.cs" Link="Source/References/System/Span.cs"/>
-        <Compile Include="$(Morsels)/Compile/Source/References/Emik/Linq/Force.cs" Link="Source/References/Emik/Linq/Force.cs"/>
-        <Compile Include="$(Morsels)/Compile/Source/References/Fody/InlineAttribute.cs" Link="Source/References/Fody/InlineAttribute.cs"/>
-        <Compile Include="$(Morsels)/Compile/Source/References/Emik/Text/Stringifier.cs" Link="Source/References/Emik/Text/Stringifier.cs"/>
-        <Compile Include="$(Morsels)/Compile/Source/References/Emik/Numerics/EnumMath.cs" Link="Source/References/Emik/Numerics/EnumMath.cs"/>
-        <Compile Include="$(Morsels)/Compile/Source/References/Emik/Numerics/DigitCounter.cs" Link="Source/References/Emik/Numerics/DigitCounter.cs"/>
-        <Compile Include="$(Morsels)/Compile/Source/References/Emik/VersionDeconstructors.cs" Link="Source/References/Emik/VersionDeconstructors.cs"/>
-        <Compile Include="$(Morsels)/Compile/Source/References/System/Int32TryFormatPolyfill.cs" Link="Source/References/System/Int32TryFormatPolyfill.cs"/>
-        <Compile Include="$(Morsels)/Compile/Source/References/System/Numerics/BitOperations.cs" Link="Source/References/System/Numerics/BitOperations.cs"/>
         <Compile Include="$(Morsels)/Compile/Source/References/Emik/Collections/Generics/Matrix.cs" Link="Source/References/Emik/Collections/Generics/Matrix.cs"/>
-        <Compile Include="$(Morsels)/Compile/Source/References/System/Diagnostics/MethodImplOptions.cs" Link="Source/References/System/Diagnostics/MethodImplOptions.cs"/>
-        <Compile Include="$(Morsels)/Compile/Source/References/System/Collections/Generics/IReadOnly.cs" Link="Source/References/System/Collections/Generics/IReadOnly.cs"/>
-        <Compile Include="$(Morsels)/Compile/Source/References/System/TypeGetEnumUnderlyingTypePolyfill.cs" Link="Source/References/System/TypeGetEnumUnderlyingTypePolyfill.cs"/>
     </ItemGroup>
 </Project>

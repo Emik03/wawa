@@ -4,21 +4,24 @@ namespace Wawa.DDL;
 using static BindingFlags;
 
 /// <summary>Allows for querying general data from the game.</summary>
-// ReSharper disable Unity.PerformanceCriticalCodeInvocation
 [PublicAPI]
 public static class Lookup
 {
+    /// <summary>The field name for the dictionary of loaded mods.</summary>
     [NotNull]
     const string Name = "loadedMods";
 
-    const BindingFlags Bindings = DeclaredOnly | Instance | NonPublic;
+    /// <summary>The binding flags for obtaining the dictionary of loaded mods.</summary>
+    const BindingFlags Binds = DeclaredOnly | Instance | NonPublic;
 
     /// <summary>Gets the dictionary of loaded mods.</summary>
     /// <remarks><para>
     /// In the editor, this value returns an instance of <see cref="Hashtable"/>, initialized as empty.
     /// </para></remarks>
-    [NotNull, PublicAPI] // ReSharper disable once AssignNullToNotNullAttribute
-    public static IDictionary Mods { [Pure] get; } = FromGame(0, static _ => Factory(), new Hashtable());
+    [PublicAPI]
+    public static IDictionary Mods { [Pure] get; } =
+        FromGame(static _ => typeof(ModManager).GetField(Name, Binds)?.GetValue(ModManager.Instance) as IDictionary) ??
+        new Hashtable();
 
     /// <summary>Gets the localized value of a <see cref="string"/> term.</summary>
     /// <remarks><para>In the editor, this value returns <see cref="Maybe.None{T}"/>.</para></remarks>
@@ -34,10 +37,5 @@ public static class Lookup
     /// <returns>The mod name attached to the parameter <paramref name="component"/>.</returns>
     [CLSCompliant(false), PublicAPI]
     public static Maybe<string> ModNameOf([NotNull] Component component) =>
-        FromGame(component, static o => o.GetComponent<ModSource>() is var m && m ? m.ModName : null);
-
-    // ReSharper disable once NullableWarningSuppressionIsUsed
-    [NotNull, PublicAPI]
-    static IDictionary Factory() =>
-        (typeof(ModManager).GetField(Name, Bindings)?.GetValue(ModManager.Instance) as IDictionary)!;
+        FromGame(component, static c => c.GetComponent<ModSource>() is var m && m ? m.ModName : null);
 }

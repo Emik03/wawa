@@ -13,6 +13,7 @@ public sealed class CommandAttribute([AllowNull, CanBeNull] string prefix = null
     IEquatable<CommandAttribute>,
     IEqualityComparer<CommandAttribute>
 {
+    /// <summary>Indicates that there is no prefix, and that the command is inferred by the method name.</summary>
     [NotNull]
     const string Null = "<inferred>";
 

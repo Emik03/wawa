@@ -20,9 +20,9 @@ Make sure your experts have the manual and are ready to help.",
     /// <summary>Gets or sets a value indicating whether pacing events are enabled.</summary>
     /// <remarks><para>In the editor, this returns <see keyword="false"/>.</para></remarks>
     [PublicAPI]
-    public static bool IsPacingEvents
+    public static bool HasPacingEvents
     {
-        [Pure] get => FromGame(0, static _ => SceneManager.Instance.GameplayState.Mission.PacingEventsEnabled);
+        [Pure] get => FromGame(static _ => SceneManager.Instance.GameplayState.Mission.PacingEventsEnabled);
         set => FromGame(value, static v => SceneManager.Instance.GameplayState.Mission.PacingEventsEnabled = v);
     }
 
@@ -34,7 +34,6 @@ Make sure your experts have the manual and are ready to help.",
         [Pure]
         get =>
             FromGame(
-                0,
                 static _ => Lookup.Localized(SceneManager.Instance.GameplayState.Mission.DescriptionTerm),
                 ExampleDescription
             );
@@ -45,7 +44,7 @@ Make sure your experts have the manual and are ready to help.",
     [PublicAPI]
     public static Maybe<string> Id
     {
-        [Pure] get => FromGame(0, static _ => SceneManager.Instance.GameplayState.Mission.ID, ExampleId);
+        [Pure] get => FromGame(static _ => SceneManager.Instance.GameplayState.Mission.ID, ExampleId);
     }
 
     /// <summary>Gets the current language code.</summary>
@@ -54,12 +53,7 @@ Make sure your experts have the manual and are ready to help.",
     public static Maybe<string> LanguageCode
     {
         [Pure]
-        get =>
-            FromGame(
-                0,
-                static _ => PlayerSettingsManager.Instance.PlayerSettings.LanguageCode,
-                ExampleLanguageCode
-            );
+        get => FromGame(static _ => PlayerSettingsManager.Instance.PlayerSettings.LanguageCode, ExampleLanguageCode);
     }
 
     /// <summary>Gets the mission name as it appears in the bomb binder.</summary>
@@ -70,7 +64,6 @@ Make sure your experts have the manual and are ready to help.",
         [Pure]
         get =>
             FromGame(
-                0,
                 static _ => Lookup.Localized(SceneManager.Instance.GameplayState.Mission.DisplayNameTerm),
                 ExampleName
             );

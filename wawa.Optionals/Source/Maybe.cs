@@ -5,6 +5,10 @@ namespace Wawa.Optionals;
 [PublicAPI]
 public static class Maybe
 {
+    /// <summary>
+    /// The error message describing that <see cref="Unwrap{T}"/> was called
+    /// on a <see cref="None{T}"/> <see cref="Maybe{T}"/> instance
+    /// </summary>
     [NotNull]
     const string UnwrapMessage = $"Called '{nameof(Unwrap)}' on a None {nameof(Maybe)}.";
 
@@ -15,7 +19,6 @@ public static class Maybe
     /// <returns>
     /// The value <see langword="true"/> if <paramref name="that"/> contains a value, otherwise <see langword="false"/>.
     /// </returns>
-    // ReSharper disable UseNegatedPatternInIsExpression
     [PublicAPI, Pure]
     public static bool TryGet<T>(
         [InstantHandle] this Maybe<T> that,
@@ -262,9 +265,7 @@ public static class Maybe
     /// <param name="that">This instance of <see cref="Maybe{T}"/>.</param>
     /// <returns>The inner value, or a <see langword="new"/> instance.</returns>
     [PublicAPI, Pure]
-#pragma warning disable CA1711
     public static T UnwrapOrNew<T>(this Maybe<T> that)
-#pragma warning restore CA1711
         where T : new() =>
         that.IsSome ? that.Value : new();
 

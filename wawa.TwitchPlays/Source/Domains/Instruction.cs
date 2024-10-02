@@ -9,6 +9,7 @@ namespace Wawa.TwitchPlays.Domains;
 [PublicAPI]
 public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEqualityComparer<Instruction>
 {
+    /// <summary>Gets the command for detonation.</summary>
     [NotNull]
     const string Detonate = "detonate";
 
@@ -16,7 +17,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <remarks><para>Detonates the bomb when yielded.</para></remarks>
     /// <param name="reason">The optional reason for the explosion.</param>
     /// <param name="moduleName">The override of the module name that caused the explosion.</param>
-    [PublicAPI] // ReSharper disable ConditionIsAlwaysTrueOrFalse
+    [PublicAPI]
     public Instruction([AllowNull, CanBeNull] string reason = null, [AllowNull, CanBeNull] string moduleName = null) =>
         Value = (string[])(reason is null ? [Detonate] :
             moduleName is null ? [Detonate, reason] : [Detonate, reason, moduleName]);
@@ -86,7 +87,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// Gets a value indicating whether Twitch Plays should allow
     /// other modules to be interacted with for the current frame.
     /// </summary>
-    [NotNull, PublicAPI]
+    [HandlesResourceDisposal, NotNull, PublicAPI]
     internal object Value { [Pure] get; }
 
     /// <inheritdoc/>
@@ -200,8 +201,6 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// A <see langword="new"/> <see cref="Instruction"/> instance encapsulating <paramref name="selectable"/>.
     /// </returns>
     [CLSCompliant(false), NotNull, PublicAPI, Pure]
-
-    // ReSharper disable once InconsistentNaming
     public static Instruction FromKMSelectable([NotNull] KMSelectable selectable) => selectable;
 
     /// <summary>
@@ -212,7 +211,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     /// <returns>
     /// A <see langword="new"/> <see cref="Instruction"/> instance encapsulating <paramref name="selectables"/>.
     /// </returns>
-    [CLSCompliant(false), NotNull, PublicAPI, Pure] // ReSharper disable once InconsistentNaming
+    [CLSCompliant(false), NotNull, PublicAPI, Pure]
     public static Instruction FromKMSelectableArray([ItemCanBeNull, NotNull] params KMSelectable[] selectables) =>
         selectables;
 
@@ -245,8 +244,8 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
     public static Instruction FromYieldInstruction([NotNull] YieldInstruction yield) => yield;
 
     /// <inheritdoc/>
-    [PublicAPI, Pure] // ReSharper disable once AssignNullToNotNullAttribute
-    public override bool Equals([AllowNull] object obj) => Equals(obj as Instruction);
+    [PublicAPI, Pure] // ReSharper disable once NullableWarningSuppressionIsUsed
+    public override bool Equals([AllowNull] object obj) => Equals((obj as Instruction)!);
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
@@ -254,5 +253,5 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
-    public override string ToString() => Stringifier.Stringify(Value);
+    public override string ToString() => Value.ToString();
 }

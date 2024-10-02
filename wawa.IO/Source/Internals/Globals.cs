@@ -47,17 +47,20 @@ static class Globals
     /// <typeparam name="T">The type of the parameter.</typeparam>
     /// <typeparam name="TResult">The type of return.</typeparam>
     /// <param name="key">The parameter of the method.</param>
-    /// <param name="factory">The expensive callback.</param>
+    /// <param name="ktane">The expensive callback.</param>
     /// <param name="editor">The expensive callback exclusive to the editor.</param>
     /// <param name="caller">The caller member name.</param>
-    /// <returns>The value from the first time <paramref name="factory" /> was invoked.</returns>
+    /// <param name="overriden">The name of the factory to invoke.</param>
+    /// <returns>The value from the first time <paramref name="ktane" /> was invoked.</returns>
     [CanBeNull, Pure]
     [return: AllowNull]
     internal static TResult Get<T, TResult>(
         [NotNull] this T key,
-        [InstantHandle, NotNull, RequireStaticDelegate(IsError = true)] in Func<T, TResult> factory,
-        [AllowNull, CanBeNull, InstantHandle, RequireStaticDelegate(IsError = true)] in Func<T, TResult> editor = null,
-        [CallerLineNumber, NonNegativeValue] int caller = 0
+        [InstantHandle, NotNull, RequireStaticDelegate(IsError = true)] in Converter<T, TResult> ktane,
+        [AllowNull, CanBeNull, InstantHandle, RequireStaticDelegate(IsError = true)] in Converter<T, TResult> editor =
+            null,
+        [CallerLineNumber, NonNegativeValue] int caller = 0,
+        [CallerMemberName, CanBeNull] string overriden = ""
     )
         where TResult : class
     {
@@ -65,7 +68,7 @@ static class Globals
 
         if (!s_cache.TryGetValue(caller, out var dictionary))
         {
-            var first = Invoke(key, factory, editor);
+            var first = Invoke(key, ktane, editor, overriden);
 
             s_cache[caller] =
                 new Dictionary<KeyValuePair<T, Type>, object>(TypePairEqualityComparer<T>.Instance) { [k] = first };
@@ -73,12 +76,10 @@ static class Globals
             return first;
         }
 
-        var cast = (Dictionary<KeyValuePair<T, Type>, object>)dictionary;
-
-        if (cast.TryGetValue(k, out var cached))
+        if ((Dictionary<KeyValuePair<T, Type>, object>)dictionary is var cast && cast.TryGetValue(k, out var cached))
             return (TResult)cached;
 
-        var value = Invoke(key, factory, editor);
+        var value = Invoke(key, ktane, editor, overriden);
         cast[k] = value;
         return value;
     }
@@ -104,7 +105,7 @@ static class Globals
         [InstantHandle] bool force = false
     )
     {
-        if (!force && !IsKtane)
+        if (!force && !IsKtane && !IsRewritten)
             return default;
 
         try
@@ -138,9 +139,11 @@ static class Globals
     [return: AllowNull]
     static TResult Invoke<T, TResult>(
         [NotNull] in T key,
-        [InstantHandle, NotNull, RequireStaticDelegate(IsError = true)] in Func<T, TResult> factory,
-        [AllowNull, CanBeNull, InstantHandle, RequireStaticDelegate(IsError = true)] in Func<T, TResult> editor
+        [InstantHandle, NotNull, RequireStaticDelegate(IsError = true)] in Converter<T, TResult> factory,
+        [AllowNull, CanBeNull, InstantHandle, RequireStaticDelegate(IsError = true)] in Converter<T, TResult> editor,
+        [CanBeNull] string overriden
     )
         where TResult : class =>
-        IsKtane ? factory(key) : editor?.Invoke(key);
+        !IsKtane && !IsRewritten ? editor?.Invoke(key) :
+        overriden is null ? factory(key) : FromGame(key, factory, null, overriden);
 }

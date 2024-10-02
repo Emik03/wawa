@@ -13,7 +13,7 @@ public sealed partial class Selected : ICloneable, IEquatable<Selected>, IEquali
     /// </summary>
     /// <param name="selectable">The <see cref="KMSelectable"/> instance to encapsulate.</param>
     [CLSCompliant(false), PublicAPI]
-    public Selected(KMSelectable selectable) => Value = selectable;
+    public Selected(KMSelectable selectable) => Value = selectable.Core();
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Selected"/> class. This guarantees the selectable kind vanilla.
@@ -75,12 +75,12 @@ public sealed partial class Selected : ICloneable, IEquatable<Selected>, IEquali
         IsKtane ? ToSelectableInner(component) : default;
 
     /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-    [PublicAPI, Pure] // ReSharper disable AnnotationRedundancyInHierarchy
-    public bool Equals([AllowNull, CanBeNull] Selected other) => Value == other?.Value;
+    [PublicAPI, Pure]
+    public bool Equals([AllowNull] Selected other) => Value == other?.Value;
 
     /// <inheritdoc cref="IEqualityComparer{T}.Equals(T, T)"/>
     [PublicAPI, Pure]
-    public bool Equals([AllowNull, CanBeNull] Selected x, [AllowNull, CanBeNull] Selected y) => x == y;
+    public bool Equals([AllowNull] Selected x, [AllowNull] Selected y) => x == y;
 
     /// <inheritdoc cref="IEqualityComparer{T}.GetHashCode(T)"/>
     [PublicAPI, Pure]

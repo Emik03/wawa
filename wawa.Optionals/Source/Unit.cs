@@ -5,9 +5,7 @@ namespace Wawa.Optionals;
 /// A type that has exactly one value, and is used when there is no other meaningful value that could be returned.
 /// </summary>
 [PublicAPI]
-#pragma warning disable CA1710
 public readonly struct Unit : IComparable<Unit>,
-#pragma warning restore CA1710
     IComparer<Unit>,
     ICloneable,
     IEnumerable<Unit>,
@@ -25,7 +23,7 @@ public readonly struct Unit : IComparable<Unit>,
     {
         [Pure] get => default;
     }
-#pragma warning disable CA1801, IDE0060, RCS1163
+
     /// <summary>Returns <see langword="true" />.</summary>
     /// <remarks><para>Since this type has one value, any instance is the same as each other.</para></remarks>
     /// <param name="left">The left-hand side.</param>
@@ -73,7 +71,7 @@ public readonly struct Unit : IComparable<Unit>,
     /// <returns>The value <see langword="true" />.</returns>
     [PublicAPI, Pure]
     public static bool operator >=([InstantHandle] Unit left, [InstantHandle] Unit right) => true;
-#pragma warning restore CA1801, IDE0060, RCS1163
+
     /// <inheritdoc />
     [PublicAPI, Pure, ValueRange(0)]
     public override int GetHashCode() => 0;

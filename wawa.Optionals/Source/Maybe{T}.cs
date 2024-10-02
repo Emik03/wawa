@@ -3,13 +3,13 @@ namespace Wawa.Optionals;
 
 using static CollectionAccessType;
 
-/// <summary>A type representing an optional value; Either Some and contains a value, or None, and does not.</summary>
+/// <summary>
+/// A type representing an optional value; Either <c>Some</c> and contains a value, or <c>None</c>, and does not.
+/// </summary>
 /// <param name="value">The value to encapsulate.</param>
 /// <typeparam name="T">The type to encapsulate and project as an optional value.</typeparam>
 [StructLayout(LayoutKind.Auto), PublicAPI]
-#pragma warning disable CA1710
 public readonly struct Maybe<T>([AllowNull, CanBeNull] T value) :
-#pragma warning restore CA1710
     ICollection,
     IComparable<Maybe<T>>,
     IComparer<Maybe<T>>,

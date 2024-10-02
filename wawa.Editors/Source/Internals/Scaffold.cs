@@ -4,6 +4,7 @@ namespace Wawa.Editors.Internals;
 /// <summary>Source generator.</summary>
 static class Scaffold
 {
+    /// <summary>The constant without syntax highlighting.</summary>
     [NotNull]
     const string
         Cancelled = "Operation cancelled.",
@@ -29,6 +30,7 @@ static class Scaffold
         Title = "Please enter the name of your new module.",
         TwitchPlays = "wawa.TwitchPlays";
 
+    /// <summary>The constant with syntax highlighting.</summary>
     [NotNull, StringSyntax(CSharpStringSyntax)]
     const string
         CollectionsNamespace = @"
@@ -75,13 +77,17 @@ using Wawa.Modules;",
         {Greeting}
     }}";
 
+    /// <summary>Contains every assembly in the current <see cref="AppDomain"/>.</summary>
     [NotNull]
     static readonly Assembly[] s_assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
+    /// <summary>The status light position.</summary>
     static readonly Vector3 s_statusLight = new(0.075167f, 0.02f, 0.076057f);
 
+    /// <summary>The puzzle background rotation.</summary>
     static readonly Quaternion s_puzzleBackground = new(0, 180, 0, 0);
 
+    /// <summary>The header for every source.</summary>
     [NotNull, StringSyntax(CSharpStringSyntax)]
     static string Header =>
         @$"// SPDX-License-Identifier: MIT OR Unlicense
@@ -145,6 +151,9 @@ using Wawa.Modules;",
         go.Save(path);
     }
 
+    /// <summary>Adds the puzzle background.</summary>
+    /// <param name="go">The <see cref="GameObject"/> to add the background to.</param>
+    /// <param name="name">The name of the material to load, without the extension.</param>
     static void AddPuzzleBackground([NotNull] this GameObject go, [NotNull] string name)
     {
         var bg = go.Add(name);
@@ -157,6 +166,10 @@ using Wawa.Modules;",
         renderer.material = Load<Material>($"{name}{Material}");
     }
 
+    /// <summary>Adds the sources.</summary>
+    /// <param name="name">The module name.</param>
+    /// <param name="root">The root directory.</param>
+    /// <param name="isSolvable">Whether the module is solvable, or a needy.</param>
     static void AddSources(
         [NotNull] this string name,
         [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] string root,
@@ -186,6 +199,9 @@ using Wawa.Modules;",
 
         File.WriteAllText(save, contents);
 
+        // Ideally we would add the new source as a component to the game object, but that unfortunately
+        // has to be done manually as state does not appear to persist between unity reloads.
+
         // CallbackFunction reload = () =>
         //     _ = s_assemblies
         //        .FirstOrDefault(x => x.GetName().Name is EditorAssembly)
@@ -198,6 +214,9 @@ using Wawa.Modules;",
         // update += reload;
     }
 
+    /// <summary>Adds the twitch source.</summary>
+    /// <param name="compliant">The name of the type.</param>
+    /// <param name="location">The location.</param>
     static void AddTwitch(
         [NotNull] this string compliant,
         [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] string location
@@ -207,9 +226,14 @@ using Wawa.Modules;",
         File.WriteAllText(location, twitchContents);
     }
 
+    /// <summary>Adds the status light to the <see cref="GameObject"/>.</summary>
+    /// <param name="go">The <see cref="GameObject"/> to add the status light to.</param>
     static void AddStatusLight([NotNull] this GameObject go) =>
         go.Add(nameof(StatusLight), typeof(KMStatusLightParent)).transform.localPosition = s_statusLight;
 
+    /// <summary>Saves the <see cref="GameObject"/> to the given path.</summary>
+    /// <param name="go">The <see cref="GameObject"/> to save.</param>
+    /// <param name="path">The path to save to.</param>
     static void Save(
         [NotNull] this GameObject go,
         [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] string path
@@ -227,12 +251,19 @@ using Wawa.Modules;",
         AssetDatabase.Refresh();
     }
 
+    /// <summary>Prompts the user for a path.</summary>
+    /// <param name="isSolvable">Whether the module is solvable, or a needy.</param>
+    /// <param name="path">The path provided by the user.</param>
+    /// <returns></returns>
     static bool Prompt(
         this bool isSolvable,
         [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] out string path
     ) =>
         string.IsNullOrEmpty(path = isSolvable.SaveFilePanel() ?? "");
 
+    /// <summary>Opens the save file panel.</summary>
+    /// <param name="isSolvable">Whether the module is solvable, or a needy.</param>
+    /// <returns>The path provided by the user.</returns>
     [CanBeNull]
     [return: AllowNull]
     static string SaveFilePanel([InstantHandle] this bool isSolvable) =>
@@ -243,12 +274,15 @@ using Wawa.Modules;",
             Prefab
         );
 
+    /// <summary>Generates the source template without any other <see cref="Wawa"/> references.</summary>
+    /// <param name="isSolvable">Whether the module is solvable, or a needy.</param>
+    /// <returns>The source template.</returns>
     [NotNull]
-    static string WawalessTemplate([InstantHandle] this bool b) =>
+    static string WawalessTemplate([InstantHandle] this bool isSolvable) =>
         Id(
             @$"{TwitchPrefix}
     [{nameof(SerializeField)}]
-    {(b ? SolvableDeclaration : NeedyDeclaration)};
+    {(isSolvable ? SolvableDeclaration : NeedyDeclaration)};
 
     static int s_lastModuleId;
 
@@ -257,14 +291,15 @@ using Wawa.Modules;",
     void Log(string message, params object[] args)
     {{
         var log = string.Format(message, args);
-        Debug.LogFormat(""[{{0}} #{{1}}] {{2}}"", {(b ? SolvableVar : NeedyVar)}.ModuleDisplayName, _moduleId, log);
+        Debug.LogFormat(""[{{0}} #{{1}}] {{2}}"", {(isSolvable ? SolvableVar : NeedyVar)
+        }.ModuleDisplayName, _moduleId, log);
     }}
 
     void Start()
     {{
         _moduleId = ++s_lastModuleId;
         {Greeting}
-        {(b ? SolvableVar : NeedyVar)}.{nameof(KMBombModule.OnActivate)} += {nameof(KMBombModule.OnActivate)};
+        {(isSolvable ? SolvableVar : NeedyVar)}.{nameof(KMBombModule.OnActivate)} += {nameof(KMBombModule.OnActivate)};
     }}
 
     void {nameof(KMBombModule.OnActivate)}()
@@ -274,6 +309,11 @@ using Wawa.Modules;",
     {TwitchSuffix}"
         );
 
+    /// <summary>Generates the source template.</summary>
+    /// <param name="name">The module name.</param>
+    /// <param name="hasWawaModules">Whether an optional dependency is available.</param>
+    /// <param name="isSolvable">Whether the module is solvable, or a needy.</param>
+    /// <returns></returns>
     [NotNull]
     static string Source([NotNull] this string name, [InstantHandle] bool hasWawaModules, bool isSolvable) =>
         Id(
@@ -289,6 +329,9 @@ public sealed class {name} : {(hasWawaModules ? ModdedModule : nameof(MonoBehavi
 "
         );
 
+    /// <summary>Generates the source template for Twitch Plays.</summary>
+    /// <param name="name">The module name.</param>
+    /// <returns>The source template.</returns>
     [NotNull]
 #pragma warning disable MA0051
     static string SourceTwitch([NotNull] this string name) =>
@@ -356,13 +399,25 @@ public sealed class {name}{FileTwitch} : Twitch<{name}>
 "
         );
 
+    /// <summary>The identity function.</summary>
+    /// <remarks><para>This is used to provide syntax highlighting.</para></remarks>
+    /// <param name="x">The value to return.</param>
+    /// <returns>The parameter <paramref name="x"/>.</returns>
     [NotNull]
     static string Id([NotNull, StringSyntax(CSharpStringSyntax)] string x) => x;
 
+    /// <summary>Creates the child game object with the specified name and components.</summary>
+    /// <param name="go">The parent <see cref="GameObject"/>.</param>
+    /// <param name="name">The name of the new <see cref="GameObject"/>.</param>
+    /// <param name="components">The components to add to the new <see cref="GameObject"/>.</param>
+    /// <returns>The new child <see cref="GameObject"/>.</returns>
     [NotNull]
     static GameObject Add([NotNull] this GameObject go, [NotNull] string name, [NotNull] params Type[] components) =>
         new(name, components) { transform = { parent = go.transform } };
 
+    /// <summary>Adds the <see cref="KMHighlightable"/> component to the specified <see cref="GameObject"/>.</summary>
+    /// <param name="go">The <see cref="GameObject"/> to add the highlightable to.</param>
+    /// <returns>The highlightable component that has been added to the parameter <paramref name="go"/>.</returns>
     [NotNull]
     static KMHighlightable AddHighlightable([NotNull] this GameObject go)
     {
@@ -373,6 +428,10 @@ public sealed class {name}{FileTwitch} : Twitch<{name}>
         return output;
     }
 
+    /// <summary>Loads the asset with the specified pattern.</summary>
+    /// <typeparam name="T">The type of the asset to load.</typeparam>
+    /// <param name="pattern">The pattern of the asset to load.</param>
+    /// <returns>The loaded asset, or <see langword="null"/> if <see cref="KMAssets"/> does not exist.</returns>
     [CanBeNull]
     [return: AllowNull]
     static T Load<T>([NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] string pattern)

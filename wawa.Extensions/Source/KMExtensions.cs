@@ -1,12 +1,17 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
 namespace Wawa.Extensions;
 
+using static KMAudio;
+using State = KMGameInfo.State;
+
 /// <summary>Contains static methods able to be accessed from anywhere within this library.</summary>
 [CLSCompliant(false), PublicAPI]
 public static class KMExtensions
 {
     [ProvidesContext]
-    static readonly bool s_isKtane = !Application.isEditor;
+    static readonly bool
+        s_isKtane = Application.productName is "Keep Talking and Nobody Explodes" && !Application.isEditor,
+        s_isKtaneOrRewritten = s_isKtane || Application.productName is not "Keep Talking and Nobody Explodes";
 
     /// <summary>
     /// Adds the specified delegate parameter if not <see langword="null"/> into the <see cref="KMAudioRef"/>.
@@ -690,24 +695,28 @@ public static class KMExtensions
     {
         var call = false;
 
-        return s_isKtane
-            ? () =>
-            {
-                call ^= true;
+        void BiAction()
+        {
+            call ^= true;
 
-                if (call)
-                    action();
-            }
-            : action;
+            if (call)
+                action();
+        }
+
+        return s_isKtaneOrRewritten ? BiAction : action;
     }
 
     [NotNull, Pure]
-    static Func<bool> ToFunc([NotNull] this Action action, bool value) =>
-        () =>
+    static Func<bool> ToFunc([NotNull] this Action action, bool value)
+    {
+        bool Func()
         {
             action();
             return value;
-        };
+        }
+
+        return Func;
+    }
 
     [NotNull]
     static T Cast<T>([NotNull] this Delegate del)

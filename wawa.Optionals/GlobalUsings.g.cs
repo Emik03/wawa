@@ -24,6 +24,7 @@ global using global::System.Deployment;
 global using global::System.Deployment.Internal;
 global using global::System.Diagnostics;
 global using global::System.Diagnostics.CodeAnalysis;
+global using global::System.Diagnostics.Contracts;
 global using global::System.Diagnostics.Eventing;
 global using global::System.Diagnostics.Eventing.Reader;
 global using global::System.Diagnostics.PerformanceData;
@@ -412,6 +413,8 @@ namespace System.Deployment.Internal { }
 namespace System.Diagnostics { }
 
 namespace System.Diagnostics.CodeAnalysis { }
+
+namespace System.Diagnostics.Contracts { }
 
 namespace System.Diagnostics.Eventing { }
 

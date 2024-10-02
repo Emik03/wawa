@@ -1,5 +1,4 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-#pragma warning disable CA1033
 namespace Wawa.TwitchPlays;
 
 /// <summary>
@@ -8,11 +7,11 @@ namespace Wawa.TwitchPlays;
 /// <typeparam name="TMod">
 /// The <see cref="Type"/> of <see cref="Mod"/> to implement Twitch Plays support for.
 /// </typeparam>
-// ReSharper disable Unity.PerformanceCriticalCodeInvocation
 [CLSCompliant(false), PublicAPI, RequireComponent(typeof(ModdedModule)), Serializable]
 public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     where TMod : ModdedModule
 {
+    /// <summary>The message shown when an error occurs.</summary>
     [NotNull]
     const string
         MessageThenCancel = $"The first yield of the command is a {nameof(TwitchString)} that is true on " +
@@ -25,14 +24,30 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         WrongType = "A value was yielded in which the Twitch Plays autosolver currently doesn't support. " +
             "You will need to use a workaround, such as modifying the transform directly or invoking the callback.";
 
+    /// <summary>Contains the cached help message.</summary>
     [CanBeNull]
     static string s_autoImplementedHelp;
 
+    /// <summary>Contains the cached available commands.</summary>
     [CanBeNull, ItemNotNull]
     static CommandInfo[] s_commands;
 
+    /// <summary>Determines whether to print the yields.</summary>
     bool _isPrintingYields;
 
+    /// <summary>Declared for reflection interop with Twitch Plays.</summary>
+    [UsedImplicitly]
+    bool TwitchShouldCancelCommand, TimeModeActive, TwitchPlaysSkipTimeAllowed, TwitchPlaysActive, ZenModeActive;
+
+    /// <summary>Declared for reflection interop with Twitch Plays.</summary>
+    [NotNull, SerializeField, UsedImplicitly]
+    string TwitchHelpMessage = "", TwitchManualCode = "";
+
+    /// <summary>Declared for reflection interop with Twitch Plays.</summary>
+    [ItemCanBeNull, NotNull, SerializeField, UsedImplicitly]
+#pragma warning disable IDE0044
+    List<KMBombModule> TwitchAbandonModule = [];
+#pragma warning restore IDE0044
     /// <summary>Gets the instance of the module.</summary>
     [NotNull, PublicAPI]
     public TMod Module => Get<TMod>();
@@ -44,8 +59,9 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         [NotNull] get => s_autoImplementedHelp ??= GenerateHelp();
     }
 
+    /// <summary>Gets the available commands.</summary>
     [ItemNotNull, NotNull]
-    IList<CommandInfo> Commands
+    IEnumerable<CommandInfo> Commands
     {
         get
         {
@@ -165,8 +181,8 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     }
 
     /// <inheritdoc />
-    [PublicAPI, Pure] // ReSharper disable once AnnotationRedundancyInHierarchy
-    public IEnumerator ProcessTwitchCommand([AllowNull, CanBeNull] string command)
+    [PublicAPI, Pure]
+    public IEnumerator ProcessTwitchCommand([AllowNull] string command)
     {
         if (command is null || Match(command, out var isWildcard) is not { } match)
             yield break;
@@ -329,7 +345,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         [NotNull] params int[] indices
     ) =>
         Array.Exists(indices, index => index < 0 || index < selectables.Count)
-            ? Enumerable.Empty<Instruction>()
+            ? []
             : Sequence(indices.Select(x => selectables[x]), duration);
 
     /// <summary>
@@ -414,6 +430,17 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     protected static IList<string> Split([NotNull] string instance, [NotNull] string separator = " ") =>
         instance.Split(separator.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
+    [NotNull, Pure]
+    static string Ordinal([NonNegativeValue] int i) =>
+        (i % 10) switch
+        {
+            _ when i / 10 % 10 is 1 => "th",
+            1 => "st",
+            2 => "nd",
+            3 => "rd",
+            _ => "th",
+        };
+
     [CanBeNull, MustUseReturnValue]
     [return: AllowNull]
     static object Parse([NotNull] string value, [NotNull] Type type)
@@ -431,9 +458,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
 
         object Field() =>
             type.GetFields(FieldBindings).Where(IsValid).ToArray() is { Length: > 0 } arr
-                ? Array.Find(arr, MatchesName) is { } info
-                    ? info.GetValue(null)
-                    : ParseError.Field
+                ? Array.Find(arr, MatchesName) is { } info ? info.GetValue(null) : ParseError.Field
                 : ParseError.Unserializable;
 
         if (type == typeof(string) || type == typeof(object))
@@ -455,35 +480,42 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
 
     [ItemNotNull, MustUseReturnValue, NotNull]
     static IEnumerable<Instruction> FromFail(
-        int fail,
+        [NonNegativeValue] int fail,
         [ItemNotNull, NotNull] in object[] args,
         [ItemNotNull, NotNull] in ParameterInfo[] parameters
     ) =>
         FromFail(
-            @$"Invalid {Stringifier.Nth(fail, true)} parameter ""{parameters[fail].Name}"": " +
+            @$"Invalid {Ordinal(fail + 1)} parameter ""{parameters[fail].Name}"": " +
             ((ParseError)args[fail]).Reason(parameters[fail].ParameterType)
         );
 
+    /// <summary>Prints the yielded instruction.</summary>
+    /// <param name="sender">The sender.</param>
+    /// <param name="args">The yielded instruction.</param>
     void OnPrint([NotNull] object sender, [NotNull] YieldEventArgs args) =>
-        Module.Log(Stringifier.Stringify(args.Query));
+        Module.Log(Module.Stringify(args.Query));
 
+    /// <summary>Generates the help text.</summary>
+    /// <returns>The help text.</returns>
     [NotNull, Pure]
     string GenerateHelp()
     {
         [NotNull, Pure]
         static string Selector([NotNull] CommandInfo x)
         {
-#pragma warning disable CA1308
             var inferred = x.Method.Name.ToLowerInvariant();
-#pragma warning restore CA1308
             var prefix = x.Command.Prefix.UnwrapOr(inferred);
             var args = x.Method.GetParameters().Show();
             return $"!{{0}} {prefix} {args}".TrimEnd();
         }
 
-        return Stringifier.Conjoin(Commands.Select(Selector), Separator).Trim();
+        return string.Join(Separator, Commands.Select(Selector).ToArray()).Trim();
     }
 
+    /// <summary>Finds the set of instructions corresponding to the command.</summary>
+    /// <param name="command">The contents of the command.</param>
+    /// <param name="isWildcard">Whether the instructions returned came from a wildcard method.</param>
+    /// <returns>The instructions to send.</returns>
     [CanBeNull, ItemNotNull, MustUseReturnValue]
     [return: AllowNull]
     IEnumerable<Instruction> Match([NotNull] string command, out bool isWildcard)
@@ -510,12 +542,15 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         return ret;
     }
 
+    /// <summary>Processes the command.</summary>
+    /// <param name="query">The query.</param>
+    /// <param name="message">The contents of the command.</param>
+    /// <returns>The instructions to send.</returns>
     [CanBeNull, ItemNotNull, MustUseReturnValue]
-    [return: AllowNull]
+    [return: AllowNull] // ReSharper disable once CognitiveComplexity
     IEnumerable<Instruction> ProcessCommand([NotNull] CommandInfo query, [NotNull] string message)
     {
-        static bool IsParams(ICustomAttributeProvider x) =>
-            x.GetCustomAttributes(typeof(ParamArrayAttribute), false).Length > 0;
+        static bool IsParams(ICustomAttributeProvider x) => x.IsDefined(typeof(ParamArrayAttribute), false);
 
         var method = query.Method;
         AssemblyLog(@$"Captured ""{method.Name}""; sending ""{message}"".");
@@ -525,35 +560,46 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         if (split.Count > parameters.Length && !Array.Exists(parameters, IsParams))
             return FromFail($"Too many parameters, expected {parameters.Length}.");
 
+        [CanBeNull]
+        [return: AllowNull]
+        object Selector([NotNull] ParameterInfo x, int i) =>
+            IsParams(x) ? x.ParameterType.IsArray ? ParamsArray(i) : ParamsCollections(x, i) :
+            split.ElementAtOrDefault(i) is { } s ? Parse(s, x.ParameterType) :
+            x.DefaultValue is not DBNull and var o ? o : ParseError.Empty;
+
         [NotNull]
-        object Params(int skip)
+        object ParamsArray(int skip)
         {
             // ReSharper disable once NullableWarningSuppressionIsUsed
             var arrType = parameters[skip].ParameterType.GetElementType()!;
-            var arrLen = split.Count - skip;
-            var arr = Array.CreateInstance(arrType, arrLen);
+            var arr = Array.CreateInstance(arrType, split.Count - skip);
 
-            for (var i = 0; i < arrLen; i++)
-            {
-                var str = split[i + skip];
-                var value = Parse(str, arrType);
-
-                if (value is ParseError)
+            for (var i = skip; i < split.Count; i++)
+                if (Parse(split[i], arrType) is var value && value is ParseError)
                     return value;
-
-                arr.SetValue(value, i);
-            }
+                else
+                    arr.SetValue(value, i);
 
             return arr;
         }
 
-        [CanBeNull]
-        [return: AllowNull]
-        object Selector([NotNull] ParameterInfo x, int i) =>
-            IsParams(x) ?
-                Params(i) :
-                split.ElementAtOrDefault(i) is { } s ? Parse(s, x.ParameterType) :
-                    x.DefaultValue is not DBNull and var o ? o : ParseError.Empty;
+        [NotNull]
+        object ParamsCollections(ParameterInfo x, int skip)
+        {
+            var col = Activator.CreateInstance(x.ParameterType);
+
+            if (x.ParameterType.GetMethod(nameof(IList.Add), Public | Instance) is not { } add ||
+                add.GetParameters().FirstOrDefault() is not { ParameterType: var colType })
+                return col;
+
+            for (var i = skip; i < split.Count; i++)
+                if (Parse(split[i], colType) is var value && value is ParseError)
+                    return value;
+                else
+                    add.Invoke(col, [value]);
+
+            return col;
+        }
 
         var args = parameters.Select(Selector).ToArray();
 
@@ -561,36 +607,6 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
             return FromFail(fail, args, parameters);
 
         var instance = method.IsStatic ? null : this;
-
         return method.Invoke(instance, args) as IEnumerable<Instruction>;
     }
-
-    // ReSharper disable InconsistentNaming ReplaceWithFieldKeyword
-#pragma warning disable IDE0044, SA1306
-    [UsedImplicitly]
-    bool TwitchShouldCancelCommand;
-
-    [UsedImplicitly]
-    bool TimeModeActive;
-
-    [UsedImplicitly]
-    bool TwitchPlaysSkipTimeAllowed;
-
-    [UsedImplicitly]
-    bool TwitchPlaysActive;
-
-    [UsedImplicitly]
-    bool ZenModeActive;
-
-    [NotNull, SerializeField, UsedImplicitly]
-    string TwitchHelpMessage = "";
-
-    [NotNull, SerializeField, UsedImplicitly]
-    string TwitchManualCode = "";
-
-    [ItemCanBeNull, NotNull, SerializeField, UsedImplicitly]
-    List<KMBombModule> TwitchAbandonModule = [];
-
-    // ReSharper restore InconsistentNaming ReplaceWithFieldKeyword
-#pragma warning restore IDE0044, SA1306
 }
