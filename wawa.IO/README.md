@@ -23,6 +23,7 @@ Adds types for KTaNE-related IO operations.
 | [wawa.Modules](https://github.com/Emik03/wawa/tree/main/wawa.Modules)         |               | Yes        |
 | [wawa.Optionals](https://github.com/Emik03/wawa/tree/main/wawa.Optionals)     | Yes           | ️          |
 | [wawa.Recall](https://github.com/Emik03/wawa/tree/main/wawa.Recall)           |               |            |
+| [wawa.Schemas](https://github.com/Emik03/wawa/tree/main/wawa.Schemas)         |               |            |
 | [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) |               | Yes        |
 | [wawa.Unity](https://github.com/Emik03/wawa/tree/main/wawa.Unity)             |               |            |
 

@@ -82,7 +82,6 @@ static class Globals
     /// <summary>Converts this instance to the unity module.</summary>
     /// <param name="that">The object to convert.</param>
     /// <returns><paramref name="that"/> <see langword="as"/> <see cref="MonoBehaviour"/>.</returns>
-    // ReSharper disable SuspiciousTypeConversion.Global
     [NotNull, Pure]
     public static MonoBehaviour Core([NotNull] this KMSelectable that) => (MonoBehaviour)(object)that;
 

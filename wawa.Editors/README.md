@@ -31,7 +31,7 @@ Completely stand-alone library, and not used as a dependency in another library.
     <tbody>
         <tr>
             <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.DDL">wawa.DDL</a></td>
-            <td align="center" colspan="2" rowspan="8" style="text-align: center;">None</td>
+            <td align="center" colspan="2" rowspan="9" style="text-align: center;">None</td>
         </tr>
         <tr>
             <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.Extensions">wawa.Extensions</a></td>
@@ -47,6 +47,9 @@ Completely stand-alone library, and not used as a dependency in another library.
         </tr>
         <tr>
             <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.Recall">wawa.Recall</a></td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.Schemas">wawa.Schemas</a></td>
         </tr>
         <tr>
             <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays">wawa.TwitchPlays</a></td>

@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wawa.Optionals", "wawa.Optionals\wawa.Optionals.csproj", "{B85FB9C3-F190-4CB5-8295-89B62FE16906}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wawa.Schemas", "wawa.Schemas\wawa.Schemas.csproj", "{664B5304-4A1B-48BA-BE9A-1B0FCD21C7B7}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wawa.Unity", "wawa.Unity\wawa.Unity.csproj", "{A66B6892-8D0C-4500-810D-097FD7E2632E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wawa.DDL", "wawa.DDL\wawa.DDL.csproj", "{1DD13D96-1952-4863-AA9B-DA844A75F305}"
@@ -29,6 +31,10 @@ Global
 		{B85FB9C3-F190-4CB5-8295-89B62FE16906}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B85FB9C3-F190-4CB5-8295-89B62FE16906}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B85FB9C3-F190-4CB5-8295-89B62FE16906}.Release|Any CPU.Build.0 = Release|Any CPU
+		{664B5304-4A1B-48BA-BE9A-1B0FCD21C7B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{664B5304-4A1B-48BA-BE9A-1B0FCD21C7B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{664B5304-4A1B-48BA-BE9A-1B0FCD21C7B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{664B5304-4A1B-48BA-BE9A-1B0FCD21C7B7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A66B6892-8D0C-4500-810D-097FD7E2632E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A66B6892-8D0C-4500-810D-097FD7E2632E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A66B6892-8D0C-4500-810D-097FD7E2632E}.Release|Any CPU.ActiveCfg = Release|Any CPU

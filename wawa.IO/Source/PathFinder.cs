@@ -91,7 +91,7 @@ public static class PathFinder
     /// <summary>Gets the absolute directory of the mod.</summary>
     /// <param name="modId">
     /// The mod id to get the mod directory from.
-    /// If <see langword="null" />, implicitly gets the directory of the mod from the file of the assembly.
+    /// If <see langword="null" />, implicitly gets the directory of the mod from the name of the assembly.
     /// </param>
     /// <returns>
     /// A <see cref="Maybe{T}" />, consisting of either folder <see cref="string" /> of the absolute directory
@@ -105,7 +105,7 @@ public static class PathFinder
     /// <param name="filePath">The file located inside folder mod directory.</param>
     /// <param name="modId">
     /// The mod id to get the mod directory from.
-    /// If <see langword="null" />, implicitly gets the directory of the mod from the file of the assembly.
+    /// If <see langword="null" />, implicitly gets the directory of the mod from the name of the assembly.
     /// </param>
     /// <returns>
     /// A <see cref="Maybe{T}" />, consisting of either folder <see cref="string" /> of the absolute directory
@@ -121,7 +121,7 @@ public static class PathFinder
     /// <summary>Gets and deserializes the <see cref="ModInfo" /> file located in every mod's root directory.</summary>
     /// <param name="modId">
     /// The mod id to get the mod directory from.
-    /// If <see langword="null" />, implicitly gets the directory of the mod from the file of the assembly.
+    /// If <see langword="null" />, implicitly gets the directory of the mod from the name of the assembly.
     /// </param>
     /// <returns>
     /// A <see cref="Maybe{T}" />, consisting of either folder <see cref="ModInfo" /> if the file was read
@@ -142,7 +142,7 @@ public static class PathFinder
     /// <param name="filePath">The file which contains the assets.</param>
     /// <param name="modId">
     /// The mod id to get the mod directory from.
-    /// If <see langword="null" />, implicitly gets the directory of the mod from the file of the assembly.
+    /// If <see langword="null" />, implicitly gets the directory of the mod from the name of the assembly.
     /// </param>
     /// <returns>
     /// A <see cref="Maybe{T}" />, consisting of either an <see cref="Array" /> of <typeparamref file="T" />
@@ -167,7 +167,7 @@ public static class PathFinder
     /// <param name="ffiMethodName">The name of the method.</param>
     /// <param name="modId">
     /// The mod id to get the mod directory from.
-    /// If <see langword="null" />, implicitly gets the directory of the mod from the file of the assembly.
+    /// If <see langword="null" />, implicitly gets the directory of the mod from the name of the assembly.
     /// </param>
     /// <returns>
     /// The value <see langword="true" /> if copying the file was successful, otherwise <see langword="false" />.

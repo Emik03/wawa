@@ -34,7 +34,7 @@ The name of the method.
 `modId` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
 The mod id to get the mod directory from.  
-If [null](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null'), implicitly gets the directory of the mod from the file of the assembly.
+If [null](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null'), implicitly gets the directory of the mod from the name of the assembly.
 
 #### Returns
 [wawa.Optionals.Maybe&lt;](https://docs.microsoft.com/en-us/dotnet/api/wawa.Optionals.Maybe-1 'wawa.Optionals.Maybe`1')[T](PathFinder.GetUnmanaged{T}(string,string,string).md#wawa.IO.PathFinder.GetUnmanaged_T_(string,string,string).T 'wawa.IO.PathFinder.GetUnmanaged<T>(string, string, string).T')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/wawa.Optionals.Maybe-1 'wawa.Optionals.Maybe`1')  

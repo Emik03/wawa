@@ -23,6 +23,7 @@ Allows for hooking and unhooking of module controllers and its selectables. Supp
 | [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO)                   |               |            |
 | [wawa.Modules](https://github.com/Emik03/wawa/tree/main/wawa.Modules)         |               |            |
 | [wawa.Optionals](https://github.com/Emik03/wawa/tree/main/wawa.Optionals)     | ️Yes          |            |
+| [wawa.Schemas](https://github.com/Emik03/wawa/tree/main/wawa.Schemas)         |               |            |
 | [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) |               |            |
 | [wawa.Unity](https://github.com/Emik03/wawa/tree/main/wawa.Unity)             |               | ️          |
 

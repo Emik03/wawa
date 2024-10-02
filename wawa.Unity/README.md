@@ -23,6 +23,7 @@ Defines the `CachedBehavior` type, which provides a simple API for caching Unity
 | [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO)                   |               |            |
 | [wawa.Modules](https://github.com/Emik03/wawa/tree/main/wawa.Modules)         |               | Yes        |
 | [wawa.Optionals](https://github.com/Emik03/wawa/tree/main/wawa.Optionals)     |               |            |
+| [wawa.Schemas](https://github.com/Emik03/wawa/tree/main/wawa.Schemas)         |               |            |
 | [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) |               | Yes        |
 
 ## Example

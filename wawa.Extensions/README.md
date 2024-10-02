@@ -43,6 +43,9 @@ Completely stand-alone library, and not used as a dependency in another library.
             <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.Optionals">wawa.Optionals</a></td>
         </tr>
         <tr>
+            <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.Schemas">wawa.Schemas</a></td>
+        </tr>
+        <tr>
             <td><a href="https://github.com/Emik03/wawa/tree/main/wawa.Recall">wawa.Recall</a></td>
         </tr>
         <tr>

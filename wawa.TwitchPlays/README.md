@@ -24,6 +24,7 @@ Adds an extensive system for creating Twitch Plays components that are attached 
 | [wawa.Modules](https://github.com/Emik03/wawa/tree/main/wawa.Modules)       | Yes           |            |
 | [wawa.Optionals](https://github.com/Emik03/wawa/tree/main/wawa.Optionals)   | Yes           | ️          |
 | [wawa.Recall](https://github.com/Emik03/wawa/tree/main/wawa.Recall)         |               |            |
+| [wawa.Schemas](https://github.com/Emik03/wawa/tree/main/wawa.Schemas)       |               |            |
 | [wawa.Unity](https://github.com/Emik03/wawa/tree/main/wawa.Unity)           | Yes           | ️          |
 
 ## Example

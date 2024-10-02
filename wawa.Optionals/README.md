@@ -26,6 +26,7 @@ to explicitly mark optional values.
 | [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO)                   |               | Yes        |
 | [wawa.Modules](https://github.com/Emik03/wawa/tree/main/wawa.Modules)         |               | Yes        |
 | [wawa.Recall](https://github.com/Emik03/wawa/tree/main/wawa.Recall)           |               | Yes        |
+| [wawa.Schemas](https://github.com/Emik03/wawa/tree/main/wawa.Schemas)         |               |            |
 | [wawa.TwitchPlays](https://github.com/Emik03/wawa/tree/main/wawa.TwitchPlays) |               | Yes        |
 | [wawa.Unity](https://github.com/Emik03/wawa/tree/main/wawa.Unity)             |               |            |
 
