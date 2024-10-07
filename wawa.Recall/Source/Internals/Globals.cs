@@ -41,11 +41,6 @@ static class Globals
         ver is { Revision: 0 } ? $"v{ver.Major}.{ver.Minor}.{ver.Build}" :
         $"v{ver.Major}.{ver.Minor}.{ver.Build}.{ver.Revision}";
 
-    /// <summary>Gets a value indicating whether the runtime is in-game.</summary>
-    [PublicAPI]
-    public static bool IsKtane { [Pure] get; } =
-        Application.productName is "Keep Talking and Nobody Explodes" && !Application.isEditor;
-
     /// <summary>Returns the function that invokes the method.</summary>
     /// <typeparam name="T">The type of argument of the returning <see cref="Action{T}"/>.</typeparam>
     /// <param name="value">The method to invoke.</param>

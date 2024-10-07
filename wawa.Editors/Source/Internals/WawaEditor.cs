@@ -67,7 +67,7 @@ sealed class WawaEditor : Editor
 
     /// <summary>Fetches the recall package and its dependencies.</summary>
     [MenuItem($"{Update}{Recall}{Suffix}"), UsedImplicitly]
-    static void FetchRecall() => Fetch(Optionals, Recall);
+    static void FetchRecall() => Fetch(Optionals, DDL, Recall);
 
     /// <summary>Fetches the twitch plays package and its dependencies.</summary>
     [MenuItem($"{Update}{TwitchPlays}{Suffix}"), UsedImplicitly]

@@ -17,7 +17,7 @@ Allows for hooking and unhooking of module controllers and its selectables. Supp
 
 | Library                                                                       | Depends on... | Used in... |
 |-------------------------------------------------------------------------------|---------------|------------|
-| [wawa.DDL](https://github.com/Emik03/wawa/tree/main/wawa.DDL)                 |               |            |
+| [wawa.DDL](https://github.com/Emik03/wawa/tree/main/wawa.DDL)                 | Yes           |            |
 | [wawa.Editors](https://github.com/Emik03/wawa/tree/main/wawa.Editors)         |               |            |
 | [wawa.Extensions](https://github.com/Emik03/wawa/tree/main/wawa.Extensions)   |               |            |
 | [wawa.IO](https://github.com/Emik03/wawa/tree/main/wawa.IO)                   |               |            |
