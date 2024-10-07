@@ -4,7 +4,7 @@ namespace wawa.Recall;
 /// <summary>The different kinds of status lights.</summary>
 /// <remarks><para>The game uses separate game objects for each status light kind.</para></remarks>
 [Flags, PublicAPI]
-public enum StatusLights
+public enum StatusLights : byte
 {
     /// <summary>No status light.</summary>
     [PublicAPI]

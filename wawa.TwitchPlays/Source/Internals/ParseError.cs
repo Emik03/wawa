@@ -2,7 +2,7 @@
 namespace wawa.TwitchPlays.Internals;
 
 /// <summary>Defines parse errors.</summary>
-enum ParseError
+enum ParseError : byte
 {
     /// <summary>Indicates that the query is empty.</summary>
     Empty,

@@ -61,15 +61,22 @@ public static class EntityCore
     /// <param name="lights">The status lights to enable.</param>
     /// <returns>The instance itself.</returns>
     [PublicAPI]
-    public static Entity Change([NotNull] this Entity that, StatusLights lights) =>
-        IsKtane ? ChangeInner(that, lights) : that;
+    public static Entity Change([NotNull] this Entity that, StatusLights lights)
+    {
+        FromGame(new KeyValuePair<MonoBehaviour, byte>(that.Value, (byte)lights), ChangeInner);
+        return that;
+    }
 
     /// <summary>Plays the strike sound effect and flashes the status light red, without registering a strike.</summary>
     /// <remarks><para>In the editor, this method does nothing.</para></remarks>
     /// <param name="that">This instance of <see cref="Entity"/>.</param>
     /// <returns>The instance itself.</returns>
     [PublicAPI]
-    public static Entity FakeStrike([NotNull] this Entity that) => IsKtane ? FakeStrikeInner(that) : that;
+    public static Entity FakeStrike([NotNull] this Entity that)
+    {
+        FromGame(that.Value, FakeStrikeInner);
+        return that;
+    }
 
     /// <summary>Sets the parameter values to the corresponding hooks, when applicable.</summary>
     /// <inheritdoc cref="Add(Entity, Action, Action, Action, Action, Action, Action, Action, Action, Action)"/>
@@ -324,28 +331,27 @@ public static class EntityCore
         bombs is null ? Lot<ReadOnlyCollection<Entity>>.Empty : new(bombs.Select(ToEntities).ToList());
 
     [MustUseReturnValue]
-    static Entity ChangeInner([NotNull] Entity entity, StatusLights lights)
+    static KeyValuePair<MonoBehaviour, byte> ChangeInner(KeyValuePair<MonoBehaviour, byte> arg)
     {
         [Pure]
-        static bool HasFlag(StatusLights lights, StatusLights filter) => (lights & filter) is not StatusLights.None;
+        static bool HasFlag(byte l, StatusLights filter) => ((StatusLights)l & filter) is not StatusLights.None;
 
-        var core = entity.Value;
+        var core = arg.Key.Core();
 
-        if ((core.Core() as BombComponent ?? core.GetComponent<BombComponent>()) is var value && !value)
-            return entity;
+        if ((core as BombComponent ?? core.GetComponent<BombComponent>()) is var value && !value)
+            return arg;
 
         var light = value.StatusLightParent.StatusLight;
         light.StopAllCoroutines();
-        light.InactiveLight.SetActive(HasFlag(lights, StatusLights.Off));
-        light.PassLight.SetActive(HasFlag(lights, StatusLights.Solve));
-        light.StrikeLight.SetActive(HasFlag(lights, StatusLights.Strike));
-        return entity;
+        light.InactiveLight.SetActive(HasFlag(arg.Value, StatusLights.Off));
+        light.PassLight.SetActive(HasFlag(arg.Value, StatusLights.Solve));
+        light.StrikeLight.SetActive(HasFlag(arg.Value, StatusLights.Strike));
+        return arg;
     }
 
-    [MustUseReturnValue]
-    static Entity FakeStrikeInner([NotNull] Entity entity)
+    static MonoBehaviour FakeStrikeInner([NotNull] MonoBehaviour entity)
     {
-        var core = entity.Value.Core();
+        var core = entity.Core();
         MasterAudio.PlaySound3DAtTransformAndForget("strike", core.transform);
 
         if ((core as BombComponent ?? core.GetComponent<BombComponent>()) is var value && value)

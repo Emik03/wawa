@@ -132,7 +132,12 @@ public sealed partial class Selected
     public HookDef<Action> Defocus
     {
         [Pure]
-        get => _defocus ??= new(Value, nameof(KMSelectable.OnDefocus), wrapper: IsKtane ? DefocusFix : Lot<Action>.Id);
+        get =>
+            _defocus ??= new(
+                Value,
+                nameof(KMSelectable.OnDefocus),
+                wrapper: IsKtane || IsRewritten ? DefocusFix : Lot<Action>.Id
+            );
     }
 
     /// <summary>
@@ -299,7 +304,7 @@ public sealed partial class Selected
         [Pure] get => !IsModded;
     }
 
-    [MethodImpl(MethodImplOptions.NoInlining), NonNegativeValue]
+    [NonNegativeValue]
     static int ChildLengthInner([NotNull] in object component) => ((Selectable)component).Children.Length;
 
     [NotNull]
@@ -322,7 +327,7 @@ public sealed partial class Selected
     static Maybe<Selected> ParentInner([NotNull] in object m) =>
         ((Selectable)m).Parent is var selectable && selectable ? new Selected(selectable.Core()) : null;
 
-    [MethodImpl(MethodImplOptions.NoInlining), NotNull]
+    [NotNull]
     static Maybe<Selected>[] ChildrenInner([NotNull] in object m)
     {
         var children = ((Selectable)m).Children;
