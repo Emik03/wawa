@@ -17,6 +17,10 @@ Make sure your experts have the manual and are ready to help.",
         ExampleLanguageCode = "en",
         ExampleName = "First Bomb";
 
+    static bool s_lightsOn;
+
+    static Missions() => FromGame(OnLightsChanged, Hook, null, nameof(OnLightsChanged));
+
     /// <summary>Gets or sets a value indicating whether pacing events are enabled.</summary>
     /// <remarks><para>In the editor, this returns <see keyword="false"/>.</para></remarks>
     [PublicAPI]
@@ -24,6 +28,14 @@ Make sure your experts have the manual and are ready to help.",
     {
         [Pure] get => FromGame(static _ => SceneManager.Instance.GameplayState.Mission.PacingEventsEnabled);
         set => FromGame(value, static v => SceneManager.Instance.GameplayState.Mission.PacingEventsEnabled = v);
+    }
+
+    /// <summary>Gets or sets a value indicating whether the lights are on.</summary>
+    [PublicAPI]
+    public static bool LightsOn
+    {
+        [Pure] get => s_lightsOn;
+        set => FromGame(value, FlipTheSwitch);
     }
 
     /// <summary>Gets the description as it appears in the bomb binder.</summary>
@@ -34,7 +46,8 @@ Make sure your experts have the manual and are ready to help.",
         [Pure]
         get =>
             FromGame(
-                static _ => Lookup.Localized(SceneManager.Instance.GameplayState.Mission.DescriptionTerm),
+                static _ =>
+                    Localization.GetLocalizedString(SceneManager.Instance.GameplayState.Mission.DescriptionTerm),
                 ExampleDescription
             );
     }
@@ -67,5 +80,31 @@ Make sure your experts have the manual and are ready to help.",
                 static _ => Lookup.Localized(SceneManager.Instance.GameplayState.Mission.DisplayNameTerm),
                 ExampleName
             );
+    }
+
+    static void OnLightsChanged(bool value) => s_lightsOn = value;
+
+    static bool FlipTheSwitch(bool v)
+    {
+        if (SceneManager.Instance is var instance && !instance ||
+            instance.GameplayState is var gameplayState && !gameplayState ||
+            gameplayState.Room is var room && !room ||
+            room.CeilingLight is var ceilingLight && !ceilingLight)
+            return v;
+
+        if (v)
+            ceilingLight.TurnOn(true);
+        else
+            ceilingLight.TurnOff(false);
+
+        return v;
+    }
+
+    [NotNull]
+    static Action<bool> Hook(Action<bool> x)
+    {
+        EnvironmentEvents.OnLightsOn += _ => x(true);
+        EnvironmentEvents.OnLightsOff += _ => x(false);
+        return x;
     }
 }

@@ -23,4 +23,5 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 | [HasPacingEvents](Missions.HasPacingEvents.md 'wawa.DDL.Missions.HasPacingEvents') | Gets or sets a value indicating whether pacing events are enabled. |
 | [Id](Missions.Id.md 'wawa.DDL.Missions.Id') | Gets the ID of the mission. |
 | [LanguageCode](Missions.LanguageCode.md 'wawa.DDL.Missions.LanguageCode') | Gets the current language code. |
+| [LightsOn](Missions.LightsOn.md 'wawa.DDL.Missions.LightsOn') | Gets or sets a value indicating whether the lights are on. |
 | [Name](Missions.Name.md 'wawa.DDL.Missions.Name') | Gets the mission name as it appears in the bomb binder. |
