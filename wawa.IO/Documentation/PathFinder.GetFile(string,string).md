@@ -2,7 +2,7 @@
 
 ## PathFinder.GetFile(string, string) Method
 
-Gets the absolute directory of the file located inside the mod directory.
+Gets the absolute directory of the file located inside the mod directory.<p/>`[MustUseReturnValue]`
 
 ```csharp
 public static wawa.Optionals.Maybe<string> GetFile(string filePath, string modId=null);
@@ -13,7 +13,7 @@ public static wawa.Optionals.Maybe<string> GetFile(string filePath, string modId
 
 `filePath` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
-The file located inside folder mod directory.
+The file located inside folder mod directory.<p/>`[UriString]`
 
 <a name='wawa.IO.PathFinder.GetFile(string,string).modId'></a>
 

@@ -5,7 +5,7 @@
 Caches and returns any or all [T](CachedBehaviour.Find{T}(bool).md#wawa.Unity.CachedBehaviour.Find_T_(bool).T 'wawa.Unity.CachedBehaviour.Find<T>(bool).T') components in the current scene.
 
 ```csharp
-public virtual T Find<T>(bool includeSelf=false)
+public T Find<T>(bool includeSelf=false)
     where T : class;
 ```
 #### Type parameters

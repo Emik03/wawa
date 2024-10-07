@@ -3,7 +3,7 @@
 
 ## CanSection Class
 
-Contains the method for registering a section.
+Contains the method for registering a section.<p/>`[PublicAPI]`
 
 ```csharp
 public abstract class CanSection : wawa.Schemas.Fluent.CanRegister
@@ -16,4 +16,4 @@ Derived
 
 | Methods | |
 | :--- | :--- |
-| [Section(string)](CanSection.Section(string).md 'wawa.Schemas.Fluent.CanSection.Section(string)') | Creates a new section in the [TweaksEditorSettings](TweaksEditorSettings.md 'wawa.Schemas.TweaksEditorSettings'). |
+| [Section(string)](CanSection.Section(string).md 'wawa.Schemas.Fluent.CanSection.Section(string)') | Creates a new section in the [TweaksEditorSettings](TweaksEditorSettings.md 'wawa.Schemas.TweaksEditorSettings').<p/>`[MustUseReturnValue, NotNull, PublicAPI]` |

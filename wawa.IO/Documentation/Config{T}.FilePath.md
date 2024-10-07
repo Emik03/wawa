@@ -2,7 +2,7 @@
 
 ## Config<T>.FilePath Property
 
-Gets the path of the file to read and write.
+Gets the path of the file to read and write.<p/>`[ProvidesContext, UriString]`
 
 ```csharp
 public string FilePath { get; }

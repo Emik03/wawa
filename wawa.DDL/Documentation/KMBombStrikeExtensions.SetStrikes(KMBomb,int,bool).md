@@ -2,7 +2,7 @@
 
 ## KMBombStrikeExtensions.SetStrikes(this KMBomb, int, bool) Method
 
-Sets the number of strikes.
+Sets the number of strikes.<p/>`[NonNegativeValue]`
 
 ```csharp
 public static KMBomb SetStrikes(this KMBomb that, int value, bool tryDetonate=false);

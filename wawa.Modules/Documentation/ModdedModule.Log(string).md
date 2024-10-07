@@ -5,7 +5,7 @@
 Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer.
 
 ```csharp
-public virtual string Log(string format=null);
+public string Log(string format=null);
 ```
 #### Parameters
 

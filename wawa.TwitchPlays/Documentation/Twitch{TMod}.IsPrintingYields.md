@@ -7,7 +7,7 @@ Gets or sets a value indicating whether values yielded from a
 Twitch Plays [UnityEngine.Coroutine](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Coroutine 'UnityEngine.Coroutine') should be logged.
 
 ```csharp
-public virtual bool IsPrintingYields { get; set; }
+public bool IsPrintingYields { get; set; }
 ```
 
 Implements [IsPrintingYields](ITwitchDeclarable.IsPrintingYields.md 'wawa.TwitchPlays.ITwitchDeclarable.IsPrintingYields')

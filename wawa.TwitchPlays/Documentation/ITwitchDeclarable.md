@@ -18,7 +18,7 @@ Implements [wawa.Modules.ISolvable](https://docs.microsoft.com/en-us/dotnet/api/
 
 | Properties | |
 | :--- | :--- |
-| [Abandons](ITwitchDeclarable.Abandons.md 'wawa.TwitchPlays.ITwitchDeclarable.Abandons') | Gets the list that contains modules that it should stop processing. |
+| [Abandons](ITwitchDeclarable.Abandons.md 'wawa.TwitchPlays.ITwitchDeclarable.Abandons') | Gets the list that contains modules that it should stop processing.<p/>`[ItemCanBeNull]` |
 | [Help](ITwitchDeclarable.Help.md 'wawa.TwitchPlays.ITwitchDeclarable.Help') | Gets or sets the help message that gets sent when typing `!{id} help`. |
 | [Inner](ITwitchDeclarable.Inner.md 'wawa.TwitchPlays.ITwitchDeclarable.Inner') | Gets the module that is attached to this instance. |
 | [IsCancelCommand](ITwitchDeclarable.IsCancelCommand.md 'wawa.TwitchPlays.ITwitchDeclarable.IsCancelCommand') | Gets a value indicating whether it should cancel command processing. |
@@ -26,8 +26,8 @@ Implements [wawa.Modules.ISolvable](https://docs.microsoft.com/en-us/dotnet/api/
 | [IsTime](ITwitchDeclarable.IsTime.md 'wawa.TwitchPlays.ITwitchDeclarable.IsTime') | Gets a value indicating whether it is in Time Mode, where solves change the timer. |
 | [IsTimeSkippable](ITwitchDeclarable.IsTimeSkippable.md 'wawa.TwitchPlays.ITwitchDeclarable.IsTimeSkippable') | Gets a value indicating whether it should allow for the timer to be skipped when the module it is in,<br/>as well as any other modules that would like to skip time, are the only unsolved modules left on the bomb. |
 | [IsZen](ITwitchDeclarable.IsZen.md 'wawa.TwitchPlays.ITwitchDeclarable.IsZen') | Gets a value indicating whether the timer is counting up instead of down, for special cases,<br/>such as controlling how to sort button release times, or whether there is a low timer event or not. |
-| [Manual](ITwitchDeclarable.Manual.md 'wawa.TwitchPlays.ITwitchDeclarable.Manual') | Gets or sets the manual that is looked up on The Manual Repository when<br/>`!{id} manual` is entered into chat. |
+| [Manual](ITwitchDeclarable.Manual.md 'wawa.TwitchPlays.ITwitchDeclarable.Manual') | Gets or sets the manual that is looked up on The Manual Repository when<br/>`!{id} manual` is entered into chat.<br/><p/>`[UriString]` |
 
 | Methods | |
 | :--- | :--- |
-| [ForceSolve()](ITwitchDeclarable.ForceSolve.md 'wawa.TwitchPlays.ITwitchDeclarable.ForceSolve()') | When the module runs into an exception or the module is forced to be solved, this method is used. |
+| [ForceSolve()](ITwitchDeclarable.ForceSolve.md 'wawa.TwitchPlays.ITwitchDeclarable.ForceSolve()') | When the module runs into an exception or the module is forced to be solved, this method is used.<br/><p/>`[ItemCanBeNull]` |

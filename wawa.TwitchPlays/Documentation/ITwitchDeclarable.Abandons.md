@@ -3,7 +3,7 @@
 
 ## ITwitchDeclarable.Abandons Property
 
-Gets the list that contains modules that it should stop processing.
+Gets the list that contains modules that it should stop processing.<p/>`[ItemCanBeNull]`
 
 ```csharp
 System.Collections.ObjectModel.ReadOnlyCollection<KMBombModule> Abandons { get; }

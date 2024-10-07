@@ -14,7 +14,7 @@ public Instruction(System.Collections.Generic.IEnumerable<wawa.TwitchPlays.Domai
 
 `enumerator` [System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')[Instruction](Instruction.md 'wawa.TwitchPlays.Domains.Instruction')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')
 
-The value to pass in.
+The value to pass in.<p/>`[ItemCanBeNull]`
 
 ### Remarks
   

@@ -3,7 +3,7 @@
 
 ## TweaksEditorSettings.Builder.BuildAndClear() Method
 
-Clears the builder and returns the finalized [TweaksEditorSettings](TweaksEditorSettings.md 'wawa.Schemas.TweaksEditorSettings').
+Clears the builder and returns the finalized [TweaksEditorSettings](TweaksEditorSettings.md 'wawa.Schemas.TweaksEditorSettings').<p/>`[NotNull, PublicAPI]`
 
 ```csharp
 public override wawa.Schemas.TweaksEditorSettings BuildAndClear();

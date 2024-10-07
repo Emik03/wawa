@@ -6,7 +6,7 @@ Caches and returns any or all [T](CachedBehaviour.Parent{T}(bool,bool).md#wawa.U
 and all parents.
 
 ```csharp
-public virtual T Parent<T>(bool includeInactive=false, bool includeSelf=false)
+public T Parent<T>(bool includeInactive=false, bool includeSelf=false)
     where T : class;
 ```
 #### Type parameters

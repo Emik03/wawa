@@ -2,7 +2,7 @@
 
 ## Maybe.AsNullable<T>(this Maybe<T>) Method
 
-Creates a [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>') from a [System.Nullable&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Nullable-1 'System.Nullable`1').
+Creates a [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>') from a [System.Nullable&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Nullable-1 'System.Nullable`1').<p/>`[PublicAPI]`
 
 ```csharp
 public static System.Nullable<T> AsNullable<T>(this wawa.Optionals.Maybe<T> that)

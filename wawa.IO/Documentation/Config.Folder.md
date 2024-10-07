@@ -2,7 +2,7 @@
 
 ## Config.Folder Field
 
-The name of the folder that contains locally stored mod settings.
+The name of the folder that contains locally stored mod settings.<p/>`[UriString]`
 
 ```csharp
 public const string Folder = "Modsettings";

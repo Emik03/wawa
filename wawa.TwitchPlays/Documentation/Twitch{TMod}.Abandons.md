@@ -3,10 +3,10 @@
 
 ## Twitch<TMod>.Abandons Property
 
-Gets the list that contains modules that it should stop processing.
+Gets the list that contains modules that it should stop processing.<p/>`[ItemCanBeNull]`
 
 ```csharp
-public virtual System.Collections.ObjectModel.ReadOnlyCollection<KMBombModule> Abandons { get; }
+public System.Collections.ObjectModel.ReadOnlyCollection<KMBombModule> Abandons { get; }
 ```
 
 Implements [Abandons](ITwitchDeclarable.Abandons.md 'wawa.TwitchPlays.ITwitchDeclarable.Abandons')

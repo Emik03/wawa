@@ -2,7 +2,7 @@
 
 ## Maybe.None<T>() Method
 
-Gets an empty [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>') of the desired type.
+Gets an empty [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>') of the desired type.<p/>`[PublicAPI]`
 
 ```csharp
 public static wawa.Optionals.Maybe<T> None<T>();

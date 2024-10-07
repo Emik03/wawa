@@ -16,4 +16,4 @@ Derived
 
 | Methods | |
 | :--- | :--- |
-| [Register&lt;T&gt;()](CanRegister.Register{T}.md 'wawa.Schemas.Fluent.CanRegister.Register<T>()') | Adds the schema of [T](CanRegister.Register{T}.md#wawa.Schemas.Fluent.CanRegister.Register_T_().T 'wawa.Schemas.Fluent.CanRegister.Register<T>().T') to the [TweaksEditorSettings](TweaksEditorSettings.md 'wawa.Schemas.TweaksEditorSettings'). |
+| [Register&lt;T&gt;()](CanRegister.Register{T}.md 'wawa.Schemas.Fluent.CanRegister.Register<T>()') | Adds the schema of [T](CanRegister.Register{T}.md#wawa.Schemas.Fluent.CanRegister.Register_T_().T 'wawa.Schemas.Fluent.CanRegister.Register<T>().T') to the [TweaksEditorSettings](TweaksEditorSettings.md 'wawa.Schemas.TweaksEditorSettings').<p/>`[MustUseReturnValue, NotNull, PublicAPI]` |

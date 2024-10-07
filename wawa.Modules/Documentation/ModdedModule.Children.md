@@ -5,7 +5,7 @@
 Gets the children of the top-level selectable.
 
 ```csharp
-public virtual System.Collections.Generic.IList<KMSelectable> Children { get; }
+public System.Collections.Generic.IList<KMSelectable> Children { get; }
 ```
 
 #### Property Value

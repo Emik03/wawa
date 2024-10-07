@@ -13,7 +13,7 @@ public Config(string fileName);
 
 `fileName` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
-The file name to get.
+The file name to get.<p/>`[UriString]`
 
 ### Remarks
 - Allows specification of the target file name.  

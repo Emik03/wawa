@@ -5,7 +5,7 @@
 Solves the module.
 
 ```csharp
-public virtual wawa.Optionals.Unit Solve(string format=null, params object[] args);
+public wawa.Optionals.Unit Solve(string format=null, params object[] args);
 ```
 #### Parameters
 
@@ -19,7 +19,7 @@ The value to log.
 
 `args` [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
 
-The arguments to hook into format.
+The arguments to hook into format.<p/>`[ItemCanBeNull]`
 
 #### Returns
 [wawa.Optionals.Unit](https://docs.microsoft.com/en-us/dotnet/api/wawa.Optionals.Unit 'wawa.Optionals.Unit')  

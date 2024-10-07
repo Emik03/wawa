@@ -2,7 +2,7 @@
 
 ## Maybe.Match<T,TResult>(this Maybe<T>, Func<T,Maybe<TResult>>) Method
 
-Uses the callback corresponding to the inner value of [that](Maybe.Match{T,TResult}(Maybe{T},Func{T,Maybe{TResult}}).md#wawa.Optionals.Maybe.Match_T,TResult_(thiswawa.Optionals.Maybe_T_,System.Func_T,wawa.Optionals.Maybe_TResult__).that 'wawa.Optionals.Maybe.Match<T,TResult>(this wawa.Optionals.Maybe<T>, System.Func<T,wawa.Optionals.Maybe<TResult>>).that').
+Uses the callback corresponding to the inner value of [that](Maybe.Match{T,TResult}(Maybe{T},Func{T,Maybe{TResult}}).md#wawa.Optionals.Maybe.Match_T,TResult_(thiswawa.Optionals.Maybe_T_,System.Func_T,wawa.Optionals.Maybe_TResult__).that 'wawa.Optionals.Maybe.Match<T,TResult>(this wawa.Optionals.Maybe<T>, System.Func<T,wawa.Optionals.Maybe<TResult>>).that').<p/>`[PublicAPI]`
 
 ```csharp
 public static wawa.Optionals.Maybe<TResult> Match<T,TResult>(this wawa.Optionals.Maybe<T> that, System.Func<T,wawa.Optionals.Maybe<TResult>> some);
@@ -32,7 +32,7 @@ This instance of [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').
 
 `some` [System.Func&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Func-2 'System.Func`2')[T](Maybe.Match{T,TResult}(Maybe{T},Func{T,Maybe{TResult}}).md#wawa.Optionals.Maybe.Match_T,TResult_(thiswawa.Optionals.Maybe_T_,System.Func_T,wawa.Optionals.Maybe_TResult__).T 'wawa.Optionals.Maybe.Match<T,TResult>(this wawa.Optionals.Maybe<T>, System.Func<T,wawa.Optionals.Maybe<TResult>>).T')[,](https://docs.microsoft.com/en-us/dotnet/api/System.Func-2 'System.Func`2')[wawa.Optionals.Maybe&lt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[TResult](Maybe.Match{T,TResult}(Maybe{T},Func{T,Maybe{TResult}}).md#wawa.Optionals.Maybe.Match_T,TResult_(thiswawa.Optionals.Maybe_T_,System.Func_T,wawa.Optionals.Maybe_TResult__).TResult 'wawa.Optionals.Maybe.Match<T,TResult>(this wawa.Optionals.Maybe<T>, System.Func<T,wawa.Optionals.Maybe<TResult>>).TResult')[&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Func-2 'System.Func`2')
 
-The callback to run if [IsSome](Maybe{T}.IsSome.md 'wawa.Optionals.Maybe<T>.IsSome') is [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').
+The callback to run if [IsSome](Maybe{T}.IsSome.md 'wawa.Optionals.Maybe<T>.IsSome') is [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').<p/>`[InstantHandle, NotNull]`
 
 #### Returns
 [wawa.Optionals.Maybe&lt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[TResult](Maybe.Match{T,TResult}(Maybe{T},Func{T,Maybe{TResult}}).md#wawa.Optionals.Maybe.Match_T,TResult_(thiswawa.Optionals.Maybe_T_,System.Func_T,wawa.Optionals.Maybe_TResult__).TResult 'wawa.Optionals.Maybe.Match<T,TResult>(this wawa.Optionals.Maybe<T>, System.Func<T,wawa.Optionals.Maybe<TResult>>).TResult')[&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')  

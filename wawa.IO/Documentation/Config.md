@@ -12,8 +12,8 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Fields | |
 | :--- | :--- |
-| [Folder](Config.Folder.md 'wawa.IO.Config.Folder') | The name of the folder that contains locally stored mod settings. |
-| [Suffix](Config.Suffix.md 'wawa.IO.Config.Suffix') | The suffix for the default file name for mod settings. |
+| [Folder](Config.Folder.md 'wawa.IO.Config.Folder') | The name of the folder that contains locally stored mod settings.<p/>`[UriString]` |
+| [Suffix](Config.Suffix.md 'wawa.IO.Config.Suffix') | The suffix for the default file name for mod settings.<p/>`[UriString]` |
 | [Tutorial](Config.Tutorial.md 'wawa.IO.Config.Tutorial') | The key substring that is ignored in mod configs. |
 
 | Methods | |

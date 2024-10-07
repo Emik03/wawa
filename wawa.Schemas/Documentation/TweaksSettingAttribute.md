@@ -26,5 +26,5 @@ Derived
 
 | Properties | |
 | :--- | :--- |
-| [Description](TweaksSettingAttribute.Description.md 'wawa.Schemas.TweaksSettingAttribute.Description') | Gets the longer description of the setting. |
-| [Text](TweaksSettingAttribute.Text.md 'wawa.Schemas.TweaksSettingAttribute.Text') | Gets the short label describing the setting. |
+| [Description](TweaksSettingAttribute.Description.md 'wawa.Schemas.TweaksSettingAttribute.Description') | Gets the longer description of the setting.<p/>`[CanBeNull]` |
+| [Text](TweaksSettingAttribute.Text.md 'wawa.Schemas.TweaksSettingAttribute.Text') | Gets the short label describing the setting.<p/>`[CanBeNull]` |

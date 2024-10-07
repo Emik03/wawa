@@ -2,10 +2,10 @@
 
 ## ModdedModule.Play<T>(T, Transform) Method
 
-Plays one or more sounds from a specified [UnityEngine.Transform](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Transform 'UnityEngine.Transform').
+Plays one or more sounds from a specified [UnityEngine.Transform](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Transform 'UnityEngine.Transform').<p/>`[ItemCanBeNull]`
 
 ```csharp
-public virtual T Play<T>(T sounds, Transform location=null)
+public T Play<T>(T sounds, Transform location=null)
     where T : System.Collections.Generic.IEnumerable<wawa.Modules.Sound>;
 ```
 #### Type parameters
@@ -21,7 +21,7 @@ The type of iterator.
 
 `sounds` [T](ModdedModule.Play{T}(T,Transform).md#wawa.Modules.ModdedModule.Play_T_(T,Transform).T 'wawa.Modules.ModdedModule.Play<T>(T, Transform).T')
 
-The sounds to play.
+The sounds to play.<p/>`[ItemCanBeNull]`
 
 <a name='wawa.Modules.ModdedModule.Play_T_(T,Transform).location'></a>
 

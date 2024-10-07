@@ -3,7 +3,7 @@
 
 ## CanCreateSeparateListingOrBuild Class
 
-Contains the method for registering a listing.
+Contains the method for registering a listing.<p/>`[PublicAPI]`
 
 ```csharp
 public abstract class CanCreateSeparateListingOrBuild : wawa.Schemas.Fluent.CanSection
@@ -16,5 +16,5 @@ Derived
 
 | Methods | |
 | :--- | :--- |
-| [BuildAndClear()](CanCreateSeparateListingOrBuild.BuildAndClear.md 'wawa.Schemas.Fluent.CanCreateSeparateListingOrBuild.BuildAndClear()') | Clears the builder and returns the finalized [TweaksEditorSettings](TweaksEditorSettings.md 'wawa.Schemas.TweaksEditorSettings'). |
-| [CreateSeparateListing(string, string)](CanCreateSeparateListingOrBuild.CreateSeparateListing(string,string).md 'wawa.Schemas.Fluent.CanCreateSeparateListingOrBuild.CreateSeparateListing(string, string)') | Creates a new listing in the [TweaksEditorSettings](TweaksEditorSettings.md 'wawa.Schemas.TweaksEditorSettings'). |
+| [BuildAndClear()](CanCreateSeparateListingOrBuild.BuildAndClear.md 'wawa.Schemas.Fluent.CanCreateSeparateListingOrBuild.BuildAndClear()') | Clears the builder and returns the finalized [TweaksEditorSettings](TweaksEditorSettings.md 'wawa.Schemas.TweaksEditorSettings').<p/>`[NotNull, PublicAPI]` |
+| [CreateSeparateListing(string, string)](CanCreateSeparateListingOrBuild.CreateSeparateListing(string,string).md 'wawa.Schemas.Fluent.CanCreateSeparateListingOrBuild.CreateSeparateListing(string, string)') | Creates a new listing in the [TweaksEditorSettings](TweaksEditorSettings.md 'wawa.Schemas.TweaksEditorSettings').<p/>`[MustUseReturnValue, NotNull, PublicAPI]` |

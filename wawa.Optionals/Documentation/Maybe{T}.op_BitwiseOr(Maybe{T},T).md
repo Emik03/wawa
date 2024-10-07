@@ -2,7 +2,7 @@
 
 ## Maybe<T>.operator |(Maybe<T>, T) Operator
 
-Gives the inner value, or the parameter.
+Gives the inner value, or the parameter.<p/>`[PublicAPI]`
 
 ```csharp
 public static T operator |(wawa.Optionals.Maybe<T> value, T def);

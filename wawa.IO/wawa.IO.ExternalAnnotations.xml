@@ -1,6 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <assembly name="wawa.IO">
-    <member name="P:wawa.IO.Config`1.FilePath">
-        <attribute ctor="M:JetBrains.Annotations.ProvidesContextAttribute.#ctor"/>
-    </member>
+  <member name="F:wawa.IO.Config.Folder">
+    <attribute ctor="M:JetBrains.Annotations.UriStringAttribute.#ctor" />
+  </member>
+  <member name="F:wawa.IO.Config.Suffix">
+    <attribute ctor="M:JetBrains.Annotations.UriStringAttribute.#ctor" />
+  </member>
+  <member name="M:wawa.IO.Config`1.#ctor(System.String)">
+    <parameter name="fileName">
+      <attribute ctor="M:JetBrains.Annotations.UriStringAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="P:wawa.IO.Config`1.FilePath">
+    <attribute ctor="M:JetBrains.Annotations.ProvidesContextAttribute.#ctor" />
+    <attribute ctor="M:JetBrains.Annotations.UriStringAttribute.#ctor" />
+  </member>
+  <member name="M:wawa.IO.ModInfo.ReadThenDeserialize(System.String)">
+    <parameter name="filePath">
+      <attribute ctor="M:JetBrains.Annotations.UriStringAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.IO.PathFinder.get_Caller">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+  </member>
+  <member name="M:wawa.IO.PathFinder.GetAssets``1(System.String,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+    <parameter name="filePath">
+      <attribute ctor="M:JetBrains.Annotations.UriStringAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.IO.PathFinder.GetDirectory(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+  </member>
+  <member name="M:wawa.IO.PathFinder.GetFile(System.String,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+    <parameter name="filePath">
+      <attribute ctor="M:JetBrains.Annotations.UriStringAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.IO.PathFinder.GetModInfo(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+  </member>
+  <member name="M:wawa.IO.PathFinder.GetUnmanaged``1(System.String,System.String,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+    <parameter name="libPath">
+      <attribute ctor="M:JetBrains.Annotations.UriStringAttribute.#ctor" />
+    </parameter>
+  </member>
 </assembly>

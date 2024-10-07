@@ -2,7 +2,7 @@
 
 ## State.Id Property
 
-Gets the unique module id of this module type, primarily used in logging.
+Gets the unique module id of this module type, primarily used in logging.<p/>`[NonNegativeValue]`
 
 ```csharp
 public int Id { get; }

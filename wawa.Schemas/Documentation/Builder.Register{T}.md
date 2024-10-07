@@ -3,7 +3,7 @@
 
 ## TweaksEditorSettings.Builder.Register<T>() Method
 
-Adds the schema of [T](Builder.Register{T}.md#wawa.Schemas.TweaksEditorSettings.Builder.Register_T_().T 'wawa.Schemas.TweaksEditorSettings.Builder.Register<T>().T') to the [TweaksEditorSettings](TweaksEditorSettings.md 'wawa.Schemas.TweaksEditorSettings').
+Adds the schema of [T](Builder.Register{T}.md#wawa.Schemas.TweaksEditorSettings.Builder.Register_T_().T 'wawa.Schemas.TweaksEditorSettings.Builder.Register<T>().T') to the [TweaksEditorSettings](TweaksEditorSettings.md 'wawa.Schemas.TweaksEditorSettings').<p/>`[MustUseReturnValue, NotNull, PublicAPI]`
 
 ```csharp
 public override wawa.Schemas.Fluent.CanCreateSeparateListingOrBuild Register<T>();

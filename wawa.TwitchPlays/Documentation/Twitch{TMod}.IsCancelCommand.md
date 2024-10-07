@@ -6,7 +6,7 @@
 Gets a value indicating whether it should cancel command processing.
 
 ```csharp
-public virtual bool IsCancelCommand { get; }
+public bool IsCancelCommand { get; }
 ```
 
 Implements [IsCancelCommand](ITwitchDeclarable.IsCancelCommand.md 'wawa.TwitchPlays.ITwitchDeclarable.IsCancelCommand')

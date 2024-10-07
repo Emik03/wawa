@@ -2,7 +2,7 @@
 
 ## PathFinder.GetModInfo(string) Method
 
-Gets and deserializes the [ModInfo](ModInfo.md 'wawa.IO.ModInfo') file located in every mod's root directory.
+Gets and deserializes the [ModInfo](ModInfo.md 'wawa.IO.ModInfo') file located in every mod's root directory.<p/>`[MustUseReturnValue]`
 
 ```csharp
 public static wawa.Optionals.Maybe<wawa.IO.ModInfo> GetModInfo(string modId=null);

@@ -2,7 +2,7 @@
 
 ## Maybe.And<T>(this Maybe<T>, Func<Unit,Maybe<T>>) Method
 
-Gives itself, or the parameter.
+Gives itself, or the parameter.<p/>`[PublicAPI]`
 
 ```csharp
 public static wawa.Optionals.Maybe<T> And<T>(this wawa.Optionals.Maybe<T> that, System.Func<wawa.Optionals.Unit,wawa.Optionals.Maybe<T>> otherwise);

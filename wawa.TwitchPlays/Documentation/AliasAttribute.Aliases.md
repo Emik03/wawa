@@ -3,7 +3,7 @@
 
 ## AliasAttribute.Aliases Property
 
-Gets the alternative representations.
+Gets the alternative representations.<p/>`[ItemNotNull]`
 
 ```csharp
 public System.Collections.Generic.IList<string> Aliases { get; }

@@ -4,7 +4,8 @@
 ## ITwitchDeclarable.Manual Property
 
 Gets or sets the manual that is looked up on The Manual Repository when  
-`!{id} manual` is entered into chat.
+`!{id} manual` is entered into chat.  
+<p/>`[UriString]`
 
 ```csharp
 string Manual { get; set; }

@@ -2,7 +2,7 @@
 
 ## Maybe<T>.operator >(Maybe<T>, Maybe<T>) Operator
 
-Determines whether the left-hand side is more than the right.
+Determines whether the left-hand side is more than the right.<p/>`[PublicAPI]`
 
 ```csharp
 public static bool operator >(wawa.Optionals.Maybe<T> left, wawa.Optionals.Maybe<T> right);

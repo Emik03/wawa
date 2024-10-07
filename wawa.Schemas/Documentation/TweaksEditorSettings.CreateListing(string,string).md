@@ -3,7 +3,7 @@
 
 ## TweaksEditorSettings.CreateListing(string, string) Method
 
-Creates the new builder.
+Creates the new builder.<p/>`[PublicAPI]`
 
 ```csharp
 public static wawa.Schemas.Fluent.CanSection CreateListing(string name, string modId=null);
@@ -14,14 +14,15 @@ public static wawa.Schemas.Fluent.CanSection CreateListing(string name, string m
 
 `name` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
-The name of the initial listing.
+The name of the initial listing.<p/>`[NotNull]`
 
 <a name='wawa.Schemas.TweaksEditorSettings.CreateListing(string,string).modId'></a>
 
 `modId` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
 The mod id to get the file name from.  
-If [null](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null'), implicitly gets the file name of the mod from the name of the assembly.
+If [null](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null'), implicitly gets the file name of the mod from the name of the assembly.  
+<p/>`[CanBeNull]`
 
 #### Returns
 [CanSection](CanSection.md 'wawa.Schemas.Fluent.CanSection')  

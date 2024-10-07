@@ -6,7 +6,7 @@ Caches and returns any or all [T](CachedBehaviour.Child{T}(bool,bool).md#wawa.Un
 in this [UnityEngine.Component.gameObject](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Component.gameObject 'UnityEngine.Component.gameObject') and all children.
 
 ```csharp
-public virtual T Child<T>(bool includeInactive=false, bool includeSelf=false)
+public T Child<T>(bool includeInactive=false, bool includeSelf=false)
     where T : class;
 ```
 #### Type parameters

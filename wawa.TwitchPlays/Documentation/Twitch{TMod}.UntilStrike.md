@@ -7,7 +7,7 @@ You can [yield](https://docs.microsoft.com/en-us/dotnet/csharp/language-referenc
 allow interactions of other modules until the module has struck.
 
 ```csharp
-public virtual System.Collections.Generic.IEnumerable<wawa.TwitchPlays.Domains.Instruction> UntilStrike();
+public System.Collections.Generic.IEnumerable<wawa.TwitchPlays.Domains.Instruction> UntilStrike();
 ```
 
 #### Returns

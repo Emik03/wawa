@@ -2,7 +2,7 @@
 
 ## PathFinder.GetAssets<T>(string, string) Method
 
-Loads and returns assets from disk.
+Loads and returns assets from disk.<p/>`[MustUseReturnValue]`
 
 ```csharp
 public static wawa.Optionals.Maybe<System.Collections.Generic.IList<T>> GetAssets<T>(string filePath, string modId=null)
@@ -21,7 +21,7 @@ The type of asset to get.
 
 `filePath` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
-The file which contains the assets.
+The file which contains the assets.<p/>`[UriString]`
 
 <a name='wawa.IO.PathFinder.GetAssets_T_(string,string).modId'></a>
 

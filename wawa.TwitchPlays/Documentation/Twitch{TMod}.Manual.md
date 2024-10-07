@@ -4,10 +4,11 @@
 ## Twitch<TMod>.Manual Property
 
 Gets or sets the manual that is looked up on The Manual Repository when  
-`!{id} manual` is entered into chat.
+`!{id} manual` is entered into chat.  
+<p/>`[UriString]`
 
 ```csharp
-public virtual string Manual { get; set; }
+public string Manual { get; set; }
 ```
 
 Implements [Manual](ITwitchDeclarable.Manual.md 'wawa.TwitchPlays.ITwitchDeclarable.Manual')

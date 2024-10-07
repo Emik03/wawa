@@ -5,7 +5,7 @@
 Gets the current solve/strike status of the module.
 
 ```csharp
-public virtual wawa.Modules.State Status { get; }
+public wawa.Modules.State Status { get; }
 ```
 
 #### Property Value

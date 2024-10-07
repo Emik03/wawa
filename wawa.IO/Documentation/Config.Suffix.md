@@ -2,7 +2,7 @@
 
 ## Config.Suffix Field
 
-The suffix for the default file name for mod settings.
+The suffix for the default file name for mod settings.<p/>`[UriString]`
 
 ```csharp
 public const string Suffix = "-settings.json";

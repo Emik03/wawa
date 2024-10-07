@@ -2,7 +2,7 @@
 
 ## Unit.operator ==(Unit, Unit) Operator
 
-Returns [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').
+Returns [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').<p/>`[PublicAPI]`
 
 ```csharp
 public static bool operator ==(wawa.Optionals.Unit left, wawa.Optionals.Unit right);
@@ -13,13 +13,13 @@ public static bool operator ==(wawa.Optionals.Unit left, wawa.Optionals.Unit rig
 
 `left` [Unit](Unit.md 'wawa.Optionals.Unit')
 
-The left-hand side.
+The left-hand side.<p/>`[InstantHandle]`
 
 <a name='wawa.Optionals.Unit.op_Equality(wawa.Optionals.Unit,wawa.Optionals.Unit).right'></a>
 
 `right` [Unit](Unit.md 'wawa.Optionals.Unit')
 
-The right-hand side.
+The right-hand side.<p/>`[InstantHandle]`
 
 #### Returns
 [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')  

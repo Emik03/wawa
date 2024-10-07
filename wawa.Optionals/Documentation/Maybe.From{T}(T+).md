@@ -2,7 +2,7 @@
 
 ## Maybe.From<T>(Nullable<T>) Method
 
-Wraps [T](Maybe.From{T}(T+).md#wawa.Optionals.Maybe.From_T_(System.Nullable_T_).T 'wawa.Optionals.Maybe.From<T>(System.Nullable<T>).T') in a [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').
+Wraps [T](Maybe.From{T}(T+).md#wawa.Optionals.Maybe.From_T_(System.Nullable_T_).T 'wawa.Optionals.Maybe.From<T>(System.Nullable<T>).T') in a [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').<p/>`[PublicAPI]`
 
 ```csharp
 public static wawa.Optionals.Maybe<T> From<T>(System.Nullable<T> that)

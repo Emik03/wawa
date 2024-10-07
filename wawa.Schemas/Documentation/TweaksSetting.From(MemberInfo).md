@@ -3,7 +3,7 @@
 
 ## TweaksSetting.From(MemberInfo) Method
 
-Gets the [TweaksSettingAttribute](TweaksSettingAttribute.md 'wawa.Schemas.TweaksSettingAttribute') for the [member](TweaksSetting.From(MemberInfo).md#wawa.Schemas.TweaksSetting.From(System.Reflection.MemberInfo).member 'wawa.Schemas.TweaksSetting.From(System.Reflection.MemberInfo).member').
+Gets the [TweaksSettingAttribute](TweaksSettingAttribute.md 'wawa.Schemas.TweaksSettingAttribute') for the [member](TweaksSetting.From(MemberInfo).md#wawa.Schemas.TweaksSetting.From(System.Reflection.MemberInfo).member 'wawa.Schemas.TweaksSetting.From(System.Reflection.MemberInfo).member').<p/>`[CanBeNull]`
 
 ```csharp
 public static wawa.Schemas.TweaksSettingAttribute From(System.Reflection.MemberInfo member);

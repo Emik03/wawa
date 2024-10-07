@@ -2,7 +2,7 @@
 
 ## Maybe.UnwrapOrDefault<T>(this Maybe<T>) Method
 
-Gives the inner value, or [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default').
+Gives the inner value, or [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default').<p/>`[PublicAPI]`
 
 ```csharp
 public static T UnwrapOrDefault<T>(this wawa.Optionals.Maybe<T> that)

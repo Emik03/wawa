@@ -24,7 +24,8 @@ The type of [System.Collections.Generic.IEnumerable&lt;&gt;](https://docs.micros
 `audio` [T](KMExtensions.Add{T}(T,Action{int}).md#wawa.Extensions.KMExtensions.Add_T_(thisT,System.Action_int_).T 'wawa.Extensions.KMExtensions.Add<T>(this T, System.Action<int>).T')
 
 The [System.Collections.Generic.IEnumerable&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1') of [KMAudio.KMAudioRef](https://docs.microsoft.com/en-us/dotnet/api/KMAudio.KMAudioRef 'KMAudio.KMAudioRef')  
-instances to invoke [KMAudio.KMAudioRef.StopSound](https://docs.microsoft.com/en-us/dotnet/api/KMAudio.KMAudioRef.StopSound 'KMAudio.KMAudioRef.StopSound').
+instances to invoke [KMAudio.KMAudioRef.StopSound](https://docs.microsoft.com/en-us/dotnet/api/KMAudio.KMAudioRef.StopSound 'KMAudio.KMAudioRef.StopSound').  
+<p/>`[ItemNotNull]`
 
 <a name='wawa.Extensions.KMExtensions.Add_T_(thisT,System.Action_int_).onStopSound'></a>
 

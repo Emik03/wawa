@@ -2,7 +2,7 @@
 
 ## KMBombStrikeExtensions.Detonate(this KMBomb) Method
 
-Detonates the bomb.
+Detonates the bomb.<p/>`[NonNegativeValue]`
 
 ```csharp
 public static KMBomb Detonate(this KMBomb that);

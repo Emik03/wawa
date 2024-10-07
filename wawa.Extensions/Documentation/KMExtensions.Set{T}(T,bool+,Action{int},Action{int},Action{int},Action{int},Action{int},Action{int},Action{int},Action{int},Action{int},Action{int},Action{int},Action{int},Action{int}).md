@@ -22,7 +22,8 @@ The type of [System.Collections.Generic.IEnumerable&lt;&gt;](https://docs.micros
 
 `selectables` [T](KMExtensions.Set{T}(T,bool+,Action{int},Action{int},Action{int},Action{int},Action{int},Action{int},Action{int},Action{int},Action{int},Action{int},Action{int},Action{int},Action{int}).md#wawa.Extensions.KMExtensions.Set_T_(thisT,System.Nullable_bool_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_).T 'wawa.Extensions.KMExtensions.Set<T>(this T, System.Nullable<bool>, System.Action<int>, System.Action<int>, System.Action<int>, System.Action<int>, System.Action<int>, System.Action<int>, System.Action<int>, System.Action<int>, System.Action<int>, System.Action<int>, System.Action<int>, System.Action<int>, System.Action<int>).T')
 
-The [System.Collections.Generic.IEnumerable&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1') of [KMSelectable](https://docs.microsoft.com/en-us/dotnet/api/KMSelectable 'KMSelectable') instances to hook.
+The [System.Collections.Generic.IEnumerable&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1') of [KMSelectable](https://docs.microsoft.com/en-us/dotnet/api/KMSelectable 'KMSelectable') instances to hook.  
+<p/>`[ItemNotNull]`
 
 <a name='wawa.Extensions.KMExtensions.Set_T_(thisT,System.Nullable_bool_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_,System.Action_int_).isParent'></a>
 

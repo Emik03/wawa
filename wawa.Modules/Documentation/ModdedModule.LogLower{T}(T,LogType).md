@@ -5,7 +5,7 @@
 Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer.
 
 ```csharp
-public virtual T LogLower<T>(T format=default(T), LogType logType=3);
+public T LogLower<T>(T format=default(T), LogType logType=3);
 ```
 #### Type parameters
 

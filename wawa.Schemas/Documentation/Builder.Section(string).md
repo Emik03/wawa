@@ -3,7 +3,7 @@
 
 ## TweaksEditorSettings.Builder.Section(string) Method
 
-Creates a new section in the [TweaksEditorSettings](TweaksEditorSettings.md 'wawa.Schemas.TweaksEditorSettings').
+Creates a new section in the [TweaksEditorSettings](TweaksEditorSettings.md 'wawa.Schemas.TweaksEditorSettings').<p/>`[MustUseReturnValue, NotNull, PublicAPI]`
 
 ```csharp
 public override wawa.Schemas.Fluent.CanRegister Section(string text);
@@ -14,7 +14,7 @@ public override wawa.Schemas.Fluent.CanRegister Section(string text);
 
 `text` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
-The text of the new section.
+The text of the new section.<p/>`[NotNull]`
 
 #### Returns
 [CanRegister](CanRegister.md 'wawa.Schemas.Fluent.CanRegister')  

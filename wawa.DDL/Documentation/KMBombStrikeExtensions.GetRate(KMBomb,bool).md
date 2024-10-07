@@ -2,7 +2,7 @@
 
 ## KMBombStrikeExtensions.GetRate(this KMBomb, bool) Method
 
-Gets the rate in which the timer ticks.
+Gets the rate in which the timer ticks.<p/>`[MustUseReturnValue]`
 
 ```csharp
 public static float GetRate(this KMBomb that, bool signFlip=false);

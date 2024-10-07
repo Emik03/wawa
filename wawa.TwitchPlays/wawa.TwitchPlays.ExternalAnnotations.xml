@@ -1,2 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<assembly name="wawa.TwitchPlays"/>
+<assembly name="wawa.TwitchPlays">
+  <member name="M:wawa.TwitchPlays.Domains.AliasAttribute.#ctor(System.Collections.Generic.IList{System.String})">
+    <parameter name="aliases">
+      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="P:wawa.TwitchPlays.Domains.AliasAttribute.Aliases">
+    <attribute ctor="M:JetBrains.Annotations.ItemNotNullAttribute.#ctor" />
+  </member>
+  <member name="M:wawa.TwitchPlays.Domains.AliasAttribute.ToString(System.Reflection.FieldInfo)">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+  </member>
+  <member name="M:wawa.TwitchPlays.Domains.AliasAttribute.ToString(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+  </member>
+  <member name="M:wawa.TwitchPlays.Domains.Instruction.#ctor(System.Collections.Generic.IEnumerable{wawa.TwitchPlays.Domains.Instruction})">
+    <parameter name="enumerator">
+      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.TwitchPlays.Domains.Instruction.FromInstructions(System.Collections.Generic.IEnumerable{wawa.TwitchPlays.Domains.Instruction})">
+    <parameter name="enumerable">
+      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.TwitchPlays.Domains.Instruction.FromKMSelectableArray(KMSelectable[])">
+    <parameter name="selectables">
+      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.TwitchPlays.Domains.InstructionCore.Flatten(System.Collections.Generic.IEnumerable{wawa.TwitchPlays.Domains.Instruction})">
+    <attribute ctor="M:JetBrains.Annotations.MustDisposeResourceAttribute.#ctor" />
+    <parameter name="that">
+      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="P:wawa.TwitchPlays.ITwitchDeclarable.Abandons">
+    <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+  </member>
+  <member name="M:wawa.TwitchPlays.ITwitchDeclarable.ForceSolve">
+    <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+  </member>
+  <member name="P:wawa.TwitchPlays.ITwitchDeclarable.Manual">
+    <attribute ctor="M:JetBrains.Annotations.UriStringAttribute.#ctor" />
+  </member>
+  <member name="M:wawa.TwitchPlays.Twitch`1.IndexedSequence(System.Collections.Generic.IList{KMSelectable},System.Single,System.Collections.Generic.IEnumerable{System.Int32})">
+    <attribute ctor="M:JetBrains.Annotations.ItemNotNullAttribute.#ctor" />
+    <parameter name="selectables">
+      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.TwitchPlays.Twitch`1.IndexedSequence(System.Collections.Generic.IList{KMSelectable},System.Single,System.Int32[])">
+    <attribute ctor="M:JetBrains.Annotations.ItemNotNullAttribute.#ctor" />
+    <parameter name="selectables">
+      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="P:wawa.TwitchPlays.Twitch`1.Manual">
+    <attribute ctor="M:JetBrains.Annotations.UriStringAttribute.#ctor" />
+  </member>
+  <member name="M:wawa.TwitchPlays.Twitch`1.Sequence(System.Collections.Generic.IEnumerable{KMSelectable},System.Single)">
+    <attribute ctor="M:JetBrains.Annotations.ItemNotNullAttribute.#ctor" />
+    <parameter name="selectables">
+      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.TwitchPlays.Twitch`1.YieldUntil``1(``0,System.Func{System.Boolean})">
+    <attribute ctor="M:JetBrains.Annotations.ItemNotNullAttribute.#ctor" />
+  </member>
+  <member name="M:wawa.TwitchPlays.Twitch`1.YieldWhile``1(``0,System.Func{System.Boolean})">
+    <attribute ctor="M:JetBrains.Annotations.ItemNotNullAttribute.#ctor" />
+  </member>
+</assembly>

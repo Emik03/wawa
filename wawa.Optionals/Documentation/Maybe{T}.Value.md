@@ -2,7 +2,7 @@
 
 ## Maybe<T>.Value Property
 
-Gets the value that is encapsulated. This value returned may be [null](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null').
+Gets the value that is encapsulated. This value returned may be [null](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null').<p/>`[CanBeNull, ProvidesContext, PublicAPI]`
 
 ```csharp
 public T Value { get; }

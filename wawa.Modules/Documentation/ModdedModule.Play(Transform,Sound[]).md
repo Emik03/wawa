@@ -2,10 +2,10 @@
 
 ## ModdedModule.Play(Transform, Sound[]) Method
 
-Plays one or more sounds from a specified [UnityEngine.Transform](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Transform 'UnityEngine.Transform').
+Plays one or more sounds from a specified [UnityEngine.Transform](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Transform 'UnityEngine.Transform').<p/>`[ItemCanBeNull]`
 
 ```csharp
-public virtual System.Collections.Generic.IList<wawa.Modules.Sound> Play(Transform location, params wawa.Modules.Sound[] sounds);
+public System.Collections.Generic.IList<wawa.Modules.Sound> Play(Transform location, params wawa.Modules.Sound[] sounds);
 ```
 #### Parameters
 
@@ -19,7 +19,7 @@ The source of the sound.
 
 `sounds` [Sound](Sound.md 'wawa.Modules.Sound')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
 
-The sounds to play.
+The sounds to play.<p/>`[ItemCanBeNull]`
 
 #### Returns
 [System.Collections.Generic.IList&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IList-1 'System.Collections.Generic.IList`1')[Sound](Sound.md 'wawa.Modules.Sound')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IList-1 'System.Collections.Generic.IList`1')  

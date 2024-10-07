@@ -2,7 +2,7 @@
 
 ## Maybe.Match<T,TResult>(this Maybe<T>, TResult, TResult) Method
 
-Gives the parameter corresponding to the inner value of [that](Maybe.Match{T,TResult}(Maybe{T},TResult,TResult).md#wawa.Optionals.Maybe.Match_T,TResult_(thiswawa.Optionals.Maybe_T_,TResult,TResult).that 'wawa.Optionals.Maybe.Match<T,TResult>(this wawa.Optionals.Maybe<T>, TResult, TResult).that').
+Gives the parameter corresponding to the inner value of [that](Maybe.Match{T,TResult}(Maybe{T},TResult,TResult).md#wawa.Optionals.Maybe.Match_T,TResult_(thiswawa.Optionals.Maybe_T_,TResult,TResult).that 'wawa.Optionals.Maybe.Match<T,TResult>(this wawa.Optionals.Maybe<T>, TResult, TResult).that').<p/>`[PublicAPI]`
 
 ```csharp
 public static TResult Match<T,TResult>(this wawa.Optionals.Maybe<T> that, TResult some, TResult none);

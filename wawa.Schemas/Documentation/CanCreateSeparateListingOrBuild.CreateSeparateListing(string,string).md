@@ -3,7 +3,7 @@
 
 ## CanCreateSeparateListingOrBuild.CreateSeparateListing(string, string) Method
 
-Creates a new listing in the [TweaksEditorSettings](TweaksEditorSettings.md 'wawa.Schemas.TweaksEditorSettings').
+Creates a new listing in the [TweaksEditorSettings](TweaksEditorSettings.md 'wawa.Schemas.TweaksEditorSettings').<p/>`[MustUseReturnValue, NotNull, PublicAPI]`
 
 ```csharp
 public abstract wawa.Schemas.Fluent.CanSection CreateSeparateListing(string name, string fileName);
@@ -14,13 +14,13 @@ public abstract wawa.Schemas.Fluent.CanSection CreateSeparateListing(string name
 
 `name` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
-The name of the new listing.
+The name of the new listing.<p/>`[NotNull]`
 
 <a name='wawa.Schemas.Fluent.CanCreateSeparateListingOrBuild.CreateSeparateListing(string,string).fileName'></a>
 
 `fileName` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
-The file name of the new listing.
+The file name of the new listing.<p/>`[NotNull]`
 
 #### Returns
 [CanSection](CanSection.md 'wawa.Schemas.Fluent.CanSection')  

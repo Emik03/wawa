@@ -30,12 +30,12 @@ according to [System.Char.IsWhiteSpace(System.Char)](https://docs.microsoft.com/
 
 | Properties | |
 | :--- | :--- |
-| [Aliases](AliasAttribute.Aliases.md 'wawa.TwitchPlays.Domains.AliasAttribute.Aliases') | Gets the alternative representations. |
+| [Aliases](AliasAttribute.Aliases.md 'wawa.TwitchPlays.Domains.AliasAttribute.Aliases') | Gets the alternative representations.<p/>`[ItemNotNull]` |
 
 | Methods | |
 | :--- | :--- |
-| [ToString(string)](AliasAttribute.ToString(string).md 'wawa.TwitchPlays.Domains.AliasAttribute.ToString(string)') | Gets a [string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string') representation showing every alias. |
-| [ToString(FieldInfo)](AliasAttribute.ToString(FieldInfo).md 'wawa.TwitchPlays.Domains.AliasAttribute.ToString(System.Reflection.FieldInfo)') | Gets a [string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string') representation showing every alias. |
+| [ToString(string)](AliasAttribute.ToString(string).md 'wawa.TwitchPlays.Domains.AliasAttribute.ToString(string)') | Gets a [string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string') representation showing every alias.<p/>`[MustUseReturnValue]` |
+| [ToString(FieldInfo)](AliasAttribute.ToString(FieldInfo).md 'wawa.TwitchPlays.Domains.AliasAttribute.ToString(System.Reflection.FieldInfo)') | Gets a [string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string') representation showing every alias.<p/>`[MustUseReturnValue]` |
 
 | Operators | |
 | :--- | :--- |

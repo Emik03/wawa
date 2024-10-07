@@ -17,8 +17,8 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 | Methods | |
 | :--- | :--- |
 | [AssemblyLog(string, LogType, string)](PathFinder.AssemblyLog(string,LogType,string).md 'wawa.IO.PathFinder.AssemblyLog(string, LogType, string)') | Logs a message to the Unity Console with the assembly's name that called this. |
-| [GetAssets&lt;T&gt;(string, string)](PathFinder.GetAssets{T}(string,string).md 'wawa.IO.PathFinder.GetAssets<T>(string, string)') | Loads and returns assets from disk. |
-| [GetDirectory(string)](PathFinder.GetDirectory(string).md 'wawa.IO.PathFinder.GetDirectory(string)') | Gets the absolute directory of the mod. |
-| [GetFile(string, string)](PathFinder.GetFile(string,string).md 'wawa.IO.PathFinder.GetFile(string, string)') | Gets the absolute directory of the file located inside the mod directory. |
-| [GetModInfo(string)](PathFinder.GetModInfo(string).md 'wawa.IO.PathFinder.GetModInfo(string)') | Gets and deserializes the [ModInfo](ModInfo.md 'wawa.IO.ModInfo') file located in every mod's root directory. |
-| [GetUnmanaged&lt;T&gt;(string, string, string)](PathFinder.GetUnmanaged{T}(string,string,string).md 'wawa.IO.PathFinder.GetUnmanaged<T>(string, string, string)') | Gets an unmanaged function from an external library. |
+| [GetAssets&lt;T&gt;(string, string)](PathFinder.GetAssets{T}(string,string).md 'wawa.IO.PathFinder.GetAssets<T>(string, string)') | Loads and returns assets from disk.<p/>`[MustUseReturnValue]` |
+| [GetDirectory(string)](PathFinder.GetDirectory(string).md 'wawa.IO.PathFinder.GetDirectory(string)') | Gets the absolute directory of the mod.<p/>`[MustUseReturnValue]` |
+| [GetFile(string, string)](PathFinder.GetFile(string,string).md 'wawa.IO.PathFinder.GetFile(string, string)') | Gets the absolute directory of the file located inside the mod directory.<p/>`[MustUseReturnValue]` |
+| [GetModInfo(string)](PathFinder.GetModInfo(string).md 'wawa.IO.PathFinder.GetModInfo(string)') | Gets and deserializes the [ModInfo](ModInfo.md 'wawa.IO.ModInfo') file located in every mod's root directory.<p/>`[MustUseReturnValue]` |
+| [GetUnmanaged&lt;T&gt;(string, string, string)](PathFinder.GetUnmanaged{T}(string,string,string).md 'wawa.IO.PathFinder.GetUnmanaged<T>(string, string, string)') | Gets an unmanaged function from an external library.<p/>`[MustUseReturnValue]` |

@@ -6,7 +6,7 @@
 Gets or sets the help message that gets sent when typing `!{id} help`.
 
 ```csharp
-public virtual string Help { get; set; }
+public string Help { get; set; }
 ```
 
 Implements [Help](ITwitchDeclarable.Help.md 'wawa.TwitchPlays.ITwitchDeclarable.Help')

@@ -7,7 +7,7 @@ Gets a value indicating whether the timer is counting up instead of down, for sp
 such as controlling how to sort button release times, or whether there is a low timer event or not.
 
 ```csharp
-public virtual bool IsZen { get; }
+public bool IsZen { get; }
 ```
 
 Implements [IsZen](ITwitchDeclarable.IsZen.md 'wawa.TwitchPlays.ITwitchDeclarable.IsZen')

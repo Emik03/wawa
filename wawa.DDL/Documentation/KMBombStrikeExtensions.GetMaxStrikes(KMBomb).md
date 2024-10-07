@@ -2,7 +2,7 @@
 
 ## KMBombStrikeExtensions.GetMaxStrikes(this KMBomb) Method
 
-Gets the number of max strikes.
+Gets the number of max strikes.<p/>`[MustUseReturnValue, NonNegativeValue]`
 
 ```csharp
 public static int GetMaxStrikes(this KMBomb that);

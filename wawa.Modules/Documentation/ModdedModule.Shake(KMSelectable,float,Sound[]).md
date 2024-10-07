@@ -5,7 +5,7 @@
 Plays sounds and shakes the bomb from a selectable.
 
 ```csharp
-public virtual KMSelectable Shake(KMSelectable selectable, float intensityModifier=0f, params wawa.Modules.Sound[] sounds);
+public KMSelectable Shake(KMSelectable selectable, float intensityModifier=0f, params wawa.Modules.Sound[] sounds);
 ```
 #### Parameters
 
@@ -25,7 +25,7 @@ The intensity of the interaction punch.
 
 `sounds` [Sound](Sound.md 'wawa.Modules.Sound')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
 
-The sounds to play.
+The sounds to play.<p/>`[ItemCanBeNull]`
 
 #### Returns
 [KMSelectable](https://docs.microsoft.com/en-us/dotnet/api/KMSelectable 'KMSelectable')  

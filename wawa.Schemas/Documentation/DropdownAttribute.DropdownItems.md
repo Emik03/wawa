@@ -3,7 +3,7 @@
 
 ## TweaksSetting.DropdownAttribute.DropdownItems Property
 
-Gets the set of possible values.
+Gets the set of possible values.<p/>`[CanBeNull]`
 
 ```csharp
 public object[] DropdownItems { get; }

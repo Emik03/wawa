@@ -2,7 +2,7 @@
 
 ## Maybe.UnwrapOrNew<T>(this Maybe<T>) Method
 
-Gives the inner value, or a [new](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new') instance.
+Gives the inner value, or a [new](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new') instance.<p/>`[PublicAPI]`
 
 ```csharp
 public static T UnwrapOrNew<T>(this wawa.Optionals.Maybe<T> that)

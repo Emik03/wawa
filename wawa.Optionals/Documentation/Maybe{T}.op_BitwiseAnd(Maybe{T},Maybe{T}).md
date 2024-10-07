@@ -2,7 +2,7 @@
 
 ## Maybe<T>.operator &(Maybe<T>, Maybe<T>) Operator
 
-Gives itself, or the parameter.
+Gives itself, or the parameter.<p/>`[PublicAPI]`
 
 ```csharp
 public static wawa.Optionals.Maybe<T> operator &(wawa.Optionals.Maybe<T> left, wawa.Optionals.Maybe<T> right);

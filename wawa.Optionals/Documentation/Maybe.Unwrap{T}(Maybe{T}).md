@@ -3,7 +3,8 @@
 ## Maybe.Unwrap<T>(this Maybe<T>) Method
 
 Gets the value that is encapsulated. This value returned will not be [null](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null'),  
-and consequentially if it is.
+and consequentially if it is.  
+<p/>`[PublicAPI]`
 
 ```csharp
 public static T Unwrap<T>(this wawa.Optionals.Maybe<T> that);

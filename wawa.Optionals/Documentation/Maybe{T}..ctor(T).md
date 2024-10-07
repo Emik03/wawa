@@ -13,4 +13,4 @@ public Maybe(T value);
 
 `value` [T](Maybe{T}.md#wawa.Optionals.Maybe_T_.T 'wawa.Optionals.Maybe<T>.T')
 
-The value to encapsulate.
+The value to encapsulate.<p/>`[CanBeNull]`

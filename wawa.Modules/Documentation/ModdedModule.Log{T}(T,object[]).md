@@ -5,7 +5,7 @@
 Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer.
 
 ```csharp
-public virtual T Log<T>(T format=default(T), params object[] args);
+public T Log<T>(T format=default(T), params object[] args);
 ```
 #### Type parameters
 
@@ -26,7 +26,7 @@ The value to log.
 
 `args` [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
 
-The arguments to hook into format.
+The arguments to hook into format.<p/>`[ItemCanBeNull]`
 
 #### Returns
 [T](ModdedModule.Log{T}(T,object[]).md#wawa.Modules.ModdedModule.Log_T_(T,object[]).T 'wawa.Modules.ModdedModule.Log<T>(T, object[]).T')  

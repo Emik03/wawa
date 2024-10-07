@@ -5,10 +5,11 @@
 
 Presses a sequence of buttons in order of [selectables](Twitch{TMod}.Sequence(IEnumerable{KMSelectable},float).md#wawa.TwitchPlays.Twitch_TMod_.Sequence(System.Collections.Generic.IEnumerable_KMSelectable_,float).selectables 'wawa.TwitchPlays.Twitch<TMod>.Sequence(System.Collections.Generic.IEnumerable<KMSelectable>, float).selectables'),  
 waiting [duration](Twitch{TMod}.Sequence(IEnumerable{KMSelectable},float).md#wawa.TwitchPlays.Twitch_TMod_.Sequence(System.Collections.Generic.IEnumerable_KMSelectable_,float).duration 'wawa.TwitchPlays.Twitch<TMod>.Sequence(System.Collections.Generic.IEnumerable<KMSelectable>, float).duration') seconds in-between each, and interrupting as soon as  
-[wawa.Modules.State.HasStruck](https://docs.microsoft.com/en-us/dotnet/api/wawa.Modules.State.HasStruck 'wawa.Modules.State.HasStruck') is [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').
+[wawa.Modules.State.HasStruck](https://docs.microsoft.com/en-us/dotnet/api/wawa.Modules.State.HasStruck 'wawa.Modules.State.HasStruck') is [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').  
+<p/>`[ItemNotNull]`
 
 ```csharp
-public virtual System.Collections.Generic.IEnumerable<wawa.TwitchPlays.Domains.Instruction> Sequence(System.Collections.Generic.IEnumerable<KMSelectable> selectables, float duration);
+public System.Collections.Generic.IEnumerable<wawa.TwitchPlays.Domains.Instruction> Sequence(System.Collections.Generic.IEnumerable<KMSelectable> selectables, float duration);
 ```
 #### Parameters
 
@@ -16,7 +17,7 @@ public virtual System.Collections.Generic.IEnumerable<wawa.TwitchPlays.Domains.I
 
 `selectables` [System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')[KMSelectable](https://docs.microsoft.com/en-us/dotnet/api/KMSelectable 'KMSelectable')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')
 
-The array of selectables to interact with.
+The array of selectables to interact with.<p/>`[ItemCanBeNull]`
 
 <a name='wawa.TwitchPlays.Twitch_TMod_.Sequence(System.Collections.Generic.IEnumerable_KMSelectable_,float).duration'></a>
 

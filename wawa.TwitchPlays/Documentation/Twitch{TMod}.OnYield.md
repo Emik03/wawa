@@ -7,7 +7,7 @@ Gets or sets an event invoked whenever any command (including [AutoSolve](Twitch
 something and is processed. The value that it yielded is passed in.
 
 ```csharp
-public virtual event EventHandler<YieldEventArgs> OnYield;
+public event EventHandler<YieldEventArgs> OnYield;
 ```
 
 #### Event Type

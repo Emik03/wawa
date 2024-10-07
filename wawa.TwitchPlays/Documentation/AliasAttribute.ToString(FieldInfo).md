@@ -3,7 +3,7 @@
 
 ## AliasAttribute.ToString(FieldInfo) Method
 
-Gets a [string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string') representation showing every alias.
+Gets a [string](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/string') representation showing every alias.<p/>`[MustUseReturnValue]`
 
 ```csharp
 public static string ToString(System.Reflection.FieldInfo x);

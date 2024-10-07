@@ -6,7 +6,7 @@
 Gets a value indicating whether Twitch Plays is currently active.
 
 ```csharp
-public virtual bool IsTP { get; }
+public bool IsTP { get; }
 ```
 
 Implements [IsTP](https://docs.microsoft.com/en-us/dotnet/api/wawa.Modules.ISolvable.IsTP 'wawa.Modules.ISolvable.IsTP')

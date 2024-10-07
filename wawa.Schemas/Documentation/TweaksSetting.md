@@ -13,4 +13,4 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Methods | |
 | :--- | :--- |
-| [From(MemberInfo)](TweaksSetting.From(MemberInfo).md 'wawa.Schemas.TweaksSetting.From(System.Reflection.MemberInfo)') | Gets the [TweaksSettingAttribute](TweaksSettingAttribute.md 'wawa.Schemas.TweaksSettingAttribute') for the [member](TweaksSetting.From(MemberInfo).md#wawa.Schemas.TweaksSetting.From(System.Reflection.MemberInfo).member 'wawa.Schemas.TweaksSetting.From(System.Reflection.MemberInfo).member'). |
+| [From(MemberInfo)](TweaksSetting.From(MemberInfo).md 'wawa.Schemas.TweaksSetting.From(System.Reflection.MemberInfo)') | Gets the [TweaksSettingAttribute](TweaksSettingAttribute.md 'wawa.Schemas.TweaksSettingAttribute') for the [member](TweaksSetting.From(MemberInfo).md#wawa.Schemas.TweaksSetting.From(System.Reflection.MemberInfo).member 'wawa.Schemas.TweaksSetting.From(System.Reflection.MemberInfo).member').<p/>`[CanBeNull]` |

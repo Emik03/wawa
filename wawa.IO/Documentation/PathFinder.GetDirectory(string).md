@@ -2,7 +2,7 @@
 
 ## PathFinder.GetDirectory(string) Method
 
-Gets the absolute directory of the mod.
+Gets the absolute directory of the mod.<p/>`[MustUseReturnValue]`
 
 ```csharp
 public static wawa.Optionals.Maybe<string> GetDirectory(string modId=null);

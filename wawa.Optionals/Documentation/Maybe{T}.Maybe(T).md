@@ -2,7 +2,7 @@
 
 ## Maybe<T>.implicit operator Maybe<T>(T) Operator
 
-Converts the [T](Maybe{T}.md#wawa.Optionals.Maybe_T_.T 'wawa.Optionals.Maybe<T>.T') to a [new](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new')[Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').
+Converts the [T](Maybe{T}.md#wawa.Optionals.Maybe_T_.T 'wawa.Optionals.Maybe<T>.T') to a [new](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new')[Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').<p/>`[PublicAPI]`
 
 ```csharp
 public static wawa.Optionals.Maybe<T> implicit operator Maybe<T>(T value);
@@ -13,7 +13,7 @@ public static wawa.Optionals.Maybe<T> implicit operator Maybe<T>(T value);
 
 `value` [T](Maybe{T}.md#wawa.Optionals.Maybe_T_.T 'wawa.Optionals.Maybe<T>.T')
 
-The [T](Maybe{T}.md#wawa.Optionals.Maybe_T_.T 'wawa.Optionals.Maybe<T>.T') instance to convert.
+The [T](Maybe{T}.md#wawa.Optionals.Maybe_T_.T 'wawa.Optionals.Maybe<T>.T') instance to convert.<p/>`[CanBeNull]`
 
 #### Returns
 [wawa.Optionals.Maybe&lt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[T](Maybe{T}.md#wawa.Optionals.Maybe_T_.T 'wawa.Optionals.Maybe<T>.T')[&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')  

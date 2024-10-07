@@ -6,7 +6,7 @@
 When the module runs into an exception or the module is forced to be solved, it calls this method.
 
 ```csharp
-virtual System.Collections.IEnumerator wawa.Modules.ISolvable.ForceTPSolve();
+System.Collections.IEnumerator wawa.Modules.ISolvable.ForceTPSolve();
 ```
 
 Implements [ForceTPSolve()](https://docs.microsoft.com/en-us/dotnet/api/wawa.Modules.ISolvable.ForceTPSolve 'wawa.Modules.ISolvable.ForceTPSolve')

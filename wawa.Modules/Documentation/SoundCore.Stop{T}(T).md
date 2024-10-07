@@ -21,7 +21,7 @@ The type of iterator.
 
 `sounds` [T](SoundCore.Stop{T}(T).md#wawa.Modules.SoundCore.Stop_T_(thisT).T 'wawa.Modules.SoundCore.Stop<T>(this T).T')
 
-The multiple [Sound](Sound.md 'wawa.Modules.Sound') instances to each call [Stop(this Sound)](SoundCore.Stop(Sound).md 'wawa.Modules.SoundCore.Stop(this wawa.Modules.Sound)') on.
+The multiple [Sound](Sound.md 'wawa.Modules.Sound') instances to each call [Stop(this Sound)](SoundCore.Stop(Sound).md 'wawa.Modules.SoundCore.Stop(this wawa.Modules.Sound)') on.<p/>`[ItemNotNull]`
 
 #### Returns
 [T](SoundCore.Stop{T}(T).md#wawa.Modules.SoundCore.Stop_T_(thisT).T 'wawa.Modules.SoundCore.Stop<T>(this T).T')  

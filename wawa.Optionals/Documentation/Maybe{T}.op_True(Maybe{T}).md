@@ -2,7 +2,7 @@
 
 ## Maybe<T>.operator true(Maybe<T>) Operator
 
-Gets a value indicating whether the value encapsulated is not [null](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null').
+Gets a value indicating whether the value encapsulated is not [null](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null').<p/>`[PublicAPI]`
 
 ```csharp
 public static bool operator true(wawa.Optionals.Maybe<T> value);

@@ -3,7 +3,7 @@
 
 ## InstructionCore.Flatten(this IEnumerable<Instruction>) Method
 
-Flattens the enumeration for coroutine use.
+Flattens the enumeration for coroutine use.<p/>`[MustDisposeResource]`
 
 ```csharp
 public static System.Collections.Generic.IEnumerator<object> Flatten(this System.Collections.Generic.IEnumerable<wawa.TwitchPlays.Domains.Instruction> that);
@@ -14,7 +14,7 @@ public static System.Collections.Generic.IEnumerator<object> Flatten(this System
 
 `that` [System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')[Instruction](Instruction.md 'wawa.TwitchPlays.Domains.Instruction')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')
 
-This instance of [System.Collections.Generic.IEnumerable&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1').
+This instance of [System.Collections.Generic.IEnumerable&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1').<p/>`[ItemCanBeNull]`
 
 #### Returns
 [System.Collections.Generic.IEnumerator&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerator-1 'System.Collections.Generic.IEnumerator`1')[System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerator-1 'System.Collections.Generic.IEnumerator`1')  

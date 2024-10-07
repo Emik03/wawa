@@ -13,4 +13,4 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Methods | |
 | :--- | :--- |
-| [Flatten(this IEnumerable&lt;Instruction&gt;)](InstructionCore.Flatten(IEnumerable{Instruction}).md 'wawa.TwitchPlays.Domains.InstructionCore.Flatten(this System.Collections.Generic.IEnumerable<wawa.TwitchPlays.Domains.Instruction>)') | Flattens the enumeration for coroutine use. |
+| [Flatten(this IEnumerable&lt;Instruction&gt;)](InstructionCore.Flatten(IEnumerable{Instruction}).md 'wawa.TwitchPlays.Domains.InstructionCore.Flatten(this System.Collections.Generic.IEnumerable<wawa.TwitchPlays.Domains.Instruction>)') | Flattens the enumeration for coroutine use.<p/>`[MustDisposeResource]` |

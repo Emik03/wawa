@@ -14,7 +14,7 @@ public AliasAttribute(System.Collections.Generic.IList<string> aliases);
 
 `aliases` [System.Collections.Generic.IList&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IList-1 'System.Collections.Generic.IList`1')[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IList-1 'System.Collections.Generic.IList`1')
 
-The prefix of this command.
+The prefix of this command.<p/>`[ItemCanBeNull]`
 
 #### Exceptions
 

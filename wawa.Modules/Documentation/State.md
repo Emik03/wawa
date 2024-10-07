@@ -18,7 +18,7 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 | Properties | |
 | :--- | :--- |
 | [HasStruck](State.HasStruck.md 'wawa.Modules.State.HasStruck') | Gets or sets a value indicating whether the module has ever called [Strike(string, object[])](ModdedModule.Strike(string,object[]).md 'wawa.Modules.ModdedModule.Strike(string, object[])'). |
-| [Id](State.Id.md 'wawa.Modules.State.Id') | Gets the unique module id of this module type, primarily used in logging. |
+| [Id](State.Id.md 'wawa.Modules.State.Id') | Gets the unique module id of this module type, primarily used in logging.<p/>`[NonNegativeValue]` |
 | [IsSolved](State.IsSolved.md 'wawa.Modules.State.IsSolved') | Gets a value indicating whether the module is solved. |
 
 | Operators | |

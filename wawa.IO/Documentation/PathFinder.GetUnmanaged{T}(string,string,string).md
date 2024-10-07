@@ -2,7 +2,7 @@
 
 ## PathFinder.GetUnmanaged<T>(string, string, string) Method
 
-Gets an unmanaged function from an external library.
+Gets an unmanaged function from an external library.<p/>`[MustUseReturnValue]`
 
 ```csharp
 public static wawa.Optionals.Maybe<T> GetUnmanaged<T>(string libPath, string ffiMethodName, string modId=null)
@@ -21,7 +21,7 @@ The signature of the function.
 
 `libPath` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
-The external file.
+The external file.<p/>`[UriString]`
 
 <a name='wawa.IO.PathFinder.GetUnmanaged_T_(string,string,string).ffiMethodName'></a>
 

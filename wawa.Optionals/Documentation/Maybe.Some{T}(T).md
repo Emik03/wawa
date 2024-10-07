@@ -2,7 +2,7 @@
 
 ## Maybe.Some<T>(T) Method
 
-Wraps [T](Maybe.Some{T}(T).md#wawa.Optionals.Maybe.Some_T_(T).T 'wawa.Optionals.Maybe.Some<T>(T).T') in a [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').
+Wraps [T](Maybe.Some{T}(T).md#wawa.Optionals.Maybe.Some_T_(T).T 'wawa.Optionals.Maybe.Some<T>(T).T') in a [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').<p/>`[PublicAPI]`
 
 ```csharp
 public static wawa.Optionals.Maybe<T> Some<T>(T that)

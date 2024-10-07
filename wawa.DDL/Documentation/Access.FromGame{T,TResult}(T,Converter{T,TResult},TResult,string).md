@@ -32,7 +32,7 @@ The context element to pass into the callback.
 
 `ktane` [System.Converter&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Converter-2 'System.Converter`2')[T](Access.FromGame{T,TResult}(T,Converter{T,TResult},TResult,string).md#wawa.DDL.Access.FromGame_T,TResult_(T,System.Converter_T,TResult_,TResult,string).T 'wawa.DDL.Access.FromGame<T,TResult>(T, System.Converter<T,TResult>, TResult, string).T')[,](https://docs.microsoft.com/en-us/dotnet/api/System.Converter-2 'System.Converter`2')[TResult](Access.FromGame{T,TResult}(T,Converter{T,TResult},TResult,string).md#wawa.DDL.Access.FromGame_T,TResult_(T,System.Converter_T,TResult_,TResult,string).TResult 'wawa.DDL.Access.FromGame<T,TResult>(T, System.Converter<T,TResult>, TResult, string).TResult')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Converter-2 'System.Converter`2')
 
-The factory containing one or more references that may be unavailable.
+The factory containing one or more references that may be unavailable.<p/>`[RequireStaticDelegate]`
 
 <a name='wawa.DDL.Access.FromGame_T,TResult_(T,System.Converter_T,TResult_,TResult,string).def'></a>
 

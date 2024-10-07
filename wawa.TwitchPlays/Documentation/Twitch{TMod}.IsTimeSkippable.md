@@ -7,7 +7,7 @@ Gets a value indicating whether it should allow for the timer to be skipped when
 as well as any other modules that would like to skip time, are the only unsolved modules left on the bomb.
 
 ```csharp
-public virtual bool IsTimeSkippable { get; }
+public bool IsTimeSkippable { get; }
 ```
 
 Implements [IsTimeSkippable](ITwitchDeclarable.IsTimeSkippable.md 'wawa.TwitchPlays.ITwitchDeclarable.IsTimeSkippable')

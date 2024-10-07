@@ -5,7 +5,7 @@
 Caches and returns any or all [T](CachedBehaviour.Get{T}.md#wawa.Unity.CachedBehaviour.Get_T_().T 'wawa.Unity.CachedBehaviour.Get<T>().T') components in this [UnityEngine.Component.gameObject](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Component.gameObject 'UnityEngine.Component.gameObject').
 
 ```csharp
-public virtual T Get<T>()
+public T Get<T>()
     where T : class;
 ```
 #### Type parameters

@@ -5,5 +5,5 @@
 Clears the cache.
 
 ```csharp
-public virtual void Clear();
+public void Clear();
 ```

@@ -1,2 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<assembly name="wawa.Extensions"/>
+<assembly name="wawa.Extensions">
+  <member name="M:wawa.Extensions.KMExtensions.Add``1(``0,System.Action{System.Int32})">
+    <parameter name="audio">
+      <attribute ctor="M:JetBrains.Annotations.ItemNotNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Extensions.KMExtensions.Add``1(``0,System.Nullable{System.Boolean},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32})">
+    <parameter name="selectables">
+      <attribute ctor="M:JetBrains.Annotations.ItemNotNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Extensions.KMExtensions.Notify``1(``0,KMSelectable[])">
+    <parameter name="selectables">
+      <attribute ctor="M:JetBrains.Annotations.ItemNotNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Extensions.KMExtensions.Notify``2(``0,``1)">
+    <parameter name="selectables">
+      <attribute ctor="M:JetBrains.Annotations.ItemNotNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Extensions.KMExtensions.Set``1(``0,System.Action{System.Int32})">
+    <parameter name="audio">
+      <attribute ctor="M:JetBrains.Annotations.ItemNotNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Extensions.KMExtensions.Set``1(``0,System.Nullable{System.Boolean},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32},System.Action{System.Int32})">
+    <parameter name="selectables">
+      <attribute ctor="M:JetBrains.Annotations.ItemNotNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Extensions.KMExtensions.Stop``1(``0)">
+    <parameter name="audio">
+      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    </parameter>
+  </member>
+</assembly>

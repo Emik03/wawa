@@ -2,7 +2,7 @@
 
 ## KMBombStrikeExtensions.SetMaxStrikes(this KMBomb, int, bool) Method
 
-Sets the number of max strikes.
+Sets the number of max strikes.<p/>`[NonNegativeValue]`
 
 ```csharp
 public static KMBomb SetMaxStrikes(this KMBomb that, int value, bool tryDetonate=false);

@@ -40,7 +40,7 @@ All constructors in this type have the following side effects:
 
 | Properties | |
 | :--- | :--- |
-| [FilePath](Config{T}.FilePath.md 'wawa.IO.Config<T>.FilePath') | Gets the path of the file to read and write. |
+| [FilePath](Config{T}.FilePath.md 'wawa.IO.Config<T>.FilePath') | Gets the path of the file to read and write.<p/>`[ProvidesContext, UriString]` |
 | [HasRead](Config{T}.HasRead.md 'wawa.IO.Config<T>.HasRead') | Gets a value indicating whether or not there has been a successful read of the settings file. |
 
 | Methods | |

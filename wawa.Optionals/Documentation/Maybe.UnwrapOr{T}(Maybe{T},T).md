@@ -2,7 +2,7 @@
 
 ## Maybe.UnwrapOr<T>(this Maybe<T>, T) Method
 
-Gives the inner value, or the parameter.
+Gives the inner value, or the parameter.<p/>`[PublicAPI]`
 
 ```csharp
 public static T UnwrapOr<T>(this wawa.Optionals.Maybe<T> that, T otherwise);

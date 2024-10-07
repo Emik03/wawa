@@ -14,10 +14,10 @@ public ArrayAttribute(string description=null, string text=null);
 
 `description` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
-A longer description of the setting.
+A longer description of the setting.<p/>`[CanBeNull]`
 
 <a name='wawa.Schemas.TweaksSetting.ArrayAttribute.ArrayAttribute(string,string).text'></a>
 
 `text` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
-The short label describing the setting, defaulting to the field or property name.
+The short label describing the setting, defaulting to the field or property name.<p/>`[CanBeNull]`

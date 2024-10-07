@@ -3,10 +3,10 @@
 
 ## TweaksSettingAttribute.Description Property
 
-Gets the longer description of the setting.
+Gets the longer description of the setting.<p/>`[CanBeNull]`
 
 ```csharp
-public virtual string Description { get; }
+public string Description { get; }
 ```
 
 #### Property Value

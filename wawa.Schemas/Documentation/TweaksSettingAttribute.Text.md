@@ -3,10 +3,10 @@
 
 ## TweaksSettingAttribute.Text Property
 
-Gets the short label describing the setting.
+Gets the short label describing the setting.<p/>`[CanBeNull]`
 
 ```csharp
-public virtual string Text { get; }
+public string Text { get; }
 ```
 
 #### Property Value

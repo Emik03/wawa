@@ -2,7 +2,7 @@
 
 ## Unit.AsString Field
 
-Gets the string representation of [Unit](Unit.md 'wawa.Optionals.Unit').
+Gets the string representation of [Unit](Unit.md 'wawa.Optionals.Unit').<p/>`[NotNull, PublicAPI]`
 
 ```csharp
 public const string AsString = "()";

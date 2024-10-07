@@ -2,7 +2,7 @@
 
 ## Maybe.Or<T>(this Maybe<T>, Maybe<T>) Method
 
-Gives itself, or the parameter.
+Gives itself, or the parameter.<p/>`[PublicAPI]`
 
 ```csharp
 public static wawa.Optionals.Maybe<T> Or<T>(this wawa.Optionals.Maybe<T> that, wawa.Optionals.Maybe<T> otherwise);

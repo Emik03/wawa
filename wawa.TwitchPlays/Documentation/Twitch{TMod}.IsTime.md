@@ -6,7 +6,7 @@
 Gets a value indicating whether it is in Time Mode, where solves change the timer.
 
 ```csharp
-public virtual bool IsTime { get; }
+public bool IsTime { get; }
 ```
 
 Implements [IsTime](ITwitchDeclarable.IsTime.md 'wawa.TwitchPlays.ITwitchDeclarable.IsTime')

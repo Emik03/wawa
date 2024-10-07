@@ -2,7 +2,7 @@
 
 ## Maybe<T>.explicit operator T(Maybe<T>) Operator
 
-Converts the [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>') to [T](Maybe{T}.md#wawa.Optionals.Maybe_T_.T 'wawa.Optionals.Maybe<T>.T').
+Converts the [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>') to [T](Maybe{T}.md#wawa.Optionals.Maybe_T_.T 'wawa.Optionals.Maybe<T>.T').<p/>`[PublicAPI]`
 
 ```csharp
 public static T explicit operator T(wawa.Optionals.Maybe<T> value);

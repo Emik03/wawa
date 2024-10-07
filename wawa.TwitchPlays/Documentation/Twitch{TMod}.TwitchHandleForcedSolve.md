@@ -7,7 +7,7 @@ This method gets grabbed by Twitch Plays which is used whenever a thrown [System
 is unhandled, a votesolve/solvebomb is performed, or when an admin forces this module to be solved.
 
 ```csharp
-public virtual System.Collections.IEnumerator TwitchHandleForcedSolve();
+public System.Collections.IEnumerator TwitchHandleForcedSolve();
 ```
 
 Implements [TwitchHandleForcedSolve()](ITwitchSupportable.TwitchHandleForcedSolve.md 'wawa.TwitchPlays.Domains.ITwitchSupportable.TwitchHandleForcedSolve()')

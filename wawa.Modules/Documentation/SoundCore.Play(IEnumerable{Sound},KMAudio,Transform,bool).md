@@ -13,7 +13,7 @@ public static System.Collections.Generic.IEnumerable<wawa.Optionals.Maybe<KMAudi
 
 `that` [System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')[Sound](Sound.md 'wawa.Modules.Sound')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')
 
-This instance of [Sound](Sound.md 'wawa.Modules.Sound').
+This instance of [Sound](Sound.md 'wawa.Modules.Sound').<p/>`[ItemNotNull]`
 
 <a name='wawa.Modules.SoundCore.Play(thisSystem.Collections.Generic.IEnumerable_wawa.Modules.Sound_,KMAudio,Transform,bool).audio'></a>
 

@@ -2,7 +2,7 @@
 
 ## Maybe.Flatten<T>(this Maybe<Maybe<Maybe<Maybe<T>>>>) Method
 
-Flattens a nested [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').
+Flattens a nested [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').<p/>`[PublicAPI]`
 
 ```csharp
 public static wawa.Optionals.Maybe<T> Flatten<T>(this wawa.Optionals.Maybe<wawa.Optionals.Maybe<wawa.Optionals.Maybe<wawa.Optionals.Maybe<T>>>> that);

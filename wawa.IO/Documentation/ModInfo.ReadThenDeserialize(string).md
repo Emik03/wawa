@@ -13,7 +13,7 @@ public static wawa.Optionals.Maybe<wawa.IO.ModInfo> ReadThenDeserialize(string f
 
 `filePath` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
-The contents to a modInfo.json.
+The contents to a modInfo.json.<p/>`[UriString]`
 
 #### Returns
 [wawa.Optionals.Maybe&lt;](https://docs.microsoft.com/en-us/dotnet/api/wawa.Optionals.Maybe-1 'wawa.Optionals.Maybe`1')[ModInfo](ModInfo.md 'wawa.IO.ModInfo')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/wawa.Optionals.Maybe-1 'wawa.Optionals.Maybe`1')  

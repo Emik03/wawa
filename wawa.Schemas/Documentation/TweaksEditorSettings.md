@@ -3,7 +3,7 @@
 
 ## TweaksEditorSettings Class
 
-The class for holding the settings schema object used by tweaks for the mod settings.
+The class for holding the settings schema object used by tweaks for the mod settings.<p/>`[PublicAPI]`
 
 ```csharp
 public sealed class TweaksEditorSettings :
@@ -17,4 +17,4 @@ Implements [System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.c
 
 | Methods | |
 | :--- | :--- |
-| [CreateListing(string, string)](TweaksEditorSettings.CreateListing(string,string).md 'wawa.Schemas.TweaksEditorSettings.CreateListing(string, string)') | Creates the new builder. |
+| [CreateListing(string, string)](TweaksEditorSettings.CreateListing(string,string).md 'wawa.Schemas.TweaksEditorSettings.CreateListing(string, string)') | Creates the new builder.<p/>`[PublicAPI]` |

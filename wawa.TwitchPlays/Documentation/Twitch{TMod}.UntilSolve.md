@@ -7,7 +7,7 @@ You can [yield](https://docs.microsoft.com/en-us/dotnet/csharp/language-referenc
 allow interactions of other modules until the module is solved.
 
 ```csharp
-public virtual System.Collections.Generic.IEnumerable<wawa.TwitchPlays.Domains.Instruction> UntilSolve();
+public System.Collections.Generic.IEnumerable<wawa.TwitchPlays.Domains.Instruction> UntilSolve();
 ```
 
 #### Returns

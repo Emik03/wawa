@@ -2,7 +2,7 @@
 
 ## Maybe<T>.operator ==(Maybe<T>, Maybe<T>) Operator
 
-Determines whether both instances contain the same values.
+Determines whether both instances contain the same values.<p/>`[PublicAPI]`
 
 ```csharp
 public static bool operator ==(wawa.Optionals.Maybe<T> left, wawa.Optionals.Maybe<T> right);

@@ -6,7 +6,7 @@
 This method gets grabbed by Twitch Plays to process a user command.
 
 ```csharp
-public virtual System.Collections.IEnumerator ProcessTwitchCommand(string command);
+public System.Collections.IEnumerator ProcessTwitchCommand(string command);
 ```
 #### Parameters
 

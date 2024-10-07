@@ -2,7 +2,7 @@
 
 ## KMBombStrikeExtensions.GetStrikes(this KMBomb) Method
 
-Gets the number of strikes.
+Gets the number of strikes.<p/>`[MustUseReturnValue, NonNegativeValue]`
 
 ```csharp
 public static int GetStrikes(this KMBomb that);

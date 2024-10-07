@@ -17,4 +17,4 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Properties | |
 | :--- | :--- |
-| [DropdownItems](DropdownAttribute.DropdownItems.md 'wawa.Schemas.TweaksSetting.DropdownAttribute.DropdownItems') | Gets the set of possible values. |
+| [DropdownItems](DropdownAttribute.DropdownItems.md 'wawa.Schemas.TweaksSetting.DropdownAttribute.DropdownItems') | Gets the set of possible values.<p/>`[CanBeNull]` |

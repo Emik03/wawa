@@ -6,7 +6,7 @@
 Gets the instance of the module.
 
 ```csharp
-public virtual TMod Module { get; }
+public TMod Module { get; }
 ```
 
 #### Property Value

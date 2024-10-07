@@ -21,7 +21,8 @@ The type of [System.Collections.Generic.IEnumerable&lt;&gt;](https://docs.micros
 
 `selectables` [T](KMExtensions.Notify{T}(T,KMSelectable[]).md#wawa.Extensions.KMExtensions.Notify_T_(thisT,KMSelectable[]).T 'wawa.Extensions.KMExtensions.Notify<T>(this T, KMSelectable[]).T')
 
-The [System.Collections.Generic.IEnumerable&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1') of [KMSelectable](https://docs.microsoft.com/en-us/dotnet/api/KMSelectable 'KMSelectable') instances to update its children.
+The [System.Collections.Generic.IEnumerable&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1') of [KMSelectable](https://docs.microsoft.com/en-us/dotnet/api/KMSelectable 'KMSelectable') instances to update its children.  
+<p/>`[ItemNotNull]`
 
 <a name='wawa.Extensions.KMExtensions.Notify_T_(thisT,KMSelectable[]).childrenToSelect'></a>
 

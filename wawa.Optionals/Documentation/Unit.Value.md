@@ -2,7 +2,7 @@
 
 ## Unit.Value Property
 
-Gets the singular value.
+Gets the singular value.<p/>`[PublicAPI]`
 
 ```csharp
 public static wawa.Optionals.Unit Value { get; }

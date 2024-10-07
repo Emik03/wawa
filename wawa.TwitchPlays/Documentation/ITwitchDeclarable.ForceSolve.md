@@ -3,7 +3,8 @@
 
 ## ITwitchDeclarable.ForceSolve() Method
 
-When the module runs into an exception or the module is forced to be solved, this method is used.
+When the module runs into an exception or the module is forced to be solved, this method is used.  
+<p/>`[ItemCanBeNull]`
 
 ```csharp
 System.Collections.Generic.IEnumerable<wawa.TwitchPlays.Domains.Instruction> ForceSolve();

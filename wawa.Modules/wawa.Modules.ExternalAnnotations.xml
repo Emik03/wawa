@@ -1,9 +1,83 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <assembly name="wawa.Modules">
-    <member name="M:wawa.Modules.Stringifier.Stringify``1(``0,System.Boolean,System.Boolean)">
-        <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor"/>
-    </member>
-    <member name="M:wawa.Modules.Stringifier.Stringify``1(``0)">
-        <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor"/>
-    </member>
+  <member name="M:wawa.Modules.ModdedModule.get_Children">
+    <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+  </member>
+  <member name="M:wawa.Modules.ModdedModule.get_Id">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+  </member>
+  <member name="M:wawa.Modules.ModdedModule.get_Matrix">
+    <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+  </member>
+  <member name="M:wawa.Modules.ModdedModule.Log``1(``0,System.Object[])">
+    <parameter name="args">
+      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Modules.ModdedModule.LogLower``1(``0,System.Object[])">
+    <parameter name="args">
+      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Modules.ModdedModule.Play(UnityEngine.Transform,wawa.Modules.Sound[])">
+    <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    <parameter name="sounds">
+      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Modules.ModdedModule.Play(wawa.Modules.Sound[])">
+    <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    <parameter name="sounds">
+      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Modules.ModdedModule.Play``1(``0,UnityEngine.Transform)">
+    <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    <parameter name="sounds">
+      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Modules.ModdedModule.Shake(KMSelectable,System.Single,wawa.Modules.Sound[])">
+    <parameter name="sounds">
+      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Modules.ModdedModule.Solve(System.String,System.Object[])">
+    <parameter name="args">
+      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Modules.ModdedModule.Strike(System.String,System.Object[])">
+    <parameter name="args">
+      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Modules.SoundCore.Play(System.Collections.Generic.IEnumerable{wawa.Modules.Sound},KMAudio,UnityEngine.Transform,System.Boolean)">
+    <parameter name="that">
+      <attribute ctor="M:JetBrains.Annotations.ItemNotNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Modules.SoundCore.Stop``1(``0)">
+    <parameter name="sounds">
+      <attribute ctor="M:JetBrains.Annotations.ItemNotNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Modules.SoundCore.ToSounds(System.Collections.Generic.IEnumerable{System.String})">
+    <parameter name="sounds">
+      <attribute ctor="M:JetBrains.Annotations.ItemNotNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Modules.SoundCore.ToSounds(System.Collections.Generic.IEnumerable{UnityEngine.AudioClip})">
+    <parameter name="sounds">
+      <attribute ctor="M:JetBrains.Annotations.ItemNotNullAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Modules.State.GetHashCode">
+    <attribute ctor="M:JetBrains.Annotations.NonNegativeValueAttribute.#ctor" />
+  </member>
+  <member name="P:wawa.Modules.State.Id">
+    <attribute ctor="M:JetBrains.Annotations.NonNegativeValueAttribute.#ctor" />
+  </member>
 </assembly>

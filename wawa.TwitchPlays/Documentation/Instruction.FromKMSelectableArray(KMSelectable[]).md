@@ -15,7 +15,7 @@ public static wawa.TwitchPlays.Domains.Instruction FromKMSelectableArray(params 
 
 `selectables` [KMSelectable](https://docs.microsoft.com/en-us/dotnet/api/KMSelectable 'KMSelectable')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
 
-The [KMSelectable](https://docs.microsoft.com/en-us/dotnet/api/KMSelectable 'KMSelectable')[System.Array](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array') instance to convert.
+The [KMSelectable](https://docs.microsoft.com/en-us/dotnet/api/KMSelectable 'KMSelectable')[System.Array](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array') instance to convert.<p/>`[ItemCanBeNull]`
 
 #### Returns
 [Instruction](Instruction.md 'wawa.TwitchPlays.Domains.Instruction')  

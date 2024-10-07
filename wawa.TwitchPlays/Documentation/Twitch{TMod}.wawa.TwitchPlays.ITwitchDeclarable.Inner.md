@@ -6,7 +6,7 @@
 Gets the module that is attached to this instance.
 
 ```csharp
-virtual wawa.Modules.ModdedModule wawa.TwitchPlays.ITwitchDeclarable.Inner { get; }
+wawa.Modules.ModdedModule wawa.TwitchPlays.ITwitchDeclarable.Inner { get; }
 ```
 
 Implements [Inner](ITwitchDeclarable.Inner.md 'wawa.TwitchPlays.ITwitchDeclarable.Inner')

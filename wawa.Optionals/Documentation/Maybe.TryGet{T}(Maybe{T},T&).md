@@ -2,7 +2,7 @@
 
 ## Maybe.TryGet<T>(this Maybe<T>, T) Method
 
-Assigns a value with the inner value, or a [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default') value if none exists.
+Assigns a value with the inner value, or a [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default') value if none exists.<p/>`[PublicAPI]`
 
 ```csharp
 public static bool TryGet<T>(this wawa.Optionals.Maybe<T> that, out T result);
@@ -20,13 +20,13 @@ The generic type argument in [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<
 
 `that` [wawa.Optionals.Maybe&lt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')[T](Maybe.TryGet{T}(Maybe{T},T&).md#wawa.Optionals.Maybe.TryGet_T_(thiswawa.Optionals.Maybe_T_,T).T 'wawa.Optionals.Maybe.TryGet<T>(this wawa.Optionals.Maybe<T>, T).T')[&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>')
 
-This instance of [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').
+This instance of [Maybe&lt;T&gt;](Maybe{T}.md 'wawa.Optionals.Maybe<T>').<p/>`[InstantHandle]`
 
 <a name='wawa.Optionals.Maybe.TryGet_T_(thiswawa.Optionals.Maybe_T_,T).result'></a>
 
 `result` [T](Maybe.TryGet{T}(Maybe{T},T&).md#wawa.Optionals.Maybe.TryGet_T_(thiswawa.Optionals.Maybe_T_,T).T 'wawa.Optionals.Maybe.TryGet<T>(this wawa.Optionals.Maybe<T>, T).T')
 
-The resulting value, or [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default').
+The resulting value, or [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default').<p/>`[CanBeNull]`
 
 #### Returns
 [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')  

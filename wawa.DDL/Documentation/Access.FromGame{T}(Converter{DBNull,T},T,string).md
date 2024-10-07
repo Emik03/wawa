@@ -20,7 +20,7 @@ The type of the return, be sure that this doesn't come from the game.
 
 `ktane` [System.Converter&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Converter-2 'System.Converter`2')[System.DBNull](https://docs.microsoft.com/en-us/dotnet/api/System.DBNull 'System.DBNull')[,](https://docs.microsoft.com/en-us/dotnet/api/System.Converter-2 'System.Converter`2')[T](Access.FromGame{T}(Converter{DBNull,T},T,string).md#wawa.DDL.Access.FromGame_T_(System.Converter_System.DBNull,T_,T,string).T 'wawa.DDL.Access.FromGame<T>(System.Converter<System.DBNull,T>, T, string).T')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Converter-2 'System.Converter`2')
 
-The factory containing one or more references that may be unavailable.
+The factory containing one or more references that may be unavailable.<p/>`[RequireStaticDelegate]`
 
 <a name='wawa.DDL.Access.FromGame_T_(System.Converter_System.DBNull,T_,T,string).def'></a>
 
