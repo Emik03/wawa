@@ -7,11 +7,7 @@ namespace wawa.Recall;
 public static class Generator
 {
     [NotNull]
-    static readonly Dictionary<FieldInfo, Delegate>
-        s_adders = [],
-        s_getters = [],
-        s_setters = [],
-        s_removers = [];
+    static readonly Dictionary<FieldInfo, Delegate> s_adders = [], s_getters = [], s_setters = [], s_removers = [];
 
     [NotNull]
     static readonly Dictionary<Type, Delegate> s_casters = [];

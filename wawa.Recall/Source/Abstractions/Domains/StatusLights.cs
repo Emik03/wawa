@@ -14,11 +14,11 @@ public enum StatusLights
     [PublicAPI]
     Off,
 
-    /// <summary>The status light that is green, representing a solve.</summary>
+    /// <summary>The status light that is green, representing the solve state.</summary>
     [PublicAPI]
     Solve,
 
-    /// <summary>The status light that is red, representing a strike.</summary>
+    /// <summary>The status light that is red, representing the strike state.</summary>
     [PublicAPI]
     Strike = 1 << 2,
 }

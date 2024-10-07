@@ -42,8 +42,9 @@ static class Globals
         $"v{ver.Major}.{ver.Minor}.{ver.Build}.{ver.Revision}";
 
     /// <summary>Gets a value indicating whether the runtime is in-game.</summary>
-    /// <remarks><para>Opposite of <see cref="Application.isEditor"/>, but as a pure getter.</para></remarks>
-    public static bool IsKtane { [Pure] get; } = !Application.isEditor;
+    [PublicAPI]
+    public static bool IsKtane { [Pure] get; } =
+        Application.productName is "Keep Talking and Nobody Explodes" && !Application.isEditor;
 
     /// <summary>Returns the function that invokes the method.</summary>
     /// <typeparam name="T">The type of argument of the returning <see cref="Action{T}"/>.</typeparam>
@@ -78,12 +79,6 @@ static class Globals
     /// <returns><paramref name="that"/> <see langword="as"/> <see cref="MonoBehaviour"/>.</returns>
     [NotNull, Pure]
     public static MonoBehaviour Core([NotNull] this CoreBehaviour that) => (MonoBehaviour)(object)that;
-
-    /// <summary>Converts this instance to the unity module.</summary>
-    /// <param name="that">The object to convert.</param>
-    /// <returns><paramref name="that"/> <see langword="as"/> <see cref="MonoBehaviour"/>.</returns>
-    [NotNull, Pure]
-    public static MonoBehaviour Core([NotNull] this KMSelectable that) => (MonoBehaviour)(object)that;
 
     /// <summary>Gets the path of the current <see cref="Transform"/>.</summary>
     /// <param name="current">The current <see cref="Transform"/>.</param>
