@@ -2,7 +2,7 @@
 
 ## EntityCore.ToEntities(this KMBomb) Method
 
-Gets all modules that are children of a provided [KMBomb](https://docs.microsoft.com/en-us/dotnet/api/KMBomb 'KMBomb').
+Gets all modules that are children of a provided [KMBomb](https://docs.microsoft.com/en-us/dotnet/api/KMBomb 'KMBomb').<p/>`[MustUseReturnValue]`
 
 ```csharp
 public static System.Collections.ObjectModel.ReadOnlyCollection<wawa.Recall.Entity> ToEntities(this KMBomb bomb);

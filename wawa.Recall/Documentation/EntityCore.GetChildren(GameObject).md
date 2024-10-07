@@ -2,7 +2,7 @@
 
 ## EntityCore.GetChildren(this GameObject) Method
 
-Gets all modules that are children of a provided [UnityEngine.GameObject](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.GameObject 'UnityEngine.GameObject').
+Gets all modules that are children of a provided [UnityEngine.GameObject](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.GameObject 'UnityEngine.GameObject').<p/>`[MustUseReturnValue]`
 
 ```csharp
 public static System.Collections.ObjectModel.ReadOnlyCollection<wawa.Recall.Entity> GetChildren(this GameObject gameObject);

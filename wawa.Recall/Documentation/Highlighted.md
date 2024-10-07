@@ -35,7 +35,7 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 
 | Methods | |
 | :--- | :--- |
-| [FromComponent(Component)](Highlighted.FromComponent(Component).md 'wawa.Recall.Highlighted.FromComponent(Component)') | Gets a new instance of [Highlighted](Highlighted.md 'wawa.Recall.Highlighted') based on the first found highlightable of the [UnityEngine.Component](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Component 'UnityEngine.Component'). |
+| [FromComponent(Component)](Highlighted.FromComponent(Component).md 'wawa.Recall.Highlighted.FromComponent(Component)') | Gets a new instance of [Highlighted](Highlighted.md 'wawa.Recall.Highlighted') based on the first found highlightable of the [UnityEngine.Component](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Component 'UnityEngine.Component').<br/><p/>`[MustUseReturnValue]` |
 | [FromKMHighlightable(KMHighlightable)](Highlighted.FromKMHighlightable(KMHighlightable).md 'wawa.Recall.Highlighted.FromKMHighlightable(KMHighlightable)') | Converts the [KMBombModule](https://docs.microsoft.com/en-us/dotnet/api/KMBombModule 'KMBombModule') to a [new](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new')[Selected](Selected.md 'wawa.Recall.Selected'). |
 
 | Operators | |

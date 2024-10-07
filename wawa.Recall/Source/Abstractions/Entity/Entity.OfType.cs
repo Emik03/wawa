@@ -58,14 +58,14 @@ public sealed partial class Entity
     [PublicAPI]
     public bool IsModdedNeedy
     {
-        [Pure] get => Value.Core() is KMNeedyModule;
+        [Pure] get => Value is KMNeedyModule;
     }
 
     /// <summary>Gets a value indicating whether this instance contains a modded solvable module.</summary>
     [PublicAPI]
     public bool IsModdedSolvable
     {
-        [Pure] get => Value.Core() is KMBombModule;
+        [Pure] get => Value is KMBombModule;
     }
 
     /// <summary>

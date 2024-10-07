@@ -2,7 +2,8 @@
 
 ## Highlighted.FromComponent(Component) Method
 
-Gets a new instance of [Highlighted](Highlighted.md 'wawa.Recall.Highlighted') based on the first found highlightable of the [UnityEngine.Component](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Component 'UnityEngine.Component').
+Gets a new instance of [Highlighted](Highlighted.md 'wawa.Recall.Highlighted') based on the first found highlightable of the [UnityEngine.Component](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Component 'UnityEngine.Component').  
+<p/>`[MustUseReturnValue]`
 
 ```csharp
 public static wawa.Optionals.Maybe<wawa.Recall.Highlighted> FromComponent(Component component);

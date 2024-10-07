@@ -67,17 +67,11 @@ static class Globals
             return false;
         };
 
-    /// <summary>Converts this instance to the core module.</summary>
-    /// <param name="that">The object to convert.</param>
-    /// <returns><paramref name="that"/> <see langword="as"/> <see cref="CoreBehaviour"/>.</returns>
     // ReSharper disable SuspiciousTypeConversion.Global
-    [NotNull, Pure]
+    [NotNull, Pure] // Do not document this function: It really confuses poor `DefaultDocumentation`.
     public static CoreBehaviour Core([NotNull] this MonoBehaviour that) => (CoreBehaviour)(object)that;
 
-    /// <summary>Converts this instance to the unity module.</summary>
-    /// <param name="that">The object to convert.</param>
-    /// <returns><paramref name="that"/> <see langword="as"/> <see cref="MonoBehaviour"/>.</returns>
-    [NotNull, Pure]
+    [NotNull, Pure] // Do not document this function: It really confuses poor `DefaultDocumentation`.
     public static MonoBehaviour Core([NotNull] this CoreBehaviour that) => (MonoBehaviour)(object)that;
 
     /// <summary>Gets the path of the current <see cref="Transform"/>.</summary>

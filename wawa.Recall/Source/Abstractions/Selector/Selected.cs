@@ -13,7 +13,7 @@ public sealed partial class Selected : ICloneable, IEquatable<Selected>, IEquali
     /// </summary>
     /// <param name="selectable">The <see cref="KMSelectable"/> instance to encapsulate.</param>
     [CLSCompliant(false), PublicAPI]
-    public Selected(KMSelectable selectable) => Value = selectable.Core();
+    public Selected(KMSelectable selectable) => Value = selectable;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Selected"/> class. This guarantees the selectable kind vanilla.

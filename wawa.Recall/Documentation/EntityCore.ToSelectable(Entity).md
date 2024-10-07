@@ -3,7 +3,8 @@
 ## EntityCore.ToSelectable(this Entity) Method
 
 Gets the [Selected](Selected.md 'wawa.Recall.Selected') of this [Entity](Entity.md 'wawa.Recall.Entity').  
-An empty value is given if there is no attached [Selected](Selected.md 'wawa.Recall.Selected') on the [Entity](Entity.md 'wawa.Recall.Entity').
+An empty value is given if there is no attached [Selected](Selected.md 'wawa.Recall.Selected') on the [Entity](Entity.md 'wawa.Recall.Entity').  
+<p/>`[MustUseReturnValue]`
 
 ```csharp
 public static wawa.Optionals.Maybe<wawa.Recall.Selected> ToSelectable(this wawa.Recall.Entity entity);

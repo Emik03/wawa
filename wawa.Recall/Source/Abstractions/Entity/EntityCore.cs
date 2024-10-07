@@ -329,9 +329,9 @@ public static class EntityCore
         [Pure]
         static bool HasFlag(StatusLights lights, StatusLights filter) => (lights & filter) is not StatusLights.None;
 
-        var core = entity.Value.Core();
+        var core = entity.Value;
 
-        if ((core as BombComponent ?? core.GetComponent<BombComponent>()) is var value && !value)
+        if ((core.Core() as BombComponent ?? core.GetComponent<BombComponent>()) is var value && !value)
             return entity;
 
         var light = value.StatusLightParent.StatusLight;

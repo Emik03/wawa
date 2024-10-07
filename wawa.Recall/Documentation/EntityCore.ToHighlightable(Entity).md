@@ -3,7 +3,8 @@
 ## EntityCore.ToHighlightable(this Entity) Method
 
 Gets the [Highlighted](Highlighted.md 'wawa.Recall.Highlighted') of this [Entity](Entity.md 'wawa.Recall.Entity').  
-An empty value is given if there is no attached [Selected](Selected.md 'wawa.Recall.Selected') on the [Entity](Entity.md 'wawa.Recall.Entity').
+An empty value is given if there is no attached [Selected](Selected.md 'wawa.Recall.Selected') on the [Entity](Entity.md 'wawa.Recall.Entity').  
+<p/>`[MustUseReturnValue]`
 
 ```csharp
 public static wawa.Optionals.Maybe<wawa.Recall.Highlighted> ToHighlightable(this wawa.Recall.Entity that);

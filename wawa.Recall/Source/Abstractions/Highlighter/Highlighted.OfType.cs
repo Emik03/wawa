@@ -23,7 +23,7 @@ public sealed partial class Highlighted
     [PublicAPI]
     public bool IsModded
     {
-        [Pure] get => Value.Core() is KMHighlightable;
+        [Pure] get => Value is KMHighlightable;
     }
 
     /// <summary>Gets a value indicating whether this instance contains a vanilla highlightable.</summary>
@@ -44,7 +44,7 @@ public sealed partial class Highlighted
     [CLSCompliant(false), PublicAPI]
     public Maybe<MonoBehaviour> Vanilla
     {
-        [Pure] get => Value.Core() is KMHighlightable ? default : Value;
+        [Pure] get => Value is KMHighlightable ? default : Value;
     }
 
     /// <summary>Gets the outline thickness amount.</summary>

@@ -191,7 +191,7 @@ public sealed partial class Selected
     [CLSCompliant(false), PublicAPI]
     public Maybe<MonoBehaviour> Vanilla
     {
-        [Pure] get => Value.Core() is KMSelectable ? default : Value;
+        [Pure] get => Value is KMSelectable ? default : Value;
     }
 
     /// <summary>Gets the parent of this selectable.</summary>
@@ -289,7 +289,7 @@ public sealed partial class Selected
     [PublicAPI]
     public bool IsModded
     {
-        [Pure] get => Value.Core() is KMSelectable;
+        [Pure] get => Value is KMSelectable;
     }
 
     /// <summary>Gets a value indicating whether this instance contains a vanilla selectable.</summary>
@@ -316,8 +316,8 @@ public sealed partial class Selected
         };
     }
 
-    [NotNull] // ReSharper disable once NullableWarningSuppressionIsUsed
-    static Highlighted HighlighterInner([NotNull] in object m) => new(((Selectable)m).Highlight.Core()!);
+    [NotNull]
+    static Highlighted HighlighterInner([NotNull] in object m) => new(((Selectable)m).Highlight.Core());
 
     static Maybe<Selected> ParentInner([NotNull] in object m) =>
         ((Selectable)m).Parent is var selectable && selectable ? new Selected(selectable.Core()) : null;

@@ -42,7 +42,7 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
         get =>
             Value is KMBombModule or KMNeedyModule
                 ? null
-                : ((object)Value.Core() as NeedyComponent)?.GetComponentInChildren<NeedyTimer>().Core();
+                : (Value.Core() as NeedyComponent)?.GetComponentInChildren<NeedyTimer>().Core();
     }
 
     /// <summary>

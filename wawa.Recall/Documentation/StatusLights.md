@@ -25,13 +25,13 @@ The status light that is off.
 
 `Solve` 2
 
-The status light that is green, representing a solve.
+The status light that is green, representing the solve state.
 
 <a name='wawa.Recall.StatusLights.Strike'></a>
 
 `Strike` 4
 
-The status light that is red, representing a strike.
+The status light that is red, representing the strike state.
 
 ### Remarks
   

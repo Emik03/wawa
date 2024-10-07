@@ -2,7 +2,7 @@
 
 ## SelectedCore.ToEntities(this IEnumerable<Selected>) Method
 
-Creates an [System.Collections.ObjectModel.ReadOnlyCollection&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.ObjectModel.ReadOnlyCollection-1 'System.Collections.ObjectModel.ReadOnlyCollection`1') where each element has been converted.
+Creates an [System.Collections.ObjectModel.ReadOnlyCollection&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.ObjectModel.ReadOnlyCollection-1 'System.Collections.ObjectModel.ReadOnlyCollection`1') where each element has been converted.<p/>`[MustUseReturnValue]`
 
 ```csharp
 public static System.Collections.ObjectModel.ReadOnlyCollection<wawa.Optionals.Maybe<wawa.Recall.Entity>> ToEntities(this System.Collections.Generic.IEnumerable<wawa.Recall.Selected> that);
