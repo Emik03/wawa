@@ -5,6 +5,17 @@ namespace wawa.Recall;
 /// Encapsulates a solvable or needy module in either its vanilla or modded counterpart,
 /// and extends functionality to get or mutate its inner values and events without worrying the kind of module it is.
 /// </summary>
+/// <remarks><para>
+/// This class has a different definition of what it means to be modded or vanilla than <see cref="Highlighted"/> and
+/// <see cref="Selected"/>. Specifically, if the game is played within the bounds of <see cref="IsRewritten"/>, then
+/// <see cref="KMBombModule"/> and <see cref="KMNeedyModule"/> instances that use any reserved name for vanilla modules
+/// are considered vanilla despite their underlying type being modded. Therefore, you can run into a situation where
+/// <see cref="IsVanilla"/> is <see langword="true"/> but converting the instance to a <see cref="Selected"/>, such as
+/// with the <see cref="EntityCore.ToSelectable"/> method, will result in its <see cref="Selected.IsVanilla"/> being
+/// <see langword="false"/>. As counter-intuitive as this may seem, it must be done for forwards-compatibility.
+/// If the other definition is truly required, then accessing <see cref="Value"/> and type-checking with
+/// <see cref="KMBombModule"/> and/or <see cref="KMNeedyModule"/> will work regardless of which type of game is running.
+/// </para></remarks>
 [PublicAPI] // ReSharper disable once RedundantExtendsListEntry
 public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityComparer<Entity>, IVanilla
 {
@@ -174,11 +185,11 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
     }
 
     /// <summary>
-    /// Gets the <see cref="Entity"/> of this <see cref="Selected"/>.
-    /// An empty value is given if there is no attached <see cref="Entity"/> on the <see cref="Selected"/>.
+    /// Gets the <see cref="Entity"/> of this <see cref="Component"/>.
+    /// An empty value is given if there is no attached <see cref="Entity"/> on the <see cref="Component"/>.
     /// </summary>
     /// <param name="component">
-    /// The <see cref="Component"/> to find components of using <see cref="Component.GetComponent{T}"/>.
+    /// The <see cref="Component"/> to find components, by using <see cref="Component.GetComponent{T}"/>.
     /// </param>
     /// <returns>
     /// A <see cref="Maybe{T}"/>, consisting of either a <see cref="Entity"/>

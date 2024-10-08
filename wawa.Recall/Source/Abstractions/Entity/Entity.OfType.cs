@@ -58,14 +58,14 @@ public sealed partial class Entity
     [PublicAPI]
     public bool IsModdedNeedy
     {
-        [Pure] get => Value is KMNeedyModule;
+        [Pure] get => IsRewritten ? Kind is Modules.NeedyMod : Value is KMNeedyModule;
     }
 
     /// <summary>Gets a value indicating whether this instance contains a modded solvable module.</summary>
     [PublicAPI]
     public bool IsModdedSolvable
     {
-        [Pure] get => Value is KMBombModule;
+        [Pure] get => IsRewritten ? Kind is Modules.Mod : Value is KMBombModule;
     }
 
     /// <summary>
@@ -121,12 +121,13 @@ public sealed partial class Entity
     {
         [Pure]
         get =>
-            IsVanilla &&
             Kind is not Modules.Empty and
                 not Modules.Timer and
                 not Modules.NeedyCapacitor and
                 not Modules.NeedyVentGas and
-                not Modules.NeedyKnob;
+                not Modules.NeedyKnob and
+                not Modules.Mod and
+                not Modules.NeedyMod;
     }
 
     /// <summary>Gets the encapsulated <see cref="KMBombModule"/> from this instance, if it exists.</summary>
@@ -143,11 +144,15 @@ public sealed partial class Entity
         [Pure] get => Value as KMNeedyModule;
     }
 
-    /// <summary>Gets the encapsulated BombComponent from this instance, if it exists.</summary>
+    /// <summary>Gets the encapsulated <c>BombComponent</c> from this instance, if it exists.</summary>
+    /// <remarks><para>
+    /// If <see cref="IsRewritten"/> is <see langword="true"/>, then it is possible for
+    /// <see cref="KMBombModule"/> or <see cref="KMNeedyModule"/> instances to be returned instead.
+    /// </para></remarks>
     [CLSCompliant(false), PublicAPI]
     public Maybe<MonoBehaviour> Vanilla
     {
-        [Pure] get => Value is KMBombModule or KMNeedyModule ? default : Value;
+        [Pure] get => IsVanilla ? Value : null;
     }
 
     /// <summary>
@@ -161,6 +166,7 @@ public sealed partial class Entity
         get =>
             Value switch
             {
+                _ when IsRewritten && FromId(Id.Value) is var kind and not Modules.Mod => kind,
                 KMBombModule => Modules.Mod,
                 KMNeedyModule => Modules.NeedyMod,
                 _ => VanillaType(Value),
@@ -346,4 +352,25 @@ public sealed partial class Entity
     [NotNull, Pure]
     Func<float> Getter([NotNull] object _) =>
         (IsNeedy ? () => ((NeedyTimer)VanillaTimer!.Core()).TimeRemaining : null)!;
+
+    [Pure]
+    static Modules FromId([AllowNull, CanBeNull] string? nameValue) =>
+        nameValue switch
+        {
+            "Wires" => Modules.Wires,
+            "BigButton" => Modules.BigButton,
+            "Keypad" => Modules.Keypad,
+            "Simon" => Modules.Simon,
+            "WhosOnFirst" => Modules.WhosOnFirst,
+            "Memory" => Modules.Memory,
+            "Morse" => Modules.Morse,
+            "Venn" => Modules.Venn,
+            "WireSequence" => Modules.WireSequence,
+            "Maze" => Modules.Maze,
+            "Password" => Modules.Password,
+            "NeedyVentGas" => Modules.NeedyVentGas,
+            "NeedyCapacitor" => Modules.NeedyCapacitor,
+            "NeedyKnob" => Modules.NeedyKnob,
+            _ => Modules.Mod,
+        };
 }

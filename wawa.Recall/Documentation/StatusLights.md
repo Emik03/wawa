@@ -5,7 +5,7 @@
 The different kinds of status lights.
 
 ```csharp
-public enum StatusLights
+public enum StatusLights : System.Byte
 ```
 ### Fields
 

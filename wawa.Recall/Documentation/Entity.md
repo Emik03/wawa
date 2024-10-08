@@ -17,6 +17,18 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/System.ICloneable 'System.ICloneable'), [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')[Entity](Entity.md 'wawa.Recall.Entity')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1'), [System.Collections.Generic.IEqualityComparer&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEqualityComparer-1 'System.Collections.Generic.IEqualityComparer`1')[Entity](Entity.md 'wawa.Recall.Entity')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEqualityComparer-1 'System.Collections.Generic.IEqualityComparer`1'), [IVanilla](IVanilla.md 'wawa.Recall.IVanilla')
 
+### Remarks
+  
+This class has a different definition of what it means to be modded or vanilla than [Highlighted](Highlighted.md 'wawa.Recall.Highlighted') and  
+[Selected](Selected.md 'wawa.Recall.Selected'). Specifically, if the game is played within the bounds of [wawa.DDL.Access.IsRewritten](https://docs.microsoft.com/en-us/dotnet/api/wawa.DDL.Access.IsRewritten 'wawa.DDL.Access.IsRewritten'), then  
+[KMBombModule](https://docs.microsoft.com/en-us/dotnet/api/KMBombModule 'KMBombModule') and [KMNeedyModule](https://docs.microsoft.com/en-us/dotnet/api/KMNeedyModule 'KMNeedyModule') instances that use any reserved name for vanilla modules  
+are considered vanilla despite their underlying type being modded. Therefore, you can run into a situation where  
+[IsVanilla](Entity.IsVanilla.md 'wawa.Recall.Entity.IsVanilla') is [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool') but converting the instance to a [Selected](Selected.md 'wawa.Recall.Selected'), such as  
+with the [ToSelectable(this Entity)](EntityCore.ToSelectable(Entity).md 'wawa.Recall.EntityCore.ToSelectable(this wawa.Recall.Entity)') method, will result in its [IsVanilla](Selected.IsVanilla.md 'wawa.Recall.Selected.IsVanilla') being  
+[false](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool'). As counter-intuitive as this may seem, it must be done for forwards-compatibility.  
+If the other definition is truly required, then accessing [Value](Entity.Value.md 'wawa.Recall.Entity.Value') and type-checking with  
+[KMBombModule](https://docs.microsoft.com/en-us/dotnet/api/KMBombModule 'KMBombModule') and/or [KMNeedyModule](https://docs.microsoft.com/en-us/dotnet/api/KMNeedyModule 'KMNeedyModule') will work regardless of which type of game is running.
+
 | Constructors | |
 | :--- | :--- |
 | [Entity(KMBombModule)](Entity..ctor(KMBombModule).md 'wawa.Recall.Entity.Entity(KMBombModule)') | Initializes a new instance of the [Entity](Entity.md 'wawa.Recall.Entity') class.<br/>This guarantees the module kind solvable and modded. |
@@ -55,11 +67,11 @@ Implements [System.ICloneable](https://docs.microsoft.com/en-us/dotnet/api/Syste
 | [Solve](Entity.Solve.md 'wawa.Recall.Entity.Solve') | Gets the [System.Action](https://docs.microsoft.com/en-us/dotnet/api/System.Action 'System.Action') that is called when the entire module has been solved. |
 | [Strike](Entity.Strike.md 'wawa.Recall.Entity.Strike') | Gets the [System.Action](https://docs.microsoft.com/en-us/dotnet/api/System.Action 'System.Action') that is called on any mistake that causes a bomb strike. |
 | [Value](Entity.Value.md 'wawa.Recall.Entity.Value') | Gets the value which is guaranteed to be a [UnityEngine.MonoBehaviour](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.MonoBehaviour 'UnityEngine.MonoBehaviour'). |
-| [Vanilla](Entity.Vanilla.md 'wawa.Recall.Entity.Vanilla') | Gets the encapsulated BombComponent from this instance, if it exists. |
+| [Vanilla](Entity.Vanilla.md 'wawa.Recall.Entity.Vanilla') | Gets the encapsulated `BombComponent` from this instance, if it exists. |
 
 | Methods | |
 | :--- | :--- |
-| [FromComponent(Component)](Entity.FromComponent(Component).md 'wawa.Recall.Entity.FromComponent(Component)') | Gets the [Entity](Entity.md 'wawa.Recall.Entity') of this [Selected](Selected.md 'wawa.Recall.Selected').<br/>An empty value is given if there is no attached [Entity](Entity.md 'wawa.Recall.Entity') on the [Selected](Selected.md 'wawa.Recall.Selected').<br/><p/>`[MustUseReturnValue]` |
+| [FromComponent(Component)](Entity.FromComponent(Component).md 'wawa.Recall.Entity.FromComponent(Component)') | Gets the [Entity](Entity.md 'wawa.Recall.Entity') of this [UnityEngine.Component](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Component 'UnityEngine.Component').<br/>An empty value is given if there is no attached [Entity](Entity.md 'wawa.Recall.Entity') on the [UnityEngine.Component](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.Component 'UnityEngine.Component').<br/><p/>`[MustUseReturnValue]` |
 | [FromKMBombModule(KMBombModule)](Entity.FromKMBombModule(KMBombModule).md 'wawa.Recall.Entity.FromKMBombModule(KMBombModule)') | Converts the [KMBombModule](https://docs.microsoft.com/en-us/dotnet/api/KMBombModule 'KMBombModule') to a [new](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new')[Entity](Entity.md 'wawa.Recall.Entity'). |
 | [FromKMNeedyModule(KMNeedyModule)](Entity.FromKMNeedyModule(KMNeedyModule).md 'wawa.Recall.Entity.FromKMNeedyModule(KMNeedyModule)') | Converts the [KMNeedyModule](https://docs.microsoft.com/en-us/dotnet/api/KMNeedyModule 'KMNeedyModule') to a [new](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new')[Entity](Entity.md 'wawa.Recall.Entity'). |
 | [GetChildren(GameObject)](Entity.GetChildren(GameObject).md 'wawa.Recall.Entity.GetChildren(GameObject)') | Gets all modules that are children of a provided [UnityEngine.GameObject](https://docs.microsoft.com/en-us/dotnet/api/UnityEngine.GameObject 'UnityEngine.GameObject'), and caches it in a thread-safe manner.<br/><p/>`[MustUseReturnValue]` |

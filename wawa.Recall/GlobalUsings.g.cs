@@ -365,6 +365,7 @@ global using global::nn.nifm;
 global using global::proto;
 global using global::proto.Proto;
 global using global::wawa;
+global using global::wawa.DDL;
 global using global::wawa.Optionals;
 global using global::wawa.Recall;
 global using global::wawa.Recall.Internals;
@@ -1097,6 +1098,8 @@ namespace proto { }
 namespace proto.Proto { }
 
 namespace wawa { }
+
+namespace wawa.DDL { }
 
 namespace wawa.Optionals { }
 

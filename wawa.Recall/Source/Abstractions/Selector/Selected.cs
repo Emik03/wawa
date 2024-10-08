@@ -31,7 +31,7 @@ public sealed partial class Selected : ICloneable, IEquatable<Selected>, IEquali
     /// <returns>
     /// The value <see langword="true"/> if both of them point to the same component, otherwise <see langword="false"/>.
     /// </returns>
-    [PublicAPI, Pure]
+    [PublicAPI, Pure] // ReSharper disable AssignNullToNotNullAttribute
     public static bool operator ==([AllowNull, CanBeNull] Selected? left, [AllowNull, CanBeNull] Selected? right) =>
         left?.Equals(right) ?? right is null;
 
@@ -76,7 +76,7 @@ public sealed partial class Selected : ICloneable, IEquatable<Selected>, IEquali
 
     /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
     [PublicAPI, Pure]
-    public bool Equals([AllowNull] Selected other) => Value == other?.Value;
+    public bool Equals([AllowNull] Selected other) => Value == other.Value;
 
     /// <inheritdoc cref="IEqualityComparer{T}.Equals(T, T)"/>
     [PublicAPI, Pure]
