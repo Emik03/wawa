@@ -48,16 +48,16 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
 #pragma warning disable IDE0044
     List<KMBombModule> TwitchAbandonModule = [];
 #pragma warning restore IDE0044
-    /// <summary>Gets the instance of the module.</summary>
-    [NotNull, PublicAPI]
-    public TMod Module => Get<TMod>();
-
     /// <summary>Gets the suggested help command. This is a fallback value used when one isn't specified.</summary>
     [PublicAPI]
-    protected string AutoImplementedHelp
+    public string AutoImplementedHelp
     {
         [NotNull] get => s_autoImplementedHelp ??= GenerateHelp();
     }
+
+    /// <summary>Gets the instance of the module.</summary>
+    [NotNull, PublicAPI]
+    public TMod Module => Get<TMod>();
 
     /// <summary>Gets the available commands.</summary>
     [ItemNotNull, NotNull]

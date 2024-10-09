@@ -6,7 +6,7 @@
 Gets the suggested help command. This is a fallback value used when one isn't specified.
 
 ```csharp
-protected string AutoImplementedHelp { get; }
+public string AutoImplementedHelp { get; }
 ```
 
 #### Property Value
