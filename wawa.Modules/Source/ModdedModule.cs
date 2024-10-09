@@ -131,7 +131,7 @@ public abstract class ModdedModule : CachedBehaviour
         [Pure] get => _needy ? _needy : _needy = GetComponent<KMNeedyModule>();
     }
 
-    /// <summary>Logs version numbers. Be sure to call this method if you are implementing Awake.</summary>
+    /// <summary>Logs the version number for both the module and this library.</summary>
     protected virtual void Awake()
     {
         var version = $"Version: {GetModInfo(Id).Value?.Version switch

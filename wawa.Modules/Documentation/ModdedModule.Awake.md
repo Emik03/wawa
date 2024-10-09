@@ -2,7 +2,7 @@
 
 ## ModdedModule.Awake() Method
 
-Logs version numbers. Be sure to call this method if you are implementing Awake.
+Logs the version number for both the module and this library.
 
 ```csharp
 protected virtual void Awake();

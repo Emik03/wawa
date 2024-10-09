@@ -19,7 +19,7 @@ Inheritance [UnityEngine.MonoBehaviour](https://docs.microsoft.com/en-us/dotnet/
 
 | Methods | |
 | :--- | :--- |
-| [Awake()](ModdedModule.Awake.md 'wawa.Modules.ModdedModule.Awake()') | Logs version numbers. Be sure to call this method if you are implementing Awake. |
+| [Awake()](ModdedModule.Awake.md 'wawa.Modules.ModdedModule.Awake()') | Logs the version number for both the module and this library. |
 | [Log(string)](ModdedModule.Log(string).md 'wawa.Modules.ModdedModule.Log(string)') | Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer. |
 | [Log&lt;T&gt;(T, LogType)](ModdedModule.Log{T}(T,LogType).md 'wawa.Modules.ModdedModule.Log<T>(T, LogType)') | Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer. |
 | [Log&lt;T&gt;(T, object[])](ModdedModule.Log{T}(T,object[]).md 'wawa.Modules.ModdedModule.Log<T>(T, object[])') | Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer. |
