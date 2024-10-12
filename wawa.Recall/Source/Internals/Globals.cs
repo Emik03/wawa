@@ -6,7 +6,7 @@ static class Globals
 {
     /// <summary>Contains cached elements.</summary>
     /// <typeparam name="T">The type of item.</typeparam>
-    public static class DelegateLot<T>
+    internal static class DelegateLot<T>
         where T : Delegate
     {
         /// <summary>Gets the function that returns the parameter.</summary>
@@ -15,7 +15,7 @@ static class Globals
 
     /// <summary>Contains cached elements.</summary>
     /// <typeparam name="T">The type of item.</typeparam>
-    public static class Lot<T>
+    internal static class Lot<T>
     {
         /// <summary>Gets the function that returns the parameter.</summary>
         public static Func<T, T> Id => x => x;

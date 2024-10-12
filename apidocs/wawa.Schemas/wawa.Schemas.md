@@ -2,7 +2,7 @@
 
 assembly: [wawa\.Schemas](../wawa.Schemas.md)
 
-
+Contains the core functionality of the library\.
 
 ```csharp
 namespace wawa.Schemas;

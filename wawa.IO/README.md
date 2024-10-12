@@ -2,7 +2,7 @@
 
 Adds types for KTaNE-related IO operations.
 
-### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.IO/Documentation/wawa.IO.md)
+### [Documentation](https://github.com/Emik03/wawa/blob/main/apidocs/wawa.IO/wawa.IO.md)
 
 ---
 

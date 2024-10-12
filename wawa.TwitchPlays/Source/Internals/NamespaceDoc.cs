@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: MPL-2.0
-#pragma warning disable 3005, MA0048, SA1300, SA1403
 namespace wawa.TwitchPlays
 {
-    /// <summary>Adds an extensive system for creating Twitch Plays components that are attached to modded modules.</summary>
+    /// <summary>
+    /// Adds an extensive system for creating Twitch Plays components that are attached to modded modules.
+    /// </summary>
     [UsedImplicitly]
     struct AssemblyDoc;
 }

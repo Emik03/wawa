@@ -2,7 +2,7 @@
 
 Allows for hooking and unhooking of module controllers and its selectables. Supports hooking vanilla and modded components under the same API.
 
-### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.Recall/Documentation/wawa.Recall.md)
+### [Documentation](https://github.com/Emik03/wawa/blob/main/apidocs/wawa.Recall/wawa.Recall.md)
 
 ---
 

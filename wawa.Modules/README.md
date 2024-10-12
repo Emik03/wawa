@@ -2,7 +2,7 @@
 
 Adds a base type for modules.
 
-### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.Modules/Documentation/wawa.Modules.md)
+### [Documentation](https://github.com/Emik03/wawa/blob/main/apidocs/wawa.Modules/wawa.Modules.md)
 
 ---
 

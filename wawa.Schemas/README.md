@@ -2,7 +2,7 @@
 
 Provides a simple fluent builder API for building the `TweaksEditorSettings` schema object that Tweaks can use to format your mod settings.
 
-### [Documentation](https://github.com/Emik03/wawa/blob/main/wawa.Schemas/Documentation/wawa.Schemas.md)
+### [Documentation](https://github.com/Emik03/wawa/blob/main/apidocs/wawa.Schemas.md)
 
 ---
 
