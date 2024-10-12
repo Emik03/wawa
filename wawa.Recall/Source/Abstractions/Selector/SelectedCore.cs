@@ -176,7 +176,7 @@ public static class SelectedCore
         return that;
     }
 
-    /// <summary>Removes the parameter values to the corresponding hooks, when applicable.</summary>
+    /// <summary>Sets the parameter values to the corresponding hooks, when applicable.</summary>
     /// <inheritdoc cref="AddRaw"/>
     [CLSCompliant(false), NotNull, PublicAPI]
     public static Selected SetRaw(
