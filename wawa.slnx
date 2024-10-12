@@ -1,0 +1,12 @@
+﻿<Solution>
+    <Project Path="wawa.Optionals/wawa.Optionals.csproj"/>
+    <Project Path="wawa.Schemas/wawa.Schemas.csproj"/>
+    <Project Path="wawa.Unity/wawa.Unity.csproj"/>
+    <Project Path="wawa.DDL/wawa.DDL.csproj"/>
+    <Project Path="wawa.Editors/wawa.Editors.csproj"/>
+    <Project Path="wawa.Extensions/wawa.Extensions.csproj"/>
+    <Project Path="wawa.IO/wawa.IO.csproj"/>
+    <Project Path="wawa.Modules/wawa.Modules.csproj"/>
+    <Project Path="wawa.Recall/wawa.Recall.csproj"/>
+    <Project Path="wawa.TwitchPlays/wawa.TwitchPlays.csproj"/>
+</Solution>
