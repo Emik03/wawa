@@ -1,0 +1,16 @@
+{
+  "InputFileName": "",
+  "ExcludeIdPatterns": [],
+  "Accessibility": [
+    "Protected",
+    "Public",
+    "ProtectedInternal"
+  ],
+  "OutputDir": "./apidocs",
+  "RemoveOutputDir": false,
+  "LogLevel": "Info",
+  "IgnoreEmptyNamespace": true,
+  "ExcludeDocumentClass": true,
+  "CreateAssembliesPage": false,
+  "AssembliesPage": null
+}
