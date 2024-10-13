@@ -1,10 +1,7 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
 namespace wawa.Recall;
 
-/// <summary>
-/// Encapsulates a solvable or needy module in either its vanilla or modded counterpart,
-/// and extends functionality to get or mutate its inner values and events without worrying the kind of module it is.
-/// </summary>
+/// <summary>Encapsulates a solvable or needy module in either its vanilla or modded counterpart.</summary>
 /// <remarks><para>
 /// This class has a different definition of what it means to be modded or vanilla than <see cref="Highlighted"/> and
 /// <see cref="Selected"/>. Specifically, if the game is played within the bounds of <see cref="IsRewritten"/>, then

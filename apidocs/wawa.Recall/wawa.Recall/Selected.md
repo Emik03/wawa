@@ -3,8 +3,7 @@
 namespace: [wawa\.Recall](../wawa.Recall.md)<br />
 assembly: [wawa\.Recall](../../wawa.Recall.md)
 
-Encapsulates a vanilla or modded selectable, and extends functionality to get or
-mutate its inner values and events without worrying the kind of selectable it is\.
+Encapsulates a vanilla or modded selectable\.
 
 ```csharp
 public sealed class Selected;
@@ -13,6 +12,15 @@ public sealed class Selected;
 Inheritance: `ICloneable` > Selected
 
 Implements: `IEquatable<Selected>`, `IEqualityComparer<Selected>`, [IVanilla](../../wawa.Recall/wawa.Recall/IVanilla.md)
+
+## Remarks
+
+
+
+If [IsRewritten](../../wawa.DDL/wawa.DDL/Access/IsRewritten.md) is `true`, all selectables are modded, even when attached to vanilla
+[Entity](../../wawa.Recall/wawa.Recall/Entity.md) instances\. For more information, see the remarks section for the class [Entity](../../wawa.Recall/wawa.Recall/Entity.md)\.
+
+
 
 ## Constructors
 

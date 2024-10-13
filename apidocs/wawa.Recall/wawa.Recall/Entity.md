@@ -3,8 +3,7 @@
 namespace: [wawa\.Recall](../wawa.Recall.md)<br />
 assembly: [wawa\.Recall](../../wawa.Recall.md)
 
-Encapsulates a solvable or needy module in either its vanilla or modded counterpart,
-and extends functionality to get or mutate its inner values and events without worrying the kind of module it is\.
+Encapsulates a solvable or needy module in either its vanilla or modded counterpart\.
 
 ```csharp
 public sealed class Entity;

@@ -3,8 +3,7 @@
 namespace: [wawa\.Recall](../wawa.Recall.md)<br />
 assembly: [wawa\.Recall](../../wawa.Recall.md)
 
-Encapsulates a vanilla or modded highlight, and extends functionality to get or
-mutate its inner values and events without worrying the kind of highlight it is\.
+Encapsulates a vanilla or modded highlight\.
 
 ```csharp
 public sealed class Highlighted;
@@ -13,6 +12,15 @@ public sealed class Highlighted;
 Inheritance: `ICloneable` > Highlighted
 
 Implements: `IEquatable<Highlighted>`, `IEqualityComparer<Highlighted>`, [IVanilla](../../wawa.Recall/wawa.Recall/IVanilla.md)
+
+## Remarks
+
+
+
+If [IsRewritten](../../wawa.DDL/wawa.DDL/Access/IsRewritten.md) is `true`, all selectables are modded, even when attached to vanilla
+[Entity](../../wawa.Recall/wawa.Recall/Entity.md) instances\. For more information, see the remarks section for the class [Entity](../../wawa.Recall/wawa.Recall/Entity.md)\.
+
+
 
 ## Constructors
 

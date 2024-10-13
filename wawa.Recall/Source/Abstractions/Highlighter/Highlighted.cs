@@ -1,10 +1,11 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
 namespace wawa.Recall;
 
-/// <summary>
-/// Encapsulates a vanilla or modded highlight, and extends functionality to get or
-/// mutate its inner values and events without worrying the kind of highlight it is.
-/// </summary>
+/// <summary>Encapsulates a vanilla or modded highlight.</summary>
+/// <remarks><para>
+/// If <see cref="IsRewritten"/> is <see langword="true"/>, all selectables are modded, even when attached to vanilla
+/// <see cref="Entity"/> instances. For more information, see the remarks section for the class <see cref="Entity"/>.
+/// </para></remarks>
 [PublicAPI] // ReSharper disable once RedundantExtendsListEntry
 public sealed partial class Highlighted : ICloneable, IEquatable<Highlighted>, IEqualityComparer<Highlighted>, IVanilla
 {

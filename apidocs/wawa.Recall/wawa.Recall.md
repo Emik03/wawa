@@ -19,11 +19,11 @@ namespace wawa.Recall;
 | [PropDef\<T\>](./wawa.Recall/PropDef\`1.md) | Encapsulates a getter `Delegate` and a setter `Delegate` to get and set an inner value toprovide a friendly and easy way to get or set one of multiple types with different `Type` signaturesby using a general `Type` that acts as a bridge between them\. The getter may `return``null`, and therefore is encapsulated in a [Maybe\<T\>](../wawa.Optionals/wawa.Optionals/Maybe\`1.md)\. |
 | [PropMay\<T\>](./wawa.Recall/PropMay\`1.md) | Encapsulates a getter `Delegate` and a setter `Delegate` to get and set an inner value toprovide a friendly and easy way to get or set one of multiple types with different `Type` signaturesby using a general `Type` that acts as a bridge between them\. The getter may `return``null`, and therefore is encapsulated in a [Maybe\<T\>](../wawa.Optionals/wawa.Optionals/Maybe\`1.md)\. |
 | [Prop\<T\>](./wawa.Recall/Prop\`1.md) | Encapsulates a getter `Delegate` and a setter `Delegate` to get and set an inner value to provide a friendly and easy way to get or set one of multiple types with different `Type` signatures by using a general `Type` that acts as a bridge between them\. |
-| [Entity](./wawa.Recall/Entity.md) | Encapsulates a solvable or needy module in either its vanilla or modded counterpart,and extends functionality to get or mutate its inner values and events without worrying the kind of module it is\. |
+| [Entity](./wawa.Recall/Entity.md) | Encapsulates a solvable or needy module in either its vanilla or modded counterpart\. |
 | [EntityCore](./wawa.Recall/EntityCore.md) | Implementations for [Entity](../wawa.Recall/wawa.Recall/Entity.md)\. |
-| [Highlighted](./wawa.Recall/Highlighted.md) | Encapsulates a vanilla or modded highlight, and extends functionality to get ormutate its inner values and events without worrying the kind of highlight it is\. |
+| [Highlighted](./wawa.Recall/Highlighted.md) | Encapsulates a vanilla or modded highlight\. |
 | [HighlightedCore](./wawa.Recall/HighlightedCore.md) | Implementations for [Highlighted](../wawa.Recall/wawa.Recall/Highlighted.md)\. |
-| [Selected](./wawa.Recall/Selected.md) | Encapsulates a vanilla or modded selectable, and extends functionality to get ormutate its inner values and events without worrying the kind of selectable it is\. |
+| [Selected](./wawa.Recall/Selected.md) | Encapsulates a vanilla or modded selectable\. |
 | [SelectedCore](./wawa.Recall/SelectedCore.md) | Implementations for [Selected](../wawa.Recall/wawa.Recall/Selected.md)\. |
 
 ## Interfaces
