@@ -473,6 +473,50 @@ public abstract class ModdedModule : CachedBehaviour
         return format;
     }
 
+    /// <summary>Attempts to parse the <typeparamref name="T"/> from the mission description.</summary>
+    /// <typeparam name="T">The type to parse.</typeparam>
+    /// <returns>The parsed value.</returns>
+    public Maybe<T> MissionSettings<T>() => MissionSettings<T>(out _);
+
+    /// <inheritdoc cref="MissionSettings{T}()"/>
+    /// <param name="parseError">
+    /// The exception thrown if parsing fails. Note that the return value and this parameter can
+    /// both be <see cref="Maybe.None{T}"/> if no settings are specified in the first place.
+    /// </param>
+    public Maybe<T> MissionSettings<T>(out Maybe<Exception> parseError)
+    {
+        if (Missions.Description.Value is not { } desc)
+        {
+            parseError = default;
+            return default;
+        }
+
+        var mod = Name;
+
+        for (var i = 0; desc.IndexOf(mod, i, StringComparison.Ordinal) is not -1 and var n; i = n + mod.Length)
+        {
+            if (n is 0 || n + mod.Length >= desc.Length || desc[n - 1] is not '[' || desc[n + mod.Length] is not ']')
+                continue;
+
+            using StringReader str = new(desc);
+            using JsonTextReader reader = new(str);
+
+            try
+            {
+                parseError = default;
+                return JToken.ReadFrom(reader).ToObject<T>();
+            }
+            catch (Exception e)
+            {
+                parseError = e;
+                return default;
+            }
+        }
+
+        parseError = default;
+        return default;
+    }
+
     /// <summary>The method that is called when the lights are turned on. Automatically hooked in Awake.</summary>
     /// <remarks><para>The base method doesn't do anything; Calling this base method is a no-op.</para></remarks>
     protected virtual void OnActivate() { }

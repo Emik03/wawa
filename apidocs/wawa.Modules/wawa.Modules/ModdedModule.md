@@ -32,6 +32,8 @@ Inheritance: `MonoBehaviour` > [CachedBehaviour](../../wawa.Unity/wawa.Unity/Cac
 | [LogLower\(string\)](./ModdedModule/LogLower.md) | Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer\. |
 | [LogLower\<T\>\(T, LogType\)](./ModdedModule/LogLower.md) | Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer\. |
 | [LogLower\<T\>\(T, params object\[\]\)](./ModdedModule/LogLower.md) | Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer\. |
+| [MissionSettings\<T\>\(\)](./ModdedModule/MissionSettings.md) | Attempts to parse the `T` from the mission description\. |
+| [MissionSettings\<T\>\(out Maybe\<Exception\>\)](./ModdedModule/MissionSettings.md) | Attempts to parse the `T` from the mission description\. |
 | [OnActivate\(\)](./ModdedModule/OnActivate.md) | The method that is called when the lights are turned on\. Automatically hooked in Awake\. |
 | [OnException\(string\)](./ModdedModule/OnException.md) | The method that is called when an unhandled `Exception` is thrown by this module type\. |
 
