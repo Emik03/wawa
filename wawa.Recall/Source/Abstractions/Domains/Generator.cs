@@ -559,5 +559,5 @@ public static class Generator
 
     [NotNull, Pure]
     static string Message([NotNull] object consequent) =>
-        $"Assertion failed while calling {new StackTrace().GetFrame(1).GetMethod().Name}; cannot operate on current object \"{consequent}\"";
+        $"Assertion failed while calling {new StackFrame(1).GetMethod().Name}; cannot operate on current object \"{consequent}\"";
 }
