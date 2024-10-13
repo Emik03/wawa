@@ -21,5 +21,5 @@ namespace wawa.Modules;
 
 | Name | Summary |
 |------|---------|
-| [ISolvable](./wawa.Modules/ISolvable.md) | Interface for Twitch Plays auto\-solvers\. Used by `Module` to abstractly communicatewith Twitch Plays solvers without importing the namespace\. |
+| [ISolvable](./wawa.Modules/ISolvable.md) | Interface for Twitch Plays auto\-solvers\. Used by `Module` to abstractlycommunicate with Twitch Plays solvers without importing the namespace\. |
 

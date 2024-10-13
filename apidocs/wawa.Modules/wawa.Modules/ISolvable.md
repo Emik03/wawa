@@ -3,8 +3,8 @@
 namespace: [wawa\.Modules](../wawa.Modules.md)<br />
 assembly: [wawa\.Modules](../../wawa.Modules.md)
 
-Interface for Twitch Plays auto\-solvers\. Used by `Module` to abstractly communicate
-with Twitch Plays solvers without importing the namespace\.
+Interface for Twitch Plays auto\-solvers\. Used by `Module` to abstractly
+communicate with Twitch Plays solvers without importing the namespace\.
 
 ```csharp
 public interface ISolvable;

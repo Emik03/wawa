@@ -2,8 +2,8 @@
 namespace wawa.Modules;
 
 /// <summary>
-/// Interface for Twitch Plays auto-solvers. Used by <see cref="Module"/> to abstractly communicate
-/// with Twitch Plays solvers without importing the namespace.
+/// Interface for Twitch Plays auto-solvers. Used by <see cref="Module"/> to abstractly
+/// communicate with Twitch Plays solvers without importing the namespace.
 /// </summary>
 [PublicAPI]
 public interface ISolvable
