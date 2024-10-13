@@ -473,23 +473,15 @@ public abstract class ModdedModule : CachedBehaviour
         return format;
     }
 
-    /// <summary>Attempts to parse the <typeparamref name="T"/> from the mission description.</summary>
-    /// <typeparam name="T">The type to parse.</typeparam>
-    /// <returns>The parsed value.</returns>
-    public Maybe<T> MissionSettings<T>() => MissionSettings<T>(out _);
-
-    /// <inheritdoc cref="MissionSettings{T}()"/>
-    /// <param name="parseError">
-    /// The exception thrown if parsing fails. Note that the return value and this parameter can
-    /// both be <see cref="Maybe.None{T}"/> if no settings are specified in the first place.
-    /// </param>
-    public Maybe<T> MissionSettings<T>(out Maybe<Exception> parseError)
+    /// <summary>Attempts to parse the <see cref="JToken"/> from the mission description.</summary>
+    /// <returns>
+    /// The parsed value. Note that while the return type might resemble a <c>Result</c> type, it is possible that both
+    /// variants are <see cref="Maybe.None{T}"/>. However, both variants will never both be <see cref="Maybe.Some{T}"/>.
+    /// </returns>
+    public KeyValuePair<Maybe<JsonReaderException>, Maybe<JToken>> MissionSettings()
     {
         if (Missions.Description.Value is not { } desc)
-        {
-            parseError = default;
             return default;
-        }
 
         var mod = Name;
 
@@ -498,23 +490,45 @@ public abstract class ModdedModule : CachedBehaviour
             if (n is 0 || n + mod.Length >= desc.Length || desc[n - 1] is not '[' || desc[n + mod.Length] is not ']')
                 continue;
 
-            using StringReader str = new(desc);
+            using SubstringReader str = new(desc, n);
             using JsonTextReader reader = new(str);
 
             try
             {
-                parseError = default;
-                return JToken.ReadFrom(reader).ToObject<T>();
+                return new(default, JToken.ReadFrom(reader));
             }
-            catch (Exception e)
+            catch (JsonReaderException e)
             {
-                parseError = e;
-                return default;
+                return new(e, default);
             }
         }
 
-        parseError = default;
         return default;
+    }
+
+    /// <summary>Attempts to parse the <see cref="JToken"/> from the mission description.</summary>
+    /// <typeparam name="T">The type to parse.</typeparam>
+    /// <returns>
+    /// The parsed value. Note that while the return type might resemble a <c>Result</c> type, it is possible that both
+    /// variants are <see cref="Maybe.None{T}"/>. However, both variants will never both be <see cref="Maybe.Some{T}"/>.
+    /// </returns>
+    public KeyValuePair<Maybe<Exception>, Maybe<T>> MissionSettings<T>()
+    {
+        // ReSharper disable once MergeIntoPattern
+        if (MissionSettings() is { Key.Value: var key, Value.Value: var value } && key is not null)
+            return new(key, default);
+
+        if (value is null)
+            return default;
+
+        try
+        {
+            return new(default, value.ToObject<T>());
+        }
+        catch (Exception e)
+        {
+            return new(e, default);
+        }
     }
 
     /// <summary>The method that is called when the lights are turned on. Automatically hooked in Awake.</summary>
@@ -589,7 +603,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <summary>Updates <see cref="Status"/> by marking it unsolved.</summary>
     void Revert() => Status.IsSolved = false;
 
-    /// <summary>Updates <see cref="Status"/> with a solve.</summary>
+    /// <summary>Updates <see cref="Status"/> by marking it solved.</summary>
     /// <returns>The value <see langword="false"/>.</returns>
     bool OnPass()
     {
@@ -606,7 +620,7 @@ public abstract class ModdedModule : CachedBehaviour
         return false;
     }
 
-    /// <summary>Gets the coroutine for solving the module and running the autosolver.</summary>
+    /// <summary>Gets the coroutine for solving the module and running the auto-solver.</summary>
     /// <returns>The coroutine for solving.</returns>
     [NotNull, Pure]
     IEnumerator WaitForSolve()
