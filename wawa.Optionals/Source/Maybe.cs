@@ -26,6 +26,14 @@ public static class Maybe
     ) =>
         that.IsSome ? (result = that.Value) is var _ : !((result = default) is var _);
 
+    /// <summary>Filters a collection with only that of items with a value.</summary>
+    /// <typeparam name="T">The type of parameter and generic in <see cref="Maybe{T}"/>.</typeparam>
+    /// <param name="source">This collection of <see cref="Maybe{T}"/>.</param>
+    /// <returns>A filtered collection only consisting of unwrapped <typeparamref name="T"/> values.</returns>
+    [LinqTunnel, NotNull, Pure, PublicAPI]
+    public static IEnumerable<T> Filter<T>([InstantHandle] this IEnumerable<Maybe<T>> source) =>
+        source.Where(static may => may.IsSome).Select(static may => may.Value);
+
     /// <summary>Gets an empty <see cref="Maybe{T}"/> of the desired type.</summary>
     /// <typeparam name="T">The generic in <see cref="Maybe{T}"/>.</typeparam>
     /// <returns>
@@ -113,14 +121,6 @@ public static class Maybe
         where T : struct =>
         new(that);
 
-    /// <summary>Filters a collection with only that of items with a value.</summary>
-    /// <typeparam name="T">The type of parameter and generic in <see cref="Maybe{T}"/>.</typeparam>
-    /// <param name="source">This collection of <see cref="Maybe{T}"/>.</param>
-    /// <returns>A filtered collection only consisting of unwrapped <typeparamref name="T"/> values.</returns>
-    [LinqTunnel, NotNull, Pure, PublicAPI]
-    public static IEnumerable<T> Filter<T>([InstantHandle] this IEnumerable<Maybe<T>> source) =>
-        source.Where(static may => may.IsSome).Select(static may => may.Value);
-
     /// <summary>Flattens a nested <see cref="Maybe{T}"/>.</summary>
     /// <typeparam name="T">The type of value stored within <paramref name="that"/>.</typeparam>
     /// <param name="that">This instance of <see cref="Maybe{T}"/>.</param>
@@ -171,15 +171,14 @@ public static class Maybe
         where T : struct =>
         From(that);
 
-    /// <summary>Creates a <see cref="Maybe{T}"/> from a <see cref="Nullable{T}"/>.</summary>
-    /// <remarks><para>This is an extension method for a ternary <see cref="Maybe{T}.IsSome"/>.</para></remarks>
-    /// <typeparam name="T">The type of parameter and generic in <see cref="Nullable{T}"/>.</typeparam>
-    /// <param name="that">This instance of <typeparamref name="T"/>.</param>
-    /// <returns>The <see cref="Nullable{T}"/> representing <paramref name="that"/>.</returns>
+    /// <summary>Upcasts this instance to <typeparamref name="TResult"/>.</summary>
+    /// <typeparam name="T">The type of value stored within <paramref name="that"/>.</typeparam>
+    /// <typeparam name="TResult">The type to value to upcast and return.</typeparam>
+    /// <returns>Itself, upcast to <typeparamref name="TResult"/>.</returns>
     [PublicAPI, Pure]
-    public static T? AsNullable<T>(this Maybe<T> that)
-        where T : struct =>
-        that.IsSome ? that.Value : null;
+    public static Maybe<TResult> As<T, TResult>(this Maybe<T> that)
+        where T : TResult =>
+        that.Value;
 
     /// <summary>Uses the callback corresponding to the inner value of <paramref name="that"/>.</summary>
     /// <typeparam name="T">The type of value stored within <paramref name="that"/>.</typeparam>
@@ -268,6 +267,16 @@ public static class Maybe
     public static T UnwrapOrNew<T>(this Maybe<T> that)
         where T : new() =>
         that.IsSome ? that.Value : new();
+
+    /// <summary>Creates a <see cref="Maybe{T}"/> from a <see cref="Nullable{T}"/>.</summary>
+    /// <remarks><para>This is an extension method for a ternary <see cref="Maybe{T}.IsSome"/>.</para></remarks>
+    /// <typeparam name="T">The type of parameter and generic in <see cref="Nullable{T}"/>.</typeparam>
+    /// <param name="that">This instance of <typeparamref name="T"/>.</param>
+    /// <returns>The <see cref="Nullable{T}"/> representing <paramref name="that"/>.</returns>
+    [PublicAPI, Pure]
+    public static T? AsNullable<T>(this Maybe<T> that)
+        where T : struct =>
+        that.IsSome ? that.Value : null;
 
     /// <summary>Uses the callback corresponding to the inner value of <paramref name="that"/>.</summary>
     /// <typeparam name="T">The type of value stored within <paramref name="that"/>.</typeparam>

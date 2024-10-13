@@ -215,11 +215,11 @@ public readonly struct Maybe<T>([AllowNull, CanBeNull] T value) :
     public bool Equals(Maybe<T> other) => this == other;
 
     /// <inheritdoc />
-    [CollectionAccess(Read), PublicAPI, Pure]
+    [CollectionAccess(None), PublicAPI, Pure]
     public bool Equals(Maybe<T> x, Maybe<T> y) => x == y;
 
     /// <inheritdoc />
-    [CollectionAccess(Read), PublicAPI, Pure]
+    [CollectionAccess(None), PublicAPI, Pure]
     public int GetHashCode(Maybe<T> obj) => obj.GetHashCode();
 
     /// <inheritdoc />
@@ -234,14 +234,22 @@ public readonly struct Maybe<T>([AllowNull, CanBeNull] T value) :
     [CollectionAccess(None), PublicAPI, Pure]
     public object Clone() => this;
 
-    /// <inheritdoc />
+    /// <summary>Downcasts this instance to <typeparamref name="TResult"/>.</summary>
+    /// <typeparam name="TResult">The type to value to downcast and return.</typeparam>
+    /// <returns>Itself, downcast to <typeparamref name="TResult"/>.</returns>
     [CollectionAccess(Read), PublicAPI, Pure]
-    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+    public static Maybe<TResult> As<TResult>(Maybe<T> that)
+        where TResult : class, T =>
+        that.Value as TResult;
 
     /// <inheritdoc />
     [CollectionAccess(Read), PublicAPI, Pure]
     public IEnumerator<T> GetEnumerator() =>
         IsSome ? Enumerable.Repeat(Value, 1).GetEnumerator() : Enumerable.Empty<T>().GetEnumerator();
+
+    /// <inheritdoc />
+    [CollectionAccess(Read), PublicAPI, Pure]
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
     /// <inheritdoc />
     [CollectionAccess(None)]
