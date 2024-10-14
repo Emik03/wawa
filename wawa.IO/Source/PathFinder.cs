@@ -285,7 +285,10 @@ public static class PathFinder
         }
 
         var directory = root.Join(Library).Join(platform).Join(architecture);
-        var source = Directory.GetFiles(directory, $"{file}*");
+
+        var source = architecture is not Windows && Directory.GetFiles(directory, $"lib{file}*") is { Length: > 0 } libs
+            ? libs
+            : Directory.GetFiles(directory, $"{file}*");
 
         switch (source.Length)
         {
