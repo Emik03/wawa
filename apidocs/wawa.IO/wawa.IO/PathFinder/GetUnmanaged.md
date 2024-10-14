@@ -35,5 +35,6 @@ If `null`, implicitly gets the directory of the mod from the name of the assembl
 
 [Maybe\<T\>](../../../wawa.Optionals/wawa.Optionals/Maybe\`1.md)
 
-The value `true` if copying the file was successful, otherwise `false`\.
+A [Maybe\<T\>](../../../wawa.Optionals/wawa.Optionals/Maybe\`1.md), consisting of either the `` which is linked
+to the requested unmanaged function, or `default` in the event of an error\.
 

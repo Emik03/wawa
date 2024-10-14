@@ -89,27 +89,29 @@ public static class PathFinder
         );
 
     /// <summary>Gets the absolute directory of the mod.</summary>
+    /// <remarks><para>In the editor, this value returns <see cref="Maybe.None{T}"/>.</para></remarks>
     /// <param name="modId">
     /// The mod id to get the mod directory from.
-    /// If <see langword="null" />, implicitly gets the directory of the mod from the name of the assembly.
+    /// If <see langword="null"/>, implicitly gets the directory of the mod from the name of the assembly.
     /// </param>
     /// <returns>
-    /// A <see cref="Maybe{T}" />, consisting of either folder <see cref="string" /> of the absolute directory
-    /// of the file if there is a folder mod id entry within the game's mod dictionary, or <see langword="default" />.
+    /// A <see cref="Maybe{T}"/>, consisting of either folder <see cref="string"/> of the absolute directory
+    /// of the file if there is a folder mod id entry within the game's mod dictionary, or <see langword="default"/>.
     /// </returns>
     [MustUseReturnValue, PublicAPI]
     public static Maybe<string> GetDirectory([AllowNull, CanBeNull] string modId = null) =>
         (modId ?? Who).Get(FindDirectory);
 
     /// <summary>Gets the absolute directory of the file located inside the mod directory.</summary>
+    /// <remarks><para>In the editor, this value returns <see cref="Maybe.None{T}"/>.</para></remarks>
     /// <param name="filePath">The file located inside folder mod directory.</param>
     /// <param name="modId">
     /// The mod id to get the mod directory from.
-    /// If <see langword="null" />, implicitly gets the directory of the mod from the name of the assembly.
+    /// If <see langword="null"/>, implicitly gets the directory of the mod from the name of the assembly.
     /// </param>
     /// <returns>
-    /// A <see cref="Maybe{T}" />, consisting of either folder <see cref="string" /> of the absolute directory
-    /// of the file if the mod directory and file were found, or <see langword="default" />.
+    /// A <see cref="Maybe{T}"/>, consisting of either folder <see cref="string"/> of the absolute directory
+    /// of the file if the mod directory and file were found, or <see langword="default"/>.
     /// </returns>
     [MustUseReturnValue, PublicAPI]
     public static Maybe<string> GetFile(
@@ -118,14 +120,14 @@ public static class PathFinder
     ) =>
         (IsKtane || IsRewritten) && GetDirectory(modId).Value is { } dir ? Path.Combine(dir, filePath) : null;
 
-    /// <summary>Gets and deserializes the <see cref="ModInfo" /> file located in every mod's root directory.</summary>
+    /// <summary>Gets and deserializes the <see cref="ModInfo"/> file located in every mod's root directory.</summary>
     /// <param name="modId">
     /// The mod id to get the mod directory from.
-    /// If <see langword="null" />, implicitly gets the directory of the mod from the name of the assembly.
+    /// If <see langword="null"/>, implicitly gets the directory of the mod from the name of the assembly.
     /// </param>
     /// <returns>
-    /// A <see cref="Maybe{T}" />, consisting of either folder <see cref="ModInfo" /> if the file was read
-    /// and deserialized successfully, or <see langword="default" />.
+    /// A <see cref="Maybe{T}"/>, consisting of either folder <see cref="ModInfo"/> if the file was read
+    /// and deserialized successfully, or <see langword="default"/>.
     /// </returns>
     [MustUseReturnValue, PublicAPI]
     public static Maybe<ModInfo> GetModInfo([AllowNull, CanBeNull] string modId = null) =>
@@ -134,19 +136,20 @@ public static class PathFinder
                 ModManager.Instance.InstalledModInfos.TryGetValue(dir, out var value)
                     ? ModInfo.FromInternalModInfo(value)
                     : null,
-            static _ => GetEditorModInfo()
+            GetEditorModInfo
         );
 
     /// <summary>Loads and returns assets from disk.</summary>
+    /// <remarks><para>In the editor, this value returns <see cref="Maybe.None{T}"/>.</para></remarks>
     /// <typeparam name="T">The type of asset to get.</typeparam>
     /// <param name="filePath">The file which contains the assets.</param>
     /// <param name="modId">
     /// The mod id to get the mod directory from.
-    /// If <see langword="null" />, implicitly gets the directory of the mod from the name of the assembly.
+    /// If <see langword="null"/>, implicitly gets the directory of the mod from the name of the assembly.
     /// </param>
     /// <returns>
-    /// A <see cref="Maybe{T}" />, consisting of either an <see cref="Array" /> of <typeparamref file="T" />
-    /// from the assets in the file specified, or <see langword="default" /> in the event of an error.
+    /// A <see cref="Maybe{T}"/>, consisting of either an <see cref="Array"/> of <typeparamref file="T"/>
+    /// from the assets in the file specified, or <see langword="default"/> in the event of an error.
     /// </returns>
     [CLSCompliant(false), MustUseReturnValue, PublicAPI]
     public static Maybe<IList<T>> GetAssets<T>(
@@ -167,10 +170,11 @@ public static class PathFinder
     /// <param name="ffiMethodName">The name of the method.</param>
     /// <param name="modId">
     /// The mod id to get the mod directory from.
-    /// If <see langword="null" />, implicitly gets the directory of the mod from the name of the assembly.
+    /// If <see langword="null"/>, implicitly gets the directory of the mod from the name of the assembly.
     /// </param>
     /// <returns>
-    /// The value <see langword="true" /> if copying the file was successful, otherwise <see langword="false" />.
+    /// A <see cref="Maybe{T}"/>, consisting of either the <typeparamref file="T"/> which is linked
+    /// to the requested unmanaged function, or <see langword="default"/> in the event of an error.
     /// </returns>
     [MustUseReturnValue, PublicAPI]
     public static Maybe<T> GetUnmanaged<T>(
@@ -180,11 +184,7 @@ public static class PathFinder
     )
         where T : Delegate =>
         new KeyValuePair<string, KeyValuePair<string, string>>(libPath, new(ffiMethodName, modId ?? Who))
-           .Get(
-                static x => x.Value.Key.FindLibrary(GetDirectory(x.Value.Value).Value)?.CreateUnmanagedMethod<T>(x.Key),
-                static x => x.Value.Key.CreateUnmanagedMethod<T>(x.Key),
-                overriden: null
-            );
+           .Get(Link<T>, Link<T>, overriden: null);
 
     /// <summary>Counts the number of loaded mods to determine if the directory cache needs to be updated.</summary>
     /// <returns>Whether the directory cache needs to be updated.</returns>
@@ -222,7 +222,7 @@ public static class PathFinder
 
     /// <summary>Finds the directory for the requested mod id.</summary>
     /// <param name="key">The mod id to find.</param>
-    /// <returns>The directory for the requested mod id, or <see langword="null" /> if not found.</returns>
+    /// <returns>The directory for the requested mod id, or <see langword="null"/> if not found.</returns>
     [CanBeNull, MustUseReturnValue]
     [return: AllowNull]
     static string FindDirectory([NotNull] string key)
@@ -237,7 +237,7 @@ public static class PathFinder
     /// <summary>Finds the full path to the requested library.</summary>
     /// <param name="file">The name of the library to find.</param>
     /// <param name="root">The root directory to search from.</param>
-    /// <returns>The full path to the requested library, or <see langword="null" /> if not found.</returns>
+    /// <returns>The full path to the requested library, or <see langword="null"/> if not found.</returns>
     [CanBeNull, MustUseReturnValue]
     [return: AllowNull]
     static string FindLibrary(
@@ -245,7 +245,9 @@ public static class PathFinder
         [AllowNull, CanBeNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] in string root
     )
     {
-        // ReSharper disable once ConditionIsAlwaysTrueOrFalse HeuristicUnreachableCode
+        if (!IsKtane && !IsRewritten)
+            return file;
+
         if (root is null)
             return null;
 
@@ -341,7 +343,7 @@ public static class PathFinder
     /// <returns>The <see cref="ModInfo"/> from the editor.</returns>
     [CanBeNull, MustUseReturnValue]
     [return: AllowNull]
-    static ModInfo GetEditorModInfo() =>
+    static ModInfo GetEditorModInfo(string _) =>
         Array.Find(AppDomain.CurrentDomain.GetAssemblies(), static a => a.GetName().Name is UnityAssembly)
           ?.GetType(ModInfoEditor) is { } type &&
         type.GetMethod(ModInfoSerializerEditor, ToJsonBindings)
@@ -401,4 +403,10 @@ public static class PathFinder
         var method = module.GetMethod(name);
         return Delegate.CreateDelegate(typeof(T), method, false) as T;
     }
+
+    [return: AllowNull]
+    [CanBeNull, MustUseReturnValue]
+    static T Link<T>(KeyValuePair<string, KeyValuePair<string, string>> x)
+        where T : Delegate =>
+        x.Key.FindLibrary(GetDirectory(x.Value.Value).Value)?.CreateUnmanagedMethod<T>(x.Value.Key);
 }

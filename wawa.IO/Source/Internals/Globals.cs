@@ -51,7 +51,7 @@ static class Globals
     /// <param name="editor">The expensive callback exclusive to the editor.</param>
     /// <param name="caller">The caller member name.</param>
     /// <param name="overriden">The name of the factory to invoke.</param>
-    /// <returns>The value from the first time <paramref name="ktane" /> was invoked.</returns>
+    /// <returns>The value from the first time <paramref name="ktane"/> was invoked.</returns>
     [CanBeNull, Pure]
     [return: AllowNull]
     internal static TResult Get<T, TResult>(
@@ -86,7 +86,7 @@ static class Globals
 
     /// <summary>
     /// Runs and returns the parameter, and catches various exception types found in IO operations.
-    /// A caught <see cref="Exception" /> will <see langword="return" /> <see langword="default" />.
+    /// A caught <see cref="Exception"/> will <see langword="return"/> <see langword="default"/>.
     /// </summary>
     /// <typeparam name="T">The type of parameter.</typeparam>
     /// <typeparam name="TResult">The type of return.</typeparam>
@@ -94,8 +94,8 @@ static class Globals
     /// <param name="func">The name to run.</param>
     /// <param name="force">Whether to force execution regardless if in editor or not.</param>
     /// <returns>
-    /// The returned value of <paramref file="func" />, or <see langword="default" />
-    /// in the event of an <see cref="Exception" /> related to files.
+    /// The returned value of <paramref file="func"/>, or <see langword="default"/>
+    /// in the event of an <see cref="Exception"/> related to files.
     /// </returns>
     [CanBeNull]
     [return: AllowNull]
