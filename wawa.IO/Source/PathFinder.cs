@@ -340,6 +340,7 @@ public static class PathFinder
     }
 
     /// <summary>Gets the <see cref="ModInfo"/> from the editor.</summary>
+    /// <param name="_">Unused.</param>
     /// <returns>The <see cref="ModInfo"/> from the editor.</returns>
     [CanBeNull, MustUseReturnValue]
     [return: AllowNull]
