@@ -16,8 +16,8 @@ public static class Access
         /// <summary>Gets or adds the method with the specified name.</summary>
         /// <param name="name">The name of the method.</param>
         /// <returns>The method.</returns>
-        [return: AllowNull]
         [CanBeNull]
+        [return: AllowNull]
         public static Converter<T, TResult> GetOrAdd(string name)
         {
             if (s_cache.TryGetValue(name, out var cache))

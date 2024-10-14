@@ -348,8 +348,8 @@ public static class PathFinder
         Array.Find(AppDomain.CurrentDomain.GetAssemblies(), static a => a.GetName().Name is UnityAssembly)
           ?.GetType(ModInfoEditor) is { } type &&
         type.GetMethod(ModInfoSerializerEditor, ToJsonBindings)
-          ?.Invoke(type.GetProperty(ModInfoInstanceEditor, InstanceBindings)?.GetValue(null, null), null) is string s
-            ? ModInfo.Deserialize(s).Value
+          ?.Invoke(type.GetProperty(ModInfoInstanceEditor, InstanceBindings)?.GetValue(null, null), null) is string json
+            ? ModInfo.Deserialize(json).Value
             : null;
 
     /// <summary>Creates the external method within the module.</summary>
@@ -405,8 +405,8 @@ public static class PathFinder
         return Delegate.CreateDelegate(typeof(T), method, false) as T;
     }
 
-    [return: AllowNull]
     [CanBeNull, MustUseReturnValue]
+    [return: AllowNull]
     static T Link<T>(KeyValuePair<string, KeyValuePair<string, string>> x)
         where T : Delegate =>
         x.Key.FindLibrary(GetDirectory(x.Value.Value).Value)?.CreateUnmanagedMethod<T>(x.Value.Key);

@@ -324,8 +324,8 @@ public static class Generator
     /// <typeparam name="T">The type parameter of <see cref="Prop{T}"/>.</typeparam>
     /// <param name="that">This instance of <see cref="Prop{T}"/>.</param>
     /// <returns>The value returned from the callback, or <see langword="default"/>.</returns>
-    [return: AllowNull]
     [CanBeNull]
+    [return: AllowNull]
     internal static T Get<T>([AllowNull, CanBeNull, NotNullWhen(true)] this Prop<T>? that) =>
         that?.Info is null ? default : that.Info.Getter<T>()(that.Instance);
 
