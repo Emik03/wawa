@@ -62,6 +62,37 @@ public sealed class Foo
 }
 ```
 
+## Non-KTaNE Interop
+
+For more information on what this means, see [wawa.DDL](https://github.com/Emik03/wawa/tree/main/wawa.DDL#non-ktane-interop).
+
+```csharp
+// These functions are assumed to validate the file paths themselves.
+public static string? GetDirectory(string modId);
+
+// Return as json blob of `ModInfo`.
+public static string? GetModInfo(string modId);
+
+// Assets are expected to both be loaded from file,
+// such as AssetBundle.LoadFromFile(path)?.LoadAllAssets<T>().
+// Do not assume the path always exists: return null if path is invalid.
+public static IList<T>? GetAssets<T>(KeyValuePair<string /* filePath */, string /* modId */> args);
+
+// public enum StatusLights : byte
+// {
+//     None = 0,
+//     Off = 1,
+//     Solve = 2,
+//     Strike = 4,
+// }
+
+// Changes which of the 3 status lights are visible. All are set according to the bitmask
+public static KeyValuePair<MonoBehaviour, byte> Change(KeyValuePair<MonoBehaviour /* `KMBombModule` or `KMNeedyModule` */, byte /* bitmask */> arg);
+
+// Plays the strike sound effect and flashes the status light red, without registering a strike.
+public static MonoBehaviour FakeStrike(/* KMBombModule or KMNeedyModule */ MonoBehaviour that);
+```
+
 ## Contribute
 
 Issues and pull requests are welcome to help this repository be the best it can be.

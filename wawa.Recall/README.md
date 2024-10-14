@@ -8,6 +8,7 @@ Allows for hooking and unhooking of module controllers and its selectables. Supp
 
 - [Dependencies](#dependencies)
 - [Example](#example)
+- [Non-KTaNE Interop](#non-ktane-interop)
 - [Contribute](#contribute)
 - [License](#license)
 
@@ -45,6 +46,26 @@ foreach (var module in allModules)
     module.Solve.Add(() => Debug.Log($"{module} solved."));
 }
 
+```
+
+## Non-KTaNE Interop
+
+For more information on what this means, see [wawa.DDL](https://github.com/Emik03/wawa/tree/main/wawa.DDL#non-ktane-interop).
+
+```csharp
+// public enum StatusLights : byte
+// {
+//     None = 0,
+//     Off = 1,
+//     Solve = 2,
+//     Strike = 4,
+// }
+
+// Changes which of the 3 status lights are visible. All are set according to the bitmask
+public static KeyValuePair<MonoBehaviour, byte> Change(KeyValuePair<MonoBehaviour /* `KMBombModule` or `KMNeedyModule` */, byte /* bitmask */> arg);
+
+// Plays the strike sound effect and flashes the status light red, without registering a strike.
+public static MonoBehaviour FakeStrike(/* KMBombModule or KMNeedyModule */ MonoBehaviour that);
 ```
 
 ## Contribute
