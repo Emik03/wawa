@@ -162,20 +162,6 @@ public static string? GetModInfo(string modId);
 // such as AssetBundle.LoadFromFile(path)?.LoadAllAssets<T>().
 // Do not assume the path always exists: return null if path is invalid.
 public static IList<T>? GetAssets<T>(KeyValuePair<string /* filePath */, string /* modId */> args);
-
-// public enum StatusLights : byte
-// {
-//     None = 0,
-//     Off = 1,
-//     Solve = 2,
-//     Strike = 4,
-// }
-
-// Changes which of the 3 status lights are visible. All are set according to the bitmask
-public static KeyValuePair<MonoBehaviour, byte> Change(KeyValuePair<MonoBehaviour /* `KMBombModule` or `KMNeedyModule` */, byte /* bitmask */> arg);
-
-// Plays the strike sound effect and flashes the status light red, without registering a strike.
-public static MonoBehaviour FakeStrike(/* KMBombModule or KMNeedyModule */ MonoBehaviour that);
 ```
 
 ## Contribute
