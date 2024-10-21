@@ -240,7 +240,9 @@ public static class PathFinder
     /// <returns>The full path to the requested library, or <see langword="null"/> if not found.</returns>
     [CanBeNull, MustUseReturnValue]
     [return: AllowNull]
+#pragma warning disable MA0051
     static string FindLibrary(
+#pragma warning restore MA0051
         [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] this string file,
         [AllowNull, CanBeNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] in string root
     )
