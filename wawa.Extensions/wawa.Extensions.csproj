@@ -4,7 +4,4 @@
         <TargetFramework>net35</TargetFramework>
         <UseUnityCoreModule>true</UseUnityCoreModule>
     </PropertyGroup>
-    <ItemGroup>
-        <Compile Remove="$(Morsels)/Compile/Source/References/*/**/*.cs"/>
-    </ItemGroup>
 </Project>

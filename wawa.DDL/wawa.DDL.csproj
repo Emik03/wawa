@@ -5,7 +5,6 @@
         <UseUnityCoreModule>true</UseUnityCoreModule>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Remove="$(Morsels)/Compile/Source/References/*/**/*.cs"/>
         <ProjectReference Include="../wawa.Optionals/wawa.Optionals.csproj"/>
     </ItemGroup>
 </Project>

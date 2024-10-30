@@ -7,7 +7,6 @@
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="../wawa.DDL/wawa.DDL.csproj"/>
-        <Compile Remove="$(Morsels)/Compile/Source/References/*/**/*.cs"/>
         <ProjectReference Include="../wawa.Optionals/wawa.Optionals.csproj"/>
     </ItemGroup>
 </Project>

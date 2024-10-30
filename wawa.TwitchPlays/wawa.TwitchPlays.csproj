@@ -8,7 +8,6 @@
         <ProjectReference Include="../wawa.DDL/wawa.DDL.csproj"/>
         <ProjectReference Include="../wawa.Unity/wawa.Unity.csproj"/>
         <ProjectReference Include="../wawa.Modules/wawa.Modules.csproj"/>
-        <Compile Remove="$(Morsels)/Compile/Source/References/*/**/*.cs"/>
         <ProjectReference Include="../wawa.Optionals/wawa.Optionals.csproj"/>
     </ItemGroup>
 </Project>
