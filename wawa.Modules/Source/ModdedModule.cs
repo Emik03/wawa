@@ -13,10 +13,6 @@ public abstract class ModdedModule : CachedBehaviour
         ExceptionStackTrace = "Rethrow as ",
         NoComponent = $"There is no attached {nameof(KMBombModule)} or {nameof(KMNeedyModule)}.",
         NotFound = "[[HYPERLINK BLOCKED]]",
-        LengthNotSet =
-            $"The {nameof(KMSelectable)} attached to this {nameof(GameObject)} has a " +
-            $"{nameof(KMSelectable.ChildRowLength)} set to 0 or less. Be sure to set this to a natural number so " +
-            "that the matrix can be instantiated properly.",
         Prefix = @"
 | ",
         TooFewAudioSources = $"{nameof(Play)} Error: You need a {nameof(KMAudio)} component to play a sound. " +
@@ -54,7 +50,7 @@ public abstract class ModdedModule : CachedBehaviour
     [PublicAPI]
     public IList<KMSelectable> Children
     {
-        [ItemCanBeNull, NotNull, MustUseReturnValue] get => Get<KMSelectable>().Children;
+        [ItemCanBeNull, NotNull, MustUseReturnValue] get => GetChildSelectables();
     }
 
     /// <summary>Gets the children of the top-level selectable.</summary>
@@ -73,10 +69,7 @@ public abstract class ModdedModule : CachedBehaviour
     public IList<IList<KMSelectable>> Matrix
     {
         [ItemCanBeNull, NotNull, MustUseReturnValue]
-        get =>
-            _matrix ??= Get<KMSelectable>().ChildRowLength > 0
-                ? new MatrixFactory.Matrix<KMSelectable>(() => Children, () => Get<KMSelectable>().ChildRowLength)
-                : throw new InvalidOperationException(LengthNotSet);
+        get => _matrix ??= new Matrix<KMSelectable>(GetChildSelectables, GetChildSelectableRowLength);
     }
 
     /// <summary>Gets the current solve/strike status of the module.</summary>
@@ -620,6 +613,11 @@ public abstract class ModdedModule : CachedBehaviour
         return false;
     }
 
+    /// <summary>Gets the <see cref="KMSelectable"/> child row length.</summary>
+    /// <returns>The number of elements in a row.</returns>
+    [MustUseReturnValue]
+    int GetChildSelectableRowLength() => Get<KMSelectable>().ChildRowLength;
+
     /// <summary>Gets the coroutine for solving the module and running the auto-solver.</summary>
     /// <returns>The coroutine for solving.</returns>
     [NotNull, Pure]
@@ -634,4 +632,9 @@ public abstract class ModdedModule : CachedBehaviour
         if (GetComponent<ISolvable>() is var solver && solver as Object)
             yield return solver.ForceTPSolve();
     }
+
+    /// <summary>Gets the <see cref="KMSelectable"/> children.</summary>
+    /// <returns>The children selectables.</returns>
+    [ItemCanBeNull, MustUseReturnValue, NotNull]
+    KMSelectable[] GetChildSelectables() => Get<KMSelectable>().Children;
 }
