@@ -16,7 +16,7 @@ namespace wawa.Schemas
     struct NamespaceDoc;
 }
 
-namespace wawa.Schemas.Domains
+namespace wawa.Schemas.Fluent
 {
     /// <summary>Contains objects returned by the fluent builder APIs.</summary>
     [UsedImplicitly]

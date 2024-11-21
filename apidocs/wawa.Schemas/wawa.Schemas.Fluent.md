@@ -2,7 +2,7 @@
 
 assembly: [wawa\.Schemas](../wawa.Schemas.md)
 
-
+Contains objects returned by the fluent builder APIs\.
 
 ```csharp
 namespace wawa.Schemas.Fluent;

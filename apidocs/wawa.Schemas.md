@@ -8,5 +8,5 @@ schema object that Tweaks can use to format your mod settings\.
 | Name | Summary |
 |------|---------|
 | [wawa\.Schemas](./wawa.Schemas/wawa.Schemas.md) | Contains the core functionality of the library\. |
-| [wawa\.Schemas\.Fluent](./wawa.Schemas/wawa.Schemas.Fluent.md) |  |
+| [wawa\.Schemas\.Fluent](./wawa.Schemas/wawa.Schemas.Fluent.md) | Contains objects returned by the fluent builder APIs\. |
 
