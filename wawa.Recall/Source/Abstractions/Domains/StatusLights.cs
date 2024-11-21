@@ -20,5 +20,5 @@ public enum StatusLights : byte
 
     /// <summary>The status light that is red, representing the strike state.</summary>
     [PublicAPI]
-    Strike = 4,
+    Strike = 1 << 2,
 }

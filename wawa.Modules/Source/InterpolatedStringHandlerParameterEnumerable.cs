@@ -9,7 +9,7 @@ namespace wawa.Modules;
 /// The number of constant characters outside of interpolation expressions in the interpolated string.
 /// </param>
 /// <param name="formattedCount">The number of interpolation expressions in the interpolated string.</param>
-[InterpolatedStringHandler, PublicAPI]
+[InterpolatedStringHandler]
 public readonly struct InterpolatedStringHandlerEnumerable(
     [NonNegativeValue] int literalLength,
     [NonNegativeValue] int formattedCount
@@ -25,32 +25,30 @@ public readonly struct InterpolatedStringHandlerEnumerable(
     /// </para></remarks>
     public int RecommendedLength
     {
-        [NonNegativeValue, PublicAPI, Pure]
+        [NonNegativeValue, Pure]
         get => literalLength + formattedCount * 11;
     }
 
     /// <summary>Writes the specified value to the handler.</summary>
     /// <param name="value">The value to write.</param>
     /// <param name="format">The format string.</param>
-    [PublicAPI]
     public void AppendFormatted([AllowNull, CanBeNull] object value, [AllowNull, CanBeNull] string format = null) =>
         _list.Add(new(value, format));
 
     /// <summary>Writes the specified string to the handler.</summary>
     /// <param name="value">The string to write.</param>
-    [PublicAPI]
     public void AppendLiteral([AllowNull, CanBeNull] string value) => _list.Add(new(value, null));
 
     /// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-    [PublicAPI, Pure]
+    [Pure]
     List<KeyValuePair<object, string>>.Enumerator GetEnumerator() => _list.GetEnumerator();
 
     /// <inheritdoc />
-    [PublicAPI, Pure]
+    [Pure]
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
     /// <inheritdoc />
-    [PublicAPI, Pure]
+    [Pure]
     IEnumerator<KeyValuePair<object, string>> IEnumerable<KeyValuePair<object, string>>.GetEnumerator() =>
         GetEnumerator();
 }
