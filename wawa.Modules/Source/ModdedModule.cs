@@ -306,18 +306,14 @@ public abstract class ModdedModule : CachedBehaviour
     }
 
     /// <summary>
-    /// Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer.
+    /// Converts <paramref name="source"/> into a <see cref="string"/> representation of <paramref name="source"/>.
     /// </summary>
-    /// <param name="format">The value to log.</param>
-    /// <returns>The parameter <paramref name="format"/>.</returns>
-    [CanBeNull]
-    [return: AllowNull]
-    public string Log([AllowNull, CanBeNull] string format = default)
-    {
-        var message = $"[{Name} #{Status.Id}] {format}";
-        Debug.unityLogger.Log(LogType.Log, message);
-        return format;
-    }
+    /// <remarks><para>Used for logging, such as <see cref="Log{T}(T, object[])"/>.</para></remarks>
+    /// <typeparam name="T">The type of the source.</typeparam>
+    /// <param name="source">The item to get a <see cref="string"/> representation of.</param>
+    /// <returns><paramref name="source"/> as <see cref="string"/>.</returns>
+    [NotNull, Pure]
+    public virtual string Stringify<T>([AllowNull, CanBeNull] T source) => Stringify(source, null);
 
     /// <summary>
     /// Converts <paramref name="source"/> into a <see cref="string"/> representation of <paramref name="source"/>.
@@ -325,13 +321,16 @@ public abstract class ModdedModule : CachedBehaviour
     /// <remarks><para>Used for logging, such as <see cref="Log{T}(T, object[])"/>.</para></remarks>
     /// <typeparam name="T">The type of the source.</typeparam>
     /// <param name="source">The item to get a <see cref="string"/> representation of.</param>
+    /// <param name="format">The format string.</param>
     /// <returns><paramref name="source"/> as <see cref="string"/>.</returns>
     [NotNull, Pure] // ReSharper disable once CognitiveComplexity
-    public virtual string Stringify<T>([AllowNull, CanBeNull] T source)
+    public virtual string Stringify<T>([AllowNull, CanBeNull] T source, [AllowNull, CanBeNull] string format)
     {
+        Log($"asdasd {-1:asd}");
+
         const int Limit = 500;
 
-        string Dictionary(IDictionary dictionary)
+        string Dictionary([NotNull] IDictionary dictionary, [AllowNull, CanBeNull] string format)
         {
             var enumerator = dictionary.GetEnumerator();
             using var _ = enumerator as IDisposable;
@@ -339,16 +338,24 @@ public abstract class ModdedModule : CachedBehaviour
             if (!enumerator.MoveNext())
                 return "{ }";
 
-            StringBuilder sb = new("{ ");
-            sb.Append(Stringify(enumerator.Key)).Append(": ").Append(Stringify(enumerator.Value));
+            StringBuilder builder = new("{ ");
+
+            builder
+               .Append(Stringify(enumerator.Key, format))
+               .Append(": ")
+               .Append(Stringify(enumerator.Value, format));
 
             for (var i = 0; i < Limit && enumerator.MoveNext(); i++)
-                sb.Append(", ").Append(Stringify(enumerator.Key)).Append(": ").Append(Stringify(enumerator.Value));
+                builder
+                   .Append(", ")
+                   .Append(Stringify(enumerator.Key, format))
+                   .Append(": ")
+                   .Append(Stringify(enumerator.Value, format));
 
-            return sb.Append(" }").ToString();
+            return builder.Append(" }").ToString();
         }
 
-        string Enumerable(IEnumerable enumerable)
+        string Enumerable([NotNull] IEnumerable enumerable, [AllowNull, CanBeNull] string format)
         {
             var enumerator = enumerable.GetEnumerator();
             using var _ = enumerator as IDisposable;
@@ -356,22 +363,55 @@ public abstract class ModdedModule : CachedBehaviour
             if (!enumerator.MoveNext())
                 return "[]";
 
-            StringBuilder sb = new("[");
-            sb.Append(Stringify(enumerator.Current));
+            StringBuilder builder = new("[");
+            builder.Append(Stringify(enumerator.Current, format));
 
             for (var i = 0; i < Limit && enumerator.MoveNext(); i++)
-                sb.Append(", ").Append(Stringify(enumerator.Current));
+                builder.Append(", ").Append(Stringify(enumerator.Current, format));
 
-            return sb.Append(']').ToString();
+            return builder.Append(']').ToString();
         }
 
         return source switch
         {
             IEnumerable<char> x => x as string ?? new(x.ToArray()),
-            IDictionary x => Dictionary(x),
-            IEnumerable x => Enumerable(x),
+            IDictionary x => Dictionary(x, format),
+            IEnumerable x => Enumerable(x, format),
+            IFormattable x => x.ToString(format, CultureInfo.InvariantCulture),
             _ => source?.ToString() ?? "null",
         };
+    }
+
+    /// <summary>
+    /// Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer.
+    /// </summary>
+    /// <param name="format">The value to log.</param>
+    /// <returns>The parameter <paramref name="format"/>.</returns>
+    public InterpolatedStringHandlerEnumerable Log(InterpolatedStringHandlerEnumerable format)
+    {
+        StringBuilder builder = new(format.RecommendedLength);
+
+        foreach (var next in format)
+            builder.Append(Stringify(next.Key, next.Value));
+
+        Log(builder);
+        return format;
+    }
+
+    /// <summary>
+    /// Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer.
+    /// </summary>
+    /// <param name="format">The value to log.</param>
+    /// <returns>The parameter <paramref name="format"/>.</returns>
+    public InterpolatedStringHandlerEnumerable LogLower(InterpolatedStringHandlerEnumerable format)
+    {
+        StringBuilder builder = new(format.RecommendedLength);
+
+        foreach (var next in format)
+            builder.Append(Stringify(next.Key, next.Value));
+
+        Log(builder);
+        return format;
     }
 
     /// <summary>
@@ -382,7 +422,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="logType">The kind of logging method to invoke.</param>
     /// <returns>The parameter <paramref name="format"/>.</returns>
     [CanBeNull]
-    [return: AllowNull]
+    [return: AllowNull, NotNullIfNotNull(nameof(format))]
     public T Log<T>([AllowNull, CanBeNull] T format = default, LogType logType = LogType.Log)
     {
         var stringified = Stringify(format);
@@ -399,7 +439,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="args">The arguments to hook into format.</param>
     /// <returns>The parameter <paramref name="format"/>.</returns>
     [CanBeNull]
-    [return: AllowNull]
+    [return: AllowNull, NotNullIfNotNull(nameof(format))]
     public T Log<T>(
         [AllowNull, CanBeNull, StringSyntax(StringSyntaxAttribute.CompositeFormat)] T format = default,
         [ItemCanBeNull, NotNull] params object[] args
@@ -416,26 +456,12 @@ public abstract class ModdedModule : CachedBehaviour
     /// <summary>
     /// Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer.
     /// </summary>
-    /// <param name="format">The value to log.</param>
-    /// <returns>The parameter <paramref name="format"/>.</returns>
-    [CanBeNull]
-    [return: AllowNull]
-    public string LogLower([AllowNull, CanBeNull] string format = null)
-    {
-        var message = $"<{Name} #{Status.Id}> {format}";
-        Debug.unityLogger.Log(LogType.Log, (object)message, this);
-        return format;
-    }
-
-    /// <summary>
-    /// Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer.
-    /// </summary>
     /// <typeparam name="T">The type of the value to log.</typeparam>
     /// <param name="format">The value to log.</param>
     /// <param name="logType">The kind of logging method to invoke.</param>
     /// <returns>The parameter <paramref name="format"/>.</returns>
     [CanBeNull]
-    [return: AllowNull]
+    [return: AllowNull, NotNullIfNotNull(nameof(format))]
     public T LogLower<T>([AllowNull, CanBeNull] T format = default, LogType logType = LogType.Log)
     {
         var stringified = Stringify(format);
@@ -452,7 +478,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="args">The arguments to hook into format.</param>
     /// <returns>The parameter <paramref name="format"/>.</returns>
     [CanBeNull, StringFormatMethod(nameof(format))]
-    [return: AllowNull]
+    [return: AllowNull, NotNullIfNotNull(nameof(format))]
     public T LogLower<T>(
         [AllowNull, CanBeNull, StringSyntax(StringSyntaxAttribute.CompositeFormat)] T format = default,
         [ItemCanBeNull, NotNull] params object[] args
@@ -628,7 +654,7 @@ public abstract class ModdedModule : CachedBehaviour
         if (Needy)
             Needy.OnNeedyActivation += Needy.HandlePass;
 
-        // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
+        // ReSharper disable once SuspiciousTypeConversion.Global Unity.PerformanceCriticalCodeInvocation
         if (GetComponent<ISolvable>() is var solver && solver as Object)
             yield return solver.ForceTPSolve();
     }
