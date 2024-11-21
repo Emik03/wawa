@@ -64,7 +64,7 @@ public sealed class Config<T> : ICloneable, IEquatable<Config<T>>, IEqualityComp
         this.Merge(new());
     }
 
-    /// <summary>Gets a value indicating whether or not there has been a successful read of the settings file.</summary>
+    /// <summary>Gets a value indicating whether there has been a successful read of the settings file.</summary>
     /// <remarks><para>This value will always be false in the editor.</para></remarks>
     [JsonIgnore, PublicAPI]
     public bool HasRead { [Pure] get; internal set; }

@@ -35,14 +35,13 @@ public sealed class HookDef<T> : Hook<T>, IValued<T>
         : base(instance, info, getterOverride, converter) { }
 
     /// <inheritdoc/>
-    // ReSharper disable NullableWarningSuppressionIsUsed
     public T Value
     {
+        // ReSharper disable NullableWarningSuppressionIsUsed
         [Pure] get => (Info is null ? GetterOverride!(Instance) : this.Get())!;
-    }
+    } // ReSharper restore NullableWarningSuppressionIsUsed
 
     /// <inheritdoc/>
-    // ReSharper restore NullableWarningSuppressionIsUsed'
     [Pure]
     public override object Clone() => new HookDef<T>(Instance, Info, GetterOverride, Converter);
 }

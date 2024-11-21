@@ -2,6 +2,7 @@
 namespace wawa.Schemas;
 
 /// <summary>Explicitly defines the type of listing to use for a setting.</summary>
+// ReSharper disable ClassNeverInstantiated.Global
 public static class TweaksSetting
 {
     /// <summary>The default <see cref="TweaksSettingAttribute"/>.</summary>
