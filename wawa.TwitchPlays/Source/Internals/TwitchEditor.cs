@@ -2,7 +2,6 @@
 namespace wawa.TwitchPlays.Internals;
 
 /// <summary>Custom inspector for <see cref="Twitch{TMod}"/>.</summary>
-// ReSharper disable Unity.PerformanceCriticalCodeInvocation
 [CanEditMultipleObjects, CustomEditor(typeof(Twitch<>), true), UsedImplicitly]
 #pragma warning disable CA1812
 sealed class TwitchEditor : Editor
@@ -47,7 +46,6 @@ sealed class TwitchEditor : Editor
         if (!Button(AllSolvers))
             return;
 
-        // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
         foreach (var behavior in FindObjectsOfType<MonoBehaviour>())
             if (behavior is ITwitchDeclarable tpBehavior)
                 StartAssertion(behavior, tpBehavior);

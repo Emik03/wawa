@@ -326,8 +326,6 @@ public abstract class ModdedModule : CachedBehaviour
     [NotNull, Pure] // ReSharper disable once CognitiveComplexity
     public virtual string Stringify<T>([AllowNull, CanBeNull] T source, [AllowNull, CanBeNull] string format)
     {
-        Log($"asdasd {-1:asd}");
-
         const int Limit = 500;
 
         string Dictionary([NotNull] IDictionary dictionary, [AllowNull, CanBeNull] string format)
@@ -654,7 +652,6 @@ public abstract class ModdedModule : CachedBehaviour
         if (Needy)
             Needy.OnNeedyActivation += Needy.HandlePass;
 
-        // ReSharper disable once SuspiciousTypeConversion.Global Unity.PerformanceCriticalCodeInvocation
         if (GetComponent<ISolvable>() is var solver && solver as Object)
             yield return solver.ForceTPSolve();
     }
