@@ -24,6 +24,7 @@ sealed class WawaEditor : Editor
         Scaffold = $"{Prefix}{nameof(Scaffold)}/",
         Suffix = " & deps",
         Recall = $"{Wawa}{nameof(Recall)}",
+        Schemas = $"{Wawa}{nameof(Schemas)}",
         TwitchPlays = $"{Wawa}{nameof(TwitchPlays)}",
         Update = $"{Prefix}{nameof(Update)}/",
         Unity = $"{Wawa}{nameof(Unity)}",
@@ -52,6 +53,10 @@ sealed class WawaEditor : Editor
     /// <summary>Fetches the extensions package.</summary>
     [MenuItem($"{Update}{Extensions}"), UsedImplicitly]
     static void FetchExtensions() => Fetch(Extensions);
+
+    /// <summary>Fetches the schemas package.</summary>
+    [MenuItem($"{Update}{Schemas}"), UsedImplicitly]
+    static void FetchSchemas() => Fetch(Schemas);
 
     /// <summary>Fetches the DDL package and its dependencies.</summary>
     [MenuItem($"{Update}{DDL}{Suffix}"), UsedImplicitly]
