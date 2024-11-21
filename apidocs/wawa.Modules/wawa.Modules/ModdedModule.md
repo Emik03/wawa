@@ -25,11 +25,12 @@ Inheritance: `MonoBehaviour` > [CachedBehaviour](../../wawa.Unity/wawa.Unity/Cac
 | [Shake\(KMSelectable, float, params Sound\[\]\)](./ModdedModule/Shake.md) | Plays sounds and shakes the bomb from a selectable\. |
 | [Solve\(string, params object\[\]\)](./ModdedModule/Solve.md) | Solves the module\. |
 | [Strike\(string, params object\[\]\)](./ModdedModule/Strike.md) | Strikes the module\. |
-| [Log\(string\)](./ModdedModule/Log.md) | Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer\. |
 | [Stringify\<T\>\(T\)](./ModdedModule/Stringify.md) | Converts `source` into a `System.String` representation of `source`\. |
+| [Stringify\<T\>\(T, string\)](./ModdedModule/Stringify.md) | Converts `source` into a `System.String` representation of `source`\. |
+| [Log\(InterpolatedStringHandlerEnumerable\)](./ModdedModule/Log.md) | Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer\. |
+| [LogLower\(InterpolatedStringHandlerEnumerable\)](./ModdedModule/LogLower.md) | Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer\. |
 | [Log\<T\>\(T, LogType\)](./ModdedModule/Log.md) | Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer\. |
 | [Log\<T\>\(T, params object\[\]\)](./ModdedModule/Log.md) | Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer\. |
-| [LogLower\(string\)](./ModdedModule/LogLower.md) | Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer\. |
 | [LogLower\<T\>\(T, LogType\)](./ModdedModule/LogLower.md) | Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer\. |
 | [LogLower\<T\>\(T, params object\[\]\)](./ModdedModule/LogLower.md) | Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer\. |
 | [MissionSettings\(\)](./ModdedModule/MissionSettings.md) | Attempts to parse the `JToken` from the mission description\. |

@@ -66,6 +66,6 @@ In the editor, this constructor will not merge the default of type `T` with the 
 
 | Name | Summary |
 |------|---------|
-| [HasRead](./Config\`1/HasRead.md) | Gets a value indicating whether or not there has been a successful read of the settings file\. |
+| [HasRead](./Config\`1/HasRead.md) | Gets a value indicating whether there has been a successful read of the settings file\. |
 | [FilePath](./Config\`1/FilePath.md) | Gets the path of the file to read and write\. |
 

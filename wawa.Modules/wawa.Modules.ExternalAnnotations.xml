@@ -1,5 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <assembly name="wawa.Modules">
+  <member name="M:wawa.Modules.InterpolatedStringHandlerEnumerable.#ctor(System.Int32,System.Int32)">
+    <parameter name="literalLength">
+      <attribute ctor="M:JetBrains.Annotations.NonNegativeValueAttribute.#ctor" />
+    </parameter>
+    <parameter name="formattedCount">
+      <attribute ctor="M:JetBrains.Annotations.NonNegativeValueAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:wawa.Modules.InterpolatedStringHandlerEnumerable.get_RecommendedLength">
+    <attribute ctor="M:JetBrains.Annotations.NonNegativeValueAttribute.#ctor" />
+  </member>
   <member name="M:wawa.Modules.ModdedModule.get_Children">
     <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
     <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />

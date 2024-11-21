@@ -14,5 +14,5 @@ public abstract IEnumerator TwitchHandleForcedSolve();
 
 `IEnumerator`
 
-A series of instructions for the Twitch Plays mod to handle in order to guarantee a solve\.
+A series of instructions for the Twitch Plays mod to handle in order to guarantee the module being solved\.
 

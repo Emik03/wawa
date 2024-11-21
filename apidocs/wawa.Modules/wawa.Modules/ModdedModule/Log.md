@@ -9,27 +9,27 @@ assembly: [wawa\.Modules](../../../wawa.Modules.md)
 
 | Name | Summary |
 |------|---------|
-| Log\(string\) | Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer\. |
+| Log\(InterpolatedStringHandlerEnumerable\) | Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer\. |
 | Log\<T\>\(T, LogType\) | Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer\. |
 | Log\<T\>\(T, params object\[\]\) | Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer\. |
 
-## Log\(string\)
+## Log\(InterpolatedStringHandlerEnumerable\)
 
 Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer\.
 
 ```csharp
-public string Log(string format = null);
+public InterpolatedStringHandlerEnumerable Log(InterpolatedStringHandlerEnumerable format);
 ```
 
 ### Parameters
 
-__format__ : `string`
+__format__ : [InterpolatedStringHandlerEnumerable](../../../wawa.Modules/wawa.Modules/InterpolatedStringHandlerEnumerable.md)
 
 The value to log\.
 
 ### Return Value
 
-`string`
+[InterpolatedStringHandlerEnumerable](../../../wawa.Modules/wawa.Modules/InterpolatedStringHandlerEnumerable.md)
 
 The parameter `format`\.
 

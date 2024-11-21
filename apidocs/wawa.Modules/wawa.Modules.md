@@ -17,6 +17,12 @@ namespace wawa.Modules;
 | [SoundCore](./wawa.Modules/SoundCore.md) | Implementations for [Sound](../wawa.Modules/wawa.Modules/Sound.md)\. |
 | [State](./wawa.Modules/State.md) | Encapsulation of status conditions for a [ModdedModule](../wawa.Modules/wawa.Modules/ModdedModule.md)\. |
 
+## Structs
+
+| Name | Summary |
+|------|---------|
+| [InterpolatedStringHandlerEnumerable](./wawa.Modules/InterpolatedStringHandlerEnumerable.md) | Provides an interpolated string handler that builds a list of objects and formatted strings,exposing enumeration of the backing list through its `GetEnumerator`\. |
+
 ## Interfaces
 
 | Name | Summary |
