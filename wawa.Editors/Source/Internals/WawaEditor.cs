@@ -80,5 +80,5 @@ sealed class WawaEditor : Editor
 
     /// <summary>Fetches all packages.</summary>
     [MenuItem($"{Update}{All}"), UsedImplicitly]
-    static void FetchAll() => Fetch(Optionals, Unity, DDL, Recall, IO, Modules, TwitchPlays, Extensions, This);
+    static void FetchAll() => Fetch(Optionals, Schemas, Unity, DDL, Recall, IO, Modules, TwitchPlays, Extensions, This);
 }
