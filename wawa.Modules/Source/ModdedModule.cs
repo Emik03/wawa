@@ -196,35 +196,30 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="sounds">The sounds to play.</param>
     /// <returns>The parameter <paramref name="sounds"/>.</returns>
     [ItemCanBeNull, NotNull]
-    public ICollection<Sound> Play([InstantHandle, ItemCanBeNull, NotNull] params IEnumerable<Sound> sounds) =>
-        Play(transform, sounds);
+    public IList<Sound> Play([NotNull] params Sound[] sounds) => Play(transform, sounds);
 
-    /// <summary>Plays one or more sounds from a specified <see cref="Transform"/>.</summary>
+    /// <summary>Plays one or more sounds from the specified <see cref="Transform"/>.</summary>
     /// <param name="location">The source of the sound.</param>
     /// <param name="sounds">The sounds to play.</param>
     /// <returns>The parameter <paramref name="sounds"/>.</returns>
     [ItemCanBeNull, NotNull]
-    public ICollection<Sound> Play(
-        [AllowNull, CanBeNull] Transform location,
-        [InstantHandle, ItemCanBeNull, NotNull] params IEnumerable<Sound> sounds
-    )
+    public IList<Sound> Play([AllowNull, CanBeNull] Transform location, [NotNull] params Sound[] sounds)
     {
         var sources = Get<KMAudio[]>();
-        var collection = sounds as ICollection<Sound> ?? [..sounds];
 
         if (sources.Length is not 1)
         {
             AssemblyLog(sources.Length is 0 ? TooFewAudioSources : TooManyAudioSources, LogType.Error);
-            return collection;
+            return sounds;
         }
 
         var source = sources[0];
         var local = location ? location : transform;
 
-        foreach (var sound in collection) // ReSharper disable once ConstantConditionalAccessQualifier
-            sound?.Play(source, local);
+        foreach (var sound in sounds)
+            sound.Play(source, local);
 
-        return collection;
+        return sounds;
     }
 
     /// <summary>Plays sounds and shakes the bomb from a selectable.</summary>
@@ -235,8 +230,8 @@ public abstract class ModdedModule : CachedBehaviour
     [NotNull]
     public KMSelectable Shake(
         [NotNull] KMSelectable selectable,
-        float intensityModifier = 0,
-        [ItemCanBeNull, NotNull] params Sound[] sounds
+        float intensityModifier = 1,
+        [NotNull] params Sound[] sounds
     )
     {
         var location = selectable.transform;
