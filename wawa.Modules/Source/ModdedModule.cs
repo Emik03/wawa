@@ -124,174 +124,9 @@ public abstract class ModdedModule : CachedBehaviour
         [Pure] get => _needy ? _needy : _needy = GetComponent<KMNeedyModule>();
     }
 
-    /// <summary>Logs the version number for both the module and this library.</summary>
-    protected virtual void Awake()
-    {
-        var version = $"Version: {GetModInfo(Id).Value?.Version switch
-        {
-            null => NotFound,
-            "" => Unspecified,
-            var x => x,
-        }}";
-
-        AssemblyLog(@$"The module ""{Name}"" uses this library.");
-        Log(version);
-    }
-
-    /// <summary>
-    /// Unsubscribes from <see cref="Application.logMessageReceived"/>, <see cref="KMBombModule.OnActivate"/>,
-    /// <see cref="KMBombModule.OnPass"/>, and <see cref="KMBombModule.OnStrike"/>.
-    /// </summary>
-    /// <remarks><para>It is recommended to invoke the base method when overriding this method.</para></remarks>
-    protected virtual void OnDisable()
-    {
-        Application.logMessageReceived -= CheckForException;
-
-        if (Solvable)
-        {
-            Solvable.OnPass -= OnPass;
-            Solvable.OnStrike -= OnStrike;
-            Solvable.OnActivate -= OnActivate;
-        }
-
-        if (!Needy)
-            return;
-
-        Needy.OnPass -= OnPass;
-        Needy.OnStrike -= OnStrike;
-        Needy.OnActivate -= OnActivate;
-        Needy.OnNeedyActivation -= Revert;
-    }
-
-    /// <summary>
-    /// Subscribes from <see cref="Application.logMessageReceived"/>, <see cref="KMBombModule.OnActivate"/>,
-    /// <see cref="KMBombModule.OnPass"/>, and <see cref="KMBombModule.OnStrike"/>.
-    /// </summary>
-    /// <remarks><para>It is recommended to invoke the base method when overriding this method.</para></remarks>
-    protected virtual void OnEnable()
-    {
-        Application.logMessageReceived += CheckForException;
-
-        if (Solvable)
-        {
-            Solvable.OnPass += OnPass;
-            Solvable.OnStrike += OnStrike;
-            Solvable.OnActivate += OnActivate;
-        }
-
-        if (!Needy)
-            return;
-
-        Needy.OnPass += OnPass;
-        Needy.OnStrike += OnStrike;
-        Needy.OnActivate += OnActivate;
-        Needy.OnNeedyActivation += Revert;
-    }
-
     /// <inheritdoc/>
     [Pure]
     public override string ToString() => Name;
-
-    /// <summary>Plays one or more sounds from the module <see cref="Transform"/>.</summary>
-    /// <param name="sounds">The sounds to play.</param>
-    /// <returns>The parameter <paramref name="sounds"/>.</returns>
-    [ItemCanBeNull, NotNull]
-    public IList<Sound> Play([NotNull] params Sound[] sounds) => Play(transform, sounds);
-
-    /// <summary>Plays one or more sounds from the specified <see cref="Transform"/>.</summary>
-    /// <param name="location">The source of the sound.</param>
-    /// <param name="sounds">The sounds to play.</param>
-    /// <returns>The parameter <paramref name="sounds"/>.</returns>
-    [ItemCanBeNull, NotNull]
-    public IList<Sound> Play([AllowNull, CanBeNull] Transform location, [NotNull] params Sound[] sounds)
-    {
-        var sources = Get<KMAudio[]>();
-
-        if (sources.Length is not 1)
-        {
-            AssemblyLog(sources.Length is 0 ? TooFewAudioSources : TooManyAudioSources, LogType.Error);
-            return sounds;
-        }
-
-        var source = sources[0];
-        var local = location ? location : transform;
-
-        foreach (var sound in sounds)
-            sound.Play(source, local);
-
-        return sounds;
-    }
-
-    /// <summary>Plays sounds and shakes the bomb from a selectable.</summary>
-    /// <param name="selectable">The source of the interaction punch and sound source.</param>
-    /// <param name="intensityModifier">The intensity of the interaction punch.</param>
-    /// <param name="sounds">The sounds to play.</param>
-    /// <returns>The parameter <paramref name="selectable"/>.</returns>
-    [NotNull]
-    public KMSelectable Shake(
-        [NotNull] KMSelectable selectable,
-        float intensityModifier = 1,
-        [NotNull] params Sound[] sounds
-    )
-    {
-        var location = selectable.transform;
-        selectable.AddInteractionPunch(intensityModifier);
-        Play(location, sounds);
-        return selectable;
-    }
-
-    /// <summary>Solves the module.</summary>
-    /// <param name="format">The value to log.</param>
-    /// <param name="args">The arguments to hook into format.</param>
-    /// <returns>The value <see langword="default"/>.</returns>
-    [PublicAPI, StringFormatMethod(nameof(format))]
-    public Unit Solve(
-        [AllowNull, CanBeNull, StringSyntax(StringSyntaxAttribute.CompositeFormat)] string format = null,
-        [ItemCanBeNull, NotNull] params object[] args
-    )
-    {
-        if (Status.IsSolved && Solvable)
-            return default;
-
-        if (Status.HasException && IsKtane && Parent<KMBomb>() is var bomb)
-            bomb.SetStrikes(bomb.GetStrikes() - Status.Strikes);
-
-        if (format is not null)
-            Log(format, args);
-
-        if (Solvable)
-            Solvable.HandlePass();
-
-        if (Needy)
-            Needy.HandlePass();
-
-        return default;
-    }
-
-    /// <summary>Strikes the module.</summary>
-    /// <param name="format">The value to log.</param>
-    /// <param name="args">The arguments to hook into format.</param>
-    /// <returns>The value <see langword="default"/>.</returns>
-    [PublicAPI, StringFormatMethod(nameof(format))]
-    public Unit Strike(
-        [AllowNull, CanBeNull, StringSyntax(StringSyntaxAttribute.CompositeFormat)] string format = null,
-        [ItemCanBeNull, NotNull] params object[] args
-    )
-    {
-        if (Status.HasException)
-            return default;
-
-        if (format is not null)
-            Log(format, args);
-
-        if (Solvable)
-            Solvable.HandleStrike();
-
-        if (Needy)
-            Needy.HandleStrike();
-
-        return default;
-    }
 
     /// <summary>
     /// Converts <paramref name="source"/> into a <see cref="string"/> representation of <paramref name="source"/>.
@@ -369,113 +204,73 @@ public abstract class ModdedModule : CachedBehaviour
     }
 
     /// <summary>
-    /// Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer.
+    /// Formats and logs the parameter, which will show up under the module's tab in the Logfile Analyzer.
     /// </summary>
     /// <param name="format">The value to log.</param>
+    /// <param name="logType">The kind of logging method to invoke.</param>
     /// <returns>The parameter <paramref name="format"/>.</returns>
-    public InterpolatedStringHandlerEnumerable Log(InterpolatedStringHandlerEnumerable format)
+    public InterpolatedStringHandlerEnumerable Log(
+        InterpolatedStringHandlerEnumerable format,
+        LogType logType = LogType.Log
+    )
     {
         StringBuilder builder = new(format.RecommendedLength);
 
         foreach (var next in format)
             builder.Append(Stringify(next.Key, next.Value));
 
-        Log(builder);
+        Log(builder, logType);
         return format;
     }
 
     /// <summary>
-    /// Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer.
+    /// Formats and logs the parameter, which will remain hidden under the module's tab in the Logfile Analyzer.
     /// </summary>
     /// <param name="format">The value to log.</param>
+    /// <param name="logType">The kind of logging method to invoke.</param>
     /// <returns>The parameter <paramref name="format"/>.</returns>
-    public InterpolatedStringHandlerEnumerable LogLower(InterpolatedStringHandlerEnumerable format)
+    public InterpolatedStringHandlerEnumerable LogLower(
+        InterpolatedStringHandlerEnumerable format,
+        LogType logType = LogType.Log
+    )
     {
         StringBuilder builder = new(format.RecommendedLength);
 
         foreach (var next in format)
             builder.Append(Stringify(next.Key, next.Value));
 
-        Log(builder);
+        Log(builder, logType);
         return format;
     }
 
-    /// <summary>
-    /// Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer.
-    /// </summary>
-    /// <typeparam name="T">The type of the value to log.</typeparam>
-    /// <param name="format">The value to log.</param>
-    /// <param name="logType">The kind of logging method to invoke.</param>
-    /// <returns>The parameter <paramref name="format"/>.</returns>
-    [CanBeNull]
-    [return: AllowNull, NotNullIfNotNull(nameof(format))]
-    public T Log<T>([AllowNull, CanBeNull] T format = default, LogType logType = LogType.Log)
-    {
-        var stringified = Stringify(format);
-        var message = $"[{Name} #{Status.Id}] {stringified}";
-        Debug.unityLogger.Log(logType, message);
-        return format;
-    }
+    /// <summary>Plays one or more sounds from the module <see cref="Transform"/>.</summary>
+    /// <param name="sounds">The sounds to play.</param>
+    /// <returns>The parameter <paramref name="sounds"/>.</returns>
+    [ItemCanBeNull, NotNull]
+    public IList<Sound> Play([NotNull] params Sound[] sounds) => Play(transform, sounds);
 
-    /// <summary>
-    /// Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer.
-    /// </summary>
-    /// <typeparam name="T">The type of the value to log.</typeparam>
-    /// <param name="format">The value to log.</param>
-    /// <param name="args">The arguments to hook into format.</param>
-    /// <returns>The parameter <paramref name="format"/>.</returns>
-    [CanBeNull]
-    [return: AllowNull, NotNullIfNotNull(nameof(format))]
-    public T Log<T>(
-        [AllowNull, CanBeNull, StringSyntax(StringSyntaxAttribute.CompositeFormat)] T format = default,
-        [ItemCanBeNull, NotNull] params object[] args
-    )
+    /// <summary>Plays one or more sounds from the specified <see cref="Transform"/>.</summary>
+    /// <param name="location">The source of the sound.</param>
+    /// <param name="sounds">The sounds to play.</param>
+    /// <returns>The parameter <paramref name="sounds"/>.</returns>
+    [ItemCanBeNull, NotNull]
+    public IList<Sound> Play([AllowNull, CanBeNull] Transform location, [NotNull] params Sound[] sounds)
     {
-        var convertAll = Array.ConvertAll<object, object>(args, Stringify);
-        var stringified = Stringify(format);
-        var provider = CultureInfo.InvariantCulture;
-        var message = string.Format(provider, stringified, convertAll);
-        Log(message);
-        return format;
-    }
+        var sources = Get<KMAudio[]>();
 
-    /// <summary>
-    /// Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer.
-    /// </summary>
-    /// <typeparam name="T">The type of the value to log.</typeparam>
-    /// <param name="format">The value to log.</param>
-    /// <param name="logType">The kind of logging method to invoke.</param>
-    /// <returns>The parameter <paramref name="format"/>.</returns>
-    [CanBeNull]
-    [return: AllowNull, NotNullIfNotNull(nameof(format))]
-    public T LogLower<T>([AllowNull, CanBeNull] T format = default, LogType logType = LogType.Log)
-    {
-        var stringified = Stringify(format);
-        var message = $"<{Name} #{Status.Id}> {stringified}";
-        Debug.unityLogger.Log(logType, (object)message, this);
-        return format;
-    }
+        if (sources.Length is not 1)
+        {
+            AssemblyLog(sources.Length is 0 ? TooFewAudioSources : TooManyAudioSources, LogType.Error);
+            return sounds;
+        }
 
-    /// <summary>
-    /// Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer.
-    /// </summary>
-    /// <typeparam name="T">The type of the value to log.</typeparam>
-    /// <param name="format">The value to log.</param>
-    /// <param name="args">The arguments to hook into format.</param>
-    /// <returns>The parameter <paramref name="format"/>.</returns>
-    [CanBeNull, StringFormatMethod(nameof(format))]
-    [return: AllowNull, NotNullIfNotNull(nameof(format))]
-    public T LogLower<T>(
-        [AllowNull, CanBeNull, StringSyntax(StringSyntaxAttribute.CompositeFormat)] T format = default,
-        [ItemCanBeNull, NotNull] params object[] args
-    )
-    {
-        var convertAll = Array.ConvertAll<object, object>(args, Stringify);
-        var stringify = Stringify(format);
-        var provider = CultureInfo.InvariantCulture;
-        var message = string.Format(provider, stringify, convertAll);
-        LogLower(message);
-        return format;
+        var source = sources[0];
+        var local = location ? location : transform;
+
+        foreach (var sound in sounds)
+            sound.Play(source, local);
+
+        return sounds;
     }
 
     /// <summary>Attempts to parse the <see cref="JToken"/> from the mission description.</summary>
@@ -536,9 +331,222 @@ public abstract class ModdedModule : CachedBehaviour
         }
     }
 
+    /// <summary>Plays sounds and shakes the bomb from a selectable.</summary>
+    /// <param name="selectable">The source of the interaction punch and sound source.</param>
+    /// <param name="intensityModifier">The intensity of the interaction punch.</param>
+    /// <param name="sounds">The sounds to play.</param>
+    /// <returns>The parameter <paramref name="selectable"/>.</returns>
+    [NotNull]
+    public KMSelectable Shake(
+        [NotNull] KMSelectable selectable,
+        float intensityModifier = 1,
+        [NotNull] params Sound[] sounds
+    )
+    {
+        selectable.AddInteractionPunch(intensityModifier);
+        var location = selectable.transform;
+        Play(location, sounds);
+        return selectable;
+    }
+
+    /// <summary>Solves the module.</summary>
+    /// <param name="format">The value to log.</param>
+    /// <param name="args">The arguments to hook into format.</param>
+    /// <returns>The value <see langword="default"/>.</returns>
+    [PublicAPI, StringFormatMethod(nameof(format))]
+    public Unit Solve(
+        [AllowNull, CanBeNull, StringSyntax(StringSyntaxAttribute.CompositeFormat)] string format = null,
+        [ItemCanBeNull, NotNull] params object[] args
+    )
+    {
+        if (Status.IsSolved && Solvable)
+            return default;
+
+        if (Status.HasException && IsKtane && Parent<KMBomb>() is var bomb)
+            bomb.SetStrikes(bomb.GetStrikes() - Status.Strikes);
+
+        if (format is not null)
+            Log(format, args);
+
+        if (Solvable)
+            Solvable.HandlePass();
+
+        if (Needy)
+            Needy.HandlePass();
+
+        return default;
+    }
+
+    /// <summary>Strikes the module.</summary>
+    /// <param name="format">The value to log.</param>
+    /// <param name="args">The arguments to hook into format.</param>
+    /// <returns>The value <see langword="default"/>.</returns>
+    [PublicAPI, StringFormatMethod(nameof(format))]
+    public Unit Strike(
+        [AllowNull, CanBeNull, StringSyntax(StringSyntaxAttribute.CompositeFormat)] string format = null,
+        [ItemCanBeNull, NotNull] params object[] args
+    )
+    {
+        if (Status.HasException)
+            return default;
+
+        if (format is not null)
+            Log(format, args);
+
+        if (Solvable)
+            Solvable.HandleStrike();
+
+        if (Needy)
+            Needy.HandleStrike();
+
+        return default;
+    }
+
+    /// <summary>
+    /// Formats and logs the parameter, which will show up under the module's tab in the Logfile Analyzer.
+    /// </summary>
+    /// <typeparam name="T">The type of the value to log.</typeparam>
+    /// <param name="format">The value to log.</param>
+    /// <param name="logType">The kind of logging method to invoke.</param>
+    /// <returns>The parameter <paramref name="format"/>.</returns>
+    [CanBeNull]
+    [return: AllowNull, NotNullIfNotNull(nameof(format))]
+    public T Log<T>([AllowNull, CanBeNull] T format = default, LogType logType = LogType.Log)
+    {
+        var stringified = Stringify(format);
+        var message = $"[{Name} #{Status.Id}] {stringified}";
+        Debug.unityLogger.Log(logType, (object)message, this);
+        return format;
+    }
+
+    /// <summary>
+    /// Formats and logs the parameter, which will show up under the module's tab in the Logfile Analyzer.
+    /// </summary>
+    /// <typeparam name="T">The type of the value to log.</typeparam>
+    /// <param name="format">The value to log.</param>
+    /// <param name="args">The arguments to hook into format.</param>
+    /// <returns>The parameter <paramref name="format"/>.</returns>
+    [CanBeNull]
+    [return: AllowNull, NotNullIfNotNull(nameof(format))]
+    public T Log<T>(
+        [AllowNull, CanBeNull, StringSyntax(StringSyntaxAttribute.CompositeFormat)] T format = default,
+        [ItemCanBeNull, NotNull] params object[] args
+    )
+    {
+        var convertAll = Array.ConvertAll<object, object>(args, Stringify);
+        var stringified = Stringify(format);
+        var provider = CultureInfo.InvariantCulture;
+        var message = string.Format(provider, stringified, convertAll);
+        Log(message);
+        return format;
+    }
+
+    /// <summary>
+    /// Formats and logs the parameter, which will remain hidden under the module's tab in the Logfile Analyzer.
+    /// </summary>
+    /// <typeparam name="T">The type of the value to log.</typeparam>
+    /// <param name="format">The value to log.</param>
+    /// <param name="logType">The kind of logging method to invoke.</param>
+    /// <returns>The parameter <paramref name="format"/>.</returns>
+    [CanBeNull]
+    [return: AllowNull, NotNullIfNotNull(nameof(format))]
+    public T LogLower<T>([AllowNull, CanBeNull] T format = default, LogType logType = LogType.Log)
+    {
+        var stringified = Stringify(format);
+        var message = $"<{Name} #{Status.Id}> {stringified}";
+        Debug.unityLogger.Log(logType, (object)message, this);
+        return format;
+    }
+
+    /// <summary>
+    /// Formats and logs the parameter, which will remain hidden under the module's tab in the Logfile Analyzer.
+    /// </summary>
+    /// <typeparam name="T">The type of the value to log.</typeparam>
+    /// <param name="format">The value to log.</param>
+    /// <param name="args">The arguments to hook into format.</param>
+    /// <returns>The parameter <paramref name="format"/>.</returns>
+    [CanBeNull, StringFormatMethod(nameof(format))]
+    [return: AllowNull, NotNullIfNotNull(nameof(format))]
+    public T LogLower<T>(
+        [AllowNull, CanBeNull, StringSyntax(StringSyntaxAttribute.CompositeFormat)] T format = default,
+        [ItemCanBeNull, NotNull] params object[] args
+    )
+    {
+        var convertAll = Array.ConvertAll<object, object>(args, Stringify);
+        var stringify = Stringify(format);
+        var provider = CultureInfo.InvariantCulture;
+        var message = string.Format(provider, stringify, convertAll);
+        LogLower(message);
+        return format;
+    }
+
+    /// <summary>Logs the version number for both the module and this library.</summary>
+    protected virtual void Awake()
+    {
+        var version = $"Version: {GetModInfo(Id).Value?.Version switch
+        {
+            null => NotFound,
+            "" => Unspecified,
+            var x => x,
+        }}";
+
+        AssemblyLog(@$"The module ""{Name}"" uses this library.");
+        Log(version);
+    }
+
     /// <summary>The method that is called when the lights are turned on. Automatically hooked in Awake.</summary>
     /// <remarks><para>The base method doesn't do anything; Calling this base method is a no-op.</para></remarks>
     protected virtual void OnActivate() { }
+
+    /// <summary>
+    /// Unsubscribes from <see cref="Application.logMessageReceived"/>, <see cref="KMBombModule.OnActivate"/>,
+    /// <see cref="KMBombModule.OnPass"/>, and <see cref="KMBombModule.OnStrike"/>.
+    /// </summary>
+    /// <remarks><para>It is recommended to invoke the base method when overriding this method.</para></remarks>
+    protected virtual void OnDisable()
+    {
+        Application.logMessageReceived -= CheckForException;
+
+        if (Solvable)
+        {
+            Solvable.OnPass -= OnPass;
+            Solvable.OnStrike -= OnStrike;
+            Solvable.OnActivate -= OnActivate;
+        }
+
+        if (!Needy)
+            return;
+
+        Needy.OnPass -= OnPass;
+        Needy.OnStrike -= OnStrike;
+        Needy.OnActivate -= OnActivate;
+        Needy.OnNeedyActivation -= Revert;
+    }
+
+    /// <summary>
+    /// Subscribes from <see cref="Application.logMessageReceived"/>, <see cref="KMBombModule.OnActivate"/>,
+    /// <see cref="KMBombModule.OnPass"/>, and <see cref="KMBombModule.OnStrike"/>.
+    /// </summary>
+    /// <remarks><para>It is recommended to invoke the base method when overriding this method.</para></remarks>
+    protected virtual void OnEnable()
+    {
+        Application.logMessageReceived += CheckForException;
+
+        if (Solvable)
+        {
+            Solvable.OnPass += OnPass;
+            Solvable.OnStrike += OnStrike;
+            Solvable.OnActivate += OnActivate;
+        }
+
+        if (!Needy)
+            return;
+
+        Needy.OnPass += OnPass;
+        Needy.OnStrike += OnStrike;
+        Needy.OnActivate += OnActivate;
+        Needy.OnNeedyActivation += Revert;
+    }
 
     /// <summary>
     /// The method that is called when an unhandled <see cref="Exception"/> is thrown by this module type.
@@ -546,8 +554,7 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="message">The message of the <see cref="Exception"/>.</param>
     protected virtual void OnException([NotNull] string message)
     {
-        var formatted = $"Unhandled: {message}";
-        Log(formatted, LogType.Warning);
+        Log($"Unhandled: {message}", LogType.Warning);
 
         if (GetComponent<ISolvable>()?.IsTP ?? false)
             return;
