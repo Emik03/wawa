@@ -32,22 +32,11 @@
       <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
     </parameter>
   </member>
-  <member name="M:wawa.Modules.ModdedModule.Play(System.Collections.Generic.IEnumerable{wawa.Modules.Sound})">
+  <member name="M:wawa.Modules.ModdedModule.Play(UnityEngine.Transform,wawa.Modules.Sound[])">
     <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
-    <parameter name="sounds">
-      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
-    </parameter>
   </member>
-  <member name="M:wawa.Modules.ModdedModule.Play(UnityEngine.Transform,System.Collections.Generic.IEnumerable{wawa.Modules.Sound})">
+  <member name="M:wawa.Modules.ModdedModule.Play(wawa.Modules.Sound[])">
     <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
-    <parameter name="sounds">
-      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
-    </parameter>
-  </member>
-  <member name="M:wawa.Modules.ModdedModule.Shake(KMSelectable,System.Single,wawa.Modules.Sound[])">
-    <parameter name="sounds">
-      <attribute ctor="M:JetBrains.Annotations.ItemCanBeNullAttribute.#ctor" />
-    </parameter>
   </member>
   <member name="M:wawa.Modules.ModdedModule.Solve(System.String,System.Object[])">
     <parameter name="args">
