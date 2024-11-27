@@ -196,42 +196,35 @@ public abstract class ModdedModule : CachedBehaviour
     /// <param name="sounds">The sounds to play.</param>
     /// <returns>The parameter <paramref name="sounds"/>.</returns>
     [ItemCanBeNull, NotNull]
-    public IList<Sound> Play([InstantHandle, ItemCanBeNull, NotNull] params Sound[] sounds) =>
-        Play(sounds, transform);
+    public ICollection<Sound> Play([InstantHandle, ItemCanBeNull, NotNull] params IEnumerable<Sound> sounds) =>
+        Play(transform, sounds);
 
     /// <summary>Plays one or more sounds from a specified <see cref="Transform"/>.</summary>
     /// <param name="location">The source of the sound.</param>
     /// <param name="sounds">The sounds to play.</param>
     /// <returns>The parameter <paramref name="sounds"/>.</returns>
     [ItemCanBeNull, NotNull]
-    public IList<Sound> Play(
-        [NotNull] Transform location,
-        [InstantHandle, ItemCanBeNull, NotNull] params Sound[] sounds
-    ) =>
-        Play(sounds, location);
-
-    /// <summary>Plays one or more sounds from a specified <see cref="Transform"/>.</summary>
-    /// <typeparam name="T">The type of iterator.</typeparam>
-    /// <param name="sounds">The sounds to play.</param>
-    /// <param name="location">The source of the sound.</param>
-    /// <returns>The parameter <paramref name="sounds"/>.</returns>
-    [ItemCanBeNull, NotNull]
-    public T Play<T>(
-        [InstantHandle, ItemCanBeNull, NotNull] T sounds,
-        [AllowNull, CanBeNull] Transform location = null
+    public ICollection<Sound> Play(
+        [AllowNull, CanBeNull] Transform location,
+        [InstantHandle, ItemCanBeNull, NotNull] params IEnumerable<Sound> sounds
     )
-        where T : IEnumerable<Sound>
     {
         var sources = Get<KMAudio[]>();
+        var collection = sounds as ICollection<Sound> ?? [..sounds];
 
         if (sources.Length is not 1)
         {
             AssemblyLog(sources.Length is 0 ? TooFewAudioSources : TooManyAudioSources, LogType.Error);
-            return sounds;
+            return collection;
         }
 
+        var source = sources[0];
         var local = location ? location : transform;
-        return Play(local, sounds, sources[0]);
+
+        foreach (var sound in collection) // ReSharper disable once ConstantConditionalAccessQualifier
+            sound?.Play(source, local);
+
+        return collection;
     }
 
     /// <summary>Plays sounds and shakes the bomb from a selectable.</summary>
@@ -575,22 +568,6 @@ public abstract class ModdedModule : CachedBehaviour
             StartCoroutine(WaitForSolve());
             return false;
         };
-    }
-
-    /// <summary>Plays the sounds at the given location.</summary>
-    /// <typeparam name="T">The type of the sounds to play.</typeparam>
-    /// <param name="location">The location to play the sounds at.</param>
-    /// <param name="sounds">The sounds to play.</param>
-    /// <param name="source">The audio source to use.</param>
-    /// <returns>The parameter <paramref name="sounds"/>.</returns>
-    [ItemCanBeNull, NotNull]
-    static T Play<T>([NotNull] in Transform location, [ItemCanBeNull, NotNull] in T sounds, [NotNull] in KMAudio source)
-        where T : IEnumerable<Sound>
-    {
-        foreach (var sound in sounds)
-            sound?.Play(source, location);
-
-        return sounds;
     }
 
     /// <summary>Checks if a log message is an exception caused by this module, and prepares accordingly.</summary>
