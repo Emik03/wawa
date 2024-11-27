@@ -13,14 +13,14 @@ public static class TweaksSetting
     /// <param name="text">The short label describing the setting, defaulting to the field or property name.</param>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class ArrayAttribute([Allow, CanBe] string description = null, [Allow, CanBe] string text = null)
-        : TweaksSettingAttribute(text, description);
+        : TweaksSettingAttribute(description, text);
 
     /// <summary>Indicates that the field or property is a setting serialized as a boolean.</summary>
     /// <param name="description">A longer description of the setting.</param>
     /// <param name="text">The short label describing the setting, defaulting to the field or property name.</param>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class CheckboxAttribute([Allow, CanBe] string description = null, [Allow, CanBe] string text = null)
-        : TweaksSettingAttribute(text, description);
+        : TweaksSettingAttribute(description, text);
 
     /// <summary>Indicates that the field or property is a setting serialized as one of a set of values.</summary>
     /// <param name="description">A longer description of the setting.</param>
@@ -31,7 +31,7 @@ public static class TweaksSetting
         [Allow, CanBe] string description = null,
         [Allow, CanBe] string text = null,
         [Allow, CanBe] params object[] dropdownItems
-    ) : TweaksSettingAttribute(text, description)
+    ) : TweaksSettingAttribute(description, text)
     {
         /// <summary>Gets the set of possible values.</summary>
         [Allow, CanBe]
@@ -47,21 +47,21 @@ public static class TweaksSetting
     /// <param name="text">The short label describing the setting, defaulting to the field or property name.</param>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class NumberAttribute([Allow, CanBe] string description = null, [Allow, CanBe] string text = null)
-        : TweaksSettingAttribute(text, description);
+        : TweaksSettingAttribute(description, text);
 
     /// <summary>Indicates that the field or property is a setting serialized as a string.</summary>
     /// <param name="description">A longer description of the setting.</param>
     /// <param name="text">The short label describing the setting, defaulting to the field or property name.</param>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class StringAttribute([Allow, CanBe] string description = null, [Allow, CanBe] string text = null)
-        : TweaksSettingAttribute(text, description);
+        : TweaksSettingAttribute(description, text);
 
     /// <summary>Indicates that the field or property is a setting serialized as a submenu.</summary>
     /// <param name="description">A longer description of the setting.</param>
     /// <param name="text">The short label describing the setting, defaulting to the field or property name.</param>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class SubmenuAttribute([Allow, CanBe] string description = null, [Allow, CanBe] string text = null)
-        : TweaksSettingAttribute(text, description);
+        : TweaksSettingAttribute(description, text);
 
     /// <summary>Gets the <see cref="TweaksSettingAttribute"/> for the <paramref name="member"/>.</summary>
     /// <param name="member"></param>
