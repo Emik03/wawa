@@ -91,7 +91,7 @@ struct ModuleModSetting2
     [JsonProperty("string"), TweaksSetting("This is the description", "Title")]
     public string String { get; set; }
 
-    [TweaksSetting.Dropdown("This is the description", "Title", "Option 1", "Option 2", "Option 3")]
+    [TweaksSetting.Dropdown("This is the description", nameof(Object), "Option 1", "Option 2", "Option 3")]
     public object Object { get; set; }
 }
 ```
