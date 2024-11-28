@@ -10,8 +10,7 @@ assembly: [wawa\.Modules](../../../wawa.Modules.md)
 | Name | Summary |
 |------|---------|
 | Play\(params Sound\[\]\) | Plays one or more sounds from the module `Transform`\. |
-| Play\(Transform, params Sound\[\]\) | Plays one or more sounds from a specified `Transform`\. |
-| Play\<T\>\(T, Transform\) | Plays one or more sounds from a specified `Transform`\. |
+| Play\(Transform, params Sound\[\]\) | Plays one or more sounds from the specified `Transform`\. |
 
 ## Play\(params Sound\[\]\)
 
@@ -35,7 +34,7 @@ The parameter `sounds`\.
 
 ## Play\(Transform, params Sound\[\]\)
 
-Plays one or more sounds from a specified `Transform`\.
+Plays one or more sounds from the specified `Transform`\.
 
 ```csharp
 public IList<Sound> Play(Transform location ,params Sound[] sounds);
@@ -54,36 +53,6 @@ The sounds to play\.
 ### Return Value
 
 `IList<Sound>`
-
-The parameter `sounds`\.
-
-## Play\<T\>\(T, Transform\)
-
-Plays one or more sounds from a specified `Transform`\.
-
-```csharp
-public T Play<T>(T sounds ,Transform location = null);
-```
-
-### Type Parameters
-
-__T__ : `IEnumerable<Sound>`
-
-The type of iterator\.
-
-### Parameters
-
-__sounds__ : `T`
-
-The sounds to play\.
-
-__location__ : `Transform`
-
-The source of the sound\.
-
-### Return Value
-
-`T`
 
 The parameter `sounds`\.
 

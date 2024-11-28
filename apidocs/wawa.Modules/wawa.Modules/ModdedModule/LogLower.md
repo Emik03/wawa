@@ -9,16 +9,16 @@ assembly: [wawa\.Modules](../../../wawa.Modules.md)
 
 | Name | Summary |
 |------|---------|
-| LogLower\(InterpolatedStringHandlerEnumerable\) | Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer\. |
-| LogLower\<T\>\(T, LogType\) | Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer\. |
-| LogLower\<T\>\(T, params object\[\]\) | Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer\. |
+| LogLower\(InterpolatedStringHandlerEnumerable, LogType\) | Formats and logs the parameter, which will remain hidden under the module's tab in the Logfile Analyzer\. |
+| LogLower\<T\>\(T, LogType\) | Formats and logs the parameter, which will remain hidden under the module's tab in the Logfile Analyzer\. |
+| LogLower\<T\>\(T, params object\[\]\) | Formats and logs the parameter, which will remain hidden under the module's tab in the Logfile Analyzer\. |
 
-## LogLower\(InterpolatedStringHandlerEnumerable\)
+## LogLower\(InterpolatedStringHandlerEnumerable, LogType\)
 
-Logs and formats a message to the Unity Console in a format compliant with the Logfile Analyzer\.
+Formats and logs the parameter, which will remain hidden under the module's tab in the Logfile Analyzer\.
 
 ```csharp
-public InterpolatedStringHandlerEnumerable LogLower(InterpolatedStringHandlerEnumerable format);
+public InterpolatedStringHandlerEnumerable LogLower(InterpolatedStringHandlerEnumerable format ,LogType logType = null);
 ```
 
 ### Parameters
@@ -26,6 +26,10 @@ public InterpolatedStringHandlerEnumerable LogLower(InterpolatedStringHandlerEnu
 __format__ : [InterpolatedStringHandlerEnumerable](../../../wawa.Modules/wawa.Modules/InterpolatedStringHandlerEnumerable.md)
 
 The value to log\.
+
+__logType__ : `LogType`
+
+The kind of logging method to invoke\.
 
 ### Return Value
 
@@ -35,7 +39,7 @@ The parameter `format`\.
 
 ## LogLower\<T\>\(T, LogType\)
 
-Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer\.
+Formats and logs the parameter, which will remain hidden under the module's tab in the Logfile Analyzer\.
 
 ```csharp
 public T LogLower<T>(T format = null ,LogType logType = null);
@@ -65,7 +69,7 @@ The parameter `format`\.
 
 ## LogLower\<T\>\(T, params object\[\]\)
 
-Logs and formats a message to the Unity Console in a format not compliant with the Logfile Analyzer\.
+Formats and logs the parameter, which will remain hidden under the module's tab in the Logfile Analyzer\.
 
 ```csharp
 public T LogLower<T>(T format = null ,params object[] args);
