@@ -5,7 +5,7 @@
 
 A collection of libraries to help with the creation of mods in the game [Keep Talking and Nobody Explodes](https://keeptalkinggame.com/).
 
-Named after the respective [toki pona](https://tokipona.org/) word, meaning roughly "[strong, powerful; confident, sure; energetic, intense](https://linku.la)".
+Named after the respective [toki pona](https://tokipona.org/) word, meaning roughly "[strong, powerful; confident, sure; energetic, intense](https://linku.la/words/wawa)".
 
 This project has a dependency to [Emik.Morsels](https://github.com/Emik03/Emik.Morsels), if you are building this project, refer to its [README](https://github.com/Emik03/Emik.Morsels/blob/main/README.md) first.
 
