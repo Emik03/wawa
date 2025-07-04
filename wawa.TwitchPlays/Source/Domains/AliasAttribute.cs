@@ -95,7 +95,7 @@ public sealed class AliasAttribute([ItemCanBeNull, NotNull] IList<string> aliase
 
     /// <inheritdoc/>
     [PublicAPI, Pure] // ReSharper disable once AssignNullToNotNullAttribute
-    public override bool Equals([AllowNull] object obj) => Equals(obj as AliasAttribute);
+    public override bool Equals([AllowNull] object? obj) => Equals(obj as AliasAttribute);
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
@@ -104,7 +104,7 @@ public sealed class AliasAttribute([ItemCanBeNull, NotNull] IList<string> aliase
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
-    public override string ToString() => $"[{string.Join(", ", [.. Aliases])}]";
+    public override string ToString() => $"[{string.Join(", ", [..Aliases])}]";
 
     /// <summary>Gets a <see langword="string"/> representation showing every alias.</summary>
     /// <param name="original">The original name of the field.</param>

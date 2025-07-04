@@ -244,7 +244,7 @@ public static class SelectedCore
     [MustUseReturnValue, NotNull, PublicAPI]
     public static ReadOnlyCollection<Maybe<Entity>>
         ToEntities([AllowNull, CanBeNull] this IEnumerable<Selected> that) =>
-        that is null ? Lot<Maybe<Entity>>.Empty : new(that.Select(ToEntity).ToList());
+        that is null ? Lot<Maybe<Entity>>.Empty : new([..that.Select(ToEntity)]);
 
     /// <summary>Creates an <see cref="ReadOnlyCollection{T}"/> where each element has been converted.</summary>
     /// <param name="that">The collection.</param>
@@ -253,5 +253,5 @@ public static class SelectedCore
     public static ReadOnlyCollection<Selected> ToSelectables(
         [AllowNull, CanBeNull] this IEnumerable<KMSelectable> that
     ) =>
-        that is null ? Lot<Selected>.Empty : new(that.Select(AsSelectable).ToList());
+        that is null ? Lot<Selected>.Empty : new([..that.Select(AsSelectable)]);
 }

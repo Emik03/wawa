@@ -7,6 +7,7 @@ namespace wawa.TwitchPlays;
 /// <typeparam name="TMod">
 /// The <see cref="Type"/> of <see cref="Mod"/> to implement Twitch Plays support for.
 /// </typeparam>
+// ReSharper disable InconsistentNaming
 [CLSCompliant(false), PublicAPI, RequireComponent(typeof(ModdedModule)), Serializable]
 public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     where TMod : ModdedModule
@@ -91,7 +92,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
     [PublicAPI]
     protected virtual void Awake()
     {
-        AssemblyLog(@$"The module ""{Module}"" uses this library.");
+        AssemblyLog($"""The module "{Module}" uses this library.""");
 
         if (string.IsNullOrEmpty(Help))
             Help = AutoImplementedHelp;
@@ -363,7 +364,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         float duration,
         [NotNull] IEnumerable<int> indices
     ) =>
-        IndexedSequence(selectables, duration, indices.ToArray());
+        IndexedSequence(selectables, duration, [..indices]);
 
     /// <summary>Determines whether two strings are equal, without accounting for case.</summary>
     /// <param name="left">The left-hand side.</param>
@@ -485,8 +486,9 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         [ItemNotNull, NotNull] in ParameterInfo[] parameters
     ) =>
         FromFail(
-            @$"Invalid {Ordinal(fail + 1)} parameter ""{parameters[fail].Name}"": " +
-            ((ParseError)args[fail]).Reason(parameters[fail].ParameterType)
+            $"""Invalid {Ordinal(fail + 1)} parameter "{parameters[fail].Name}": {
+                ((ParseError)args[fail]).Reason(parameters[fail].ParameterType)
+            }"""
         );
 
     /// <summary>Prints the yielded instruction.</summary>
@@ -509,7 +511,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
             return $"!{{0}} {prefix} {args}".TrimEnd();
         }
 
-        return string.Join(Separator, Commands.Select(Selector).ToArray()).Trim();
+        return string.Join(Separator, [..Commands.Select(Selector)]).Trim();
     }
 
     /// <summary>Finds the set of instructions corresponding to the command.</summary>
@@ -553,7 +555,7 @@ public abstract class Twitch<TMod> : CachedBehaviour, ITwitchMutable
         static bool IsParams(ICustomAttributeProvider x) => x.IsDefined(typeof(ParamArrayAttribute), false);
 
         var method = query.Method;
-        AssemblyLog(@$"Captured ""{method.Name}""; sending ""{message}"".");
+        AssemblyLog($"""Captured "{method.Name}"; sending "{message}".""");
         var split = Split(message);
         var parameters = method.GetParameters();
 

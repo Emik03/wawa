@@ -70,7 +70,7 @@ public sealed class CommandAttribute([AllowNull, CanBeNull] string prefix = null
 
     /// <inheritdoc/>
     [PublicAPI, Pure] // ReSharper disable once AssignNullToNotNullAttribute
-    public override bool Equals([AllowNull] object obj) => Equals(obj as CommandAttribute);
+    public override bool Equals([AllowNull] object? obj) => Equals(obj as CommandAttribute);
 
     /// <inheritdoc/>
     [PublicAPI, Pure]

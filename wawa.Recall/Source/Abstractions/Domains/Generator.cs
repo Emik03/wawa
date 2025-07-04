@@ -294,7 +294,7 @@ public static class Generator
         where T : IVanilla // ReSharper disable PossibleMultipleEnumeration
     {
         if (that is null)
-            return Enumerable.Empty<T>();
+            return [];
 
         foreach (var next in that)
             next.Do(action);

@@ -18,7 +18,7 @@ public abstract class CanRegister
 
     /// <inheritdoc />
     [EditorBrowsable(EditorBrowsableState.Never), Obsolete(Message, true), Pure]
-    public override bool Equals([Allow] object obj) => false;
+    public override bool Equals([Allow] object? obj) => false;
 
     /// <inheritdoc />
     [EditorBrowsable(EditorBrowsableState.Never), ValueRange(0), Obsolete(Message, true), Pure]

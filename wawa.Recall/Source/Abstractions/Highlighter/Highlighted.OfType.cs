@@ -7,23 +7,13 @@ namespace wawa.Recall;
 /// </summary>
 public sealed partial class Highlighted
 {
-    [CanBeNull]
-    PropDef<float> _outline;
-
-    [CanBeNull]
-    PropDef<Vector3> _scale;
-
-    [CanBeNull]
-    PropMay<bool> _ignore;
-
-    [CanBeNull]
-    PropMay<Material> _override;
-
     /// <summary>Gets a value indicating whether this instance contains a modded highlightable.</summary>
     [PublicAPI]
     public bool IsModded
     {
+#pragma warning disable CS0184
         [Pure] get => Value is KMHighlightable;
+#pragma warning restore CS0184
     }
 
     /// <summary>Gets a value indicating whether this instance contains a vanilla highlightable.</summary>
@@ -44,14 +34,17 @@ public sealed partial class Highlighted
     [CLSCompliant(false), PublicAPI]
     public Maybe<MonoBehaviour> Vanilla
     {
-        [Pure] get => Value is KMHighlightable ? default : Value;
+#pragma warning disable CS0184
+        [Pure] get => Value is KMHighlightable ? null : Value;
+#pragma warning restore CS0184
     }
 
     /// <summary>Gets the outline thickness amount.</summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public PropDef<float> Outline
     {
-        [Pure] get => _outline ??= new(Value, nameof(KMHighlightable.OutlineAmount));
+        [Pure] get => field ??= new(Value, nameof(KMHighlightable.OutlineAmount));
     }
 
     /// <summary>
@@ -59,9 +52,10 @@ public sealed partial class Highlighted
     /// leave it at <see cref="Vector3.zero"/> for default scaling.
     /// </summary>
     [CLSCompliant(false), NotNull, PublicAPI]
+    [field: CanBeNull]
     public PropDef<Vector3> Scale
     {
-        [Pure] get => _scale ??= new(Value, nameof(KMHighlightable.HighlightScale));
+        [Pure] get => field ??= new(Value, nameof(KMHighlightable.HighlightScale));
     }
 
     /// <summary>
@@ -69,9 +63,10 @@ public sealed partial class Highlighted
     /// will not be activated when a parent highlight is activated. Vanilla Only.
     /// </summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public PropMay<bool> Ignore
     {
-        [Pure] get => _ignore ??= new(Value, nameof(Highlightable.IgnoreAsChildHighlight));
+        [Pure] get => field ??= new(Value, nameof(Highlightable.IgnoreAsChildHighlight));
     }
 
     /// <summary>
@@ -79,8 +74,9 @@ public sealed partial class Highlighted
     /// be activated when a parent highlight is activated. Vanilla Only.
     /// </summary>
     [CLSCompliant(false), NotNull, PublicAPI]
+    [field: CanBeNull]
     public PropMay<Material> Override
     {
-        [Pure] get => _override ??= new(Value, nameof(Highlightable.MaterialOverride));
+        [Pure] get => field ??= new(Value, nameof(Highlightable.MaterialOverride));
     }
 }

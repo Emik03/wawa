@@ -245,7 +245,7 @@ public sealed class Instruction : ICloneable, IEquatable<Instruction>, IEquality
 
     /// <inheritdoc/>
     [PublicAPI, Pure] // ReSharper disable once NullableWarningSuppressionIsUsed
-    public override bool Equals([AllowNull] object obj) => Equals((obj as Instruction)!);
+    public override bool Equals([AllowNull] object? obj) => Equals((obj as Instruction)!);
 
     /// <inheritdoc/>
     [PublicAPI, Pure]

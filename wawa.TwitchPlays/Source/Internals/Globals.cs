@@ -45,7 +45,7 @@ static class Globals
             ParseError.Empty => TooShort,
             ParseError.NoMatch => InvalidFormat,
             ParseError.Unserializable => CannotSerialize,
-            ParseError.Field => $"Expected one of {string.Join(" ", type.DisplayFields().ToArray())}",
+            ParseError.Field => $"Expected one of {string.Join(" ", [..type.DisplayFields()])}",
             _ => throw new ArgumentOutOfRangeException(nameof(err), err, NotImplemented),
         };
 
@@ -67,7 +67,7 @@ static class Globals
                 _ when x == typeof(float) || x == typeof(double) || x == typeof(decimal) => Float,
                 _ when x == typeof(byte) || x == typeof(ushort) || x == typeof(uint) || x == typeof(ulong) => Unsigned,
                 _ when x == typeof(sbyte) || x == typeof(short) || x == typeof(int) || x == typeof(long) => Signed,
-                _ => $"<{string.Join("/", x.DisplayFields().ToArray())}>",
+                _ => $"<{string.Join("/", [..x.DisplayFields()])}>",
             };
 
         [NotNull]
@@ -79,7 +79,7 @@ static class Globals
                 ? $" ({description})"
                 : "";
 
-        return string.Join(" ", parameters.Select(static x => $"{Display(x.ParameterType)}{Description(x)}").ToArray());
+        return string.Join(" ", [..parameters.Select(static x => $"{Display(x.ParameterType)}{Description(x)}")]);
     }
 
     [NotNull, Pure] // ReSharper disable once SuggestBaseTypeForParameter

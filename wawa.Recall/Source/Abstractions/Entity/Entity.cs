@@ -123,7 +123,7 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
         if (s_allModules.TryGetValue(gameObject, out var children))
             return children;
 
-        ReadOnlyCollection<Entity> modules = new(GetModules(gameObject).ToList());
+        ReadOnlyCollection<Entity> modules = new([..GetModules(gameObject)]);
 
         foreach (var key in s_allModules.Keys.Where(g => !g).ToList())
             s_allModules.Remove(key);
@@ -218,7 +218,7 @@ public sealed partial class Entity : ICloneable, IEquatable<Entity>, IEqualityCo
 
     /// <inheritdoc cref="object.Equals(object)"/>
     [PublicAPI, Pure]
-    public override bool Equals([AllowNull] object obj) => Equals(obj as Entity);
+    public override bool Equals([AllowNull] object? obj) => Equals(obj as Entity);
 
     /// <inheritdoc/>
     [PublicAPI, Pure]

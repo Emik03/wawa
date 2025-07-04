@@ -7,30 +7,6 @@ namespace wawa.Recall;
 /// </summary>
 public sealed partial class Selected
 {
-    [CanBeNull]
-    HookDef<Action> _select, _deselect, _interactEnded, _highlight, _highlightEnded, _focus, _defocus, _left, _right;
-
-    [CanBeNull]
-    HookDef<Func<bool>> _cancel, _interact;
-
-    [CanBeNull]
-    HookMay<Action<float>> _interactionPunch;
-
-    [CanBeNull]
-    HookMay<Action<KMSelectable>> _updateChildren;
-
-    [CanBeNull]
-    PropDef<bool> _allowWrapX, _allowWrapY, _forceSelectionHighlight, _forceInteractionHighlight, _isPassThrough;
-
-    [CanBeNull]
-    PropDef<int> _childRowLength, _defaultIndex;
-
-    [CanBeNull]
-    PropMay<Collider[]> _colliders;
-
-    [CanBeNull]
-    PropMay<Vector3> _scale;
-
     /// <summary>
     /// Gets the number of children the selectable has. Calling <see cref="ChildLength"/> is more efficient
     /// than <see cref="Children"/> then using <see cref="ReadOnlyCollection{T}.Count"/> because
@@ -53,18 +29,20 @@ public sealed partial class Selected
     /// Gets the <see cref="Action"/> that is called whenever this selectable becomes the current selectable.
     /// </summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public HookDef<Action> Select
     {
-        [Pure] get => _select ??= new(Value, nameof(KMSelectable.OnSelect));
+        [Pure] get => field ??= new(Value, nameof(KMSelectable.OnSelect));
     }
 
     /// <summary>
     /// Gets the <see cref="Action"/> that is called whenever this selectable stops being the current selectable.
     /// </summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public HookDef<Action> Deselect
     {
-        [Pure] get => _deselect ??= new(Value, nameof(KMSelectable.OnDeselect));
+        [Pure] get => field ??= new(Value, nameof(KMSelectable.OnDeselect));
     }
 
     /// <summary>
@@ -74,9 +52,10 @@ public sealed partial class Selected
     /// does not back out of the selectable and keeps the selectable as the current.
     /// </summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public HookDef<Func<bool>> Cancel
     {
-        [Pure] get => _cancel ??= new(Value, nameof(KMSelectable.OnCancel), converter: False);
+        [Pure] get => field ??= new(Value, nameof(KMSelectable.OnCancel), converter: False);
     }
 
     /// <summary>
@@ -85,9 +64,10 @@ public sealed partial class Selected
     /// behave as a module with children, and <see langword="false"/> as a button with no children.
     /// </summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public HookDef<Func<bool>> Interact
     {
-        [Pure] get => _interact ??= new(Value, nameof(KMSelectable.OnInteract), converter: InteractHandler);
+        [Pure] get => field ??= new(Value, nameof(KMSelectable.OnInteract), converter: InteractHandler);
     }
 
     /// <summary>
@@ -95,23 +75,26 @@ public sealed partial class Selected
     /// with this selectable and releases the mouse or controller button.
     /// </summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public HookDef<Action> InteractEnded
     {
-        [Pure] get => _interactEnded ??= new(Value, nameof(KMSelectable.OnInteractEnded));
+        [Pure] get => field ??= new(Value, nameof(KMSelectable.OnInteractEnded));
     }
 
     /// <summary>Gets the <see cref="Action"/> that is called whenever the highlight is turned on.</summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public HookDef<Action> Highlight
     {
-        [Pure] get => _highlight ??= new(Value, nameof(KMSelectable.OnHighlight));
+        [Pure] get => field ??= new(Value, nameof(KMSelectable.OnHighlight));
     }
 
     /// <summary>Gets the <see cref="Action"/> that is called whenever the highlight is turned off.</summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public HookDef<Action> HighlightEnded
     {
-        [Pure] get => _highlightEnded ??= new(Value, nameof(KMSelectable.OnHighlightEnded));
+        [Pure] get => field ??= new(Value, nameof(KMSelectable.OnHighlightEnded));
     }
 
     /// <summary>
@@ -119,9 +102,10 @@ public sealed partial class Selected
     /// this is when it is interacted with from the bomb face level and this module's children can be selected.
     /// </summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public HookDef<Action> Focus
     {
-        [Pure] get => _focus ??= new(Value, nameof(KMSelectable.OnFocus));
+        [Pure] get => field ??= new(Value, nameof(KMSelectable.OnFocus));
     }
 
     /// <summary>
@@ -129,11 +113,12 @@ public sealed partial class Selected
     /// this is when a different selectable becomes the focus or the module has been backed out of.
     /// </summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public HookDef<Action> Defocus
     {
         [Pure]
         get =>
-            _defocus ??= new(
+            field ??= new(
                 Value,
                 nameof(KMSelectable.OnDefocus),
                 wrapper: IsKtane || IsRewritten ? DefocusFix : Lot<Action>.Id
@@ -145,9 +130,10 @@ public sealed partial class Selected
     /// pulls selection stick left while this selectable is focused.
     /// </summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public HookDef<Action> Left
     {
-        [Pure] get => _left ??= new(Value, nameof(KMSelectable.OnLeft));
+        [Pure] get => field ??= new(Value, nameof(KMSelectable.OnLeft));
     }
 
     /// <summary>
@@ -155,9 +141,10 @@ public sealed partial class Selected
     /// pulls selection stick right while this selectable is focused.
     /// </summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public HookDef<Action> Right
     {
-        [Pure] get => _right ??= new(Value, nameof(KMSelectable.OnRight));
+        [Pure] get => field ??= new(Value, nameof(KMSelectable.OnRight));
     }
 
     /// <summary>
@@ -165,10 +152,11 @@ public sealed partial class Selected
     /// or bomb shake with the impact level based on the parameter passed in. Modded Only.
     /// </summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public HookMay<Action<float>> InteractionPunch
     {
         [Pure]
-        get => _interactionPunch ??= new(Value, nameof(KMSelectable.OnInteractionPunch), converter: Invoke<float>);
+        get => field ??= new(Value, nameof(KMSelectable.OnInteractionPunch), converter: Invoke<float>);
     }
 
     /// <summary>
@@ -176,10 +164,11 @@ public sealed partial class Selected
     /// with the parameter being the <see cref="KMSelectable"/> to select. Modded Only.
     /// </summary>
     [CLSCompliant(false), NotNull, PublicAPI]
+    [field: CanBeNull]
     public HookMay<Action<KMSelectable>> UpdateChildren
     {
         [Pure]
-        get => _updateChildren ??= new(Value, nameof(KMSelectable.OnUpdateChildren), converter: Invoke<KMSelectable>);
+        get => field ??= new(Value, nameof(KMSelectable.OnUpdateChildren), converter: Invoke<KMSelectable>);
     }
 
     /// <summary>
@@ -196,7 +185,9 @@ public sealed partial class Selected
     [CLSCompliant(false), PublicAPI]
     public Maybe<MonoBehaviour> Vanilla
     {
-        [Pure] get => Value is KMSelectable ? default : Value;
+#pragma warning disable CS0184
+        [Pure] get => Value is KMSelectable ? null : Value;
+#pragma warning restore CS0184
     }
 
     /// <summary>Gets the parent of this selectable.</summary>
@@ -208,16 +199,18 @@ public sealed partial class Selected
 
     /// <summary>Gets a value indicating whether gamepad selection should wrap around left/right.</summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public PropDef<bool> AllowWrapX
     {
-        [Pure] get => _allowWrapX ??= new(Value, nameof(KMSelectable.AllowSelectionWrapX));
+        [Pure] get => field ??= new(Value, nameof(KMSelectable.AllowSelectionWrapX));
     }
 
     /// <summary>Gets a value indicating whether gamepad selection should wrap around up/down.</summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public PropDef<bool> AllowWrapY
     {
-        [Pure] get => _allowWrapY ??= new(Value, nameof(KMSelectable.AllowSelectionWrapY));
+        [Pure] get => field ??= new(Value, nameof(KMSelectable.AllowSelectionWrapY));
     }
 
     /// <summary>
@@ -225,9 +218,10 @@ public sealed partial class Selected
     /// this is yellow in game. Should be used when interaction will drill down to child selectables.
     /// </summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public PropDef<bool> ForceSelectionHighlight
     {
-        [Pure] get => _forceSelectionHighlight ??= new(Value, nameof(KMSelectable.ForceSelectionHighlight));
+        [Pure] get => field ??= new(Value, nameof(KMSelectable.ForceSelectionHighlight));
     }
 
     /// <summary>
@@ -235,39 +229,44 @@ public sealed partial class Selected
     /// this is red in game. Should be used when interaction will trigger a behavior.
     /// </summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public PropDef<bool> ForceInteractionHighlight
     {
-        [Pure] get => _forceInteractionHighlight ??= new(Value, nameof(KMSelectable.ForceInteractionHighlight));
+        [Pure] get => field ??= new(Value, nameof(KMSelectable.ForceInteractionHighlight));
     }
 
     /// <summary>
     /// Gets a value indicating whether this selectable is essentially a container, currently used for bomb faces.
     /// </summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public PropDef<bool> IsPassThrough
     {
-        [Pure] get => _isPassThrough ??= new(Value, nameof(KMSelectable.IsPassThrough));
+        [Pure] get => field ??= new(Value, nameof(KMSelectable.IsPassThrough));
     }
 
     /// <summary>Gets the number of selectables per row for gamepad controls.</summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public PropDef<int> ChildRowLength
     {
-        [Pure] get => _childRowLength ??= new(Value, nameof(KMSelectable.ChildRowLength));
+        [Pure] get => field ??= new(Value, nameof(KMSelectable.ChildRowLength));
     }
 
     /// <summary>Gets the particular child as the default index for gamepad controls.</summary>
     [NotNull, PublicAPI]
+    [field: CanBeNull]
     public PropDef<int> DefaultIndex
     {
-        [Pure] get => _defaultIndex ??= new(Value, nameof(KMSelectable.DefaultSelectableIndex));
+        [Pure] get => field ??= new(Value, nameof(KMSelectable.DefaultSelectableIndex));
     }
 
     /// <summary>Gets the interaction colliders for mouse other than the highlight. Modded Only.</summary>
     [CLSCompliant(false), NotNull, PublicAPI]
+    [field: CanBeNull]
     public PropMay<Collider[]> Colliders
     {
-        [Pure] get => _colliders ??= new(Value, nameof(KMSelectable.SelectableColliders));
+        [Pure] get => field ??= new(Value, nameof(KMSelectable.SelectableColliders));
     }
 
     /// <summary>
@@ -275,9 +274,10 @@ public sealed partial class Selected
     /// leave it at <see cref="Vector3.zero"/> for default scaling. Vanilla Only.
     /// </summary>
     [CLSCompliant(false), NotNull, PublicAPI]
+    [field: CanBeNull]
     public PropMay<Vector3> Scale
     {
-        [Pure] get => _scale ??= new(Value, nameof(Selectable.HighlightScale));
+        [Pure] get => field ??= new(Value, nameof(Selectable.HighlightScale));
     }
 
     /// <summary>
@@ -294,7 +294,9 @@ public sealed partial class Selected
     [PublicAPI]
     public bool IsModded
     {
+#pragma warning disable CS0184
         [Pure] get => Value is KMSelectable;
+#pragma warning restore CS0184
     }
 
     /// <summary>Gets a value indicating whether this instance contains a vanilla selectable.</summary>

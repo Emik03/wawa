@@ -13,8 +13,7 @@ public abstract class ModdedModule : CachedBehaviour
         ExceptionStackTrace = "Rethrow as ",
         NoComponent = $"There is no attached {nameof(KMBombModule)} or {nameof(KMNeedyModule)}.",
         NotFound = "[[HYPERLINK BLOCKED]]",
-        Prefix = @"
-| ",
+        Prefix = "\n| ",
         TooFewAudioSources = $"{nameof(Play)} Error: You need a {nameof(KMAudio)} component to play a sound. " +
             "It cannot be instantiated by this library, since the game could hook before this library can create one.",
         TooManyAudioSources =
@@ -23,25 +22,9 @@ public abstract class ModdedModule : CachedBehaviour
             $"{nameof(KMAudio)} components, which gives no certainty on the {nameof(KMAudio)} having sounds assigned.",
         Unspecified = "There is no version. Press [F5] or go to [Keep Talking ModKit > Configure Mod] to specify one.";
 
-    /// <summary>The id of this <see cref="GameObject"/>.</summary>
-    [CanBeNull]
-    string _id;
-
     /// <summary>The matrix attached to this <see cref="GameObject"/>.</summary>
     [CanBeNull]
     IList<IList<KMSelectable>>? _matrix;
-
-    /// <summary>The <see cref="KMNeedyModule"/> attached to this <see cref="GameObject"/>.</summary>
-    [CanBeNull]
-    KMNeedyModule _needy;
-
-    /// <summary>The <see cref="KMBombModule"/> attached to this <see cref="GameObject"/>.</summary>
-    [CanBeNull]
-    KMBombModule _solvable;
-
-    /// <summary>The status of the module.</summary>
-    [CanBeNull]
-    State _status;
 
     /// <summary>Gets the children of the top-level selectable.</summary>
     /// <exception cref="MissingComponentException">
@@ -74,18 +57,20 @@ public abstract class ModdedModule : CachedBehaviour
 
     /// <summary>Gets the current solve/strike status of the module.</summary>
     [NotNull]
+    [field: CanBeNull]
     public State Status
     {
-        [Pure] get => _status ??= new(Name);
+        [Pure] get => field ??= new(Name);
     }
 
     /// <summary>
     /// Gets the mod id. Override this if you are working with an assembly with a different name than your mod id.
     /// </summary>
     [NotNull]
+    [field: CanBeNull]
     protected virtual string Id
     {
-        [MustUseReturnValue] get => _id ??= Lookup.ModNameOf(this).Value ?? GetType().Assembly.GetName().Name;
+        [MustUseReturnValue] get => field ??= Lookup.ModNameOf(this).Value ?? GetType().Assembly.GetName().Name;
     }
 
     /// <summary>Gets the module id. Unused by the library.</summary>
@@ -112,16 +97,18 @@ public abstract class ModdedModule : CachedBehaviour
 
     /// <summary>Gets the <see cref="KMBombModule"/> component.</summary>
     [AllowNull, CanBeNull]
+    [field: CanBeNull]
     KMBombModule Solvable
     {
-        [Pure] get => _solvable ? _solvable : _solvable = GetComponent<KMBombModule>();
+        [Pure] get => field ? field : field = GetComponent<KMBombModule>();
     }
 
     /// <summary>Gets the <see cref="KMNeedyModule"/> component.</summary>
     [AllowNull, CanBeNull]
+    [field: CanBeNull]
     KMNeedyModule Needy
     {
-        [Pure] get => _needy ? _needy : _needy = GetComponent<KMNeedyModule>();
+        [Pure] get => field ? field : field = GetComponent<KMNeedyModule>();
     }
 
     /// <inheritdoc/>
@@ -195,7 +182,7 @@ public abstract class ModdedModule : CachedBehaviour
 
         return source switch
         {
-            IEnumerable<char> x => x as string ?? new(x.ToArray()),
+            IEnumerable<char> x => x as string ?? new([..x]),
             IDictionary x => Dictionary(x, format),
             IEnumerable x => Enumerable(x, format),
             IFormattable x => x.ToString(format, CultureInfo.InvariantCulture),
@@ -490,7 +477,7 @@ public abstract class ModdedModule : CachedBehaviour
             var x => x,
         }}";
 
-        AssemblyLog(@$"The module ""{Name}"" uses this library.");
+        AssemblyLog($"""The module "{Name}" uses this library.""");
         Log(version);
     }
 

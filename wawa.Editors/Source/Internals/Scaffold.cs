@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MPL-2.0
 namespace wawa.Editors.Internals;
-#pragma warning disable RCS1266
+#pragma warning disable RCS1266 // ReSharper disable UseRawString
 /// <summary>Source generator.</summary>
 static class Scaffold
 {
@@ -58,7 +58,7 @@ using wawa.Modules;",
     string TwitchHelpMessage, TwitchManualCode;
 
     [{nameof(SerializeField)}]
-    {nameof(List<KMBombModule>)}<{nameof(KMBombModule)}> TwitchAbandonModule;
+    {nameof(List<>)}<{nameof(KMBombModule)}> TwitchAbandonModule;
     ",
         TwitchSuffix = @$"
 

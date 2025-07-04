@@ -14,8 +14,8 @@ sealed class TwitchEditor : Editor
         PrintingYields = "Enable printing yields",
         SolvedTooEarly =
             "The module's solve coroutine finished before the module solved! This is a mistake because Twitch Plays " +
-            $"will force-solve a module as soon as the {nameof(IEnumerator<object>)} finishes running. One way to " +
-            $"fix this is by yield returning {nameof(Twitch<ModdedModule>.UntilSolve)} assuming the module is always " +
+            $"will force-solve a module as soon as the {nameof(IEnumerator<>)} finishes running. One way to " +
+            $"fix this is by yield returning {nameof(Twitch<>.UntilSolve)} assuming the module is always " +
             "in a state to be definitively solved without additional interactions.",
         Solver = "Run solver",
         Time = "Enable time mode",

@@ -24,7 +24,7 @@ public static class PathFinder
         Version0 = "v0",
         Windows = "windows",
         X86 = "x86",
-        X86_64 = "x86_64";
+        X8664 = "x86_64";
 
     /// <summary>The default binding flags.</summary>
     const BindingFlags
@@ -272,7 +272,7 @@ public static class PathFinder
             : IntPtr.Size switch
             {
                 4 => X86,
-                8 => X86_64,
+                8 => X8664,
                 _ => null,
             };
 
@@ -295,13 +295,13 @@ public static class PathFinder
         switch (source.Length)
         {
             case 0:
-                AssemblyLog(@$"Couldn't find the library ""{file}"" in the directory ""{directory}"".", LogType.Error);
+                AssemblyLog($"""Couldn't find the library "{file}" in the directory "{directory}".""", LogType.Error);
                 return null;
             case > 1:
-                var others = string.Join(@""", """, source.Skip(1).ToArray());
+                var others = string.Join("\", \"", [..source.Skip(1)]);
 
                 AssemblyLog(
-                    @$"Multiple binaries were found, assuming ""{source[0]}"", but could have also used ""{others}"".",
+                    $"""Multiple binaries were found, assuming "{source[0]}", but could have also used "{others}".""",
                     LogType.Warning
                 );
 
@@ -329,8 +329,8 @@ public static class PathFinder
                 case var key when s_directories.TryGetValue(key, out var value):
                     AssemblyLog(
                         value is null
-                            ? @$"An additional duplicate mod id has been found for ""{key}"": {kvp.Key}"
-                            : @$"A duplicate mod id found for ""{key}"": ""{value}"" conflicts with ""{kvp.Key}"".",
+                            ? $"""An additional duplicate mod id has been found for "{key}": {kvp.Key}"""
+                            : $"""A duplicate mod id found for "{key}": "{value}" conflicts with "{kvp.Key}".""",
                         LogType.Warning
                     );
 

@@ -5,9 +5,7 @@ namespace wawa.TwitchPlays.Domains;
 [PublicAPI]
 public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqualityComparer<TwitchString>
 {
-    readonly string _message = "";
-
-    TwitchString([NotNull] string message) => _message = message;
+    TwitchString([NotNull] string message) => Message = message;
 
     /// <summary>Gets the auto-solving Twitch Plays query.</summary>
     /// <remarks><para>
@@ -133,8 +131,8 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
     [NotNull, PublicAPI]
     public string Message
     {
-        [Pure] get => _message ?? "";
-    }
+        [Pure] get => field ?? "";
+    } = "";
 
     /// <summary>Implicitly calls the property <see cref="Message"/>.</summary>
     /// <param name="query">The <see cref="TwitchString"/> to access the property from.</param>
@@ -344,7 +342,7 @@ public readonly struct TwitchString : ICloneable, IEquatable<TwitchString>, IEqu
 
     /// <inheritdoc/>
     [PublicAPI, Pure]
-    public override bool Equals([AllowNull] object obj) => obj is TwitchString query && Equals(query);
+    public override bool Equals([AllowNull] object? obj) => obj is TwitchString query && Equals(query);
 
     /// <inheritdoc/>
     [PublicAPI, Pure]

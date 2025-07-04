@@ -90,7 +90,7 @@ public sealed class State : ICloneable, IEquatable<State>, IEqualityComparer<Sta
 
     /// <inheritdoc/>
     [Pure] // ReSharper disable once AssignNullToNotNullAttribute
-    public override bool Equals([AllowNull] object obj) => Equals(obj as State);
+    public override bool Equals([AllowNull] object? obj) => Equals(obj as State);
 
     /// <inheritdoc/>
     [NonNegativeValue, Pure]

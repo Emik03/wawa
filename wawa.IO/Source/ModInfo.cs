@@ -118,11 +118,11 @@ public sealed class ModInfo : ICloneable, IEquatable<ModInfo>, IEqualityComparer
     ) =>
         File.Exists(filePath)
             ? filePath?.SuppressIO(File.ReadAllText, true)?.SuppressIO(JsonConvert.DeserializeObject<ModInfo>, true)
-            : default;
+            : null;
 
     /// <inheritdoc/>
     [PublicAPI, Pure] // ReSharper disable once AssignNullToNotNullAttribute
-    public override bool Equals([AllowNull] object obj) => Equals(obj as ModInfo);
+    public override bool Equals([AllowNull] object? obj) => Equals(obj as ModInfo);
 
     /// <inheritdoc/>
     [PublicAPI, Pure] // ReSharper disable once NonReadonlyMemberInGetHashCode

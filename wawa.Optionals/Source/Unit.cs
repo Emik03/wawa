@@ -88,7 +88,7 @@ public readonly struct Unit : IComparable<Unit>,
 
     /// <inheritdoc />
     [CollectionAccess(None), PublicAPI, Pure]
-    public override bool Equals([AllowNull] object obj) => obj is Unit;
+    public override bool Equals([AllowNull] object? obj) => obj is Unit;
 
     /// <inheritdoc />
     [CollectionAccess(None), PublicAPI, Pure]

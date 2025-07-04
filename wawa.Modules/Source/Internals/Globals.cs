@@ -18,5 +18,5 @@ static class Globals
         [InstantHandle, NotNull] this IEnumerable<TSource> items,
         [InstantHandle, NotNull] in Func<TSource, TResult> selector
     ) =>
-        new(items.Select(selector).ToList());
+        new([..items.Select(selector)]);
 }

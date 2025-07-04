@@ -182,7 +182,7 @@ public readonly struct Maybe<T>([AllowNull, CanBeNull] T value) :
 
     /// <inheritdoc />
     [CollectionAccess(Read), PublicAPI, Pure]
-    public override bool Equals([AllowNull] object obj) => obj is Maybe<T> may && Equals(may);
+    public override bool Equals([AllowNull] object? obj) => obj is Maybe<T> may && Equals(may);
 
     /// <inheritdoc />
     [CollectionAccess(Read), PublicAPI, Pure]

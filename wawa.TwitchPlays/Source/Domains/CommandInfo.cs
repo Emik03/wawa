@@ -69,7 +69,7 @@ sealed class CommandInfo : ICloneable, IEquatable<CommandInfo>, IEqualityCompare
 
     /// <inheritdoc />
     [PublicAPI, Pure] // ReSharper disable once AssignNullToNotNullAttribute
-    public override bool Equals([AllowNull] object obj) => Equals(obj as CommandInfo);
+    public override bool Equals([AllowNull] object? obj) => Equals(obj as CommandInfo);
 
     /// <inheritdoc />
     [PublicAPI, Pure]
