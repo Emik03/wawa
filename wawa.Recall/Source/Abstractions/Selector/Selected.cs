@@ -14,21 +14,13 @@ public sealed partial class Selected : ICloneable, IEquatable<Selected>, IEquali
     /// </summary>
     /// <param name="selectable">The <see cref="KMSelectable"/> instance to encapsulate.</param>
     [CLSCompliant(false), PublicAPI]
-    public Selected(KMSelectable selectable, HookDef<Action> defocus)
-    {
-        Value = selectable;
-        Defocus = defocus;
-    }
+    public Selected(KMSelectable selectable) => Value = selectable;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Selected"/> class. This guarantees the selectable kind vanilla.
     /// </summary>
     /// <param name="selectable">The Selectable instance to encapsulate.</param>
-    internal Selected(MonoBehaviour selectable, HookDef<Action> defocus)
-    {
-        Value = selectable;
-        Defocus = defocus;
-    }
+    internal Selected(MonoBehaviour selectable) => Value = selectable;
 
     /// <summary>Gets the value which is guaranteed to be a <see cref="MonoBehaviour"/>.</summary>
     [CLSCompliant(false), PublicAPI]
