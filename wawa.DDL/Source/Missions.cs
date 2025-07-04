@@ -10,8 +10,10 @@ public static class Missions
     /// <summary>The default value for the respective property.</summary>
     [NotNull, PublicAPI]
     public const string
-        ExampleDescription = @"Everybody has to start somewhere. Let's just hope it doesn't end here too.
-Make sure your experts have the manual and are ready to help.",
+        ExampleDescription = """
+                             Everybody has to start somewhere. Let's just hope it doesn't end here too.
+                             Make sure your experts have the manual and are ready to help.
+                             """,
         ExampleId = "firsttime",
         ExampleLanguageCode = "en",
         ExampleName = "First Bomb";
@@ -90,6 +92,16 @@ Make sure your experts have the manual and are ready to help.",
             gameplayState.Room is var room && !room ||
             room.CeilingLight is var ceilingLight && !ceilingLight)
             return v;
+
+        // ReSharper disable once Unity.UnresolvedComponentOrScriptableObject
+        if (room.GetComponent("FactoryRoom") is var factory &&
+            factory &&
+            factory.GetType().GetField("_lightsOn", BindingFlags.NonPublic | BindingFlags.Instance) is { } lightsOn)
+        {
+            (v ? EnvironmentEvents.OnLightsOn : EnvironmentEvents.OnLightsOff)(false);
+            lightsOn.SetValue(v, factory);
+            return v;
+        }
 
         if (v)
             ceilingLight.TurnOn(true);
