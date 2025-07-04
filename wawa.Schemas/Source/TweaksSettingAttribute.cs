@@ -49,7 +49,7 @@ public class TweaksSettingAttribute([Allow, CanBe] string description = null, [A
             dictionary[nameof(Description)] = description;
 
         if (this is DropdownAttribute { DropdownItems: var items })
-            dictionary[nameof(DropdownAttribute.DropdownItems)] = items;
+            dictionary[nameof(DropdownAttribute.DropdownItems)] = (items ?? []).ToList();
 
         if (GetType() is var type && type != typeof(TweaksSettingAttribute) && type.Name.EndsWith(nameof(Attribute)))
             dictionary[nameof(Type)] = type.Name.Substring(0, type.Name.Length - nameof(Attribute).Length);
