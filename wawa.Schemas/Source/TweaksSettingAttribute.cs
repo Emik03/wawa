@@ -62,7 +62,7 @@ public class TweaksSettingAttribute([Allow, CanBe] string description = null, [A
     /// <returns>
     /// Itself, or <see cref="DropdownAttribute"/> with values of the parameter <paramref name="type"/>.
     /// </returns>
-    internal TweaksSettingAttribute WithDropdownItemsInferredFrom(Type type) =>
+    internal TweaksSettingAttribute WithDropdownItemsInferredFrom([Allow, CanBe] Type type) =>
         type switch
         {
             _ when this is not DropdownAttribute { DropdownItems: null or { Length: 0 } } => this,
