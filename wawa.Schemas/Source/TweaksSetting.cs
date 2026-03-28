@@ -5,9 +5,6 @@ namespace wawa.Schemas;
 // ReSharper disable ClassNeverInstantiated.Global
 public static class TweaksSetting
 {
-    /// <summary>The default <see cref="TweaksSettingAttribute"/>.</summary>
-    static readonly TweaksSettingAttribute s_empty = new();
-
     /// <summary>Indicates that the field or property is a setting serialized as an array.</summary>
     /// <param name="description">A longer description of the setting.</param>
     /// <param name="text">The short label describing the setting, defaulting to the field or property name.</param>
