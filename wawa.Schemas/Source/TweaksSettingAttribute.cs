@@ -56,4 +56,18 @@ public class TweaksSettingAttribute([Allow, CanBe] string description = null, [A
 
         return dictionary;
     }
+
+    /// <summary>Infers <see cref="DropdownAttribute.DropdownItems"/>.</summary>
+    /// <param name="type">The type for inference.</param>
+    /// <returns>
+    /// Itself, or <see cref="DropdownAttribute"/> with values of the parameter <paramref name="type"/>.
+    /// </returns>
+    internal TweaksSettingAttribute WithDropdownItemsInferredFrom(Type type) =>
+        type switch
+        {
+            _ when this is not DropdownAttribute { DropdownItems: null or { Length: 0 } } => this,
+            _ when type == typeof(bool) => new DropdownAttribute(Description, Text, false, true),
+            { IsEnum: true } => new DropdownAttribute(Description, Text, [..Enum.GetValues(type).OfType<object>()]),
+            _ => this,
+        };
 }

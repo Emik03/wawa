@@ -10,7 +10,7 @@ public sealed class TweaksEditorSettings : IEnumerable<Dictionary<string, object
     {
         /// <summary>The suffix for the default file name for mod settings.</summary>
         [NotNull, StringSyntax(StringSyntaxAttribute.Uri), UriString]
-        const string Suffix = "-settings.json";
+        const string Suffix = "-settings.txt";
 
         [CanBe]
         List<Dictionary<string, object>> _last;
@@ -69,9 +69,7 @@ public sealed class TweaksEditorSettings : IEnumerable<Dictionary<string, object
         internal void Add([NotNull] string name, [Allow, CanBe] string fileName) =>
             _product.Add(
                 new(StringComparer.Ordinal)
-                {
-                    ["Filename"] = $"{fileName}{Suffix}", ["Name"] = name, ["Listings"] = _last = [],
-                }
+                    { ["Filename"] = $"{fileName}{Suffix}", ["Listings"] = _last = [], ["Name"] = name }
             );
     }
 

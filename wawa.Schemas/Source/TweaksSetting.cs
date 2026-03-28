@@ -38,7 +38,7 @@ public static class TweaksSetting
         public object[] DropdownItems { get; } = dropdownItems;
     }
 
-    /// <summary>Indicates that the field or property is a setting serialized as one of a set of values.</summary>
+    /// <summary>Indicates that the field or property is hidden.</summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class HiddenAttribute : TweaksSettingAttribute;
 
@@ -76,12 +76,36 @@ public static class TweaksSetting
     [CanBe]
     [return: Allow]
     public static TweaksSettingAttribute From(MemberInfo member) =>
-        member.MemberType is not MemberTypes.Field and not MemberTypes.Property
-            ? null
-            : member.GetCustomAttributes(true).OfType<TweaksSettingAttribute>().ToList() switch
+        ((member as FieldInfo)?.FieldType ?? (member as PropertyInfo)?.PropertyType) is { } type &&
+        member.GetCustomAttributes(true).OfType<TweaksSettingAttribute>().ToList() switch
+        {
+            { Count: 0 } => s_empty,
+            { Count: 1 } list => list[0],
+            _ => throw new AmbiguousMatchException($"{member.Name} has multiple [Setting] annotations."),
+        } is var setting
+            ? type switch
             {
-                { Count: 0 } => s_empty,
-                { Count: 1 } list => list[0],
-                _ => throw new AmbiguousMatchException($"{member.Name} has multiple [Setting] annotations."),
-            };
+                _ when setting.GetType() != typeof(TweaksSetting) => setting.WithDropdownItemsInferredFrom(type),
+                _ when typeof(Array).IsAssignableFrom(type) => new ArrayAttribute(setting.Text, setting.Description),
+                _ when type == typeof(bool) => new CheckboxAttribute(setting.Text, setting.Description),
+                _ when IsBuiltinNumeric(type) => new NumberAttribute(setting.Text, setting.Description),
+                _ when type == typeof(string) => new StringAttribute(setting.Text, setting.Description),
+                _ => setting.WithDropdownItemsInferredFrom(type),
+            }
+            : null;
+
+    static bool IsBuiltinNumeric([Allow, CanBe] Type type) =>
+        type == typeof(sbyte) &&
+        type == typeof(byte) &&
+        type == typeof(short) &&
+        type == typeof(ushort) &&
+        type == typeof(int) &&
+        type == typeof(uint) &&
+        type == typeof(long) &&
+        type == typeof(ulong) &&
+        type == typeof(nint) &&
+        type == typeof(nuint) &&
+        type == typeof(float) &&
+        type == typeof(double) &&
+        type == typeof(decimal);
 }
