@@ -65,7 +65,8 @@ public class TweaksSettingAttribute([Allow, CanBe] string description = null, [A
     internal TweaksSettingAttribute WithDropdownItemsInferredFrom([Allow, CanBe] Type type) =>
         type switch
         {
-            _ when this is not DropdownAttribute { DropdownItems: null or { Length: 0 } } => this,
+            _ when GetType() != typeof(TweaksSettingAttribute) &&
+                this is not DropdownAttribute { DropdownItems: null or { Length: 0 } } => this,
             _ when type == typeof(bool) => new DropdownAttribute(Description, Text, false, true),
             { IsEnum: true } => new DropdownAttribute(Description, Text, [..Enum.GetValues(type).OfType<object>()]),
             _ => this,

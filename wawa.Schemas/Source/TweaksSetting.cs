@@ -87,34 +87,34 @@ public static class TweaksSetting
         } is { } type &&
         member.GetCustomAttributes(true).OfType<TweaksSettingAttribute>().ToList() switch
             {
-                { Count: 0 } => s_empty,
+                { Count: 0 } => null,
                 { Count: 1 } list => list[0],
                 _ => throw new AmbiguousMatchException($"{member.Name} has multiple [Setting] annotations."),
             }
-            is var tweaks
+            is { } tweaks
             ? type switch
             {
                 _ when tweaks.GetType() != typeof(TweaksSettingAttribute) => tweaks.WithDropdownItemsInferredFrom(type),
-                _ when typeof(Array).IsAssignableFrom(type) => new ArrayAttribute(tweaks.Text, tweaks.Description),
-                _ when type == typeof(bool) => new CheckboxAttribute(tweaks.Text, tweaks.Description),
-                _ when IsBuiltinNumeric(type) => new NumberAttribute(tweaks.Text, tweaks.Description),
-                _ when type == typeof(string) => new StringAttribute(tweaks.Text, tweaks.Description),
+                _ when typeof(Array).IsAssignableFrom(type) => new ArrayAttribute(tweaks.Description, tweaks.Text),
+                _ when type == typeof(bool) => new CheckboxAttribute(tweaks.Description, tweaks.Text),
+                _ when type == typeof(string) => new StringAttribute(tweaks.Description, tweaks.Text),
+                _ when IsBuiltinNumeric(type) => new NumberAttribute(tweaks.Description, tweaks.Text),
                 _ => tweaks.WithDropdownItemsInferredFrom(type),
             }
             : null;
 
     static bool IsBuiltinNumeric([Allow, CanBe] Type type) =>
-        type == typeof(sbyte) &&
-        type == typeof(byte) &&
-        type == typeof(short) &&
-        type == typeof(ushort) &&
-        type == typeof(int) &&
-        type == typeof(uint) &&
-        type == typeof(long) &&
-        type == typeof(ulong) &&
-        type == typeof(nint) &&
-        type == typeof(nuint) &&
-        type == typeof(float) &&
-        type == typeof(double) &&
+        type == typeof(sbyte) ||
+        type == typeof(byte) ||
+        type == typeof(short) ||
+        type == typeof(ushort) ||
+        type == typeof(int) ||
+        type == typeof(uint) ||
+        type == typeof(long) ||
+        type == typeof(ulong) ||
+        type == typeof(nint) ||
+        type == typeof(nuint) ||
+        type == typeof(float) ||
+        type == typeof(double) ||
         type == typeof(decimal);
 }
