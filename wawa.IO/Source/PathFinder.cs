@@ -89,7 +89,7 @@ public static class PathFinder
         );
 
     /// <summary>Gets the absolute directory of the mod.</summary>
-    /// <remarks><para>In the editor, this value returns <see cref="Maybe.None{T}"/>.</para></remarks>
+    /// <remarks><para>In the editor, this value returns <see cref="Maybe.None{T}()"/>.</para></remarks>
     /// <param name="modId">
     /// The mod id to get the mod directory from.
     /// If <see langword="null"/>, implicitly gets the directory of the mod from the name of the assembly.
@@ -103,7 +103,7 @@ public static class PathFinder
         (modId ?? Who).Get(FindDirectory);
 
     /// <summary>Gets the absolute directory of the file located inside the mod directory.</summary>
-    /// <remarks><para>In the editor, this value returns <see cref="Maybe.None{T}"/>.</para></remarks>
+    /// <remarks><para>In the editor, this value returns <see cref="Maybe.None{T}()"/>.</para></remarks>
     /// <param name="filePath">The file located inside folder mod directory.</param>
     /// <param name="modId">
     /// The mod id to get the mod directory from.
@@ -140,7 +140,7 @@ public static class PathFinder
         );
 
     /// <summary>Loads and returns assets from disk.</summary>
-    /// <remarks><para>In the editor, this value returns <see cref="Maybe.None{T}"/>.</para></remarks>
+    /// <remarks><para>In the editor, this value returns <see cref="Maybe.None{T}()"/>.</para></remarks>
     /// <typeparam name="T">The type of asset to get.</typeparam>
     /// <param name="filePath">The file which contains the assets.</param>
     /// <param name="modId">

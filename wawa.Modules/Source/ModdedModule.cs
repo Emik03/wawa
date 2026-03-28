@@ -76,9 +76,9 @@ public abstract class ModdedModule : CachedBehaviour
     /// <summary>Gets the module id. Unused by the library.</summary>
     /// <remarks><para>
     /// <b>DO NOT REMOVE.</b>
-    /// The mod 'Tweaks' uses reflection to get any field or property named "moduleid" case-insensitively.
+    /// The mod "Tweaks" uses reflection to get any field or property named <c>moduleid</c> case-insensitively.
     /// </para></remarks>
-    [UsedImplicitly]
+    [Obsolete("Use Status.Id instead"), UsedImplicitly]
     int ModuleId
     {
         [Pure] get => Status.Id;
