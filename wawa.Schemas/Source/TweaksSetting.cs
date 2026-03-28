@@ -69,44 +69,39 @@ public static class TweaksSetting
     /// The member provided has more than one <see cref="TweaksSettingAttribute"/> annotated.
     /// </exception>
     /// <returns>
-    /// The <see cref="TweaksSettingAttribute"/> for the parameter <paramref name="member"/>.
-    /// If the <see cref="MemberInfo"/> has no <see cref="TweaksSettingAttribute"/> annotations
-    /// or lacks a type that can be extracted, then the default instance is returned.
+    /// The <see cref="TweaksSettingAttribute"/> of the parameter <paramref name="member"/>.
+    /// If the parameter <paramref name="member"/> has no <see cref="TweaksSettingAttribute"/>
+    /// annotations, then the default instance is returned.
+    /// If the parameter <paramref name="member"/> isn't of type <see cref="EventInfo"/>, <see cref="FieldInfo"/>,
+    /// or <see cref="PropertyInfo"/>, then <see langword="null"/> is returned.
     /// </returns>
     [CanBe]
     [return: Allow]
-    public static TweaksSettingAttribute From([Allow, CanBe] MemberInfo member)
-    {
-        if (member is null)
-            return s_empty;
-
-        var type = member switch
+    public static TweaksSettingAttribute From([Allow, CanBe] MemberInfo member) =>
+        member switch
         {
             PropertyInfo property => property.PropertyType,
             EventInfo vent => vent.EventHandlerType,
-            MethodInfo method => method.ReturnType,
             FieldInfo field => field.FieldType,
-            Type t => t,
-            _ => member.ReflectedType,
-        };
-
-        var tweaks = member.GetCustomAttributes(true).OfType<TweaksSettingAttribute>().ToList() switch
-        {
-            { Count: 0 } => s_empty,
-            { Count: 1 } list => list[0],
-            _ => throw new AmbiguousMatchException($"{member.Name} has multiple [Setting] annotations."),
-        };
-
-        return type switch
-        {
-            _ when tweaks.GetType() != typeof(TweaksSettingAttribute) => tweaks.WithDropdownItemsInferredFrom(type),
-            _ when typeof(Array).IsAssignableFrom(type) => new ArrayAttribute(tweaks.Text, tweaks.Description),
-            _ when type == typeof(bool) => new CheckboxAttribute(tweaks.Text, tweaks.Description),
-            _ when IsBuiltinNumeric(type) => new NumberAttribute(tweaks.Text, tweaks.Description),
-            _ when type == typeof(string) => new StringAttribute(tweaks.Text, tweaks.Description),
-            _ => tweaks.WithDropdownItemsInferredFrom(type),
-        };
-    }
+            _ => null,
+        } is { } type &&
+        member.GetCustomAttributes(true).OfType<TweaksSettingAttribute>().ToList() switch
+            {
+                { Count: 0 } => s_empty,
+                { Count: 1 } list => list[0],
+                _ => throw new AmbiguousMatchException($"{member.Name} has multiple [Setting] annotations."),
+            }
+            is var tweaks
+            ? type switch
+            {
+                _ when tweaks.GetType() != typeof(TweaksSettingAttribute) => tweaks.WithDropdownItemsInferredFrom(type),
+                _ when typeof(Array).IsAssignableFrom(type) => new ArrayAttribute(tweaks.Text, tweaks.Description),
+                _ when type == typeof(bool) => new CheckboxAttribute(tweaks.Text, tweaks.Description),
+                _ when IsBuiltinNumeric(type) => new NumberAttribute(tweaks.Text, tweaks.Description),
+                _ when type == typeof(string) => new StringAttribute(tweaks.Text, tweaks.Description),
+                _ => tweaks.WithDropdownItemsInferredFrom(type),
+            }
+            : null;
 
     static bool IsBuiltinNumeric([Allow, CanBe] Type type) =>
         type == typeof(sbyte) &&
