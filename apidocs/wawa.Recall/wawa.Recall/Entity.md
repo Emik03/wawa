@@ -53,7 +53,7 @@ If the other definition is truly required, then accessing [Value](../../wawa.Rec
 | [Equals\(Entity, Entity\)](./Entity/Equals.md) |  |
 | [GetHashCode\(Entity\)](./Entity/GetHashCode.md) |  |
 | [Clone\(\)](./Entity/Clone.md) |  |
-| [Equals\(object\)](./Entity/Equals.md) |  |
+| [Equals\(object?\)](./Entity/Equals.md) |  |
 | [GetHashCode\(\)](./Entity/GetHashCode.md) |  |
 | [ToString\(\)](./Entity/ToString.md) |  |
 
@@ -84,12 +84,12 @@ If the other definition is truly required, then accessing [Value](../../wawa.Rec
 | [NeedyMaxResetInterval](./Entity/NeedyMaxResetInterval.md) | Gets the maximum delay for the needy to activate\. Needy Only\. |
 | [Id](./Entity/Id.md) | Gets the identifier for the module as referenced in missions\. e\.g\. "BigButton" Also known as a "Module ID"\.This value is immutable for vanilla modules\. |
 | [Name](./Entity/Name.md) | Gets the nice display name shown to players\. e\.g\. "The Button"\. This value is immutable for vanilla modules\. |
-| [Activate](./Entity/Activate.md) | Gets the `Action` that is invoked when the lights turn on\.This value is immutable for vanilla modules\. |
-| [NeedyActivate](./Entity/NeedyActivate.md) | Gets the `Action` that is invoked when the needy activates\. Modded Needy Only\. |
-| [NeedyDeactivate](./Entity/NeedyDeactivate.md) | Gets the `Action` that is invoked when the needy deactivates\. Modded Needy Only\. |
-| [NeedyTimerExpired](./Entity/NeedyTimerExpired.md) | Gets the `Action` that is invoked when the needy timer expires\. Modded Needy Only\. |
-| [Solve](./Entity/Solve.md) | Gets the `Action` that is called when the entire module has been solved\. |
-| [Strike](./Entity/Strike.md) | Gets the `Action` that is called on any mistake that causes a bomb strike\. |
+| [Activate](./Entity/Activate.md) | Gets the `System.Action` that is invoked when the lights turn on\.This value is immutable for vanilla modules\. |
+| [NeedyActivate](./Entity/NeedyActivate.md) | Gets the `System.Action` that is invoked when the needy activates\. Modded Needy Only\. |
+| [NeedyDeactivate](./Entity/NeedyDeactivate.md) | Gets the `System.Action` that is invoked when the needy deactivates\. Modded Needy Only\. |
+| [NeedyTimerExpired](./Entity/NeedyTimerExpired.md) | Gets the `System.Action` that is invoked when the needy timer expires\. Modded Needy Only\. |
+| [Solve](./Entity/Solve.md) | Gets the `System.Action` that is called when the entire module has been solved\. |
+| [Strike](./Entity/Strike.md) | Gets the `System.Action` that is called on any mistake that causes a bomb strike\. |
 | [NeedyTimerSet](./Entity/NeedyTimerSet.md) | Gets a `Action<T>` that when called, sets the time remaining to the parameter passed in\.This value is immutable for vanilla modules\. Needy Only\. |
 | [RuleGeneration](./Entity/RuleGeneration.md) | Gets a `Func<TResult>` that when called, gets the random seedused to generate the rules for this game\. Not currently used\. Modded Only\. |
 | [NeedyTimerGet](./Entity/NeedyTimerGet.md) | Gets a `Func<TResult>` that when called, gets the time remaining\.This value is immutable for vanilla modules\. Needy Only\. |

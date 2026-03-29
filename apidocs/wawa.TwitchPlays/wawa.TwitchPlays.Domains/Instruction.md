@@ -57,7 +57,7 @@ https://github\.com/samfundev/KtaneTwitchPlays/wiki/External\-Mod\-Module\-Suppo
 | [FromQuaternion\(Quaternion\)](./Instruction/FromQuaternion.md) | Converts the `Quaternion` to a `new`[Instruction](../../wawa.TwitchPlays/wawa.TwitchPlays.Domains/Instruction.md)\. |
 | [FromTwitchString\(TwitchString\)](./Instruction/FromTwitchString.md) | Converts the [TwitchString](../../wawa.TwitchPlays/wawa.TwitchPlays.Domains/TwitchString.md) to a `new`[Instruction](../../wawa.TwitchPlays/wawa.TwitchPlays.Domains/Instruction.md)\. |
 | [FromYieldInstruction\(YieldInstruction\)](./Instruction/FromYieldInstruction.md) | Converts the `YieldInstruction` to a `new`[Instruction](../../wawa.TwitchPlays/wawa.TwitchPlays.Domains/Instruction.md)\. |
-| [Equals\(object\)](./Instruction/Equals.md) |  |
+| [Equals\(object?\)](./Instruction/Equals.md) |  |
 | [GetHashCode\(\)](./Instruction/GetHashCode.md) |  |
 | [ToString\(\)](./Instruction/ToString.md) |  |
 

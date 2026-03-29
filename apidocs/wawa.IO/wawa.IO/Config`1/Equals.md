@@ -11,7 +11,7 @@ assembly: [wawa\.IO](../../../wawa.IO.md)
 |------|---------|
 | Equals\(Config\<T\>, Config\<T\>\) |  |
 | Equals\(Config\<T\>\) |  |
-| Equals\(object\) |  |
+| Equals\(object?\) |  |
 
 ## Equals\(Config\<T\>, Config\<T\>\)
 
@@ -57,17 +57,17 @@ __other__ : [Config\<T\>](../../../wawa.IO/wawa.IO/Config\`1.md)
 
 
 
-## Equals\(object\)
+## Equals\(object?\)
 
 
 
 ```csharp
-public override bool Equals(object obj);
+public override bool Equals(object? obj);
 ```
 
 ### Parameters
 
-__obj__ : `object`
+__obj__ : `object?`
 
 
 

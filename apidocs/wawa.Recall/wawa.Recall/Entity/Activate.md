@@ -3,7 +3,7 @@
 namespace: [wawa\.Recall](../../wawa.Recall.md)<br />
 assembly: [wawa\.Recall](../../../wawa.Recall.md)
 
-Gets the `Action` that is invoked when the lights turn on\.
+Gets the `System.Action` that is invoked when the lights turn on\.
 This value is immutable for vanilla modules\.
 
 ```csharp

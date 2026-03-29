@@ -11,7 +11,7 @@ assembly: [wawa\.Recall](../../../wawa.Recall.md)
 |------|---------|
 | Equals\(Entity?\) |  |
 | Equals\(Entity, Entity\) |  |
-| Equals\(object\) |  |
+| Equals\(object?\) |  |
 
 ## Equals\(Entity?\)
 
@@ -57,17 +57,17 @@ __y__ : [Entity](../../../wawa.Recall/wawa.Recall/Entity.md)
 
 
 
-## Equals\(object\)
+## Equals\(object?\)
 
 
 
 ```csharp
-public override bool Equals(object obj);
+public override bool Equals(object? obj);
 ```
 
 ### Parameters
 
-__obj__ : `object`
+__obj__ : `object?`
 
 
 

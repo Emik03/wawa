@@ -3,7 +3,7 @@
 namespace: [wawa\.Recall](../../wawa.Recall.md)<br />
 assembly: [wawa\.Recall](../../../wawa.Recall.md)
 
-Gets the `Action` that when called, updates the list of children,
+Gets the `System.Action` that when called, updates the list of children,
 with the parameter being the `KMSelectable` to select\. Modded Only\.
 
 ```csharp

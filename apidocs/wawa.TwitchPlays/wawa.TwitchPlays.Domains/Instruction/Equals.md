@@ -11,7 +11,7 @@ assembly: [wawa\.TwitchPlays](../../../wawa.TwitchPlays.md)
 |------|---------|
 | Equals\(Instruction, Instruction\) |  |
 | Equals\(Instruction\) |  |
-| Equals\(object\) |  |
+| Equals\(object?\) |  |
 
 ## Equals\(Instruction, Instruction\)
 
@@ -57,17 +57,17 @@ __other__ : [Instruction](../../../wawa.TwitchPlays/wawa.TwitchPlays.Domains/Ins
 
 
 
-## Equals\(object\)
+## Equals\(object?\)
 
 
 
 ```csharp
-public override bool Equals(object obj);
+public override bool Equals(object? obj);
 ```
 
 ### Parameters
 
-__obj__ : `object`
+__obj__ : `object?`
 
 
 

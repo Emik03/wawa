@@ -3,7 +3,7 @@
 namespace: [wawa\.Recall](../../wawa.Recall.md)<br />
 assembly: [wawa\.Recall](../../../wawa.Recall.md)
 
-Gets the `Action` that is called whenever the player is interacting
+Gets the `System.Action` that is called whenever the player is interacting
 with this selectable and releases the mouse or controller button\.
 
 ```csharp

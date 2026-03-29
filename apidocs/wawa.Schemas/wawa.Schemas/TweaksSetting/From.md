@@ -19,7 +19,9 @@ __member__ : `MemberInfo`
 
 [TweaksSettingAttribute](../../../wawa.Schemas/wawa.Schemas/TweaksSettingAttribute.md)
 
-The [TweaksSettingAttribute](../../../wawa.Schemas/wawa.Schemas/TweaksSettingAttribute.md) for the parameter `member`\. If the `System.Reflection.MemberInfo`
-has no [TweaksSettingAttribute](../../../wawa.Schemas/wawa.Schemas/TweaksSettingAttribute.md) annotations, then the default instance is returned\. If the parameter
-`member` is not a field or property, then `null` is returned instead\.
+The [TweaksSettingAttribute](../../../wawa.Schemas/wawa.Schemas/TweaksSettingAttribute.md) of the parameter `member`\.
+If the parameter `member` has no [TweaksSettingAttribute](../../../wawa.Schemas/wawa.Schemas/TweaksSettingAttribute.md)
+annotations, then the default instance is returned\.
+If the parameter `member` isn't of type `EventInfo`, `System.Reflection.FieldInfo`,
+or `PropertyInfo`, then `null` is returned\.
 

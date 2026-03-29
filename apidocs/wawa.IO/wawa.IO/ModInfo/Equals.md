@@ -11,7 +11,7 @@ assembly: [wawa\.IO](../../../wawa.IO.md)
 |------|---------|
 | Equals\(ModInfo, ModInfo\) |  |
 | Equals\(ModInfo\) |  |
-| Equals\(object\) |  |
+| Equals\(object?\) |  |
 
 ## Equals\(ModInfo, ModInfo\)
 
@@ -57,17 +57,17 @@ __other__ : [ModInfo](../../../wawa.IO/wawa.IO/ModInfo.md)
 
 
 
-## Equals\(object\)
+## Equals\(object?\)
 
 
 
 ```csharp
-public override bool Equals(object obj);
+public override bool Equals(object? obj);
 ```
 
 ### Parameters
 
-__obj__ : `object`
+__obj__ : `object?`
 
 
 

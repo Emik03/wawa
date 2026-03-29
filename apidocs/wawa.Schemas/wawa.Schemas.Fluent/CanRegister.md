@@ -16,7 +16,7 @@ Inheritance: `object` > CanRegister
 | Name | Summary |
 |------|---------|
 | [Register\<T\>\(\)](./CanRegister/Register.md) | Adds the schema of `T` to the [TweaksEditorSettings](../../wawa.Schemas/wawa.Schemas/TweaksEditorSettings.md)\. |
-| [Equals\(object\)](./CanRegister/Equals.md) |  |
+| [Equals\(object?\)](./CanRegister/Equals.md) |  |
 | [GetHashCode\(\)](./CanRegister/GetHashCode.md) |  |
 | [ToString\(\)](./CanRegister/ToString.md) |  |
 | [GetType\(\)](./CanRegister/GetType.md) |  |

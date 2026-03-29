@@ -3,7 +3,7 @@
 namespace: [wawa\.Recall](../../wawa.Recall.md)<br />
 assembly: [wawa\.Recall](../../../wawa.Recall.md)
 
-Gets the `Action` that is called whenever the module is defocused,
+Gets the `System.Action` that is called whenever the module is defocused,
 this is when a different selectable becomes the focus or the module has been backed out of\.
 
 ```csharp

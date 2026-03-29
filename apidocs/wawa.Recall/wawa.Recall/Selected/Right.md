@@ -3,7 +3,7 @@
 namespace: [wawa\.Recall](../../wawa.Recall.md)<br />
 assembly: [wawa\.Recall](../../../wawa.Recall.md)
 
-Gets the `Action` that is called whenever player
+Gets the `System.Action` that is called whenever player
 pulls selection stick right while this selectable is focused\.
 
 ```csharp

@@ -32,7 +32,7 @@ Implements: `ICloneable`, `IEquatable<TwitchString>`, `IEqualityComparer<TwitchS
 | [AwardPointsOnSolve\(int\)](./TwitchString/AwardPointsOnSolve.md) | Yield return this to award the last user that sent the command points when the module is solved\. |
 | [Equals\(TwitchString\)](./TwitchString/Equals.md) |  |
 | [Equals\(TwitchString, TwitchString\)](./TwitchString/Equals.md) |  |
-| [Equals\(object\)](./TwitchString/Equals.md) |  |
+| [Equals\(object?\)](./TwitchString/Equals.md) |  |
 | [GetHashCode\(TwitchString\)](./TwitchString/GetHashCode.md) |  |
 | [GetHashCode\(\)](./TwitchString/GetHashCode.md) |  |
 | [ToString\(\)](./TwitchString/ToString.md) |  |

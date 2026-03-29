@@ -3,7 +3,7 @@
 namespace: [wawa\.Recall](../../wawa.Recall.md)<br />
 assembly: [wawa\.Recall](../../../wawa.Recall.md)
 
-Gets the `Action` that is invoked when the needy deactivates\. Modded Needy Only\.
+Gets the `System.Action` that is invoked when the needy deactivates\. Modded Needy Only\.
 
 ```csharp
 public HookMay<Action> NeedyDeactivate { get; };

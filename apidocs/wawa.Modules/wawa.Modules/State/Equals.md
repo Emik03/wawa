@@ -11,7 +11,7 @@ assembly: [wawa\.Modules](../../../wawa.Modules.md)
 |------|---------|
 | Equals\(State, State\) |  |
 | Equals\(State\) |  |
-| Equals\(object\) |  |
+| Equals\(object?\) |  |
 
 ## Equals\(State, State\)
 
@@ -57,17 +57,17 @@ __other__ : [State](../../../wawa.Modules/wawa.Modules/State.md)
 
 
 
-## Equals\(object\)
+## Equals\(object?\)
 
 
 
 ```csharp
-public override bool Equals(object obj);
+public override bool Equals(object? obj);
 ```
 
 ### Parameters
 
-__obj__ : `object`
+__obj__ : `object?`
 
 
 

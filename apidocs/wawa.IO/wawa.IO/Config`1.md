@@ -58,7 +58,7 @@ In the editor, this constructor will not merge the default of type `T` with the 
 | [Equals\(Config\<T\>\)](./Config\`1/Equals.md) |  |
 | [operator ==\(Config\<T\>, Config\<T\>\)](./Config\`1/op_Equality.md) | Determines whether both instances are both `null` or both instances\. |
 | [operator \!=\(Config\<T\>, Config\<T\>\)](./Config\`1/op_Inequality.md) | Determines whether both instances are one of `null` and the other instanced\. |
-| [Equals\(object\)](./Config\`1/Equals.md) |  |
+| [Equals\(object?\)](./Config\`1/Equals.md) |  |
 | [GetHashCode\(\)](./Config\`1/GetHashCode.md) |  |
 | [ToString\(\)](./Config\`1/ToString.md) | Deserializes, then re\-serializes the file according to [Serialize\<TSerialize\>\(TSerialize\)](../../wawa.IO/wawa.IO/Config/Serialize.md)\.In the editor, this method serializes the default value of the constructor in `T`\. |
 

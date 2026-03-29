@@ -41,7 +41,7 @@ If [IsRewritten](../../wawa.DDL/wawa.DDL/Access/IsRewritten.md) is `true`, all s
 | [Equals\(Selected, Selected\)](./Selected/Equals.md) |  |
 | [GetHashCode\(Selected\)](./Selected/GetHashCode.md) |  |
 | [Clone\(\)](./Selected/Clone.md) |  |
-| [Equals\(object\)](./Selected/Equals.md) |  |
+| [Equals\(object?\)](./Selected/Equals.md) |  |
 | [GetHashCode\(\)](./Selected/GetHashCode.md) |  |
 | [ToString\(\)](./Selected/ToString.md) |  |
 
@@ -52,19 +52,19 @@ If [IsRewritten](../../wawa.DDL/wawa.DDL/Access/IsRewritten.md) is `true`, all s
 | [Value](./Selected/Value.md) | Gets the value which is guaranteed to be a `UnityEngine.MonoBehaviour`\. |
 | [ChildLength](./Selected/ChildLength.md) | Gets the number of children the selectable has\. Calling [ChildLength](../../wawa.Recall/wawa.Recall/Selected/ChildLength.md) is more efficientthan [Children](../../wawa.Recall/wawa.Recall/Selected/Children.md) then using `ReadOnlyCollection<T>.Count` because[Children](../../wawa.Recall/wawa.Recall/Selected/Children.md) constructs a new `ReadOnlyCollection<T>` every time\. |
 | [Highlighted](./Selected/Highlighted.md) | Gets the [Highlighted](../../wawa.Recall/wawa.Recall/Selected/Highlighted.md) for this [Selected](../../wawa.Recall/wawa.Recall/Selected.md)\. |
-| [Select](./Selected/Select.md) | Gets the `Action` that is called whenever this selectable becomes the current selectable\. |
-| [Deselect](./Selected/Deselect.md) | Gets the `Action` that is called whenever this selectable stops being the current selectable\. |
+| [Select](./Selected/Select.md) | Gets the `System.Action` that is called whenever this selectable becomes the current selectable\. |
+| [Deselect](./Selected/Deselect.md) | Gets the `System.Action` that is called whenever this selectable stops being the current selectable\. |
 | [Cancel](./Selected/Cancel.md) | Gets the `Func<TResult>` that is called whenever the player backs out of thisselectable, an example would be zooming out of a module\. Returning `true`backs out of the selectable and makes its parent the current, and `false`does not back out of the selectable and keeps the selectable as the current\. |
 | [Interact](./Selected/Interact.md) | Gets the `Func<TResult>` that is called whenever the player interacts withthis selectable\. Done on button down\. Returning `true` makes the selectablebehave as a module with children, and `false` as a button with no children\. |
-| [InteractEnded](./Selected/InteractEnded.md) | Gets the `Action` that is called whenever the player is interactingwith this selectable and releases the mouse or controller button\. |
-| [Highlight](./Selected/Highlight.md) | Gets the `Action` that is called whenever the highlight is turned on\. |
-| [HighlightEnded](./Selected/HighlightEnded.md) | Gets the `Action` that is called whenever the highlight is turned off\. |
-| [Focus](./Selected/Focus.md) | Gets the `Action` that is called whenever the module is focused,this is when it is interacted with from the bomb face level and this module's children can be selected\. |
-| [Defocus](./Selected/Defocus.md) | Gets the `Action` that is called whenever the module is defocused,this is when a different selectable becomes the focus or the module has been backed out of\. |
-| [Left](./Selected/Left.md) | Gets the `Action` that is called whenever the playerpulls selection stick left while this selectable is focused\. |
-| [Right](./Selected/Right.md) | Gets the `Action` that is called whenever playerpulls selection stick right while this selectable is focused\. |
-| [InteractionPunch](./Selected/InteractionPunch.md) | Gets the `Action` that when called, performs an interaction punchor bomb shake with the impact level based on the parameter passed in\. Modded Only\. |
-| [UpdateChildren](./Selected/UpdateChildren.md) | Gets the `Action` that when called, updates the list of children,with the parameter being the `KMSelectable` to select\. Modded Only\. |
+| [InteractEnded](./Selected/InteractEnded.md) | Gets the `System.Action` that is called whenever the player is interactingwith this selectable and releases the mouse or controller button\. |
+| [Highlight](./Selected/Highlight.md) | Gets the `System.Action` that is called whenever the highlight is turned on\. |
+| [HighlightEnded](./Selected/HighlightEnded.md) | Gets the `System.Action` that is called whenever the highlight is turned off\. |
+| [Focus](./Selected/Focus.md) | Gets the `System.Action` that is called whenever the module is focused,this is when it is interacted with from the bomb face level and this module's children can be selected\. |
+| [Defocus](./Selected/Defocus.md) | Gets the `System.Action` that is called whenever the module is defocused,this is when a different selectable becomes the focus or the module has been backed out of\. |
+| [Left](./Selected/Left.md) | Gets the `System.Action` that is called whenever the playerpulls selection stick left while this selectable is focused\. |
+| [Right](./Selected/Right.md) | Gets the `System.Action` that is called whenever playerpulls selection stick right while this selectable is focused\. |
+| [InteractionPunch](./Selected/InteractionPunch.md) | Gets the `System.Action` that when called, performs an interaction punchor bomb shake with the impact level based on the parameter passed in\. Modded Only\. |
+| [UpdateChildren](./Selected/UpdateChildren.md) | Gets the `System.Action` that when called, updates the list of children,with the parameter being the `KMSelectable` to select\. Modded Only\. |
 | [Modded](./Selected/Modded.md) | Gets the encapsulated `KMSelectable` from this instanceas [Maybe\<T\>](../../wawa.Optionals/wawa.Optionals/Maybe\`1.md) due to ambiguity in this value being set\. |
 | [Vanilla](./Selected/Vanilla.md) | Gets the encapsulated `Selectable` from this instance\. |
 | [Parent](./Selected/Parent.md) | Gets the parent of this selectable\. |

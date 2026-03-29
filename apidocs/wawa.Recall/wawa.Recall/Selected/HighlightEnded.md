@@ -3,7 +3,7 @@
 namespace: [wawa\.Recall](../../wawa.Recall.md)<br />
 assembly: [wawa\.Recall](../../../wawa.Recall.md)
 
-Gets the `Action` that is called whenever the highlight is turned off\.
+Gets the `System.Action` that is called whenever the highlight is turned off\.
 
 ```csharp
 public HookDef<Action> HighlightEnded { get; };

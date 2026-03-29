@@ -3,7 +3,7 @@
 namespace: [wawa\.Recall](../../wawa.Recall.md)<br />
 assembly: [wawa\.Recall](../../../wawa.Recall.md)
 
-Gets the `Action` that is called whenever the module is focused,
+Gets the `System.Action` that is called whenever the module is focused,
 this is when it is interacted with from the bomb face level and this module's children can be selected\.
 
 ```csharp

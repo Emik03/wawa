@@ -3,7 +3,7 @@
 namespace: [wawa\.Recall](../../wawa.Recall.md)<br />
 assembly: [wawa\.Recall](../../../wawa.Recall.md)
 
-Gets the `Action` that is called when the entire module has been solved\.
+Gets the `System.Action` that is called when the entire module has been solved\.
 
 ```csharp
 public HookDef<Func<bool>> Solve { get; };

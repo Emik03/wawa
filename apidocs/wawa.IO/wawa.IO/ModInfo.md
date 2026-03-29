@@ -26,7 +26,7 @@ Implements: `IEquatable<ModInfo>`, `IEqualityComparer<ModInfo>`
 | [operator \!=\(ModInfo, ModInfo\)](./ModInfo/op_Inequality.md) | Determines whether both instances do not contain the same values\. |
 | [Deserialize\(string\)](./ModInfo/Deserialize.md) | Tries to deserialize the parameter as [ModInfo](../../wawa.IO/wawa.IO/ModInfo.md)\. |
 | [ReadThenDeserialize\(string\)](./ModInfo/ReadThenDeserialize.md) | Attempts to read the specified path to try to deserialize its contents as [ModInfo](../../wawa.IO/wawa.IO/ModInfo.md)\. |
-| [Equals\(object\)](./ModInfo/Equals.md) |  |
+| [Equals\(object?\)](./ModInfo/Equals.md) |  |
 | [GetHashCode\(\)](./ModInfo/GetHashCode.md) |  |
 | [ToString\(\)](./ModInfo/ToString.md) |  |
 

@@ -23,7 +23,7 @@ Implements: `IEquatable<State>`, `IEqualityComparer<State>`
 | [Equals\(State\)](./State/Equals.md) |  |
 | [operator ==\(State, State\)](./State/op_Equality.md) | Determines whether both instances contain the same values\. |
 | [operator \!=\(State, State\)](./State/op_Inequality.md) | Determines whether both instances do not contain the same values\. |
-| [Equals\(object\)](./State/Equals.md) |  |
+| [Equals\(object?\)](./State/Equals.md) |  |
 | [GetHashCode\(\)](./State/GetHashCode.md) |  |
 | [ToString\(\)](./State/ToString.md) |  |
 

@@ -18,7 +18,7 @@ namespace wawa.Schemas;
 | [TweaksSetting\.ArrayAttribute](./wawa.Schemas/ArrayAttribute.md) | Indicates that the field or property is a setting serialized as an array\. |
 | [TweaksSetting\.CheckboxAttribute](./wawa.Schemas/CheckboxAttribute.md) | Indicates that the field or property is a setting serialized as a boolean\. |
 | [TweaksSetting\.DropdownAttribute](./wawa.Schemas/DropdownAttribute.md) | Indicates that the field or property is a setting serialized as one of a set of values\. |
-| [TweaksSetting\.HiddenAttribute](./wawa.Schemas/HiddenAttribute.md) | Indicates that the field or property is a setting serialized as one of a set of values\. |
+| [TweaksSetting\.HiddenAttribute](./wawa.Schemas/HiddenAttribute.md) | Indicates that the field or property is hidden\. |
 | [TweaksSetting\.NumberAttribute](./wawa.Schemas/NumberAttribute.md) | Indicates that the field or property is a setting serialized as a number\. |
 | [TweaksSetting\.StringAttribute](./wawa.Schemas/StringAttribute.md) | Indicates that the field or property is a setting serialized as a string\. |
 | [TweaksSetting\.SubmenuAttribute](./wawa.Schemas/SubmenuAttribute.md) | Indicates that the field or property is a setting serialized as a submenu\. |

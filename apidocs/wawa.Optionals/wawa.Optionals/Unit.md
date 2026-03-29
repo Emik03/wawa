@@ -26,7 +26,7 @@ Implements: `IComparable<Unit>`, `IComparer<Unit>`, `ICloneable`, `IEnumerable<U
 | [GetHashCode\(\)](./Unit/GetHashCode.md) |  |
 | [ToString\(string, IFormatProvider\)](./Unit/ToString.md) |  |
 | [ToString\(\)](./Unit/ToString.md) |  |
-| [Equals\(object\)](./Unit/Equals.md) |  |
+| [Equals\(object?\)](./Unit/Equals.md) |  |
 | [GetEnumerator\(\)](./Unit/GetEnumerator.md) |  |
 
 ## Properties

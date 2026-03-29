@@ -3,7 +3,7 @@
 namespace: [wawa\.Schemas](../wawa.Schemas.md)<br />
 assembly: [wawa\.Schemas](../../wawa.Schemas.md)
 
-Indicates that the field or property is a setting serialized as one of a set of values\.
+Indicates that the field or property is hidden\.
 
 ```csharp
 public sealed class TweaksSetting.HiddenAttribute;
