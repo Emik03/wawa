@@ -17,7 +17,7 @@ public readonly struct InterpolatedStringHandlerEnumerable(
     : IEnumerable<KeyValuePair<object, string>>
 {
     /// <summary>The list to append and enumerate through.</summary>
-    readonly List<KeyValuePair<object, string>> _list = new(formattedCount * 2 + 1);
+    readonly List<KeyValuePair<object, string>> _list = [with(formattedCount * 2 + 1)];
 
     /// <summary>Gets the recommended string size for concatenating all values in this instance.</summary>
     /// <remarks><para>
