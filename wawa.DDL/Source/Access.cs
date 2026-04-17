@@ -57,7 +57,8 @@ public static class Access
 
     /// <summary>Gets a value indicating whether the runtime is in a non-official game.</summary>
     [PublicAPI]
-    public static bool IsRewritten { [Pure] get; } = Application.productName is not "Keep Talking and Nobody Explodes";
+    public static bool IsRewritten { [Pure] get; } =
+        Application.productName is not "AssetBundle" and not "Keep Talking and Nobody Explodes";
 
     /// <summary>Gets a value indicating whether the runtime is in-game.</summary>
     [PublicAPI]

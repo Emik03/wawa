@@ -11,7 +11,8 @@ public static class KMExtensions
     [ProvidesContext]
     static readonly bool
         s_isKtane = Application.productName is "Keep Talking and Nobody Explodes" && !Application.isEditor,
-        s_isKtaneOrRewritten = s_isKtane || Application.productName is not "Keep Talking and Nobody Explodes";
+        s_isKtaneOrRewritten = s_isKtane ||
+            Application.productName is not "AssetBundle" and not "Keep Talking and Nobody Explodes";
 
     /// <summary>
     /// Adds the specified delegate parameter if not <see langword="null"/> into the <see cref="KMAudioRef"/>.
