@@ -25,9 +25,9 @@
       },
       "Emik.SourceGenerators.Choices": {
         "type": "Direct",
-        "requested": "[1.4.16, )",
-        "resolved": "1.4.16",
-        "contentHash": "NaVwiCfMYmLf5mUqDhgS08YtOShR2kYvRyPQOs5xlZsTrvDDrJc2OzUHRIrEVzUOa2AoPBHxmtUX9PWy72Nwlw=="
+        "requested": "[1.4.17, )",
+        "resolved": "1.4.17",
+        "contentHash": "TNcX2Q7AfIBgYj5/qvTYPK/ZZh90jU+uB0dobkGXXYFu3pNivYJR8PHMT2p7vSW7Y77R2W0WPO2Bsb5WyK0cAQ=="
       },
       "Emik.SourceGenerators.Implicit": {
         "type": "Direct",
@@ -67,12 +67,6 @@
         "dependencies": {
           "Fody": "6.9.3"
         }
-      },
-      "InlineMethod.Fody": {
-        "type": "Direct",
-        "requested": "[0.8.7, )",
-        "resolved": "0.8.7",
-        "contentHash": "Y+ISlTQ9D13RFdcVFj9I52E5GqCl/mN4QMfbpN1gv3+Sbyj7mEDD9PEz4UVFyx77VRTAomi7MunNR8b/PLUp/w=="
       },
       "JetBrains.Annotations": {
         "type": "Direct",
