@@ -54,11 +54,25 @@ public static class KMBombStrikeExtensions
             that,
             static x =>
             {
-                x.GetComponent<Bomb>().Detonate();
+                if (x.GetComponent<Bomb>() is var bomb && bomb && bomb.HasDetonated)
+                    bomb.Detonate();
+
                 return x;
             },
             that // ReSharper disable NullableWarningSuppressionIsUsed
         )!;
+
+    /// <summary>Detonates the bomb, with a reason.</summary>
+    /// <remarks><para>In the editor, this method does nothing.</para></remarks>
+    /// <param name="that">The <see cref="KMBomb"/> module instance to detonate.</param>
+    /// <param name="reason">
+    /// The reason that will be displayed for the bomb detonating, which is often
+    /// but not always the name of the module that issued the detonation.
+    /// </param>
+    /// <returns>The parameter <paramref name="that"/>.</returns>
+    [CLSCompliant(false), NonNegativeValue, NotNull, PublicAPI]
+    public static KMBomb DetonateBecause([NotNull] this KMBomb that, [AllowNull, CanBeNull] string reason) =>
+        FromGame(new KeyValuePair<KMBomb, string>(that, reason), DetonateInner, new(that, reason)).Key;
 
     /// <summary>Sets the rate in which the timer ticks.</summary>
     /// <remarks><para>In the editor, this method does nothing.</para></remarks>
@@ -142,4 +156,28 @@ public static class KMBombStrikeExtensions
             },
             that
         )!;
+
+    [MustUseReturnValue]
+    static KeyValuePair<KMBomb, string> DetonateInner(KeyValuePair<KMBomb, string> x)
+    {
+        if (x.Key.GetComponent<Bomb>() is var bomb && !bomb || bomb.HasDetonated)
+            return x;
+
+        var record = RecordManager.Instance;
+        var strikes = record.GetCurrentRecord().Strikes;
+        var bombTimeElapsed = bomb.GetTimer().TimeElapsed;
+
+        strikes[strikes.Length - 1] = new()
+        {
+            Time = bombTimeElapsed,
+            ComponentName = x.Value,
+            ComponentType = ComponentTypeEnum.Mod,
+            InteractionType = InteractionTypeEnum.PushButton,
+        };
+
+        var realTimeElapsed = SceneManager.Instance.GameplayState.GetElapsedRealTime();
+        record.SetResult(GameResultEnum.ExplodedDueToStrikes, bombTimeElapsed, realTimeElapsed);
+        bomb.Detonate();
+        return x;
+    }
 }

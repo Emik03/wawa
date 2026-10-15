@@ -146,7 +146,6 @@ using wawa.Modules;",
         needy.ModuleType = needy.ModuleDisplayName = go.name;
         selectable.Highlight = go.AddHighlightable();
 
-        go.AddStatusLight();
         go.AddPuzzleBackground(NeedyBackground);
         go.Save(path);
     }
@@ -239,12 +238,11 @@ using wawa.Modules;",
         [NotNull, PathReference, StringSyntax(StringSyntaxAttribute.Uri), UriString] string path
     )
     {
-        go.tag = ModBundle.Tag;
-
         var uri = new Uri(Application.dataPath).MakeRelativeUri(new(path));
         var relative = Uri.UnescapeDataString(uri.ToString());
         var newGo = PrefabUtility.CreatePrefab(relative, go);
 
+        AssetImporter.GetAtPath(relative).SetAssetBundleNameAndVariant(ModBundle.Tag, "");
         Object.DestroyImmediate(go);
         PrefabUtility.InstantiatePrefab(newGo);
         Debug.Log(Reload);

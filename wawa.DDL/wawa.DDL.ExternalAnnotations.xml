@@ -13,6 +13,9 @@
   <member name="M:wawa.DDL.KMBombStrikeExtensions.Detonate(KMBomb)">
     <attribute ctor="M:JetBrains.Annotations.NonNegativeValueAttribute.#ctor" />
   </member>
+  <member name="M:wawa.DDL.KMBombStrikeExtensions.DetonateBecause(KMBomb,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.NonNegativeValueAttribute.#ctor" />
+  </member>
   <member name="M:wawa.DDL.KMBombStrikeExtensions.GetMaxStrikes(KMBomb)">
     <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
     <attribute ctor="M:JetBrains.Annotations.NonNegativeValueAttribute.#ctor" />

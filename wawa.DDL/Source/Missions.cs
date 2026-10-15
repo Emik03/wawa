@@ -36,7 +36,7 @@ public static class Missions
     public static bool LightsOn
     {
         [Pure] get => s_lightsOn;
-        set => FromGame(value, FlipTheSwitch);
+        set => FromGame(value, Flick);
     }
 
     /// <summary>Gets the description as it appears in the bomb binder.</summary>
@@ -85,7 +85,7 @@ public static class Missions
 
     static void OnLightsChanged(bool value) => s_lightsOn = value;
 
-    static bool FlipTheSwitch(bool v)
+    static bool Flick(bool v)
     {
         if (SceneManager.Instance is var instance && !instance ||
             instance.GameplayState is var gameplayState && !gameplayState ||

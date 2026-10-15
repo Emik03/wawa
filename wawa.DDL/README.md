@@ -102,6 +102,8 @@ public static IDictionary? Mods(DBNull _);
 
 public static KMBomb Detonate(KMBomb that);
 
+public static KMBomb DetonateBecause(KeyValuePair<KMBomb /* that */, string /* reason */> args);
+
 public static KMBomb SetRate(KeyValuePair<KMBomb /* that */, KeyValuePair<float /* value */, bool /* signFlip */>> args);
 
 public static KMBomb SetStrikes(KeyValuePair<KMBomb /* that */, KeyValuePair<int /* value */, bool /* signFlip */>> args);
